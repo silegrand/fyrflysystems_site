@@ -355,13 +355,14 @@
 
       /* Mobile nav overlay */
       .mob-nav {
-        display: none; position: fixed; inset: 0; z-index: 300;
+        display: flex; position: fixed; inset: 0; z-index: 300;
         background: rgba(14,14,20,0.97); flex-direction: column;
         align-items: flex-start; justify-content: flex-start;
         padding: 5rem 2rem 2rem; gap: 0;
         opacity: 0; transition: opacity 0.25s;
+        visibility: hidden; pointer-events: none; will-change: opacity;
       }
-      .mob-nav.open { display: flex; opacity: 1; }
+      .mob-nav.open { visibility: visible; pointer-events: all; opacity: 1; }
       .mob-nav a {
         font-family: 'Roboto', sans-serif; font-size: 1.5rem; font-weight: 700;
         color: rgba(255,255,255,0.85); padding: 0.75rem 0;
@@ -859,13 +860,9 @@
   const mobClose = document.getElementById('mobClose');
   if (ham && mobNav) {
     ham.addEventListener('click', () => {
-      mobNav.style.display = 'flex';
       requestAnimationFrame(() => mobNav.classList.add('open'));
     });
-    const closeNav = () => {
-      mobNav.classList.remove('open');
-      setTimeout(() => { if (!mobNav.classList.contains('open')) mobNav.style.display = 'none'; }, 260);
-    };
+    const closeNav = () => { mobNav.classList.remove('open'); };
     mobClose.addEventListener('click', closeNav);
     mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
   }
