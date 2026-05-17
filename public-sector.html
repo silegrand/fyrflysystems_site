@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security for Local Authorities, NHS and Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Procurement-compliant CCTV, access control, intruder alarms, fire systems and wireless networks for local authorities, NHS estates, housing associations and government bodies across the UK.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c: #C8102E;
+      --o: #E85D04;
+      --a: #F5A623;
+      --grad: linear-gradient(135deg, #C8102E 0%, #E85D04 52%, #F5A623 100%);
+      --dark: #0E0E14;
+      --char: #1B1B24;
+      --mid: #67677A;
+      --mute: #9595A5;
+      --light: #F5F4F2;
+      --bdr: #E6E5E1;
+      --white: #FFFFFF;
+      --fh: 'Roboto', sans-serif;
+      --fb: 'DM Sans', sans-serif;
+      --max: 1200px;
+      --nh: 70px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); font-weight: 400; color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav { position: sticky; top: 0; z-index: 200; height: var(--nh); background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--bdr); transition: box-shadow 0.3s var(--ease); }
+    nav.scrolled { box-shadow: 0 2px 28px rgba(0,0,0,0.07); }
+    .nav-i { max-width: var(--max); margin: 0 auto; padding: 0 2rem; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { height: 50px; width: auto; }
+    .nav-logo-text { font-family: var(--fh); font-weight: 900; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .nav-logo-text span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--mid); letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.35rem; background: var(--grad); color: #fff; font-size: 0.85rem; font-weight: 500; border-radius: 6px; letter-spacing: 0.01em; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s var(--ease); }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .ham span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+    /* ─── SHARED TYPOGRAPHY ─────────────────────────────── */
+    .sec-lbl { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.9rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--o); }
+    .sec-lbl::before { content: ''; display: inline-block; width: 16px; height: 1.5px; background: var(--o); }
+    .sec-h { font-family: var(--fh); font-size: clamp(1.75rem, 2.8vw, 2.7rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--dark); }
+    .sec-sub { font-size: 0.97rem; color: var(--mid); max-width: 56ch; margin-top: 0.75rem; font-weight: 300; line-height: 1.72; }
+    .btn-p { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 2rem; background: var(--grad); color: #fff; font-size: 0.93rem; font-weight: 500; border-radius: 6px; transition: opacity 0.2s, transform 0.2s var(--ease); }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 2rem; color: rgba(255,255,255,0.65); font-size: 0.93rem; font-weight: 400; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn-g:hover { color: #fff; border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+    /* ─── BREADCRUMB ────────────────────────────────────── */
+    .breadcrumb { background: var(--light); border-bottom: 1px solid var(--bdr); padding: 0.75rem 0; }
+    .breadcrumb-i { max-width: var(--max); margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--mute); }
+    .breadcrumb-i a { color: var(--mute); transition: color 0.2s; }
+    .breadcrumb-i a:hover { color: var(--o); }
+    .breadcrumb-i svg { width: 12px; height: 12px; stroke: var(--mute); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .breadcrumb-i span { color: var(--mid); font-weight: 500; }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    .hero { position: relative; background: #0F1F14; min-height: 520px; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 78% 38%, rgba(245,166,35,0.14) 0%, transparent 54%),
+        radial-gradient(ellipse at 8% 78%, rgba(200,16,46,0.08) 0%, transparent 50%);
+    }
+    .hero-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 38px 38px; mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 15%, rgba(0,0,0,0.35) 85%, transparent 100%); }
+    .hero-stripe { position: absolute; top: 0; right: 0; width: 42%; height: 100%; background: linear-gradient(to left, rgba(245,166,35,0.05), transparent); }
+    .hero-c { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 58fr 42fr; gap: 4rem; align-items: center; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.9rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1.35rem; }
+    .hero-tag svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .hero h1 { font-family: var(--fh); font-size: clamp(2.1rem, 3.8vw, 3.4rem); font-weight: 900; line-height: 1.07; letter-spacing: -0.03em; color: var(--white); margin-bottom: 1.35rem; }
+    .hero h1 .acc { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.72; margin-bottom: 2.4rem; max-width: 48ch; }
+    .hero-acts { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
+    .hero-right { display: flex; flex-direction: column; gap: 0.85rem; }
+    .hero-pill { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.1rem 1.3rem; display: flex; align-items: flex-start; gap: 0.9rem; }
+    .hero-pill-icon { width: 34px; height: 34px; border-radius: 7px; background: var(--grad); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .hero-pill-icon svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-pill-text strong { display: block; font-size: 0.83rem; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 0.2rem; }
+    .hero-pill-text span { font-size: 0.77rem; color: rgba(255,255,255,0.42); line-height: 1.5; }
+
+    .hero-tag { animation: fadeUp 0.5s var(--ease) 0.1s both; }
+    .hero h1 { animation: fadeUp 0.6s var(--ease) 0.18s both; }
+    .hero-sub { animation: fadeUp 0.6s var(--ease) 0.26s both; }
+    .hero-acts { animation: fadeUp 0.6s var(--ease) 0.34s both; }
+    .hero-right { animation: fadeUp 0.65s var(--ease) 0.24s both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ─── CONTEXT ────────────────────────────────────────── */
+    .context { background: var(--white); padding: 4.5rem 0; border-bottom: 1px solid var(--bdr); }
+    .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .context-text p { font-size: 1rem; color: var(--mid); line-height: 1.78; font-weight: 300; margin-bottom: 1.1rem; }
+    .context-text p:last-child { margin-bottom: 0; }
+    .context-text p strong { color: var(--dark); font-weight: 500; }
+    .challenge-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .challenge-item { display: flex; align-items: flex-start; gap: 0.9rem; padding: 1rem 1.2rem; background: var(--light); border-radius: 10px; border-left: 3px solid transparent; transition: border-color 0.2s; }
+    .challenge-item:hover { border-left-color: var(--o); }
+    .challenge-icon { width: 32px; height: 32px; border-radius: 6px; background: var(--white); border: 1px solid var(--bdr); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .challenge-icon svg { width: 16px; height: 16px; stroke: var(--o); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .challenge-text strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--dark); margin-bottom: 0.2rem; }
+    .challenge-text span { font-size: 0.8rem; color: var(--mid); line-height: 1.5; }
+
+    /* ─── SERVICES ───────────────────────────────────────── */
+    .pub-services { background: #F7F6F4; padding: 5.5rem 0; }
+    .pub-svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 3rem; }
+    .pub-svc-card { background: var(--white); border: 1px solid var(--bdr); border-radius: 14px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem; position: relative; overflow: hidden; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s; }
+    .pub-svc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.07); border-color: rgba(232,93,4,0.25); }
+    .pub-svc-card.featured { grid-column: span 2; display: grid; grid-template-columns: auto 1fr; gap: 0; }
+    .pub-svc-card.featured .pub-svc-body { padding-left: 2rem; border-left: 1px solid var(--bdr); }
+    .pub-svc-head { display: flex; align-items: center; gap: 1rem; }
+    .pub-svc-ico { width: 48px; height: 48px; border-radius: 10px; background: #F0EEE9; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pub-svc-ico svg { width: 24px; height: 24px; stroke: var(--o); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .pub-svc-n { font-family: var(--fh); font-size: 1.05rem; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; }
+    .pub-svc-tag { display: inline-block; margin-top: 0.25rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--o); }
+    .pub-svc-desc { font-size: 0.87rem; color: var(--mid); line-height: 1.68; }
+    .pub-svc-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+    .pub-svc-bullets li { font-size: 0.82rem; color: var(--mid); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+    .pub-svc-bullets li::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--grad); flex-shrink: 0; margin-top: 0.45rem; }
+    .pub-svc-lnk { margin-top: auto; font-size: 0.8rem; font-weight: 600; color: var(--o); display: flex; align-items: center; gap: 0.35rem; transition: gap 0.2s; }
+    .pub-svc-card:hover .pub-svc-lnk { gap: 0.6rem; }
+
+    /* ─── ORGANISATION TYPES ─────────────────────────────── */
+    .orgs { background: var(--white); padding: 5.5rem 0; }
+    .orgs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-top: 3rem; }
+    .org-card { border: 1px solid var(--bdr); border-radius: 12px; padding: 1.75rem 1.4rem; text-align: center; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s; position: relative; overflow: hidden; }
+    .org-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+    .org-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.07); border-color: transparent; }
+    .org-card:hover::before { transform: scaleX(1); }
+    .org-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.1rem; }
+    .org-icon svg { width: 26px; height: 26px; stroke: var(--o); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .org-n { font-family: var(--fh); font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .org-d { font-size: 0.79rem; color: var(--mid); line-height: 1.6; }
+
+    /* ─── PROCUREMENT FRAMEWORKS ─────────────────────────── */
+    .frameworks { background: var(--char); padding: 5.5rem 0; }
+    .frameworks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+    .fw-left .sec-lbl { color: rgba(255,255,255,0.35); }
+    .fw-left .sec-lbl::before { background: rgba(255,255,255,0.35); }
+    .fw-left .sec-h { color: var(--white); margin-bottom: 1rem; }
+    .fw-left .sec-sub { color: rgba(255,255,255,0.48); max-width: 44ch; margin-bottom: 2rem; }
+    .fw-cards { display: flex; flex-direction: column; gap: 0.9rem; }
+    .fw-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.35rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: background 0.2s; }
+    .fw-card:hover { background: rgba(255,255,255,0.07); }
+    .fw-card-badge { font-family: var(--fh); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; padding-top: 2px; min-width: 52px; }
+    .fw-card-body strong { display: block; font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.82); margin-bottom: 0.25rem; }
+    .fw-card-body span { font-size: 0.79rem; color: rgba(255,255,255,0.4); line-height: 1.55; }
+    .comp-standards { display: flex; flex-direction: column; gap: 0.65rem; }
+    .comp-std { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .comp-std::before { content: ''; width: 16px; height: 1px; background: var(--grad); flex-shrink: 0; }
+
+    /* ─── WHY ────────────────────────────────────────────── */
+    .why-pub { background: #F7F6F4; padding: 5.5rem 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .why-card { padding: 2rem; background: var(--white); border-radius: 12px; border: 1px solid var(--bdr); }
+    .why-n { font-family: var(--fh); font-size: 3rem; font-weight: 900; line-height: 1; margin-bottom: 1rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.28; }
+    .why-t { font-family: var(--fh); font-size: 1.05rem; font-weight: 700; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+    .why-d { font-size: 0.87rem; color: var(--mid); line-height: 1.72; }
+
+    /* ─── TRUST STRIP ────────────────────────────────────── */
+    .trust { background: var(--dark); padding: 2.75rem 0; }
+    .trust-i { max-width: var(--max); margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-around; gap: 1.5rem; flex-wrap: wrap; }
+    .trust-item { text-align: center; }
+    .trust-n { font-family: var(--fh); font-size: 1.9rem; font-weight: 900; line-height: 1; margin-bottom: 0.28rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .trust-l { font-size: 0.75rem; font-weight: 400; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
+    .trust-div { width: 1px; height: 38px; background: rgba(255,255,255,0.07); }
+
+    /* ─── CTA ────────────────────────────────────────────── */
+    .cta-ban { position: relative; overflow: hidden; padding: 6rem 0; background: #0F1F14; }
+    .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(245,166,35,0.12) 0%, transparent 56%), radial-gradient(ellipse at 15% 50%, rgba(200,16,46,0.08) 0%, transparent 50%); }
+    .cta-c { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+    .cta-c .sec-lbl { justify-content: center; color: rgba(255,255,255,0.32); }
+    .cta-c .sec-lbl::before { background: rgba(255,255,255,0.32); }
+    .cta-c h2 { font-family: var(--fh); font-size: clamp(1.75rem, 3vw, 2.6rem); font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
+    .cta-c p { font-size: 0.97rem; color: rgba(255,255,255,0.5); margin-bottom: 2.4rem; font-weight: 300; line-height: 1.72; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { background: var(--dark); padding: 4rem 0 2rem; }
+    .ft-grid { max-width: var(--max); margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.1fr; gap: 3rem; margin-bottom: 3rem; }
+    .ft-brand { display: flex; flex-direction: column; gap: 1rem; }
+    .ft-logo img { height: 34px; }
+    .ft-logo-text { font-family: var(--fh); font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .ft-logo-text span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ft-tag { font-size: 0.81rem; color: rgba(255,255,255,0.3); line-height: 1.65; max-width: 32ch; }
+    .ft-ct { font-size: 0.71rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .ft-links a { font-size: 0.83rem; color: rgba(255,255,255,0.42); transition: color 0.2s; }
+    .ft-links a:hover { color: rgba(255,255,255,0.78); }
+    .ft-bot { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .ft-copy { font-size: 0.76rem; color: rgba(255,255,255,0.22); }
+    .ft-legal { display: flex; gap: 1.4rem; }
+    .ft-legal a { font-size: 0.76rem; color: rgba(255,255,255,0.22); transition: color 0.2s; }
+    .ft-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) { .orgs-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 820px) {
+      .nav-links, .nav-cta { display: none; }
+      .ham { display: flex; }
+      .hero-c { grid-template-columns: 1fr; padding: 3.5rem 2rem; gap: 2.5rem; }
+      .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pub-svc-grid { grid-template-columns: 1fr; }
+      .pub-svc-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .pub-svc-card.featured .pub-svc-body { padding-left: 0; border-left: none; border-top: 1px solid var(--bdr); padding-top: 1.5rem; margin-top: 0.5rem; }
+      .frameworks-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .why-grid { grid-template-columns: 1fr; }
+      .ft-grid { grid-template-columns: 1fr 1fr; }
+      .trust-div { display: none; }
+    }
+    @media (max-width: 500px) { .orgs-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <img src="fyrfly-logo.png" alt="Fyrfly Systems">
+      <div class="nav-logo-text" style="display:none"><span>FYRFLY</span> SYSTEMS</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html" class="active">Public Sector</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch →</a>
+    <div class="ham" aria-label="Open menu"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-i">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="index.html#sectors">Sectors</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>Public Sector</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-c">
+    <div>
+      <div class="hero-tag">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Public Sector
+      </div>
+      <h1>Security Built for <span class="acc">Public Accountability</span></h1>
+      <p class="hero-sub">From local authority offices and NHS estates to housing associations and civic buildings, we deliver procurement-compliant security systems that protect people, assets and services without wasting public money.</p>
+      <div class="hero-acts">
+        <a href="#contact" class="btn-p">Request a Site Survey →</a>
+        <a href="#services" class="btn-g">Our Public Sector Services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div class="hero-pill-text">
+          <strong>Framework Procurement Ready</strong>
+          <span>Accessible via Crown Commercial Service and other public procurement frameworks, removing the burden of a full tender process</span>
+        </div>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="hero-pill-text">
+          <strong>Public Duty and Value for Money</strong>
+          <span>We design systems that are proportionate to risk and cost-effective over their lifetime, supporting your duty to spend public funds responsibly</span>
+        </div>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="hero-pill-text">
+          <strong>Multi-Site and Estate Management</strong>
+          <span>Centralised monitoring and management for organisations running complex, distributed estates across multiple buildings and locations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="context">
+  <div class="wrap">
+    <div class="context-grid">
+      <div class="context-text">
+        <div class="sec-lbl">The Challenge</div>
+        <h2 class="sec-h" style="margin-bottom: 1.25rem;">Public Sector Security Is Never Straightforward</h2>
+        <p>Public sector organisations face a combination of pressures that private sector clients rarely encounter simultaneously: the need to protect staff and the public, strict compliance obligations, procurement rules that limit how contracts are awarded, and the constant scrutiny that comes with spending taxpayers' money.</p>
+        <p>Security decisions must be <strong>defensible, proportionate and cost-effective.</strong> A system that is over-specified wastes public funds. One that is under-specified leaves people and assets exposed. Getting that balance right requires a partner who understands the public sector environment, not just the technology.</p>
+        <p>Fyrfly Systems brings that understanding. We know how public sector estates work, how decisions get made, and how to deliver systems that will <strong>stand up to scrutiny</strong> from auditors, insurers and elected members alike.</p>
+      </div>
+      <div class="challenge-list">
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="challenge-text">
+            <strong>Lone worker and staff safety</strong>
+            <span>Council offices, housing offices and NHS reception areas can expose staff to challenging or volatile situations requiring robust monitoring and lone worker protection</span>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div class="challenge-text">
+            <strong>Controlling access to sensitive areas</strong>
+            <span>Public-facing buildings must balance open access for service users with restricted access to areas handling sensitive data, cash or vulnerable people</span>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="challenge-text">
+            <strong>Complex, ageing estate infrastructure</strong>
+            <span>Many public sector buildings have legacy infrastructure, mixed-use tenancies and listed building constraints that require careful, experienced design</span>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <div class="challenge-text">
+            <strong>Procurement and compliance obligations</strong>
+            <span>Public Contract Regulations and internal procurement policies govern how contracts are awarded, requiring a supplier who understands and works within these rules</span>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="challenge-text">
+            <strong>Surveillance Camera Commissioner compliance</strong>
+            <span>Public sector CCTV operators have specific obligations under the Surveillance Camera Code of Practice that go beyond those applying to private organisations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES IN PUBLIC SECTOR CONTEXT -->
+<section class="pub-services" id="services">
+  <div class="wrap">
+    <div class="sec-lbl">Our Services for Public Sector</div>
+    <h2 class="sec-h">Every Discipline, Delivered for Public Sector</h2>
+    <p class="sec-sub">All five of our service areas are applied with public sector-specific expertise, designed around your compliance obligations, procurement requirements and operational realities.</p>
+
+    <div class="pub-svc-grid">
+
+      <!-- Access Control - featured for public sector -->
+      <div class="pub-svc-card featured">
+        <div>
+          <div class="pub-svc-head">
+            <div class="pub-svc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <div>
+              <div class="pub-svc-n">Access Control for Public Buildings</div>
+              <div class="pub-svc-tag">Most Requested</div>
+            </div>
+          </div>
+        </div>
+        <div class="pub-svc-body">
+          <p class="pub-svc-desc">Public sector buildings present a unique access control challenge: they must be open and accessible to the communities they serve, while protecting staff, restricting sensitive areas and maintaining a clear audit trail of who was where and when. Our systems are designed to manage this balance, with role-based access, visitor management integration and real-time monitoring that gives facilities and security teams full situational awareness.</p>
+          <ul class="pub-svc-bullets">
+            <li>Zone-based access with role and time-of-day restrictions</li>
+            <li>Visitor management with pre-registration and photo ID capture</li>
+            <li>Full audit trail for data protection and insurance compliance</li>
+            <li>Integration with HR and identity management systems</li>
+            <li>Intercom and video door entry for public-facing reception points</li>
+          </ul>
+          <a href="access-control.html" class="pub-svc-lnk" style="margin-top: 1.25rem;">Full Access Control service details →</a>
+        </div>
+      </div>
+
+      <!-- CCTV -->
+      <div class="pub-svc-card">
+        <div class="pub-svc-head">
+          <div class="pub-svc-ico"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <div>
+            <div class="pub-svc-n">CCTV</div>
+            <div class="pub-svc-tag">Surveillance Camera Code Compliant</div>
+          </div>
+        </div>
+        <p class="pub-svc-desc">HD and 4K camera systems designed and operated in compliance with the Surveillance Camera Commissioner's Code of Practice, covering public-facing areas, car parks, reception environments and restricted zones, with all ICO data protection obligations built in from the outset.</p>
+        <ul class="pub-svc-bullets">
+          <li>Surveillance Camera Code of Practice compliant design</li>
+          <li>Data retention schedules and access policy documentation</li>
+          <li>Redaction capability for Subject Access Request responses</li>
+          <li>Integration with control room and monitoring centre infrastructure</li>
+        </ul>
+        <a href="cctv.html" class="pub-svc-lnk">Full service details →</a>
+      </div>
+
+      <!-- Intruder Alarms -->
+      <div class="pub-svc-card">
+        <div class="pub-svc-head">
+          <div class="pub-svc-ico"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+          <div>
+            <div class="pub-svc-n">Intruder Alarms</div>
+            <div class="pub-svc-tag">Insurance Grade Protection</div>
+          </div>
+        </div>
+        <p class="pub-svc-desc">Grade 2 and Grade 3 intruder detection systems with 24/7 ARC monitoring, protecting public buildings, depots and offices outside of occupied hours. Compliant with insurance requirements and designed around the zone structures that complex, multi-use buildings demand.</p>
+        <ul class="pub-svc-bullets">
+          <li>NSI-certified to satisfy public sector insurance requirements</li>
+          <li>Flexible zoning for mixed-use and out-of-hours lettings</li>
+          <li>Dual-Path signalling for maximum uptime</li>
+          <li>Keyholder management with app-based notifications</li>
+        </ul>
+        <a href="intruder-alarms.html" class="pub-svc-lnk">Full service details →</a>
+      </div>
+
+      <!-- Fire Systems -->
+      <div class="pub-svc-card">
+        <div class="pub-svc-head">
+          <div class="pub-svc-ico"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg></div>
+          <div>
+            <div class="pub-svc-n">Fire Detection and Alarms</div>
+            <div class="pub-svc-tag">Regulatory Compliance</div>
+          </div>
+        </div>
+        <p class="pub-svc-desc">Fully addressable fire detection and alarm systems designed to BS 5839, supporting your fire risk assessment and satisfying the Regulatory Reform (Fire Safety) Order 2005 obligations. Designed for the complex evacuation requirements of large, public-facing buildings with mixed occupancy.</p>
+        <ul class="pub-svc-bullets">
+          <li>Addressable panels for large and multi-building estates</li>
+          <li>Phased evacuation capability for high-rise or complex layouts</li>
+          <li>Integration with building management systems</li>
+          <li>Ongoing maintenance, testing and annual certification</li>
+        </ul>
+        <a href="fire-systems.html" class="pub-svc-lnk">Full service details →</a>
+      </div>
+
+      <!-- Wireless Networks -->
+      <div class="pub-svc-card">
+        <div class="pub-svc-head">
+          <div class="pub-svc-ico"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="#E85D04" stroke="none"/></svg></div>
+          <div>
+            <div class="pub-svc-n">Wireless Networks</div>
+            <div class="pub-svc-tag">Secure Infrastructure</div>
+          </div>
+        </div>
+        <p class="pub-svc-desc">Secure, high-performance wireless infrastructure that supports your security systems and operational technology, with network segmentation to keep sensitive systems isolated from general staff and public Wi-Fi, meeting PSN and cyber security baseline requirements.</p>
+        <ul class="pub-svc-bullets">
+          <li>Network segmentation and VLAN design for security and operational systems</li>
+          <li>PSN connection compliance considerations</li>
+          <li>Coverage designed for complex, multi-floor public buildings</li>
+          <li>Resilient design with failover and high availability options</li>
+        </ul>
+        <a href="wireless-networks.html" class="pub-svc-lnk">Full service details →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ORGANISATION TYPES -->
+<section class="orgs">
+  <div class="wrap">
+    <div class="sec-lbl">Who We Work With</div>
+    <h2 class="sec-h">Across the Full Public Sector Landscape</h2>
+    <p class="sec-sub">We have experience across the breadth of the UK public sector, understanding the specific pressures, constraints and compliance requirements of each type of organisation.</p>
+    <div class="orgs-grid">
+
+      <div class="org-card">
+        <div class="org-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="org-n">Local Authorities</div>
+        <p class="org-d">Councils and combined authorities securing civic offices, depots, car parks, libraries and leisure facilities across complex, distributed estates.</p>
+      </div>
+
+      <div class="org-card">
+        <div class="org-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="org-n">NHS and Healthcare</div>
+        <p class="org-d">Hospitals, clinics, GP surgeries and health centres requiring specialist security that supports patient safety, staff protection and CQC compliance.</p>
+      </div>
+
+      <div class="org-card">
+        <div class="org-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <div class="org-n">Housing Associations</div>
+        <p class="org-d">Registered providers securing offices, communal areas, sheltered housing schemes and lone worker environments across their housing stock.</p>
+      </div>
+
+      <div class="org-card">
+        <div class="org-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div class="org-n">Central Government</div>
+        <p class="org-d">Government departments, arm's-length bodies and agencies requiring security systems that meet HMG baseline security standards and PSN requirements.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCUREMENT FRAMEWORKS -->
+<section class="frameworks">
+  <div class="wrap">
+    <div class="frameworks-grid">
+      <div class="fw-left">
+        <div class="sec-lbl">Procurement</div>
+        <h2 class="sec-h">No Tender Headaches</h2>
+        <p class="sec-sub">We understand that public sector procurement rules exist for good reason. We work within them, not around them, making appointment straightforward and fully auditable.</p>
+        <div class="comp-standards" style="margin-top: 1rem;">
+          <div class="comp-std">BS EN 62676 — CCTV systems for security applications</div>
+          <div class="comp-std">BS 8243 — Intruder and hold-up alarm systems</div>
+          <div class="comp-std">BS 5839 — Fire detection and alarm systems</div>
+          <div class="comp-std">NSI NACOSS Gold — Installation standard</div>
+          <div class="comp-std">BAFE SP203 — Fire detection design and installation</div>
+          <div class="comp-std">Surveillance Camera Code of Practice</div>
+          <div class="comp-std">UK GDPR and Data Protection Act 2018</div>
+        </div>
+      </div>
+      <div class="fw-cards">
+        <div class="fw-card">
+          <div class="fw-card-badge">CCS</div>
+          <div class="fw-card-body">
+            <strong>Crown Commercial Service</strong>
+            <span>Available via CCS frameworks, enabling direct award without a full OJEU or Find a Tender Service process for qualifying organisations</span>
+          </div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-card-badge">G-Cloud</div>
+          <div class="fw-card-body">
+            <strong>G-Cloud Framework</strong>
+            <span>Network infrastructure and managed services elements are accessible via the G-Cloud digital marketplace for eligible public bodies</span>
+          </div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-card-badge">CL</div>
+          <div class="fw-card-body">
+            <strong>Constructionline Gold</strong>
+            <span>Pre-qualified through Constructionline Gold, satisfying the supply chain and financial due diligence requirements of most public sector estates teams</span>
+          </div>
+        </div>
+        <div class="fw-card">
+          <div class="fw-card-badge">ISO</div>
+          <div class="fw-card-body">
+            <strong>ISO 9001:2015 Certified</strong>
+            <span>Quality management system certified to ISO 9001:2015, demonstrating the process maturity and consistency expected of a public sector supplier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FYRFLY FOR PUBLIC SECTOR -->
+<section class="why-pub">
+  <div class="wrap">
+    <div class="sec-lbl">Why Fyrfly for Public Sector</div>
+    <h2 class="sec-h">A Partner Who Understands Public Service</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-n">01</div>
+        <div class="why-t">Proportionate by Design</div>
+        <p class="why-d">We do not oversell. Every system we specify is proportionate to the risk, the building and the budget. We can justify every camera, every reader and every detector in terms of the security outcome it delivers, because that is what public accountability demands.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-n">02</div>
+        <div class="why-t">One Supplier, Full Coverage</div>
+        <p class="why-d">Managing multiple specialist contractors across a public sector estate creates contract management overhead and accountability gaps. We cover all five security disciplines under a single contract, simplifying procurement, maintenance and responsibility.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-n">03</div>
+        <div class="why-t">Built for the Long Term</div>
+        <p class="why-d">Public sector organisations need systems that last and suppliers that stay. We design for longevity, use equipment with long manufacturer support cycles, and offer structured maintenance programmes that protect your investment over the full asset lifecycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-i">
+    <div class="trust-item"><div class="trust-n" style="font-size:1.3rem">Multiple</div><div class="trust-l">Education &amp; Public Sites</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">98%</div><div class="trust-l">Client Retention</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">1hr</div><div class="trust-l">Avg. Response Time</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">24/7</div><div class="trust-l">Remote Monitoring</div></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-ban" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-c">
+    <div class="sec-lbl">Ready to Start?</div>
+    <h2>Let's Talk About Your Estate</h2>
+    <p>Whether you are securing a single civic building or managing a complex multi-site estate, we will start with a free site survey and a proposal that is honest about what you need, how much it will cost and how to procure it compliantly.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Request a Free Site Survey →</a>
+      <a href="tel:+441234567890" class="btn-g">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px">
+        <div class="ft-logo-text" style="display:none"><span>FYRFLY</span> SYSTEMS</div>
+      </div>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li>
+        <li><a href="access-control.html">Access Control</a></li>
+        <li><a href="wireless-networks.html">Wireless Networks</a></li>
+        <li><a href="intruder-alarms.html">Intruder Alarms</a></li>
+        <li><a href="fire-systems.html">Fire Systems</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="public-sector.html">Public Sector</a></li>
+      </ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Company</div>
+      <ul class="ft-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22); font-size:0.83rem; margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+</script>
+</body>
+</html>
