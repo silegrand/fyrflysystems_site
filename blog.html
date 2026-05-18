@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Insights for Schools &amp; Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Practical guides on CCTV, access control, fire alarms and physical security for UK schools, colleges, local authorities and NHS estates. Written by Fyrfly Systems.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/blog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/blog.html">
+  <meta property="og:title" content="Security Insights for Schools &amp; Public Sector | Fyrfly Systems">
+  <meta property="og:description" content="Practical guides on CCTV, access control, fire alarms and physical security for UK schools and the public sector.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1B1B24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}img{display:block;max-width:100%;}a{text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent;}.wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+
+    /* ── NAV ── */
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}.nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}.nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}.nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}.nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}.nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}.nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;}.nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}.drop-item:hover{background:var(--light);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);min-height:44px;}.nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;min-width:44px;min-height:44px;align-items:center;justify-content:center;}.ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+
+    /* ── MOBILE NAV ── */
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    .mob-nav.open{display:flex;opacity:1;}
+    .mob-nav-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;min-height:60px;}
+    .mob-nav-brand{font-family:'Roboto',sans-serif;font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;}
+    .mob-nav-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.25rem 2rem 3rem;}
+    .mob-close{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;padding:0.5rem 0.85rem;display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.55);font-size:0.8rem;font-weight:500;font-family:'DM Sans',sans-serif;flex-shrink:0;-webkit-appearance:none;appearance:none;transition:background 0.15s,color 0.15s;}
+    .mob-close:hover{background:rgba(255,255,255,0.1);color:#fff;}
+    .mob-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;}
+    .mob-nav a{font-family:'Roboto',sans-serif;font-size:1.4rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.7rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;min-height:44px;display:flex;align-items:center;}.mob-nav a:hover{color:#fff;}
+    .mob-nav .mob-sub{font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.35);padding:0.4rem 0;border-bottom:none;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.25rem;}
+    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;min-height:44px;}
+    .mob-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+    .mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}.mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}.mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
+
+    /* ── MISC ── */
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}.sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);min-height:44px;}.btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+
+    /* ── BLOG HERO ── */
+    .blog-hero{background:var(--char);padding:5rem 0;position:relative;overflow:hidden;}
+    .blog-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(232,93,4,0.13) 0%,transparent 58%),radial-gradient(ellipse at 12% 60%,rgba(200,16,46,0.09) 0%,transparent 52%);}
+    .blog-hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.35) 15%,rgba(0,0,0,0.35) 85%,transparent 100%);}
+    .blog-hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .blog-hero h1{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.08;margin-bottom:1rem;}
+    .blog-hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .blog-hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.52);line-height:1.72;max-width:52ch;}
+
+    /* ── TOPICS ── */
+    .topics{background:var(--white);padding:3rem 0;border-bottom:1px solid var(--bdr);}
+    .topics-inner{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+    .topic-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;margin-right:0.5rem;}
+    .topic-tag{display:inline-flex;align-items:center;padding:0.4rem 1rem;border:1px solid var(--bdr);border-radius:100px;font-size:0.8rem;font-weight:500;color:var(--mid);transition:border-color 0.2s,color 0.2s,background 0.2s;cursor:default;}
+    .topic-tag:hover{border-color:var(--o);color:var(--o);}
+
+    /* ── ARTICLE GRID ── */
+    .blog-section{padding:5.5rem 0;background:var(--light);}
+    .section-group{margin-bottom:4rem;}
+    .section-group:last-child{margin-bottom:0;}
+    .section-group-hd{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:2px solid var(--bdr);}
+    .section-group-hd h3{font-family:var(--fh);font-size:1.15rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;}
+    .section-group-hd .count{font-size:0.8rem;font-weight:500;color:var(--mute);}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .art-card{background:var(--white);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.25s var(--ease),box-shadow 0.25s var(--ease),border-color 0.25s;}
+    .art-card:hover{transform:translateY(-5px);box-shadow:0 18px 52px rgba(0,0,0,0.08);border-color:transparent;}
+    .art-card-top{padding:1.75rem 1.75rem 0;}
+    .art-card-meta{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;}
+    .art-card-cat{display:inline-flex;align-items:center;gap:0.3rem;padding:0.22rem 0.65rem;background:var(--grad);color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;border-radius:100px;}
+    .art-card-date{font-size:0.75rem;color:var(--mute);}
+    .art-card-read{font-size:0.75rem;color:var(--mute);}
+    .art-card h2{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;line-height:1.3;margin-bottom:0.75rem;}
+    .art-card-excerpt{font-size:0.85rem;color:var(--mid);line-height:1.68;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+    .art-card-foot{padding:1.25rem 1.75rem 1.75rem;margin-top:auto;}
+    .art-card-lnk{font-size:0.82rem;font-weight:600;color:var(--o);display:flex;align-items:center;gap:0.35rem;transition:gap 0.2s;}
+    .art-card:hover .art-card-lnk{gap:0.6rem;}
+    .art-card-bar{height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease);}
+    .art-card:hover .art-card-bar{transform:scaleX(1);}
+
+    /* ── BLOG CTA ── */
+    .blog-cta{background:var(--char);padding:5rem 0;text-align:center;position:relative;overflow:hidden;}
+    .blog-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .blog-cta-c{position:relative;z-index:2;max-width:580px;margin:0 auto;padding:0 2rem;}
+    .blog-cta h2{font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;}
+    .blog-cta p{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;margin-bottom:2rem;font-weight:300;}
+
+    /* ── ACCREDS + FOOTER ── */
+    .accreds{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}.accreds-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}.accreds-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}.accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}.accred{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.35rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;}
+    footer{background:var(--dark);padding:4rem 0 2rem;}.ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}.ft-logo{margin-bottom:1rem;}.ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;}.ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}.ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}.ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}.ft-links a:hover{color:rgba(255,255,255,0.8);}.ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}.ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}.ft-legal{display:flex;gap:1.5rem;}.ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}.ft-legal a:hover{color:rgba(255,255,255,0.5);}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){.blog-grid{grid-template-columns:1fr 1fr;}}
+
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}
+      .ham{display:flex;}
+      .blog-hero{padding:3.5rem 0 3rem;}
+      .blog-hero h1{font-size:clamp(1.9rem,6vw,2.6rem);}
+      .blog-hero-sub{font-size:0.95rem;}
+      .blog-hero-c{padding:0 1.5rem;}
+      .blog-section{padding:3.5rem 0;}
+      .blog-grid{grid-template-columns:1fr;}
+      .section-group{margin-bottom:3rem;}
+      .topics-inner{gap:0.65rem;}
+      .topic-tag{font-size:0.75rem;padding:0.35rem 0.85rem;}
+      .blog-cta{padding:3.5rem 0;}
+      .blog-cta-c{padding:0 1.5rem;}
+      .accreds{padding:2rem 0;}
+      .accreds-i{padding:0 1.5rem;gap:1.25rem;}
+      .accreds-lbl{width:100%;}
+      .accreds-list{gap:0.65rem;}
+      .accred{font-size:0.73rem;padding:0.28rem 0.7rem;}
+      .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;padding:0 1.5rem;margin-bottom:2rem;}
+      .ft-grid>div:first-child{grid-column:span 2;}
+      .ft-grid>div:last-child{grid-column:span 2;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;}
+      .ft-bot{flex-direction:column;align-items:flex-start;gap:0.75rem;padding:1.25rem 1.5rem 0;}
+      .ft-legal{flex-wrap:wrap;gap:1rem;}
+      .wrap{padding:0 1.5rem;}
+      .art-card-top{padding:1.4rem 1.4rem 0;}
+      .art-card-foot{padding:1rem 1.4rem 1.4rem;}
+    }
+
+    @media(max-width:480px){
+      .blog-hero{padding:2.75rem 0 2.5rem;}
+      .blog-hero h1{font-size:clamp(1.65rem,7.5vw,2rem);}
+      .blog-hero-sub{font-size:0.92rem;line-height:1.65;}
+      .blog-hero-c{padding:0 1.25rem;}
+      .blog-section{padding:2.75rem 0;}
+      .blog-cta{padding:3rem 0;}
+      .blog-cta-c{padding:0 1.25rem;}
+      .btn-p{width:100%;justify-content:center;}
+      .accreds-i{padding:0 1.25rem;flex-direction:column;align-items:flex-start;}
+      .ft-grid{grid-template-columns:1fr;padding:0 1.25rem;}
+      .ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}
+      .ft-tag{max-width:none;}
+      .ft-bot{padding:1.25rem 1.25rem 0;}
+      .wrap{padding:0 1.25rem;}
+    }
+
+    @media(max-width:375px){
+      .blog-hero h1{font-size:1.55rem;}
+      .blog-hero-c,.blog-cta-c,.accreds-i,.ft-grid,.ft-bot,.wrap{padding-left:1rem;padding-right:1rem;}
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+</head>
+<body>
+
+<div class="mob-nav" id="mobNav" style="display:none">
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24" width="14" height="14" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a>
+  <a href="access-control.html">Access Control</a>
+  <a href="wireless-networks.html">Wireless Networks</a>
+  <a href="intruder-alarms.html">Intruder Alarms</a>
+  <a href="fire-systems.html">Fire Systems</a>
+  <a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a>
+  <a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a>
+  <a href="cost-estimator.html">Cost Estimator</a>
+  <a href="system-integration.html">System Integration</a>
+  <a href="compliance-tool.html">Compliance Tool</a>
+  <a href="your-site-tool.html">Your Site Tool</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo"><img src="fyrfly-logo.png" alt="Fyrfly Systems"></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item">Compliance Tool</a>
+          <a href="your-site-tool.html" class="drop-item">Your Site Tool</a>
+        </div>
+      </li>
+      <li><a href="blog.html" class="active">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="blog-hero">
+  <div class="blog-hero-bg"></div>
+  <div class="blog-hero-dots"></div>
+  <div class="blog-hero-c">
+    <div class="sec-lbl">Insights</div>
+    <h1>Security Guidance for <span class="acc">Schools &amp; Public Sector</span></h1>
+    <p class="blog-hero-sub">Practical articles on CCTV, access control, intruder alarms, fire systems and physical security governance, written for the people responsible for keeping education and public sector buildings safe.</p>
+  </div>
+</section>
+
+<section class="topics">
+  <div class="wrap">
+    <div class="topics-inner">
+      <span class="topic-lbl">Topics</span>
+      <span class="topic-tag">CCTV</span>
+      <span class="topic-tag">Access Control</span>
+      <span class="topic-tag">Fire Systems</span>
+      <span class="topic-tag">Intruder Alarms</span>
+      <span class="topic-tag">Monitoring</span>
+      <span class="topic-tag">UK GDPR</span>
+      <span class="topic-tag">KCSiE</span>
+      <span class="topic-tag">Martyn's Law</span>
+      <span class="topic-tag">Education</span>
+      <span class="topic-tag">Public Sector</span>
+    </div>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="wrap">
+
+    <!-- ══ EDUCATION ══ -->
+    <div class="section-group">
+      <div class="section-group-hd">
+        <h3>Education</h3>
+        <span class="count">13 articles</span>
+      </div>
+      <div class="blog-grid">
+
+        <a href="article-school-holiday-security.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">7 min read</span>
+            </div>
+            <h2>Why School Holidays Are Your Highest-Risk Period and What to Do About It</h2>
+            <p class="art-card-excerpt">Holiday periods consistently see higher rates of break-ins, vandalism and fly-tipping at school sites. With the right preparation, the risk is very manageable. This guide covers the pre-closure checklist, the role of professional monitoring, and what to do when school reopens.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-cctv-privacy-schools.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>CCTV in Schools: What the Law Requires and What Good Practice Looks Like</h2>
+            <p class="art-card-excerpt">CCTV is standard practice in UK schools, but the legal framework governing it is less well understood. This guide covers UK GDPR obligations, where cameras can and cannot go, the CCTV policy your school needs, and what to check if your system is already in place.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-access-control-schools-guide.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">7 min read</span>
+            </div>
+            <h2>Access Control in Schools: How It Works, What to Look For and Why It Matters</h2>
+            <p class="art-card-excerpt">A practical guide for headteachers, business managers and facilities leads. Covers credential types, system components, integration with CCTV and intruder alarms, GDPR compliance and the questions to ask any supplier before you commit to anything.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-whole-school-security-approach.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">7 min read</span>
+            </div>
+            <h2>School Security Done Right: Why Technology Alone Is Never the Answer</h2>
+            <p class="art-card-excerpt">Schools spend significant sums on CCTV and access control, then find a contractor walked through reception unchallenged. Good school security needs equipment, policies and people working together. This guide covers all three layers, including KCSiE obligations, visitor management and MAT-wide access control.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-integrating-cctv-access-control.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>Integrated Security Systems: What It Really Means to Connect CCTV and Access Control</h2>
+            <p class="art-card-excerpt">Most organisations buy security systems one at a time and end up with three separate systems that do not talk to each other. This guide explains what genuine integration means in practice, where it adds the most value in schools and public buildings, and what to get right before you buy anything.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-choosing-school-cctv-system.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">7 min read</span>
+            </div>
+            <h2>How to Choose a School CCTV System: What the Spec Sheet Won't Tell You</h2>
+            <p class="art-card-excerpt">Most CCTV quotes lead with resolution and camera count. What they leave out is everything that actually determines whether a system will work — storage, coverage gaps, integration, and what happens when something goes wrong on a Friday night. A practical buying guide for school leaders.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-cctv-safeguarding-schools.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>CCTV as a Safeguarding Tool: What Your Designated Safeguarding Lead Needs to Know</h2>
+            <p class="art-card-excerpt">CCTV supports the DSL's role — but only when it is in the right places, governed correctly, and used within a proper policy framework. This guide covers where cameras should and should not go, how footage can be used in investigations, and the compliance checklist every DSL should work through.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-dfe-protective-security-preparedness.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>The DfE Protective Security and Preparedness Guidance: A Practical Checklist for Schools</h2>
+            <p class="art-card-excerpt">The DfE guidance on protective security is not a compliance exercise — it is a genuine framework that reduces risk. This article distils its key requirements into an actionable checklist for headteachers, business managers and governors, covering security culture, threat assessment, physical measures and emergency planning.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-school-security-site-survey.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>What a Security Site Survey Actually Tells You — and Why Schools Should Request One</h2>
+            <p class="art-card-excerpt">Most schools commission a security survey only after something has gone wrong. Done proactively, a proper survey identifies low-cost, high-impact improvements that no specification document would flag. This guide explains what a genuine survey covers and how to use the findings with your governing body.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-school-cctv-maintenance.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>Your School CCTV System Is Only as Good as Its Last Service</h2>
+            <p class="art-card-excerpt">Camera lenses accumulate grime. Hard drives fail without warning. Systems drift out of alignment over months. The result is footage that would not support an investigation when you need it most. This guide covers what deteriorates, how fast, and what a proper maintenance contract should include.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-mat-security-management.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>Security Across a Multi-Academy Trust: The Case for a Unified Approach</h2>
+            <p class="art-card-excerpt">MATs that have grown through conversion inherit a patchwork of incompatible security systems, multiple supplier contracts, and inconsistent standards across sites. This guide makes the operational and financial case for moving to a unified security framework — and sets out how to get there.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-financial-case-school-cctv.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>Making the Financial Case for CCTV to Your Governors and Finance Committee</h2>
+            <p class="art-card-excerpt">Security investment is too often approved on headline price rather than total cost of ownership. This guide shows how to build a proper business case — accounting for vandalism costs, staff time, insurance compliance and the five-year cost of the alternative — and what to put in front of your finance committee.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-five-school-security-threats.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Education</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>The Five Security Threats Every School Faces — and What to Do About Each One</h2>
+            <p class="art-card-excerpt">School security thinking tends to focus on low-probability dramatic incidents while the everyday threats quietly erode resources and confidence. This article covers the five that account for most actual incidents: vandalism, unauthorised access, equipment theft, data exposure, and the safeguarding failures that security gaps enable.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+      </div><!-- /blog-grid education -->
+    </div><!-- /section-group education -->
+
+    <!-- ══ PUBLIC SECTOR ══ -->
+    <div class="section-group">
+      <div class="section-group-hd">
+        <h3>Public Sector</h3>
+        <span class="count">9 articles</span>
+      </div>
+      <div class="blog-grid">
+
+        <a href="article-public-sector-security-framework.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">8 min read</span>
+            </div>
+            <h2>Physical Security in the Public Sector: A Practical Framework for Facilities and Estates Teams</h2>
+            <p class="art-card-excerpt">Local authorities, NHS trusts and government bodies face a security challenge that private businesses rarely do. This practical guide covers threat assessment, procurement frameworks, multi-site management and the compliance obligations that apply across the public sector.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-protecting-public-green-spaces.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>Protecting Public Green Spaces: A Security Guide for Local Authorities and Councils</h2>
+            <p class="art-card-excerpt">Parks, allotments and public green spaces are some of the hardest assets to secure — open by design, often isolated, with no practical perimeter to control. This guide covers what works: wireless CCTV, targeted lighting, environmental design, and the community engagement that technology cannot replace.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-public-space-cctv-community-safety.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>Public Space CCTV: Why It Is a Community Safety Essential, Not an Optional Extra</h2>
+            <p class="art-card-excerpt">The evidence for CCTV as a deterrent in public spaces is consistent and well established. This article covers how deterrence works in practice, what modern analytics add to the response capability, and the non-negotiables — certification, signage, policy, maintenance — that determine whether a system delivers.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-ai-cctv-analytics-schools-public-sector.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>From Passive Recording to Active Intelligence: What AI-Enabled CCTV Means in Practice</h2>
+            <p class="art-card-excerpt">AI analytics features in almost every security brochure now — covering a range from genuinely useful detection tools to marketing fluff. This plain-language guide explains what the technology actually does, where it adds real value for schools and public sector organisations, and what questions to ask before paying a premium for it.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-cctv-data-protection-gdpr.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>CCTV and Data Protection: The ICO Requirements Every Organisation Must Meet</h2>
+            <p class="art-card-excerpt">Operating CCTV means operating a personal data processing system. This guide covers the ICO's requirements in full: lawful basis, Legitimate Interests Assessments, signage standards, retention periods, access controls, audit trails, and how to handle a Subject Access Request correctly.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-tackling-asb-fly-tipping-public-sector.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>Tackling Anti-Social Behaviour and Fly-Tipping: A Security Guide for Local Authorities</h2>
+            <p class="art-card-excerpt">ASB and fly-tipping concentrate in predictable locations for predictable reasons. This evidence-based guide covers the environmental design principles that reduce opportunity, the role of targeted CCTV coverage including wireless solutions for remote hotspots, and how community engagement multiplies the effect of every physical measure.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-martyns-law-protect-duty-schools-public-sector.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>Martyn's Law and the Protect Duty: What Schools and Public Sector Organisations Need to Do Now</h2>
+            <p class="art-card-excerpt">The Terrorism (Protection of Premises) Act is now statute. This guide explains which organisations are affected, what the Standard and Enhanced Duty tiers require in practice, and the specific steps schools, councils and public sector estates teams should take to comply.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-cyber-security-schools-public-sector.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">6 min read</span>
+            </div>
+            <h2>Cyber Security for Schools and Public Sector Bodies: The Basics Every Organisation Must Get Right</h2>
+            <p class="art-card-excerpt">Physical and cyber security are increasingly inseparable — your CCTV and access control systems run on the same network your sensitive data does. This governance-level guide covers the five foundational measures, the UK GDPR obligations that make them mandatory, and why the human layer matters as much as the technical one.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+        <a href="article-wireless-cctv-networks-public-sector.html" class="art-card">
+          <div class="art-card-bar"></div>
+          <div class="art-card-top">
+            <div class="art-card-meta">
+              <span class="art-card-cat">Public Sector</span>
+              <span class="art-card-date">May 2025</span>
+              <span class="art-card-read">5 min read</span>
+            </div>
+            <h2>Wireless Networks for CCTV: Extending Coverage Without the Trenching Bill</h2>
+            <p class="art-card-excerpt">Trenching and cabling costs have kept CCTV out of car parks, remote outbuildings and open spaces for years. Wireless point-to-point networks change the economics entirely. This guide explains how the technology works, where it is and is not suitable, and the cost comparison that makes the decision straightforward for most councils.</p>
+          </div>
+          <div class="art-card-foot"><span class="art-card-lnk">Read the article &rarr;</span></div>
+        </a>
+
+      </div><!-- /blog-grid public sector -->
+    </div><!-- /section-group public sector -->
+
+  </div><!-- /wrap -->
+</section>
+
+<section class="blog-cta">
+  <div class="blog-cta-bg"></div>
+  <div class="blog-cta-c">
+    <div class="sec-lbl" style="justify-content:center;color:rgba(255,255,255,0.35);">Free Survey</div>
+    <h2>Rather Talk to Someone?</h2>
+    <p>We offer free site surveys for schools and public sector organisations across the UK. Get a clear picture of your current security and an honest assessment of what needs to change.</p>
+    <a href="mailto:hello@fyrflysystems.com" class="btn-p">Request a Free Survey &rarr;</a>
+  </div>
+</section>
+
+<div class="accreds">
+  <div class="accreds-i">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></div>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Company</div>
+      <ul class="ft-links"><li><a href="index.html#about">About Us</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  const ham = document.getElementById('hamBtn');
+  const mobNav = document.getElementById('mobNav');
+  const mobClose = document.getElementById('mobClose');
+  if (ham && mobNav) {
+    ham.addEventListener('click', () => { mobNav.style.display = 'flex'; setTimeout(() => mobNav.classList.add('open'), 10); ham.setAttribute('aria-expanded','true'); });
+    const closeNav = () => { mobNav.classList.remove('open'); setTimeout(() => { mobNav.style.display = 'none'; ham.setAttribute('aria-expanded','false'); }, 250); };
+    mobClose.addEventListener('click', closeNav);
+    mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
+</script>
+</body>
+</html>
