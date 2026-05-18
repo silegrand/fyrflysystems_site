@@ -232,18 +232,24 @@
 <body>
 
 <div class="mob-nav" id="mobNav" style="display:none">
-  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
   <span class="mob-sub">Services</span>
   <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
   <span class="mob-sub">Sectors</span>
   <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
   <span class="mob-sub">Tools</span>
   <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a>
+  <a href="your-site-tool.html">Your Site Tool</a>
   <span class="mob-sub">Insights</span>
   <a href="blog.html">All Articles</a>
   <span class="mob-sub">Company</span>
   <a href="index.html#about">About Us</a>
   <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+  </div>
 </div>
 
 <nav id="nav">
@@ -792,7 +798,7 @@ function goBack() {
 function showResults() {
   document.getElementById('step-questions').style.display = 'none';
   const resultsDiv = document.getElementById('step-results');
-  resultsDiv.style.display = 'block';
+  resultsDiv.style.display = '';
 
   // Score calculation
   let totalWeight = 0, earnedWeight = 0;
