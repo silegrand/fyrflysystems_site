@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a Security Site Survey Actually Tells You — and Why Schools Should Request One | Fyrfly Systems</title>
+  <meta name="description" content="A free security site survey is one of the most useful things a school can commission. Here is what a proper survey covers, what it uncovers, and how to use the findings.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/article-school-security-site-survey.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/article-school-security-site-survey.html">
+  <meta property="og:title" content="What a Security Site Survey Actually Tells You — and Why Schools Should Request One | Fyrfly Systems">
+  <meta property="og:description" content="A free security site survey is one of the most useful things a school can commission. Here is what a proper survey covers, what it uncovers, and how to use the findings.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1B1B24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}img{display:block;max-width:100%;}a{text-decoration:none;color:inherit;}.wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}.nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}.nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}.nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}.nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}.nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}.nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;}.nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}.drop-item:hover{background:var(--light);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}.nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}.ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;}.mob-nav.open{display:flex;opacity:1;}
+    .mob-nav-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;min-height:60px;}
+    .mob-nav-brand{font-family:'Roboto',sans-serif;font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;}
+    .mob-nav-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.25rem 2rem 3rem;}
+    .mob-close{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;padding:0.5rem 0.85rem;display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.55);font-size:0.8rem;font-weight:500;font-family:'DM Sans',sans-serif;flex-shrink:0;-webkit-appearance:none;appearance:none;}
+    .mob-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;}.mob-nav a{font-family:'Roboto',sans-serif;font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}.mob-nav a:hover{color:#fff;}.mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}.mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}.mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}.mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}.mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
+    .breadcrumb{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.75rem 0;}.breadcrumb-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--mute);}.breadcrumb-i a{color:var(--mute);transition:color 0.2s;}.breadcrumb-i a:hover{color:var(--o);}.breadcrumb-i svg{width:12px;height:12px;stroke:var(--mute);fill:none;stroke-width:2;flex-shrink:0;}.breadcrumb-i span{color:var(--mid);font-weight:500;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);}.btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+    .art-hero{background:var(--char);padding:4rem 0;position:relative;overflow:hidden;}.art-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 60%),radial-gradient(ellipse at 15% 50%,rgba(200,16,46,0.08) 0%,transparent 55%);}
+    .art-hero-c{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:0 2rem;}
+    .art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}.art-cat{display:inline-flex;align-items:center;gap:0.35rem;padding:0.28rem 0.75rem;background:var(--grad);color:#fff;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;}.art-date{font-size:0.8rem;color:rgba(255,255,255,0.35);}.art-read{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+    .art-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:1.25rem;}.art-intro{font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;font-weight:300;}
+    .art-body{max-width:800px;margin:0 auto;padding:4rem 2rem;}.art-body h2{font-family:var(--fh);font-size:1.4rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;line-height:1.2;margin-top:3rem;margin-bottom:1rem;padding-top:1rem;border-top:2px solid var(--bdr);}.art-body h2:first-child{margin-top:0;border-top:none;padding-top:0;}.art-body p{font-size:1rem;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:1.1rem;}.art-body p strong{color:var(--dark);font-weight:600;}.art-body ul{list-style:none;margin-bottom:1.1rem;}.art-body ul li{font-size:0.95rem;color:var(--mid);line-height:1.7;padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--bdr);}.art-body ul li:last-child{border-bottom:none;}.art-body ul li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--grad);}
+    .art-cta{background:var(--char);border-radius:14px;padding:2.5rem;margin:3rem 0 0;position:relative;overflow:hidden;}.art-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}.art-cta-c{position:relative;z-index:2;}.art-cta h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.65rem;}.art-cta p{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.5rem;}
+    .art-related{border-top:1px solid var(--bdr);padding-top:2.5rem;margin-top:2.5rem;}.art-related h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1.25rem;}.art-related-links{display:flex;flex-direction:column;gap:0.6rem;}.art-related-links a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.88rem;font-weight:500;color:var(--o);transition:gap 0.2s;}.art-related-links a:hover{gap:0.75rem;}
+    .accreds{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}.accreds-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}.accreds-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}.accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}.accred{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.35rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;}
+    footer{background:var(--dark);padding:4rem 0 2rem;}.ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}.ft-logo{margin-bottom:1rem;}.ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;}.ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}.ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}.ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}.ft-links a:hover{color:rgba(255,255,255,0.8);}.ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}.ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}.ft-legal{display:flex;gap:1.5rem;}.ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}.ft-legal a:hover{color:rgba(255,255,255,0.5);}
+    
+    /* ── MOBILE OPTIMISATION ───────────────────────────────── */
+    /* Touch targets */
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .btn-p, .nav-cta, .mob-cta { min-height: 44px; }
+
+    /* Breadcrumb — truncate on narrow screens */
+    .breadcrumb-i span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45vw; }
+
+    /* 768px — tablet/phablet */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .ham { display: flex; }
+      .ham span { transition: transform 0.22s, opacity 0.22s; }
+
+      .art-hero { padding: 2.75rem 0 2.25rem; }
+      .art-hero h1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); letter-spacing: -0.02em; }
+      .art-intro { font-size: 0.97rem; }
+      .art-hero-c { padding: 0 1.5rem; }
+      .art-meta { gap: 0.6rem; margin-bottom: 1.25rem; }
+
+      .art-body { padding: 2.5rem 1.5rem; }
+      .art-body h2 { font-size: 1.25rem; margin-top: 2.25rem; }
+      .art-body p { font-size: 0.97rem; line-height: 1.75; }
+      .art-body ul li { font-size: 0.92rem; padding: 0.6rem 0 0.6rem 1.4rem; }
+
+      .art-cta { padding: 2rem 1.5rem; border-radius: 10px; }
+      .art-cta h3 { font-size: 1.1rem; }
+      .art-cta p { font-size: 0.87rem; }
+      .btn-p { width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.9rem 1.5rem; }
+
+      .art-related h3 { font-size: 0.95rem; }
+      .art-related-links a { font-size: 0.9rem; padding: 0.4rem 0; min-height: 44px; align-items: center; }
+
+      .breadcrumb { display: none; }
+
+      .accreds-i { gap: 1.25rem; padding: 0 1.5rem; }
+      .accreds-lbl { width: 100%; margin-bottom: 0.25rem; }
+      .accreds-list { gap: 0.65rem; }
+      .accred { font-size: 0.73rem; padding: 0.28rem 0.7rem; }
+
+      .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 1.5rem; margin-bottom: 2rem; }
+      .ft-grid > div:first-child { grid-column: span 2; }
+      .ft-grid > div:last-child { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+      .ft-bot { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.25rem 1.5rem 0; }
+      .ft-legal { flex-wrap: wrap; gap: 1rem; }
+
+      .mob-nav { padding: 0; justify-content: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      .mob-nav-inner { display: flex; flex-direction: column; padding: 5rem 1.5rem 2rem; width: 100%; gap: 0; }
+    }
+
+    /* 480px — large phones */
+    @media (max-width: 480px) {
+      .art-hero { padding: 2.25rem 0 2rem; }
+      .art-hero h1 { font-size: clamp(1.45rem, 6.5vw, 1.9rem); }
+      .art-hero-c { padding: 0 1.25rem; }
+      .art-intro { font-size: 0.93rem; line-height: 1.7; }
+
+      .art-body { padding: 2rem 1.25rem; }
+      .art-body h2 { font-size: 1.15rem; margin-top: 2rem; padding-top: 0.85rem; }
+      .art-body p { font-size: 0.94rem; }
+
+      .art-cta { padding: 1.75rem 1.25rem; margin: 2rem 0 0; }
+      .art-related { padding-top: 2rem; margin-top: 2rem; }
+
+      .accreds { padding: 1.75rem 0; }
+      .accreds-i { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 0 1.25rem; }
+
+      .ft-grid { grid-template-columns: 1fr; padding: 0 1.25rem; }
+      .ft-grid > div:first-child, .ft-grid > div:last-child { grid-column: span 1; }
+      .ft-grid > div:last-child { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+      .ft-tag { max-width: none; }
+      .ft-bot { padding: 1.25rem 1.25rem 0; }
+    }
+
+    /* 375px — standard iPhone */
+    @media (max-width: 375px) {
+      .art-hero h1 { font-size: 1.4rem; }
+      .art-body { padding: 1.75rem 1rem; }
+      .art-body h2 { font-size: 1.1rem; }
+      .art-cta { padding: 1.5rem 1rem; }
+      .accreds-i { padding: 0 1rem; }
+      .ft-grid { padding: 0 1rem; }
+      .ft-bot { padding: 1rem 1rem 0; }
+    }
+
+</style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+</head>
+<body>
+<div class="mob-nav" id="mobNav" style="display:none">
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24" width="14" height="14" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+  </div>
+</div>
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo"><img src="fyrfly-logo.png" alt="Fyrfly Systems"></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item">Compliance Tool</a>
+          <a href="your-site-tool.html" class="drop-item">Your Site Tool</a>
+        </div>
+      </li>
+      <li><a href="blog.html" class="active">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="breadcrumb">
+  <div class="breadcrumb-i">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="blog.html">Insights</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>What a Security Site Survey Actually Tells You — and Wh...</span>
+  </div>
+</div>
+<div class="art-hero">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-c">
+    <div class="art-meta">
+      <a href="education.html" class="art-cat">Education</a>
+      <span class="art-date">May 2025</span>
+      <span class="art-read">5 min read</span>
+    </div>
+    <h1>What a Security Site Survey Actually Tells You — and Why Schools Should Request One</h1>
+    <p class="art-intro">Most schools commission a security site survey only after something has gone wrong — a break-in, a safeguarding near-miss, a governor question that could not be answered. That is the wrong time to do it. A survey done proactively gives you the information to make good decisions about where to invest and what to prioritise. This article explains what a proper site survey covers and how to get the most value from one.</p>
+  </div>
+</div>
+<div class="art-body">
+<h2>What a Site Survey Is — and Is Not</h2>
+<p>A site survey is a structured assessment of your school's physical environment, security technology, and operational procedures, carried out by an experienced security engineer. It is not a sales visit dressed up with a clipboard. A properly conducted survey produces findings that are genuinely useful regardless of whether you end up commissioning any work from the person who carried it out.</p>
+<p>The distinction matters because many schools have had bad experiences with surveys that were really quotation exercises — an engineer walks the site, counts the cameras, and returns with a proposal to replace everything. A genuine survey documents what is working, what is not, what represents an acceptable risk level, and what genuinely needs addressing.</p>
+<h2>What a Proper Survey Covers</h2>
+<p>A thorough site survey will assess your perimeter — fencing condition, the number and security of access points, the effectiveness of gates and locking mechanisms, and the adequacy of external lighting. These first-line physical measures either set the right tone or invite opportunistic access.</p>
+<p>It will review your existing CCTV coverage: which areas are monitored, whether camera placement achieves its intended purpose, whether the system is functioning correctly, what the storage configuration is, and whether the system complies with UK GDPR requirements. Cameras that are offline, pointing in the wrong direction, or recording to a full hard drive are unfortunately common findings.</p>
+<p>The survey should also cover your access control arrangements — how the main entrance is managed, what visitor management looks like in practice, how staff credentials are issued and revoked, and whether secondary entry points create vulnerabilities. And it should look at your intruder alarm: maintenance contract status, zoning, and whether the ARC has current keyholder information.</p>
+<h2>The Findings That Matter Most</h2>
+<p>In most schools, survey findings fall into three categories: things that are working well and should be documented; things that represent a meaningful gap — a camera offline for months, a door routinely propped open, a visitor management process that breaks down at busy times — that can be addressed without significant cost; and things that require investment to fix properly.</p>
+<p>The most valuable output is the second category. Low-cost, high-impact improvements are where a good survey pays for itself many times over. Identifying that your intruder alarm's keyholder list has not been updated since a staff member left eighteen months ago costs nothing to fix once known.</p>
+<h2>How to Use the Survey Findings</h2>
+<p>Survey findings are most useful when presented to the governing body as part of a structured conversation about the school's security posture. Governors have a duty of care for the physical environment, and a documented survey with clear findings and prioritised recommendations gives them something concrete to act on.</p>
+<p>Use the findings to build a prioritised action plan: what can be fixed immediately at no cost, what requires operational changes, and what requires capital expenditure. That business case is much stronger when based on a documented gap rather than a general sense that improvements are needed.</p>
+<h2>What to Look for in a Surveyor</h2>
+<ul>
+<li>NSI or SSAIB certification — the industry standards that carry weight with insurers and regulators</li>
+<li>Demonstrable experience in education settings specifically</li>
+<li>Willingness to document findings clearly, including areas that do not need immediate work</li>
+<li>No pressure to commission work before you have had time to consider the findings</li>
+<li>An approach that starts with your safeguarding priorities, not their product catalogue</li>
+</ul>
+  <div class="art-cta">
+    <div class="art-cta-bg"></div>
+    <div class="art-cta-c">
+      <h3>Request a free site survey for your school</h3>
+      <p>Our surveys are free, structured around KCSiE and DfE guidance, and produce findings you can use regardless of what you decide to do next. We work across the UK with primary schools, secondary schools, and Multi-Academy Trusts.</p>
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Get in Touch &rarr;</a>
+    </div>
+  </div>
+  <div class="art-related">
+    <h3>Related pages</h3>
+    <div class="art-related-links">
+      <a href="education.html">Education Sector &rarr;</a>
+<a href="cctv.html">CCTV Systems for Schools &rarr;</a>
+<a href="access-control.html">Access Control &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="accreds">
+  <div class="accreds-i">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></div>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  const ham = document.getElementById('hamBtn');
+  const mobNav = document.getElementById('mobNav');
+  const mobClose = document.getElementById('mobClose');
+  if (ham && mobNav) {
+    ham.addEventListener('click', () => { mobNav.style.display = 'flex'; setTimeout(() => mobNav.classList.add('open'), 10); });
+    const closeNav = () => { mobNav.classList.remove('open'); setTimeout(() => mobNav.style.display = 'none', 250); };
+    mobClose.addEventListener('click', closeNav);
+    mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
+</script>
+</body>
+</html>
