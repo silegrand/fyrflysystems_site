@@ -296,7 +296,11 @@
 
 <!-- MOBILE NAV -->
 <div class="mob-nav" id="mobNav" style="display:none">
-  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
   <span class="mob-sub">Services</span>
   <a href="cctv.html">CCTV</a>
   <a href="access-control.html">Access Control</a>
@@ -314,6 +318,7 @@
   <span class="mob-sub">Company</span>
   <a href="index.html#about">About Us</a>
   <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+  </div>
 </div>
 
 <nav id="nav">
