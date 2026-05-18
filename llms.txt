@@ -1,0 +1,90 @@
+# Fyrfly Systems
+
+> Fyrfly Systems is a UK physical security company specialising in intelligent, integrated security systems for schools, colleges, Multi-Academy Trusts, local authorities and NHS estates. NSI NACOSS Gold certified, SSAIB approved, BAFE registered and on the Crown Commercial Service framework.
+
+Fyrfly Systems designs, installs and maintains CCTV, access control, wireless networks, intruder alarms, fire systems and 24/7 professional monitoring. All systems are designed to work as an integrated ecosystem rather than standalone products. The company's positioning is transparency and education — helping procurement leads, business managers, headteachers and estates managers make informed decisions without being misled by technical specifications that obscure real-world performance differences.
+
+The website serves two primary sectors: education (primary schools, secondary schools, colleges, Multi-Academy Trusts) and public sector (local authorities, NHS trusts, government bodies). All content is written for non-technical decision makers — the people responsible for security budgets and compliance, not security engineers.
+
+## Services
+
+- [CCTV Systems](https://www.fyrflysystems.com/cctv.html): HD and 4K IP CCTV design, installation and maintenance for schools and public sector buildings. Covers entry level and enterprise tier systems, outdoor camera durability, AI analytics (loitering detection, line crossing, people counting), UK GDPR compliance, footage retention and integration with access control and monitoring.
+
+- [Access Control](https://www.fyrflysystems.com/access-control.html): Enterprise-grade access control systems including door readers, entry panels, request-to-exit devices, break glass units, management software and visitor management. Priced per door. Covers KCSiE compliance, role-based permissions, time-based access restrictions, audit trails and integration with CCTV and fire systems.
+
+- [Wireless Networks](https://www.fyrflysystems.com/wireless-networks.html): Secure, segmented wireless network infrastructure designed specifically to carry IP security system data. Covers VLAN design, bandwidth planning for HD camera streams, dual-path alarm signalling, Cyber Essentials compliance and PSN requirements for public sector bodies.
+
+- [Intruder Alarms](https://www.fyrflysystems.com/intruder-alarms.html): NSI and SSAIB certified intruder alarm installation and maintenance. Covers PIR sensors, dual-technology detectors, perimeter protection, BS 8243 compliance, dual-path signalling to monitoring centres, Unique Reference Number (URN) for police response and keyholder management.
+
+- [Fire Systems](https://www.fyrflysystems.com/fire-systems.html): BAFE-registered fire alarm design, installation and maintenance. Covers BS 5839-1 compliance, L-grade and M-grade systems, fire risk assessment requirements under the Regulatory Reform (Fire Safety) Order 2005, fail-safe door integration with access control, and automatic fire brigade notification via monitoring centre.
+
+- [24/7 Monitoring](https://www.fyrflysystems.com/monitoring.html): NSI-approved Alarm Receiving Centre (ARC) connection for intruder alarms, fire systems and CCTV. Covers visual verification of alarm events, dual-path signalling, police URN management, keyholder notification sequences and lone worker monitoring.
+
+## Sectors
+
+- [Education Security](https://www.fyrflysystems.com/education.html): Specialist security systems for primary schools, secondary schools, colleges and Multi-Academy Trusts. Covers Keeping Children Safe in Education (KCSiE) compliance, visitor management, safeguarding obligations, out-of-hours lettings security, MAT-wide access control management and Ofsted preparation.
+
+- [Public Sector Security](https://www.fyrflysystems.com/public-sector.html): Security systems for local authorities, NHS trusts and government bodies. Covers Crown Commercial Service procurement framework, Surveillance Camera Code of Practice (12 principles), multi-site estate management, tiered security standards, Cyber Essentials scope, PSN compliance and business case development for security investment.
+
+## Interactive Tools
+
+- [Security Zone Planner](https://www.fyrflysystems.com/zone-planner.html): A free interactive canvas tool where facilities managers and business managers draw their building layout, drop pins on problem areas (main entrance, car park, server room, corridors, playgrounds, perimeter gates) and receive instant security system recommendations for each zone. Recommendations include relevant compliance standards (KCSiE, UK GDPR, Surveillance Camera Code). Generates a downloadable PDF Security Zone Report and pre-populated email to Fyrfly requesting a free site survey.
+
+- [Security Cost Estimator](https://www.fyrflysystems.com/cost-estimator.html): A functional pricing calculator used by UK schools and public sector organisations to estimate physical security procurement costs. Covers Entry Level CCTV (4 cameras £2,000 / 8 cameras £3,000 / 16 cameras £5,000 / 32 cameras £12,000) versus Enterprise CCTV (4 cameras £3,500 / 8 cameras £5,500 / 16 cameras £11,000 / 32 cameras £20,000). Explains honestly that Enterprise cameras last 50% longer than Entry Level and have lower total cost of ownership over 5+ years despite higher initial cost. Includes a 10-year Total Cost of Ownership comparison chart showing the crossover point. Access control pricing uses a tiered per-door model: 1-5 doors at £3,000 per door, 6-10 doors at £2,000 per door, 11-20 doors at £1,500 per door, 21+ doors at £1,250 per door. Each door includes entry panel, reader, request-to-exit, break glass, cabling and professional management software. Outputs a downloadable PDF estimate and pre-populated email to Fyrfly.
+
+- [System Integration Diagram](https://www.fyrflysystems.com/system-integration.html): An animated interactive diagram showing how CCTV, access control, intruder alarms, fire systems, 24/7 monitoring and wireless networks connect and communicate as one integrated ecosystem. Click any system node to see what it does, what it connects to, and why each connection matters in a school or public sector building. Covers: alarm activation triggering cameras and ARC response; door events triggering camera capture; fire alarm releasing fail-safe door locks; CCTV providing live verification for ARC operators; wireless network carrying all system data.
+
+- [Security Compliance Tool](https://www.fyrflysystems.com/compliance-tool.html): A free sector-adaptive compliance checker for schools and public sector organisations. Selects questions based on organisation type (Primary School, Secondary School, College/University, Multi-Academy Trust, Local Authority, NHS/Healthcare). Questions cover: CCTV policy (UK GDPR / Surveillance Camera Code), footage retention (UK GDPR), fire alarm servicing (BS 5839-1), fire risk assessment (Fire Safety Order 2005), alarm certification (NSI/SSAIB/BS 8243), 24/7 monitoring, visitor management (KCSiE), access control (KCSiE), DBS checking procedures (KCSiE), Surveillance Camera Code compliance (local authorities/NHS), Cyber Essentials scope for IP security devices (public sector), lone worker monitoring (HSE), central credential management across MAT schools (MAT-specific), written security policy and keyholder register currency. Generates a weighted Red/Amber/Green scorecard, prioritised action list and downloadable PDF compliance report.
+
+## Insights and Articles
+
+- [Security Insights Blog](https://www.fyrflysystems.com/blog.html): Practical articles on physical security for UK schools and public sector organisations, written for non-technical decision makers.
+
+- [Why School Holidays Are Your Highest-Risk Period](https://www.fyrflysystems.com/article-school-holiday-security.html): Covers the specific threats schools face during closures (theft, vandalism, trespass, fly-tipping, cyber attacks on dormant networks), the pre-holiday security checklist, the role of professional monitoring during closures, and the return-to-school inspection process.
+
+- [CCTV in Schools: What the Law Requires](https://www.fyrflysystems.com/article-cctv-privacy-schools.html): Covers UK GDPR obligations for school CCTV operators, lawful basis for processing, purpose limitation, data minimisation, transparency requirements, prohibited locations (toilets, changing rooms), classroom camera policy, CCTV policy requirements, Subject Access Request procedures and practical steps for schools already operating CCTV.
+
+- [Access Control in Schools: A Practical Guide](https://www.fyrflysystems.com/article-access-control-schools-guide.html): Covers how access control works, credential types (proximity cards, biometrics, mobile, PIN), system components (readers, controllers, locks, management software), fail-safe vs fail-secure locks, integration with CCTV and fire systems, GDPR compliance for access logs and what to ask suppliers.
+
+- [Physical Security in the Public Sector](https://www.fyrflysystems.com/article-public-sector-security-framework.html): Covers threat assessment methodology, Crown Commercial Service procurement frameworks, NSI/SSAIB as quality indicators, multi-site tiered security management, UK GDPR, Surveillance Camera Code, Fire Safety Order and Cyber Essentials obligations, and building a security business case for budget approval.
+
+- [School Security Done Right: Why Technology Alone Is Not the Answer](https://www.fyrflysystems.com/article-whole-school-security-approach.html): Covers the three-layer security model (physical, procedural, cultural), KCSiE requirements vs what KCSiE does not specify, visitor management failures, MAT-wide access control challenges, out-of-hours lettings security and the annual security review.
+
+- [Integrated Security Systems: What It Really Means](https://www.fyrflysystems.com/article-integrating-cctv-access-control.html): Covers the difference between connected and genuinely integrated systems, practical integration scenarios in schools and public buildings, planning an integrated system from specification stage, IP system requirements, network design for integration and management interface consolidation.
+
+## Key Compliance Standards Referenced
+
+Fyrfly Systems content references the following UK compliance frameworks relevant to school and public sector security procurement:
+
+- **Keeping Children Safe in Education (KCSiE)** — statutory safeguarding guidance for English schools and colleges, updated annually by the DfE. Requires schools to know who is on site at all times and to prevent unauthorised adult access to pupils.
+- **UK GDPR and Data Protection Act 2018** — governs all personal data processing including CCTV footage and access control logs. Schools and public bodies are data controllers with accountability obligations.
+- **Surveillance Camera Code of Practice** — applies to local authorities and police. 12 guiding principles covering purpose, transparency, proportionality and accountability.
+- **BS 5839-1** — British Standard for fire detection and alarm systems in buildings. Requires six-monthly serviced by a competent (ideally BAFE-registered) engineer.
+- **Regulatory Reform (Fire Safety) Order 2005** — places legal duty on the Responsible Person in all non-domestic premises. Requires current fire risk assessment and fail-safe door integration.
+- **BS 8243** — British Standard for intruder alarm systems. NSI and SSAIB certification required by most insurers as a condition of cover.
+- **NSI NACOSS Gold** — National Security Inspectorate certification for CCTV and intruder alarm companies. Requires regular independent audit. Fyrfly Systems holds NSI NACOSS Gold certification.
+- **BAFE** — British Approvals for Fire Equipment. BAFE registration required for fire alarm companies. Fyrfly Systems is BAFE registered.
+- **Crown Commercial Service** — UK government procurement framework that allows direct award or mini-competition without a full OJEU process. Fyrfly Systems is on the Crown Commercial Service framework.
+- **Cyber Essentials** — UK government-backed certification scheme. IP-connected security devices must be included in scope for public sector organisations.
+
+## Company Information
+
+**Fyrfly Systems Ltd**
+Website: https://www.fyrflysystems.com
+Email: hello@fyrflysystems.com
+Phone: 01234 567 890
+Location: United Kingdom
+
+**Certifications and accreditations:**
+- NSI NACOSS Gold (intruder alarms and CCTV)
+- SSAIB Approved
+- BAFE Registered (fire systems)
+- Constructionline
+- ISO 9001:2015
+- Crown Commercial Service framework supplier
+
+**Target customers:** Headteachers, school business managers, facilities managers, estates leads, procurement officers, governors, NHS estates managers, local authority facilities teams and Multi-Academy Trust operations directors across the United Kingdom.
+
+**Geographic coverage:** United Kingdom
+
+**Positioning:** Fyrfly Systems believes informed customers make better long-term decisions. The company publishes honest comparisons between entry level and enterprise security products, explains total cost of ownership rather than upfront cost only, and provides free tools that help customers understand their compliance obligations before engaging with a supplier.
