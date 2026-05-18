@@ -76,8 +76,8 @@
     .drop-item:hover { background: var(--light); }
     .nav-cta { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.35rem; background: var(--grad); color: #fff; font-size: 0.85rem; font-weight: 500; border-radius: 6px; letter-spacing: 0.01em; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s var(--ease); }
     .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-    .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
-    .ham span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; display: block; }
+    .ham { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; width: 40px; height: 40px; flex-shrink: 0; -webkit-appearance: none; appearance: none; }
+    .ham span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; image-rendering: crisp-edges; flex-shrink: 0; }
 
     /* ─── SHARED TYPOGRAPHY ─────────────────────────────── */
     .sec-lbl { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.9rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--o); }
@@ -403,7 +403,11 @@
 <!-- NAV -->
 <!-- MOBILE NAV OVERLAY -->
 <div class="mob-nav" id="mobNav" style="display:none">
-  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24" width="14" height="14" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
   <span class="mob-sub">Services</span>
   <a href="cctv.html">CCTV</a>
   <a href="access-control.html">Access Control</a>
