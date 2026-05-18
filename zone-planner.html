@@ -50,6 +50,17 @@
     .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
     .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
     .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
+    .nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}
+    .nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;}
+    .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;text-decoration:none;font-size:0.83rem;font-weight:500;color:var(--dark);}
+    .drop-item:hover{background:var(--light);}
+    .drop-item-muted{color:var(--mute);pointer-events:none;font-size:0.83rem;padding:0.65rem 0.85rem;}
     /* Tools dropdown */
     .nav-dropdown{position:relative;}
     .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
@@ -532,7 +543,7 @@
       <div class="ft-ct">Sectors</div>
       <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
-      <ul class="ft-links"><li class="nav-dropdown"><a href="#">Tools <svg viewBox="0 0 24 24" width="11" height="11" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;vertical-align:middle"><polyline points="6 9 12 15 18 9"/></svg></a><div class="drop-menu" style="position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #E6E5E1;border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;"><a href="zone-planner.html" style="display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;font-size:0.83rem;font-weight:500;color:#0E0E14;text-decoration:none;">Zone Planner</a><a href="#" style="display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;font-size:0.83rem;font-weight:500;color:#9595A5;text-decoration:none;pointer-events:none;">Cost Estimator (coming soon)</a></div></li></ul>
+      <ul class="ft-links"><li class="nav-dropdown"><a href="#">Tools <svg viewBox="0 0 24 24" width="11" height="11" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;vertical-align:middle"><polyline points="6 9 12 15 18 9"/></svg></a><div class="drop-menu"><a href="zone-planner.html" class="drop-item">Zone Planner</a><span class="drop-item-muted">Cost Estimator (coming soon)</span></div></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
       <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
     </div>

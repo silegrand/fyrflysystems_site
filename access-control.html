@@ -45,6 +45,17 @@
     .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
     .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);letter-spacing:0.01em;transition:color 0.2s;}
     .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
+    .nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}
+    .nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;}
+    .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;text-decoration:none;font-size:0.83rem;font-weight:500;color:var(--dark);}
+    .drop-item:hover{background:var(--light);}
+    .drop-item-muted{color:var(--mute);pointer-events:none;font-size:0.83rem;padding:0.65rem 0.85rem;}
     .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
     .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
     .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
