@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Five Security Threats Every School Faces — and What to Do About Each One | Fyrfly Systems</title>
+  <meta name="description" content="A practical guide to the five most common security threats facing UK schools: vandalism, trespass, theft, data exposure, and safeguarding failures — and the specific measures that address each.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/article-five-school-security-threats.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/article-five-school-security-threats.html">
+  <meta property="og:title" content="The Five Security Threats Every School Faces — and What to Do About Each One | Fyrfly Systems">
+  <meta property="og:description" content="A practical guide to the five most common security threats facing UK schools: vandalism, trespass, theft, data exposure, and safeguarding failures — and the specific measures that address each.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1B1B24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}img{display:block;max-width:100%;}a{text-decoration:none;color:inherit;}.wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}.nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}.nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}.nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}.nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}.nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}.nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.1);padding:0.6rem;min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.18s,transform 0.18s;}.nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}.drop-item:hover{background:var(--light);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}.nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}.ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;}.mob-nav.open{display:flex;opacity:1;}.mob-nav a{font-family:'Roboto',sans-serif;font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}.mob-nav a:hover{color:#fff;}.mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}.mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}.mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}.mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}.mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
+    .breadcrumb{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.75rem 0;}.breadcrumb-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--mute);}.breadcrumb-i a{color:var(--mute);transition:color 0.2s;}.breadcrumb-i a:hover{color:var(--o);}.breadcrumb-i svg{width:12px;height:12px;stroke:var(--mute);fill:none;stroke-width:2;flex-shrink:0;}.breadcrumb-i span{color:var(--mid);font-weight:500;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);}.btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+    .art-hero{background:var(--char);padding:4rem 0;position:relative;overflow:hidden;}.art-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 60%),radial-gradient(ellipse at 15% 50%,rgba(200,16,46,0.08) 0%,transparent 55%);}
+    .art-hero-c{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:0 2rem;}
+    .art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}.art-cat{display:inline-flex;align-items:center;gap:0.35rem;padding:0.28rem 0.75rem;background:var(--grad);color:#fff;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;}.art-date{font-size:0.8rem;color:rgba(255,255,255,0.35);}.art-read{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+    .art-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:1.25rem;}.art-intro{font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;font-weight:300;}
+    .art-body{max-width:800px;margin:0 auto;padding:4rem 2rem;}.art-body h2{font-family:var(--fh);font-size:1.4rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;line-height:1.2;margin-top:3rem;margin-bottom:1rem;padding-top:1rem;border-top:2px solid var(--bdr);}.art-body h2:first-child{margin-top:0;border-top:none;padding-top:0;}.art-body p{font-size:1rem;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:1.1rem;}.art-body p strong{color:var(--dark);font-weight:600;}.art-body ul{list-style:none;margin-bottom:1.1rem;}.art-body ul li{font-size:0.95rem;color:var(--mid);line-height:1.7;padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--bdr);}.art-body ul li:last-child{border-bottom:none;}.art-body ul li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--grad);}
+    .art-cta{background:var(--char);border-radius:14px;padding:2.5rem;margin:3rem 0 0;position:relative;overflow:hidden;}.art-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}.art-cta-c{position:relative;z-index:2;}.art-cta h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.65rem;}.art-cta p{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.5rem;}
+    .art-related{border-top:1px solid var(--bdr);padding-top:2.5rem;margin-top:2.5rem;}.art-related h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1.25rem;}.art-related-links{display:flex;flex-direction:column;gap:0.6rem;}.art-related-links a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.88rem;font-weight:500;color:var(--o);transition:gap 0.2s;}.art-related-links a:hover{gap:0.75rem;}
+    .accreds{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}.accreds-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}.accreds-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}.accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}.accred{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.35rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;}
+    footer{background:var(--dark);padding:4rem 0 2rem;}.ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}.ft-logo{margin-bottom:1rem;}.ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;}.ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}.ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}.ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}.ft-links a:hover{color:rgba(255,255,255,0.8);}.ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}.ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}.ft-legal{display:flex;gap:1.5rem;}.ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}.ft-legal a:hover{color:rgba(255,255,255,0.5);}
+    
+    /* ── MOBILE OPTIMISATION ───────────────────────────────── */
+    /* Touch targets */
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .btn-p, .nav-cta, .mob-cta { min-height: 44px; }
+
+    /* Breadcrumb — truncate on narrow screens */
+    .breadcrumb-i span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45vw; }
+
+    /* 768px — tablet/phablet */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .ham { display: flex; }
+      .ham span { transition: transform 0.22s, opacity 0.22s; }
+
+      .art-hero { padding: 2.75rem 0 2.25rem; }
+      .art-hero h1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); letter-spacing: -0.02em; }
+      .art-intro { font-size: 0.97rem; }
+      .art-hero-c { padding: 0 1.5rem; }
+      .art-meta { gap: 0.6rem; margin-bottom: 1.25rem; }
+
+      .art-body { padding: 2.5rem 1.5rem; }
+      .art-body h2 { font-size: 1.25rem; margin-top: 2.25rem; }
+      .art-body p { font-size: 0.97rem; line-height: 1.75; }
+      .art-body ul li { font-size: 0.92rem; padding: 0.6rem 0 0.6rem 1.4rem; }
+
+      .art-cta { padding: 2rem 1.5rem; border-radius: 10px; }
+      .art-cta h3 { font-size: 1.1rem; }
+      .art-cta p { font-size: 0.87rem; }
+      .btn-p { width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.9rem 1.5rem; }
+
+      .art-related h3 { font-size: 0.95rem; }
+      .art-related-links a { font-size: 0.9rem; padding: 0.4rem 0; min-height: 44px; align-items: center; }
+
+      .breadcrumb { display: none; }
+
+      .accreds-i { gap: 1.25rem; padding: 0 1.5rem; }
+      .accreds-lbl { width: 100%; margin-bottom: 0.25rem; }
+      .accreds-list { gap: 0.65rem; }
+      .accred { font-size: 0.73rem; padding: 0.28rem 0.7rem; }
+
+      .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 1.5rem; margin-bottom: 2rem; }
+      .ft-grid > div:first-child { grid-column: span 2; }
+      .ft-grid > div:last-child { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+      .ft-bot { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.25rem 1.5rem 0; }
+      .ft-legal { flex-wrap: wrap; gap: 1rem; }
+
+      .mob-nav { padding: 0; justify-content: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      .mob-nav-inner { display: flex; flex-direction: column; padding: 5rem 1.5rem 2rem; width: 100%; gap: 0; }
+    }
+
+    /* 480px — large phones */
+    @media (max-width: 480px) {
+      .art-hero { padding: 2.25rem 0 2rem; }
+      .art-hero h1 { font-size: clamp(1.45rem, 6.5vw, 1.9rem); }
+      .art-hero-c { padding: 0 1.25rem; }
+      .art-intro { font-size: 0.93rem; line-height: 1.7; }
+
+      .art-body { padding: 2rem 1.25rem; }
+      .art-body h2 { font-size: 1.15rem; margin-top: 2rem; padding-top: 0.85rem; }
+      .art-body p { font-size: 0.94rem; }
+
+      .art-cta { padding: 1.75rem 1.25rem; margin: 2rem 0 0; }
+      .art-related { padding-top: 2rem; margin-top: 2rem; }
+
+      .accreds { padding: 1.75rem 0; }
+      .accreds-i { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 0 1.25rem; }
+
+      .ft-grid { grid-template-columns: 1fr; padding: 0 1.25rem; }
+      .ft-grid > div:first-child, .ft-grid > div:last-child { grid-column: span 1; }
+      .ft-grid > div:last-child { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+      .ft-tag { max-width: none; }
+      .ft-bot { padding: 1.25rem 1.25rem 0; }
+    }
+
+    /* 375px — standard iPhone */
+    @media (max-width: 375px) {
+      .art-hero h1 { font-size: 1.4rem; }
+      .art-body { padding: 1.75rem 1rem; }
+      .art-body h2 { font-size: 1.1rem; }
+      .art-cta { padding: 1.5rem 1rem; }
+      .accreds-i { padding: 0 1rem; }
+      .ft-grid { padding: 0 1rem; }
+      .ft-bot { padding: 1rem 1rem 0; }
+    }
+
+</style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+</head>
+<body>
+<div class="mob-nav" id="mobNav" style="display:none">
+  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+</div>
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo"><img src="fyrfly-logo.png" alt="Fyrfly Systems"></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item">Compliance Tool</a>
+        </div>
+      </li>
+      <li><a href="blog.html" class="active">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="breadcrumb">
+  <div class="breadcrumb-i">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="blog.html">Insights</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>The Five Security Threats Every School Faces — and What...</span>
+  </div>
+</div>
+<div class="art-hero">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-c">
+    <div class="art-meta">
+      <a href="education.html" class="art-cat">Education</a>
+      <span class="art-date">May 2025</span>
+      <span class="art-read">6 min read</span>
+    </div>
+    <h1>The Five Security Threats Every School Faces — and What to Do About Each One</h1>
+    <p class="art-intro">School security conversations often focus on the dramatic end of the risk spectrum — serious incidents that are, thankfully, rare. The daily reality for most schools involves a different set of threats: persistent, lower-level problems that erode resources, reputation, and staff confidence over time. This article addresses the five threats that actually account for most security incidents in UK schools, and what a proportionate response to each looks like.</p>
+  </div>
+</div>
+<div class="art-body">
+<h2>1. Vandalism and Property Damage</h2>
+<p>Vandalism is the most financially costly security problem most schools deal with on a recurring basis. Graffiti, broken windows, damaged fencing, and interfered-with equipment are expensive to repair and generate significant staff time. The pattern tends to be self-reinforcing: a site showing signs of neglect attracts more vandalism than one clearly looked after.</p>
+<p>The most effective deterrent is a visible, well-maintained CCTV system covering external areas combined with adequate perimeter lighting. These two measures address the primary enabler of opportunistic vandalism: the perception that nobody is watching. Out-of-hours professional monitoring, where an ARC receives alarm alerts and can pull live camera footage, creates a genuine response capability rather than just a recording.</p>
+<h2>2. Unauthorised Access and Trespass</h2>
+<p>Unauthorised access covers a range of scenarios from opportunistic out-of-hours trespass to the more serious safeguarding concern of an unvetted adult reaching areas where pupils are present. Both require a layered response.</p>
+<p>Out-of-hours trespass is primarily addressed through perimeter integrity, intruder alarm coverage, and monitoring. During school hours, the risks are different and require access control: a single controlled pedestrian entry point, a video intercom allowing reception staff to verify callers before releasing the door, and a visitor management process capturing who is on site at all times. The weakest point of most schools is not the front door — it is the secondary gate left open for contractor access or the fire door propped open for convenience.</p>
+<h2>3. Theft of Equipment and Assets</h2>
+<p>Schools carry significant concentrations of high-value portable equipment: laptops, tablets, audio-visual equipment, sports equipment, and specialist tools. These are attractive targets for external intruders and, occasionally, from within the school community.</p>
+<p>Mitigation combines physical security — secure storage, cable locks, asset marking — with technological measures including CCTV coverage of storage areas and access control on rooms housing high-value equipment. Asset registers documenting serial numbers and identifying features make recovery and insurance claims significantly more straightforward.</p>
+<h2>4. Data Exposure Through Physical Means</h2>
+<p>Schools hold substantial volumes of personal data: pupil records, staff files, medical information, and sometimes sensitive safeguarding records. The data protection conversation often focuses on cyber threats, but physical exposure — paperwork left accessible, screens visible to unauthorised individuals, CCTV footage stored without adequate access controls — is an equally real risk.</p>
+<p>CCTV footage itself is personal data and must be stored securely with access restricted to authorised personnel. A school where the NVR is accessible in an unlocked cupboard, or where footage can be viewed on a shared computer without a login, has a data protection gap regardless of camera quality.</p>
+<h2>5. Safeguarding Failures Enabled by Security Gaps</h2>
+<p>The fifth category most directly intersects with the school's core duty of care. Security failures can enable safeguarding failures: an uncontrolled entry point allowing an unauthorised adult to reach areas where pupils are present; a visitor management process not consistently applied; CCTV gaps in spaces where unsupervised adult-pupil contact might occur.</p>
+<p>This is not about dramatic incidents. It is about the cumulative effect of systems and procedures that work most of the time but not all of the time. A visitor not properly signed in on one occasion. A gate left open during a busy afternoon collection. These are the vulnerabilities a thorough site survey will identify and that a properly designed security framework will address — not by making the school feel like a fortress, but by making the right behaviours the easy behaviours.</p>
+  <div class="art-cta">
+    <div class="art-cta-bg"></div>
+    <div class="art-cta-c">
+      <h3>Ready to understand your school's specific risk profile?</h3>
+      <p>Our free site surveys are designed to identify your actual vulnerabilities, not just the ones that feature in generic security guides. We start with your specific site, your specific pupil population, and your specific operating context.</p>
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Get in Touch &rarr;</a>
+    </div>
+  </div>
+  <div class="art-related">
+    <h3>Related pages</h3>
+    <div class="art-related-links">
+      <a href="education.html">Education Sector &rarr;</a>
+<a href="cctv.html">CCTV Systems for Schools &rarr;</a>
+<a href="access-control.html">Access Control for Schools &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="accreds">
+  <div class="accreds-i">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></div>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  const ham = document.getElementById('hamBtn');
+  const mobNav = document.getElementById('mobNav');
+  const mobClose = document.getElementById('mobClose');
+  if (ham && mobNav) {
+    ham.addEventListener('click', () => { mobNav.style.display = 'flex'; setTimeout(() => mobNav.classList.add('open'), 10); });
+    const closeNav = () => { mobNav.classList.remove('open'); setTimeout(() => mobNav.style.display = 'none', 250); };
+    mobClose.addEventListener('click', closeNav);
+    mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
+</script>
+</body>
+</html>
