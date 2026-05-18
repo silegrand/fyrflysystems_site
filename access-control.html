@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Control for Schools & Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Role-based access control for schools, colleges, councils and NHS estates. DBS-aware visitor management, audit trails and KCSiE-compliant design. NSI certified.">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.fyrflysystems.com/access-control.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/access-control.html">
+  <meta property="og:title" content="Access Control for Schools & Public Sector | Fyrfly Systems">
+  <meta property="og:description" content="Role-based access control for schools, colleges, councils and NHS estates. DBS-aware visitor management, audit trails and KCSiE-compliant design. NSI certified.">
+  <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Access Control for Schools & Public Sector | Fyrfly Systems">
+  <meta name="twitter:description" content="Role-based access control for schools, colleges, councils and NHS estates. DBS-aware visitor management, audit trails and KCSiE-compliant design. NSI certified.">
+  <meta name="twitter:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root { --c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);font-weight:400;color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}
+    nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:50px;width:auto;}
+    .nav-logo-text{font-family:var(--fh);font-weight:900;font-size:1.2rem;letter-spacing:-0.02em;}
+    .nav-logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);letter-spacing:0.01em;transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .sec-h{font-family:var(--fh);font-size:clamp(1.75rem,2.8vw,2.7rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--dark);}
+    .sec-sub{font-size:0.97rem;color:var(--mid);max-width:56ch;margin-top:0.75rem;font-weight:300;line-height:1.72;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+    .btn-g{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;color:rgba(255,255,255,0.65);font-size:0.93rem;font-weight:400;border:1px solid rgba(255,255,255,0.2);border-radius:6px;transition:color 0.2s,border-color 0.2s,background 0.2s;}
+    .btn-g:hover{color:#fff;border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.05);}
+    .breadcrumb{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.75rem 0;}
+    .breadcrumb-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--mute);}
+    .breadcrumb-i a{color:var(--mute);transition:color 0.2s;}
+    .breadcrumb-i a:hover{color:var(--o);}
+    .breadcrumb-i svg{width:12px;height:12px;stroke:var(--mute);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .breadcrumb-i span{color:var(--mid);font-weight:500;}
+    .hero{position:relative;background:#0E1A14;min-height:520px;display:flex;align-items:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 78% 38%,rgba(245,166,35,0.13) 0%,transparent 55%),radial-gradient(ellipse at 8% 78%,rgba(200,16,46,0.08) 0%,transparent 50%);}
+    .hero-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.055) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.35) 15%,rgba(0,0,0,0.35) 85%,transparent 100%);}
+    .hero-stripe{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(to left,rgba(245,166,35,0.05),transparent);}
+    .hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:58fr 42fr;gap:4rem;align-items:center;}
+    .hero-tag{display:inline-flex;align-items:center;gap:0.45rem;padding:0.35rem 0.9rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1.35rem;}
+    .hero-tag svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+    .hero h1{font-family:var(--fh);font-size:clamp(2.1rem,3.8vw,3.4rem);font-weight:900;line-height:1.07;letter-spacing:-0.03em;color:var(--white);margin-bottom:1.35rem;}
+    .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.72;margin-bottom:2.4rem;max-width:48ch;}
+    .hero-acts{display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap;}
+    .hero-right{display:flex;flex-direction:column;gap:0.85rem;}
+    .hero-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.1rem 1.3rem;display:flex;align-items:flex-start;gap:0.9rem;}
+    .hero-pill-icon{width:34px;height:34px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .hero-pill-icon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .hero-pill-text strong{display:block;font-size:0.83rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:0.2rem;}
+    .hero-pill-text span{font-size:0.77rem;color:rgba(255,255,255,0.42);line-height:1.5;}
+    .hero-tag,.hero h1,.hero-sub,.hero-acts{animation:fadeUp 0.6s var(--ease) both;}
+    .hero-tag{animation-delay:0.1s;} .hero h1{animation-delay:0.18s;} .hero-sub{animation-delay:0.26s;} .hero-acts{animation-delay:0.34s;} .hero-right{animation:fadeUp 0.65s var(--ease) 0.24s both;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .context{background:var(--white);padding:4.5rem 0;border-bottom:1px solid var(--bdr);}
+    .context-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+    .context-text p{font-size:1rem;color:var(--mid);line-height:1.78;font-weight:300;margin-bottom:1.1rem;}
+    .context-text p:last-child{margin-bottom:0;}
+    .context-text p strong{color:var(--dark);font-weight:500;}
+    .challenge-list{display:flex;flex-direction:column;gap:0.75rem;}
+    .challenge-item{display:flex;align-items:flex-start;gap:0.9rem;padding:1rem 1.2rem;background:var(--light);border-radius:10px;border-left:3px solid transparent;transition:border-color 0.2s;}
+    .challenge-item:hover{border-left-color:var(--o);}
+    .challenge-icon{width:32px;height:32px;border-radius:6px;background:var(--white);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .challenge-icon svg{width:16px;height:16px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .challenge-text strong{display:block;font-size:0.85rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem;}
+    .challenge-text span{font-size:0.8rem;color:var(--mid);line-height:1.5;}
+    .svc-detail{background:#F7F6F4;padding:5.5rem 0;}
+    .svc-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:3rem;}
+    .svc-card{background:var(--white);border:1px solid var(--bdr);border-radius:14px;padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:transform 0.25s var(--ease),box-shadow 0.25s var(--ease),border-color 0.25s;}
+    .svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07);border-color:rgba(232,93,4,0.25);}
+    .svc-card.full{grid-column:span 2;display:grid;grid-template-columns:auto 1fr;gap:0;}
+    .svc-card.full .svc-body{padding-left:2rem;border-left:1px solid var(--bdr);}
+    .svc-head{display:flex;align-items:center;gap:1rem;}
+    .svc-ico{width:48px;height:48px;border-radius:10px;background:#F0EEE9;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .svc-ico svg{width:24px;height:24px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .svc-n{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;}
+    .svc-tag{display:inline-block;margin-top:0.25rem;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--o);}
+    .svc-desc{font-size:0.87rem;color:var(--mid);line-height:1.68;}
+    .svc-bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.25rem;}
+    .svc-bullets li{font-size:0.82rem;color:var(--mid);display:flex;align-items:flex-start;gap:0.6rem;line-height:1.5;}
+    .svc-bullets li::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:0.45rem;}
+    .svc-lnk{margin-top:auto;font-size:0.8rem;font-weight:600;color:var(--o);display:flex;align-items:center;gap:0.35rem;transition:gap 0.2s;}
+    .svc-card:hover .svc-lnk{gap:0.6rem;}
+    .compliance{background:var(--char);padding:5.5rem 0;}
+    .compliance-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem;}
+    .comp-blocks{display:flex;flex-direction:column;gap:1rem;}
+    .comp-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.4rem 1.5rem;}
+    .comp-block-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;}
+    .comp-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+    .comp-title{font-family:var(--fh);font-size:0.88rem;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:-0.01em;}
+    .comp-desc{font-size:0.8rem;color:rgba(255,255,255,0.42);line-height:1.62;padding-left:1.4rem;}
+    .comp-right .sec-lbl{color:rgba(255,255,255,0.35);}
+    .comp-right .sec-lbl::before{background:rgba(255,255,255,0.35);}
+    .comp-right .sec-h{color:var(--white);}
+    .comp-standards{display:flex;flex-direction:column;gap:0.65rem;margin-top:1.5rem;}
+    .comp-std{display:flex;align-items:center;gap:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);}
+    .comp-std::before{content:'';width:16px;height:1px;background:var(--grad);flex-shrink:0;}
+    .sectors-cta{background:var(--white);padding:5.5rem 0;}
+    .sectors-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:3rem;}
+    .sec-card{position:relative;border-radius:16px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;padding:2.4rem;transition:transform 0.3s var(--ease);}
+    .sec-card:hover{transform:translateY(-5px);}
+    .sec-card-bg{position:absolute;inset:0;z-index:0;}
+    .bg-edu{background:linear-gradient(155deg,#1B2C40 0%,#111E2C 100%);}
+    .bg-pub{background:linear-gradient(155deg,#192B1E 0%,#0E1F13 100%);}
+    .sec-accent{position:absolute;z-index:1;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;opacity:0.13;}
+    .acc-edu{background:radial-gradient(circle,#C8102E,transparent 70%);}
+    .acc-pub{background:radial-gradient(circle,#F5A623,transparent 70%);}
+    .sec-patt{position:absolute;inset:0;z-index:1;opacity:0.1;}
+    .sec-fade{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 62%);}
+    .sec-content{position:relative;z-index:3;}
+    .sec-tag-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.32rem 0.8rem;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);border-radius:100px;font-size:0.69rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:0.9rem;}
+    .sec-name{font-family:var(--fh);font-size:1.45rem;font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:0.6rem;}
+    .sec-desc{font-size:0.85rem;color:rgba(255,255,255,0.52);line-height:1.65;margin-bottom:1.2rem;max-width:38ch;}
+    .sec-lnk{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.83rem;font-weight:500;color:rgba(255,255,255,0.75);border-bottom:1px solid rgba(255,255,255,0.22);padding-bottom:0.18rem;transition:color 0.2s,border-color 0.2s;}
+    .sec-card:hover .sec-lnk{color:#fff;border-color:var(--a);}
+    .why{background:#F7F6F4;padding:5.5rem 0;}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+    .why-card{padding:2rem;background:var(--white);border-radius:12px;border:1px solid var(--bdr);}
+    .why-n{font-family:var(--fh);font-size:3rem;font-weight:900;line-height:1;margin-bottom:1rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0.28;}
+    .why-t{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.6rem;}
+    .why-d{font-size:0.87rem;color:var(--mid);line-height:1.72;}
+    .trust{background:var(--dark);padding:2.75rem 0;}
+    .trust-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-around;gap:1.5rem;flex-wrap:wrap;}
+    .trust-item{text-align:center;}
+    .trust-n{font-family:var(--fh);font-size:1.9rem;font-weight:900;line-height:1;margin-bottom:0.28rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .trust-l{font-size:0.75rem;font-weight:400;color:rgba(255,255,255,0.35);letter-spacing:0.04em;}
+    .trust-div{width:1px;height:38px;background:rgba(255,255,255,0.07);}
+    .accreds{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}
+    .accreds-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+    .accreds-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}
+    .accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+    .accred{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.35rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;}
+    .cta-ban{position:relative;background:var(--char);padding:6rem 0;text-align:center;overflow:hidden;}
+    .cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .cta-c{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:0 2rem;}
+    .cta-c h2{font-family:var(--fh);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:var(--white);letter-spacing:-0.03em;line-height:1.08;margin-bottom:1.1rem;}
+    .cta-c p{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;margin-bottom:2.4rem;font-weight:300;}
+    .cta-btns{display:flex;align-items:center;justify-content:center;gap:0.9rem;flex-wrap:wrap;}
+    footer{background:var(--dark);padding:4rem 0 2rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    .ft-logo{margin-bottom:1rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+/* ═══════════════════════════════════════════════════════════
+   FYRFLY SYSTEMS — SHARED RESPONSIVE CSS (service pages)
+   Breakpoints: 1024px | 768px | 480px
+═══════════════════════════════════════════════════════════ */
+
+/* ─── TABLET LANDSCAPE (≤1024px) ─────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-c { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
+  .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .context-grid { gap: 3rem; }
+  .svc-detail-grid { grid-template-columns: 1fr 1fr; }
+  .svc-card.full { grid-column: span 2; }
+  .compliance-grid { gap: 3rem; }
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .arc-grid { grid-template-columns: 1fr 1fr; }
+  .ft-grid { grid-template-columns: 1.2fr 1fr 1fr; gap: 2rem; }
+  .ft-grid > div:last-child { grid-column: span 3; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
+}
+
+/* ─── TABLET PORTRAIT (≤768px) ───────────────────────────── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav-links, .nav-cta { display: none; }
+  .ham { display: flex; }
+  /* Mobile nav overlay */
+  .mob-nav {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(14,14,20,0.97); flex-direction: column;
+    align-items: flex-start; justify-content: flex-start;
+    padding: 5rem 2rem 2rem; gap: 0;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .mob-nav.open { display: flex !important; opacity: 1; }
+  .mob-nav a {
+    font-family: 'Roboto', sans-serif; font-size: 1.5rem; font-weight: 700;
+    color: rgba(255,255,255,0.85); padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mob-nav a:hover { color: #fff; }
+  .mob-nav .mob-sub {
+    font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.38);
+    padding: 0.5rem 0 0.5rem 1rem; border-bottom: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .mob-nav .mob-cta {
+    margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.85rem 2rem; background: linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+    color: #fff; font-size: 1rem; font-weight: 600; border-radius: 8px;
+    border-bottom: none; width: auto;
+  }
+  .mob-close {
+    position: absolute; top: 1.1rem; right: 1.5rem;
+    background: none; border: none; cursor: pointer; padding: 0.5rem;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .mob-close span {
+    width: 24px; height: 2px; background: rgba(255,255,255,0.7);
+    border-radius: 2px; display: block;
+  }
+  .mob-close span:first-child { transform: rotate(45deg) translate(5px,5px); }
+  .mob-close span:last-child { transform: rotate(-45deg) translate(5px,-5px); }
+
+  /* Hero */
+  .hero { min-height: auto; }
+  .hero-c { padding: 3.5rem 1.5rem; }
+  .hero-right { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(2rem, 5.5vw, 2.8rem); }
+  .hero-sub { font-size: 0.95rem; max-width: 100%; }
+
+  /* Context */
+  .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .context { padding: 3.5rem 0; }
+
+  /* Service cards */
+  .svc-detail { padding: 4rem 0; }
+  .svc-detail-grid { grid-template-columns: 1fr; }
+  .svc-card.full { grid-column: span 1; display: flex; flex-direction: column; }
+  .svc-card.full .svc-body { padding-left: 0; border-left: none; border-top: 1px solid var(--bdr); padding-top: 1.25rem; margin-top: 0.5rem; }
+
+  /* Compliance */
+  .compliance { padding: 4rem 0; }
+  .compliance-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .comp-right { order: -1; }
+
+  /* Why grid */
+  .why { padding: 4rem 0; }
+  .why-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* Trust */
+  .trust-div { display: none; }
+  .trust-i { justify-content: center; gap: 2rem; }
+  .trust { padding: 2.25rem 0; }
+
+  /* Sector CTA cards */
+  .sectors-cta { padding: 4rem 0; }
+  .sectors-grid { grid-template-columns: 1fr; }
+  .sec-card { min-height: 260px; }
+
+  /* ARC partners */
+  .arc-grid { grid-template-columns: 1fr; }
+  .arc-partners { padding: 4rem 0; }
+
+  /* Footer */
+  .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .ft-grid > div:first-child { grid-column: span 2; }
+  .ft-grid > div:last-child { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
+  .ft-bot { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+
+  /* Accreds */
+  .accreds-i { gap: 1.5rem; }
+  .accreds-list { gap: 0.75rem; }
+
+  /* CTA */
+  .cta-ban { padding: 4.5rem 0; }
+
+  /* Section spacing */
+  .wrap { padding: 0 1.5rem; }
+  .sec-h { font-size: clamp(1.5rem, 4.5vw, 2.2rem); }
+}
+
+/* ─── MOBILE (≤480px) ────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero-c { padding: 3rem 1.25rem; }
+  .hero h1 { font-size: clamp(1.9rem, 7vw, 2.4rem); }
+  .hero-acts { flex-direction: column; align-items: stretch; }
+  .hero-acts a { text-align: center; justify-content: center; }
+  .hero-pill { flex-direction: row; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+
+  .svc-card.full { padding: 1.5rem; }
+  .comp-blocks { gap: 0.75rem; }
+
+  .why-grid { gap: 0.85rem; }
+  .why-card { padding: 1.5rem; }
+
+  .ft-grid { grid-template-columns: 1fr; }
+  .ft-grid > div:first-child { grid-column: span 1; }
+  .ft-grid > div:last-child { grid-column: span 1; }
+  .ft-legal { flex-wrap: wrap; gap: 1rem; }
+
+  .cta-btns { flex-direction: column; align-items: stretch; }
+  .cta-btns a { text-align: center; justify-content: center; }
+
+  .wrap { padding: 0 1rem; }
+  .context { padding: 3rem 0; }
+  .svc-detail { padding: 3rem 0; }
+  .compliance { padding: 3rem 0; }
+  .why { padding: 3rem 0; }
+  .sectors-cta { padding: 3rem 0; }
+  .cta-ban { padding: 3.5rem 0; }
+  footer { padding: 3rem 0 1.5rem; }
+}
+
+  </style>
+
+  <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Access Control for Schools and Public Sector",
+      "url": "https://www.fyrflysystems.com/access-control.html",
+      "description": "Role-based door access, visitor management and video door entry for schools, colleges, local authorities and NHS estates. KCSiE compliant with full audit trails.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "@id": "https://www.fyrflysystems.com/#organization",
+        "name": "Fyrfly Systems"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Schools, Colleges, Universities, Local Authorities, NHS Estates, Housing Associations, Government Bodies"
+      },
+      "keywords": "access control schools, school visitor management, KCSiE access control, NHS access control, council building access control, door entry system education"
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4XLH0L6H2Z');
+  </script>
+</head>
+<body>
+<!-- MOBILE NAV OVERLAY -->
+<div class="mob-nav" id="mobNav" style="display:none">
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a>
+  <a href="access-control.html">Access Control</a>
+  <a href="wireless-networks.html">Wireless Networks</a>
+  <a href="intruder-alarms.html">Intruder Alarms</a>
+  <a href="fire-systems.html">Fire Systems</a>
+  <a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub" style="margin-top:1rem">Sectors</span>
+  <a href="education.html">Education</a>
+  <a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub" style="margin-top:1rem">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch →</a>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <img src="fyrfly-logo.png" alt="Fyrfly Systems">
+      <div class="nav-logo-text" style="display:none"><span>FYRFLY</span> SYSTEMS</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services" class="active">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch →</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-i">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="index.html#services">Services</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>Access Control</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-c">
+    <div>
+      <div class="hero-tag">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Access Control
+      </div>
+      <h1>Access Control for <span class="acc">Schools &amp; Public Sector</span></h1>
+      <p class="hero-sub">Control who goes where — without locking the door on learning. Role-based access designed around your safeguarding obligations and your building.</p>
+      <div class="hero-acts">
+        <a href="#contact" class="btn-p">Request a Free Survey →</a>
+        <a href="#detail" class="btn-g">Our Access Control Services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="hero-pill-text"><strong>DBS-Aware Visitor Management</strong><span>Know who is on site, why they're there, and whether they should be</span></div>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="hero-pill-text"><strong>Role-Based Zone Control</strong><span>Time-of-day and role-specific access for staff, pupils and contractors</span></div>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="hero-pill-text"><strong>Full Audit Trail</strong><span>Timestamped access records for insurance, safeguarding and data protection compliance</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="context">
+  <div class="wrap">
+    <div class="context-grid">
+      <div class="context-text">
+        <div class="sec-lbl">The Challenge</div>
+        <h2 class="sec-h">Open Buildings, Controlled Access — Getting the Balance Right</h2>
+        <p>Schools are required to be welcoming and accessible, yet Keeping Children Safe in Education demands that every person on site is known, vetted and purposeful. NHS buildings serve the public, yet must restrict access to clinical areas, data rooms and staff-only zones. Local authority offices handle sensitive personal data, yet must remain accessible to the residents they serve.</p>
+        <p>The answer isn't locked doors everywhere — it's <strong>intelligent, role-based access control</strong> that opens the right doors for the right people at the right times, and creates a complete record of every event.</p>
+      </div>
+      <div class="challenge-list">
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div class="challenge-text"><strong>Safeguarding on School Sites</strong><span>Schools must prevent unauthorised adults from accessing areas where children are present — without creating a fortress environment that undermines a positive learning culture.</span></div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <div class="challenge-text"><strong>NHS and Healthcare Environments</strong><span>Patient safety areas, controlled drug stores, data rooms and staff-only zones require tiered access — accessible to the right clinicians and staff, not to visitors or the public.</span></div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <div class="challenge-text"><strong>Contractor and Visitor Management</strong><span>Schools and public buildings host contractors daily. Managing who is on site, checking credentials and maintaining records is a safeguarding and insurance obligation that manual sign-in books simply can't satisfy.</span></div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="challenge-text"><strong>Out-of-Hours Lettings</strong><span>Schools and leisure facilities let spaces to community groups outside hours. Time-restricted access allows lettings without handing out master keys or requiring staff to be on site.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-detail" id="detail">
+  <div class="wrap">
+    <div class="sec-lbl">Our Access Control Services</div>
+    <h2 class="sec-h">Access Control Built Around Your People and Your Site</h2>
+    <p class="sec-sub">From single-door entry systems to estate-wide multi-site platforms, we design and install access control solutions that fit your environment and your compliance obligations.</p>
+    <div class="svc-detail-grid">
+      <div class="svc-card full">
+        <div class="svc-head">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div>
+            <div class="svc-n">Door Access &amp; Reader Systems</div>
+            <div class="svc-tag">Core Service · Most Specified</div>
+          </div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Card, fob, PIN and biometric reader systems that control access to individual doors, zones and buildings. We specify the right credential technology for each environment — proximity cards for staff, PIN-only for low-security areas, biometric for high-security zones — and integrate everything into a single management platform.</p>
+          <ul class="svc-bullets">
+            <li>Proximity card, fob and smart card readers</li>
+            <li>PIN and combination credential options</li>
+            <li>Biometric fingerprint and facial recognition for high-security areas</li>
+            <li>Electric strikes, magnetic locks and electromechanical locks</li>
+            <li>Fail-safe and fail-secure configurations for fire safety compliance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-head">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div>
+            <div class="svc-n">Visitor Management</div>
+            <div class="svc-tag">Safeguarding Essential</div>
+          </div>
+        </div>
+        <p class="svc-desc">Digital visitor management systems that replace paper sign-in books with a compliant, auditable process. Pre-registration, photo ID capture, DBS status flagging and printed visitor badges — all integrated with your access control system to grant time-limited site access automatically.</p>
+        <ul class="svc-bullets">
+          <li>Pre-registration and pre-screening for expected visitors</li>
+          <li>Photo capture and printed visitor badges on arrival</li>
+          <li>DBS status alerts and watchlist checking</li>
+          <li>Evacuation reports showing all visitors on site</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-head">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+          <div>
+            <div class="svc-n">Video Door Entry &amp; Intercoms</div>
+            <div class="svc-tag">Reception &amp; Perimeter</div>
+          </div>
+        </div>
+        <p class="svc-desc">IP video door entry systems that let reception staff see, speak to and grant access to visitors from their desk — without leaving the office. Integrated with your access control and CCTV for a complete picture of who is at each entrance point.</p>
+        <ul class="svc-bullets">
+          <li>HD video door stations at main entrances and gates</li>
+          <li>Desk-based and mobile app answer points</li>
+          <li>Remote door release from any location</li>
+          <li>Call logging and video evidence retention</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-head">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
+          <div>
+            <div class="svc-n">Multi-Site Management</div>
+            <div class="svc-tag">MAT &amp; Estate Capability</div>
+          </div>
+        </div>
+        <p class="svc-desc">Centralised access control management for Multi-Academy Trusts, local authorities and NHS estates with multiple buildings. Manage credentials, zones and access levels across your entire estate from a single platform — add a new staff member once, grant access everywhere they need it.</p>
+        <ul class="svc-bullets">
+          <li>Single platform for all sites across your estate</li>
+          <li>Centralised credential management and provisioning</li>
+          <li>Estate-wide reporting and audit trails</li>
+          <li>HR system integration for automated joiner/leaver processes</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-head">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div>
+            <div class="svc-n">Reporting &amp; Audit Trails</div>
+            <div class="svc-tag">Compliance &amp; Governance</div>
+          </div>
+        </div>
+        <p class="svc-desc">Comprehensive access event reporting for compliance, insurance and safeguarding purposes. Who unlocked which door, when, using which credential — all timestamped and exportable. Automated muster reports for fire evacuations show exactly who was in the building at any given moment.</p>
+        <ul class="svc-bullets">
+          <li>Full timestamped access event log</li>
+          <li>Automated fire muster and roll call reports</li>
+          <li>Scheduled and on-demand compliance reports</li>
+          <li>Exportable data for insurance and audit purposes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compliance">
+  <div class="wrap">
+    <div class="compliance-grid">
+      <div class="comp-blocks">
+        <div class="comp-block">
+          <div class="comp-block-head"><div class="comp-dot"></div><div class="comp-title">Keeping Children Safe in Education (KCSiE)</div></div>
+          <div class="comp-desc">Schools are required to control site access and maintain records of all visitors. Our visitor management systems satisfy KCSiE obligations with a fully auditable, digital process that paper sign-in books cannot replicate.</div>
+        </div>
+        <div class="comp-block">
+          <div class="comp-block-head"><div class="comp-dot"></div><div class="comp-title">UK GDPR — Data Minimisation and Retention</div></div>
+          <div class="comp-desc">Access control data is personal data. We configure retention periods, access logs and data deletion schedules aligned to your data protection policy and GDPR accountability obligations.</div>
+        </div>
+        <div class="comp-block">
+          <div class="comp-block-head"><div class="comp-dot"></div><div class="comp-title">Fire Safety — Regulatory Reform (Fire Safety) Order</div></div>
+          <div class="comp-desc">All access control hardware is specified to fail-safe in fire conditions — doors release automatically on fire alarm activation. Muster reports from the access control system support evacuation procedures.</div>
+        </div>
+        <div class="comp-block">
+          <div class="comp-block-head"><div class="comp-dot"></div><div class="comp-title">PAS 24:2022 — Enhanced Security Performance</div></div>
+          <div class="comp-desc">Electrically operated door hardware is specified to PAS 24 where required by insurers or local authority security policies, providing an enhanced level of physical security for sensitive door sets.</div>
+        </div>
+      </div>
+      <div class="comp-right">
+        <div class="sec-lbl">Compliance &amp; Standards</div>
+        <h2 class="sec-h" style="color:var(--white)">Every Door, Every Decision — Compliant</h2>
+        <p style="font-size:0.97rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;font-weight:300;line-height:1.72;max-width:44ch;margin-bottom:2rem;">Access control sits at the intersection of safeguarding, data protection and fire safety. We design systems that meet all three from the outset.</p>
+        <div class="comp-standards">
+          <div class="comp-std">Keeping Children Safe in Education (KCSiE)</div>
+          <div class="comp-std">UK GDPR and Data Protection Act 2018</div>
+          <div class="comp-std">Regulatory Reform (Fire Safety) Order 2005</div>
+          <div class="comp-std">PAS 24:2022 — Enhanced Security Performance</div>
+          <div class="comp-std">BS EN 60839-11 — Electronic Access Control</div>
+          <div class="comp-std">NSI NACOSS Gold — Installation Standard</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="sec-lbl">Why Fyrfly for Access Control</div>
+    <h2 class="sec-h">The Right People, in the Right Places, at the Right Times</h2>
+    <p class="sec-sub">Access control is a safeguarding tool, a compliance tool and an operational tool. We design systems that do all three — without adding complexity for the people who manage them.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-n">01</div>
+        <div class="why-t">Safeguarding-Led Design</div>
+        <p class="why-d">We design access control around your safeguarding policy, not the other way around. Where children are present, we ensure the system actively supports your duty of care — from reception through to restricted staff areas.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-n">02</div>
+        <div class="why-t">Integrated with CCTV and Alarms</div>
+        <p class="why-d">Access control works best when it talks to your CCTV and intruder alarm system. A door forced open triggers a camera to record and an alarm to sound. We design these systems as one — because that's how they work best.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-n">03</div>
+        <div class="why-t">Simple to Manage Day-to-Day</div>
+        <p class="why-d">A system the office manager can operate is one that will actually be kept up to date. We specify platforms with intuitive interfaces and train your team thoroughly — so adding a new member of staff or revoking a leaver's access takes seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-i">
+    <div class="trust-item"><div class="trust-n">500+</div><div class="trust-l">Sites Protected</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">98%</div><div class="trust-l">Client Retention</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">1hr</div><div class="trust-l">Avg. Response Time</div></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><div class="trust-n">24/7</div><div class="trust-l">Monitoring Available</div></div>
+  </div>
+</div>
+
+<section class="sectors-cta">
+  <div class="wrap">
+    <div class="sec-lbl">Sector Expertise</div>
+    <h2 class="sec-h">Access Control Designed for Your Sector</h2>
+    <p class="sec-sub">Our access control installations are shaped by the specific safeguarding, compliance and operational demands of the sectors we serve.</p>
+    <div class="sectors-grid">
+      <a href="education.html" class="sec-card">
+        <div class="sec-card-bg bg-edu"></div><div class="sec-accent acc-edu"></div>
+        <div class="sec-patt"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g2" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="white" stroke-width="0.6"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2)"/></svg></div>
+        <div class="sec-fade"></div>
+        <div class="sec-content">
+          <div class="sec-tag-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Education Sector</div>
+          <div class="sec-name">Access Control for Schools &amp; Colleges</div>
+          <p class="sec-desc">KCSiE-compliant visitor management and zone control that keeps pupils safe without creating a hostile environment for learning.</p>
+          <div class="sec-lnk">Explore Education Solutions →</div>
+        </div>
+      </a>
+      <a href="public-sector.html" class="sec-card">
+        <div class="sec-card-bg bg-pub"></div><div class="sec-accent acc-pub"></div>
+        <div class="sec-patt"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="d2" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="16" cy="16" r="1.2" fill="white"/></pattern></defs><rect width="100%" height="100%" fill="url(d2)"/></svg></div>
+        <div class="sec-fade"></div>
+        <div class="sec-content">
+          <div class="sec-tag-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> Public Sector</div>
+          <div class="sec-name">Access Control for Councils &amp; NHS</div>
+          <p class="sec-desc">Tiered zone control for public-facing buildings — open access where it's needed, restricted access where it must be, with a full audit trail throughout.</p>
+          <div class="sec-lnk">Explore Public Sector Solutions →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="accreds">
+  <div class="accreds-i">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-ban" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-c">
+    <div class="sec-lbl" style="justify-content:center;color:rgba(255,255,255,0.35);">Ready to Start?</div>
+    <h2>Let's Design Your Access Control System</h2>
+    <p>Start with a free site survey. We'll assess your access points, understand your safeguarding and compliance obligations, and design a system that fits your building and your people.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Request a Free Survey →</a>
+      <a href="tel:+441234567890" class="btn-g">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></div>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Company</div>
+      <ul class="ft-links"><li><a href="index.html#about">About Us</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  // Mobile nav
+  const ham = document.getElementById('hamBtn');
+  const mobNav = document.getElementById('mobNav');
+  const mobClose = document.getElementById('mobClose');
+  if (ham && mobNav) {
+    ham.addEventListener('click', () => { mobNav.style.display = 'flex'; setTimeout(() => mobNav.classList.add('open'), 10); });
+    const closeNav = () => { mobNav.classList.remove('open'); setTimeout(() => mobNav.style.display = 'none', 250); };
+    mobClose.addEventListener('click', closeNav);
+    mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
+
+</script>
+</body>
+</html>
