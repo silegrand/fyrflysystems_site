@@ -1052,7 +1052,8 @@ function downloadPDF() {
     '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com<br>NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015</div>' +
     '</div>' +
     '<script>window.onload = function(){ window.print(); }<\/script>' +
-    '</body></html>';
+    '<script src="/contact-modal.js"></script>
+</body></html>';
 
   // Open in new tab and print
   const printWindow = window.open('', '_blank');
@@ -1107,5 +1108,6 @@ if (document.readyState === 'complete') {
   window.addEventListener('load', initPlanner);
 }
 </script>
+<script src="/contact-modal.js"></script>
 </body>
 </html>

@@ -867,7 +867,8 @@ function downloadReport() {
     '<a href="mailto:hello@fyrflysystems.com?subject=Incident Pattern Analysis — Free Survey Request" style="display:inline-block;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600">Request a Free Survey</a>' +
     '</div>' +
     '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com<br>NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015</div>' +
-    '</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+    '</div><script>window.onload=function(){window.print();}<\/script><script src="/contact-modal.js"></script>
+</body></html>';
 
   const w = window.open('', '_blank');
   if (w) { w.document.write(html); w.document.close(); }
@@ -896,5 +897,6 @@ function shareReport() {
   window.location.href = 'mailto:hello@fyrflysystems.com?subject=' + subject + '&body=' + body;
 }
 </script>
+<script src="/contact-modal.js"></script>
 </body>
 </html>

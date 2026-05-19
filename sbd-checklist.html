@@ -1118,7 +1118,8 @@ function downloadPDF() {
     Source: https://www.security.gov.uk/policy-and-guidance/secure-by-design/
   </div>
   <script>window.onload=function(){window.print();}<\/script>
-  </body></html>`;
+  <script src="/contact-modal.js"></script>
+</body></html>`;
 
   const w = window.open('', '_blank');
   if (w) { w.document.write(printContent); w.document.close(); }
@@ -1162,5 +1163,6 @@ function init() {
 if (document.readyState === 'complete') { init(); }
 else { window.addEventListener('load', init); }
 </script>
+<script src="/contact-modal.js"></script>
 </body>
 </html>

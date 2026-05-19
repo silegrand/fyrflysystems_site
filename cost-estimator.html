@@ -960,7 +960,8 @@ function downloadEstimate() {
     '<div class="disc">All figures are indicative budgetary estimates only and exclude VAT, ongoing maintenance contracts and monitoring fees. Actual costs will vary depending on site conditions, building layout, cable runs and specification. A free site survey is required for an accurate, costed proposal. Fyrfly Systems Ltd — NSI NACOSS Gold | SSAIB Approved | BAFE Registered | Constructionline | ISO 9001:2015 | Crown Commercial Service.</div>' +
     '<div class="cta"><h3>Ready for an accurate quote?</h3><p>A free site survey from Fyrfly Systems gives you a detailed, costed proposal based on your actual building and requirements.</p><a href="mailto:hello@fyrflysystems.com?subject=Security Budget Estimate — Free Survey Request">Request a Free Survey</a></div>' +
     '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com</div>' +
-    '</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+    '</div><script>window.onload=function(){window.print();}<\/script><script src="/contact-modal.js"></script>
+</body></html>';
 
   const w = window.open('', '_blank');
   if (w) { w.document.write(printHTML); w.document.close(); }
@@ -1031,5 +1032,6 @@ drawTCO();
 window.addEventListener('resize', drawTCO);
 </script>
 
+<script src="/contact-modal.js"></script>
 </body>
 </html>
