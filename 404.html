@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Fyrfly Systems</title>
+  <meta name="description" content="The page you are looking for could not be found. Return to Fyrfly Systems — physical security for schools and the public sector.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#1B1B24">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--nh:70px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;}
+    a{text-decoration:none;color:inherit;}
+
+    nav{height:var(--nh);background:rgba(255,255,255,0.96);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 2rem;justify-content:space-between;flex-shrink:0;}
+    .nav-logo img{height:46px;width:auto;display:block;}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;}
+
+    main{flex:1;display:flex;align-items:center;justify-content:center;background:var(--char);position:relative;overflow:hidden;padding:3rem 2rem;}
+    .bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(232,93,4,0.13) 0%,transparent 55%),radial-gradient(ellipse at 20% 65%,rgba(200,16,46,0.09) 0%,transparent 50%);}
+    .dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;}
+    .content{position:relative;z-index:2;text-align:center;max-width:560px;}
+    .err-code{font-family:var(--fh);font-size:clamp(6rem,18vw,9rem);font-weight:900;letter-spacing:-0.05em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
+    h1{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1rem;}
+    p{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.75;font-weight:300;margin-bottom:2.25rem;}
+    .btn-row{display:flex;align-items:center;justify-content:center;gap:0.85rem;flex-wrap:wrap;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.4rem;padding:0.8rem 1.75rem;background:var(--grad);color:#fff;font-size:0.88rem;font-weight:600;border-radius:7px;font-family:var(--fb);}
+    .btn-s{display:inline-flex;align-items:center;gap:0.4rem;padding:0.8rem 1.75rem;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);font-size:0.88rem;font-weight:500;border-radius:7px;border:1px solid rgba(255,255,255,0.12);font-family:var(--fb);}
+    .quick-links{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);}
+    .ql-label{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:1rem;}
+    .ql-grid{display:flex;align-items:center;justify-content:center;gap:0.65rem;flex-wrap:wrap;}
+    .ql-link{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5);padding:0.35rem 0.85rem;border:1px solid rgba(255,255,255,0.1);border-radius:100px;transition:color 0.2s,border-color 0.2s;}
+    .ql-link:hover{color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.25);}
+
+    footer{background:var(--dark);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-contact{font-size:0.78rem;color:rgba(255,255,255,0.35);}
+    .ft-contact a{color:rgba(255,255,255,0.35);transition:color 0.2s;}.ft-contact a:hover{color:rgba(255,255,255,0.65);}
+
+    @media(max-width:480px){nav .nav-cta{display:none;}.btn-row{flex-direction:column;align-items:stretch;}.btn-p,.btn-s{justify-content:center;}footer{flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/fyrfly-logo.png" alt="Fyrfly Systems"></a>
+  <a href="mailto:hello@fyrflysystems.com" class="nav-cta">Get in Touch &rarr;</a>
+</nav>
+
+<main>
+  <div class="bg"></div>
+  <div class="dots"></div>
+  <div class="content">
+    <div class="err-code">404</div>
+    <h1>This page doesn't exist</h1>
+    <p>The page you are looking for may have been moved, renamed, or never existed. Head back to the homepage or use one of the links below to find what you need.</p>
+    <div class="btn-row">
+      <a href="/" class="btn-p">Back to Homepage &rarr;</a>
+      <a href="/blog.html" class="btn-s">Browse Articles</a>
+    </div>
+    <div class="quick-links">
+      <div class="ql-label">Quick links</div>
+      <div class="ql-grid">
+        <a href="/cctv.html" class="ql-link">CCTV</a>
+        <a href="/access-control.html" class="ql-link">Access Control</a>
+        <a href="/wireless-networks.html" class="ql-link">Wireless Networks</a>
+        <a href="/intruder-alarms.html" class="ql-link">Intruder Alarms</a>
+        <a href="/fire-systems.html" class="ql-link">Fire Systems</a>
+        <a href="/monitoring.html" class="ql-link">24/7 Monitoring</a>
+        <a href="/education.html" class="ql-link">Education</a>
+        <a href="/public-sector.html" class="ql-link">Public Sector</a>
+        <a href="/compliance-tool.html" class="ql-link">Compliance Tool</a>
+        <a href="/your-site-tool.html" class="ql-link">Your Site Tool</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved.</div>
+  <div class="ft-contact"><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a> &nbsp;&bull;&nbsp; <a href="tel:+441234567890">01234 567 890</a></div>
+</footer>
+
+</body>
+</html>

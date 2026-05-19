@@ -1,0 +1,21 @@
+{
+  "name": "Fyrfly Systems",
+  "short_name": "Fyrfly",
+  "description": "Physical security for schools and the public sector — CCTV, access control, intruder alarms, fire systems and 24/7 monitoring.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#1B1B24",
+  "theme_color": "#1B1B24",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
