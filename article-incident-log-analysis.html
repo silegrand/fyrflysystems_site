@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Your Incident Log Is Telling You (And How to Read It) | Fyrfly Systems</title>
+  <meta name="description" content="Most schools keep incident logs but never analyse them. This guide shows you how to read your own data, identify patterns you cannot see, and use those patterns to make the right security decisions.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/article-incident-log-analysis.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/article-incident-log-analysis.html">
+  <meta property="og:title" content="What Your Incident Log Is Telling You | Fyrfly Systems">
+  <meta property="og:description" content="Most schools keep incident logs but never analyse them. Learn how to find the patterns in your own data and make better security decisions.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Your Incident Log Is Telling You (And How to Read It)",
+    "description": "Most schools keep incident logs but never analyse them. This guide shows how to find the patterns in your own data and make better security decisions.",
+    "author": {"@type": "Organization", "name": "Fyrfly Systems", "url": "https://www.fyrflysystems.com"},
+    "publisher": {"@type": "Organization", "name": "Fyrfly Systems", "url": "https://www.fyrflysystems.com"},
+    "url": "https://www.fyrflysystems.com/article-incident-log-analysis.html",
+    "inLanguage": "en-GB"
+  }</script>
+  <style>
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;--light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .breadcrumb{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.75rem 0;}
+    .breadcrumb-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--mute);}
+    .breadcrumb-i a{color:var(--mute);transition:color 0.2s;}
+    .breadcrumb-i a:hover{color:var(--o);}
+    .breadcrumb-i svg{width:12px;height:12px;stroke:var(--mute);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .breadcrumb-i span{color:var(--mid);font-weight:500;}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .art-hero{background:var(--char);padding:4rem 0;position:relative;overflow:hidden;}
+    .art-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 60%),radial-gradient(ellipse at 15% 50%,rgba(200,16,46,0.08) 0%,transparent 55%);}
+    .art-hero-c{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:0 2rem;}
+    .art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .art-cat{display:inline-flex;align-items:center;gap:0.35rem;padding:0.28rem 0.75rem;background:var(--grad);color:#fff;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;}
+    .art-date{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+    .art-read{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+    .art-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:1.25rem;}
+    .art-intro{font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;font-weight:300;}
+    .art-body{max-width:800px;margin:0 auto;padding:4rem 2rem;}
+    .art-body h2{font-family:var(--fh);font-size:1.4rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;line-height:1.2;margin-top:3rem;margin-bottom:1rem;padding-top:1rem;border-top:2px solid var(--bdr);}
+    .art-body h2:first-child{margin-top:0;border-top:none;padding-top:0;}
+    .art-body p{font-size:1rem;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:1.1rem;}
+    .art-body p:last-child{margin-bottom:0;}
+    .art-body p strong{color:var(--dark);font-weight:600;}
+    /* Tool CTA block */
+    .tool-cta{background:linear-gradient(135deg,#0E0E14,#1B1B24);border-radius:14px;padding:2rem;margin:2.5rem 0;position:relative;overflow:hidden;border:1px solid rgba(232,93,4,0.25);}
+    .tool-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .tool-cta-c{position:relative;z-index:2;display:flex;align-items:center;gap:2rem;}
+    .tool-cta-icon{width:52px;height:52px;border-radius:12px;background:rgba(232,93,4,0.15);border:1px solid rgba(232,93,4,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .tool-cta-icon svg{width:24px;height:24px;stroke:var(--a);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .tool-cta-text h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+    .tool-cta-text p{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;}
+    .tool-cta-btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.75rem 1.5rem;background:var(--grad);color:#fff;font-size:0.83rem;font-weight:600;border-radius:8px;white-space:nowrap;flex-shrink:0;transition:opacity 0.2s;}
+    .tool-cta-btn:hover{opacity:0.88;}
+    /* Callout box */
+    .callout{background:var(--light);border:1px solid var(--bdr);border-left:4px solid var(--o);border-radius:0 10px 10px 0;padding:1.25rem 1.4rem;margin:1.75rem 0;}
+    .callout p{font-size:0.9rem;color:var(--dark);line-height:1.7;margin:0;}
+    .callout p strong{color:var(--o);}
+    /* Example incident table */
+    .incident-eg{background:var(--light);border:1px solid var(--bdr);border-radius:10px;padding:1.25rem;margin:1.5rem 0;font-family:monospace;font-size:0.82rem;color:var(--mid);line-height:1.9;}
+    .art-cta{background:var(--char);border-radius:14px;padding:2.5rem;margin:3rem 0 0;position:relative;overflow:hidden;}
+    .art-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .art-cta-c{position:relative;z-index:2;}
+    .art-cta h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.65rem;}
+    .art-cta p{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.5rem;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+    .art-related{border-top:1px solid var(--bdr);padding-top:2.5rem;margin-top:2.5rem;}
+    .art-related h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;margin-bottom:1.25rem;}
+    .art-related-links{display:flex;flex-direction:column;gap:0.6rem;}
+    .art-related-links a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.88rem;font-weight:500;color:var(--o);transition:gap 0.2s;}
+    .art-related-links a:hover{gap:0.75rem;}
+    .accreds{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}
+    .accreds-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+    .accreds-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}
+    .accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+    .accred{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.35rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;}
+    footer{background:var(--dark);padding:4rem 0 2rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+    @media(max-width:768px){.art-hero{padding:3rem 0;}.art-hero h1{font-size:clamp(1.6rem,5vw,2.2rem);}.art-intro{font-size:0.97rem;}.art-body{padding:3rem 1.5rem;}.art-body h2{font-size:1.2rem;}.tool-cta-c{flex-direction:column;align-items:flex-start;gap:1.25rem;}.ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}.ft-grid>div:first-child{grid-column:span 2;}.ft-grid>div:last-child{grid-column:span 2;}.ft-bot{flex-direction:column;align-items:flex-start;}.wrap{padding:0 1.5rem;}}
+    @media(max-width:480px){.art-hero h1{font-size:clamp(1.5rem,6vw,1.9rem);}.art-body{padding:2.5rem 1rem;}.art-cta{padding:1.75rem;}.ft-grid{grid-template-columns:1fr;}.ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}.wrap{padding:0 1rem;}}
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-i">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="blog.html">Insights</a>
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    <span>What Your Incident Log Is Telling You</span>
+  </div>
+</div>
+
+<div class="art-hero">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-c">
+    <div class="art-meta">
+      <span class="art-cat">Education</span>
+      <span class="art-date">May 2025</span>
+      <span class="art-read">8 min read</span>
+    </div>
+    <h1>What Your Incident Log Is Telling You (And How to Read It)</h1>
+    <p class="art-intro">Most schools keep an incident log because they are required to. Almost none of them ever analyse it. Somewhere in those rows of dates, times and brief descriptions is a pattern that would change how you think about your site security. This article shows you how to find it.</p>
+  </div>
+</div>
+
+<div class="art-body">
+
+  <h2>The Log Exists. The Analysis Does Not.</h2>
+
+  <p>Ask a school business manager about their incident log and most will tell you the same thing. Yes, they have one. It lives in a spreadsheet, or a shared drive, or a notebook somewhere in the site manager's office. They add to it when something happens. It gets reviewed briefly after a significant event and then filed again.</p>
+
+  <p>What almost never happens is any systematic analysis of what the data is actually showing. Not because the business manager is not diligent — they almost always are — but because nobody has told them that the log is worth analysing, or given them a practical way to do it.</p>
+
+  <p>The result is that schools make security decisions based on the most recent incident rather than the underlying pattern. A car gets broken into on a Tuesday morning, so the business manager emails the site manager about improving lighting in the car park. What they do not know, because they have not looked, is that seven of the last twelve incidents happened between 7pm and 10pm on Fridays. The lighting will not solve that. A monitored alarm and better perimeter fencing might.</p>
+
+  <div class="callout">
+    <p><strong>The key insight:</strong> Your incident log is not a record of bad luck. It is a dataset. Patterns in that dataset reveal vulnerabilities in your site that no amount of walking around will show you as clearly.</p>
+  </div>
+
+  <h2>What Patterns Are Worth Looking For</h2>
+
+  <p>When you analyse an incident log properly, four types of pattern emerge. Each one points to a different type of security gap.</p>
+
+  <p><strong>Time of day patterns</strong> are the most revealing. Security incidents are not random in time. They cluster around specific windows — often late evening for external incidents, and specific times of day for internal ones. A school that sees 60% of its external incidents between 7pm and 11pm has a clear out-of-hours problem. A school that sees most of its theft incidents between noon and 1pm has a different problem entirely, one that professional monitoring will not solve but improved access control and staff awareness might.</p>
+
+  <p><strong>Location patterns</strong> are the second most important. Most schools find that a small number of locations account for a disproportionate share of incidents. The car park. The perimeter fence on the west side. The sports hall. These hotspots are not obvious from a single incident review, but they become clear when you aggregate across six or twelve months. Knowing your top three hotspot locations tells you exactly where to prioritise physical security investment.</p>
+
+  <p><strong>Day of week patterns</strong> reveal whether your site has a weekend vulnerability. Many schools find that weekend incidents are significantly more common than weekday incidents, which makes sense given the absence of staff. But the degree of that difference matters. A site where 50% of incidents happen at weekends has a very different risk profile to one where incidents are evenly distributed through the week.</p>
+
+  <p><strong>Incident type patterns</strong> tell you what category of threat you are actually dealing with. Vandalism, theft, trespass, vehicle crime, aggressive behaviour and false alarm events each point to different interventions. A site with predominantly vehicle crime needs different measures to one with predominantly trespass. Mixing these up — installing CCTV to address a problem that is actually driven by poor perimeter fencing — wastes budget without fixing the vulnerability.</p>
+
+  <h2>A Real Example of What the Data Shows</h2>
+
+  <p>A secondary school with around 900 pupils kept a incident log for 18 months. When the data was analysed, the patterns were striking. Of 23 recorded incidents:</p>
+
+  <p><strong>17 occurred between 6pm and midnight.</strong> The school had no professional monitoring and relied on a keyholder arrangement. Several of those incidents had gone undetected until the following morning.</p>
+
+  <p><strong>14 of the 23 involved the car park or the perimeter fence on the north side of the site.</strong> The car park had one camera with a faulty recording unit. The north fence had been damaged and repaired twice, but never properly secured.</p>
+
+  <p><strong>9 of the 12 weekend incidents happened on Saturdays between 7pm and 10pm.</strong> This was consistent enough to suggest the site was being targeted deliberately rather than opportunistically.</p>
+
+  <p>None of this was visible from reading the log entry by entry. It only emerged when the data was counted and grouped. The school's response — connecting to a monitoring centre, replacing the camera in the car park with two properly functioning units, and installing perimeter detection on the north fence — was directly informed by the analysis. The following six months saw two incidents, both of which were detected and responded to in real time.</p>
+
+  <div class="tool-cta">
+    <div class="tool-cta-bg"></div>
+    <div class="tool-cta-c">
+      <div class="tool-cta-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="tool-cta-text">
+        <h3>Analyse your own incident log in under a minute</h3>
+        <p>Paste your incidents into the Pattern Analyser and get an instant breakdown of time windows, hotspot locations, day-of-week trends and recommended interventions — all in your browser, nothing stored.</p>
+      </div>
+      <a href="incident-analyser.html" class="tool-cta-btn">Try the Pattern Analyser &rarr;</a>
+    </div>
+  </div>
+
+  <h2>What Good Incident Log Entries Look Like</h2>
+
+  <p>The quality of your analysis depends entirely on the quality of your data. A log entry that says "incident in car park" tells you almost nothing useful. One that says "22/03/2025 21:15 Car Park (north end) — vehicle window smashed, no witnesses, discovered next morning" gives you a date, a time, a specific location and an incident type. That is four pieces of data in one entry.</p>
+
+  <p>The minimum a useful incident log entry should contain is the date, the time (even an approximate time is better than nothing), the location, and a brief description of what happened. You do not need to capture everything — the person involved, the weather, the response taken — for the pattern analysis to work. Those details matter for individual incident management. For pattern identification, date, time and location are the essential three.</p>
+
+  <div class="incident-eg">
+    15/03/2025 22:30 Car Park — vandalism to vehicle<br>
+    22/03/2025 06:15 Main Gate — attempted forced entry<br>
+    28/03/2025 19:45 Car Park — graffiti on fence<br>
+    03/04/2025 23:10 Sports Hall — trespass alarm<br>
+    10/04/2025 21:00 Car Park — wing mirror damage
+  </div>
+
+  <p>Even a log in this simple format — which takes ten seconds per entry to write — will yield meaningful pattern analysis when you have twenty or thirty entries to work with. The analysis becomes more reliable with more data, but useful patterns often emerge from as few as ten to fifteen incidents.</p>
+
+  <h2>How Many Incidents Do You Need?</h2>
+
+  <p>This is the most common question. The honest answer is that any number of incidents is worth analysing, but the confidence you can place in the findings increases with volume.</p>
+
+  <p>With fewer than ten incidents, you can identify obvious concentrations but should treat them as indicators rather than firm conclusions. One location accounting for four out of eight incidents is worth noting, but it could be coincidence rather than a genuine pattern.</p>
+
+  <p>With ten to twenty incidents, real patterns begin to emerge reliably. Time-of-day clustering and location hotspots at this scale are unlikely to be coincidental and can inform genuine security decisions.</p>
+
+  <p>With twenty or more incidents, the analysis is robust enough to present to governors or a budget committee as evidence for security investment. The patterns are statistically meaningful and the recommended interventions can be directly linked to what the data shows.</p>
+
+  <p>If your log has fewer than ten entries because your site has been quiet, that is genuinely good news. If it has fewer than ten entries because incidents are not being recorded consistently, that is a separate problem worth addressing. Under-reporting is common in schools — incidents that feel minor at the time often go unlogged. Encouraging consistent recording, even of near-misses and minor events, significantly improves the quality of any future analysis.</p>
+
+  <h2>Turning the Findings into Decisions</h2>
+
+  <p>The pattern analysis is not the end point. It is the input into a security decision. The question it should prompt is: what specific measure would have the most impact on the patterns we have identified?</p>
+
+  <p>If the analysis shows a concentration of late-evening incidents, the right question is not "should we improve security" but "what security measure would specifically deter or detect a late-evening incident at this site?" Professional monitoring is the most direct answer to that question, because it provides a response capability at the exact time when staff are not present. A better padlock on the gate is not.</p>
+
+  <p>If the analysis shows a car park hotspot, the right question is "what would make that car park less attractive to someone considering an incident there?" Visible, well-maintained CCTV with clear signage is a powerful deterrent. Poor-quality cameras that nobody monitors are not.</p>
+
+  <p>If the analysis shows weekend concentration, the question is "what happens on weekends that is different from weekdays?" The answer is almost always staff absence. The intervention is either a physical deterrent that works without staff presence — perimeter detection, monitored alarm, CCTV with remote access — or an improvement to the physical barriers that make the site harder to enter in the first place.</p>
+
+  <p>The pattern tells you where and when. The intervention is the specific response to that where and when. Connecting the two — moving from "we had twenty incidents last year" to "we need monitored CCTV in the car park and a perimeter alarm on the north fence" — is exactly what good incident analysis makes possible.</p>
+
+  <h2>Making It a Regular Practice</h2>
+
+  <p>Incident log analysis should not be a one-off exercise. It is most valuable as a regular review — ideally termly for schools, or quarterly for larger public sector estates. Each review adds data and improves the reliability of the patterns. It also allows you to track whether the interventions you have put in place are working. If you install perimeter detection and the next quarter's analysis shows a significant reduction in perimeter incidents, that is evidence that the measure was effective. If the incidents simply move to a different part of the site, that tells you something different.</p>
+
+  <p>A termly review does not require hours of analysis. With a well-maintained log and a structured approach, it can be done in thirty minutes and presented as a standing item on the governing body's health and safety agenda. The findings become the evidence base for security budget requests, which are far more likely to be approved when they are supported by data rather than impressions.</p>
+
+  <div class="art-cta">
+    <div class="art-cta-bg"></div>
+    <div class="art-cta-c">
+      <h3>Analyse your incident log right now</h3>
+      <p>The Pattern Analyser is free, takes under a minute to use and runs entirely in your browser — nothing is stored or shared. Paste your incidents and see your patterns immediately. Or request a free site survey and we will review your incident history as part of the assessment.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="incident-analyser.html" class="btn-p">Try the Pattern Analyser &rarr;</a>
+        <a href="mailto:hello@fyrflysystems.com" style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;color:rgba(255,255,255,0.65);font-size:0.93rem;border:1px solid rgba(255,255,255,0.2);border-radius:6px;transition:all 0.2s;">Request a Free Survey</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="art-related">
+    <h3>Related pages</h3>
+    <div class="art-related-links">
+      <a href="incident-analyser.html">Incident Pattern Analyser tool &rarr;</a>
+      <a href="article-school-holiday-security.html">Why School Holidays Are Your Highest-Risk Period &rarr;</a>
+      <a href="article-whole-school-security-approach.html">School Security Done Right: Why Technology Alone Is Never the Answer &rarr;</a>
+      <a href="cctv.html">CCTV Systems &rarr;</a>
+      <a href="monitoring.html">24/7 Monitoring &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="accreds">
+  <div class="accreds-i">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" width="160" height="50" loading="lazy" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links"><li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li><li><a href="support-maintenance.html">Support &amp; Maintenance</a></li><li><a href="ai-analytics.html">AI &amp; Analytics</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
+      <ul class="ft-links"><li><a href="incident-analyser.html">Pattern Analyser</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links"><li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li><li><a href="tel:+441234567890">01234 567 890</a></li><li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li></ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
