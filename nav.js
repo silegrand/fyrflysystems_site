@@ -144,8 +144,6 @@
     <a href="intruder-alarms.html">Intruder Alarms</a>
     <a href="fire-systems.html">Fire Systems</a>
     <a href="monitoring.html">24/7 Monitoring</a>
-    <a href="support-maintenance.html">Support &amp; Maintenance</a>
-    <a href="ai-analytics.html">AI &amp; Analytics</a>
     <span class="mob-sub">Sectors</span>
     <a href="education.html">Education</a>
     <a href="public-sector.html">Public Sector</a>
@@ -155,6 +153,7 @@
     <a href="zone-planner.html">Zone Planner</a>
     <a href="compliance-tool.html">Compliance Tool</a>
     <a href="system-integration.html">System Integration</a>
+    <a href="incident-analyser.html">Pattern Analyser</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
@@ -201,14 +200,6 @@
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
             <span class="drop-label">24/7 Monitoring</span>
           </a>
-          <a href="support-maintenance.html"${dropActive('support-maintenance.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-            <span class="drop-label">Support &amp; Maintenance</span>
-          </a>
-          <a href="ai-analytics.html"${dropActive('ai-analytics.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2z"/><path d="M12 16a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2v-2a2 2 0 012-2z"/><path d="M2 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2z"/><path d="M16 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
-            <span class="drop-label">AI &amp; Analytics</span>
-          </a>
         </div>
       </li>
 
@@ -237,6 +228,10 @@
           <a href="system-integration.html"${dropActive('system-integration.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
             <span class="drop-label">System Integration</span>
+          </a>
+          <a href="incident-analyser.html"${dropActive('incident-analyser.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <span class="drop-label">Pattern Analyser</span>
           </a>
         </div>
       </li>
