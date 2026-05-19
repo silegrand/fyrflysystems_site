@@ -37,6 +37,41 @@
     button{cursor:pointer;font-family:var(--fb);}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
 
+    /* ── NAV ─────────────────────────────────────── */
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}
+    nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
+    .nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}
+    .nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.12);padding:0.5rem;padding-top:1rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s,visibility 0.2s;}
+    .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;}
+    .drop-menu::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:14px;height:14px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;margin-top:1px;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}
+    .drop-item:hover{background:var(--light);}
+    .drop-item-muted{color:var(--mute);pointer-events:none;font-size:0.83rem;padding:0.65rem 0.85rem;display:block;}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+    .ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;}
+    .mob-nav.open{display:flex;opacity:1;}
+    .mob-nav a{font-family:var(--fh);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}
+    .mob-nav a:hover{color:#fff;}
+    .mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}
+    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}
+    .mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}
+    .mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}
+    .mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
+
     /* ── HERO ─────────────────────────────────────── */
     .hero{background:#0A0D14;padding:4rem 0 3rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06);}
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(232,93,4,0.1) 0%,transparent 58%),radial-gradient(ellipse at 12% 60%,rgba(200,16,46,0.07) 0%,transparent 52%);}
@@ -190,8 +225,8 @@
       .hero-pills{display:none;}
     }
     @media(max-width:768px){
-      
-      
+      .nav-links,.nav-cta{display:none;}
+      .ham{display:flex;}
       .sys-grid{grid-template-columns:1fr 1fr 1fr;}
       .tier-grid{grid-template-columns:1fr;}
       .cam-grid{grid-template-columns:repeat(4,1fr);}
@@ -217,8 +252,55 @@
 <body>
 
 <!-- MOBILE NAV -->
-<div id="nav-placeholder"></div>
-<script src="nav.js"></script>
+<div class="mob-nav" id="mobNav" style="display:none">
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a>
+  <a href="access-control.html">Access Control</a>
+  <a href="wireless-networks.html">Wireless Networks</a>
+  <a href="intruder-alarms.html">Intruder Alarms</a>
+  <a href="fire-systems.html">Fire Systems</a>
+  <a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a>
+  <a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a>
+  <a href="cost-estimator.html">Cost Estimator</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <picture><source srcset="fyrfly-logo.webp" type="image/webp"><img src="fyrfly-logo.png" alt="Fyrfly Systems" width="160" height="50" fetchpriority="high"></picture>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item active">Cost Estimator</a>
+        </div>
+      </li>
+      <li><a href="blog.html">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -649,7 +731,6 @@ function drawTCO() {
 
   const cameras = st.cameras;
   const entryBase = CCTV_PRICES.entry[cameras];
-  const entryReplace = CCTV_PRICES.entry[cameras]; // full replacement cost
   const enterpriseBase = CCTV_PRICES.enterprise[cameras];
 
   const YEARS = 10;
@@ -657,35 +738,39 @@ function drawTCO() {
   const chartW = W - PAD.left - PAD.right;
   const chartH = H - PAD.top - PAD.bottom;
 
-  // Build data points year by year
+  // ── TCO logic ──────────────────────────────────────────────────────────
+  // Entry Level: full system replacement every 36 months (years 3, 6, 9)
+  // Enterprise:  full system replacement every 60 months (year 5 only in 10yr window)
+  //
+  // Entry replaces 3x in 10 years. Enterprise replaces 1x.
+  // This is the honest TCO story — Entry Level always costs more long-term.
+  // ──────────────────────────────────────────────────────────────────────
+
+  // Entry replacement years: 3, 6, 9
+  const ENTRY_REPLACE_YEARS = new Set([3, 6, 9]);
+  // Enterprise replacement years: 5 (year 10 = end of window, not counted)
+  const ENTERPRISE_REPLACE_YEARS = new Set([5]);
+
   const entryPoints = [];
   const enterprisePoints = [];
   let entryCum = 0;
   let enterpriseCum = 0;
 
   for (let y = 0; y <= YEARS; y++) {
-    // Entry: initial install + replacements every 36 months
     if (y === 0) {
+      // Year 0: initial installation cost for both
       entryCum += entryBase;
-    } else {
-      const monthsIn = y * 12;
-      const replacements = Math.floor(monthsIn / ENTRY_REPLACE_MONTHS) -
-                           Math.floor((monthsIn - 12) / ENTRY_REPLACE_MONTHS);
-      entryCum += replacements * entryReplace;
-    }
-
-    // Enterprise: initial install only (lasts 50% longer so no replacement in 10yr window for reasonable sizes)
-    if (y === 0) {
       enterpriseCum += enterpriseBase;
+    } else {
+      // Entry: add full replacement cost at years 3, 6, 9
+      if (ENTRY_REPLACE_YEARS.has(y)) {
+        entryCum += entryBase;
+      }
+      // Enterprise: add full replacement cost at year 5 only
+      if (ENTERPRISE_REPLACE_YEARS.has(y)) {
+        enterpriseCum += enterpriseBase;
+      }
     }
-    // Enterprise may need replacement around year 5 (60 months) for some tiers
-    if (y > 0) {
-      const monthsIn = y * 12;
-      const entReplaceCycles = Math.floor(monthsIn / (ENTRY_REPLACE_MONTHS * ENTERPRISE_LIFESPAN_FACTOR)) -
-                                Math.floor((monthsIn - 12) / (ENTRY_REPLACE_MONTHS * ENTERPRISE_LIFESPAN_FACTOR));
-      enterpriseCum += entReplaceCycles * enterpriseBase;
-    }
-
     entryPoints.push(entryCum);
     enterprisePoints.push(enterpriseCum);
   }
@@ -769,16 +854,22 @@ function drawTCO() {
   }
 
   // TCO insight text
+  // Entry ALWAYS costs more over 10 years: 3 full replacements (yr 3,6,9) vs Enterprise 1 replacement (yr 5)
   const entryCost10 = entryPoints[YEARS];
   const enterpriseCost10 = enterprisePoints[YEARS];
   const saving = entryCost10 - enterpriseCost10;
+  const crossYearLabel = crossYear ? 'year ' + crossYear : 'around year 3-4';
   let insight = '';
   if (saving > 0) {
-    insight = 'Over 10 years, the Enterprise system saves approximately ' + formatGBPFull(saving) +
-      ' compared to replacing Entry Level cameras every 36 months. Enterprise becomes better value around year ' +
-      (crossYear || '3-4') + '.';
+    insight = 'Entry Level requires 3 full replacements over 10 years (years 3, 6 and 9). ' +
+      'Enterprise requires just 1 replacement (year 5). ' +
+      'Enterprise becomes better value around ' + crossYearLabel + ' and saves approximately ' +
+      formatGBPFull(saving) + ' over the full 10-year period.';
   } else {
-    insight = 'For this camera count, Enterprise has a higher 10-year cost because Enterprise cameras do not need replacement within this window. Entry Level cameras will typically need replacing every 36 months.';
+    // This should not happen with correct logic, but handle gracefully
+    insight = 'Entry Level requires 3 full replacements (years 3, 6, 9) versus 1 for Enterprise (year 5). ' +
+      'Enterprise is better long-term value despite the higher upfront cost. ' +
+      'Total 10-year cost — Entry Level: ' + formatGBPFull(entryCost10) + ', Enterprise: ' + formatGBPFull(enterpriseCost10) + '.';
   }
   document.getElementById('tcoInsight').innerHTML = insight.replace(
     /Enterprise/g, '<strong>Enterprise</strong>'
@@ -916,11 +1007,29 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+const ham = document.getElementById('hamBtn');
+const mobNav = document.getElementById('mobNav');
+const mobClose = document.getElementById('mobClose');
+if (ham && mobNav) {
+  ham.addEventListener('click', () => {
+    mobNav.style.display = 'flex';
+    requestAnimationFrame(() => { mobNav.classList.add('open'); ham.setAttribute('aria-expanded', 'true'); });
+  });
+  const closeNav = () => {
+    mobNav.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { mobNav.style.display = 'none'; }, 260);
+  };
+  mobClose.addEventListener('click', closeNav);
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+}
+
 // ── Init ───────────────────────────────────────────────────
 updatePriceLabels();
 updateSummary();
 drawTCO();
 window.addEventListener('resize', drawTCO);
 </script>
+
 </body>
 </html>
