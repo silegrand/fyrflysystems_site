@@ -3,39 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Security System Integration Diagram | Fyrfly Systems</title>
-  <meta name="description" content="See how CCTV, access control, intruder alarms, fire systems and 24/7 monitoring connect as one integrated security ecosystem. Interactive diagram from Fyrfly Systems.">
-  <link rel="canonical" href="https://www.fyrflysystems.com/system-integration.html">
+  <title>Security Cost Estimator for Schools & Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Free security cost estimator for schools and public sector. Compare Entry Level and Enterprise CCTV systems, understand total cost of ownership, and estimate access control costs. No obligation.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/cost-estimator.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fyrfly Systems">
-  <meta property="og:url" content="https://www.fyrflysystems.com/system-integration.html">
-  <meta property="og:title" content="Security System Integration | Fyrfly Systems">
-  <meta property="og:description" content="Interactive diagram showing how CCTV, access control, intruder alarms, fire systems and monitoring work together as one integrated ecosystem.">
+  <meta property="og:url" content="https://www.fyrflysystems.com/cost-estimator.html">
+  <meta property="og:title" content="Security Cost Estimator | Fyrfly Systems">
+  <meta property="og:description" content="Understand what security systems cost, compare Entry Level vs Enterprise CCTV total cost of ownership, and get an honest budget estimate.">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
   <style>
     :root {
-      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --c:#C8102E; --o:#E85D04; --a:#F5A623;
       --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
-      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
-      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
-      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
-      --max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);
-      --cctv:#3B82F6;--access:#10B981;--alarm:#EF4444;
-      --fire:#F97316;--monitor:#8B5CF6;--network:#06B6D4;
+      --dark:#0E0E14; --char:#1B1B24; --mid:#67677A; --mute:#9595A5;
+      --light:#F5F4F2; --bdr:#E6E5E1; --white:#FFFFFF;
+      --fh:'Roboto',sans-serif; --fb:'DM Sans',sans-serif;
+      --max:1200px; --nh:70px; --ease:cubic-bezier(0.22,1,0.36,1);
+      --entry:#3B82F6; --enterprise:#F59E0B;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:var(--fb);color:var(--dark);background:#080B12;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    body{font-family:var(--fb);color:var(--dark);background:#0A0D14;line-height:1.6;-webkit-font-smoothing:antialiased;}
     img{display:block;max-width:100%;}
     a{text-decoration:none;color:inherit;}
     button{cursor:pointer;font-family:var(--fb);}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
 
-    /* NAV */
+    /* ── NAV ─────────────────────────────────────── */
     nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}
     nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
     .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
@@ -52,8 +54,9 @@
     .drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.12);padding:0.5rem;padding-top:1rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s,visibility 0.2s;}
     .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;}
     .drop-menu::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:14px;height:14px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;margin-top:1px;}
-    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);text-decoration:none;display:block;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}
     .drop-item:hover{background:var(--light);}
+    .drop-item-muted{color:var(--mute);pointer-events:none;font-size:0.83rem;padding:0.65rem 0.85rem;display:block;}
     .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
     .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
     .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
@@ -63,68 +66,144 @@
     .mob-nav a{font-family:var(--fh);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}
     .mob-nav a:hover{color:#fff;}
     .mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}
-    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
     .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}
     .mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}
     .mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}
     .mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
 
-    /* HERO */
-    .hero{background:#080B12;padding:3.5rem 0 2.5rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.05);}
-    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(59,130,246,0.08) 0%,transparent 55%),radial-gradient(ellipse at 15% 60%,rgba(200,16,46,0.06) 0%,transparent 50%);}
+    /* ── HERO ─────────────────────────────────────── */
+    .hero{background:#0A0D14;padding:4rem 0 3rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(232,93,4,0.1) 0%,transparent 58%),radial-gradient(ellipse at 12% 60%,rgba(200,16,46,0.07) 0%,transparent 52%);}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:38px 38px;}
     .hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem;}
     .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
     .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
-    .hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.85rem;}
+    .hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.9rem;}
     .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.48);line-height:1.72;max-width:52ch;}
-    .legend{display:flex;flex-direction:column;gap:0.5rem;}
-    .leg-item{display:flex;align-items:center;gap:0.65rem;font-size:0.78rem;color:rgba(255,255,255,0.55);}
-    .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .leg-line{width:20px;height:2px;border-radius:2px;flex-shrink:0;}
-    .leg-group-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.2rem;margin-top:0.25rem;}
-    .leg-divider{border-top:1px solid rgba(255,255,255,0.07);margin:0.5rem 0;}
-    .leg-pulse{width:24px;height:3px;border-radius:100px;flex-shrink:0;position:relative;overflow:hidden;}
-    .leg-pulse::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,0.7);border-radius:100px;animation:legPulse 1.8s ease-in-out infinite;}
-    .leg-item span{line-height:1.4;}
-    .leg-item strong{color:rgba(255,255,255,0.85);font-weight:600;}
-    @keyframes legPulse{0%{left:-60%;}100%{left:160%;}}
+    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:52ch;}
+    .hero-pills{display:flex;flex-direction:column;gap:0.6rem;min-width:240px;}
+    .hero-pill{display:flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.75rem 1rem;}
+    .hero-pill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+    .hero-pill-text{font-size:0.82rem;color:rgba(255,255,255,0.6);}
+    .hero-pill-text strong{color:#fff;font-weight:600;}
 
-    /* DIAGRAM AREA */
-    .diagram-section{position:relative;height:calc(100vh - var(--nh) - 200px);min-height:580px;max-height:800px;}
-    #diagramCanvas{display:block;width:100%;height:100%;cursor:default;}
+    /* ── MAIN LAYOUT ──────────────────────────────── */
+    .estimator-wrap{max-width:var(--max);margin:0 auto;padding:3rem 2rem 4rem;display:grid;grid-template-columns:1fr 380px;gap:2.5rem;align-items:start;}
 
-    /* DETAIL PANEL */
-    .detail-panel{position:fixed;top:var(--nh);right:0;width:340px;height:calc(100vh - var(--nh));background:#0D1019;border-left:1px solid rgba(255,255,255,0.08);z-index:100;transform:translateX(100%);transition:transform 0.35s var(--ease);overflow-y:auto;display:flex;flex-direction:column;}
-    .detail-panel.open{transform:translateX(0);}
-    .detail-panel::-webkit-scrollbar{width:4px;}
-    .detail-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
-    .panel-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:rgba(255,255,255,0.5);font-size:0.8rem;padding:0.35rem 0.7rem;cursor:pointer;transition:all 0.15s;}
-    .panel-close:hover{background:rgba(255,255,255,0.1);color:#fff;}
-    .panel-header{padding:2rem 1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);}
-    .panel-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
-    .panel-icon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
-    .panel-name{font-family:var(--fh);font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.35rem;}
-    .panel-tagline{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.6;}
-    .panel-body{padding:1.5rem;flex:1;}
-    .panel-section-title{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.85rem;margin-top:1.5rem;}
-    .panel-section-title:first-child{margin-top:0;}
-    .panel-desc{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.72;margin-bottom:1rem;}
-    .conn-item{display:flex;align-items:flex-start;gap:0.85rem;padding:0.85rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:0.6rem;transition:border-color 0.2s;}
-    .conn-item:hover{border-color:rgba(255,255,255,0.15);}
-    .conn-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:0.28rem;}
-    .conn-text strong{display:block;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:0.2rem;}
-    .conn-text span{font-size:0.76rem;color:rgba(255,255,255,0.4);line-height:1.55;}
-    .panel-link{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.82rem;font-weight:600;color:var(--o);margin-top:1rem;transition:gap 0.2s;}
-    .panel-link:hover{gap:0.7rem;}
-    .panel-footer{padding:1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,0.07);}
-    .panel-hint{font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:center;line-height:1.6;}
+    /* ── LEFT: CONTROLS ───────────────────────────── */
+    .controls{display:flex;flex-direction:column;gap:2rem;}
 
-    /* CLICK HINT */
-    .canvas-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:0.45rem 1.25rem;font-size:0.75rem;color:rgba(255,255,255,0.5);white-space:nowrap;pointer-events:none;transition:opacity 0.4s;}
-    .canvas-hint.hidden{opacity:0;}
+    .card{background:#111520;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;transition:border-color 0.2s;}
+    .card-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;letter-spacing:-0.01em;margin-bottom:0.4rem;}
+    .card-sub{font-size:0.83rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:1.5rem;}
 
-    /* FOOTER */
+    /* Step indicator */
+    .step-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--grad);font-size:0.7rem;font-weight:700;color:#fff;margin-right:0.5rem;flex-shrink:0;}
+
+    /* System type selector */
+    .sys-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;}
+    .sys-btn{padding:1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.6);font-size:0.83rem;font-weight:500;text-align:center;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+    .sys-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .sys-btn:hover{border-color:rgba(255,255,255,0.25);color:#fff;background:rgba(255,255,255,0.06);}
+    .sys-btn.active{border-color:var(--o);background:rgba(232,93,4,0.1);color:#fff;}
+    .sys-btn.active svg{stroke:var(--a);}
+
+    /* Tier selector */
+    .tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;}
+    .tier-btn{padding:1.25rem;border-radius:12px;border:2px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);text-align:left;transition:all 0.2s;position:relative;overflow:hidden;}
+    .tier-btn:hover{border-color:rgba(255,255,255,0.18);}
+    .tier-btn.active-entry{border-color:var(--entry);background:rgba(59,130,246,0.08);}
+    .tier-btn.active-enterprise{border-color:var(--enterprise);background:rgba(245,158,11,0.08);}
+    .tier-name{font-family:var(--fh);font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+    .tier-tagline{font-size:0.75rem;color:rgba(255,255,255,0.45);line-height:1.5;margin-bottom:0.75rem;}
+    .tier-price-label{font-size:0.65rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;}
+    .tier-price{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:#fff;}
+    .tier-badge{position:absolute;top:0.75rem;right:0.75rem;font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:100px;}
+    .badge-entry{background:rgba(59,130,246,0.2);color:#93C5FD;}
+    .badge-enterprise{background:rgba(245,158,11,0.2);color:#FCD34D;}
+    .tier-check{position:absolute;bottom:0.75rem;right:0.75rem;width:18px;height:18px;border-radius:50%;background:var(--grad);display:none;align-items:center;justify-content:center;}
+    .tier-btn.active-entry .tier-check,.tier-btn.active-enterprise .tier-check{display:flex;}
+    .tier-check svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+
+    /* Camera count */
+    .cam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;}
+    .cam-btn{padding:0.85rem 0.5rem;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.55);font-family:var(--fh);font-size:0.9rem;font-weight:700;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:0.25rem;}
+    .cam-btn span{font-size:0.65rem;font-weight:400;color:rgba(255,255,255,0.3);}
+    .cam-btn:hover{border-color:rgba(255,255,255,0.2);color:#fff;}
+    .cam-btn.active{border-color:var(--o);background:rgba(232,93,4,0.1);color:#fff;}
+    .cam-btn.active span{color:rgba(255,255,255,0.6);}
+
+    /* Door count */
+    .door-wrap{display:flex;align-items:center;gap:1.25rem;}
+    .door-btn{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-size:1.2rem;font-weight:400;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+    .door-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);}
+    .door-count{font-family:var(--fh);font-size:2rem;font-weight:800;color:#fff;min-width:48px;text-align:center;}
+    .door-label{font-size:0.82rem;color:rgba(255,255,255,0.45);}
+
+    /* TCO Section */
+    .tco-section{background:#0D1019;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;}
+    .tco-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.35rem;}
+    .tco-sub{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:1.5rem;}
+    .tco-chart-wrap{position:relative;height:200px;margin-bottom:1rem;}
+    canvas#tcoChart{display:block;width:100%;height:100%;}
+    .tco-legend{display:flex;gap:1.5rem;margin-bottom:1.25rem;}
+    .tco-leg-item{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.6);}
+    .tco-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .tco-insight{background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.2);border-radius:10px;padding:1rem 1.1rem;font-size:0.82rem;color:rgba(255,255,255,0.7);line-height:1.65;}
+    .tco-insight strong{color:var(--a);}
+
+    /* Honest comparison */
+    .comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1.25rem;}
+    .comp-col{border-radius:10px;padding:1.1rem;}
+    .comp-col-entry{background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.2);}
+    .comp-col-enterprise{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);}
+    .comp-col-title{font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:0.75rem;}
+    .comp-col-entry .comp-col-title{color:#93C5FD;}
+    .comp-col-enterprise .comp-col-title{color:#FCD34D;}
+    .comp-point{font-size:0.78rem;color:rgba(255,255,255,0.65);display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.5rem;line-height:1.5;}
+    .comp-point::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:0.42rem;}
+    .comp-col-entry .comp-point::before{background:#3B82F6;}
+    .comp-col-enterprise .comp-point::before{background:#F59E0B;}
+
+    /* ── RIGHT: SUMMARY ───────────────────────────── */
+    .summary{position:sticky;top:calc(var(--nh) + 1.5rem);background:#111520;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;}
+    .summary-header{background:var(--char);padding:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .summary-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.2rem;}
+    .summary-sub{font-size:0.78rem;color:rgba(255,255,255,0.4);}
+    .summary-body{padding:1.5rem;}
+    .summary-empty{text-align:center;padding:2rem 1rem;}
+    .summary-empty svg{width:36px;height:36px;stroke:rgba(255,255,255,0.12);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 0.75rem;}
+    .summary-empty p{font-size:0.82rem;color:rgba(255,255,255,0.3);line-height:1.6;}
+    .summary-line{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .summary-line:last-of-type{border-bottom:none;}
+    .summary-line-label{font-size:0.83rem;color:rgba(255,255,255,0.55);}
+    .summary-line-label small{display:block;font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:0.15rem;}
+    .summary-line-val{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;}
+    .summary-total{background:rgba(255,255,255,0.04);border-radius:10px;padding:1.1rem;margin:1rem 0;display:flex;align-items:center;justify-content:space-between;}
+    .summary-total-label{font-size:0.78rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
+    .summary-total-val{font-family:var(--fh);font-size:1.6rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .summary-note{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.6;margin-bottom:1.25rem;}
+    .summary-footer{padding:1.25rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:0.5rem;}
+    .btn-primary{width:100%;padding:0.85rem;border-radius:8px;background:var(--grad);border:none;color:#fff;font-size:0.87rem;font-weight:600;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-primary:disabled{opacity:0.3;cursor:not-allowed;transform:none;}
+    .btn-secondary{width:100%;padding:0.75rem;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+    .btn-secondary:hover{background:rgba(255,255,255,0.09);color:#fff;}
+    .btn-secondary:disabled{opacity:0.3;cursor:not-allowed;}
+
+    /* ── SECTION: WHAT'S INCLUDED ─────────────────── */
+    .included-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem;}
+    .included-item{background:rgba(255,255,255,0.04);border-radius:8px;padding:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
+    .included-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:0.42rem;}
+
+    /* ── DISCLAIMER ───────────────────────────────── */
+    .disclaimer{background:#0A0D14;border-top:1px solid rgba(255,255,255,0.05);padding:2rem 0 3rem;}
+    .disclaimer-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+    .disc-title{font-family:var(--fh);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.75rem;}
+    .disc-text{font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.7;}
+
+    /* ── FOOTER ───────────────────────────────────── */
     .site-footer{background:var(--dark);padding:3rem 0 1.5rem;}
     .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
     .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
@@ -138,20 +217,33 @@
     .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
     .ft-legal a:hover{color:rgba(255,255,255,0.5);}
 
-    @media(max-width:900px){
-      .hero-c{grid-template-columns:1fr;}.legend{flex-direction:row;flex-wrap:wrap;gap:0.75rem;}
-      .diagram-section{height:60vw;min-height:400px;}
-      .detail-panel{width:100%;top:auto;bottom:0;height:60vh;transform:translateY(100%);border-left:none;border-top:1px solid rgba(255,255,255,0.08);}
-      .detail-panel.open{transform:translateY(0);}
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media(max-width:1024px){
+      .estimator-wrap{grid-template-columns:1fr;gap:2rem;}
+      .summary{position:static;}
+      .hero-c{grid-template-columns:1fr;}
+      .hero-pills{display:none;}
     }
     @media(max-width:768px){
-      .nav-links,.nav-cta{display:none;}.ham{display:flex;}
+      .nav-links,.nav-cta{display:none;}
+      .ham{display:flex;}
+      .sys-grid{grid-template-columns:1fr 1fr 1fr;}
+      .tier-grid{grid-template-columns:1fr;}
+      .cam-grid{grid-template-columns:repeat(4,1fr);}
+      .comparison-grid{grid-template-columns:1fr;}
+      .included-grid{grid-template-columns:1fr 1fr;}
+      .disclaimer-inner{grid-template-columns:1fr;}
       .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
       .ft-grid>div:first-child{grid-column:span 2;}
       .ft-grid>div:last-child{grid-column:span 2;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;}
       .ft-bot{flex-direction:column;align-items:flex-start;}
+      .wrap{padding:0 1.25rem;}
+      .estimator-wrap{padding:2rem 1.25rem;}
     }
     @media(max-width:480px){
+      .sys-grid{grid-template-columns:1fr 1fr 1fr;}
+      .cam-grid{grid-template-columns:repeat(2,1fr);}
+      .included-grid{grid-template-columns:1fr;}
       .ft-grid{grid-template-columns:1fr;}
       .ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}
     }
@@ -159,6 +251,7 @@
 </head>
 <body>
 
+<!-- MOBILE NAV -->
 <div class="mob-nav" id="mobNav" style="display:none">
   <div class="mob-nav-bar">
     <span class="mob-nav-brand">Menu</span>
@@ -166,11 +259,18 @@
   </div>
   <div class="mob-nav-scroll">
   <span class="mob-sub">Services</span>
-  <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
+  <a href="cctv.html">CCTV</a>
+  <a href="access-control.html">Access Control</a>
+  <a href="wireless-networks.html">Wireless Networks</a>
+  <a href="intruder-alarms.html">Intruder Alarms</a>
+  <a href="fire-systems.html">Fire Systems</a>
+  <a href="monitoring.html">24/7 Monitoring</a>
   <span class="mob-sub">Sectors</span>
-  <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
+  <a href="education.html">Education</a>
+  <a href="public-sector.html">Public Sector</a>
   <span class="mob-sub">Tools</span>
-  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a>
+  <a href="zone-planner.html">Zone Planner</a>
+  <a href="cost-estimator.html">Cost Estimator</a>
   <span class="mob-sub">Insights</span>
   <a href="blog.html">All Articles</a>
   <span class="mob-sub">Company</span>
@@ -192,8 +292,10 @@
         <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="drop-menu">
           <a href="zone-planner.html" class="drop-item">Zone Planner</a>
-          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
-          <a href="system-integration.html" class="drop-item active">System Integration</a>
+          <a href="cost-estimator.html" class="drop-item active">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item">Compliance Tool</a>
+          <a href="your-site-tool.html" class="drop-item">Your Site Tool</a>
         </div>
       </li>
       <li><a href="blog.html">Insights</a></li>
@@ -203,46 +305,229 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
   <div class="hero-c">
     <div>
-      <div class="sec-lbl">Interactive Diagram</div>
-      <h1>One Ecosystem.<br><span class="acc">Five Systems. All Connected.</span></h1>
-      <p class="hero-sub">Security systems are most powerful when they talk to each other. Click any system below to see what it does, what it connects to, and why those connections matter in a school or public sector building.</p>
+      <div class="sec-lbl">Free Budgeting Tool</div>
+      <h1>Know What to Budget.<br><span class="acc">Understand What You Are Buying.</span></h1>
+      <p class="hero-sub">Most security quotes hide the real cost. This tool shows you entry level versus enterprise pricing side by side, explains the total cost of ownership difference, and gives you an honest budget estimate — no sales pitch, no obligation.</p>
     </div>
-    <div class="legend">
-      <div class="leg-group-label">Click a system to explore</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--cctv)"></div><span><strong>CCTV</strong> — cameras &amp; recording</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--access)"></div><span><strong>Access Control</strong> — doors &amp; credentials</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--alarm)"></div><span><strong>Intruder Alarm</strong> — detection &amp; response</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--fire)"></div><span><strong>Fire System</strong> — detection &amp; evacuation</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--monitor)"></div><span><strong>Monitoring Centre</strong> — 24/7 human response</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--network)"></div><span><strong>Data Network</strong> — connects everything</span></div>
-      <div class="leg-divider"></div>
-      <div class="leg-group-label">Animated lines show live signals</div>
-      <div class="leg-item"><div class="leg-pulse" style="background:var(--alarm)"></div><span>Alarm &amp; alert signals</span></div>
-      <div class="leg-item"><div class="leg-pulse" style="background:var(--cctv)"></div><span>Video &amp; camera feeds</span></div>
-      <div class="leg-item"><div class="leg-pulse" style="background:var(--network)"></div><span>Network &amp; data traffic</span></div>
+    <div class="hero-pills">
+      <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--entry)"></div><div class="hero-pill-text"><strong>Entry Level CCTV</strong> — same specs, higher long-term cost</div></div>
+      <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--enterprise)"></div><div class="hero-pill-text"><strong>Enterprise CCTV</strong> — lasts 50% longer, better AI and analytics</div></div>
+      <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--o)"></div><div class="hero-pill-text"><strong>Access Control</strong> — enterprise only, priced per door</div></div>
     </div>
   </div>
 </section>
 
-<div class="diagram-section" id="diagramSection">
-  <canvas id="diagramCanvas"></canvas>
-  <div class="canvas-hint" id="canvasHint">Click any system to explore its connections</div>
+<!-- MAIN ESTIMATOR -->
+<div class="estimator-wrap">
+
+  <!-- LEFT CONTROLS -->
+  <div class="controls">
+
+    <!-- Step 1: What do you need -->
+    <div class="card">
+      <div class="card-title"><span class="step-badge">1</span>What do you need?</div>
+      <div class="card-sub">Select the systems you want to budget for. You can choose one or both.</div>
+      <div class="sys-grid">
+        <button type="button" class="sys-btn active" id="sys-cctv" onclick="toggleSystem('cctv')">
+          <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          CCTV
+        </button>
+        <button type="button" class="sys-btn" id="sys-access" onclick="toggleSystem('access')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Access Control
+        </button>
+        <button type="button" class="sys-btn" id="sys-both" onclick="toggleSystem('both')">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Both
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: CCTV Configuration -->
+    <div class="card" id="cctv-card">
+      <div class="card-title"><span class="step-badge">2</span>CCTV System Configuration</div>
+      <div class="card-sub">Choose your system tier and camera count. We will explain the real difference below.</div>
+
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem;">System Tier</div>
+      <div class="tier-grid">
+        <button type="button" class="tier-btn active-entry" id="tier-entry" onclick="setTier('entry')">
+          <div class="tier-badge badge-entry">Entry Level</div>
+          <div class="tier-name">Entry Level CCTV</div>
+          <div class="tier-tagline">Same performance specs as Enterprise. Lower upfront cost, higher long-term replacement cost.</div>
+          <div class="tier-price-label">From</div>
+          <div class="tier-price" id="entry-price">£2,000</div>
+          <div class="tier-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </button>
+        <button type="button" class="tier-btn" id="tier-enterprise" onclick="setTier('enterprise')">
+          <div class="tier-badge badge-enterprise">Enterprise</div>
+          <div class="tier-name">Enterprise CCTV</div>
+          <div class="tier-tagline">Lasts 50% longer. Better AI analytics. Lower total cost of ownership over time.</div>
+          <div class="tier-price-label">From</div>
+          <div class="tier-price" id="enterprise-price">£3,500</div>
+          <div class="tier-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </button>
+      </div>
+
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin:1.25rem 0 0.75rem;">Number of Cameras</div>
+      <div class="cam-grid">
+        <button type="button" class="cam-btn active" id="cam-4" onclick="setCameras(4)">4<span>cameras</span></button>
+        <button type="button" class="cam-btn" id="cam-8" onclick="setCameras(8)">8<span>cameras</span></button>
+        <button type="button" class="cam-btn" id="cam-16" onclick="setCameras(16)">16<span>cameras</span></button>
+        <button type="button" class="cam-btn" id="cam-32" onclick="setCameras(32)">32<span>cameras</span></button>
+      </div>
+
+      <!-- Honest comparison -->
+      <div style="margin-top:1.5rem;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.85rem;">The Honest Difference</div>
+        <div class="comparison-grid">
+          <div class="comp-col comp-col-entry">
+            <div class="comp-col-title">Entry Level</div>
+            <div class="comp-point">Same resolution and image quality as Enterprise</div>
+            <div class="comp-point">Lower initial purchase cost</div>
+            <div class="comp-point">Hardware degrades faster outdoors</div>
+            <div class="comp-point">Typically needs full replacement every 36 months</div>
+            <div class="comp-point">Limited AI and analytics capability</div>
+            <div class="comp-point">Higher total cost of ownership over 5+ years</div>
+          </div>
+          <div class="comp-col comp-col-enterprise">
+            <div class="comp-col-title">Enterprise</div>
+            <div class="comp-point">Same resolution and image quality as Entry Level</div>
+            <div class="comp-point">Higher initial purchase cost</div>
+            <div class="comp-point">Built for harsh outdoor environments</div>
+            <div class="comp-point">Lasts 50% longer — typically 5+ years without replacement</div>
+            <div class="comp-point">Advanced AI: loitering, line crossing, people counting</div>
+            <div class="comp-point">Lower total cost of ownership over time</div>
+          </div>
+        </div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:0.9rem;line-height:1.65;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.07);">
+          <strong style="color:rgba(255,255,255,0.7);">Our honest view:</strong> Entry Level CCTV is a perfectly good choice for many schools and public sector buildings, especially where budget is constrained. The key is going in with eyes open about replacement cycles. If you are planning to stay in the building for 5+ years, Enterprise is almost always the better financial decision once total cost of ownership is factored in.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Access Control -->
+    <div class="card" id="access-card" style="display:none;">
+      <div class="card-title"><span class="step-badge" id="access-step-num">3</span>Access Control Configuration</div>
+      <div class="card-sub">We only offer Enterprise Level Access Control — built for the durability and audit trail requirements of schools and public sector buildings. Priced per door secured.</div>
+
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;">How many doors do you need securing?</div>
+      <div class="door-wrap">
+        <button type="button" class="door-btn" onclick="adjustDoors(-1)">&#8722;</button>
+        <div class="door-count" id="door-count">1</div>
+        <button type="button" class="door-btn" onclick="adjustDoors(1)">&#43;</button>
+        <div class="door-label">door<span id="door-plural"></span> &mdash; <span id="door-rate">£3,000 per door</span></div>
+      </div>
+
+      <div style="margin-top:1.25rem;" class="included-grid">
+        <div class="included-item">Entry panel and reader</div>
+        <div class="included-item">Request to exit (RTE)</div>
+        <div class="included-item">Break glass unit</div>
+        <div class="included-item">Full cabling</div>
+        <div class="included-item">Pro management software</div>
+        <div class="included-item">Installation and commissioning</div>
+      </div>
+
+      <div style="margin-top:1.1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:1.25rem;">
+        <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:0.75rem;text-align:center;">
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">1&ndash;5 doors</div>
+          <div style="font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;">&pound;3,000</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);">per door</div>
+        </div>
+        <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:0.75rem;text-align:center;">
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">6&ndash;10 doors</div>
+          <div style="font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;">&pound;2,000</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);">per door</div>
+        </div>
+        <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:0.75rem;text-align:center;">
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">11&ndash;20 doors</div>
+          <div style="font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;">&pound;1,500</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);">per door</div>
+        </div>
+        <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:0.75rem;text-align:center;">
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">21+ doors</div>
+          <div style="font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;">&pound;1,250</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);">per door</div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:1rem;line-height:1.65;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.07);">
+        <strong style="color:rgba(255,255,255,0.7);">Why Enterprise only?</strong> Access control is a safeguarding and compliance tool, not just a convenience. The audit trail, DBS-aware visitor management, fire safety integration and multi-site management capability that KCSiE and public sector requirements demand are only available in Enterprise-grade systems. Budget access control typically lacks these features.
+      </div>
+    </div>
+
+    <!-- TCO Chart -->
+    <div class="tco-section" id="tco-section">
+      <div class="tco-title">Total Cost of Ownership — 10 Year View</div>
+      <div class="tco-sub">This chart shows the estimated total spend over 10 years for your selected camera count, including the cost of replacing Entry Level cameras every 36 months.</div>
+      <div class="tco-legend">
+        <div class="tco-leg-item"><div class="tco-leg-dot" style="background:var(--entry)"></div>Entry Level (with replacements)</div>
+        <div class="tco-leg-item"><div class="tco-leg-dot" style="background:var(--enterprise)"></div>Enterprise</div>
+      </div>
+      <div class="tco-chart-wrap">
+        <canvas id="tcoChart"></canvas>
+      </div>
+      <div class="tco-insight" id="tcoInsight">
+        Select a camera count to see the total cost of ownership comparison.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SUMMARY -->
+  <div class="summary">
+    <div class="summary-header">
+      <div class="summary-title">Your Budget Estimate</div>
+      <div class="summary-sub">Indicative costs — exact quotes require a site survey</div>
+    </div>
+    <div class="summary-body" id="summaryBody">
+      <div class="summary-empty" id="summaryEmpty">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <p>Configure your system above to see a budget estimate here</p>
+      </div>
+      <div id="summaryLines" style="display:none;">
+        <div class="summary-line" id="sl-cctv" style="display:none;">
+          <div class="summary-line-label">CCTV System<small id="sl-cctv-detail"></small></div>
+          <div class="summary-line-val" id="sl-cctv-val"></div>
+        </div>
+        <div class="summary-line" id="sl-access" style="display:none;">
+          <div class="summary-line-label">Access Control<small id="sl-access-detail"></small></div>
+          <div class="summary-line-val" id="sl-access-val"></div>
+        </div>
+        <div class="summary-total">
+          <div class="summary-total-label">Total Estimate</div>
+          <div class="summary-total-val" id="summary-total-val">£0</div>
+        </div>
+        <div class="summary-note" id="summary-note"></div>
+      </div>
+    </div>
+    <div class="summary-footer">
+      <button type="button" class="btn-primary" id="btnDownload" onclick="downloadEstimate()" disabled>Download Estimate as PDF</button>
+      <button type="button" class="btn-secondary" id="btnShare" onclick="shareEstimate()" disabled>Share with Fyrfly via Email</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- DETAIL PANEL -->
-<div class="detail-panel" id="detailPanel">
-  <button class="panel-close" onclick="closePanel()">Close &times;</button>
-  <div class="panel-header" id="panelHeader"></div>
-  <div class="panel-body" id="panelBody"></div>
-  <div class="panel-footer">
-    <div class="panel-hint">Click another system node to compare connections</div>
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <div>
+      <div class="disc-title">About These Estimates</div>
+      <div class="disc-text">All figures are indicative budgetary estimates based on typical installations of similar size and complexity. Actual costs will vary depending on your specific site, building layout, cable runs, existing infrastructure and specification. These estimates include supply, installation and commissioning. They do not include ongoing maintenance contracts, monitoring fees or VAT. A free site survey is required for an accurate, costed proposal.</div>
+    </div>
+    <div>
+      <div class="disc-title">Why We Show Both Options</div>
+      <div class="disc-text">Some companies will quote Entry Level CCTV at a low price and tell you the specification is identical to Enterprise — which is often technically true for resolution and image quality. What they do not tell you is that outdoor hardware degrades differently, replacement cycles differ significantly, and AI analytics capability is not comparable. We believe informed customers make better long-term decisions, and we would rather earn your trust than win a price comparison.</div>
+    </div>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="ft-grid">
     <div>
@@ -259,7 +544,9 @@
       <div class="ft-ct">Sectors</div>
       <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
-      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li></ul>
+      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
     </div>
     <div>
       <div class="ft-ct">Get in Touch</div>
@@ -278,409 +565,430 @@
 
 <script>
 // ═══════════════════════════════════════════════════════════
-// SYSTEM INTEGRATION DIAGRAM ENGINE
+// FYRFLY COST ESTIMATOR — CORE ENGINE
 // ═══════════════════════════════════════════════════════════
 
-// ── Node definitions ───────────────────────────────────────
-const NODES = {
-  cctv: {
-    id: 'cctv', label: 'CCTV', color: '#3B82F6',
-    icon: 'camera',
-    tagline: 'HD and 4K surveillance that records, deters and provides evidence',
-    desc: 'IP CCTV cameras are the eyes of the integrated system. They record continuously, respond to motion, and provide live and recorded footage to operators and the monitoring centre. In an integrated system, cameras do not just passively record — they respond to events from other systems automatically.',
-    connections: [
-      { to: 'monitor', color: '#3B82F6', label: 'Live feed to monitoring centre', detail: 'When an intruder alarm activates, the ARC operator pulls up live camera footage to verify the event before deciding on response. This prevents false alarm police calls and ensures genuine events get an immediate reaction.' },
-      { to: 'access', color: '#10B981', label: 'Door open triggers camera capture', detail: 'Every time a door reader is activated, the nearest camera automatically captures the face of the person entering. This links access log entries to visual evidence, which is invaluable for safeguarding investigations and insurance claims.' },
-      { to: 'alarm', color: '#EF4444', label: 'Alarm activation triggers recording', detail: 'When the intruder alarm is triggered, cameras covering the activation zone switch to high-frame-rate recording and stream live to the monitoring centre. This provides visual context to the alarm event within seconds.' },
-      { to: 'network', color: '#06B6D4', label: 'Carried over data network', detail: 'IP cameras transmit video data over the network infrastructure. The network is designed with a dedicated VLAN for security systems, ensuring camera streams are never degraded by general internet usage on the same site.' }
-    ],
-    page: 'cctv.html'
-  },
-  access: {
-    id: 'access', label: 'Access Control', color: '#10B981',
-    icon: 'lock',
-    tagline: 'Controls who enters, logs every event, and keeps your audit trail intact',
-    desc: 'Access control is the gatekeeper of the integrated system. It manages credentials, grants or denies access, and creates a timestamped record of every door event. In a school, it enforces KCSiE compliance. In a public building, it separates public and staff zones. In an emergency, it coordinates with fire and alarm systems automatically.',
-    connections: [
-      { to: 'cctv', color: '#3B82F6', label: 'Door event triggers camera capture', detail: 'Every credential presented at a reader triggers the nearest camera to capture an image. The access log entry and the camera image are timestamped together, creating a combined record that is far more useful for investigation than either system alone.' },
-      { to: 'fire', color: '#F97316', label: 'Fire alarm releases locked doors', detail: 'All fail-safe door locks are integrated with the fire alarm panel. When the fire alarm activates, every fail-safe lock on escape routes releases automatically, regardless of access control settings. This is a safety requirement, not an option.' },
-      { to: 'alarm', color: '#EF4444', label: 'Lockdown on alarm activation', detail: 'Certain alarm events can trigger zone lockdowns via the access control system. A confirmed intruder in one part of the building can result in specific doors locking to contain the threat or protect occupants in other zones.' },
-      { to: 'network', color: '#06B6D4', label: 'Credentials and events over network', detail: 'Access control panels communicate over the network infrastructure. The management software, hosted centrally or in the cloud, receives every access event in real time and allows administrators to add, remove or modify credentials without an engineer visit.' }
-    ],
-    page: 'access-control.html'
-  },
-  alarm: {
-    id: 'alarm', label: 'Intruder Alarm', color: '#EF4444',
-    icon: 'bell',
-    tagline: 'Detects intrusion, triggers response and signals across the entire system',
-    desc: 'The intruder alarm is the detection engine of the integrated system. Passive infrared sensors, dual-technology detectors and perimeter devices detect movement and intrusion, then trigger a cascade of responses across the other systems — simultaneously alerting the monitoring centre, triggering cameras, and in some cases activating access control lockdown.',
-    connections: [
-      { to: 'monitor', color: '#8B5CF6', label: 'Alarm signal to monitoring centre', detail: 'The moment an alarm zone is triggered, a digital signal travels to the NSI-approved Alarm Receiving Centre via dual-path signalling — broadband and 4G cellular. Operators respond within seconds, contacting keyholders and coordinating police response if required.' },
-      { to: 'cctv', color: '#3B82F6', label: 'Triggers cameras in the alarm zone', detail: 'Alarm activation tells the CCTV system exactly which zone has been triggered. The nearest cameras switch to event recording and stream live to the monitoring centre. This visual verification determines whether the response is a keyholder call or an emergency police response.' },
-      { to: 'access', color: '#10B981', label: 'Can initiate zone lockdown', detail: 'Depending on the installation configuration, a confirmed intruder alarm can trigger access control to lock down specific zones. This prevents a detected intruder from moving to other parts of the building while keyholders and response teams are en route.' },
-      { to: 'network', color: '#06B6D4', label: 'Dual-path signal via network', detail: 'The alarm communicator uses the site data network as the primary signalling path to the monitoring centre, with 4G cellular as the backup. If an intruder cuts the broadband connection, the cellular path ensures the signal gets through.' }
-    ],
-    page: 'intruder-alarms.html'
-  },
-  fire: {
-    id: 'fire', label: 'Fire System', color: '#F97316',
-    icon: 'flame',
-    tagline: 'Detects fire, protects life, and integrates with every other system on activation',
-    desc: 'The fire alarm system is the life-safety foundation of the integrated ecosystem. When it activates, it does not just sound a siren — it triggers a coordinated response across access control, the monitoring centre and building management systems. Every integration point is designed around one principle: getting people out safely and quickly.',
-    connections: [
-      { to: 'monitor', color: '#8B5CF6', label: 'Automatic fire brigade notification', detail: 'The fire alarm panel is connected to the monitoring centre via a digital communicator. On confirmed activation, the ARC notifies the fire brigade immediately — without anyone having to make a phone call. This is critical out of hours when no staff are on site.' },
-      { to: 'access', color: '#10B981', label: 'All fail-safe locks release instantly', detail: 'Every fail-safe door lock on fire escape routes is integrated with the fire panel. Activation cuts power to the magnetic locks, releasing all doors simultaneously. This is a legal requirement under the Regulatory Reform (Fire Safety) Order and must be tested regularly.' },
-      { to: 'network', color: '#06B6D4', label: 'Fire signal carried over network', detail: 'The fire alarm communicator uses the site network infrastructure to transmit activation and fault signals to the monitoring centre. Redundant network design ensures the fire signal path is not shared with general internet traffic.' }
-    ],
-    page: 'fire-systems.html'
-  },
-  monitor: {
-    id: 'monitor', label: 'Monitoring (ARC)', color: '#8B5CF6',
-    icon: 'eye',
-    tagline: '24/7 human response that connects every system to real-world action',
-    desc: 'The Alarm Receiving Centre is where the integrated system meets human judgement. Trained operators receive signals from every connected system — intruder alarms, fire panels, CCTV streams — and make real-time decisions about the appropriate response. They are the human layer in an otherwise automated ecosystem, available 24 hours a day, 365 days a year.',
-    connections: [
-      { to: 'alarm', color: '#EF4444', label: 'Receives intruder alarm signals', detail: 'NSI-approved ARC operators receive alarm signals within seconds of activation, via dual-path signalling. They follow a defined response protocol: verify the event, contact keyholders in sequence, and notify police under the site Unique Reference Number for confirmed intrusions.' },
-      { to: 'cctv', color: '#3B82F6', label: 'Pulls live camera footage', detail: 'On alarm activation, ARC operators access live camera feeds for the affected area to visually verify whether an intrusion is genuine. This visual verification step is what prevents unnecessary police call-outs and protects the site\'s police response URN.' },
-      { to: 'fire', color: '#F97316', label: 'Receives fire panel activation', detail: 'Fire alarm activations are transmitted directly to the ARC, which immediately notifies the fire brigade. This automated connection is especially critical for schools and public buildings that are empty out of hours, where a fire could take hold before being discovered.' }
-    ],
-    page: 'monitoring.html'
-  },
-  network: {
-    id: 'network', label: 'Data Network', color: '#06B6D4',
-    icon: 'wifi',
-    tagline: 'The secure infrastructure that carries data between every system on site',
-    desc: 'The network is the invisible backbone that makes integration possible. Without a properly designed, segmented network, IP cameras cannot stream, access control cannot communicate, and alarm signals cannot travel. The network is designed with security systems on their own dedicated VLAN — isolated from general internet traffic and protected against cyber threats.',
-    connections: [
-      { to: 'cctv', color: '#3B82F6', label: 'Carries IP camera video streams', detail: 'HD and 4K camera streams require significant bandwidth and low latency. The network is designed with security systems on a dedicated VLAN, sized for the full camera load. This ensures camera streams are never affected by pupils streaming video or other general internet usage.' },
-      { to: 'access', color: '#10B981', label: 'Carries access events and credentials', detail: 'Access control panels communicate with the management server over the network. Every door event, every credential change and every access log entry travels over this path. The network is configured to prioritise access control traffic to ensure real-time responsiveness.' },
-      { to: 'alarm', color: '#EF4444', label: 'Primary signalling path for alarms', detail: 'The intruder alarm communicator uses the site network as its primary path to the monitoring centre, with 4G cellular as backup. The network configuration ensures this path is always available, with automatic failover to cellular if the primary link is disrupted.' },
-      { to: 'monitor', color: '#8B5CF6', label: 'Connects site to monitoring centre', detail: 'All system signals — alarms, fire, CCTV streams — travel over the network to reach the ARC. Redundant WAN design with dual-path connectivity ensures the monitoring centre always has a route to the site, even if one connection fails.' }
-    ],
-    page: 'wireless-networks.html'
+// ── Pricing data ───────────────────────────────────────────
+const CCTV_PRICES = {
+  entry:      { 4: 2000,  8: 3000,  16: 5000,  32: 12000 },
+  enterprise: { 4: 3500,  8: 5500,  16: 11000, 32: 20000 }
+};
+// Tiered access control pricing
+function acPriceForDoors(doors) {
+  // Tiered volume pricing — per door rate drops with quantity
+  let total = 0;
+  for (let d = 1; d <= doors; d++) {
+    if (d <= 5)       total += 3000;
+    else if (d <= 10) total += 2000;
+    else if (d <= 20) total += 1500;
+    else              total += 1250;
   }
+  return total;
+}
+function acRateLabel(doors) {
+  if (doors <= 5)       return '£3,000 per door';
+  if (doors <= 10)      return 'from £2,000 per door';
+  if (doors <= 20)      return 'from £1,500 per door';
+  return 'from £1,250 per door';
+}
+// Entry Level cameras need full replacement every 36 months
+// Enterprise lasts 50% longer — roughly 54 months before any replacement needed
+const ENTRY_REPLACE_MONTHS = 36;
+const ENTERPRISE_LIFESPAN_FACTOR = 1.5;
+
+// ── State ──────────────────────────────────────────────────
+const st = {
+  systems: ['cctv'],   // 'cctv', 'access', or both
+  tier: 'entry',
+  cameras: 4,
+  doors: 1
 };
 
-// ── Node positions (as percentage of canvas) ───────────────
-// Hexagonal arrangement with ARC at centre-top
-const NODE_POS = {
-  monitor: { px: 0.50, py: 0.18 },  // top centre - ARC
-  cctv:    { px: 0.18, py: 0.42 },  // left
-  access:  { px: 0.82, py: 0.42 },  // right
-  alarm:   { px: 0.28, py: 0.78 },  // bottom left
-  fire:    { px: 0.72, py: 0.78 },  // bottom right
-  network: { px: 0.50, py: 0.58 },  // centre - network hub
-};
+// ── System toggle ──────────────────────────────────────────
+function toggleSystem(sys) {
+  if (sys === 'cctv') {
+    st.systems = ['cctv'];
+  } else if (sys === 'access') {
+    st.systems = ['access'];
+  } else {
+    st.systems = ['cctv', 'access'];
+  }
+  document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sys-' + sys).classList.add('active');
 
-// ── Connection definitions (colour = signal type) ──────────
-const CONNECTIONS = [
-  { a: 'alarm',   b: 'monitor',  color: '#EF4444', label: 'Alarm signal' },
-  { a: 'alarm',   b: 'cctv',    color: '#EF4444', label: 'Triggers cameras' },
-  { a: 'alarm',   b: 'access',  color: '#EF4444', label: 'Zone lockdown' },
-  { a: 'alarm',   b: 'network', color: '#06B6D4', label: 'Via network' },
-  { a: 'fire',    b: 'monitor',  color: '#F97316', label: 'Fire brigade alert' },
-  { a: 'fire',    b: 'access',  color: '#F97316', label: 'Doors release' },
-  { a: 'fire',    b: 'network', color: '#06B6D4', label: 'Via network' },
-  { a: 'cctv',   b: 'monitor',  color: '#3B82F6', label: 'Live verification' },
-  { a: 'cctv',   b: 'network', color: '#06B6D4', label: 'Video stream' },
-  { a: 'access', b: 'cctv',    color: '#10B981', label: 'Door triggers camera' },
-  { a: 'access', b: 'network', color: '#06B6D4', label: 'Via network' },
-  { a: 'network',b: 'monitor',  color: '#06B6D4', label: 'To ARC' },
-];
+  const hasCctv = st.systems.includes('cctv');
+  const hasAccess = st.systems.includes('access');
 
-// ── SVG icon paths ─────────────────────────────────────────
-function getIconPath(type) {
-  const icons = {
-    camera: 'M23 7l-7 5 7 5V7zM1 5h15a2 2 0 012 2v10a2 2 0 01-2 2H1a2 2 0 01-2-2V7a2 2 0 012-2z',
-    lock: 'M19 11H5a2 2 0 00-2 2v7a2 2 0 002 2h14a2 2 0 002-2v-7a2 2 0 00-2-2zM7 11V7a5 5 0 0110 0v4',
-    bell: 'M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0',
-    flame: 'M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z',
-    eye: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8zM12 9a3 3 0 100 6 3 3 0 000-6z',
-    wifi: 'M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01'
-  };
-  return icons[type] || '';
+  document.getElementById('cctv-card').style.display = hasCctv ? '' : 'none';
+  document.getElementById('access-card').style.display = hasAccess ? '' : 'none';
+  document.getElementById('tco-section').style.display = hasCctv ? '' : 'none';
+
+  // Renumber steps
+  document.getElementById('access-step-num').textContent = hasCctv ? '3' : '2';
+
+  updateSummary();
+  if (hasCctv) drawTCO();
 }
 
-// ── Canvas engine ──────────────────────────────────────────
-const canvas = document.getElementById('diagramCanvas');
-const ctx = canvas.getContext('2d');
-const section = document.getElementById('diagramSection');
-let W, H, NODE_R;
-let activeNode = null;
-let hoveredNode = null;
-let pulses = [];  // animated signal pulses
-let frame = 0;
-let animReq;
-
-function resize() {
-  const rect = section.getBoundingClientRect();
-  W = rect.width;
-  H = rect.height;
-  canvas.width = W;
-  canvas.height = H;
-  NODE_R = Math.min(W, H) * 0.075;
-  NODE_R = Math.max(36, Math.min(NODE_R, 54));
+// ── CCTV tier ──────────────────────────────────────────────
+function setTier(tier) {
+  st.tier = tier;
+  document.getElementById('tier-entry').className = 'tier-btn' + (tier === 'entry' ? ' active-entry' : '');
+  document.getElementById('tier-enterprise').className = 'tier-btn' + (tier === 'enterprise' ? ' active-enterprise' : '');
+  updatePriceLabels();
+  updateSummary();
+  drawTCO();
 }
 
-function nodePos(id) {
-  const p = NODE_POS[id];
-  return { x: p.px * W, y: p.py * H };
+function updatePriceLabels() {
+  document.getElementById('entry-price').textContent = formatGBP(CCTV_PRICES.entry[st.cameras]);
+  document.getElementById('enterprise-price').textContent = formatGBP(CCTV_PRICES.enterprise[st.cameras]);
 }
 
-// ── Pulse management ───────────────────────────────────────
-function spawnPulses() {
-  // Spawn pulses on all connections periodically
-  CONNECTIONS.forEach((conn, i) => {
-    if (frame % (30 + i * 7) === 0) {
-      const a = nodePos(conn.a);
-      const b = nodePos(conn.b);
-      pulses.push({ ax: a.x, ay: a.y, bx: b.x, by: b.y, color: conn.color, t: 0, speed: 0.012 + Math.random() * 0.006, connA: conn.a, connB: conn.b });
-      // Bidirectional for some connections
-      if (Math.random() > 0.5) {
-        pulses.push({ ax: b.x, ay: b.y, bx: a.x, by: a.y, color: conn.color, t: 0, speed: 0.01 + Math.random() * 0.006, connA: conn.b, connB: conn.a });
-      }
+// ── Camera count ───────────────────────────────────────────
+function setCameras(n) {
+  st.cameras = n;
+  document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('cam-' + n).classList.add('active');
+  updatePriceLabels();
+  updateSummary();
+  drawTCO();
+}
+
+// ── Door count ─────────────────────────────────────────────
+function adjustDoors(delta) {
+  st.doors = Math.max(1, Math.min(50, st.doors + delta));
+  document.getElementById('door-count').textContent = st.doors;
+  document.getElementById('door-plural').textContent = st.doors > 1 ? 's' : '';
+  document.getElementById('door-rate').textContent = acRateLabel(st.doors);
+  updateSummary();
+}
+
+// ── Summary ────────────────────────────────────────────────
+function formatGBP(n) {
+  if (n >= 1000) return '\u00a3' + (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
+  return '\u00a3' + n.toLocaleString();
+}
+function formatGBPFull(n) {
+  return '\u00a3' + n.toLocaleString('en-GB');
+}
+
+function updateSummary() {
+  const hasCctv = st.systems.includes('cctv');
+  const hasAccess = st.systems.includes('access');
+  let total = 0;
+  let notes = [];
+
+  document.getElementById('summaryEmpty').style.display = 'none';
+  document.getElementById('summaryLines').style.display = '';
+
+  // CCTV line
+  const cctvEl = document.getElementById('sl-cctv');
+  if (hasCctv) {
+    const price = CCTV_PRICES[st.tier][st.cameras];
+    total += price;
+    cctvEl.style.display = '';
+    document.getElementById('sl-cctv-detail').textContent =
+      (st.tier === 'entry' ? 'Entry Level' : 'Enterprise') + ' — ' + st.cameras + ' cameras, NVR, installation';
+    document.getElementById('sl-cctv-val').textContent = formatGBPFull(price);
+    if (st.tier === 'entry') {
+      notes.push('Entry Level cameras typically need full replacement every 36 months. Budget for repeat hardware costs.');
+    } else {
+      notes.push('Enterprise cameras last approximately 50% longer than Entry Level, reducing long-term replacement costs.');
     }
-  });
-  // Remove completed pulses
-  pulses = pulses.filter(p => p.t <= 1);
+  } else {
+    cctvEl.style.display = 'none';
+  }
+
+  // Access control line
+  const acEl = document.getElementById('sl-access');
+  if (hasAccess) {
+    const acPrice = acPriceForDoors(st.doors);
+    total += acPrice;
+    acEl.style.display = '';
+    document.getElementById('sl-access-detail').textContent =
+      st.doors + ' door' + (st.doors > 1 ? 's' : '') + ' — ' + acRateLabel(st.doors) + ', entry panel, reader, RTE, break glass, cabling, software';
+    document.getElementById('sl-access-val').textContent = formatGBPFull(acPrice);
+  } else {
+    acEl.style.display = 'none';
+  }
+
+  document.getElementById('summary-total-val').textContent = formatGBPFull(total);
+  document.getElementById('summary-note').textContent =
+    'Indicative estimate only. Excludes VAT, monitoring and maintenance. A free site survey is required for an accurate proposal. ' +
+    notes.join(' ');
+
+  const hasData = hasCctv || hasAccess;
+  document.getElementById('btnDownload').disabled = !hasData;
+  document.getElementById('btnShare').disabled = !hasData;
 }
 
-// ── Draw ───────────────────────────────────────────────────
-function draw() {
+// ── TCO Chart ──────────────────────────────────────────────
+function drawTCO() {
+  const cvs = document.getElementById('tcoChart');
+  const ctx = cvs.getContext('2d');
+  const W = cvs.offsetWidth || 600;
+  const H = cvs.offsetHeight || 200;
+  cvs.width = W;
+  cvs.height = H;
+
+  const cameras = st.cameras;
+  const entryBase = CCTV_PRICES.entry[cameras];
+  const entryReplace = CCTV_PRICES.entry[cameras]; // full replacement cost
+  const enterpriseBase = CCTV_PRICES.enterprise[cameras];
+
+  const YEARS = 10;
+  const PAD = { top: 20, right: 20, bottom: 40, left: 60 };
+  const chartW = W - PAD.left - PAD.right;
+  const chartH = H - PAD.top - PAD.bottom;
+
+  // Build data points year by year
+  const entryPoints = [];
+  const enterprisePoints = [];
+  let entryCum = 0;
+  let enterpriseCum = 0;
+
+  for (let y = 0; y <= YEARS; y++) {
+    // Entry: initial install + replacements every 36 months
+    if (y === 0) {
+      entryCum += entryBase;
+    } else {
+      const monthsIn = y * 12;
+      const replacements = Math.floor(monthsIn / ENTRY_REPLACE_MONTHS) -
+                           Math.floor((monthsIn - 12) / ENTRY_REPLACE_MONTHS);
+      entryCum += replacements * entryReplace;
+    }
+
+    // Enterprise: initial install only (lasts 50% longer so no replacement in 10yr window for reasonable sizes)
+    if (y === 0) {
+      enterpriseCum += enterpriseBase;
+    }
+    // Enterprise may need replacement around year 5 (60 months) for some tiers
+    if (y > 0) {
+      const monthsIn = y * 12;
+      const entReplaceCycles = Math.floor(monthsIn / (ENTRY_REPLACE_MONTHS * ENTERPRISE_LIFESPAN_FACTOR)) -
+                                Math.floor((monthsIn - 12) / (ENTRY_REPLACE_MONTHS * ENTERPRISE_LIFESPAN_FACTOR));
+      enterpriseCum += entReplaceCycles * enterpriseBase;
+    }
+
+    entryPoints.push(entryCum);
+    enterprisePoints.push(enterpriseCum);
+  }
+
+  const maxVal = Math.max(...entryPoints, ...enterprisePoints);
+
+  // Clear
   ctx.clearRect(0, 0, W, H);
 
-  // Background grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+  // Grid lines
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
   ctx.lineWidth = 1;
-  const G = 48;
-  for (let x = 0; x < W; x += G) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-  for (let y = 0; y < H; y += G) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  for (let i = 0; i <= 4; i++) {
+    const y = PAD.top + (chartH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + chartW, y); ctx.stroke();
+    const val = maxVal * (1 - i / 4);
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.font = '10px DM Sans, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(formatGBP(Math.round(val)), PAD.left - 6, y + 3);
+  }
 
-  const isNodeActive = activeNode !== null;
+  // X-axis labels
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.font = '10px DM Sans, sans-serif';
+  ctx.textAlign = 'center';
+  for (let y = 0; y <= YEARS; y += 2) {
+    const x = PAD.left + (chartW / YEARS) * y;
+    ctx.fillText('Yr ' + y, x, H - PAD.bottom + 16);
+  }
 
-  // Draw connections
-  CONNECTIONS.forEach(conn => {
-    const a = nodePos(conn.a);
-    const b = nodePos(conn.b);
-    const isHighlighted = activeNode && (activeNode.id === conn.a || activeNode.id === conn.b);
-    const alpha = isNodeActive ? (isHighlighted ? 0.7 : 0.1) : 0.25;
-
-    // Connection line
+  function drawLine(points, color, dash) {
     ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.lineTo(b.x, b.y);
-    ctx.strokeStyle = conn.color + Math.round(alpha * 255).toString(16).padStart(2, '0');
-    ctx.lineWidth = isHighlighted ? 2 : 1.5;
-    ctx.setLineDash(isHighlighted ? [] : [6, 8]);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if (dash) ctx.setLineDash(dash); else ctx.setLineDash([]);
+    points.forEach((v, i) => {
+      const x = PAD.left + (chartW / YEARS) * i;
+      const y = PAD.top + chartH - (v / maxVal) * chartH;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Midpoint label for highlighted connections
-    if (isHighlighted) {
-      const mx = (a.x + b.x) / 2;
-      const my = (a.y + b.y) / 2;
-      ctx.font = '500 11px DM Sans, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      const tw = ctx.measureText(conn.label).width;
-      ctx.fillStyle = 'rgba(0,0,0,0.75)';
-      roundRect(ctx, mx - tw / 2 - 6, my - 9, tw + 12, 18, 4);
-      ctx.fill();
-      ctx.fillStyle = conn.color;
-      ctx.fillText(conn.label, mx, my);
-    }
-  });
-
-  // Animate pulses
-  pulses.forEach(p => {
-    p.t += p.speed;
-    const x = p.ax + (p.bx - p.ax) * p.t;
-    const y = p.ay + (p.by - p.ay) * p.t;
-    const isConnActive = activeNode && (activeNode.id === p.connA || activeNode.id === p.connB);
-    if (isNodeActive && !isConnActive) return;
-
-    // Glow
-    const grd = ctx.createRadialGradient(x, y, 0, x, y, 12);
-    grd.addColorStop(0, p.color + 'CC');
-    grd.addColorStop(1, p.color + '00');
-    ctx.fillStyle = grd;
-    ctx.beginPath();
-    ctx.arc(x, y, 12, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Dot
-    ctx.fillStyle = p.color;
-    ctx.beginPath();
-    ctx.arc(x, y, 4, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  // Draw nodes
-  Object.values(NODES).forEach(node => {
-    const pos = nodePos(node.id);
-    const isActive = activeNode && activeNode.id === node.id;
-    const isHovered = hoveredNode === node.id;
-    const isDimmed = isNodeActive && !isActive;
-    const scale = isActive ? 1.12 : (isHovered ? 1.06 : 1);
-    const r = NODE_R * scale;
-
-    ctx.save();
-    ctx.translate(pos.x, pos.y);
-
-    // Glow ring (active nodes)
-    if (isActive || isHovered) {
-      const t = (Math.sin(frame * 0.05) + 1) / 2;
-      const glowR = r + 12 + t * 8;
-      const grd = ctx.createRadialGradient(0, 0, r - 4, 0, 0, glowR);
-      grd.addColorStop(0, node.color + '60');
-      grd.addColorStop(1, node.color + '00');
-      ctx.fillStyle = grd;
+    // Dots at each year
+    points.forEach((v, i) => {
+      const x = PAD.left + (chartW / YEARS) * i;
+      const y = PAD.top + chartH - (v / maxVal) * chartH;
       ctx.beginPath();
-      ctx.arc(0, 0, glowR, 0, Math.PI * 2);
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = color;
       ctx.fill();
-    }
+    });
+  }
 
-    // Outer ring
-    ctx.beginPath();
-    ctx.arc(0, 0, r + 4, 0, Math.PI * 2);
-    ctx.strokeStyle = node.color + (isActive ? 'CC' : (isDimmed ? '22' : '55'));
-    ctx.lineWidth = isActive ? 2 : 1.5;
-    ctx.stroke();
-
-    // Node circle
-    const bgGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.3, 0, 0, 0, r);
-    bgGrad.addColorStop(0, node.color + (isDimmed ? '30' : '60'));
-    bgGrad.addColorStop(1, node.color + (isDimmed ? '18' : '35'));
-    ctx.fillStyle = bgGrad;
-    ctx.beginPath();
-    ctx.arc(0, 0, r, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Border
-    ctx.beginPath();
-    ctx.arc(0, 0, r, 0, Math.PI * 2);
-    ctx.strokeStyle = node.color + (isDimmed ? '33' : '88');
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // Icon
-    ctx.strokeStyle = isDimmed ? 'rgba(255,255,255,0.2)' : '#fff';
-    ctx.fillStyle = isDimmed ? 'rgba(255,255,255,0.2)' : '#fff';
-    ctx.lineWidth = 1.75;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    const iconSize = r * 0.52;
-    ctx.scale(iconSize / 12, iconSize / 12);
-    const path = new Path2D(getIconPath(node.icon));
-    ctx.translate(-12, -12);
-    ctx.stroke(path);
-
-    ctx.restore();
-
-    // Label below node
-    const labelAlpha = isDimmed ? 0.25 : 1;
-    ctx.font = `700 ${Math.round(NODE_R * 0.24)}px Roboto, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillStyle = `rgba(255,255,255,${labelAlpha})`;
-    ctx.fillText(node.label, pos.x, pos.y + r * scale + 8);
-  });
-
-  frame++;
-  spawnPulses();
-  animReq = requestAnimationFrame(draw);
-}
-
-function roundRect(ctx, x, y, w, h, r) {
+  // Shaded area under entry line
   ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
+  entryPoints.forEach((v, i) => {
+    const x = PAD.left + (chartW / YEARS) * i;
+    const y = PAD.top + chartH - (v / maxVal) * chartH;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.lineTo(PAD.left + chartW, PAD.top + chartH);
+  ctx.lineTo(PAD.left, PAD.top + chartH);
   ctx.closePath();
-}
+  ctx.fillStyle = 'rgba(59,130,246,0.06)';
+  ctx.fill();
 
-// ── Hit detection ──────────────────────────────────────────
-function getNodeAt(x, y) {
-  return Object.values(NODES).find(node => {
-    const p = nodePos(node.id);
-    return Math.hypot(x - p.x, y - p.y) < NODE_R * 1.2;
-  }) || null;
-}
+  drawLine(entryPoints, '#3B82F6');
+  drawLine(enterprisePoints, '#F59E0B');
 
-canvas.addEventListener('mousemove', e => {
-  const r = canvas.getBoundingClientRect();
-  const node = getNodeAt(e.clientX - r.left, e.clientY - r.top);
-  hoveredNode = node ? node.id : null;
-  canvas.style.cursor = node ? 'pointer' : 'default';
-});
-
-canvas.addEventListener('click', e => {
-  const r = canvas.getBoundingClientRect();
-  const node = getNodeAt(e.clientX - r.left, e.clientY - r.top);
-  if (node) {
-    if (activeNode && activeNode.id === node.id) {
-      closePanel();
-    } else {
-      openPanel(node);
+  // Crossover label if enterprise becomes cheaper
+  let crossYear = null;
+  for (let y = 1; y <= YEARS; y++) {
+    if (enterprisePoints[y] < entryPoints[y] && enterprisePoints[y - 1] >= entryPoints[y - 1]) {
+      crossYear = y;
+      break;
     }
   }
-});
 
-canvas.addEventListener('touchend', e => {
-  e.preventDefault();
-  const r = canvas.getBoundingClientRect();
-  const t = e.changedTouches[0];
-  const node = getNodeAt(t.clientX - r.left, t.clientY - r.top);
-  if (node) {
-    openPanel(activeNode && activeNode.id === node.id ? null : node);
-    if (!node) closePanel();
-    else openPanel(node);
+  // TCO insight text
+  const entryCost10 = entryPoints[YEARS];
+  const enterpriseCost10 = enterprisePoints[YEARS];
+  const saving = entryCost10 - enterpriseCost10;
+  let insight = '';
+  if (saving > 0) {
+    insight = 'Over 10 years, the Enterprise system saves approximately ' + formatGBPFull(saving) +
+      ' compared to replacing Entry Level cameras every 36 months. Enterprise becomes better value around year ' +
+      (crossYear || '3-4') + '.';
+  } else {
+    insight = 'For this camera count, Enterprise has a higher 10-year cost because Enterprise cameras do not need replacement within this window. Entry Level cameras will typically need replacing every 36 months.';
   }
-}, { passive: false });
-
-// ── Panel ──────────────────────────────────────────────────
-function openPanel(node) {
-  activeNode = node;
-  document.getElementById('canvasHint').classList.add('hidden');
-
-  // Build panel content
-  const header = document.getElementById('panelHeader');
-  header.innerHTML =
-    '<div class="panel-icon" style="background:' + node.color + '25;border:1px solid ' + node.color + '50">' +
-    '<svg viewBox="0 0 24 24"><path d="' + getIconPath(node.icon) + '" stroke="' + node.color + '" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-    '</div>' +
-    '<div class="panel-name">' + node.label + '</div>' +
-    '<div class="panel-tagline">' + node.tagline + '</div>';
-
-  const body = document.getElementById('panelBody');
-  const connsHtml = node.connections.map(c => {
-    const target = NODES[c.to];
-    return '<div class="conn-item">' +
-      '<div class="conn-dot" style="background:' + c.color + '"></div>' +
-      '<div class="conn-text"><strong>' + target.label + ' &rarr; ' + c.label + '</strong><span>' + c.detail + '</span></div>' +
-      '</div>';
-  }).join('');
-
-  body.innerHTML =
-    '<div class="panel-section-title">What it does</div>' +
-    '<div class="panel-desc">' + node.desc + '</div>' +
-    '<div class="panel-section-title">How it connects</div>' +
-    connsHtml +
-    '<a href="' + node.page + '" class="panel-link">View ' + node.label + ' service page &rarr;</a>';
-
-  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('tcoInsight').innerHTML = insight.replace(
+    /Enterprise/g, '<strong>Enterprise</strong>'
+  ).replace(/Entry Level/g, '<strong>Entry Level</strong>');
 }
 
-function closePanel() {
-  activeNode = null;
-  document.getElementById('detailPanel').classList.remove('open');
-  document.getElementById('canvasHint').classList.remove('hidden');
+// ── PDF Download ───────────────────────────────────────────
+function downloadEstimate() {
+  const hasCctv = st.systems.includes('cctv');
+  const hasAccess = st.systems.includes('access');
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  let cctvHtml = '';
+  let acHtml = '';
+  let total = 0;
+
+  if (hasCctv) {
+    const price = CCTV_PRICES[st.tier][st.cameras];
+    total += price;
+    const tierName = st.tier === 'entry' ? 'Entry Level' : 'Enterprise';
+    const tcoNote = st.tier === 'entry'
+      ? 'Entry Level cameras typically require full hardware replacement every 36 months. Budget for this in your long-term planning.'
+      : 'Enterprise cameras last approximately 50% longer than Entry Level systems, reducing long-term hardware replacement costs.';
+
+    cctvHtml = '<div style="background:#f8f8f8;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+      '<strong style="font-size:15px">CCTV System — ' + tierName + '</strong>' +
+      '<strong style="font-size:15px;color:#C8102E">' + formatGBPFull(price) + '</strong>' +
+      '</div>' +
+      '<div style="font-size:13px;color:#555;margin-bottom:6px">' + st.cameras + ' cameras, NVR recording, installation and commissioning</div>' +
+      '<div style="font-size:12px;color:#777;font-style:italic;border-top:1px solid #e0e0e0;padding-top:8px;margin-top:8px">' + tcoNote + '</div>' +
+      '</div>';
+  }
+
+  if (hasAccess) {
+    const acPrice = acPriceForDoors(st.doors);
+    total += acPrice;
+    acHtml = '<div style="background:#f8f8f8;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+      '<strong style="font-size:15px">Access Control — Enterprise</strong>' +
+      '<strong style="font-size:15px;color:#C8102E">' + formatGBPFull(acPrice) + '</strong>' +
+      '</div>' +
+      '<div style="font-size:13px;color:#555;margin-bottom:6px">' + st.doors + ' door' + (st.doors > 1 ? 's' : '') + ' secured at ' + acRateLabel(st.doors) + '. Each door includes: entry panel, reader, request to exit (RTE), break glass, cabling and professional management software.</div>' +
+      '</div>';
+  }
+
+  // Capture TCO chart if CCTV selected
+  let tcoImgHtml = '';
+  if (hasCctv) {
+    const tcoCanvas = document.getElementById('tcoChart');
+    const tcoImg = tcoCanvas.toDataURL('image/png');
+    tcoImgHtml = '<h3 style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin:20px 0 10px;border-bottom:2px solid #eee;padding-bottom:6px;">Total Cost of Ownership — 10 Year View</h3>' +
+      '<img src="' + tcoImg + '" style="width:100%;border:1px solid #ddd;border-radius:8px;margin-bottom:12px">' +
+      '<p style="font-size:12px;color:#666;font-style:italic;margin-bottom:16px">' +
+      document.getElementById('tcoInsight').textContent + '</p>';
+  }
+
+  const printHTML = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
+    '<title>Security Budget Estimate — Fyrfly Systems</title>' +
+    '<style>' +
+    'body{font-family:Arial,sans-serif;margin:0;padding:0;background:#fff;color:#111;font-size:14px;}' +
+    '.page{max-width:800px;margin:0 auto;padding:32px;}' +
+    '.header{background:#0E0E14;color:#fff;padding:24px 28px;border-radius:8px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;}' +
+    '.brand{font-size:16px;font-weight:800;}' +
+    '.badge{background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}' +
+    '.title{font-size:22px;font-weight:700;color:#fff;margin:10px 0 4px;}' +
+    '.meta{font-size:12px;color:rgba(255,255,255,0.55);}' +
+    'h3{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin:20px 0 10px;border-bottom:2px solid #eee;padding-bottom:6px;}' +
+    '.total-row{display:flex;justify-content:space-between;align-items:center;background:#0E0E14;color:#fff;padding:14px 18px;border-radius:8px;margin:16px 0;}' +
+    '.total-label{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);}' +
+    '.total-val{font-size:22px;font-weight:900;color:#F5A623;}' +
+    '.disc{font-size:11px;color:#999;line-height:1.65;padding:12px;background:#f9f9f9;border-radius:6px;margin-top:8px;}' +
+    '.cta{background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:16px;text-align:center;margin-top:20px;}' +
+    '.cta h3{border:none;margin:0 0 6px;font-size:14px;color:#333;letter-spacing:0;}' +
+    '.cta p{font-size:12px;color:#555;margin:0 0 10px;}' +
+    '.cta a{display:inline-block;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;}' +
+    '.footer{text-align:center;font-size:11px;color:#aaa;margin-top:24px;padding-top:16px;border-top:1px solid #eee;}' +
+    '@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.header,.total-row{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}' +
+    '</style></head><body><div class="page">' +
+    '<div class="header">' +
+    '<div><div class="brand">FYRFLY SYSTEMS</div><div class="title">Security Budget Estimate</div><div class="meta">Generated ' + date + ' — indicative figures only</div></div>' +
+    '<div class="badge">Cost Estimator</div>' +
+    '</div>' +
+    '<h3>System Breakdown</h3>' +
+    cctvHtml + acHtml +
+    '<div class="total-row"><div class="total-label">Total Estimate</div><div class="total-val">' + formatGBPFull(total) + '</div></div>' +
+    tcoImgHtml +
+    '<div class="disc">All figures are indicative budgetary estimates only and exclude VAT, ongoing maintenance contracts and monitoring fees. Actual costs will vary depending on site conditions, building layout, cable runs and specification. A free site survey is required for an accurate, costed proposal. Fyrfly Systems Ltd — NSI NACOSS Gold | SSAIB Approved | BAFE Registered | Constructionline | ISO 9001:2015 | Crown Commercial Service.</div>' +
+    '<div class="cta"><h3>Ready for an accurate quote?</h3><p>A free site survey from Fyrfly Systems gives you a detailed, costed proposal based on your actual building and requirements.</p><a href="mailto:hello@fyrflysystems.com?subject=Security Budget Estimate — Free Survey Request">Request a Free Survey</a></div>' +
+    '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com</div>' +
+    '</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(printHTML); w.document.close(); }
+  else { alert('Please allow popups for this site to download the PDF, then try again.'); }
+}
+
+// ── Share via email ────────────────────────────────────────
+function shareEstimate() {
+  const hasCctv = st.systems.includes('cctv');
+  const hasAccess = st.systems.includes('access');
+  let total = 0;
+  let lines = [];
+
+  if (hasCctv) {
+    const price = CCTV_PRICES[st.tier][st.cameras];
+    total += price;
+    lines.push('CCTV (' + (st.tier === 'entry' ? 'Entry Level' : 'Enterprise') + ', ' + st.cameras + ' cameras): ' + formatGBPFull(price));
+  }
+  if (hasAccess) {
+    const acPrice = acPriceForDoors(st.doors);
+    total += acPrice;
+    lines.push('Access Control (Enterprise, ' + st.doors + ' door' + (st.doors > 1 ? 's' : '') + ' at ' + acRateLabel(st.doors) + '): ' + formatGBPFull(acPrice));
+  }
+
+  const subject = encodeURIComponent('Security Budget Estimate — Free Survey Request');
+  const body = encodeURIComponent(
+    'Hi Fyrfly Systems,\n\n' +
+    'I have used the Cost Estimator on your website and would like to discuss a free site survey.\n\n' +
+    'My estimate breakdown:\n' +
+    lines.join('\n') + '\n' +
+    'Total estimate: ' + formatGBPFull(total) + '\n\n' +
+    'Please get in touch to arrange a survey.\n\nKind regards'
+  );
+  window.location.href = 'mailto:hello@fyrflysystems.com?subject=' + subject + '&body=' + body;
 }
 
 // ── Nav ────────────────────────────────────────────────────
@@ -711,20 +1019,11 @@ if (ham && mobNav) {
 }
 
 // ── Init ───────────────────────────────────────────────────
-function init() {
-  resize();
-  draw();
-  window.addEventListener('resize', () => {
-    cancelAnimationFrame(animReq);
-    resize();
-    draw();
-  });
-}
-if (document.readyState === 'complete') {
-  init();
-} else {
-  window.addEventListener('load', init);
-}
+updatePriceLabels();
+updateSummary();
+drawTCO();
+window.addEventListener('resize', drawTCO);
 </script>
+
 </body>
 </html>
