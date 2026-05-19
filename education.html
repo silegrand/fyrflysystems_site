@@ -353,6 +353,29 @@
     
     
     
+
+    /* ─── SECURE BY DESIGN CTA ──────────────────────────────── */
+    .sbd-cta { padding: 5rem 0; background: var(--light); border-top: 1px solid var(--bdr); }
+    .sbd-cta-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
+    .sbd-cta-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.28rem 0.8rem; background: rgba(232,93,4,0.08); border: 1px solid rgba(232,93,4,0.2); border-radius: 100px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--o); margin-bottom: 1rem; }
+    .sbd-cta-badge svg { width: 11px; height: 11px; stroke: var(--o); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .sbd-cta-acts { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.75rem; }
+    .btn-sbd-primary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.85rem; background: var(--grad); color: #fff; font-size: 0.93rem; font-weight: 600; border-radius: 8px; transition: opacity 0.2s, transform 0.2s var(--ease); }
+    .btn-sbd-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-sbd-primary svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .btn-sbd-secondary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.5rem; color: var(--o); font-size: 0.88rem; font-weight: 500; border: 1.5px solid var(--bdr); border-radius: 8px; transition: border-color 0.2s, color 0.2s; }
+    .btn-sbd-secondary:hover { border-color: var(--o); }
+    .btn-sbd-secondary svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .sbd-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1.25rem; }
+    .sbd-stat { background: var(--white); border: 1px solid var(--bdr); border-radius: 12px; padding: 1.25rem; text-align: center; transition: box-shadow 0.2s; }
+    .sbd-stat:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .sbd-stat-n { font-family: var(--fh); font-size: 1.8rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.3rem; }
+    .sbd-stat-l { font-size: 0.72rem; color: var(--mute); font-weight: 500; line-height: 1.35; }
+    .sbd-standards { background: var(--white); border: 1px solid var(--bdr); border-radius: 12px; padding: 1.1rem 1.25rem; }
+    .sbd-std-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 0.65rem; }
+    .sbd-std-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .sbd-std-tags span { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.7rem; background: var(--light); border: 1px solid var(--bdr); border-radius: 100px; color: var(--mid); }
+    @media (max-width: 820px) { .sbd-cta-inner { grid-template-columns: 1fr; gap: 2rem; } }
   </style>
 
   <script type="application/ld+json">{
@@ -731,6 +754,47 @@
   </div>
 </div>
 
+
+<!-- SECURE BY DESIGN CHECKLIST CTA -->
+<section class="sbd-cta" id="sbd-checklist">
+  <div class="wrap">
+    <div class="sbd-cta-inner">
+      <div class="sbd-cta-left">
+        <div class="sbd-cta-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Free Tool
+        </div>
+        <h2 class="sec-h">Is Your School<br>Secure by Design?</h2>
+        <p class="sec-sub" style="margin-top:0.75rem;">Use our free interactive tool to assess your school or trust against the UK government's official Secure by Design framework — 73 questions, a RAG scorecard, and a prioritised action plan you can download or share directly with our team.</p>
+        <div class="sbd-cta-acts">
+          <a href="sbd-checklist.html" class="btn-sbd-primary">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            Start the Checklist
+          </a>
+          <a href="https://www.security.gov.uk/policy-and-guidance/secure-by-design/implementation/download-preparation-checklist/" target="_blank" class="btn-sbd-secondary">
+            About Secure by Design
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="sbd-cta-right">
+        <div class="sbd-stat-grid">
+          <div class="sbd-stat"><div class="sbd-stat-n">73</div><div class="sbd-stat-l">Questions across 3 sections</div></div>
+          <div class="sbd-stat"><div class="sbd-stat-n">10</div><div class="sbd-stat-l">Secure by Design principles</div></div>
+          <div class="sbd-stat"><div class="sbd-stat-n">RAG</div><div class="sbd-stat-l">Scorecard & action plan</div></div>
+          <div class="sbd-stat"><div class="sbd-stat-n">PDF</div><div class="sbd-stat-l">Download or share results</div></div>
+        </div>
+        <div class="sbd-standards">
+          <div class="sbd-std-label">Covers compliance with</div>
+          <div class="sbd-std-tags">
+            <span>UK GDPR</span><span>Cyber Essentials</span><span>PSN</span><span>DfE Guidance</span><span>KCSiE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-ban" id="contact">
   <div class="cta-bg"></div>
@@ -796,10 +860,6 @@
   </div>
 </footer>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
 
-</script>
 </body>
 </html>
