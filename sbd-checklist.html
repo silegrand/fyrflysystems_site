@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure by Design Preparation Checklist | Fyrfly Systems</title>
+  <meta name="description" content="Free Secure by Design preparation checklist for schools and public sector organisations. Assess your organisation against the UK government's Secure by Design framework.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/sbd-checklist.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <style>
+    :root {
+      --c:#C8102E; --o:#E85D04; --a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14; --char:#1B1B24; --mid:#67677A; --mute:#9595A5;
+      --light:#F5F4F2; --bdr:#E6E5E1; --white:#FFFFFF;
+      --fh:'Roboto',sans-serif; --fb:'DM Sans',sans-serif;
+      --max:1200px; --nh:70px; --ease:cubic-bezier(0.22,1,0.36,1);
+      --met:#16A34A; --partial:#D97706; --notmet:#DC2626; --ns:#6B7280;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    button{cursor:pointer;font-family:var(--fb);}
+
+    /* ── PAGE HERO ── */
+    .tool-hero{background:var(--char);padding:4rem 0 3rem;position:relative;overflow:hidden;}
+    .tool-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(232,93,4,0.12) 0%,transparent 58%),radial-gradient(ellipse at 12% 60%,rgba(200,16,46,0.09) 0%,transparent 52%);}
+    .tool-hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:38px 38px;}
+    .tool-hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .tool-hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.85rem;background:rgba(232,93,4,0.15);border:1px solid rgba(232,93,4,0.3);border-radius:100px;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--a);margin-bottom:1.25rem;}
+    .tool-hero-badge svg{width:12px;height:12px;stroke:var(--a);fill:none;stroke-width:2;stroke-linecap:round;}
+    .tool-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3.2vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:0.85rem;}
+    .tool-hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .tool-hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:60ch;margin-bottom:2rem;}
+    .tool-hero-meta{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+    .tool-meta-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:rgba(255,255,255,0.4);}
+    .tool-meta-item svg{width:14px;height:14px;stroke:var(--a);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+    .tool-meta-item strong{color:rgba(255,255,255,0.75);}
+
+    /* ── TOOL LAYOUT ── */
+    .tool-wrap{max-width:var(--max);margin:0 auto;padding:2.5rem 2rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start;}
+
+    /* ── SIDEBAR ── */
+    .sidebar{position:sticky;top:calc(var(--nh) + 1.5rem);}
+    .sidebar-progress{background:var(--light);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;}
+    .sidebar-title{font-family:var(--fh);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);margin-bottom:1.1rem;}
+    .progress-ring-wrap{display:flex;justify-content:center;margin-bottom:1.25rem;}
+    .progress-ring{position:relative;width:90px;height:90px;}
+    .progress-ring svg{transform:rotate(-90deg);}
+    .progress-ring-bg{fill:none;stroke:var(--bdr);stroke-width:8;}
+    .progress-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 0.4s var(--ease);}
+    .progress-ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .progress-ring-pct{font-family:var(--fh);font-size:1.4rem;font-weight:800;color:var(--dark);line-height:1;}
+    .progress-ring-lbl{font-size:0.6rem;font-weight:500;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;}
+    .progress-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+    .pstat{background:var(--white);border:1px solid var(--bdr);border-radius:8px;padding:0.6rem 0.75rem;text-align:center;}
+    .pstat-n{font-family:var(--fh);font-size:1.1rem;font-weight:800;line-height:1;margin-bottom:0.2rem;}
+    .pstat-l{font-size:0.65rem;color:var(--mute);font-weight:500;}
+    .pstat.met .pstat-n{color:var(--met);}
+    .pstat.partial .pstat-n{color:var(--partial);}
+    .pstat.notmet .pstat-n{color:var(--notmet);}
+    .pstat.ns .pstat-n{color:var(--ns);}
+
+    .sidebar-nav{background:var(--white);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
+    .snav-section{border-bottom:1px solid var(--bdr);}
+    .snav-section:last-child{border-bottom:none;}
+    .snav-hdr{padding:0.85rem 1.1rem;font-size:0.78rem;font-weight:600;color:var(--mid);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.15s;}
+    .snav-hdr:hover{background:var(--light);}
+    .snav-hdr.active-section{background:rgba(232,93,4,0.06);color:var(--o);}
+    .snav-badge{font-size:0.65rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:100px;background:var(--bdr);color:var(--mute);}
+    .snav-hdr.active-section .snav-badge{background:rgba(232,93,4,0.15);color:var(--o);}
+    .snav-items{padding:0.35rem 0;}
+    .snav-item{padding:0.45rem 1.1rem 0.45rem 1.5rem;font-size:0.75rem;color:var(--mute);cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:color 0.15s;}
+    .snav-item:hover{color:var(--dark);}
+    .snav-item.done::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--met);flex-shrink:0;}
+    .snav-item.partial::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--partial);flex-shrink:0;}
+    .snav-item:not(.done):not(.partial)::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--bdr);flex-shrink:0;}
+
+    /* ── MAIN CONTENT ── */
+    .checklist-main{}
+
+    /* Welcome screen */
+    .welcome-card{background:linear-gradient(135deg,#111E2C 0%,#0E0E14 100%);border-radius:16px;padding:3rem;color:#fff;position:relative;overflow:hidden;margin-bottom:2rem;}
+    .welcome-card::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,4,0.15),transparent 70%);}
+    .welcome-card-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.85rem;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);border-radius:100px;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--a);margin-bottom:1.25rem;}
+    .welcome-card h2{font-family:var(--fh);font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.85rem;}
+    .welcome-card h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .welcome-card p{font-size:0.9rem;color:rgba(255,255,255,0.55);line-height:1.72;max-width:56ch;margin-bottom:0.75rem;}
+    .welcome-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin:2rem 0;}
+    .welcome-step{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.1rem;}
+    .welcome-step-n{font-family:var(--fh);font-size:1.5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;}
+    .welcome-step p{font-size:0.78rem;color:rgba(255,255,255,0.45);margin:0;}
+    .welcome-actions{display:flex;align-items:center;gap:0.85rem;flex-wrap:wrap;}
+    .btn-start{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2.2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:600;border-radius:8px;border:none;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-start:hover{opacity:0.88;transform:translateY(-2px);}
+    .btn-start svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-resume{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 1.75rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.75);font-size:0.9rem;font-weight:500;border-radius:8px;transition:background 0.2s,color 0.2s;}
+    .btn-resume:hover{background:rgba(255,255,255,0.1);color:#fff;}
+
+    /* Section headers */
+    .section-hdr{margin-bottom:1.5rem;}
+    .section-tag{display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.75rem;background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.2);border-radius:100px;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.75rem;}
+    .section-hdr h2{font-family:var(--fh);font-size:clamp(1.3rem,2vw,1.8rem);font-weight:800;color:var(--dark);letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.5rem;}
+    .section-hdr p{font-size:0.88rem;color:var(--mid);line-height:1.65;max-width:60ch;}
+    .section-progress-bar{height:4px;background:var(--bdr);border-radius:2px;margin-top:1.25rem;overflow:hidden;}
+    .section-progress-fill{height:100%;background:var(--grad);border-radius:2px;transition:width 0.4s var(--ease);}
+
+    /* Principle / Theme groups */
+    .group-card{background:var(--white);border:1px solid var(--bdr);border-radius:14px;margin-bottom:1.1rem;overflow:hidden;transition:box-shadow 0.2s;}
+    .group-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+    .group-hdr{padding:1.1rem 1.4rem;display:flex;align-items:flex-start;gap:1rem;cursor:pointer;user-select:none;}
+    .group-num{width:32px;height:32px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.75rem;font-weight:800;color:#fff;flex-shrink:0;}
+    .group-info{flex:1;}
+    .group-title{font-family:var(--fh);font-size:0.97rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;margin-bottom:0.2rem;}
+    .group-desc{font-size:0.78rem;color:var(--mute);line-height:1.5;}
+    .group-meta{display:flex;align-items:center;gap:0.75rem;flex-shrink:0;}
+    .group-count{font-size:0.72rem;color:var(--mute);white-space:nowrap;}
+    .group-chevron{width:16px;height:16px;stroke:var(--mute);fill:none;stroke-width:2.5;stroke-linecap:round;transition:transform 0.2s;flex-shrink:0;}
+    .group-card.open .group-chevron{transform:rotate(180deg);}
+    .group-body{display:none;border-top:1px solid var(--bdr);}
+    .group-card.open .group-body{display:block;}
+
+    /* Questions */
+    .question-row{padding:1rem 1.4rem;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;}
+    .question-row:last-child{border-bottom:none;}
+    .question-row.answered{background:rgba(22,163,74,0.02);}
+    .q-text{font-size:0.85rem;color:var(--dark);line-height:1.6;padding-right:0.5rem;}
+    .q-link{font-size:0.75rem;color:var(--o);display:inline-flex;align-items:center;gap:0.25rem;margin-top:0.3rem;opacity:0.8;}
+    .q-link svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;}
+    .q-controls{display:flex;flex-direction:column;gap:0.4rem;align-items:flex-end;}
+    .status-btns{display:flex;gap:0.35rem;}
+    .status-btn{padding:0.3rem 0.65rem;border-radius:6px;border:1.5px solid var(--bdr);background:var(--white);font-size:0.72rem;font-weight:600;color:var(--mute);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+    .status-btn:hover{border-color:var(--mid);color:var(--dark);}
+    .status-btn.active-met{background:#DCFCE7;border-color:var(--met);color:var(--met);}
+    .status-btn.active-partial{background:#FEF3C7;border-color:var(--partial);color:var(--partial);}
+    .status-btn.active-notmet{background:#FEE2E2;border-color:var(--notmet);color:var(--notmet);}
+    .status-btn.active-na{background:#F3F4F6;border-color:#9CA3AF;color:#6B7280;}
+    .q-notes{width:220px;padding:0.4rem 0.65rem;border:1.5px solid var(--bdr);border-radius:6px;font-size:0.75rem;font-family:var(--fb);color:var(--dark);resize:none;height:52px;transition:border-color 0.15s;}
+    .q-notes:focus{outline:none;border-color:var(--o);}
+    .q-notes::placeholder{color:var(--mute);}
+
+    /* Section nav buttons */
+    .section-nav-btns{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--bdr);}
+    .btn-nav{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.88rem;font-weight:500;border:none;cursor:pointer;transition:all 0.2s;}
+    .btn-nav-prev{background:var(--light);color:var(--mid);}
+    .btn-nav-prev:hover{background:var(--bdr);color:var(--dark);}
+    .btn-nav-next{background:var(--grad);color:#fff;}
+    .btn-nav-next:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-nav svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    /* Results screen */
+    .results-screen{display:none;}
+    .results-hero{background:linear-gradient(135deg,#111E2C 0%,#0E0E14 100%);border-radius:16px;padding:2.5rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+    .results-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,4,0.15),transparent 70%);}
+    .results-hero h2{font-family:var(--fh);font-size:1.7rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+    .results-hero p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:0;}
+    .results-rag{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.5rem;}
+    .rag-card{border-radius:12px;padding:1.25rem;text-align:center;}
+    .rag-card.met{background:#F0FDF4;border:1.5px solid #BBF7D0;}
+    .rag-card.partial{background:#FFFBEB;border:1.5px solid #FDE68A;}
+    .rag-card.notmet{background:#FEF2F2;border:1.5px solid #FECACA;}
+    .rag-card.ns{background:var(--light);border:1.5px solid var(--bdr);}
+    .rag-n{font-family:var(--fh);font-size:2rem;font-weight:800;line-height:1;margin-bottom:0.3rem;}
+    .rag-card.met .rag-n{color:var(--met);}
+    .rag-card.partial .rag-n{color:var(--partial);}
+    .rag-card.notmet .rag-n{color:var(--notmet);}
+    .rag-card.ns .rag-n{color:var(--ns);}
+    .rag-l{font-size:0.75rem;font-weight:600;color:var(--mid);}
+    .rag-sub{font-size:0.68rem;color:var(--mute);margin-top:0.2rem;}
+
+    .results-actions{display:flex;gap:0.85rem;flex-wrap:wrap;margin-bottom:2rem;}
+    .btn-pdf{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;background:var(--grad);color:#fff;font-size:0.9rem;font-weight:600;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+    .btn-pdf:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-pdf svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-share{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;background:var(--white);color:var(--dark);font-size:0.9rem;font-weight:600;border-radius:8px;border:1.5px solid var(--bdr);cursor:pointer;transition:all 0.2s;}
+    .btn-share:hover{border-color:var(--o);color:var(--o);}
+    .btn-share svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-restart{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;background:var(--light);color:var(--mid);font-size:0.9rem;font-weight:500;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;}
+    .btn-restart:hover{background:var(--bdr);color:var(--dark);}
+
+    .priority-list{background:var(--white);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
+    .priority-hdr{padding:1.1rem 1.4rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:0.75rem;}
+    .priority-hdr-title{font-family:var(--fh);font-size:0.9rem;font-weight:700;color:var(--dark);}
+    .priority-item{padding:0.9rem 1.4rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;gap:0.85rem;}
+    .priority-item:last-child{border-bottom:none;}
+    .priority-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:0.35rem;}
+    .priority-dot.notmet{background:var(--notmet);}
+    .priority-dot.partial{background:var(--partial);}
+    .priority-text strong{display:block;font-size:0.83rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem;}
+    .priority-text span{font-size:0.76rem;color:var(--mute);line-height:1.5;}
+    .priority-section{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute);margin-bottom:0.6rem;padding:0.75rem 1.4rem 0;}
+
+    /* Accreds */
+    .accreds-bar{padding:2rem 0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);margin-top:3rem;}
+    .accreds-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+    .accreds-lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}
+    .accreds-list{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+    .accred-item{font-size:0.8rem;font-weight:500;color:var(--mid);padding:0.3rem 0.85rem;border:1px solid var(--bdr);border-radius:100px;}
+
+    /* Footer */
+    footer{background:var(--dark);padding:3rem 0 1.5rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .tool-wrap{grid-template-columns:1fr;}
+      .sidebar{position:static;}
+      .welcome-steps{grid-template-columns:1fr;}
+      .results-rag{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .question-row{grid-template-columns:1fr;}
+      .q-notes{width:100%;}
+      .status-btns{flex-wrap:wrap;}
+      .results-rag{grid-template-columns:1fr 1fr;}
+      .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+      .ft-grid>div:first-child{grid-column:span 2;}
+    }
+
+    /* Print */
+    @media print{
+      .sidebar,.tool-hero,.section-nav-btns,.results-actions,.accreds-bar,footer{display:none!important;}
+      .tool-wrap{display:block;padding:0;}
+      .group-body{display:block!important;}
+      body{color:#000;}
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script src="nav.js"></script>
+
+<!-- HERO -->
+<section class="tool-hero">
+  <div class="tool-hero-bg"></div>
+  <div class="tool-hero-dots"></div>
+  <div class="tool-hero-c">
+    <div class="tool-hero-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Free Assessment Tool
+    </div>
+    <h1>Secure by Design<br><span class="acc">Preparation Checklist</span></h1>
+    <p class="tool-hero-sub">Assess your school or public sector organisation against the UK government's official Secure by Design framework. Answer 73 questions across 3 sections and get a prioritised action plan.</p>
+    <div class="tool-hero-meta">
+      <div class="tool-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span><strong>20–30 min</strong> to complete</span></div>
+      <div class="tool-meta-item"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span><strong>73 questions</strong> across 3 sections</span></div>
+      <div class="tool-meta-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span><strong>Download PDF</strong> or share with Fyrfly</span></div>
+      <div class="tool-meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span><strong>Saved locally</strong> — your answers stay private</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL BODY -->
+<div class="tool-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-progress">
+      <div class="sidebar-title">Overall Progress</div>
+      <div class="progress-ring-wrap">
+        <div class="progress-ring">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C8102E"/>
+                <stop offset="52%" stop-color="#E85D04"/>
+                <stop offset="100%" stop-color="#F5A623"/>
+              </linearGradient>
+            </defs>
+            <circle class="progress-ring-bg" cx="45" cy="45" r="37"/>
+            <circle class="progress-ring-fill" id="ringFill" cx="45" cy="45" r="37"
+              stroke-dasharray="232.5" stroke-dashoffset="232.5"/>
+          </svg>
+          <div class="progress-ring-text">
+            <span class="progress-ring-pct" id="ringPct">0%</span>
+            <span class="progress-ring-lbl">done</span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-stats">
+        <div class="pstat met"><div class="pstat-n" id="statMet">0</div><div class="pstat-l">Met</div></div>
+        <div class="pstat partial"><div class="pstat-n" id="statPartial">0</div><div class="pstat-l">Partial</div></div>
+        <div class="pstat notmet"><div class="pstat-n" id="statNotmet">0</div><div class="pstat-l">Not Met</div></div>
+        <div class="pstat ns"><div class="pstat-n" id="statNs">73</div><div class="pstat-l">Not Started</div></div>
+      </div>
+    </div>
+    <div class="sidebar-nav" id="sidebarNav"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="checklist-main" id="checklistMain">
+
+    <!-- Welcome -->
+    <div id="screenWelcome">
+      <div class="welcome-card">
+        <div class="welcome-card-badge">UK Government Framework — Alpha v2.0, May 2025</div>
+        <h2>Is Your School <em>Secure by Design?</em></h2>
+        <p>The UK government's Secure by Design framework sets out how public sector organisations should embed cyber security into their digital services and infrastructure. This free tool walks you through the official preparation checklist — adapted for schools, colleges and public sector bodies.</p>
+        <p>Your answers are saved in your browser. No data is sent anywhere until you choose to share it with Fyrfly.</p>
+        <div class="welcome-steps">
+          <div class="welcome-step">
+            <div class="welcome-step-n">01</div>
+            <p>Work through 73 questions across Principles, Activities and Milestones</p>
+          </div>
+          <div class="welcome-step">
+            <div class="welcome-step-n">02</div>
+            <p>Mark each as Met, Partially Met, Not Met or N/A — add notes as you go</p>
+          </div>
+          <div class="welcome-step">
+            <div class="welcome-step-n">03</div>
+            <p>Get a RAG scorecard and prioritised action list, then download or share</p>
+          </div>
+        </div>
+        <div class="welcome-actions">
+          <button class="btn-start" id="btnStart" onclick="startChecklist()">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            Start Assessment
+          </button>
+          <button class="btn-resume" id="btnResume" style="display:none" onclick="resumeChecklist()">Continue where I left off</button>
+        </div>
+      </div>
+
+      <div style="background:var(--light);border:1px solid var(--bdr);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:0.85rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" style="stroke:var(--o);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:0.15rem"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div>
+          <strong style="font-size:0.83rem;color:var(--dark);">About this checklist</strong>
+          <p style="font-size:0.78rem;color:var(--mid);margin-top:0.25rem;line-height:1.6;">This tool is based on the official <a href="https://www.security.gov.uk/policy-and-guidance/secure-by-design/implementation/download-preparation-checklist/" style="color:var(--o);" target="_blank">Secure by Design Preparation Checklist (Alpha v2.0, May 2025)</a> published by the UK government. Fyrfly Systems has not modified the questions. This tool does not constitute professional advice.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Principles -->
+    <div id="screen1" style="display:none">
+      <div class="section-hdr">
+        <div class="section-tag">Section 1 of 3</div>
+        <h2>Principles Checklist</h2>
+        <p>Review how your organisation meets the 10 Secure by Design principles. Each principle includes specific policy requirements to assess.</p>
+        <div class="section-progress-bar"><div class="section-progress-fill" id="prog1" style="width:0%"></div></div>
+      </div>
+      <div id="principles-container"></div>
+      <div class="section-nav-btns">
+        <button class="btn-nav btn-nav-prev" onclick="showScreen('screenWelcome')">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back
+        </button>
+        <button class="btn-nav btn-nav-next" onclick="showScreen('screen2')">
+          Activities Checklist <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 2: Activities -->
+    <div id="screen2" style="display:none">
+      <div class="section-hdr">
+        <div class="section-tag">Section 2 of 3</div>
+        <h2>Activities Checklist</h2>
+        <p>Review your organisation's processes and capabilities against Secure by Design recommended activities across 5 themes.</p>
+        <div class="section-progress-bar"><div class="section-progress-fill" id="prog2" style="width:0%"></div></div>
+      </div>
+      <div id="activities-container"></div>
+      <div class="section-nav-btns">
+        <button class="btn-nav btn-nav-prev" onclick="showScreen('screen1')">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Principles
+        </button>
+        <button class="btn-nav btn-nav-next" onclick="showScreen('screen3')">
+          Milestones <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 3: Milestones -->
+    <div id="screen3" style="display:none">
+      <div class="section-hdr">
+        <div class="section-tag">Section 3 of 3</div>
+        <h2>Implementation Milestones</h2>
+        <p>Assess your progress against the Secure by Design implementation milestones across Preparation, Transition and Operation phases.</p>
+        <div class="section-progress-bar"><div class="section-progress-fill" id="prog3" style="width:0%"></div></div>
+      </div>
+      <div id="milestones-container"></div>
+      <div class="section-nav-btns">
+        <button class="btn-nav btn-nav-prev" onclick="showScreen('screen2')">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Activities
+        </button>
+        <button class="btn-nav btn-nav-next" onclick="showResults()">
+          View Results <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="screenResults" style="display:none">
+      <div class="results-hero">
+        <h2>Your Secure by Design Assessment</h2>
+        <p>Completed <span id="resultsDate"></span></p>
+      </div>
+      <div class="results-rag" id="resultsRag"></div>
+      <div class="results-actions">
+        <button class="btn-pdf" onclick="downloadPDF()">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF Report
+        </button>
+        <button class="btn-share" onclick="shareWithFyrfly()">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Share with Fyrfly Team
+        </button>
+        <button class="btn-restart" onclick="restartChecklist()">Start Again</button>
+      </div>
+      <div class="priority-list" id="priorityList"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ACCREDITATIONS -->
+<div class="accreds-bar">
+  <div class="accreds-inner">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred-item">NSI NACOSS Gold</div>
+      <div class="accred-item">SSAIB Approved</div>
+      <div class="accred-item">BAFE Registered</div>
+      <div class="accred-item">Constructionline</div>
+      <div class="accred-item">ISO 9001:2015</div>
+      <div class="accred-item">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li>
+        <li><a href="access-control.html">Access Control</a></li>
+        <li><a href="wireless-networks.html">Wireless Networks</a></li>
+        <li><a href="intruder-alarms.html">Intruder Alarms</a></li>
+        <li><a href="fire-systems.html">Fire Systems</a></li>
+        <li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="public-sector.html">Public Sector</a></li>
+      </ul>
+      <div class="ft-ct" style="margin-top:1.5rem">Tools</div>
+      <ul class="ft-links">
+        <li><a href="sbd-checklist.html">SbD Checklist</a></li>
+        <li><a href="compliance-tool.html">Compliance Tool</a></li>
+        <li><a href="cost-estimator.html">Cost Estimator</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// FYRFLY — SECURE BY DESIGN CHECKLIST
+// Source: UK Government Secure by Design Preparation Checklist
+// Alpha v2.0, May 2025
+// ═══════════════════════════════════════════════════════════════
+
+const STORAGE_KEY = 'fyrfly_sbd_v1';
+
+// ── DATA ────────────────────────────────────────────────────────
+
+const PRINCIPLES = [
+  {
+    id: 'p1', num: '1',
+    title: 'Create responsibility for cyber security risk',
+    desc: 'Assign risk owners accountable for managing cyber security risks throughout the service lifecycle.',
+    questions: [
+      { id: 'p1q1', text: 'Have you designated an executive leadership role (such as the CDIO or equivalent) with overall accountability for the adoption of Secure by Design within the organisation?' },
+      { id: 'p1q2', text: 'Have you designated a senior leadership role (such as the SRO, service owner or equivalent) with overall accountability for the management of cyber security risks of digital services and technical infrastructure during their delivery?' },
+      { id: 'p1q3', text: 'Are there mechanisms or processes to ensure the senior leadership role has visibility of key cyber security risk decisions made throughout the digital service delivery lifecycle?' },
+      { id: 'p1q4', text: 'Are there processes which enable regularly identifying and allocating the cyber security responsibilities required for the delivery of the digital service and technical infrastructure?' },
+      { id: 'p1q5', text: 'Do you have a process which ensures sufficient and suitable resources are made available to manage cyber security risks throughout the digital service lifecycle, and are given the support necessary to carry out their duties?' },
+      { id: 'p1q6', text: 'Do you have a process for incorporating requirements for Secure by Design within commercial contracts for suppliers?' }
+    ]
+  },
+  {
+    id: 'p2', num: '2',
+    title: 'Source secure technology products',
+    desc: 'Perform security due diligence by continually assessing platforms, software and code for security vulnerabilities.',
+    questions: [
+      { id: 'p2q1', text: 'Do you have a process for carrying out security reviews on third-party products before they are implemented?' },
+      { id: 'p2q2', text: 'Do you have processes for mitigating any security risks associated with using third-party products to a level that meets the organisation\'s and project\'s security risk appetite?' },
+      { id: 'p2q3', text: 'Do you have processes which ensure any third-party products meet the relevant security obligations, regulations, and industry security standards?' },
+      { id: 'p2q4', text: 'Do your processes enable making balanced decisions on the trade-off between security and usability?' }
+    ]
+  },
+  {
+    id: 'p3', num: '3',
+    title: 'Adopt a risk-driven approach',
+    desc: 'Establish the project\'s risk appetite and maintain an assessment of cyber security risks.',
+    questions: [
+      { id: 'p3q1', text: 'Do you have a process for agreeing the security risk appetite for the digital service and sharing this across the delivery teams?' },
+      { id: 'p3q2', text: 'Are you documenting and prioritising the cyber security related legal, regulatory and contractual requirements that must be met by a digital service?' },
+      { id: 'p3q3', text: 'Do you have processes for carrying out threat modelling to understand how potential threats apply to the digital service and infrastructure as the service evolves?' },
+      { id: 'p3q4', text: 'Do you have processes for carrying out security risk assessments and managing identified risks during the service lifecycle in line with the organisation\'s approach to security risk management?' },
+      { id: 'p3q5', text: 'Do you have processes for communicating residual security risks to the accountable individuals and security function for incorporating these into the organisation\'s risk registers?' }
+    ]
+  },
+  {
+    id: 'p4', num: '4',
+    title: 'Design usable security controls',
+    desc: 'Perform regular user research and implement findings into service design to make security processes fit for purpose.',
+    questions: [
+      { id: 'p4q1', text: 'Do your processes take into account security-related user needs discussed in user research or captured in user stories and journeys when designing security controls?' },
+      { id: 'p4q2', text: 'Do your processes take into consideration business objectives included in the business case when designing security controls?' }
+    ]
+  },
+  {
+    id: 'p5', num: '5',
+    title: 'Build in detect and respond security',
+    desc: 'Design for the inevitability of security vulnerabilities and incidents. Integrate appropriate security logging, monitoring, alerting and response capabilities.',
+    questions: [
+      { id: 'p5q1', text: 'Have you implemented appropriate security logging, monitoring and alerting mechanisms to discover cyber security events and vulnerabilities?' },
+      { id: 'p5q2', text: 'Have you embedded effective incident response and recovery capabilities in the service design and delivery team processes?' },
+      { id: 'p5q3', text: 'Do you regularly test digital services and infrastructure to identify and fix weaknesses within systems before they can be exploited?' }
+    ]
+  },
+  {
+    id: 'p6', num: '6',
+    title: 'Design flexible architectures',
+    desc: 'Implement digital services and update legacy components to allow for easier integration of new security controls.',
+    questions: [
+      { id: 'p6q1', text: 'Are you using components that allow integration of new security measures in response to changes in business requirements, cyber threats and vulnerabilities?' },
+      { id: 'p6q2', text: 'Are you using risk-based and adaptable security architectures (for example, zero trust architectures)?' },
+      { id: 'p6q3', text: 'Do you test security controls and verify they are fit for purpose before deployment?' }
+    ]
+  },
+  {
+    id: 'p7', num: '7',
+    title: 'Minimise the attack surface',
+    desc: 'Use only the capabilities, software, data and hardware components necessary for a service to mitigate cyber security risks.',
+    questions: [
+      { id: 'p7q1', text: 'Have you implemented network security measures such as network segmentation to limit the lateral movement of attackers?' },
+      { id: 'p7q2', text: 'Have you implemented baseline security controls, such as least privilege, anti-malware, endpoint detection and response, intrusion detection / prevention, and application allowlisting or denylisting?' },
+      { id: 'p7q3', text: 'Are you following secure coding practices and acting upon any relevant findings from security tests, reducing any opportunities for potential attackers to exploit vulnerabilities?' },
+      { id: 'p7q4', text: 'Do you have processes that enable mitigating security risks to a level that is within the acceptable risk appetite before a digital service goes live?' },
+      { id: 'p7q5', text: 'Do you have processes for retiring service components securely when they are no longer needed, or at the end of their lifecycle?' }
+    ]
+  },
+  {
+    id: 'p8', num: '8',
+    title: 'Defend in depth',
+    desc: 'Create layered controls across a service so it\'s harder for attackers to fully compromise the system if a single control fails.',
+    questions: [
+      { id: 'p8q1', text: 'Have you created layered controls across a digital service so it\'s harder for attackers to fully compromise the system if a single control fails or is overcome?' },
+      { id: 'p8q2', text: 'Are you implementing mechanisms to keep the impact of potential security incidents contained?' },
+      { id: 'p8q3', text: 'Are you testing security controls and verifying they are fit for purpose before deployment?' }
+    ]
+  },
+  {
+    id: 'p9', num: '9',
+    title: 'Embed continuous assurance',
+    desc: 'Implement continuous security assurance processes to create confidence in the effectiveness of security controls.',
+    questions: [
+      { id: 'p9q1', text: 'Are you testing security controls regularly to ensure they operate effectively and that no known vulnerabilities exist?' },
+      { id: 'p9q2', text: 'Do you have processes for reassessing controls against changes in the service or threat landscape?' },
+      { id: 'p9q3', text: 'Are you ensuring the service is built and maintained with the appropriate controls required to mitigate security risks?' },
+      { id: 'p9q4', text: 'Are you keeping track of adherence with Secure by Design principles throughout the digital service lifecycle?' },
+      { id: 'p9q5', text: 'Are you providing accountable individuals and risk owners with regular evidence that security controls and capabilities are operating as intended?' }
+    ]
+  },
+  {
+    id: 'p10', num: '10',
+    title: 'Make changes securely',
+    desc: 'Embed security into the design, development and deployment processes to ensure that the security impact of changes is considered.',
+    questions: [
+      { id: 'p10q1', text: 'Are you assessing the security impact of changes before these are made to digital services and infrastructure?' },
+      { id: 'p10q2', text: 'Are you recording any residual unmitigated risks to the cyber security risk register and sharing this with the accountable individuals and security function responsible for incorporating these into the organisation\'s risk registers?' }
+    ]
+  }
+];
+
+const ACTIVITIES = [
+  {
+    id: 'a1', num: 'A',
+    title: 'Prepare a secure service',
+    desc: 'Processes and foundations for security-aware service delivery.',
+    questions: [
+      { id: 'a1q1', text: 'Does your organisation have processes that consider security within business cases?', activity: 'Considering security within the business case' },
+      { id: 'a1q2', text: 'Does your organisation have processes for supporting project delivery teams to identify security resources?', activity: 'Identifying security resources' },
+      { id: 'a1q3', text: 'Does your organisation have resources to help delivery teams understand their cyber security responsibilities as part of their agreed roles?', activity: 'Agreeing roles and responsibilities' },
+      { id: 'a1q4', text: 'Does your organisation have a method to track the implementation of Secure by Design within projects?', activity: 'Tracking Secure by Design progress' },
+      { id: 'a1q5', text: 'Does your organisation have a standard risk appetite statement to help delivery teams work out their project\'s security risk appetite?', activity: 'Working out the project\'s security risk appetite' }
+    ]
+  },
+  {
+    id: 'a2', num: 'B',
+    title: 'Understand the security landscape',
+    desc: 'Understanding threats, obligations and user needs.',
+    questions: [
+      { id: 'a2q1', text: 'Does your organisation have an approach for managing third-party product security risks?', activity: 'Managing third-party product security risks' },
+      { id: 'a2q2', text: 'Does your organisation have policies to guide projects and delivery teams to understand your cyber security obligations?', activity: 'Understanding cyber security obligations' },
+      { id: 'a2q3', text: 'Does your organisation have processes which support cyber security being part of understanding user needs?', activity: 'Understanding business objectives and user needs' }
+    ]
+  },
+  {
+    id: 'a3', num: 'C',
+    title: 'Manage cyber security risks',
+    desc: 'Processes for identifying, assessing and responding to risks.',
+    questions: [
+      { id: 'a3q1', text: 'Does your organisation have an approach for documenting service assets?', activity: 'Documenting service assets' },
+      { id: 'a3q2', text: 'Does your organisation have an approach for assessing the importance of service assets?', activity: 'Assessing the importance of service assets' },
+      { id: 'a3q3', text: 'Does your organisation have a threat assessment to support projects and delivery teams complete a sourced threat assessment?', activity: 'Sourcing a threat assessment' },
+      { id: 'a3q4', text: 'Does your organisation have a method for performing threat modelling?', activity: 'Performing threat modelling' },
+      { id: 'a3q5', text: 'Does your organisation have a method for performing cyber security risk assessments?', activity: 'Performing a security risk assessment' },
+      { id: 'a3q6', text: 'Does your organisation have an agreed security controls set as part of the security assurance framework to support the build of digital services?', activity: 'Agreeing a security controls set for your service' },
+      { id: 'a3q7', text: 'Does your organisation have a method for responding to and mitigating cyber security risks as part of the overall risk management process?', activity: 'Responding to and mitigating security risks' },
+      { id: 'a3q8', text: 'Does your organisation have processes for assessing the effectiveness of security controls?', activity: 'Assessing the effectiveness of security controls' }
+    ]
+  },
+  {
+    id: 'a4', num: 'D',
+    title: 'Anticipate and respond to incidents',
+    desc: 'Vulnerability management, monitoring and incident response.',
+    questions: [
+      { id: 'a4q1', text: 'Does your organisation have a vulnerability management process in place that new digital services can integrate with?', activity: 'Implementing a vulnerability management process' },
+      { id: 'a4q2', text: 'Does your organisation have a process for discovering vulnerabilities?', activity: 'Discovering vulnerabilities' },
+      { id: 'a4q3', text: 'Does your organisation have a process and suitable technology for managing observability (logging, monitoring, alerting) across projects?', activity: 'Managing observability' }
+    ]
+  },
+  {
+    id: 'a5', num: 'E',
+    title: 'Maintain continuous assurance',
+    desc: 'Ongoing evaluation and secure change management.',
+    questions: [
+      { id: 'a5q1', text: 'Does your organisation have a process for evaluating the security impact of changes?', activity: 'Evaluating the security impact of changes' },
+      { id: 'a5q2', text: 'Does your organisation have a process for retiring service components securely?', activity: 'Retiring service components securely' }
+    ]
+  }
+];
+
+const MILESTONES = [
+  {
+    id: 'm1', num: 'I',
+    title: 'Preparation Phase',
+    desc: 'Establishing accountability, governance and planning for Secure by Design.',
+    questions: [
+      { id: 'm1q1', text: 'Accountability and sponsorship for Secure by Design is formally accepted by your chief digital information officer (CDIO) or equivalent' },
+      { id: 'm1q2', text: 'Secure by Design champion is appointed' },
+      { id: 'm1q3', text: 'Internal Secure by Design working group is established together with related processes (for example, Terms of Reference and cadence of meetings)' },
+      { id: 'm1q4', text: 'Communication and engagement plan with internal stakeholders is delivered' },
+      { id: 'm1q5', text: 'The preparation checklist is complete and the organisation\'s current Secure by Design state is understood' },
+      { id: 'm1q6', text: 'The scope of Secure by Design implementation is agreed with your CDIO or equivalent in line with Secure by Design policy' },
+      { id: 'm1q7', text: 'A transition plan is developed and agreed with CDIO or equivalent' },
+      { id: 'm1q8', text: 'Internal policies and processes are updated with Secure by Design requirements in line with the government Secure by Design policy and approved by your CDIO or equivalent' },
+      { id: 'm1q9', text: 'Secure by Design is embedded within relevant activities in your PMO or Project Management practices' }
+    ]
+  },
+  {
+    id: 'm2', num: 'II',
+    title: 'Transition Phase',
+    desc: 'Piloting, testing and moving to operational readiness.',
+    questions: [
+      { id: 'm2q1', text: 'One or more projects to test the Secure by Design self assessment tracker are identified and have accepted their obligations' },
+      { id: 'm2q2', text: 'Feedback from pilot projects is captured, reviewed and reflected in your transition plan' },
+      { id: 'm2q3', text: 'The transition plan is now an operational plan and the organisation is ready to go live with Secure by Design' },
+      { id: 'm2q4', text: 'Secure by Design progress is shared regularly with internal teams and senior leaders' }
+    ]
+  },
+  {
+    id: 'm3', num: 'III',
+    title: 'Operation Phase',
+    desc: 'Going live and maintaining ongoing compliance.',
+    questions: [
+      { id: 'm3q1', text: 'Your indicative go-live date is agreed' }
+    ]
+  }
+];
+
+const ALL_QUESTIONS = [
+  ...PRINCIPLES.flatMap(p => p.questions.map(q => ({...q, section:'principles', group: p.title}))),
+  ...ACTIVITIES.flatMap(a => a.questions.map(q => ({...q, section:'activities', group: a.title}))),
+  ...MILESTONES.flatMap(m => m.questions.map(q => ({...q, section:'milestones', group: m.title})))
+];
+
+// ── STATE ────────────────────────────────────────────────────────
+
+let answers = {}; // { qid: { status: 'met'|'partial'|'notmet'|'na'|null, notes: '' } }
+
+function loadAnswers() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) { answers = JSON.parse(saved); return true; }
+  } catch(e) {}
+  return false;
+}
+
+function saveAnswers() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(answers)); } catch(e) {}
+}
+
+function getAnswer(qid) {
+  return answers[qid] || { status: null, notes: '' };
+}
+
+function setAnswer(qid, field, value) {
+  if (!answers[qid]) answers[qid] = { status: null, notes: '' };
+  answers[qid][field] = value;
+  saveAnswers();
+  updateProgress();
+}
+
+// ── RENDER ────────────────────────────────────────────────────────
+
+function renderStatusBtns(qid) {
+  const a = getAnswer(qid);
+  const statuses = [
+    { key: 'met',     label: 'Met',      cls: 'active-met' },
+    { key: 'partial', label: 'Partial',  cls: 'active-partial' },
+    { key: 'notmet',  label: 'Not Met',  cls: 'active-notmet' },
+    { key: 'na',      label: 'N/A',      cls: 'active-na' }
+  ];
+  return statuses.map(s =>
+    `<button class="status-btn${a.status === s.key ? ' ' + s.cls : ''}" 
+      onclick="setAnswer('${qid}','status','${s.key}');renderQuestion('${qid}')">${s.label}</button>`
+  ).join('');
+}
+
+function renderQuestion(qid) {
+  const el = document.getElementById('qrow-' + qid);
+  if (!el) return;
+  const a = getAnswer(qid);
+  el.className = 'question-row' + (a.status ? ' answered' : '');
+  el.querySelector('.status-btns').innerHTML = renderStatusBtns(qid);
+}
+
+function buildGroupCard(group, sectionIdx) {
+  const answered = group.questions.filter(q => getAnswer(q.id).status).length;
+  const total = group.questions.length;
+  const isOpen = answered < total; // open if not complete
+
+  const questionsHtml = group.questions.map(q => {
+    const a = getAnswer(q.id);
+    return `<div class="question-row${a.status ? ' answered' : ''}" id="qrow-${q.id}">
+      <div>
+        <div class="q-text">${q.text}</div>
+        ${q.activity ? `<div class="q-link"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>Activity: ${q.activity}</div>` : ''}
+      </div>
+      <div class="q-controls">
+        <div class="status-btns">${renderStatusBtns(q.id)}</div>
+        <textarea class="q-notes" placeholder="Add notes…" 
+          onchange="setAnswer('${q.id}','notes',this.value)">${a.notes || ''}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="group-card${isOpen ? ' open' : ''}" id="group-${group.id}">
+    <div class="group-hdr" onclick="toggleGroup('${group.id}')">
+      <div class="group-num">${group.num}</div>
+      <div class="group-info">
+        <div class="group-title">${group.title}</div>
+        <div class="group-desc">${group.desc}</div>
+      </div>
+      <div class="group-meta">
+        <span class="group-count">${answered}/${total}</span>
+        <svg class="group-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="group-body">${questionsHtml}</div>
+  </div>`;
+}
+
+function toggleGroup(id) {
+  const card = document.getElementById('group-' + id);
+  card.classList.toggle('open');
+}
+
+function renderSection(data, containerId) {
+  document.getElementById(containerId).innerHTML = data.map((g, i) => buildGroupCard(g, i)).join('');
+}
+
+// ── PROGRESS ──────────────────────────────────────────────────────
+
+function updateProgress() {
+  const totals = { met: 0, partial: 0, notmet: 0, na: 0, answered: 0 };
+  ALL_QUESTIONS.forEach(q => {
+    const s = getAnswer(q.id).status;
+    if (s) { totals[s] = (totals[s] || 0) + 1; totals.answered++; }
+  });
+
+  const total = ALL_QUESTIONS.length;
+  const pct = Math.round((totals.answered / total) * 100);
+
+  // Ring
+  const circumference = 232.5;
+  const offset = circumference - (pct / 100) * circumference;
+  document.getElementById('ringFill').style.strokeDashoffset = offset;
+  document.getElementById('ringPct').textContent = pct + '%';
+
+  // Stats
+  document.getElementById('statMet').textContent = totals.met || 0;
+  document.getElementById('statPartial').textContent = totals.partial || 0;
+  document.getElementById('statNotmet').textContent = totals.notmet || 0;
+  document.getElementById('statNs').textContent = total - totals.answered;
+
+  // Section progress bars
+  const sections = [
+    { data: PRINCIPLES, bar: 'prog1' },
+    { data: ACTIVITIES, bar: 'prog2' },
+    { data: MILESTONES, bar: 'prog3' }
+  ];
+  sections.forEach(({ data, bar }) => {
+    const qs = data.flatMap(g => g.questions);
+    const done = qs.filter(q => getAnswer(q.id).status).length;
+    const el = document.getElementById(bar);
+    if (el) el.style.width = Math.round((done / qs.length) * 100) + '%';
+  });
+
+  // Sidebar group dots
+  updateSidebar();
+
+  // Update group counts
+  [...PRINCIPLES, ...ACTIVITIES, ...MILESTONES].forEach(g => {
+    const card = document.getElementById('group-' + g.id);
+    if (!card) return;
+    const answered = g.questions.filter(q => getAnswer(q.id).status).length;
+    const countEl = card.querySelector('.group-count');
+    if (countEl) countEl.textContent = answered + '/' + g.questions.length;
+  });
+}
+
+function buildSidebar() {
+  const sections = [
+    { title: 'Principles', data: PRINCIPLES, screen: 'screen1' },
+    { title: 'Activities', data: ACTIVITIES, screen: 'screen2' },
+    { title: 'Milestones', data: MILESTONES, screen: 'screen3' }
+  ];
+
+  const html = sections.map(sec => {
+    const items = sec.data.map(g => {
+      const done = g.questions.filter(q => getAnswer(q.id).status).length;
+      const total = g.questions.length;
+      const cls = done === total ? 'done' : done > 0 ? 'partial' : '';
+      return `<div class="snav-item ${cls}" onclick="showScreen('${sec.screen}');scrollToGroup('${g.id}')">${g.title}</div>`;
+    }).join('');
+
+    const total = sec.data.flatMap(g => g.questions).length;
+    const done = sec.data.flatMap(g => g.questions).filter(q => getAnswer(q.id).status).length;
+    return `<div class="snav-section">
+      <div class="snav-hdr" onclick="showScreen('${sec.screen}')">
+        ${sec.title} <span class="snav-badge">${done}/${total}</span>
+      </div>
+      <div class="snav-items">${items}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('sidebarNav').innerHTML = html;
+}
+
+function updateSidebar() {
+  const sections = [
+    { data: PRINCIPLES }, { data: ACTIVITIES }, { data: MILESTONES }
+  ];
+  sections.forEach(sec => {
+    const total = sec.data.flatMap(g => g.questions).length;
+    const done = sec.data.flatMap(g => g.questions).filter(q => getAnswer(q.id).status).length;
+    sec.data.forEach(g => {
+      const gdone = g.questions.filter(q => getAnswer(q.id).status).length;
+      const gtotal = g.questions.length;
+      const el = document.querySelector(`.snav-item[onclick*="${g.id}"]`);
+      if (el) {
+        el.className = 'snav-item ' + (gdone === gtotal ? 'done' : gdone > 0 ? 'partial' : '');
+      }
+    });
+  });
+  // Update badges
+  const allSecs = [
+    { data: PRINCIPLES, title: 'Principles' },
+    { data: ACTIVITIES, title: 'Activities' },
+    { data: MILESTONES, title: 'Milestones' }
+  ];
+  allSecs.forEach(sec => {
+    const total = sec.data.flatMap(g => g.questions).length;
+    const done = sec.data.flatMap(g => g.questions).filter(q => getAnswer(q.id).status).length;
+    const badges = document.querySelectorAll('.snav-badge');
+    badges.forEach(b => {
+      if (b.closest('.snav-section')?.querySelector('.snav-hdr')?.textContent.trim().startsWith(sec.title)) {
+        b.textContent = done + '/' + total;
+      }
+    });
+  });
+}
+
+function scrollToGroup(id) {
+  setTimeout(() => {
+    const el = document.getElementById('group-' + id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// ── NAVIGATION ──────────────────────────────────────────────────
+
+const SCREENS = ['screenWelcome', 'screen1', 'screen2', 'screen3', 'screenResults'];
+
+function showScreen(id) {
+  SCREENS.forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.style.display = s === id ? 'block' : 'none';
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Mark active sidebar section
+  document.querySelectorAll('.snav-hdr').forEach(h => h.classList.remove('active-section'));
+  const map = { screen1: 'Principles', screen2: 'Activities', screen3: 'Milestones' };
+  if (map[id]) {
+    document.querySelectorAll('.snav-hdr').forEach(h => {
+      if (h.textContent.trim().startsWith(map[id])) h.classList.add('active-section');
+    });
+  }
+}
+
+function startChecklist() {
+  showScreen('screen1');
+}
+
+function resumeChecklist() {
+  // Find first incomplete section
+  const p = PRINCIPLES.flatMap(g => g.questions).filter(q => !getAnswer(q.id).status).length;
+  const a = ACTIVITIES.flatMap(g => g.questions).filter(q => !getAnswer(q.id).status).length;
+  if (p > 0) showScreen('screen1');
+  else if (a > 0) showScreen('screen2');
+  else showScreen('screen3');
+}
+
+function restartChecklist() {
+  if (!confirm('This will clear all your answers. Are you sure?')) return;
+  answers = {};
+  saveAnswers();
+  renderSection(PRINCIPLES, 'principles-container');
+  renderSection(ACTIVITIES, 'activities-container');
+  renderSection(MILESTONES, 'milestones-container');
+  updateProgress();
+  showScreen('screenWelcome');
+}
+
+// ── RESULTS ─────────────────────────────────────────────────────
+
+function showResults() {
+  const counts = { met: 0, partial: 0, notmet: 0, na: 0 };
+  const notMetItems = [];
+  const partialItems = [];
+
+  ALL_QUESTIONS.forEach(q => {
+    const s = getAnswer(q.id).status;
+    if (s) counts[s]++;
+    else counts.notmet++;
+    if (s === 'notmet') notMetItems.push(q);
+    if (s === 'partial') partialItems.push(q);
+  });
+
+  const total = ALL_QUESTIONS.length;
+  const answered = counts.met + counts.partial + counts.notmet + (counts.na || 0);
+
+  // Date
+  document.getElementById('resultsDate').textContent = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+  // RAG cards
+  document.getElementById('resultsRag').innerHTML = `
+    <div class="rag-card met"><div class="rag-n">${counts.met}</div><div class="rag-l">Assessed — Met</div><div class="rag-sub">of ${total} total</div></div>
+    <div class="rag-card partial"><div class="rag-n">${counts.partial}</div><div class="rag-l">Partially Met</div><div class="rag-sub">action needed</div></div>
+    <div class="rag-card notmet"><div class="rag-n">${counts.notmet}</div><div class="rag-l">Not Met</div><div class="rag-sub">priority action</div></div>
+    <div class="rag-card ns"><div class="rag-n">${counts.na || 0}</div><div class="rag-l">Not Applicable</div><div class="rag-sub">excluded</div></div>
+  `;
+
+  // Priority list
+  let priorityHtml = '<div class="priority-hdr"><span class="priority-hdr-title">Prioritised Action List</span></div>';
+
+  if (notMetItems.length) {
+    priorityHtml += `<div class="priority-section">🔴 Not Met — Address First (${notMetItems.length})</div>`;
+    priorityHtml += notMetItems.map(q => {
+      const notes = getAnswer(q.id).notes;
+      return `<div class="priority-item">
+        <div class="priority-dot notmet"></div>
+        <div class="priority-text">
+          <strong>${q.group}</strong>
+          <span>${q.text}${notes ? '<br><em style="color:var(--o)">Your notes: ' + notes + '</em>' : ''}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  if (partialItems.length) {
+    priorityHtml += `<div class="priority-section">🟡 Partially Met — Improve (${partialItems.length})</div>`;
+    priorityHtml += partialItems.map(q => {
+      const notes = getAnswer(q.id).notes;
+      return `<div class="priority-item">
+        <div class="priority-dot partial"></div>
+        <div class="priority-text">
+          <strong>${q.group}</strong>
+          <span>${q.text}${notes ? '<br><em style="color:var(--o)">Your notes: ' + notes + '</em>' : ''}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  if (!notMetItems.length && !partialItems.length) {
+    priorityHtml += `<div class="priority-item"><div class="priority-text"><strong style="color:var(--met)">Excellent — all assessed items are met or not applicable.</strong><span>Well done. Continue to maintain and review your Secure by Design posture regularly.</span></div></div>`;
+  }
+
+  document.getElementById('priorityList').innerHTML = priorityHtml;
+  showScreen('screenResults');
+}
+
+// ── PDF / SHARE ──────────────────────────────────────────────────
+
+function downloadPDF() {
+  const counts = { met: 0, partial: 0, notmet: 0, na: 0 };
+  ALL_QUESTIONS.forEach(q => {
+    const s = getAnswer(q.id).status || 'notmet';
+    counts[s]++;
+  });
+
+  const date = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+  const total = ALL_QUESTIONS.length;
+
+  const statusLabel = { met:'✅ Met', partial:'🟡 Partially Met', notmet:'❌ Not Met', na:'— N/A', null:'⬜ Not Assessed' };
+  const statusColor = { met:'#16A34A', partial:'#D97706', notmet:'#DC2626', na:'#6B7280', null:'#9CA3AF' };
+
+  let allSections = '';
+
+  const renderGroup = (groups, label) => {
+    let html = `<h2 style="font-family:sans-serif;font-size:14px;font-weight:700;color:#0E0E14;margin:24px 0 8px;border-bottom:2px solid #E85D04;padding-bottom:6px;">${label}</h2>`;
+    groups.forEach(g => {
+      html += `<h3 style="font-family:sans-serif;font-size:12px;font-weight:700;color:#1B1B24;margin:14px 0 6px;">${g.num}. ${g.title}</h3>`;
+      g.questions.forEach(q => {
+        const a = getAnswer(q.id);
+        const s = a.status || null;
+        html += `<div style="margin-bottom:8px;padding:8px 10px;border-radius:6px;border:1px solid #E6E5E1;background:#FAFAFA;">
+          <div style="font-family:sans-serif;font-size:10.5px;color:#374151;line-height:1.5;margin-bottom:4px;">${q.text}</div>
+          <div style="font-family:sans-serif;font-size:10px;font-weight:700;color:${statusColor[s] || statusColor.null};">${statusLabel[s] || statusLabel.null}</div>
+          ${a.notes ? `<div style="font-family:sans-serif;font-size:10px;color:#6B7280;margin-top:3px;font-style:italic;">Notes: ${a.notes}</div>` : ''}
+        </div>`;
+      });
+    });
+    return html;
+  };
+
+  const printContent = `<!DOCTYPE html><html><head><title>SbD Checklist — Fyrfly Systems</title>
+  <style>@media print{body{margin:0;}}</style></head><body style="margin:20px;font-family:sans-serif;">
+  <div style="background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);padding:20px 24px;border-radius:8px;margin-bottom:16px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:6px;">FYRFLY SYSTEMS</div>
+    <div style="font-size:18px;font-weight:800;color:#fff;">Secure by Design Preparation Checklist</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.75);margin-top:4px;">Assessment completed ${date} &nbsp;|&nbsp; Alpha v2.0, May 2025</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+    <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:20px;font-weight:800;color:#16A34A;">${counts.met}</div>
+      <div style="font-size:9px;font-weight:600;color:#6B7280;text-transform:uppercase;">Met</div>
+    </div>
+    <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:20px;font-weight:800;color:#D97706;">${counts.partial}</div>
+      <div style="font-size:9px;font-weight:600;color:#6B7280;text-transform:uppercase;">Partially Met</div>
+    </div>
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:20px;font-weight:800;color:#DC2626;">${counts.notmet}</div>
+      <div style="font-size:9px;font-weight:600;color:#6B7280;text-transform:uppercase;">Not Met</div>
+    </div>
+    <div style="background:#F3F4F6;border:1px solid #D1D5DB;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:20px;font-weight:800;color:#6B7280;">${counts.na}</div>
+      <div style="font-size:9px;font-weight:600;color:#6B7280;text-transform:uppercase;">N/A</div>
+    </div>
+  </div>
+  ${renderGroup(PRINCIPLES, 'Section 1: Principles Checklist')}
+  ${renderGroup(ACTIVITIES, 'Section 2: Activities Checklist')}
+  ${renderGroup(MILESTONES, 'Section 3: Implementation Milestones')}
+  <div style="margin-top:24px;padding:12px 14px;background:#F5F4F2;border-radius:8px;font-size:9.5px;color:#67677A;">
+    Generated by Fyrfly Systems SbD Checklist Tool — www.fyrflysystems.com<br>
+    Based on the UK Government Secure by Design Preparation Checklist (Alpha v2.0, May 2025)<br>
+    Source: https://www.security.gov.uk/policy-and-guidance/secure-by-design/
+  </div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`;
+
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(printContent); w.document.close(); }
+  else alert('Please allow popups to download the PDF, then try again.');
+}
+
+function shareWithFyrfly() {
+  const counts = { met: 0, partial: 0, notmet: 0 };
+  const gaps = [];
+  ALL_QUESTIONS.forEach(q => {
+    const s = getAnswer(q.id).status;
+    if (s === 'met') counts.met++;
+    else if (s === 'partial') counts.partial++;
+    else if (!s || s === 'notmet') counts.notmet++;
+    if (s === 'notmet' || s === 'partial') gaps.push(`- [${s === 'notmet' ? 'Not Met' : 'Partial'}] ${q.group}: ${q.text.substring(0, 80)}...`);
+  });
+
+  const subject = encodeURIComponent('Secure by Design Assessment — Fyrfly Checklist');
+  const body = encodeURIComponent(
+    `Hi Fyrfly Systems,\n\nI have completed the Secure by Design Preparation Checklist on your website and would like to discuss our results and next steps.\n\nResults Summary:\n• Met: ${counts.met}/${ALL_QUESTIONS.length}\n• Partially Met: ${counts.partial}\n• Not Met / Not Assessed: ${counts.notmet}\n\nKey gaps identified:\n${gaps.slice(0, 10).join('\n')}${gaps.length > 10 ? `\n...and ${gaps.length - 10} more` : ''}\n\nPlease get in touch to discuss how Fyrfly Systems can help us address these gaps.\n\nKind regards`
+  );
+  window.location.href = `mailto:hello@fyrflysystems.com?subject=${subject}&body=${body}`;
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+
+function init() {
+  const hasSaved = loadAnswers();
+
+  renderSection(PRINCIPLES, 'principles-container');
+  renderSection(ACTIVITIES, 'activities-container');
+  renderSection(MILESTONES, 'milestones-container');
+  buildSidebar();
+  updateProgress();
+
+  if (hasSaved && Object.keys(answers).length > 0) {
+    document.getElementById('btnResume').style.display = 'inline-flex';
+  }
+}
+
+if (document.readyState === 'complete') { init(); }
+else { window.addEventListener('load', init); }
+</script>
+</body>
+</html>
