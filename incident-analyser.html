@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incident Pattern Analyser for Schools & Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Free incident pattern analysis tool for schools and public sector. Paste your incident log and get an instant analysis of vulnerability windows, hotspot locations, trends and recommended security interventions.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/incident-analyser.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:title" content="Incident Pattern Analyser | Fyrfly Systems">
+  <meta property="og:description" content="Paste your incident log and get instant pattern analysis — vulnerability windows, hotspot locations, trends and recommended interventions.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+  <style>
+    :root {
+      --c:#C8102E; --o:#E85D04; --a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14; --char:#1B1B24; --mid:#67677A; --mute:#9595A5;
+      --light:#F5F4F2; --bdr:#E6E5E1; --white:#FFFFFF;
+      --fh:'Roboto',sans-serif; --fb:'DM Sans',sans-serif;
+      --max:1200px; --nh:70px; --ease:cubic-bezier(0.22,1,0.36,1);
+      --red:#EF4444; --amber:#F59E0B; --green:#10B981;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+    button{cursor:pointer;font-family:var(--fb);}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+
+    /* HERO */
+    .hero{background:var(--char);padding:4.5rem 0 3.5rem;position:relative;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(232,93,4,0.12) 0%,transparent 55%),radial-gradient(ellipse at 10% 65%,rgba(200,16,46,0.08) 0%,transparent 50%);}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.055) 1px,transparent 1px);background-size:38px 38px;}
+    .hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem;}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.9rem;}
+    .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:52ch;}
+    .hero-pills{display:flex;flex-direction:column;gap:0.5rem;min-width:220px;}
+    .hero-pill{display:flex;align-items:center;gap:0.65rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.65rem 0.9rem;font-size:0.8rem;color:rgba(255,255,255,0.6);}
+    .hero-pill svg{width:14px;height:14px;stroke:var(--a);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+
+    /* MAIN TOOL AREA */
+    .tool-wrap{max-width:var(--max);margin:0 auto;padding:3rem 2rem 5rem;display:grid;grid-template-columns:1fr 420px;gap:2.5rem;align-items:start;}
+
+    /* INPUT PANEL */
+    .input-panel{display:flex;flex-direction:column;gap:1.5rem;}
+    .panel-title{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;margin-bottom:0.3rem;}
+    .panel-sub{font-size:0.83rem;color:var(--mid);line-height:1.65;}
+
+    /* FORMAT GUIDE */
+    .format-guide{background:var(--light);border:1px solid var(--bdr);border-radius:12px;padding:1.25rem;}
+    .format-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);margin-bottom:0.75rem;}
+    .format-example{font-family:monospace;font-size:0.78rem;color:var(--mid);line-height:1.8;background:var(--white);border:1px solid var(--bdr);border-radius:8px;padding:0.75rem 1rem;}
+    .format-note{font-size:0.77rem;color:var(--mute);margin-top:0.75rem;line-height:1.6;}
+
+    /* TEXTAREA */
+    .input-area{position:relative;}
+    .incident-textarea{width:100%;min-height:280px;padding:1rem 1.1rem;font-family:monospace;font-size:0.83rem;color:var(--dark);background:var(--white);border:1.5px solid var(--bdr);border-radius:12px;resize:vertical;line-height:1.7;transition:border-color 0.2s;outline:none;}
+    .incident-textarea:focus{border-color:var(--o);}
+    .incident-textarea::placeholder{color:var(--mute);font-family:var(--fb);}
+    .char-count{font-size:0.72rem;color:var(--mute);text-align:right;margin-top:0.4rem;}
+
+    /* SAMPLE DATA */
+    .sample-btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--o);font-weight:500;background:none;border:none;padding:0;transition:gap 0.2s;}
+    .sample-btn:hover{gap:0.6rem;}
+
+    /* ANALYSE BUTTON */
+    .btn-analyse{width:100%;padding:1rem;border-radius:10px;background:var(--grad);border:none;color:#fff;font-size:0.95rem;font-weight:700;letter-spacing:0.02em;transition:opacity 0.2s,transform 0.2s var(--ease);display:flex;align-items:center;justify-content:center;gap:0.6rem;}
+    .btn-analyse:hover:not(:disabled){opacity:0.88;transform:translateY(-2px);}
+    .btn-analyse:disabled{opacity:0.35;cursor:not-allowed;transform:none;}
+    .btn-analyse svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+    /* PROCESSING */
+    .processing{display:none;text-align:center;padding:2rem;}
+    .processing.show{display:block;}
+    .spinner{width:40px;height:40px;border:3px solid var(--bdr);border-top-color:var(--o);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .processing p{font-size:0.88rem;color:var(--mid);}
+
+    /* RESULTS PANEL */
+    .results-panel{position:sticky;top:calc(var(--nh) + 1.5rem);}
+    .results-empty{background:var(--light);border:1px dashed var(--bdr);border-radius:16px;padding:3rem 2rem;text-align:center;}
+    .results-empty svg{width:48px;height:48px;stroke:rgba(0,0,0,0.12);fill:none;stroke-width:1.5;stroke-linecap:round;margin:0 auto 1rem;}
+    .results-empty p{font-size:0.85rem;color:var(--mute);line-height:1.65;max-width:26ch;margin:0 auto;}
+    .results-card{background:var(--white);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;display:none;}
+    .results-card.show{display:block;animation:slideUp 0.35s var(--ease) both;}
+    @keyframes slideUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+    /* SCORE HEADER */
+    .score-header{background:var(--char);padding:1.5rem;position:relative;overflow:hidden;}
+    .score-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.15) 0%,transparent 60%);}
+    .score-header-c{position:relative;z-index:2;}
+    .score-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.4rem;}
+    .score-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.25rem;}
+    .score-meta{font-size:0.75rem;color:rgba(255,255,255,0.4);}
+    .risk-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.8rem;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-top:0.75rem;}
+
+    /* STATS ROW */
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--bdr);}
+    .stat-box{padding:1rem;text-align:center;border-right:1px solid var(--bdr);}
+    .stat-box:last-child{border-right:none;}
+    .stat-n{font-family:var(--fh);font-size:1.6rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .stat-l{font-size:0.68rem;color:var(--mute);margin-top:0.3rem;line-height:1.4;}
+
+    /* SECTION BLOCKS */
+    .r-section{padding:1.25rem;border-bottom:1px solid var(--bdr);}
+    .r-section:last-child{border-bottom:none;}
+    .r-section-title{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.5rem;}
+    .r-section-title svg{width:12px;height:12px;stroke:var(--o);fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    /* TIME CHART */
+    .time-chart{display:flex;flex-direction:column;gap:0.45rem;}
+    .time-bar-row{display:flex;align-items:center;gap:0.6rem;}
+    .time-label{font-size:0.72rem;color:var(--mid);width:80px;flex-shrink:0;}
+    .time-bar-wrap{flex:1;background:var(--light);border-radius:100px;height:8px;overflow:hidden;}
+    .time-bar{height:100%;border-radius:100px;transition:width 0.6s var(--ease);}
+    .time-count{font-size:0.68rem;color:var(--mute);width:20px;text-align:right;flex-shrink:0;}
+
+    /* LOCATION LIST */
+    .location-list{display:flex;flex-direction:column;gap:0.5rem;}
+    .location-item{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.75rem;background:var(--light);border-radius:8px;}
+    .loc-rank{width:20px;height:20px;border-radius:50%;background:var(--grad);color:#fff;font-size:0.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .loc-name{font-size:0.82rem;color:var(--dark);font-weight:500;flex:1;}
+    .loc-count{font-size:0.75rem;color:var(--mute);}
+    .loc-pct{font-size:0.72rem;font-weight:600;color:var(--o);}
+
+    /* FINDINGS */
+    .finding-item{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.65rem;padding:0.75rem;background:var(--light);border-radius:8px;border-left:3px solid var(--bdr);}
+    .finding-item.high{border-left-color:var(--red);}
+    .finding-item.medium{border-left-color:var(--amber);}
+    .finding-item.low{border-left-color:var(--green);}
+    .finding-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:0.35rem;}
+    .finding-text{font-size:0.81rem;color:var(--dark);line-height:1.55;}
+    .finding-text strong{font-weight:600;}
+
+    /* INTERVENTIONS */
+    .intervention-item{display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid var(--bdr);}
+    .intervention-item:last-child{border-bottom:none;padding-bottom:0;}
+    .int-num{width:22px;height:22px;border-radius:50%;background:var(--grad);color:#fff;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;}
+    .int-content strong{display:block;font-size:0.82rem;color:var(--dark);margin-bottom:0.15rem;}
+    .int-content span{font-size:0.77rem;color:var(--mid);line-height:1.55;}
+    .int-tag{display:inline-flex;font-size:0.62rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-top:0.3rem;}
+
+    /* ACTIONS */
+    .results-footer{padding:1.25rem;border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:0.5rem;}
+    .btn-pdf{width:100%;padding:0.8rem;border-radius:8px;background:var(--grad);border:none;color:#fff;font-size:0.85rem;font-weight:600;transition:opacity 0.2s;}
+    .btn-pdf:hover{opacity:0.88;}
+    .btn-share{width:100%;padding:0.75rem;border-radius:8px;background:var(--white);border:1.5px solid var(--bdr);color:var(--mid);font-size:0.83rem;font-weight:500;transition:all 0.2s;}
+    .btn-share:hover{border-color:var(--dark);color:var(--dark);}
+
+    /* DAY OF WEEK CHART */
+    .dow-chart{display:flex;align-items:flex-end;gap:0.35rem;height:60px;}
+    .dow-col{display:flex;flex-direction:column;align-items:center;gap:0.35rem;flex:1;}
+    .dow-bar-wrap{flex:1;display:flex;align-items:flex-end;width:100%;}
+    .dow-bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;transition:height 0.6s var(--ease);}
+    .dow-label{font-size:0.6rem;color:var(--mute);}
+
+    /* FOOTER */
+    footer{background:var(--dark);padding:3rem 0 1.5rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+
+    @media(max-width:1024px){.tool-wrap{grid-template-columns:1fr;}.results-panel{position:static;}}
+    @media(max-width:768px){.hero-c{grid-template-columns:1fr;}.hero-pills{display:none;}.tool-wrap{padding:2rem 1.25rem 4rem;}.stats-row{grid-template-columns:repeat(3,1fr);}.ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}.ft-grid>div:first-child{grid-column:span 2;}.ft-grid>div:last-child{grid-column:span 2;}.ft-bot{flex-direction:column;align-items:flex-start;}.wrap{padding:0 1.25rem;}}
+    @media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr;}.stat-box:last-child{grid-column:span 2;border-right:none;border-top:1px solid var(--bdr);}.ft-grid{grid-template-columns:1fr;}.ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}}
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-c">
+    <div>
+      <div class="sec-lbl">Pattern Analyser</div>
+      <h1>Your Incident Data.<br><span class="acc">Patterns You Cannot See.</span></h1>
+      <p class="hero-sub">Paste your incident log and get an instant analysis of when, where and why incidents are happening — plus specific security interventions mapped to each pattern. No software, no sign-up, no data stored.</p>
+    </div>
+    <div class="hero-pills">
+      <div class="hero-pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Identifies peak vulnerability time windows</div>
+      <div class="hero-pill"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Maps hotspot locations by incident frequency</div>
+      <div class="hero-pill"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Detects seasonal and weekly trends</div>
+      <div class="hero-pill"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Recommends specific security interventions</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL -->
+<div class="tool-wrap">
+  <!-- LEFT: INPUT -->
+  <div class="input-panel">
+    <div>
+      <div class="panel-title">Paste your incident log below</div>
+      <div class="panel-sub">Include date, time, location and a brief description for each incident. The more detail you include, the richer the analysis. Your data is never stored or transmitted — all analysis happens in your browser.</div>
+    </div>
+
+    <div class="format-guide">
+      <div class="format-title">Accepted formats</div>
+      <div class="format-example">15/03/2024 22:30 Car Park — vandalism to vehicle<br>22/03/2024 06:15 Main Gate — attempted forced entry<br>28/03/2024 19:45 Car Park — graffiti on fence<br>03/04/2024 23:10 Perimeter — trespass detected<br>Monday 14:30 Reception — aggressive visitor<br>Fri 8pm Sports Hall — break-in attempt</div>
+      <div class="format-note">Dates, times and locations can be in any format. The tool recognises common patterns. You can also paste directly from Excel or a spreadsheet — one incident per line is all that is needed.</div>
+    </div>
+
+    <div class="input-area">
+      <textarea
+        class="incident-textarea"
+        id="incidentInput"
+        placeholder="Paste your incidents here — one per line&#10;&#10;Example:&#10;15/03/2024 22:30 Car Park — vandalism&#10;22/03/2024 06:15 Main Gate — forced entry attempt&#10;01/04/2024 19:45 Car Park — graffiti&#10;08/04/2024 23:00 Perimeter — trespass&#10;15/04/2024 14:30 Reception — disturbance"
+        oninput="onInput()"></textarea>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem;">
+        <button type="button" class="sample-btn" onclick="loadSample()">
+          <svg viewBox="0 0 24 24" width="13" height="13" style="stroke:var(--o);fill:none;stroke-width:2.5;stroke-linecap:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Load sample data
+        </button>
+        <div class="char-count" id="charCount">0 lines entered</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-analyse" id="analyseBtn" onclick="analyse()" disabled>
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><polyline points="21 21 16.65 16.65"/></svg>
+      Analyse Incidents
+    </button>
+
+    <div class="processing" id="processing">
+      <div class="spinner"></div>
+      <p>Analysing patterns across your incident data&hellip;</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: RESULTS -->
+  <div class="results-panel">
+    <div class="results-empty" id="resultsEmpty">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <p>Your pattern analysis will appear here once you have pasted your incidents and clicked Analyse</p>
+    </div>
+    <div class="results-card" id="resultsCard">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" width="160" height="50" loading="lazy" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li><li><a href="support-maintenance.html">Support &amp; Maintenance</a></li><li><a href="ai-analytics.html">AI &amp; Analytics</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Tools</div>
+      <ul class="ft-links"><li><a href="incident-analyser.html">Pattern Analyser</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li><li><a href="system-integration.html">System Integration</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════
+// INCIDENT PATTERN ANALYSER — CORE ENGINE
+// No AI required. All analysis runs in the browser.
+// ═══════════════════════════════════════════════════════════
+
+// ── Sample data ────────────────────────────────────────────
+const SAMPLE = `15/01/2025 22:30 Car Park — vandalism to vehicle
+22/01/2025 06:15 Main Gate — attempted forced entry
+28/01/2025 19:45 Car Park — graffiti on perimeter fence
+03/02/2025 23:10 Sports Hall — trespass detected by alarm
+10/02/2025 21:00 Car Park — wing mirror damage
+17/02/2025 07:30 Reception — aggressive visitor refused entry
+24/02/2025 22:45 Car Park — vehicle window smashed
+03/03/2025 20:15 Perimeter — fence cut, entry attempted
+10/03/2025 14:30 Corridor B — theft of laptop
+17/03/2025 23:30 Car Park — catalytic converter theft attempt
+24/03/2025 18:45 Sports Hall — broken window, no entry
+31/03/2025 21:15 Main Gate — graffiti on gates
+07/04/2025 06:00 Server Room — door tamper alarm
+14/04/2025 22:00 Car Park — arson attempt, bins
+21/04/2025 19:30 Perimeter — trespass, youths on roof
+28/04/2025 23:45 Car Park — vehicle theft
+05/05/2025 20:30 Sports Hall — attempted break-in
+12/05/2025 14:15 Reception — theft from desk
+19/05/2025 22:15 Car Park — vandalism
+26/05/2025 07:45 Main Gate — lock tampered`;
+
+// ── Parsers ────────────────────────────────────────────────
+function parseTime(str) {
+  // Match HH:MM or H:MM am/pm patterns
+  const m24 = str.match(/\b(\d{1,2}):(\d{2})\b/);
+  if (m24) {
+    let h = parseInt(m24[1]);
+    // Check for pm indicator nearby
+    if (/pm/i.test(str) && h < 12) h += 12;
+    if (/am/i.test(str) && h === 12) h = 0;
+    return h + parseInt(m24[2]) / 60;
+  }
+  // Match "6pm", "10am", "8pm" patterns
+  const mShort = str.match(/\b(\d{1,2})\s*(am|pm)\b/i);
+  if (mShort) {
+    let h = parseInt(mShort[1]);
+    if (mShort[2].toLowerCase() === 'pm' && h < 12) h += 12;
+    if (mShort[2].toLowerCase() === 'am' && h === 12) h = 0;
+    return h;
+  }
+  return null;
+}
+
+function parseDate(str) {
+  // DD/MM/YYYY or DD-MM-YYYY or DD.MM.YYYY
+  const mDMY = str.match(/\b(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})\b/);
+  if (mDMY) {
+    const d = parseInt(mDMY[1]), m = parseInt(mDMY[2]), y = parseInt(mDMY[3]);
+    const year = y < 100 ? 2000 + y : y;
+    return new Date(year, m - 1, d);
+  }
+  // Month name patterns
+  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  for (let i = 0; i < months.length; i++) {
+    const re = new RegExp('\\b(\\d{1,2})\\s*' + months[i], 'i');
+    const m2 = str.match(re);
+    if (m2) return new Date(2025, i, parseInt(m2[1]));
+    const re2 = new RegExp(months[i] + '\\s*(\\d{1,2})', 'i');
+    const m3 = str.match(re2);
+    if (m3) return new Date(2025, i, parseInt(m3[1]));
+  }
+  return null;
+}
+
+function parseDayOfWeek(str) {
+  const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday','mon','tue','wed','thu','fri','sat','sun'];
+  const short = ['mon','tue','wed','thu','fri','sat','sun'];
+  const lower = str.toLowerCase();
+  for (let i = 0; i < 7; i++) {
+    if (lower.includes(days[i]) || lower.includes(days[i+7])) return i; // 0=Mon
+  }
+  return null;
+}
+
+function parseLocation(str) {
+  // Remove date/time patterns and grab the location-ish text
+  let s = str
+    .replace(/\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4}/g, '')
+    .replace(/\d{1,2}:\d{2}/g, '')
+    .replace(/\b\d{1,2}\s*(am|pm)\b/gi, '')
+    .replace(/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|sat|sun)\b/gi, '')
+    .replace(/^\W+/, '').replace(/\W+$/, '');
+  // Split on common separators and take the location part
+  const parts = s.split(/[—\-|,]/);
+  if (parts.length >= 2) {
+    // First substantial part is usually the location
+    return parts[0].trim().replace(/^\W+|\W+$/g, '') || parts[1].trim();
+  }
+  return s.trim() || 'Unknown';
+}
+
+function parseType(str) {
+  const lower = str.toLowerCase();
+  if (/vandal|graffiti|damage|smash|scratch|keyed/.test(lower)) return 'Vandalism';
+  if (/theft|stolen|steal|rob|burglar|break.in|broke.in|forced.entry|entry.attempt/.test(lower)) return 'Theft / Break-in';
+  if (/trespass|unauthoris|intruder|roof|climb/.test(lower)) return 'Trespass';
+  if (/alarm|tamper|sensor|trigger|false/.test(lower)) return 'Alarm Event';
+  if (/aggressiv|assault|fight|threaten|abuse|disturbance|visitor/.test(lower)) return 'Aggressive Behaviour';
+  if (/fire|arson|smoke/.test(lower)) return 'Fire / Arson';
+  if (/vehicle|car|van|bike|motorcycle|catalytic|wing.mirror/.test(lower)) return 'Vehicle Crime';
+  return 'Other';
+}
+
+function timeToLabel(h) {
+  if (h === null) return 'Unknown';
+  if (h < 6) return 'Night (00:00-06:00)';
+  if (h < 9) return 'Early Morning (06:00-09:00)';
+  if (h < 12) return 'Morning (09:00-12:00)';
+  if (h < 14) return 'Lunchtime (12:00-14:00)';
+  if (h < 17) return 'Afternoon (14:00-17:00)';
+  if (h < 20) return 'Evening (17:00-20:00)';
+  if (h < 23) return 'Late Evening (20:00-23:00)';
+  return 'Night (23:00-00:00)';
+}
+
+const DOW_LABELS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+// ── Main analysis engine ───────────────────────────────────
+function analyseIncidents(raw) {
+  const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 5);
+  
+  const incidents = lines.map(line => ({
+    raw: line,
+    time: parseTime(line),
+    date: parseDate(line),
+    dow: parseDayOfWeek(line),
+    location: parseLocation(line),
+    type: parseType(line),
+    timeLabel: timeToLabel(parseTime(line))
+  }));
+
+  const n = incidents.length;
+  
+  // ── Frequency counts ──────────────────────────────────────
+  const timeBuckets = {};
+  const dowCounts = Array(7).fill(0);
+  const locationCounts = {};
+  const typeCounts = {};
+  let knownTime = 0;
+  let knownDow = 0;
+
+  const TIME_WINDOWS = [
+    'Night (00:00-06:00)', 'Early Morning (06:00-09:00)',
+    'Morning (09:00-12:00)', 'Lunchtime (12:00-14:00)',
+    'Afternoon (14:00-17:00)', 'Evening (17:00-20:00)',
+    'Late Evening (20:00-23:00)', 'Night (23:00-00:00)'
+  ];
+  TIME_WINDOWS.forEach(w => timeBuckets[w] = 0);
+
+  incidents.forEach(inc => {
+    if (inc.timeLabel !== 'Unknown') { timeBuckets[inc.timeLabel]++; knownTime++; }
+    
+    // Day of week: try from date first, then direct parse
+    let dow = inc.dow;
+    if (dow === null && inc.date) dow = inc.date.getDay() === 0 ? 6 : inc.date.getDay() - 1;
+    if (dow !== null) { dowCounts[dow]++; knownDow++; }
+    
+    // Normalise location
+    const loc = normaliseLocation(inc.location);
+    locationCounts[loc] = (locationCounts[loc] || 0) + 1;
+    typeCounts[inc.type] = (typeCounts[inc.type] || 0) + 1;
+  });
+
+  // ── Sort and rank ─────────────────────────────────────────
+  const sortedTimes = TIME_WINDOWS
+    .map(w => ({ label: w, count: timeBuckets[w] }))
+    .filter(t => t.count > 0)
+    .sort((a, b) => b.count - a.count);
+
+  const sortedLocations = Object.entries(locationCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6);
+
+  const sortedTypes = Object.entries(typeCounts)
+    .sort((a, b) => b[1] - a[1]);
+
+  // ── Key findings ──────────────────────────────────────────
+  const findings = [];
+  const topTime = sortedTimes[0];
+  const topLoc = sortedLocations[0];
+  const topType = sortedTypes[0];
+
+  // Peak time finding
+  if (topTime && knownTime > 0) {
+    const pct = Math.round(topTime.count / n * 100);
+    const severity = pct > 50 ? 'high' : pct > 30 ? 'medium' : 'low';
+    findings.push({
+      severity,
+      text: `<strong>${pct}% of all incidents</strong> occur during ${topTime.label}. This is your highest-risk time window and should be the primary focus of monitoring and deterrence measures.`
+    });
+  }
+
+  // Out of hours finding
+  const outOfHours = (timeBuckets['Night (00:00-06:00)'] || 0) +
+    (timeBuckets['Late Evening (20:00-23:00)'] || 0) +
+    (timeBuckets['Night (23:00-00:00)'] || 0) +
+    (timeBuckets['Evening (17:00-20:00)'] || 0);
+  if (knownTime > 0 && outOfHours / n > 0.4) {
+    findings.push({
+      severity: 'high',
+      text: `<strong>${Math.round(outOfHours / n * 100)}% of incidents occur outside core hours</strong>. Your site has a significant out-of-hours vulnerability — professional monitoring with ARC response would directly address this.`
+    });
+  }
+
+  // Top location finding
+  if (topLoc && topLoc[1] >= 2) {
+    const pct = Math.round(topLoc[1] / n * 100);
+    findings.push({
+      severity: pct > 40 ? 'high' : 'medium',
+      text: `<strong>${topLoc[0]}</strong> is your highest-risk location, accounting for <strong>${pct}% of incidents</strong>. Targeted CCTV coverage and physical security at this location would have the highest impact.`
+    });
+  }
+
+  // Weekend finding
+  const weekend = (dowCounts[5] || 0) + (dowCounts[6] || 0);
+  if (knownDow > 0 && weekend / knownDow > 0.35) {
+    findings.push({
+      severity: 'medium',
+      text: `<strong>${Math.round(weekend / knownDow * 100)}% of incidents occur at weekends</strong>. Your site is more vulnerable when staff are absent. Consider enhanced monitoring or physical security measures for weekend periods.`
+    });
+  }
+
+  // Type concentration finding
+  if (topType && topType[1] / n > 0.4) {
+    findings.push({
+      severity: 'medium',
+      text: `<strong>${topType[0]}</strong> is your most frequent incident type at <strong>${Math.round(topType[1] / n * 100)}%</strong>. A targeted response to this specific threat category would address the majority of your incidents.`
+    });
+  }
+
+  // Volume finding
+  if (n >= 10) {
+    findings.push({
+      severity: 'low',
+      text: `With <strong>${n} recorded incidents</strong>, your data set is substantial enough to reveal reliable patterns. These findings represent genuine trends rather than random variation.`
+    });
+  }
+
+  // ── Interventions ─────────────────────────────────────────
+  const interventions = generateInterventions(sortedTimes, sortedLocations, sortedTypes, outOfHours, n, dowCounts);
+
+  // ── Risk rating ───────────────────────────────────────────
+  let risk = 'Low';
+  if (n >= 10 || findings.filter(f => f.severity === 'high').length >= 2) risk = 'High';
+  else if (n >= 5 || findings.filter(f => f.severity === 'high').length >= 1) risk = 'Medium';
+
+  return { n, sortedTimes, sortedLocations, sortedTypes, dowCounts, findings, interventions, risk, knownTime, knownDow };
+}
+
+function normaliseLocation(loc) {
+  // Collapse similar location names
+  const l = loc.toLowerCase().trim();
+  if (/car.?park|parking|vehicle.?bay/.test(l)) return 'Car Park';
+  if (/main.gate|front.gate|gate/.test(l)) return 'Main Gate';
+  if (/perim|fence|boundary|wall|hedge/.test(l)) return 'Perimeter';
+  if (/reception|front.desk|entrance|lobby|foyer/.test(l)) return 'Reception';
+  if (/sport|gym|hall|pitch|astro/.test(l)) return 'Sports Facilities';
+  if (/server|it.room|data|comms/.test(l)) return 'Server / IT Room';
+  if (/corridor|stair|landing/.test(l)) return 'Corridors';
+  if (/classroom|room\s?\d/.test(l)) return 'Classrooms';
+  if (/toilet|bathroom|changing/.test(l)) return 'Changing Areas';
+  if (/roof|top/.test(l)) return 'Roof';
+  if (/storage|store|shed/.test(l)) return 'Storage Areas';
+  // Title case the location if not matched
+  return loc.replace(/\b\w/g, c => c.toUpperCase()).substring(0, 25);
+}
+
+function generateInterventions(times, locations, types, outOfHours, n, dow) {
+  const ints = [];
+  const top = times[0];
+  const topLoc = locations[0];
+
+  // Out of hours monitoring
+  if (outOfHours / n > 0.3) {
+    ints.push({
+      title: 'Professional 24/7 Monitoring',
+      desc: 'The volume of out-of-hours incidents indicates a clear need for Alarm Receiving Centre monitoring. A monitored alarm with visual CCTV verification ensures response regardless of staff availability.',
+      tag: 'Monitoring', color: '#8B5CF6'
+    });
+  }
+
+  // CCTV for top location
+  if (topLoc) {
+    ints.push({
+      title: 'Targeted CCTV — ' + topLoc[0],
+      desc: topLoc[0] + ' accounts for the highest share of incidents. HD CCTV with motion-triggered recording and remote access will both deter incidents and provide evidence when they occur.',
+      tag: 'CCTV', color: '#3B82F6'
+    });
+  }
+
+  // Access control if perimeter/gate incidents high
+  const perimLoc = locations.find(l => /car.park|gate|perim|entrance/i.test(l[0]));
+  if (perimLoc && perimLoc[1] >= 2) {
+    ints.push({
+      title: 'Access Control at Key Entry Points',
+      desc: 'The pattern of perimeter and gate incidents suggests unauthorised access is a primary driver. Access control with audit logging would prevent opportunistic entry and create a complete record of all site access.',
+      tag: 'Access Control', color: '#10B981'
+    });
+  }
+
+  // Alarm if late night high
+  const lateNight = (times.find(t => t.label.includes('Night') || t.label.includes('Late Evening'))?.count || 0);
+  if (lateNight / n > 0.25) {
+    ints.push({
+      title: 'Intruder Alarm Upgrade or Review',
+      desc: 'Late-night incidents suggest your current alarm provision may not be deterring or detecting intrusions effectively. A review of your alarm zones, detector placement and signalling path is recommended.',
+      tag: 'Intruder Alarm', color: '#EF4444'
+    });
+  }
+
+  // Lighting if evening incidents high
+  const evening = times.find(t => t.label.includes('Evening') || t.label.includes('Late Evening'));
+  if (evening && evening.count / n > 0.25) {
+    ints.push({
+      title: 'Motion-Activated Security Lighting',
+      desc: 'Evening incidents are often opportunistic. Motion-activated lighting in key areas — car parks, perimeters, entrances — is one of the most cost-effective deterrents and complements CCTV coverage.',
+      tag: 'Deterrence', color: '#F59E0B'
+    });
+  }
+
+  // If vehicle crime is top type
+  const vehType = types.find(t => t[0] === 'Vehicle Crime');
+  if (vehType && vehType[1] / n > 0.3) {
+    ints.push({
+      title: 'Vehicle Area Security Package',
+      desc: 'Vehicle crime is your most common incident type. ANPR cameras, clearly visible CCTV signage and improved car park lighting have been shown to significantly reduce vehicle-related incidents.',
+      tag: 'CCTV / ANPR', color: '#3B82F6'
+    });
+  }
+
+  // General site survey recommendation
+  ints.push({
+    title: 'Free Security Site Survey',
+    desc: 'A Fyrfly Systems site survey will assess your current security provision against the specific vulnerabilities identified in this analysis and provide a costed, prioritised action plan.',
+    tag: 'Next Step', color: '#C8102E'
+  });
+
+  return ints.slice(0, 5);
+}
+
+// ── UI Functions ───────────────────────────────────────────
+function onInput() {
+  const val = document.getElementById('incidentInput').value;
+  const lines = val.split('\n').filter(l => l.trim().length > 3).length;
+  document.getElementById('charCount').textContent = lines + ' line' + (lines !== 1 ? 's' : '') + ' entered';
+  document.getElementById('analyseBtn').disabled = lines < 3;
+}
+
+function loadSample() {
+  document.getElementById('incidentInput').value = SAMPLE;
+  onInput();
+}
+
+function analyse() {
+  const raw = document.getElementById('incidentInput').value.trim();
+  if (!raw) return;
+
+  // Show processing
+  document.getElementById('analyseBtn').style.display = 'none';
+  document.getElementById('processing').classList.add('show');
+
+  setTimeout(() => {
+    const result = analyseIncidents(raw);
+    renderResults(result, raw);
+    document.getElementById('processing').classList.remove('show');
+    document.getElementById('analyseBtn').style.display = 'flex';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 800);
+}
+
+function renderResults(r, raw) {
+  const card = document.getElementById('resultsCard');
+  const empty = document.getElementById('resultsEmpty');
+  empty.style.display = 'none';
+  card.classList.add('show');
+
+  const riskColors = { Low: '#10B981', Medium: '#F59E0B', High: '#EF4444' };
+  const riskBg = { Low: 'rgba(16,185,129,0.15)', Medium: 'rgba(245,158,11,0.15)', High: 'rgba(239,68,68,0.15)' };
+  const riskColor = riskColors[r.risk];
+  const riskBgColor = riskBg[r.risk];
+
+  // Top time period
+  const topTime = r.sortedTimes[0] ? r.sortedTimes[0].label.split(' (')[0] : 'Unknown';
+  const topLoc = r.sortedLocations[0] ? r.sortedLocations[0][0] : 'Unknown';
+  const topType = r.sortedTypes[0] ? r.sortedTypes[0][0] : 'Unknown';
+
+  // Time bars
+  const maxTime = r.sortedTimes[0]?.count || 1;
+  const timeBarsHtml = r.sortedTimes.slice(0, 6).map(t => {
+    const pct = Math.round(t.count / r.n * 100);
+    const w = Math.round(t.count / maxTime * 100);
+    const label = t.label.split(' (')[0];
+    const isTop = t === r.sortedTimes[0];
+    const barColor = isTop ? 'linear-gradient(90deg,#C8102E,#E85D04)' : '#E6E5E1';
+    return `<div class="time-bar-row">
+      <div class="time-label">${label}</div>
+      <div class="time-bar-wrap"><div class="time-bar" style="width:${w}%;background:${barColor}"></div></div>
+      <div class="time-count">${t.count}</div>
+    </div>`;
+  }).join('');
+
+  // DoW bars
+  const maxDow = Math.max(...r.dowCounts, 1);
+  const dowHtml = DOW_LABELS.map((d, i) => {
+    const h = r.dowCounts[i];
+    const pct = Math.round(h / maxDow * 100);
+    const isWknd = i >= 5;
+    return `<div class="dow-col">
+      <div class="dow-bar-wrap" style="height:48px">
+        <div class="dow-bar" style="height:${pct}%;background:${isWknd ? '#EF4444' : '#E6E5E1'}"></div>
+      </div>
+      <div class="dow-label">${d}</div>
+    </div>`;
+  }).join('');
+
+  // Locations
+  const locHtml = r.sortedLocations.slice(0, 5).map((loc, i) => {
+    const pct = Math.round(loc[1] / r.n * 100);
+    return `<div class="location-item">
+      <div class="loc-rank">${i+1}</div>
+      <div class="loc-name">${loc[0]}</div>
+      <div class="loc-count">${loc[1]} incident${loc[1]!==1?'s':''}</div>
+      <div class="loc-pct">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Findings
+  const findHtml = r.findings.map(f => `
+    <div class="finding-item ${f.severity}">
+      <div class="finding-dot" style="background:${f.severity==='high'?'#EF4444':f.severity==='medium'?'#F59E0B':'#10B981'}"></div>
+      <div class="finding-text">${f.text}</div>
+    </div>`).join('');
+
+  // Interventions
+  const intHtml = r.interventions.map((int, i) => `
+    <div class="intervention-item">
+      <div class="int-num">${i+1}</div>
+      <div class="int-content">
+        <strong>${int.title}</strong>
+        <span>${int.desc}</span>
+        <div><span class="int-tag" style="background:${int.color}22;color:${int.color}">${int.tag}</span></div>
+      </div>
+    </div>`).join('');
+
+  card.innerHTML = `
+    <div class="score-header">
+      <div class="score-header-bg"></div>
+      <div class="score-header-c">
+        <div class="score-label">Incident Pattern Analysis</div>
+        <div class="score-title">${r.n} incidents analysed</div>
+        <div class="score-meta">Peak risk: ${topTime} &bull; Top location: ${topLoc}</div>
+        <div class="risk-pill" style="background:${riskBgColor};color:${riskColor}">
+          ${r.risk} Risk Profile
+        </div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-n">${r.n}</div><div class="stat-l">Total incidents</div></div>
+      <div class="stat-box"><div class="stat-n">${r.sortedLocations.length}</div><div class="stat-l">Locations identified</div></div>
+      <div class="stat-box"><div class="stat-n">${r.sortedTypes.length}</div><div class="stat-l">Incident types</div></div>
+    </div>
+    <div class="r-section">
+      <div class="r-section-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Time of day</div>
+      <div class="time-chart">${timeBarsHtml}</div>
+    </div>
+    <div class="r-section">
+      <div class="r-section-title"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Day of week ${r.knownDow < 3 ? '<span style="color:var(--mute);font-weight:400;font-size:0.62rem;text-transform:none">(limited date data)</span>' : ''}</div>
+      <div class="dow-chart">${dowHtml}</div>
+      <div style="font-size:0.7rem;color:var(--mute);margin-top:0.5rem">Red = weekend</div>
+    </div>
+    <div class="r-section">
+      <div class="r-section-title"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Hotspot locations</div>
+      <div class="location-list">${locHtml}</div>
+    </div>
+    <div class="r-section">
+      <div class="r-section-title"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Key findings</div>
+      ${findHtml}
+    </div>
+    <div class="r-section">
+      <div class="r-section-title"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Recommended interventions</div>
+      ${intHtml}
+    </div>
+    <div class="results-footer">
+      <button type="button" class="btn-pdf" onclick="downloadReport()">Download Analysis Report (PDF)</button>
+      <button type="button" class="btn-share" onclick="shareReport()">Share with Fyrfly by Email</button>
+    </div>`;
+
+  // Store result for PDF
+  window._lastResult = r;
+  window._lastRaw = raw;
+}
+
+// ── PDF Download ───────────────────────────────────────────
+function downloadReport() {
+  const r = window._lastResult;
+  if (!r) return;
+  const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  const riskColors = { Low: '#10B981', Medium: '#F59E0B', High: '#EF4444' };
+
+  const timesHtml = r.sortedTimes.slice(0, 6).map(t => {
+    const pct = Math.round(t.count / r.n * 100);
+    const w = Math.round(t.count / (r.sortedTimes[0]?.count || 1) * 100);
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <div style="font-size:12px;color:#555;width:160px;flex-shrink:0">${t.label.split(' (')[0]}</div>
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;height:8px;overflow:hidden">
+        <div style="height:100%;width:${w}%;background:linear-gradient(90deg,#C8102E,#E85D04);border-radius:4px"></div>
+      </div>
+      <div style="font-size:11px;color:#888;width:30px;text-align:right">${t.count}</div>
+    </div>`;
+  }).join('');
+
+  const locsHtml = r.sortedLocations.slice(0, 5).map((loc, i) => {
+    const pct = Math.round(loc[1] / r.n * 100);
+    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#f8f8f8;border-radius:6px;margin-bottom:6px">
+      <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <div style="flex:1;font-size:13px;font-weight:500;color:#111">${loc[0]}</div>
+      <div style="font-size:12px;color:#888">${loc[1]} incidents</div>
+      <div style="font-size:12px;font-weight:600;color:#E85D04">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  const findHtml = r.findings.map(f => {
+    const col = f.severity==='high'?'#EF4444':f.severity==='medium'?'#F59E0B':'#10B981';
+    return `<div style="border-left:3px solid ${col};padding:10px 12px;background:#f9f9f9;border-radius:0 6px 6px 0;margin-bottom:8px;font-size:12px;color:#333;line-height:1.6">${f.text}</div>`;
+  }).join('');
+
+  const intHtml = r.interventions.map((int, i) => `
+    <div style="display:flex;gap:10px;padding:10px 12px;background:#f8f8f8;border-radius:6px;margin-bottom:8px;page-break-inside:avoid">
+      <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:3px">${int.title}</div>
+      <div style="font-size:12px;color:#555;line-height:1.55">${int.desc}</div></div>
+    </div>`).join('');
+
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Incident Pattern Analysis Report — Fyrfly Systems</title>' +
+    '<style>body{font-family:Arial,sans-serif;margin:0;padding:0;background:#fff;color:#111;font-size:14px;}.page{max-width:800px;margin:0 auto;padding:32px;}' +
+    '.header{background:#0E0E14;color:#fff;padding:24px 28px;border-radius:8px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;}' +
+    '.brand{font-size:16px;font-weight:800;}.badge{background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}' +
+    'h3{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:20px 0 10px;border-bottom:2px solid #eee;padding-bottom:6px;}' +
+    '.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;}' +
+    '.stat{background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;}' +
+    '.stat-n{font-size:28px;font-weight:900;color:#C8102E;line-height:1;}' +
+    '.stat-l{font-size:11px;color:#666;margin-top:3px;}' +
+    '.cta{background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:16px;text-align:center;margin-top:20px;}' +
+    '.footer{text-align:center;font-size:11px;color:#aaa;margin-top:24px;padding-top:16px;border-top:1px solid #eee;}' +
+    '@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.header,.stat-n,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}' +
+    '</style></head><body><div class="page">' +
+    '<div class="header"><div><div class="brand">FYRFLY SYSTEMS</div>' +
+    '<div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 4px">Incident Pattern Analysis</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.5)">Generated ' + date + ' &bull; ' + r.n + ' incidents analysed</div>' +
+    '<div style="margin-top:8px;display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;background:' + riskBg[r.risk] + ';color:' + riskColors[r.risk] + ';font-size:10px;font-weight:700;letter-spacing:0.06em">' + r.risk.toUpperCase() + ' RISK PROFILE</div>' +
+    '</div><div class="badge">Pattern Analyser</div></div>' +
+    '<div class="stats">' +
+    '<div class="stat"><div class="stat-n">' + r.n + '</div><div class="stat-l">Total incidents</div></div>' +
+    '<div class="stat"><div class="stat-n">' + r.sortedLocations.length + '</div><div class="stat-l">Locations</div></div>' +
+    '<div class="stat"><div class="stat-n">' + r.sortedTypes.length + '</div><div class="stat-l">Incident types</div></div>' +
+    '</div>' +
+    '<h3>Incident Time Distribution</h3>' + timesHtml +
+    '<h3>Hotspot Locations</h3>' + locsHtml +
+    '<h3>Key Findings</h3>' + findHtml +
+    '<h3>Recommended Interventions</h3>' + intHtml +
+    '<div class="cta"><h3 style="border:none;color:#333;letter-spacing:0;font-size:14px;margin:0 0 6px">Ready to address these vulnerabilities?</h3>' +
+    '<p style="font-size:12px;color:#555;margin:0 0 10px">A free site survey from Fyrfly Systems will assess your specific vulnerabilities and provide a costed action plan.</p>' +
+    '<a href="mailto:hello@fyrflysystems.com?subject=Incident Pattern Analysis — Free Survey Request" style="display:inline-block;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600">Request a Free Survey</a>' +
+    '</div>' +
+    '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com<br>NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015</div>' +
+    '</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(html); w.document.close(); }
+  else alert('Please allow popups to download the PDF.');
+}
+
+const riskBg = { Low: 'rgba(16,185,129,0.15)', Medium: 'rgba(245,158,11,0.15)', High: 'rgba(239,68,68,0.15)' };
+
+// ── Share by email ─────────────────────────────────────────
+function shareReport() {
+  const r = window._lastResult;
+  if (!r) return;
+  const top = r.sortedTimes[0]?.label.split(' (')[0] || 'Unknown';
+  const loc = r.sortedLocations[0]?.[0] || 'Unknown';
+  const subject = encodeURIComponent('Incident Pattern Analysis — Free Survey Request');
+  const body = encodeURIComponent(
+    'Hi Fyrfly Systems,\n\n' +
+    'I have used the Incident Pattern Analyser on your website and would like to discuss a free site survey.\n\n' +
+    'Analysis summary:\n' +
+    'Total incidents: ' + r.n + '\n' +
+    'Risk profile: ' + r.risk + '\n' +
+    'Peak vulnerability window: ' + top + '\n' +
+    'Highest risk location: ' + loc + '\n\n' +
+    'Please get in touch to arrange a survey.\n\nKind regards'
+  );
+  window.location.href = 'mailto:hello@fyrflysystems.com?subject=' + subject + '&body=' + body;
+}
+</script>
+</body>
+</html>
