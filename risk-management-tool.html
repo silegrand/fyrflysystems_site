@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProtectUK Terrorist Risk Management Tool | Fyrfly Systems</title>
+  <meta name="description" content="Free digital risk management tool for councils and public sector organisations. Based on the official ProtectUK / NaCTSO risk management guidance. Supports Martyn's Law compliance.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/risk-management-tool.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <style>
+    :root {
+      --c:#C8102E; --o:#E85D04; --a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14; --char:#1B1B24; --mid:#67677A; --mute:#9595A5;
+      --light:#F5F4F2; --bdr:#E6E5E1; --white:#FFFFFF;
+      --fh:'Roboto',sans-serif; --fb:'DM Sans',sans-serif;
+      --max:1100px; --nh:70px; --ease:cubic-bezier(0.22,1,0.36,1);
+      /* Risk colours */
+      --low:#16A34A; --med:#D97706; --high:#EA580C; --vhigh:#DC2626;
+      --low-bg:#F0FDF4; --med-bg:#FFFBEB; --high-bg:#FFF7ED; --vhigh-bg:#FEF2F2;
+      --low-bdr:#BBF7D0; --med-bdr:#FDE68A; --high-bdr:#FED7AA; --vhigh-bdr:#FECACA;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    button{cursor:pointer;font-family:var(--fb);}
+    input,textarea,select{font-family:var(--fb);}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+
+    /* ── PAGE HERO ─────────────────────────────────────────── */
+    .tool-hero{background:#0A1628;padding:4rem 0 3rem;position:relative;overflow:hidden;}
+    .tool-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(200,16,46,0.15) 0%,transparent 55%),radial-gradient(ellipse at 10% 70%,rgba(232,93,4,0.1) 0%,transparent 50%);}
+    .tool-hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+    .tool-hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.9rem;background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.35);border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FCA5A5;margin-bottom:1.25rem;}
+    .hero-badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+    .tool-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:0.85rem;}
+    .tool-hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .tool-hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.48);line-height:1.72;max-width:62ch;margin-bottom:1.75rem;}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.5rem;}
+    .hero-meta-item{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;color:rgba(255,255,255,0.4);}
+    .hero-meta-item svg{width:13px;height:13px;stroke:var(--a);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+    .hero-meta-item strong{color:rgba(255,255,255,0.72);}
+
+    /* ── MAIN LAYOUT ───────────────────────────────────────── */
+    .tool-body{max-width:var(--max);margin:0 auto;padding:2rem 2rem 4rem;}
+
+    /* ── STEP INDICATOR ────────────────────────────────────── */
+    .step-bar{display:flex;align-items:center;gap:0;margin-bottom:2.5rem;background:var(--white);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;}
+    .step-btn{flex:1;padding:0.85rem 0.5rem;display:flex;flex-direction:column;align-items:center;gap:0.25rem;border:none;background:none;cursor:pointer;border-right:1px solid var(--bdr);transition:background 0.15s;position:relative;}
+    .step-btn:last-child{border-right:none;}
+    .step-btn:hover{background:var(--light);}
+    .step-btn.active{background:rgba(232,93,4,0.06);}
+    .step-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);}
+    .step-btn.done .step-num{background:var(--met,#16A34A);color:#fff;}
+    .step-num{width:24px;height:24px;border-radius:50%;background:var(--bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.7rem;font-weight:800;color:var(--mute);transition:background 0.2s,color 0.2s;}
+    .step-btn.active .step-num{background:var(--grad);color:#fff;}
+    .step-lbl{font-size:0.68rem;font-weight:600;color:var(--mute);text-align:center;line-height:1.3;}
+    .step-btn.active .step-lbl{color:var(--o);}
+
+    /* ── SCREENS ───────────────────────────────────────────── */
+    .screen{display:none;}
+    .screen.active{display:block;}
+
+    /* ── CARDS ─────────────────────────────────────────────── */
+    .card{background:var(--white);border:1px solid var(--bdr);border-radius:14px;padding:1.75rem;margin-bottom:1.25rem;}
+    .card-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;margin-bottom:0.35rem;}
+    .card-sub{font-size:0.83rem;color:var(--mute);line-height:1.6;margin-bottom:1.25rem;}
+    .card-dark{background:#0A1628;border-color:rgba(255,255,255,0.08);}
+    .card-dark .card-title{color:#fff;}
+    .card-dark .card-sub{color:rgba(255,255,255,0.45);}
+
+    /* ── FORM FIELDS ───────────────────────────────────────── */
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .field-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+    .field-grid.cols-1{grid-template-columns:1fr;}
+    .field{display:flex;flex-direction:column;gap:0.35rem;}
+    .field label{font-size:0.78rem;font-weight:600;color:var(--dark);}
+    .field .hint{font-size:0.72rem;color:var(--mute);margin-top:-0.2rem;}
+    .field input,.field textarea,.field select{padding:0.6rem 0.85rem;border:1.5px solid var(--bdr);border-radius:8px;font-size:0.85rem;color:var(--dark);background:var(--white);transition:border-color 0.15s;}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--o);}
+    .field textarea{resize:vertical;min-height:72px;}
+    .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2367677A' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center;}
+    .field-full{grid-column:1/-1;}
+
+    /* ── INFO BOXES ─────────────────────────────────────────── */
+    .info-box{background:var(--light);border:1px solid var(--bdr);border-radius:10px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:0.85rem;margin-bottom:1.25rem;}
+    .info-box svg{width:16px;height:16px;stroke:var(--o);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:0.15rem;}
+    .info-box p{font-size:0.8rem;color:var(--mid);line-height:1.6;}
+    .info-box p strong{color:var(--dark);}
+    .info-box.warn{background:#FFF7ED;border-color:#FED7AA;}
+    .info-box.warn svg{stroke:var(--high);}
+    .privacy-box{background:#0A1628;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:center;gap:0.85rem;margin-top:1.5rem;}
+    .privacy-box svg{width:16px;height:16px;stroke:#60A5FA;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+    .privacy-box p{font-size:0.76rem;color:rgba(255,255,255,0.4);line-height:1.55;}
+
+    /* ── RISK APPETITE SELECTOR ──────────────────────────────── */
+    .appetite-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.6rem;}
+    .appetite-btn{padding:0.65rem 0.5rem;border:1.5px solid var(--bdr);border-radius:8px;background:var(--white);text-align:center;cursor:pointer;transition:all 0.15s;}
+    .appetite-btn:hover{border-color:var(--mid);}
+    .appetite-btn.selected{border-color:var(--o);background:rgba(232,93,4,0.06);}
+    .appetite-btn .ab-name{font-size:0.75rem;font-weight:700;color:var(--dark);margin-bottom:0.2rem;}
+    .appetite-btn.selected .ab-name{color:var(--o);}
+    .appetite-btn .ab-desc{font-size:0.65rem;color:var(--mute);line-height:1.35;}
+
+    /* ── THREAT TYPE SELECTOR ────────────────────────────────── */
+    .threat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;}
+    .threat-btn{padding:0.5rem 0.6rem;border:1.5px solid var(--bdr);border-radius:7px;background:var(--white);cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:all 0.15s;font-size:0.76rem;font-weight:500;color:var(--mid);}
+    .threat-btn:hover{border-color:var(--mid);color:var(--dark);}
+    .threat-btn.selected{border-color:var(--c);background:rgba(200,16,46,0.05);color:var(--c);}
+    .threat-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+
+    /* ── RISK CARDS (in risk list) ───────────────────────────── */
+    .risk-list{display:flex;flex-direction:column;gap:0.85rem;margin-bottom:1.25rem;}
+    .risk-card{background:var(--white);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;transition:box-shadow 0.2s;}
+    .risk-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+    .risk-card-hdr{padding:1rem 1.25rem;display:flex;align-items:center;gap:0.85rem;cursor:pointer;}
+    .risk-ref{width:36px;height:36px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.75rem;font-weight:800;color:#fff;flex-shrink:0;}
+    .risk-title{flex:1;}
+    .risk-title strong{display:block;font-size:0.88rem;font-weight:600;color:var(--dark);}
+    .risk-title span{font-size:0.75rem;color:var(--mute);}
+    .risk-score-badge{padding:0.25rem 0.75rem;border-radius:100px;font-size:0.72rem;font-weight:700;flex-shrink:0;}
+    .risk-score-badge.low{background:var(--low-bg);border:1px solid var(--low-bdr);color:var(--low);}
+    .risk-score-badge.medium{background:var(--med-bg);border:1px solid var(--med-bdr);color:var(--med);}
+    .risk-score-badge.high{background:var(--high-bg);border:1px solid var(--high-bdr);color:var(--high);}
+    .risk-score-badge.very-high{background:var(--vhigh-bg);border:1px solid var(--vhigh-bdr);color:var(--vhigh);}
+    .risk-score-badge.unscored{background:var(--light);border:1px solid var(--bdr);color:var(--mute);}
+    .risk-expand-icon{width:16px;height:16px;stroke:var(--mute);fill:none;stroke-width:2.5;stroke-linecap:round;transition:transform 0.2s;flex-shrink:0;}
+    .risk-card.open .risk-expand-icon{transform:rotate(180deg);}
+    .risk-card-body{display:none;border-top:1px solid var(--bdr);padding:1.25rem;}
+    .risk-card.open .risk-card-body{display:block;}
+    .risk-delete{background:none;border:none;color:var(--mute);font-size:0.75rem;cursor:pointer;display:flex;align-items:center;gap:0.3rem;padding:0.3rem 0.5rem;border-radius:6px;transition:background 0.15s,color 0.15s;}
+    .risk-delete:hover{background:#FEE2E2;color:var(--vhigh);}
+    .risk-delete svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    /* ── 4x4 RISK MATRIX ─────────────────────────────────────── */
+    .matrix-wrap{margin:1.5rem 0;}
+    .matrix-container{display:grid;grid-template-columns:60px repeat(4,1fr);grid-template-rows:repeat(4,1fr) 40px;gap:3px;max-width:520px;}
+    .matrix-cell{border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.7rem;font-weight:700;position:relative;min-height:56px;transition:transform 0.2s;}
+    .matrix-cell.header-row{background:transparent;font-size:0.65rem;color:var(--mute);font-weight:600;letter-spacing:0.05em;text-align:center;padding:0.3rem;line-height:1.3;}
+    .matrix-cell.header-col{background:transparent;font-size:0.65rem;color:var(--mute);font-weight:600;writing-mode:horizontal-tb;text-align:right;padding-right:0.5rem;justify-content:flex-end;}
+    .matrix-cell.risk-low{background:#D1FAE5;color:#065F46;}
+    .matrix-cell.risk-med{background:#FEF3C7;color:#92400E;}
+    .matrix-cell.risk-high{background:#FFEDD5;color:#9A3412;}
+    .matrix-cell.risk-vhigh{background:#FEE2E2;color:#991B1B;}
+    .matrix-cell.risk-empty{background:#F9FAFB;color:transparent;}
+    .matrix-risk-dot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+    .risk-dot{width:22px;height:22px;border-radius:50%;background:#1E293B;border:2px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.6rem;font-weight:800;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:default;}
+    .risk-dot.residual{background:#475569;border-style:dashed;}
+    .matrix-legend{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:0.85rem;}
+    .matrix-legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--mid);}
+    .matrix-legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,0.6);}
+    .matrix-axis-label{font-size:0.65rem;font-weight:700;color:var(--mute);letter-spacing:0.08em;text-transform:uppercase;}
+    .matrix-y-label{writing-mode:vertical-rl;transform:rotate(180deg);}
+
+    /* ── IMPACT SCORING ──────────────────────────────────────── */
+    .impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-bottom:1rem;}
+    .impact-row{background:var(--light);border:1px solid var(--bdr);border-radius:8px;padding:0.65rem 0.85rem;}
+    .impact-row label{display:block;font-size:0.75rem;font-weight:600;color:var(--dark);margin-bottom:0.4rem;}
+    .impact-row select{width:100%;padding:0.4rem 0.6rem;border:1.5px solid var(--bdr);border-radius:6px;font-size:0.75rem;background:var(--white);}
+    .impact-row select:focus{outline:none;border-color:var(--o);}
+    .impact-highest{background:rgba(232,93,4,0.06);border:1.5px solid rgba(232,93,4,0.2);border-radius:8px;padding:0.65rem 0.85rem;margin-top:0.5rem;display:flex;align-items:center;justify-content:space-between;}
+    .impact-highest label{font-size:0.75rem;font-weight:600;color:var(--o);}
+    .impact-highest .highest-val{font-family:var(--fh);font-size:0.85rem;font-weight:800;color:var(--o);}
+
+    /* ── LIKELIHOOD SELECTOR ─────────────────────────────────── */
+    .likelihood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;}
+    .lhood-btn{padding:0.6rem 0.4rem;border:1.5px solid var(--bdr);border-radius:8px;background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;}
+    .lhood-btn:hover{border-color:var(--mid);}
+    .lhood-btn .lb-name{font-size:0.78rem;font-weight:700;color:var(--dark);display:block;margin-bottom:0.2rem;}
+    .lhood-btn .lb-desc{font-size:0.65rem;color:var(--mute);line-height:1.3;}
+    .lhood-btn.sel-very-unlikely{border-color:var(--low);background:var(--low-bg);}
+    .lhood-btn.sel-very-unlikely .lb-name{color:var(--low);}
+    .lhood-btn.sel-unlikely{border-color:#65A30D;background:#F7FEE7;}
+    .lhood-btn.sel-unlikely .lb-name{color:#65A30D;}
+    .lhood-btn.sel-possible{border-color:var(--med);background:var(--med-bg);}
+    .lhood-btn.sel-possible .lb-name{color:var(--med);}
+    .lhood-btn.sel-likely{border-color:var(--vhigh);background:var(--vhigh-bg);}
+    .lhood-btn.sel-likely .lb-name{color:var(--vhigh);}
+
+    /* ── TREATMENT SELECTOR ──────────────────────────────────── */
+    .treatment-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:1rem;}
+    .treat-btn{padding:0.75rem 0.5rem;border:1.5px solid var(--bdr);border-radius:8px;background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;}
+    .treat-btn:hover{border-color:var(--mid);}
+    .treat-btn.selected{border-color:var(--o);background:rgba(232,93,4,0.06);}
+    .treat-btn .tb-name{font-size:0.78rem;font-weight:700;color:var(--dark);display:block;margin-bottom:0.2rem;}
+    .treat-btn.selected .tb-name{color:var(--o);}
+    .treat-btn .tb-desc{font-size:0.65rem;color:var(--mute);line-height:1.3;}
+
+    /* ── BUTTONS ─────────────────────────────────────────────── */
+    .btn-primary{display:inline-flex;align-items:center;gap:0.45rem;padding:0.8rem 1.75rem;background:var(--grad);color:#fff;font-size:0.9rem;font-weight:600;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+    .btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-primary svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-secondary{display:inline-flex;align-items:center;gap:0.45rem;padding:0.8rem 1.5rem;background:var(--light);color:var(--mid);font-size:0.88rem;font-weight:500;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;}
+    .btn-secondary:hover{background:var(--bdr);color:var(--dark);}
+    .btn-secondary svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-outline{display:inline-flex;align-items:center;gap:0.45rem;padding:0.8rem 1.5rem;background:var(--white);color:var(--o);font-size:0.88rem;font-weight:600;border-radius:8px;border:1.5px solid var(--o);cursor:pointer;transition:all 0.2s;}
+    .btn-outline:hover{background:var(--o);color:#fff;}
+    .btn-outline svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-danger{display:inline-flex;align-items:center;gap:0.45rem;padding:0.6rem 1.2rem;background:#FEE2E2;color:var(--vhigh);font-size:0.82rem;font-weight:600;border-radius:7px;border:none;cursor:pointer;transition:all 0.2s;}
+    .btn-danger:hover{background:var(--vhigh);color:#fff;}
+    .btn-add{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.85rem;background:var(--white);border:2px dashed var(--bdr);border-radius:10px;font-size:0.85rem;font-weight:500;color:var(--mute);cursor:pointer;transition:all 0.2s;margin-bottom:1.25rem;}
+    .btn-add:hover{border-color:var(--o);color:var(--o);background:rgba(232,93,4,0.03);}
+    .btn-add svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .nav-btns{display:flex;align-items:center;justify-content:space-between;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--bdr);}
+
+    /* ── SECTION HEADERS ─────────────────────────────────────── */
+    .screen-hdr{margin-bottom:1.75rem;}
+    .screen-tag{display:inline-flex;align-items:center;gap:0.35rem;padding:0.22rem 0.75rem;background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.2);border-radius:100px;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.65rem;}
+    .screen-hdr h2{font-family:var(--fh);font-size:clamp(1.25rem,2vw,1.7rem);font-weight:800;color:var(--dark);letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.4rem;}
+    .screen-hdr p{font-size:0.86rem;color:var(--mid);line-height:1.65;max-width:65ch;}
+
+    /* ── RESULTS SCREEN ──────────────────────────────────────── */
+    .results-hero{background:#0A1628;border-radius:14px;padding:2rem 2rem 1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+    .results-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,0.15),transparent 70%);}
+    .results-hero h2{font-family:var(--fh);font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.35rem;}
+    .results-hero .rh-org{font-size:0.85rem;color:rgba(255,255,255,0.45);margin-bottom:1.25rem;}
+    .results-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;}
+    .rs-card{border-radius:10px;padding:1rem;text-align:center;}
+    .rs-card.vhigh{background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.25);}
+    .rs-card.high{background:rgba(234,88,12,0.15);border:1px solid rgba(234,88,12,0.25);}
+    .rs-card.med{background:rgba(217,119,6,0.15);border:1px solid rgba(217,119,6,0.25);}
+    .rs-card.low{background:rgba(22,163,74,0.15);border:1px solid rgba(22,163,74,0.25);}
+    .rs-n{font-family:var(--fh);font-size:1.8rem;font-weight:800;line-height:1;margin-bottom:0.2rem;}
+    .rs-card.vhigh .rs-n{color:#FCA5A5;}
+    .rs-card.high .rs-n{color:#FDBA74;}
+    .rs-card.med .rs-n{color:#FDE68A;}
+    .rs-card.low .rs-n{color:#86EFAC;}
+    .rs-l{font-size:0.7rem;color:rgba(255,255,255,0.4);}
+    .results-actions{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.75rem;}
+    .btn-pdf{display:inline-flex;align-items:center;gap:0.45rem;padding:0.8rem 1.6rem;background:var(--grad);color:#fff;font-size:0.88rem;font-weight:600;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+    .btn-pdf:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-pdf svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+    .btn-share-email{display:inline-flex;align-items:center;gap:0.45rem;padding:0.8rem 1.5rem;background:var(--white);color:var(--dark);font-size:0.88rem;font-weight:600;border-radius:8px;border:1.5px solid var(--bdr);cursor:pointer;transition:all 0.2s;}
+    .btn-share-email:hover{border-color:var(--o);color:var(--o);}
+    .btn-share-email svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    /* Risk register table */
+    .risk-register{background:var(--white);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;margin-bottom:1.5rem;}
+    .rr-hdr{padding:1rem 1.25rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+    .rr-title{font-family:var(--fh);font-size:0.9rem;font-weight:700;color:var(--dark);}
+    .rr-row{padding:0.9rem 1.25rem;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:40px 1fr 90px 90px 90px 90px;gap:0.75rem;align-items:center;}
+    .rr-row:last-child{border-bottom:none;}
+    .rr-row.rr-head{background:var(--light);font-size:0.68rem;font-weight:700;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;padding:0.6rem 1.25rem;}
+    .rr-ref{width:32px;height:32px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.7rem;font-weight:800;color:#fff;}
+    .rr-desc strong{display:block;font-size:0.82rem;font-weight:600;color:var(--dark);margin-bottom:0.15rem;}
+    .rr-desc span{font-size:0.73rem;color:var(--mute);}
+    .rr-badge{text-align:center;padding:0.2rem 0.5rem;border-radius:6px;font-size:0.7rem;font-weight:700;}
+    .rr-badge.low{background:var(--low-bg);color:var(--low);}
+    .rr-badge.medium{background:var(--med-bg);color:var(--med);}
+    .rr-badge.high{background:var(--high-bg);color:var(--high);}
+    .rr-badge.very-high{background:var(--vhigh-bg);color:var(--vhigh);}
+
+    /* Review schedule */
+    .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;}
+    .review-card{background:var(--light);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.1rem;}
+    .review-card strong{display:block;font-size:0.8rem;font-weight:700;color:var(--dark);margin-bottom:0.2rem;}
+    .review-card p{font-size:0.75rem;color:var(--mid);line-height:1.5;}
+    .review-card .rev-date{font-family:var(--fh);font-size:0.85rem;font-weight:800;color:var(--o);margin-top:0.3rem;}
+
+    /* Footer */
+    footer{background:var(--dark);padding:3rem 0 1.5rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+
+    /* Accreds */
+    .accreds-bar{padding:2rem 0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}
+    .accreds-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+    .accreds-lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;}
+    .accreds-list{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+    .accred-item{font-size:0.78rem;font-weight:500;color:var(--mid);padding:0.28rem 0.8rem;border:1px solid var(--bdr);border-radius:100px;}
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media(max-width:768px){
+      .field-grid{grid-template-columns:1fr;}
+      .field-grid.cols-3{grid-template-columns:1fr 1fr;}
+      .appetite-grid{grid-template-columns:1fr 1fr;row-gap:0.5rem;}
+      .threat-grid{grid-template-columns:1fr 1fr;}
+      .likelihood-grid{grid-template-columns:1fr 1fr;}
+      .treatment-grid{grid-template-columns:1fr 1fr;}
+      .impact-grid{grid-template-columns:1fr;}
+      .results-summary{grid-template-columns:1fr 1fr;}
+      .rr-row{grid-template-columns:32px 1fr 70px 70px;}
+      .rr-row .rr-badge:nth-child(6),.rr-row .rr-badge:nth-child(5){display:none;}
+      .matrix-container{grid-template-columns:40px repeat(4,1fr);}
+      .matrix-cell{min-height:42px;font-size:0.58rem;}
+      .step-lbl{display:none;}
+      .review-grid{grid-template-columns:1fr;}
+      .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+      .ft-grid>div:first-child{grid-column:span 2;}
+    }
+    @media(max-width:480px){
+      .tool-body{padding:1.5rem 1rem 3rem;}
+      .step-bar{overflow-x:auto;}
+      .results-summary{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script src="nav.js"></script>
+
+<!-- PAGE HERO -->
+<section class="tool-hero">
+  <div class="tool-hero-dots"></div>
+  <div class="tool-hero-c">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      NaCTSO / ProtectUK Guidance
+    </div>
+    <h1>Terrorist Risk<br><span class="acc">Management Tool</span></h1>
+    <p class="tool-hero-sub">A free digital tool for councils and public sector organisations to complete a structured terrorist risk assessment, based on the official ProtectUK / NaCTSO 5-stage risk management process. Supports Martyn's Law compliance.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>Based on <strong>ProtectUK 5-Stage Process</strong></span></div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span><strong>No data retained</strong> — closes with the tab</span></div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span><strong>PDF export</strong> for your records</span></div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Supports <strong>Martyn's Law</strong> compliance</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL BODY -->
+<div class="tool-body">
+
+  <!-- STEP BAR -->
+  <div class="step-bar" id="stepBar">
+    <button class="step-btn active" onclick="goToStep(0)" id="stepBtn0">
+      <div class="step-num">1</div>
+      <div class="step-lbl">Setting the Scene</div>
+    </button>
+    <button class="step-btn" onclick="goToStep(1)" id="stepBtn1">
+      <div class="step-num">2</div>
+      <div class="step-lbl">Risk Identification</div>
+    </button>
+    <button class="step-btn" onclick="goToStep(2)" id="stepBtn2">
+      <div class="step-num">3</div>
+      <div class="step-lbl">Risk Assessment</div>
+    </button>
+    <button class="step-btn" onclick="goToStep(3)" id="stepBtn3">
+      <div class="step-num">4</div>
+      <div class="step-lbl">Risk Treatment</div>
+    </button>
+    <button class="step-btn" onclick="goToStep(4)" id="stepBtn4">
+      <div class="step-num">5</div>
+      <div class="step-lbl">Record &amp; Review</div>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREEN 0: SETTING THE SCENE                            -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="screen active" id="screen0">
+    <div class="screen-hdr">
+      <div class="screen-tag">Stage 1 of 5 — Setting the Scene</div>
+      <h2>Organisational Context &amp; Governance</h2>
+      <p>Before undertaking a risk assessment, establish your context, governance structure, risk appetite and the scope of this assessment. This follows the ProtectUK guidance on Setting the Scene.</p>
+    </div>
+
+    <div class="info-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>This tool is based on the official <strong>ProtectUK Risk Management Guidance</strong> published by NaCTSO. Your answers are stored only in your browser and are <strong>permanently destroyed</strong> when you close this tab. Nothing is sent to any server unless you choose to email your results to Fyrfly.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Organisation Details</div>
+      <div class="card-sub">Identify your organisation and the individuals responsible for this risk management process.</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>Organisation Name *</label>
+          <input type="text" id="orgName" placeholder="e.g. Anytown Borough Council">
+        </div>
+        <div class="field">
+          <label>Organisation Type *</label>
+          <select id="orgType">
+            <option value="">Select type...</option>
+            <option>Local Authority</option>
+            <option>NHS Trust / Health Body</option>
+            <option>Central Government</option>
+            <option>Housing Association</option>
+            <option>Emergency Services</option>
+            <option>Transport Authority</option>
+            <option>Other Public Sector</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Responsible Person *</label>
+          <div class="hint">Senior individual with authority to direct resources and implement decisions</div>
+          <input type="text" id="responsiblePerson" placeholder="Name and job title">
+        </div>
+        <div class="field">
+          <label>Competent Person</label>
+          <div class="hint">Individual with skills and experience to identify risks and controls</div>
+          <input type="text" id="competentPerson" placeholder="Name and job title (may be same)">
+        </div>
+        <div class="field field-full">
+          <label>Assessment Date</label>
+          <input type="date" id="assessmentDate">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Scope of Assessment</div>
+      <div class="card-sub">Define what this risk assessment covers. Be specific about the sites, activities or events being assessed.</div>
+      <div class="field-grid cols-1">
+        <div class="field">
+          <label>Scope Description *</label>
+          <textarea id="scopeDesc" placeholder="e.g. This assessment covers the business as usual security operations of the Town Hall, Central Library and Market Square public areas, including all entrances, public-facing services and out-of-hours operations."></textarea>
+        </div>
+        <div class="field">
+          <label>External Context</label>
+          <div class="hint">Relevant social, political, legal, regulatory or financial factors; local threat picture</div>
+          <textarea id="externalContext" placeholder="e.g. The organisation is located in a city centre with high footfall. The current UK terrorism threat level is SUBSTANTIAL..."></textarea>
+        </div>
+        <div class="field">
+          <label>Internal Context</label>
+          <div class="hint">Governance structure, available resources, existing policies, organisational culture</div>
+          <textarea id="internalContext" placeholder="e.g. The organisation has a dedicated security team and existing CCTV infrastructure. A Counter Terrorism Security Adviser (CTSA) has previously visited..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Risk Appetite</div>
+      <div class="card-sub">Select your organisation's overall attitude toward risk. This will guide decisions throughout the assessment process. The ProtectUK Approach uses a <strong>Minimalist</strong> appetite by default.</div>
+      <div class="appetite-grid" id="appetiteGrid">
+        <button class="appetite-btn" data-val="Averse" onclick="selectAppetite(this)">
+          <div class="ab-name">Averse</div>
+          <div class="ab-desc">Avoidance of risk and uncertainty in all circumstances</div>
+        </button>
+        <button class="appetite-btn selected" data-val="Minimalist" onclick="selectAppetite(this)">
+          <div class="ab-name">Minimalist ✓</div>
+          <div class="ab-desc">Very safe options only; low inherent risk preferred</div>
+        </button>
+        <button class="appetite-btn" data-val="Cautious" onclick="selectAppetite(this)">
+          <div class="ab-name">Cautious</div>
+          <div class="ab-desc">Safe options with low residual risk preferred</div>
+        </button>
+        <button class="appetite-btn" data-val="Open" onclick="selectAppetite(this)">
+          <div class="ab-name">Open</div>
+          <div class="ab-desc">All options considered; choose most likely to succeed</div>
+        </button>
+        <button class="appetite-btn" data-val="Eager" onclick="selectAppetite(this)">
+          <div class="ab-name">Eager</div>
+          <div class="ab-desc">Innovation prioritised; high residual risk acceptable</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <p><strong style="color:rgba(255,255,255,0.7)">Privacy notice:</strong> All data you enter is held only in your browser's session memory. It is never transmitted to any server. When you close this tab or browser window, all data is permanently and irreversibly destroyed. If you wish to keep a record, download the PDF before closing.</p>
+    </div>
+
+    <div class="nav-btns">
+      <span></span>
+      <button class="btn-primary" onclick="validateAndNext(0)">
+        Risk Identification <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREEN 1: RISK IDENTIFICATION                          -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="screen" id="screen1">
+    <div class="screen-hdr">
+      <div class="screen-tag">Stage 2 of 5 — Risk Identification</div>
+      <h2>Identify the Risks</h2>
+      <p>Using an <strong>event-based approach</strong> (as recommended by ProtectUK for first-time assessors), identify up to 5 terrorist risk scenarios. For each risk, describe the threat, the vulnerability that could be exploited, and the potential consequences.</p>
+    </div>
+
+    <div class="info-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Risk = <strong>Threat × Vulnerability × Impact</strong>. A risk only occurs when a threat source is present to exploit a vulnerability. For each scenario, consider: <em>Who might attack? What weakness could they exploit? What would happen?</em> The ProtectUK approach uses event-based scenarios — think at a strategic level first.</p>
+    </div>
+
+    <div class="risk-list" id="riskListIdent"></div>
+
+    <button class="btn-add" id="btnAddRisk" onclick="addRisk()">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Risk Scenario (up to 5)
+    </button>
+
+    <div class="nav-btns">
+      <button class="btn-secondary" onclick="goToStep(0)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back
+      </button>
+      <button class="btn-primary" onclick="validateAndNext(1)">
+        Assess the Risks <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREEN 2: RISK ASSESSMENT                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="screen" id="screen2">
+    <div class="screen-hdr">
+      <div class="screen-tag">Stage 3 of 5 — Risk Assessment</div>
+      <h2>Analyse &amp; Evaluate Risks</h2>
+      <p>For each risk, assess <strong>likelihood</strong> and <strong>impact</strong> using the ProtectUK 4-level qualitative scales. Impact is assessed across 7 categories — your highest score determines the overall impact rating. The 4×4 risk matrix will calculate your inherent risk score.</p>
+    </div>
+
+    <div class="info-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Rate likelihood and impact <strong>with your existing controls in place</strong> — this is your inherent risk. The <strong>ProtectUK 4×4 matrix</strong> reflects a minimalist risk appetite: only 3 cells are classified as Low. Very High and High risks are unacceptable and require treatment. Medium risks should be treated where practicable.</p>
+    </div>
+
+    <div id="assessmentForms"></div>
+
+    <!-- Interactive Risk Matrix -->
+    <div class="card">
+      <div class="card-title">ProtectUK Risk Matrix — Inherent Risk</div>
+      <div class="card-sub">Your risks are plotted below. Each dot represents a risk scenario (R1–R5). The matrix reflects a minimalist risk appetite per ProtectUK guidance.</div>
+      <div class="matrix-wrap" id="matrixWrap">
+        <div id="matrixChart"></div>
+        <div class="matrix-legend" id="matrixLegend"></div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn-secondary" onclick="goToStep(1)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back
+      </button>
+      <button class="btn-primary" onclick="validateAndNext(2)">
+        Treat the Risks <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREEN 3: RISK TREATMENT                               -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="screen" id="screen3">
+    <div class="screen-hdr">
+      <div class="screen-tag">Stage 4 of 5 — Risk Treatment</div>
+      <h2>Develop Your Risk Treatment Plan</h2>
+      <p>For each risk, select a treatment option (Avoid / Share / Modify / Retain), describe the controls and further actions you will implement, then calculate the <strong>residual risk</strong> — the risk that remains after treatment.</p>
+    </div>
+
+    <div class="info-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Modify</strong> is the most common treatment for terrorist risk — implementing physical and active controls to reduce likelihood or impact. <strong>Retain</strong> may be selected where risk cannot be further reduced, but retained risks must still be monitored. Assign a <strong>Risk Owner</strong> and <strong>Review Date</strong> to each risk.</p>
+    </div>
+
+    <div id="treatmentForms"></div>
+
+    <!-- Residual Risk Matrix -->
+    <div class="card">
+      <div class="card-title">ProtectUK Risk Matrix — Inherent vs Residual Risk</div>
+      <div class="card-sub">Solid dots show inherent risk. Dashed dots show residual risk after treatment. The goal is to move risks to an acceptable level (yellow or green).</div>
+      <div class="matrix-wrap">
+        <div id="matrixChartResidual"></div>
+        <div class="matrix-legend">
+          <div class="matrix-legend-item"><div class="matrix-legend-dot" style="background:#1E293B;border-color:rgba(255,255,255,0.6)"></div>Inherent risk</div>
+          <div class="matrix-legend-item"><div class="matrix-legend-dot" style="background:#475569;border-style:dashed;border-color:rgba(255,255,255,0.5)"></div>Residual risk (after treatment)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn-secondary" onclick="goToStep(2)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back
+      </button>
+      <button class="btn-primary" onclick="validateAndNext(3)">
+        Record &amp; Review <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREEN 4: RECORD & REVIEW                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="screen" id="screen4">
+    <div class="results-hero">
+      <h2>Risk Assessment Complete</h2>
+      <div class="rh-org" id="resultsOrgLine">Organisation risk register — generated <span id="resultsDate"></span></div>
+      <div class="results-summary" id="resultsSummary"></div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn-pdf" onclick="downloadPDF()">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF Report
+      </button>
+      <button class="btn-share-email" onclick="shareWithFyrfly()">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Share with Fyrfly Team
+      </button>
+      <button class="btn-secondary" onclick="goToStep(0)" style="display:inline-flex">
+        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Start New Assessment
+      </button>
+    </div>
+
+    <!-- Risk Register -->
+    <div class="risk-register" id="riskRegister"></div>
+
+    <!-- Comparison Matrix -->
+    <div class="card" style="margin-bottom:1.25rem">
+      <div class="card-title">Risk Matrix — Inherent vs Residual</div>
+      <div class="card-sub">Visual summary of risk movement after treatment. Solid = inherent risk. Dashed = residual risk.</div>
+      <div class="matrix-wrap">
+        <div id="matrixChartFinal"></div>
+        <div class="matrix-legend">
+          <div class="matrix-legend-item"><div class="matrix-legend-dot" style="background:#1E293B;border-color:rgba(255,255,255,0.6)"></div>Inherent risk (before treatment)</div>
+          <div class="matrix-legend-item"><div class="matrix-legend-dot" style="background:#475569;border-style:dashed;border-color:rgba(255,255,255,0.5)"></div>Residual risk (after treatment)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review Schedule -->
+    <div class="card" style="margin-bottom:1.25rem">
+      <div class="card-title">Review Schedule</div>
+      <div class="card-sub">Risk monitoring is ongoing. The ProtectUK guidance requires risks to be reviewed at the intervals below. Higher risks require more frequent monitoring.</div>
+      <div class="review-grid" id="reviewGrid"></div>
+      <div class="info-box warn" style="margin-top:1rem;margin-bottom:0">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p>This is a <strong>living document</strong>. Your risk assessment should be reviewed whenever the threat level changes, following a security incident, after significant organisational change, or at the scheduled review dates above. Any retained risks should be monitored continuously.</p>
+      </div>
+    </div>
+
+    <!-- NaCTSO Attribution -->
+    <div class="card" style="background:var(--light)">
+      <div class="card-title" style="font-size:0.82rem;margin-bottom:0.5rem">Source &amp; Attribution</div>
+      <p style="font-size:0.78rem;color:var(--mid);line-height:1.65">This tool is based on the <strong>ProtectUK Risk Management Guidance</strong> published by the National Counter Terrorism Security Office (NaCTSO), Home Office and Counter Terrorism Policing. The 5-stage process, 4×4 risk matrix, likelihood and impact scales, and risk band definitions are taken directly from the official guidance and have not been modified. Source: <a href="https://www.protectuk.police.uk/protectuk-risk-management-guidance" style="color:var(--o)" target="_blank">protectuk.police.uk</a>. Fyrfly Systems is not affiliated with NaCTSO, the Home Office or ProtectUK. This tool does not constitute professional security advice.</p>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn-secondary" onclick="goToStep(3)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back to Treatment
+      </button>
+      <button class="btn-pdf" onclick="downloadPDF()">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
+    </div>
+  </div>
+
+</div><!-- end tool-body -->
+
+<!-- ACCREDITATIONS -->
+<div class="accreds-bar">
+  <div class="accreds-inner">
+    <div class="accreds-lbl">Accreditations</div>
+    <div class="accreds-list">
+      <div class="accred-item">NSI NACOSS Gold</div>
+      <div class="accred-item">SSAIB Approved</div>
+      <div class="accred-item">BAFE Registered</div>
+      <div class="accred-item">Constructionline</div>
+      <div class="accred-item">ISO 9001:2015</div>
+      <div class="accred-item">Crown Commercial Service</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li>
+        <li><a href="access-control.html">Access Control</a></li>
+        <li><a href="wireless-networks.html">Wireless Networks</a></li>
+        <li><a href="intruder-alarms.html">Intruder Alarms</a></li>
+        <li><a href="fire-systems.html">Fire Systems</a></li>
+        <li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="public-sector.html">Public Sector</a></li>
+      </ul>
+      <div class="ft-ct" style="margin-top:1.5rem">Tools</div>
+      <ul class="ft-links">
+        <li><a href="risk-management-tool.html">Risk Management Tool</a></li>
+        <li><a href="sbd-checklist.html">SbD Checklist</a></li>
+        <li><a href="compliance-tool.html">Compliance Tool</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal">
+      <a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// FYRFLY — PROTECTUK RISK MANAGEMENT TOOL
+// Based on ProtectUK / NaCTSO 5-Stage Risk Management Guidance
+// Source: https://www.protectuk.police.uk/protectuk-risk-management-guidance
+// ═══════════════════════════════════════════════════════════════════
+
+// ── DATA CONSTANTS ───────────────────────────────────────────────
+
+const THREAT_TYPES = [
+  { id:'vbied', label:'Vehicle Attack (VBIED)', icon:'M5 17H3v-1a7 7 0 0114 0v1h-2m-9 0a2 2 0 104 0m4 0a2 2 0 104 0' },
+  { id:'ied', label:'IED / Explosive Device', icon:'M12 2a8 8 0 00-8 8v2l-2 1v2h20v-2l-2-1v-2a8 8 0 00-8-8zM8 22h8' },
+  { id:'marauding', label:'Marauding Attack (MAT)', icon:'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100 8 4 4 0 000-8z' },
+  { id:'cbr', label:'CBR (Hazardous Material)', icon:'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18' },
+  { id:'cyber', label:'Cyber Attack', icon:'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4' },
+  { id:'hostile_recon', label:'Hostile Reconnaissance', icon:'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8zM12 9a3 3 0 100 6 3 3 0 000-6z' },
+  { id:'insider', label:'Insider Threat', icon:'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
+  { id:'drone', label:'Drone / UAV Attack', icon:'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+  { id:'other', label:'Other Threat Type', icon:'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' }
+];
+
+const LIKELIHOOD = [
+  { val:'very-unlikely', label:'Very Unlikely', desc:'Attacker has very little chance of succeeding', score:1 },
+  { val:'unlikely',      label:'Unlikely',      desc:'Attacker has little chance of succeeding', score:2 },
+  { val:'possible',      label:'Possible',      desc:'Attacker will possibly succeed', score:3 },
+  { val:'likely',        label:'Likely',        desc:'Attacker will likely succeed', score:4 }
+];
+
+const IMPACT_LEVELS = [
+  { val:'minor',       label:'Minor',       score:1 },
+  { val:'significant', label:'Significant', score:2 },
+  { val:'serious',     label:'Serious',     score:3 },
+  { val:'critical',    label:'Critical',    score:4 }
+];
+
+const IMPACT_TYPES = [
+  'Life &amp; Safety', 'Finance', 'Reputation',
+  'Operations', 'Environment', 'Legal &amp; Regulatory', 'Psychological'
+];
+
+// ProtectUK 4x4 matrix - minimalist appetite
+// [likelihood_score][impact_score] → rating
+// Rows: likelihood 1-4 (bottom to top visually), Cols: impact 1-4
+const MATRIX = {
+  // likelihood → impact → result
+  1: { 1:'low',    2:'low',    3:'low',    4:'medium' },
+  2: { 1:'low',    2:'medium', 3:'medium', 4:'high'   },
+  3: { 1:'medium', 2:'medium', 3:'high',   4:'very-high' },
+  4: { 1:'medium', 2:'high',   3:'very-high', 4:'very-high' }
+};
+
+const RISK_LABELS = { 'low':'Low', 'medium':'Medium', 'high':'High', 'very-high':'Very High' };
+const RISK_COLOURS = { 'low':'#D1FAE5', 'medium':'#FEF3C7', 'high':'#FFEDD5', 'very-high':'#FEE2E2' };
+const RISK_TEXT = { 'low':'#065F46', 'medium':'#92400E', 'high':'#9A3412', 'very-high':'#991B1B' };
+
+const TREATMENT_OPTIONS = [
+  { val:'avoid',  label:'Avoid',  desc:'Cease or do not start the activity giving rise to the risk' },
+  { val:'share',  label:'Share',  desc:'Delegate implementation of controls to another party (but retain accountability)' },
+  { val:'modify', label:'Modify', desc:'Implement controls to reduce the likelihood or impact of the risk' },
+  { val:'retain', label:'Retain', desc:'Accept the risk where treatment is too costly or all options are exhausted' }
+];
+
+// ── STATE ────────────────────────────────────────────────────────
+
+let currentStep = 0;
+let risks = []; // Array of risk objects
+let riskAppetite = 'Minimalist';
+
+// ── STEP NAVIGATION ──────────────────────────────────────────────
+
+function goToStep(n) {
+  document.querySelectorAll('.screen').forEach((s,i) => {
+    s.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.step-btn').forEach((b,i) => {
+    b.classList.toggle('active', i === n);
+    b.classList.toggle('done', i < n);
+  });
+  currentStep = n;
+  window.scrollTo({ top: 0, behavior:'smooth' });
+  if (n === 2) renderAssessmentForms();
+  if (n === 3) renderTreatmentForms();
+  if (n === 4) renderResults();
+}
+
+function validateAndNext(from) {
+  if (from === 0) {
+    if (!v('orgName') || !v('orgType') || !v('responsiblePerson') || !v('scopeDesc')) {
+      alert('Please fill in Organisation Name, Type, Responsible Person and Scope before continuing.');
+      return;
+    }
+  }
+  if (from === 1) {
+    if (risks.length === 0) {
+      alert('Please add at least one risk scenario before continuing.');
+      return;
+    }
+  }
+  goToStep(from + 1);
+}
+
+function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+// ── RISK APPETITE ────────────────────────────────────────────────
+
+function selectAppetite(btn) {
+  document.querySelectorAll('.appetite-btn').forEach(b => {
+    b.classList.remove('selected');
+    b.querySelector('.ab-name').textContent = b.dataset.val;
+  });
+  btn.classList.add('selected');
+  btn.querySelector('.ab-name').textContent = btn.dataset.val + ' ✓';
+  riskAppetite = btn.dataset.val;
+}
+
+// ── RISK MANAGEMENT ──────────────────────────────────────────────
+
+function addRisk() {
+  if (risks.length >= 5) { alert('Phase 1 supports up to 5 risk scenarios. Please complete your assessment with these risks.'); return; }
+  const id = 'R' + (risks.length + 1);
+  risks.push({
+    id, ref: id,
+    threatType: [],
+    description: '', vulnerability: '', consequences: '', existingControls: '',
+    likelihood: null,
+    impactScores: { 'Life &amp; Safety':'', Finance:'', Reputation:'', Operations:'', Environment:'', 'Legal &amp; Regulatory':'', Psychological:'' },
+    highestImpact: null,
+    inherentScore: null,
+    // Treatment
+    treatmentOption: null,
+    furtherActions: '', controlDescription: '', riskOwner: '', reviewDate: '',
+    residualLikelihood: null, residualImpact: null, residualScore: null
+  });
+  renderRiskList();
+  // Automatically open the new card
+  setTimeout(() => toggleRiskCard(risks.length - 1), 50);
+  if (risks.length >= 5) document.getElementById('btnAddRisk').style.display = 'none';
+}
+
+function deleteRisk(idx) {
+  if (!confirm('Remove this risk scenario?')) return;
+  risks.splice(idx, 1);
+  // Re-number
+  risks.forEach((r, i) => { r.id = 'R' + (i+1); r.ref = 'R' + (i+1); });
+  renderRiskList();
+  document.getElementById('btnAddRisk').style.display = 'flex';
+}
+
+function toggleRiskCard(idx) {
+  const card = document.getElementById('rcard-' + idx);
+  if (card) card.classList.toggle('open');
+}
+
+function renderRiskList() {
+  const container = document.getElementById('riskListIdent');
+  if (!container) return;
+  container.innerHTML = risks.map((r, i) => renderRiskIdentCard(r, i)).join('');
+}
+
+function renderRiskIdentCard(r, i) {
+  const threatBtns = THREAT_TYPES.map(t =>
+    `<button class="threat-btn${r.threatType.includes(t.id) ? ' selected' : ''}" 
+      onclick="toggleThreat(${i},'${t.id}',this)">
+      <svg viewBox="0 0 24 24"><path d="${t.icon}"/></svg>${t.label}
+    </button>`
+  ).join('');
+
+  const scoreBadge = r.inherentScore
+    ? `<span class="risk-score-badge ${r.inherentScore}">${RISK_LABELS[r.inherentScore]}</span>`
+    : `<span class="risk-score-badge unscored">Not yet scored</span>`;
+
+  return `<div class="risk-card" id="rcard-${i}">
+    <div class="risk-card-hdr" onclick="toggleRiskCard(${i})">
+      <div class="risk-ref">${r.ref}</div>
+      <div class="risk-title">
+        <strong>${r.description || 'New risk scenario — click to expand'}</strong>
+        <span>${r.threatType.map(t => THREAT_TYPES.find(x=>x.id===t)?.label).filter(Boolean).join(', ') || 'No threat type selected'}</span>
+      </div>
+      ${scoreBadge}
+      <svg class="risk-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="risk-card-body">
+      <div class="field-grid cols-1" style="margin-bottom:1rem">
+        <div class="field">
+          <label>Threat Type(s)</label>
+          <div class="hint">Select all that apply to this risk scenario</div>
+          <div class="threat-grid">${threatBtns}</div>
+        </div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field">
+          <label>Risk Description / Event *</label>
+          <div class="hint">Describe the risk event — what could happen? Use an 'if-then' or 'cause-event-consequence' format</div>
+          <textarea onchange="risks[${i}].description=this.value;renderRiskList()" 
+            placeholder="e.g. A hostile actor deploys a vehicle as a weapon at the town centre market, targeting crowds at a public event...">${r.description}</textarea>
+        </div>
+        <div class="field">
+          <label>Vulnerability *</label>
+          <div class="hint">What gap or weakness in your current security could be exploited?</div>
+          <textarea onchange="risks[${i}].vulnerability=this.value" 
+            placeholder="e.g. The market area has no vehicle exclusion measures and relies only on temporary barriers during events...">${r.vulnerability}</textarea>
+        </div>
+        <div class="field">
+          <label>Consequences *</label>
+          <div class="hint">What would happen if this risk was realised? Consider life &amp; safety, operations, reputation, legal, finance</div>
+          <textarea onchange="risks[${i}].consequences=this.value" 
+            placeholder="e.g. Multiple casualties, disruption to the town centre economy, reputational damage to the council, potential legal liability...">${r.consequences}</textarea>
+        </div>
+        <div class="field">
+          <label>Existing Controls</label>
+          <div class="hint">What controls do you already have in place that help manage this risk?</div>
+          <textarea onchange="risks[${i}].existingControls=this.value" 
+            placeholder="e.g. CCTV coverage of approach routes, police presence at events, temporary barriers at entrances, event risk assessments...">${r.existingControls}</textarea>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:0.75rem">
+        <button class="risk-delete" onclick="deleteRisk(${i})">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m5 0V4a1 1 0 011-1h2a1 1 0 011 1v2"/></svg>
+          Remove risk
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleThreat(idx, threatId, btn) {
+  const r = risks[idx];
+  if (r.threatType.includes(threatId)) {
+    r.threatType = r.threatType.filter(t => t !== threatId);
+    btn.classList.remove('selected');
+  } else {
+    r.threatType.push(threatId);
+    btn.classList.add('selected');
+  }
+}
+
+// ── ASSESSMENT FORMS ──────────────────────────────────────────────
+
+function renderAssessmentForms() {
+  const container = document.getElementById('assessmentForms');
+  if (!container) return;
+  container.innerHTML = risks.map((r, i) => renderAssessmentCard(r, i)).join('');
+  renderMatrix('matrixChart', false);
+}
+
+function renderAssessmentCard(r, i) {
+  const lhoodBtns = LIKELIHOOD.map(l =>
+    `<button class="lhood-btn${r.likelihood === l.val ? ' sel-'+l.val : ''}"
+      onclick="setLikelihood(${i},'${l.val}')">
+      <span class="lb-name">${l.label}</span>
+      <span class="lb-desc">${l.desc}</span>
+    </button>`
+  ).join('');
+
+  const impactRows = IMPACT_TYPES.map(type => {
+    const key = type;
+    const val = r.impactScores[key] || '';
+    return `<div class="impact-row">
+      <label>${type}</label>
+      <select onchange="setImpact(${i},'${key}',this.value)">
+        <option value="">Not relevant</option>
+        ${IMPACT_LEVELS.map(l => `<option value="${l.val}"${val===l.val?' selected':''}>${l.label}</option>`).join('')}
+      </select>
+    </div>`;
+  }).join('');
+
+  const highImpact = getHighestImpact(r);
+  const scoreBadge = r.inherentScore
+    ? `<span class="risk-score-badge ${r.inherentScore}">${RISK_LABELS[r.inherentScore]} Risk</span>`
+    : `<span class="risk-score-badge unscored">Score not yet calculated</span>`;
+
+  return `<div class="card" style="margin-bottom:1rem">
+    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
+      <div class="risk-ref">${r.ref}</div>
+      <div style="flex:1">
+        <div style="font-family:var(--fh);font-size:0.92rem;font-weight:700;color:var(--dark)">${r.description || 'Unnamed risk'}</div>
+        <div style="font-size:0.75rem;color:var(--mute);margin-top:0.1rem">Existing controls: ${r.existingControls || 'None recorded'}</div>
+      </div>
+      ${scoreBadge}
+    </div>
+
+    <div style="margin-bottom:1.25rem">
+      <div style="font-size:0.78rem;font-weight:600;color:var(--dark);margin-bottom:0.5rem">Step 2B: Likelihood <span style="font-weight:400;color:var(--mute)">(rate with existing controls in place)</span></div>
+      <div class="likelihood-grid">${lhoodBtns}</div>
+    </div>
+
+    <div>
+      <div style="font-size:0.78rem;font-weight:600;color:var(--dark);margin-bottom:0.5rem">Step 2C: Impact across 7 Areas <span style="font-weight:400;color:var(--mute)">(highest rating = overall impact score)</span></div>
+      <div class="impact-grid">${impactRows}</div>
+      <div class="impact-highest">
+        <label>Highest Impact Rating (Overall Score)</label>
+        <span class="highest-val">${highImpact ? IMPACT_LEVELS.find(l=>l.val===highImpact)?.label || '—' : '—'}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function setLikelihood(idx, val) {
+  risks[idx].likelihood = val;
+  recalcScore(idx);
+  renderAssessmentForms();
+}
+
+function setImpact(idx, type, val) {
+  risks[idx].impactScores[type] = val;
+  risks[idx].highestImpact = getHighestImpact(risks[idx]);
+  recalcScore(idx);
+  renderAssessmentForms();
+}
+
+function getHighestImpact(r) {
+  let max = 0, maxVal = null;
+  Object.values(r.impactScores).forEach(v => {
+    const l = IMPACT_LEVELS.find(x => x.val === v);
+    if (l && l.score > max) { max = l.score; maxVal = v; }
+  });
+  return maxVal;
+}
+
+function recalcScore(idx) {
+  const r = risks[idx];
+  const l = LIKELIHOOD.find(x => x.val === r.likelihood);
+  const imp = r.highestImpact || getHighestImpact(r);
+  const impL = IMPACT_LEVELS.find(x => x.val === imp);
+  if (l && impL) {
+    r.highestImpact = imp;
+    r.inherentScore = MATRIX[l.score][impL.score];
+  } else {
+    r.inherentScore = null;
+  }
+}
+
+// ── RISK MATRIX ───────────────────────────────────────────────────
+
+function renderMatrix(containerId, showResidual) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+
+  // Build 4x4 grid: rows = likelihood (high to low), cols = impact (low to high)
+  // Matrix cells: [l_score][i_score]
+  const cellLabels = {
+    'low':'L','medium':'M','high':'H','very-high':'VH'
+  };
+
+  // Impact headers
+  const impHeaders = ['', 'Minor', 'Significant', 'Serious', 'Critical'];
+  // Likelihood headers (high to low, displayed bottom to top)
+  const lhoodHeaders = ['Likely', 'Possible', 'Unlikely', 'Very\nUnlikely'];
+
+  // Build risk dot positions
+  // inherent: { ref, l_score, i_score }
+  const inherentDots = {};
+  const residualDots = {};
+
+  risks.forEach(r => {
+    const l = LIKELIHOOD.find(x => x.val === r.likelihood);
+    const impL = IMPACT_LEVELS.find(x => x.val === r.highestImpact);
+    if (l && impL) {
+      const key = `${l.score}-${impL.score}`;
+      if (!inherentDots[key]) inherentDots[key] = [];
+      inherentDots[key].push(r.ref);
+    }
+    if (showResidual && r.residualLikelihood && r.residualImpact) {
+      const rl = LIKELIHOOD.find(x => x.val === r.residualLikelihood);
+      const ri = IMPACT_LEVELS.find(x => x.val === r.residualImpact);
+      if (rl && ri) {
+        const key = `${rl.score}-${ri.score}`;
+        if (!residualDots[key]) residualDots[key] = [];
+        residualDots[key].push(r.ref);
+      }
+    }
+  });
+
+  let html = '<div style="display:flex;gap:0.5rem;align-items:flex-start">';
+
+  // Y-axis label
+  html += '<div style="display:flex;align-items:center;justify-content:center;width:20px;min-height:240px">';
+  html += '<span class="matrix-axis-label matrix-y-label" style="font-size:0.6rem;white-space:nowrap">Likelihood →</span>';
+  html += '</div>';
+
+  html += '<div style="flex:1"><div class="matrix-container">';
+
+  // Row 0: impact headers
+  html += '<div class="matrix-cell header-col"></div>';
+  ['Minor','Significant','Serious','Critical'].forEach(h => {
+    html += `<div class="matrix-cell header-row">${h}</div>`;
+  });
+
+  // Rows 1-4: likelihood rows (4=Likely at top, 1=Very Unlikely at bottom)
+  const lhoodRowLabels = ['Likely','Possible','Unlikely','Very\nUnlikely'];
+  for (let ls = 4; ls >= 1; ls--) {
+    const lLabel = lhoodRowLabels[4 - ls];
+    html += `<div class="matrix-cell header-col">${lLabel.replace('\n','<br>')}</div>`;
+
+    for (let is = 1; is <= 4; is++) {
+      const rating = MATRIX[ls][is];
+      const cls = `risk-${rating.replace('-','-')}`;
+      const iDots = inherentDots[`${ls}-${is}`] || [];
+      const rDots = showResidual ? (residualDots[`${ls}-${is}`] || []) : [];
+      let dotsHtml = '';
+      if (iDots.length || rDots.length) {
+        dotsHtml = '<div class="matrix-risk-dot">';
+        iDots.forEach(ref => { dotsHtml += `<div class="risk-dot" title="${ref} — Inherent risk">${ref}</div>`; });
+        rDots.forEach(ref => { dotsHtml += `<div class="risk-dot residual" title="${ref} — Residual risk">${ref}</div>`; });
+        dotsHtml += '</div>';
+      }
+      const ratingLabel = rating === 'very-high' ? 'VH' : rating === 'high' ? 'H' : rating === 'medium' ? 'M' : 'L';
+      html += `<div class="matrix-cell ${cls.replace('risk-very-high','risk-vhigh').replace('risk-high','risk-high').replace('risk-medium','risk-med').replace('risk-low','risk-low')}" style="background:${RISK_COLOURS[rating]};color:${RISK_TEXT[rating]};font-size:0.65rem;font-weight:800">
+        ${dotsHtml || ratingLabel}
+      </div>`;
+    }
+  }
+
+  html += '</div>';
+  // X-axis label
+  html += '<div style="text-align:center;margin-top:0.35rem"><span class="matrix-axis-label" style="font-size:0.6rem">Impact →</span></div>';
+  html += '</div></div>';
+
+  // Legend
+  html += '<div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:0.85rem">';
+  [['very-high','Very High — Unacceptable, treat immediately'],
+   ['high','High — Unacceptable, treat as priority'],
+   ['medium','Medium — Tolerable, treat if practicable'],
+   ['low','Low — Acceptable, monitor regularly']].forEach(([r, label]) => {
+    html += `<div style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--mid)">
+      <div style="width:14px;height:14px;border-radius:3px;background:${RISK_COLOURS[r]};border:1px solid ${RISK_TEXT[r]}20"></div>${label}
+    </div>`;
+  });
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
+// ── TREATMENT FORMS ───────────────────────────────────────────────
+
+function renderTreatmentForms() {
+  const container = document.getElementById('treatmentForms');
+  if (!container) return;
+  // Sort by inherent score priority
+  const order = { 'very-high':0, 'high':1, 'medium':2, 'low':3, null:4 };
+  const sorted = [...risks].sort((a,b) => (order[a.inherentScore]||4) - (order[b.inherentScore]||4));
+  container.innerHTML = sorted.map((r) => renderTreatmentCard(r, risks.indexOf(r))).join('');
+  renderMatrix('matrixChartResidual', true);
+}
+
+function renderTreatmentCard(r, i) {
+  const treatBtns = TREATMENT_OPTIONS.map(t =>
+    `<button class="treat-btn${r.treatmentOption === t.val ? ' selected' : ''}"
+      onclick="setTreatment(${i},'${t.val}')">
+      <span class="tb-name">${t.label}</span>
+      <span class="tb-desc">${t.desc}</span>
+    </button>`
+  ).join('');
+
+  const lhoodBtns = LIKELIHOOD.map(l =>
+    `<button class="lhood-btn${r.residualLikelihood === l.val ? ' sel-'+l.val : ''}"
+      onclick="setResidualLikelihood(${i},'${l.val}')">
+      <span class="lb-name">${l.label}</span>
+    </button>`
+  ).join('');
+
+  const impactBtns = IMPACT_LEVELS.map(l =>
+    `<button class="lhood-btn${r.residualImpact === l.val ? ' sel-'+l.val.replace('minor','very-unlikely').replace('significant','unlikely').replace('serious','possible').replace('critical','likely') : ''}"
+      onclick="setResidualImpact(${i},'${l.val}')">
+      <span class="lb-name">${l.label}</span>
+    </button>`
+  ).join('');
+
+  const inherentBadge = r.inherentScore
+    ? `<span class="risk-score-badge ${r.inherentScore}">${RISK_LABELS[r.inherentScore]}</span>`
+    : `<span class="risk-score-badge unscored">Unscored</span>`;
+
+  const residualBadge = r.residualScore
+    ? `<span class="risk-score-badge ${r.residualScore}">${RISK_LABELS[r.residualScore]} (residual)</span>`
+    : `<span class="risk-score-badge unscored">Residual not yet calculated</span>`;
+
+  return `<div class="card" style="margin-bottom:1rem">
+    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem">
+      <div class="risk-ref">${r.ref}</div>
+      <div style="flex:1">
+        <div style="font-family:var(--fh);font-size:0.92rem;font-weight:700;color:var(--dark)">${r.description || 'Unnamed risk'}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.3rem;align-items:flex-end">${inherentBadge}${residualBadge}</div>
+    </div>
+
+    <div style="margin-bottom:1.1rem">
+      <div style="font-size:0.78rem;font-weight:600;color:var(--dark);margin-bottom:0.5rem">Step 3A: Select Treatment Option</div>
+      <div class="treatment-grid">${treatBtns}</div>
+    </div>
+
+    <div class="field-grid cols-1" style="margin-bottom:1.1rem">
+      <div class="field">
+        <label>Step 3B: Further Actions &amp; Controls</label>
+        <div class="hint">Describe the physical and active controls you will implement, including who is responsible, timeline and resources required</div>
+        <textarea onchange="risks[${i}].furtherActions=this.value" 
+          placeholder="e.g. Install permanent hostile vehicle mitigation (HVM) bollards at market entrances (Physical). Review and update the Event Security Management Plan (Active). Appoint trained security personnel for all public events...">${r.furtherActions}</textarea>
+      </div>
+    </div>
+
+    <div style="margin-bottom:1.1rem">
+      <div style="font-size:0.78rem;font-weight:600;color:var(--dark);margin-bottom:0.5rem">Step 3D: Residual Likelihood <span style="font-weight:400;color:var(--mute)">(after planned controls)</span></div>
+      <div class="likelihood-grid">${lhoodBtns}</div>
+    </div>
+
+    <div style="margin-bottom:1.1rem">
+      <div style="font-size:0.78rem;font-weight:600;color:var(--dark);margin-bottom:0.5rem">Step 3D: Residual Impact <span style="font-weight:400;color:var(--mute)">(after planned controls)</span></div>
+      <div class="likelihood-grid">${impactBtns}</div>
+    </div>
+
+    <div class="field-grid" style="margin-bottom:0">
+      <div class="field">
+        <label>Risk Owner *</label>
+        <div class="hint">Person accountable for implementing the treatment plan</div>
+        <input type="text" value="${r.riskOwner}" onchange="risks[${i}].riskOwner=this.value" placeholder="Name and job title">
+      </div>
+      <div class="field">
+        <label>Review Date *</label>
+        <div class="hint">Very High: 1 month | High: 3 months | Medium: 6 months | Low: 12 months</div>
+        <input type="date" value="${r.reviewDate}" onchange="risks[${i}].reviewDate=this.value">
+      </div>
+    </div>
+  </div>`;
+}
+
+function setTreatment(idx, val) {
+  risks[idx].treatmentOption = val;
+  renderTreatmentForms();
+}
+
+function setResidualLikelihood(idx, val) {
+  risks[idx].residualLikelihood = val;
+  recalcResidual(idx);
+  renderTreatmentForms();
+}
+
+function setResidualImpact(idx, val) {
+  risks[idx].residualImpact = val;
+  recalcResidual(idx);
+  renderTreatmentForms();
+}
+
+function recalcResidual(idx) {
+  const r = risks[idx];
+  const l = LIKELIHOOD.find(x => x.val === r.residualLikelihood);
+  const impL = IMPACT_LEVELS.find(x => x.val === r.residualImpact);
+  if (l && impL) {
+    r.residualScore = MATRIX[l.score][impL.score];
+  } else {
+    r.residualScore = null;
+  }
+}
+
+// ── RESULTS ───────────────────────────────────────────────────────
+
+function renderResults() {
+  const org = v('orgName') || 'Your Organisation';
+  const rp = v('responsiblePerson') || 'Not specified';
+  const date = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('resultsDate').textContent = date;
+  document.getElementById('resultsOrgLine').innerHTML =
+    `<strong style="color:rgba(255,255,255,0.7)">${org}</strong> &nbsp;|&nbsp; Responsible Person: ${rp} &nbsp;|&nbsp; Generated: ${date}`;
+
+  // Summary counts
+  const counts = { 'very-high':0, 'high':0, 'medium':0, 'low':0 };
+  risks.forEach(r => { if (r.residualScore) counts[r.residualScore]++; else if (r.inherentScore) counts[r.inherentScore]++; });
+
+  document.getElementById('resultsSummary').innerHTML = `
+    <div class="rs-card vhigh"><div class="rs-n">${counts['very-high']}</div><div class="rs-l">Very High</div></div>
+    <div class="rs-card high"><div class="rs-n">${counts['high']}</div><div class="rs-l">High</div></div>
+    <div class="rs-card med"><div class="rs-n">${counts['medium']}</div><div class="rs-l">Medium</div></div>
+    <div class="rs-card low"><div class="rs-n">${counts['low']}</div><div class="rs-l">Low</div></div>
+  `;
+
+  // Risk register table
+  const sortOrder = { 'very-high':0, 'high':1, 'medium':2, 'low':3, null:4 };
+  const sorted = [...risks].sort((a,b) => (sortOrder[a.inherentScore]||4)-(sortOrder[b.inherentScore]||4));
+
+  let rrHtml = `<div class="rr-hdr"><span class="rr-title">Risk Register</span></div>
+    <div class="rr-row rr-head"><span></span><span>Risk</span><span style="text-align:center">Inherent</span><span style="text-align:center">Residual</span><span style="text-align:center">Treatment</span><span style="text-align:center">Owner</span></div>`;
+
+  sorted.forEach(r => {
+    const iBadge = r.inherentScore ? `<div class="rr-badge ${r.inherentScore}">${RISK_LABELS[r.inherentScore]}</div>` : '<div class="rr-badge" style="background:var(--light);color:var(--mute)">—</div>';
+    const rBadge = r.residualScore ? `<div class="rr-badge ${r.residualScore}">${RISK_LABELS[r.residualScore]}</div>` : '<div class="rr-badge" style="background:var(--light);color:var(--mute)">—</div>';
+    const treat = r.treatmentOption ? (r.treatmentOption.charAt(0).toUpperCase()+r.treatmentOption.slice(1)) : '—';
+    rrHtml += `<div class="rr-row">
+      <div class="rr-ref">${r.ref}</div>
+      <div class="rr-desc"><strong>${(r.description||'Unnamed').substring(0,60)}${r.description?.length>60?'...':''}</strong><span>${r.threatType.map(t=>THREAT_TYPES.find(x=>x.id===t)?.label).filter(Boolean).join(', ')||'—'}</span></div>
+      <div style="text-align:center">${iBadge}</div>
+      <div style="text-align:center">${rBadge}</div>
+      <div style="font-size:0.78rem;color:var(--mid);text-align:center">${treat}</div>
+      <div style="font-size:0.75rem;color:var(--mute)">${r.riskOwner||'—'}</div>
+    </div>`;
+  });
+
+  document.getElementById('riskRegister').innerHTML = rrHtml;
+
+  // Review schedule
+  let revHtml = '';
+  sorted.forEach(r => {
+    const score = r.residualScore || r.inherentScore;
+    const freqMap = { 'very-high':'Monthly — treat immediately', 'high':'Every 3 months', 'medium':'Every 6 months', 'low':'Annually' };
+    revHtml += `<div class="review-card">
+      <strong>${r.ref}: ${(r.description||'Unnamed risk').substring(0,40)}${r.description?.length>40?'...':''}</strong>
+      <p>Owner: ${r.riskOwner||'Not assigned'}</p>
+      <div class="rev-date">${r.reviewDate ? new Date(r.reviewDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : freqMap[score]||'Set review date'}</div>
+    </div>`;
+  });
+  document.getElementById('reviewGrid').innerHTML = revHtml;
+
+  // Matrices
+  renderMatrix('matrixChartFinal', true);
+}
+
+// ── PDF EXPORT ────────────────────────────────────────────────────
+
+function downloadPDF() {
+  const org = v('orgName') || 'Your Organisation';
+  const rp = v('responsiblePerson') || 'Not specified';
+  const cp = v('competentPerson') || 'Not specified';
+  const scope = v('scopeDesc') || 'Not specified';
+  const date = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+  const appetite = riskAppetite;
+
+  const RCOL = { 'very-high':'#DC2626','high':'#EA580C','medium':'#D97706','low':'#16A34A' };
+  const RBCOL = { 'very-high':'#FEF2F2','high':'#FFF7ED','medium':'#FFFBEB','low':'#F0FDF4' };
+
+  const sortOrder = {'very-high':0,'high':1,'medium':2,'low':3,null:4};
+  const sorted = [...risks].sort((a,b)=>(sortOrder[a.inherentScore]||4)-(sortOrder[b.inherentScore]||4));
+
+  let risksHtml = sorted.map(r => {
+    const iScore = r.inherentScore;
+    const rScore = r.residualScore;
+    const treat = r.treatmentOption ? r.treatmentOption.charAt(0).toUpperCase()+r.treatmentOption.slice(1) : 'Not selected';
+    const threats = r.threatType.map(t=>THREAT_TYPES.find(x=>x.id===t)?.label).filter(Boolean).join(', ') || 'Not specified';
+    return `<div style="border:1px solid #E5E7EB;border-radius:8px;padding:14px;margin-bottom:12px;border-left:4px solid ${RCOL[iScore]||'#9CA3AF'}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;color:#fff">${r.ref}</div>
+        <div style="flex:1"><strong style="font-size:13px">${r.description||'Unnamed risk'}</strong><br><span style="font-size:11px;color:#6B7280">Threat: ${threats}</span></div>
+        ${iScore ? `<span style="background:${RBCOL[iScore]};color:${RCOL[iScore]};padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">Inherent: ${RISK_LABELS[iScore]}</span>` : ''}
+        ${rScore ? `<span style="background:${RBCOL[rScore]};color:${RCOL[rScore]};padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700">Residual: ${RISK_LABELS[rScore]}</span>` : ''}
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <tr><td style="width:30%;padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Vulnerability</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.vulnerability||'—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Consequences</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.consequences||'—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Existing Controls</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.existingControls||'None recorded'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Likelihood (inherent)</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.likelihood ? LIKELIHOOD.find(l=>l.val===r.likelihood)?.label : '—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Impact (highest)</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.highestImpact ? IMPACT_LEVELS.find(l=>l.val===r.highestImpact)?.label : '—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Treatment Option</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${treat}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Further Actions</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.furtherActions||'—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Residual Likelihood</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.residualLikelihood ? LIKELIHOOD.find(l=>l.val===r.residualLikelihood)?.label : '—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Residual Impact</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.residualImpact ? IMPACT_LEVELS.find(l=>l.val===r.residualImpact)?.label : '—'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Risk Owner</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.riskOwner||'Not assigned'}</td></tr>
+        <tr><td style="padding:4px 6px;background:#F9FAFB;color:#6B7280;font-weight:600;border:1px solid #E5E7EB">Review Date</td><td style="padding:4px 6px;border:1px solid #E5E7EB">${r.reviewDate||'Not set'}</td></tr>
+      </table>
+    </div>`;
+  }).join('');
+
+  // Simple ASCII-style risk matrix for PDF
+  const matrixHtml = `<table style="border-collapse:collapse;margin:10px 0;font-size:11px">
+    <tr><td style="padding:4px 8px;font-weight:700;color:#6B7280"></td>
+    ${['Minor','Significant','Serious','Critical'].map(h=>`<td style="padding:4px 8px;text-align:center;font-weight:700;color:#6B7280;border:1px solid #E5E7EB">${h}</td>`).join('')}</tr>
+    ${[4,3,2,1].map(ls => {
+      const lLabel = LIKELIHOOD.find(l=>l.score===ls)?.label||'';
+      return `<tr><td style="padding:4px 8px;font-weight:700;color:#6B7280;border:1px solid #E5E7EB;text-align:right">${lLabel}</td>
+        ${[1,2,3,4].map(is => {
+          const r = MATRIX[ls][is];
+          const rLabel = r==='very-high'?'VH':r==='high'?'H':r==='medium'?'M':'L';
+          const dots = risks.filter(risk => {
+            const l=LIKELIHOOD.find(x=>x.val===risk.likelihood);
+            const imp=IMPACT_LEVELS.find(x=>x.val===risk.highestImpact);
+            return l?.score===ls && imp?.score===is;
+          }).map(risk=>risk.ref).join(',');
+          return `<td style="padding:6px 8px;text-align:center;background:${RISK_COLOURS[r]};color:${RISK_TEXT[r]};border:1px solid #E5E7EB;font-weight:800">${dots||rLabel}</td>`;
+        }).join('')}</tr>`;
+    }).join('')}
+  </table>`;
+
+  const printContent = `<!DOCTYPE html><html><head><title>Risk Assessment — ${org}</title>
+  <style>body{margin:20px;font-family:Arial,sans-serif;}@media print{body{margin:0;}h2{page-break-before:avoid;}</style></head><body>
+  <div style="background:linear-gradient(135deg,#0A1628,#1E3A5F);padding:20px 24px;border-radius:8px;margin-bottom:16px;color:#fff">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px">FYRFLY SYSTEMS — PROTECTUK RISK MANAGEMENT TOOL</div>
+    <div style="font-size:20px;font-weight:800;margin-bottom:4px">Terrorist Risk Assessment</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.6)">Based on NaCTSO / ProtectUK 5-Stage Risk Management Guidance</div>
+  </div>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px">
+    <tr>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280;width:25%">Organisation</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${org}</td>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280;width:25%">Assessment Date</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${date}</td>
+    </tr>
+    <tr>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280">Responsible Person</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${rp}</td>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280">Competent Person</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${cp}</td>
+    </tr>
+    <tr>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280">Risk Appetite</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${appetite}</td>
+      <td style="padding:6px 10px;background:#F9FAFB;border:1px solid #E5E7EB;font-weight:700;color:#6B7280">Scope</td>
+      <td style="padding:6px 10px;border:1px solid #E5E7EB">${scope}</td>
+    </tr>
+  </table>
+
+  <h2 style="font-size:14px;font-weight:800;color:#0A1628;margin:16px 0 8px;border-bottom:2px solid #E85D04;padding-bottom:6px">Risk Matrix (Inherent Risk)</h2>
+  <p style="font-size:11px;color:#6B7280;margin-bottom:8px">ProtectUK 4×4 matrix — minimalist risk appetite. Risk references plotted in corresponding cells.</p>
+  ${matrixHtml}
+
+  <h2 style="font-size:14px;font-weight:800;color:#0A1628;margin:20px 0 8px;border-bottom:2px solid #E85D04;padding-bottom:6px">Risk Register</h2>
+  ${risksHtml}
+
+  <div style="margin-top:20px;padding:12px 14px;background:#F5F4F2;border-radius:8px;font-size:10px;color:#67677A">
+    <strong>Privacy &amp; Attribution:</strong> This risk assessment was completed using the Fyrfly Systems ProtectUK Risk Management Tool. No data was transmitted to or stored by Fyrfly Systems — all data was held in browser memory only and has now been destroyed. This document is your only record.
+    Based on ProtectUK Risk Management Guidance (NaCTSO / Home Office / Counter Terrorism Policing). Source: www.protectuk.police.uk. 
+    Generated by Fyrfly Systems — www.fyrflysystems.com | Martyn's Law compliance support.
+  </div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`;
+
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(printContent); w.document.close(); }
+  else alert('Please allow popups to download the PDF.');
+}
+
+// ── SHARE WITH FYRFLY ─────────────────────────────────────────────
+
+function shareWithFyrfly() {
+  const org = v('orgName') || 'Our Organisation';
+  const rp = v('responsiblePerson') || 'Not specified';
+  const vhigh = risks.filter(r=>r.residualScore==='very-high'||(!r.residualScore&&r.inherentScore==='very-high')).length;
+  const high = risks.filter(r=>r.residualScore==='high'||(!r.residualScore&&r.inherentScore==='high')).length;
+  const summary = risks.map(r=>`- ${r.ref} [${r.inherentScore||'unscored'}→${r.residualScore||'?'}]: ${(r.description||'Unnamed').substring(0,80)}`).join('\n');
+
+  const subject = encodeURIComponent(`ProtectUK Risk Assessment — ${org}`);
+  const body = encodeURIComponent(
+    `Hi Fyrfly Systems,\n\nI have completed the ProtectUK Risk Management Tool on your website and would like to discuss our findings and the physical security measures that could help address our identified risks.\n\n` +
+    `Organisation: ${org}\nResponsible Person: ${rp}\nRisk Appetite: ${riskAppetite}\n\n` +
+    `Results Summary:\n• Very High risks: ${vhigh}\n• High risks: ${high}\n• Total risks assessed: ${risks.length}\n\n` +
+    `Risk overview:\n${summary}\n\n` +
+    `Please contact us to discuss how Fyrfly Systems can help implement the physical security controls identified in our treatment plan.\n\nKind regards`
+  );
+  window.location.href = `mailto:hello@fyrflysystems.com?subject=${subject}&body=${body}`;
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+
+function init() {
+  // Set today's date as default
+  const today = new Date().toISOString().split('T')[0];
+  const dateEl = document.getElementById('assessmentDate');
+  if (dateEl) dateEl.value = today;
+}
+
+if (document.readyState === 'complete') { init(); }
+else { window.addEventListener('load', init); }
+</script>
+</body>
+</html>
