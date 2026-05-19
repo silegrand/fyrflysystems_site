@@ -190,10 +190,27 @@
       <li><a href="public-sector.html">Public Sector</a></li>
       <li class="nav-dropdown">
         <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
-        <div class="drop-menu">
-          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
-          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
-          <a href="system-integration.html" class="drop-item active">System Integration</a>
+                <div class="drop-menu">
+          <a href="cost-estimator.html" class="drop-item">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div><div class="drop-label">Cost Estimator</div></div>
+          </a>
+          <a href="your-site-tool.html" class="drop-item">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div><div class="drop-label">Your Site Tool</div></div>
+          </a>
+          <a href="zone-planner.html" class="drop-item">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div><div class="drop-label">Zone Planner</div></div>
+          </a>
+          <a href="compliance-tool.html" class="drop-item">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div><div class="drop-label">Compliance Tool</div></div>
+          </a>
+          <a href="system-integration.html" class="drop-item active">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+            <div><div class="drop-label">System Integration</div></div>
+          </a>
         </div>
       </li>
       <li><a href="blog.html">Insights</a></li>
@@ -218,7 +235,7 @@
       <div class="leg-item"><div class="leg-dot" style="background:var(--alarm)"></div><span><strong>Intruder Alarm</strong> — detection &amp; response</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--fire)"></div><span><strong>Fire System</strong> — detection &amp; evacuation</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--monitor)"></div><span><strong>Monitoring Centre</strong> — 24/7 human response</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--network)"></div><span><strong>Data Network</strong> — connects everything</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--network)"></div><span><strong>Wireless Network</strong> — connects everything</span></div>
       <div class="leg-divider"></div>
       <div class="leg-group-label">Animated lines show live signals</div>
       <div class="leg-item"><div class="leg-pulse" style="background:var(--alarm)"></div><span>Alarm &amp; alert signals</span></div>
@@ -292,7 +309,7 @@ const NODES = {
       { to: 'monitor', color: '#3B82F6', label: 'Live feed to monitoring centre', detail: 'When an intruder alarm activates, the ARC operator pulls up live camera footage to verify the event before deciding on response. This prevents false alarm police calls and ensures genuine events get an immediate reaction.' },
       { to: 'access', color: '#10B981', label: 'Door open triggers camera capture', detail: 'Every time a door reader is activated, the nearest camera automatically captures the face of the person entering. This links access log entries to visual evidence, which is invaluable for safeguarding investigations and insurance claims.' },
       { to: 'alarm', color: '#EF4444', label: 'Alarm activation triggers recording', detail: 'When the intruder alarm is triggered, cameras covering the activation zone switch to high-frame-rate recording and stream live to the monitoring centre. This provides visual context to the alarm event within seconds.' },
-      { to: 'network', color: '#06B6D4', label: 'Carried over the data network', detail: 'IP cameras transmit video data over the data network infrastructure. The network is designed with a dedicated VLAN for security systems, ensuring camera streams are never degraded by general internet usage on the same site.' }
+      { to: 'network', color: '#06B6D4', label: 'Carried over wireless network', detail: 'IP cameras transmit video data over the wireless network infrastructure. The network is designed with a dedicated VLAN for security systems, ensuring camera streams are never degraded by general internet usage on the same site.' }
     ],
     page: 'cctv.html'
   },
@@ -318,7 +335,7 @@ const NODES = {
       { to: 'monitor', color: '#8B5CF6', label: 'Alarm signal to monitoring centre', detail: 'The moment an alarm zone is triggered, a digital signal travels to the NSI-approved Alarm Receiving Centre via dual-path signalling — broadband and 4G cellular. Operators respond within seconds, contacting keyholders and coordinating police response if required.' },
       { to: 'cctv', color: '#3B82F6', label: 'Triggers cameras in the alarm zone', detail: 'Alarm activation tells the CCTV system exactly which zone has been triggered. The nearest cameras switch to event recording and stream live to the monitoring centre. This visual verification determines whether the response is a keyholder call or an emergency police response.' },
       { to: 'access', color: '#10B981', label: 'Can initiate zone lockdown', detail: 'Depending on the installation configuration, a confirmed intruder alarm can trigger access control to lock down specific zones. This prevents a detected intruder from moving to other parts of the building while keyholders and response teams are en route.' },
-      { to: 'network', color: '#06B6D4', label: 'Dual-path signal via network', detail: 'The alarm communicator uses the site data network as the primary signalling path to the monitoring centre, with 4G cellular as the backup. If an intruder cuts the broadband connection, the cellular path ensures the signal gets through.' }
+      { to: 'network', color: '#06B6D4', label: 'Dual-path signal via network', detail: 'The alarm communicator uses the site wireless network as the primary signalling path to the monitoring centre, with 4G cellular as the backup. If an intruder cuts the broadband connection, the cellular path ensures the signal gets through.' }
     ],
     page: 'intruder-alarms.html'
   },
@@ -347,10 +364,10 @@ const NODES = {
     page: 'monitoring.html'
   },
   network: {
-    id: 'network', label: 'Data Network', color: '#06B6D4',
+    id: 'network', label: 'Wireless Network', color: '#06B6D4',
     icon: 'wifi',
     tagline: 'The secure infrastructure that carries data between every system on site',
-    desc: 'The data network is the invisible backbone that makes integration possible. Without a properly designed, segmented network, IP cameras cannot stream, access control cannot communicate, and alarm signals cannot travel. The network is designed with security systems on their own dedicated VLAN — isolated from general internet traffic and protected against cyber threats.',
+    desc: 'The wireless network is the invisible backbone that makes integration possible. Without a properly designed, segmented network, IP cameras cannot stream, access control cannot communicate, and alarm signals cannot travel. The network is designed with security systems on their own dedicated VLAN — isolated from general internet traffic and protected against cyber threats.',
     connections: [
       { to: 'cctv', color: '#3B82F6', label: 'Carries IP camera video streams', detail: 'HD and 4K camera streams require significant bandwidth and low latency. The network is designed with security systems on a dedicated VLAN, sized for the full camera load. This ensures camera streams are never affected by pupils streaming video or other general internet usage.' },
       { to: 'access', color: '#10B981', label: 'Carries access events and credentials', detail: 'Access control panels communicate with the management server over the network. Every door event, every credential change and every access log entry travels over this path. The network is configured to prioritise access control traffic to ensure real-time responsiveness.' },
