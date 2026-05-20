@@ -13,7 +13,7 @@
 (function () {
   'use strict';
 
-  var FORM_ENDPOINT = 'https://formbold.com/s/3A7kr';
+  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
   var PHONE         = '01234 567 890'; // ← replace with real number
   var EMAIL         = 'hello@fyrflysystems.com';
 
@@ -731,6 +731,10 @@
       // Build FormData from the form element (Formbold's preferred AJAX method)
       var firstName = document.getElementById('fm-name').value.trim().split(' ')[0];
       var formData  = new FormData(form);
+      // Web3Forms public access key — safe to include in frontend code
+      formData.append('access_key', 'ff37786b-ba02-4120-81ee-dfa181f68808');
+      formData.append('subject', 'New Enquiry — Fyrfly Systems Website');
+      formData.append('from_name', 'Fyrfly Systems Website');
 
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
@@ -740,10 +744,11 @@
         headers: { 'Accept': 'application/json' },
         body:   formData
       })
-      .then(function(res) {
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-        if (res.ok || res.status === 200) {
+        if (data.success) {
           showSuccess(firstName);
           form.reset();
           pills.forEach(function(p) { p.classList.remove('selected'); });
@@ -753,14 +758,9 @@
         }
       })
       .catch(function() {
-        // Formbold processes the submission before CORS blocks the response.
-        // Show success — the email will have been delivered.
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-        showSuccess(firstName);
-        form.reset();
-        pills.forEach(function(p) { p.classList.remove('selected'); });
-        interestsInput.value = '';
+        alert('Could not send your message. Please email us directly at ' + EMAIL);
       });
     });
 
