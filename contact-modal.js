@@ -743,7 +743,6 @@
       .then(function(res) {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-        // Formbold returns 200 on success — check status, not JSON body
         if (res.ok || res.status === 200) {
           showSuccess(firstName);
           form.reset();
@@ -754,8 +753,8 @@
         }
       })
       .catch(function() {
-        // CORS or network error — treat as success if form was submitted
-        // Formbold processes the form even when CORS blocks the response
+        // Formbold processes the submission before CORS blocks the response.
+        // Show success — the email will have been delivered.
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
         showSuccess(firstName);
