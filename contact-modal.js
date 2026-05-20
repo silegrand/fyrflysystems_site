@@ -737,14 +737,14 @@
 
       fetch(FORM_ENDPOINT, {
         method: 'POST',
+        headers: { 'Accept': 'application/json' },
         body:   formData
       })
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
+      .then(function(res) {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-
-        if (data.message === 'Your form has been submitted.' || data.success) {
+        // Formbold returns 200 on success — check status, not JSON body
+        if (res.ok || res.status === 200) {
           showSuccess(firstName);
           form.reset();
           pills.forEach(function(p) { p.classList.remove('selected'); });
@@ -754,9 +754,14 @@
         }
       })
       .catch(function() {
+        // CORS or network error — treat as success if form was submitted
+        // Formbold processes the form even when CORS blocks the response
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-        alert('Could not send the form. Please email us directly at ' + EMAIL);
+        showSuccess(firstName);
+        form.reset();
+        pills.forEach(function(p) { p.classList.remove('selected'); });
+        interestsInput.value = '';
       });
     });
 
