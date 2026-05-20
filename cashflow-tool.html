@@ -17,6 +17,7 @@ go to Settings > Pages, set source to main branch / root.
 <title>Fyrfly Systems — Cash Flow Forecast 2026–2028</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx-js-style.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans', 'Segoe UI', Tahoma, sans-serif;background:#fff;color:#1a1a2e;font-size:13px;}
@@ -160,10 +161,16 @@ table.pdf-tbl .yr-hdr th{background:#1B1B24;}
     <div style="display:flex;align-items:center;gap:1rem;"><div style="display:flex;align-items:center;gap:.45rem;"><div style="background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);padding:3px 8px;border-radius:4px;font-family:'Roboto',sans-serif;font-size:.65rem;font-weight:900;letter-spacing:.12em;color:#fff;">FYRFLY</div><div style="width:1px;height:20px;background:rgba(255,255,255,.2);"></div></div><h1>Cash Flow Forecast</h1></div>
     <p style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:3px;">July 2026 – June 2028 &nbsp;&bull;&nbsp; All figures in GBP &nbsp;&bull;&nbsp; Confidential</p>
   </div>
+  <div style="display:flex;align-items:center;gap:.6rem;">
   <button class="export-btn" onclick="openPDFModal()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
     Export PDF
   </button>
+  <button class="export-btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);" onclick="exportExcel()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><polyline points="8,13 10,15 8,17"/><polyline points="16,13 14,15 16,17"/><line x1="12" y1="13" x2="12" y2="17"/></svg>
+    Export Excel
+  </button>
+  </div>
 </div>
 
 <!-- TABS -->
@@ -959,6 +966,259 @@ async function exportPDF(type) {
   }).save();
 
   document.body.removeChild(wrapper);
+}
+
+
+// ── EXCEL EXPORT ────────────────────────────────────────────────
+function exportExcel() {
+  if (typeof XLSX === 'undefined') { alert('Excel library still loading — please try again in a moment.'); return; }
+
+  const wb = XLSX.utils.book_new();
+  const cumArr = getCumulatives();
+  const startup = getMinStartupCapital();
+  const NC = 29; // 2 label cols + 24 months + 3 total cols
+  const TC = 26; // index of Year 1 Total column
+
+  // ── SHARED STYLES ──────────────────────────────────────────
+  const fBase = { name:'Calibri', sz:9 };
+  function fill(hex) { return { fgColor:{rgb:hex}, patternType:'solid' }; }
+  function font(hex, bold, italic) { return Object.assign({}, fBase, hex?{color:{rgb:hex}}:{}, bold?{bold:true}:{}, italic?{italic:true}:{}); }
+  const border = { top:{style:'thin',color:{rgb:'E6E5E1'}}, bottom:{style:'thin',color:{rgb:'E6E5E1'}}, left:{style:'thin',color:{rgb:'E6E5E1'}}, right:{style:'thin',color:{rgb:'E6E5E1'}} };
+  const rAlign = { horizontal:'right', vertical:'center' };
+  const lAlign = { horizontal:'left',  vertical:'center' };
+  const cAlign = { horizontal:'center', vertical:'center', wrapText:true };
+  const GBP_FMT = '"£"#,##0.00;[Red]-"£"#,##0.00';
+  const GBP0   = '"£"#,##0;[Red]-"£"#,##0';
+  const PCT_FMT = '0%';
+
+  const S = {
+    title:    { font:font('FFFFFF',true), fill:fill('0E0E14'), alignment:lAlign, border },
+    colHdr:   { font:font('FFFFFF',true), fill:fill('C8102E'), alignment:cAlign, border },
+    totHdr:   { font:font('FFFFFF',true), fill:fill('1B1B24'), alignment:cAlign, border },
+    secHdr:   { font:font('FFFFFF',true), fill:fill('1B1B24'), alignment:lAlign, border },
+    secBlk:   { font:font('FFFFFF'),      fill:fill('1B1B24'), alignment:rAlign, border },
+    catLbl:   { font:font(null,true),     fill:fill('FFF1F0'), alignment:lAlign, border },
+    catNum:   { font:font(null),          fill:fill('FFF1F0'), alignment:rAlign, border, numFmt:GBP_FMT },
+    subLbl:   { font:font('67677A',false,true), fill:fill('FFF8F6'), alignment:lAlign, border },
+    subNum:   { font:font('67677A',false,true), fill:fill('FFF8F6'), alignment:rAlign, border, numFmt:GBP_FMT },
+    inpNum:   { font:font(null),          fill:fill('FFFACD'), alignment:rAlign, border, numFmt:GBP_FMT },
+    totLbl:   { font:font('FFFFFF',true), fill:fill('C8102E'), alignment:lAlign, border },
+    totNum:   { font:font('FFFFFF',true), fill:fill('C8102E'), alignment:rAlign, border, numFmt:GBP_FMT },
+    totYHdr:  { font:font('FFFFFF',true), fill:fill('1B1B24'), alignment:rAlign, border, numFmt:GBP_FMT },
+    netLbl:   { font:font(null,true),     fill:fill('FFF1F0'), alignment:lAlign, border },
+    netNum:   { font:font(null,true),     fill:fill('FFF1F0'), alignment:rAlign, border, numFmt:GBP_FMT },
+    cumLbl:   { font:font(null,true),     fill:fill('FFEAE5'), alignment:lAlign, border },
+    cumNum:   { font:font(null,true),     fill:fill('FFEAE5'), alignment:rAlign, border, numFmt:GBP_FMT },
+    startLbl: { font:font('92400E',true), fill:fill('FFFBEB'), alignment:lAlign, border },
+    startNum: { font:font('92400E',true), fill:fill('FFFBEB'), alignment:rAlign, border, numFmt:GBP_FMT },
+    startBlk: { font:font('92400E'),      fill:fill('FFFBEB'), alignment:rAlign, border },
+  };
+
+  // Helper: set cell in any worksheet object
+  function setCell(ws, r, c, val, style, type) {
+    ws[XLSX.utils.encode_cell({r,c})] = {
+      v: val,
+      t: type || (typeof val === 'number' ? 'n' : 's'),
+      s: style
+    };
+  }
+
+  // ── SHEET 1: MONTHLY CASH FLOW ─────────────────────────────
+  const ws1 = {};
+  const mg1 = [];
+  let R = 0;
+
+  function cell(r,c,v,s,t){ setCell(ws1,r,c,v,s,t); }
+
+  // Title row
+  cell(R,0,'FYRFLY SYSTEMS — 2-Year Cash Flow Forecast  |  July 2026 – June 2028  |  All figures GBP',S.title);
+  for(let cc=1;cc<NC;cc++) cell(R,cc,'',S.title);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:NC-1}});
+  R++;
+
+  // Column headers
+  cell(R,0,'Category',S.colHdr);
+  cell(R,1,'Line Item',S.colHdr);
+  MONTHS.forEach((m,mi)=>cell(R,mi+2,m,S.colHdr));
+  cell(R,TC,'Year 1 Total',S.totHdr);
+  cell(R,TC+1,'Year 2 Total',S.totHdr);
+  cell(R,TC+2,'Grand Total',S.totHdr);
+  R++;
+
+  // REVENUE section header
+  cell(R,0,'REVENUE',S.secHdr); cell(R,1,'',S.secHdr);
+  for(let cc=2;cc<NC;cc++) cell(R,cc,'',S.secBlk);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}}); R++;
+
+  REV_TYPES.forEach(t => {
+    // Revenue (input) row
+    cell(R,0,t.label,S.catLbl); cell(R,1,'Revenue (£)',S.catLbl);
+    let y1=0,y2=0;
+    MONTHS.forEach((_,m)=>{ const v=rev[t.key][m]; m<12?y1+=v:y2+=v; cell(R,m+2,v,S.inpNum); });
+    cell(R,TC,y1,S.totYHdr); cell(R,TC+1,y2,S.totYHdr); cell(R,TC+2,y1+y2,S.totYHdr); R++;
+
+    // Gross Profit row
+    cell(R,0,'',S.subLbl); cell(R,1,`Gross Profit @ ${Math.round(t.gp*100)}%`,S.subLbl);
+    let g1=0,g2=0;
+    MONTHS.forEach((_,m)=>{ const v=rev[t.key][m]*t.gp; m<12?g1+=v:g2+=v; cell(R,m+2,v,S.subNum); });
+    cell(R,TC,g1,S.totYHdr); cell(R,TC+1,g2,S.totYHdr); cell(R,TC+2,g1+g2,S.totYHdr); R++;
+
+    // Direct Costs row
+    cell(R,0,'',S.subLbl); cell(R,1,`Direct Costs @ ${Math.round(t.dc*100)}%`,S.subLbl);
+    let d1=0,d2=0;
+    MONTHS.forEach((_,m)=>{ const v=rev[t.key][m]*t.dc; m<12?d1+=v:d2+=v; cell(R,m+2,v,S.subNum); });
+    cell(R,TC,d1,S.totYHdr); cell(R,TC+1,d2,S.totYHdr); cell(R,TC+2,d1+d2,S.totYHdr); R++;
+  });
+
+  // Total Revenue
+  cell(R,0,'TOTAL REVENUE',S.totLbl); cell(R,1,'',S.totLbl);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}});
+  let tr1=0,tr2=0;
+  MONTHS.forEach((_,m)=>{ const v=getMonthlyRevenue(m); m<12?tr1+=v:tr2+=v; cell(R,m+2,v,S.totNum); });
+  cell(R,TC,tr1,S.totNum); cell(R,TC+1,tr2,S.totNum); cell(R,TC+2,tr1+tr2,S.totNum); R++;
+
+  // Total GP
+  cell(R,0,'TOTAL GROSS PROFIT',S.totLbl); cell(R,1,'',S.totLbl);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}});
+  let tg1=0,tg2=0;
+  MONTHS.forEach((_,m)=>{ const v=getMonthlyGP(m); m<12?tg1+=v:tg2+=v; cell(R,m+2,v,S.totNum); });
+  cell(R,TC,tg1,S.totNum); cell(R,TC+1,tg2,S.totNum); cell(R,TC+2,tg1+tg2,S.totNum); R++;
+
+  // OPEX section header
+  cell(R,0,'OPERATING COSTS',S.secHdr); cell(R,1,'',S.secHdr);
+  for(let cc=2;cc<NC;cc++) cell(R,cc,'',S.secBlk);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}}); R++;
+
+  COST_DEFS.forEach(cd => {
+    cell(R,0,cd.label,S.catLbl); cell(R,1,cd.desc,S.catLbl);
+    let c1v=0,c2v=0;
+    MONTHS.forEach((_,m)=>{ const v=costs[cd.key][m]; m<12?c1v+=v:c2v+=v; cell(R,m+2,v,S.catNum); });
+    cell(R,TC,c1v,S.totYHdr); cell(R,TC+1,c2v,S.totYHdr); cell(R,TC+2,c1v+c2v,S.totYHdr); R++;
+  });
+
+  // Total Opex
+  cell(R,0,'TOTAL OPERATING COSTS',S.totLbl); cell(R,1,'',S.totLbl);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}});
+  let to1=0,to2=0;
+  MONTHS.forEach((_,m)=>{ const v=getMonthlyOpex(m); m<12?to1+=v:to2+=v; cell(R,m+2,v,S.totNum); });
+  cell(R,TC,to1,S.totNum); cell(R,TC+1,to2,S.totNum); cell(R,TC+2,to1+to2,S.totNum); R++;
+
+  // NET POSITION section header
+  cell(R,0,'NET POSITION',S.secHdr); cell(R,1,'',S.secHdr);
+  for(let cc=2;cc<NC;cc++) cell(R,cc,'',S.secBlk);
+  mg1.push({s:{r:R,c:0},e:{r:R,c:1}}); R++;
+
+  // Monthly Net Cash Flow
+  cell(R,0,'Monthly Net Cash Flow',S.netLbl); cell(R,1,'Gross Profit less Total Opex',S.netLbl);
+  let n1=0,n2=0;
+  MONTHS.forEach((_,m)=>{ const v=getMonthlyNet(m); m<12?n1+=v:n2+=v; cell(R,m+2,v,S.netNum); });
+  cell(R,TC,n1,S.totYHdr); cell(R,TC+1,n2,S.totYHdr); cell(R,TC+2,n1+n2,S.totYHdr); R++;
+
+  // Cumulative Cash
+  cell(R,0,'★ Cumulative Cash in Bank',S.cumLbl); cell(R,1,'Running total from Month 1',S.cumLbl);
+  MONTHS.forEach((_,m)=>cell(R,m+2,cumArr[m],S.cumNum));
+  cell(R,TC,cumArr[11],S.totYHdr); cell(R,TC+1,cumArr[23],S.totYHdr); cell(R,TC+2,cumArr[23],S.totYHdr); R++;
+
+  // Min Startup Capital
+  cell(R,0,'⚠ Min. Startup Capital Required',S.startLbl);
+  cell(R,1,'Absolute worst-case cumulative balance',S.startLbl);
+  for(let cc=2;cc<TC;cc++) cell(R,cc,'',S.startBlk);
+  cell(R,TC,'',S.startBlk); cell(R,TC+1,'',S.startBlk);
+  cell(R,TC+2,startup,S.startNum);
+
+  ws1['!ref']    = XLSX.utils.encode_range({s:{r:0,c:0},e:{r:R,c:NC-1}});
+  ws1['!merges'] = mg1;
+  ws1['!cols']   = [{wch:24},{wch:34},...new Array(24).fill({wch:11}),{wch:14},{wch:14},{wch:14}];
+  ws1['!rows']   = [{hpt:24},{hpt:22},...new Array(R).fill({hpt:15})];
+  XLSX.utils.book_append_sheet(wb,ws1,'Cash Flow Forecast');
+
+  // ── SHEET 2: QUARTERLY SUMMARY ─────────────────────────────
+  const ws2 = {};
+  const mg2 = [];
+  let R2 = 0;
+  function qcell(r,c,v,s,t){ setCell(ws2,r,c,v,s,t); }
+
+  // Title
+  qcell(R2,0,'FYRFLY SYSTEMS — Quarterly Summary  |  July 2026 – June 2028',S.title);
+  for(let cc=1;cc<=8;cc++) qcell(R2,cc,'',S.title);
+  mg2.push({s:{r:R2,c:0},e:{r:R2,c:8}}); R2++;
+
+  // Year band
+  const yr1S={ font:font('FFFFFF',true),fill:fill('1B1B24'),alignment:cAlign,border };
+  const yr2S={ font:font('FFFFFF',true),fill:fill('C8102E'),alignment:cAlign,border };
+  qcell(R2,0,'',S.colHdr);
+  qcell(R2,1,'Year 1: FY 2026/27  (Jul 26 – Jun 27)',yr1S);
+  for(let cc=2;cc<=4;cc++) qcell(R2,cc,'',yr1S);
+  mg2.push({s:{r:R2,c:1},e:{r:R2,c:4}});
+  qcell(R2,5,'Year 2: FY 2027/28  (Jul 27 – Jun 28)',yr2S);
+  for(let cc=6;cc<=8;cc++) qcell(R2,cc,'',yr2S);
+  mg2.push({s:{r:R2,c:5},e:{r:R2,c:8}}); R2++;
+
+  // Quarter headers
+  qcell(R2,0,'Metric',S.colHdr);
+  QUARTERS.forEach((q,qi)=>qcell(R2,qi+1,`${q.label} | ${q.subtitle}`,S.colHdr)); R2++;
+
+  const qRows = [
+    { label:'Total Revenue',           fn:ms=>ms.reduce((s,m)=>s+getMonthlyRevenue(m),0), sl:S.catLbl, sn:S.catNum },
+    { label:'Total Gross Profit',      fn:ms=>ms.reduce((s,m)=>s+getMonthlyGP(m),0),      sl:S.catLbl, sn:S.catNum },
+    { label:'Total Opex',              fn:ms=>ms.reduce((s,m)=>s+getMonthlyOpex(m),0),    sl:S.catLbl, sn:S.catNum },
+    { label:'Net Cash Flow',           fn:ms=>{ const g=ms.reduce((s,m)=>s+getMonthlyGP(m),0); const o=ms.reduce((s,m)=>s+getMonthlyOpex(m),0); return g-o; }, sl:S.netLbl, sn:S.netNum },
+    { label:'Cash in Bank (End of Q)', fn:ms=>cumArr[ms[ms.length-1]], sl:S.cumLbl, sn:S.cumNum }
+  ];
+  qRows.forEach(row=>{
+    qcell(R2,0,row.label,row.sl);
+    QUARTERS.forEach((q,qi)=>qcell(R2,qi+1,row.fn(q.months),row.sn));
+    R2++;
+  });
+
+  ws2['!ref']    = XLSX.utils.encode_range({s:{r:0,c:0},e:{r:R2-1,c:8}});
+  ws2['!merges'] = mg2;
+  ws2['!cols']   = [{wch:28},...new Array(8).fill({wch:18})];
+  ws2['!rows']   = [{hpt:24},{hpt:20},{hpt:22},...new Array(R2-3).fill({hpt:15})];
+  XLSX.utils.book_append_sheet(wb,ws2,'Quarterly Summary');
+
+  // ── SHEET 3: ASSUMPTIONS ────────────────────────────────────
+  const ws3 = {};
+  let R3 = 0;
+  function acell(r,c,v,s,t){ setCell(ws3,r,c,v,s,t); }
+  const asmLbl={ font:font(null,true),fill:fill('FFF1F0'),alignment:lAlign,border };
+  const asmVal={ font:font(null),fill:fill('FFFACD'),alignment:rAlign,border,numFmt:GBP_FMT };
+  const asmPct={ font:font(null),fill:fill('FFFACD'),alignment:rAlign,border,numFmt:PCT_FMT };
+  const asmHdr2={ font:font('FFFFFF',true),fill:fill('E85D04'),alignment:lAlign,border };
+
+  acell(R3,0,'FYRFLY SYSTEMS — Model Assumptions',S.title);
+  acell(R3,1,'',S.title); acell(R3,2,'',S.title); R3++;
+
+  acell(R3,0,'Staff Costs  (Annual Gross × 1.15 ÷ 12)',asmHdr2);
+  acell(R3,1,'Annual Gross',asmHdr2); acell(R3,2,'Monthly incl. On-costs',asmHdr2); R3++;
+  [{n:'Staff 1',g:60000},{n:'Staff 2',g:35000},{n:'Software Engineer',g:50000}].forEach(s=>{
+    acell(R3,0,s.n,asmLbl); acell(R3,1,s.g,asmVal); acell(R3,2,s.g*1.15/12,asmVal); R3++;
+  });
+  R3++;
+  acell(R3,0,'Other Monthly Fixed Costs',asmHdr2);
+  acell(R3,1,'Monthly Amount',asmHdr2); acell(R3,2,'Annual Equivalent',asmHdr2); R3++;
+  COST_DEFS.slice(3).forEach(cd=>{
+    acell(R3,0,cd.label,asmLbl); acell(R3,1,cd.def,asmVal); acell(R3,2,cd.def*12,asmVal); R3++;
+  });
+  const defOpexRow={ font:font('FFFFFF',true),fill:fill('C8102E'),alignment:lAlign,border };
+  const defOpexNum={ font:font('FFFFFF',true),fill:fill('C8102E'),alignment:rAlign,border,numFmt:GBP_FMT };
+  const totalDef=COST_DEFS.reduce((s,c)=>s+c.def,0);
+  acell(R3,0,'Total Fixed Monthly Opex',defOpexRow); acell(R3,1,totalDef,defOpexNum); acell(R3,2,totalDef*12,defOpexNum); R3++;
+  R3++;
+  acell(R3,0,'Revenue Gross Profit Margins',asmHdr2);
+  acell(R3,1,'Gross Profit %',asmHdr2); acell(R3,2,'Direct Costs %',asmHdr2); R3++;
+  REV_TYPES.forEach(t=>{
+    acell(R3,0,t.label,asmLbl); acell(R3,1,t.gp,asmPct); acell(R3,2,t.dc,asmPct); R3++;
+  });
+
+  ws3['!ref']  = XLSX.utils.encode_range({s:{r:0,c:0},e:{r:R3-1,c:2}});
+  ws3['!cols'] = [{wch:30},{wch:18},{wch:20}];
+  ws3['!rows'] = [{hpt:24},...new Array(R3-1).fill({hpt:15})];
+  XLSX.utils.book_append_sheet(wb,ws3,'Assumptions');
+
+  // ── WRITE FILE ──────────────────────────────────────────────
+  const d = new Date().toISOString().slice(0,10);
+  XLSX.writeFile(wb, `Fyrfly-Cash-Flow-Forecast-${d}.xlsx`);
 }
 
 // ── INIT ────────────────────────────────────────────────────────
