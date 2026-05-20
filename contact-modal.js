@@ -502,7 +502,7 @@
               <h3>Get in Touch</h3>
               <p class="fm-right-sub">Complete the form and our team will be back with you within one working day.</p>
 
-              <form id="fm-form" novalidate>
+              <form id="fm-form" action="https://formbold.com/s/3A7kr" method="POST" novalidate>
 
                 <div class="fm-row">
                   <div class="fm-field">
@@ -728,30 +728,23 @@
       e.preventDefault();
       if (!validate()) return;
 
-      // Build FormData payload for Formbold
+      // Build FormData from the form element (Formbold's preferred AJAX method)
       var firstName = document.getElementById('fm-name').value.trim().split(' ')[0];
-      var data = new FormData();
-      data.append('name',         document.getElementById('fm-name').value.trim());
-      data.append('organisation', document.getElementById('fm-org').value.trim());
-      data.append('email',        document.getElementById('fm-email').value.trim());
-      data.append('phone',        document.getElementById('fm-phone').value.trim() || 'Not provided');
-      data.append('role',         document.getElementById('fm-role').value         || 'Not specified');
-      data.append('interests',    interestsInput.value                             || 'Not specified');
-      data.append('message',      document.getElementById('fm-message').value.trim() || 'No message');
+      var formData  = new FormData(form);
 
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
       fetch(FORM_ENDPOINT, {
-        method:  'POST',
-        headers: { 'Accept': 'application/json' },
-        body:    data
+        method: 'POST',
+        body:   formData
       })
-      .then(function(res) {
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
 
-        if (res.ok) {
+        if (data.message === 'Your form has been submitted.' || data.success) {
           showSuccess(firstName);
           form.reset();
           pills.forEach(function(p) { p.classList.remove('selected'); });
