@@ -1,0 +1,377 @@
+<!-- README
+Project: 2-Year Cash Flow Forecast Tool
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fyrfly Systems — Cash Flow Forecast 2026–2028</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans','Segoe UI',Tahoma,sans-serif;background:#fff;color:#1a1a2e;font-size:13px;}
+.app-header{background:#0E0E14;color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border-bottom:3px solid transparent;background-image:linear-gradient(#0E0E14,#0E0E14),linear-gradient(135deg,#C8102E,#E85D04,#F5A623);background-origin:border-box;background-clip:padding-box,border-box;}
+.app-header h1{font-size:1.1rem;font-weight:900;letter-spacing:-.02em;font-family:'Roboto',sans-serif;}
+.app-header p{font-size:.75rem;opacity:.7;margin-top:2px;}
+.export-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);color:#fff;font-weight:700;font-size:.8rem;border:none;border-radius:5px;cursor:pointer;transition:opacity .2s;}
+.export-btn:hover{opacity:.85;}
+.tab-bar{display:flex;background:#1B1B24;border-bottom:3px solid #0E0E14;}
+.tab-btn{padding:.65rem 1.4rem;color:rgba(255,255,255,.75);border:none;background:transparent;cursor:pointer;font-size:.82rem;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color .2s,background .2s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
+.tab-btn.active{color:#fff;background:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);border-bottom-color:transparent;}
+.summary-bar{background:#F5F4F2;border-bottom:2px solid #E6E5E1;padding:.85rem 1.5rem;display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;}
+.kpi{background:#fff;border:1px solid #E6E5E1;border-top:3px solid #C8102E;border-radius:7px;padding:.55rem 1rem;min-width:160px;}
+.kpi-label{font-size:.68rem;font-weight:600;font-family:'Roboto',sans-serif;color:#67677A;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+.kpi-value{font-size:1.05rem;font-weight:700;font-family:'Roboto',sans-serif;color:#1B1B24;}
+.kpi.amber{border-top-color:#F5A623;border-color:#E6E5E1;background:#FFFBEB;}
+.kpi.amber .kpi-label{color:#92400E;}
+.kpi.amber .kpi-value{color:#92400E;}
+.view{padding:0;}
+.view.hidden{display:none;}
+.tbl-wrap{overflow-x:auto;overflow-y:auto;max-height:calc(100vh - 200px);position:relative;}
+table.cf{border-collapse:collapse;white-space:nowrap;min-width:max-content;}
+table.cf th,table.cf td{padding:.3rem .55rem;border:1px solid #E6E5E1;font-size:.77rem;vertical-align:middle;}
+table.cf th{background:#C8102E;color:#fff;text-align:center;position:sticky;top:0;z-index:5;font-family:'Roboto',sans-serif;font-weight:600;}
+table.cf th.sticky-cat{left:0;z-index:8;background:#1B1B24;}
+table.cf th.sticky-sub{left:155px;z-index:8;background:#1B1B24;}
+table.cf th.tot-col{background:#1B1B24;}
+.sticky-cat{position:sticky;left:0;z-index:3;background:inherit;}
+.sticky-sub{position:sticky;left:155px;z-index:3;background:inherit;}
+.row-sec td{background:#1B1B24;color:#fff;font-weight:700;font-size:.8rem;border-color:#0E0E14;font-family:'Roboto',sans-serif;letter-spacing:.04em;}
+.row-sec td.sticky-cat,.row-sec td.sticky-sub{background:#1B1B24;color:#fff;}
+.row-cat td{background:#FFF1F0;}
+.row-cat td.sticky-cat{background:#FFF1F0;font-weight:700;}
+.row-sub td{background:#FFF8F6;}
+.row-sub td.sticky-cat{background:#FFF8F6;}
+.row-tot td{background:#C8102E;color:#fff;font-weight:700;border-color:#991B1B;font-family:'Roboto',sans-serif;}
+.row-tot td.sticky-cat,.row-tot td.sticky-sub{background:#C8102E;color:#fff;}
+.row-net td{background:#FFF1F0;font-weight:600;}
+.row-net td.sticky-cat,.row-net td.sticky-sub{background:#FFF1F0;}
+.row-cum td{background:#FFEAE5;font-weight:700;}
+.row-cum td.sticky-cat,.row-cum td.sticky-sub{background:#FFEAE5;}
+.row-startup td{background:#FFFBEB;font-weight:700;}
+.row-startup td.sticky-cat,.row-startup td.sticky-sub{background:#FFFBEB;}
+.cat-cell{width:155px;min-width:155px;max-width:155px;font-weight:600;}
+.sub-cell{width:235px;min-width:235px;max-width:235px;color:#67677A;}
+.month-cell{width:100px;min-width:100px;text-align:right;}
+.tot-cell{width:115px;min-width:115px;text-align:right;background:#FFF8F6;font-weight:600;}
+.row-tot .tot-cell,.row-tot .month-cell{background:#C8102E;color:#fff;}
+.row-sec .tot-cell,.row-sec .month-cell{background:#1B1B24;color:#fff;}
+.input-cell{background:#FFFACD !important;}
+.input-cell input{width:100%;border:none;background:transparent;text-align:right;font-size:.77rem;font-family:inherit;padding:0;outline:none;color:#1a1a2e;}
+.input-cell input:focus{background:rgba(255,220,0,.2);border-radius:2px;}
+.neg{color:#CC0000 !important;}
+.pos{color:#1a7a1a;}
+.zero{color:#888;}
+table.qtr{border-collapse:collapse;width:100%;margin:1.5rem;}
+table.qtr th,table.qtr td{padding:.5rem 1rem;border:1px solid #E6E5E1;font-size:.82rem;}
+table.qtr th{background:#C8102E;color:#fff;text-align:center;font-family:'Roboto',sans-serif;}
+table.qtr .yr-hdr{background:#1B1B24;color:#fff;font-weight:700;}
+table.qtr .row-label{background:#F5F4F2;font-weight:600;color:#1B1B24;}
+table.qtr td{text-align:right;}
+table.qtr .row-rev td:not(:first-child){background:#FFF8F6;}
+table.qtr .row-gp td:not(:first-child){background:#FFF1F0;}
+table.qtr .row-op td:not(:first-child){background:#FFF8F8;}
+table.qtr .row-net td:not(:first-child){background:#FFF1F0;font-weight:700;}
+table.qtr .row-cum td:not(:first-child){background:#FFEAE5;font-weight:700;}
+.chart-view{padding:1.5rem;max-width:1200px;margin:0 auto;}
+.chart-view h2{font-size:.9rem;font-weight:700;font-family:'Roboto',sans-serif;color:#1B1B24;margin-bottom:1rem;}
+.chart-container{background:#F5F4F2;border:1px solid #E6E5E1;border-radius:8px;padding:1.25rem;height:440px;position:relative;}
+/* Print styles */
+@media print {
+  .app-header .export-btn, .tab-bar, .no-print { display: none !important; }
+  .view.hidden { display: block !important; }
+  .tbl-wrap { max-height: none !important; overflow: visible !important; }
+  body { font-size: 10px; }
+  table.cf { font-size: 7px; }
+  .month-cell, .tot-cell { width: 60px; min-width: 60px; }
+  .cat-cell { width: 100px; min-width: 100px; }
+  .sub-cell { width: 150px; min-width: 150px; }
+  @page { margin: 8mm; size: A3 landscape; }
+}
+</style>
+</head>
+<body>
+<div class="app-header">
+  <div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:.45rem;">
+        <div style="background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);padding:3px 8px;border-radius:4px;font-family:'Roboto',sans-serif;font-size:.65rem;font-weight:900;letter-spacing:.12em;color:#fff;">FYRFLY</div>
+        <div style="width:1px;height:20px;background:rgba(255,255,255,.2);"></div>
+      </div>
+      <h1>Cash Flow Forecast</h1>
+    </div>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:3px;">July 2026 – June 2028 &nbsp;&bull;&nbsp; All figures in GBP &nbsp;&bull;&nbsp; Confidential</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:.6rem;">
+    <button class="export-btn" onclick="exportCSV()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Export CSV
+    </button>
+    <button class="export-btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);" onclick="printReport()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save PDF
+    </button>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('monthly',this)">Monthly Cash Flow</button>
+  <button class="tab-btn" onclick="showTab('quarterly',this)">Quarterly Summary</button>
+  <button class="tab-btn" onclick="showTab('chart',this)">Cash Position Chart</button>
+</div>
+
+<div class="summary-bar">
+  <div class="kpi"><div class="kpi-label">24-Month Revenue</div><div class="kpi-value" id="kpi-rev">£0</div></div>
+  <div class="kpi"><div class="kpi-label">24-Month Gross Profit</div><div class="kpi-value" id="kpi-gp">£0</div></div>
+  <div class="kpi"><div class="kpi-label">24-Month Total Opex</div><div class="kpi-value" id="kpi-opex">£0</div></div>
+  <div class="kpi"><div class="kpi-label">24-Month Net Cash Flow</div><div class="kpi-value" id="kpi-net">£0</div></div>
+  <div class="kpi amber"><div class="kpi-label">⚠ Min. Startup Capital Required</div><div class="kpi-value" id="kpi-startup">£0</div></div>
+</div>
+
+<div class="view" id="view-monthly">
+  <div class="tbl-wrap"><table class="cf" id="cf-table"></table></div>
+</div>
+<div class="view hidden" id="view-quarterly">
+  <table class="qtr" id="qtr-table"></table>
+</div>
+<div class="view hidden" id="view-chart">
+  <div class="chart-view">
+    <h2>Monthly Cash Position — 24 Month Overview (Jul 2026 – Jun 2028)</h2>
+    <div class="chart-container"><canvas id="cashChart"></canvas></div>
+    <div style="display:flex;gap:1.5rem;margin-top:.85rem;font-size:.75rem;color:#666;">
+      <span><span style="display:inline-block;width:12px;height:12px;background:#E85D04;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Positive Monthly Net</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#CC0000;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Negative Monthly Net</span>
+      <span><span style="display:inline-block;width:28px;height:3px;background:#F5A623;margin-right:4px;vertical-align:middle;border-radius:2px;"></span>Cumulative Cash</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const MONTHS=['Jul-26','Aug-26','Sep-26','Oct-26','Nov-26','Dec-26','Jan-27','Feb-27','Mar-27','Apr-27','May-27','Jun-27','Jul-27','Aug-27','Sep-27','Oct-27','Nov-27','Dec-27','Jan-28','Feb-28','Mar-28','Apr-28','May-28','Jun-28'];
+const REV_TYPES=[{key:'inst',label:'Installations',gp:0.40,dc:0.60},{key:'maint',label:'Maintenance',gp:0.75,dc:0.25},{key:'subc',label:'Subcontracting Work',gp:0.40,dc:0.60},{key:'other',label:'Other',gp:0.30,dc:0.70}];
+const COST_DEFS=[{key:'staff1',label:'Staff 1',desc:'Gross £60,000 + 15% on-costs',def:5750.00},{key:'staff2',label:'Staff 2',desc:'Gross £35,000 + 15% on-costs',def:3354.17},{key:'sweng',label:'Software Engineer',desc:'Gross £50,000 + 15% on-costs',def:4791.67},{key:'travel',label:'Travel & Accommodation',desc:'Monthly budget',def:1000.00},{key:'genexp',label:'General Business Expenses',desc:'Insurance, utilities, subscriptions etc.',def:500.00},{key:'subcntr',label:'Ad-hoc Subcontracting',desc:'£30k pa spread monthly',def:2500.00},{key:'misc',label:'Miscellaneous Costs',desc:'£50k pa spread monthly',def:4166.67}];
+const QUARTERS=[{label:'Q1 FY26/27',subtitle:'Jul–Sep 26',months:[0,1,2]},{label:'Q2 FY26/27',subtitle:'Oct–Dec 26',months:[3,4,5]},{label:'Q3 FY26/27',subtitle:'Jan–Mar 27',months:[6,7,8]},{label:'Q4 FY26/27',subtitle:'Apr–Jun 27',months:[9,10,11]},{label:'Q1 FY27/28',subtitle:'Jul–Sep 27',months:[12,13,14]},{label:'Q2 FY27/28',subtitle:'Oct–Dec 27',months:[15,16,17]},{label:'Q3 FY27/28',subtitle:'Jan–Mar 28',months:[18,19,20]},{label:'Q4 FY27/28',subtitle:'Apr–Jun 28',months:[21,22,23]}];
+const rev={};const costs={};
+REV_TYPES.forEach(t=>{rev[t.key]=new Array(24).fill(0);});
+COST_DEFS.forEach(c=>{costs[c.key]=new Array(24).fill(c.def);});
+function fmt(val){if(val===0)return'£0';const r=Math.round(Math.abs(val)*100)/100;const dec=(r!==Math.round(r));const s=r.toLocaleString('en-GB',{minimumFractionDigits:dec?2:0,maximumFractionDigits:dec?2:0});return(val<0?'-£':'£')+s;}
+function fmtClass(val){if(val<0)return'neg';if(val>0)return'pos';return'zero';}
+function getMonthlyGP(m){return REV_TYPES.reduce((s,t)=>s+rev[t.key][m]*t.gp,0);}
+function getMonthlyRevenue(m){return REV_TYPES.reduce((s,t)=>s+rev[t.key][m],0);}
+function getMonthlyOpex(m){return COST_DEFS.reduce((s,c)=>s+costs[c.key][m],0);}
+function getMonthlyNet(m){return getMonthlyGP(m)-getMonthlyOpex(m);}
+function getCumulatives(){let run=0;return MONTHS.map((_,m)=>{run+=getMonthlyNet(m);return run;});}
+function getMinStartupCapital(){const cum=getCumulatives();const worst=Math.min(...cum);return worst<0?Math.abs(worst):0;}
+
+function buildMonthlyTable(){
+  const tbl=document.getElementById('cf-table');
+  let html='<thead><tr>';
+  html+='<th class="sticky-cat" style="text-align:left;min-width:155px;">Category</th>';
+  html+='<th class="sticky-sub" style="text-align:left;min-width:235px;">Line Item</th>';
+  MONTHS.forEach(m=>{html+=`<th class="month-cell">${m}</th>`;});
+  html+='<th class="tot-col month-cell">Year 1 Total</th>';
+  html+='<th class="tot-col month-cell">Year 2 Total</th>';
+  html+='<th class="tot-col month-cell">Grand Total</th>';
+  html+='</tr></thead><tbody>';
+  html+='<tr class="row-sec"><td class="sticky-cat cat-cell" colspan="1">REVENUE</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
+  REV_TYPES.forEach(t=>{
+    html+=`<tr class="row-cat"><td class="sticky-cat cat-cell">${t.label}</td><td class="sticky-sub sub-cell" style="color:#555;">Revenue (£)</td>`;
+    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell input-cell"><input type="number" min="0" step="1" value="0" id="inp_rev_${t.key}_${m}" data-rtype="${t.key}" data-m="${m}" onchange="onRevChange(this)" oninput="onRevChange(this)"></td>`;});
+    html+=`<td class="month-cell tot-cell" id="y1_rev_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_rev_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_rev_${t.key}">£0</td></tr>`;
+    html+=`<tr class="row-sub"><td class="sticky-cat cat-cell"></td><td class="sticky-sub sub-cell" style="color:#E85D04;font-style:italic;">Gross Profit @ ${Math.round(t.gp*100)}%</td>`;
+    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_gp_${t.key}_${m}">£0</td>`;});
+    html+=`<td class="month-cell tot-cell" id="y1_gp_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_gp_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_gp_${t.key}">£0</td></tr>`;
+    html+=`<tr class="row-sub"><td class="sticky-cat cat-cell"></td><td class="sticky-sub sub-cell" style="color:#888;font-style:italic;">Direct Costs @ ${Math.round(t.dc*100)}%</td>`;
+    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_dc_${t.key}_${m}">£0</td>`;});
+    html+=`<td class="month-cell tot-cell" id="y1_dc_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_dc_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_dc_${t.key}">£0</td></tr>`;
+  });
+  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL REVENUE</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totrev_${m}">£0</td>`;});
+  html+='<td class="month-cell" id="y1_totrev">£0</td><td class="month-cell" id="y2_totrev">£0</td><td class="month-cell" id="gt_totrev">£0</td></tr>';
+  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL GROSS PROFIT</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totgp_${m}">£0</td>`;});
+  html+='<td class="month-cell" id="y1_totgp">£0</td><td class="month-cell" id="y2_totgp">£0</td><td class="month-cell" id="gt_totgp">£0</td></tr>';
+  html+='<tr class="row-sec"><td class="sticky-cat cat-cell">OPERATING COSTS</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
+  COST_DEFS.forEach(c=>{
+    html+=`<tr class="row-cat"><td class="sticky-cat cat-cell">${c.label}</td><td class="sticky-sub sub-cell" style="color:#555;">${c.desc}</td>`;
+    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell input-cell"><input type="number" step="0.01" value="${c.def}" id="inp_cost_${c.key}_${m}" data-ckey="${c.key}" data-m="${m}" onchange="onCostChange(this)" oninput="onCostChange(this)"></td>`;});
+    html+=`<td class="month-cell tot-cell" id="y1_cost_${c.key}">${fmt(c.def*12)}</td><td class="month-cell tot-cell" id="y2_cost_${c.key}">${fmt(c.def*12)}</td><td class="month-cell tot-cell" id="gt_cost_${c.key}">${fmt(c.def*24)}</td></tr>`;
+  });
+  const defOpex=COST_DEFS.reduce((s,c)=>s+c.def,0);
+  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL OPERATING COSTS</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totopex_${m}">${fmt(defOpex)}</td>`;});
+  html+=`<td class="month-cell" id="y1_totopex">${fmt(defOpex*12)}</td><td class="month-cell" id="y2_totopex">${fmt(defOpex*12)}</td><td class="month-cell" id="gt_totopex">${fmt(defOpex*24)}</td></tr>`;
+  html+='<tr class="row-sec"><td class="sticky-cat cat-cell">NET POSITION</td><td class="sticky-sub sub-cell"></td>';
+  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
+  html+='<tr class="row-net"><td class="sticky-cat cat-cell">Monthly Net Cash Flow</td><td class="sticky-sub sub-cell" style="color:#555;">Gross Profit less Total Opex</td>';
+  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell neg" id="disp_net_${m}">${fmt(-defOpex)}</td>`;});
+  html+=`<td class="month-cell tot-cell neg" id="y1_net">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="y2_net">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="gt_net">${fmt(-defOpex*24)}</td></tr>`;
+  let defCum=0;
+  html+='<tr class="row-cum"><td class="sticky-cat cat-cell">★ Cumulative Cash in Bank</td><td class="sticky-sub sub-cell" style="color:#555;">Running total from Month 1</td>';
+  MONTHS.forEach((_,m)=>{defCum+=-defOpex;html+=`<td class="month-cell neg" id="disp_cum_${m}">${fmt(defCum)}</td>`;});
+  html+=`<td class="month-cell tot-cell neg" id="y1_cum">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="y2_cum">${fmt(defCum)}</td><td class="month-cell tot-cell neg" id="gt_cum">${fmt(defCum)}</td></tr>`;
+  html+='<tr class="row-startup"><td class="sticky-cat cat-cell" style="color:#92400E;">⚠ Min. Startup Capital Required</td><td class="sticky-sub sub-cell" style="color:#92400E;">Worst-case cumulative balance (absolute)</td>';
+  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td>';
+  html+=`<td class="month-cell" id="tbl_startup" style="color:#92400E;font-weight:700;">${fmt(defOpex*24)}</td></tr>`;
+  html+='</tbody>';
+  tbl.innerHTML=html;
+}
+
+function buildQuarterlyTable(){
+  const tbl=document.getElementById('qtr-table');let html='';
+  html+='<thead><tr class="yr-hdr"><th></th>';
+  html+='<th colspan="4" style="background:#1B1B24;text-align:center;padding:.4rem;">Year 1: FY 2026/27 (Jul 26 – Jun 27)</th>';
+  html+='<th colspan="4" style="background:#C8102E;text-align:center;padding:.4rem;">Year 2: FY 2027/28 (Jul 27 – Jun 28)</th></tr>';
+  html+='<tr><th style="text-align:left;min-width:200px;">Metric</th>';
+  QUARTERS.forEach(q=>{html+=`<th style="min-width:130px;">${q.label}<br><span style="font-weight:400;font-size:.72rem;opacity:.85;">${q.subtitle}</span></th>`;});
+  html+='</tr></thead><tbody>';
+  [{id:'qrev',label:'Total Revenue',cls:'row-rev'},{id:'qgp',label:'Total Gross Profit',cls:'row-gp'},{id:'qopex',label:'Total Opex',cls:'row-op'},{id:'qnet',label:'Net Cash Flow',cls:'row-net'},{id:'qcum',label:'Cash in Bank (End of Q)',cls:'row-cum'}].forEach(r=>{
+    html+=`<tr class="${r.cls}"><td class="row-label">${r.label}</td>`;
+    QUARTERS.forEach((_,qi)=>{html+=`<td id="${r.id}_${qi}">£0</td>`;});
+    html+='</tr>';
+  });
+  html+='</tbody>';tbl.innerHTML=html;
+}
+
+let cashChart=null;
+function initChart(){
+  const ctx=document.getElementById('cashChart').getContext('2d');
+  cashChart=new Chart(ctx,{type:'bar',data:{labels:MONTHS,datasets:[{type:'bar',label:'Monthly Net Cash Flow',data:new Array(24).fill(0),backgroundColor:new Array(24).fill('#E85D04'),borderWidth:0,order:2,yAxisID:'y'},{type:'line',label:'Cumulative Cash in Bank',data:new Array(24).fill(0),borderColor:'#F5A623',backgroundColor:'rgba(245,166,35,.08)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#F5A623',tension:0.25,fill:true,order:1,yAxisID:'y'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},padding:16}},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmt(ctx.parsed.y)}`}}},scales:{y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},callback:val=>{const abs=Math.abs(val);if(abs>=1000000)return(val<0?'-':'')+'£'+(abs/1000000).toFixed(1)+'M';if(abs>=1000)return(val<0?'-':'')+'£'+(abs/1000).toFixed(0)+'k';return fmt(val);}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+}
+
+function recalculate(){
+  const cumArr=getCumulatives();let y1Rev=0,y2Rev=0,y1GP=0,y2GP=0,y1Opex=0,y2Opex=0;
+  const typeRevY1={},typeRevY2={},typeGPY1={},typeGPY2={},typeDCY1={},typeDCY2={};
+  REV_TYPES.forEach(t=>{typeRevY1[t.key]=0;typeRevY2[t.key]=0;typeGPY1[t.key]=0;typeGPY2[t.key]=0;typeDCY1[t.key]=0;typeDCY2[t.key]=0;});
+  const costY1={},costY2={};
+  COST_DEFS.forEach(c=>{costY1[c.key]=0;costY2[c.key]=0;});
+  MONTHS.forEach((_,m)=>{
+    const isY1=m<12;const totRev=getMonthlyRevenue(m);const totGP=getMonthlyGP(m);const totOpex=getMonthlyOpex(m);const net=getMonthlyNet(m);const cum=cumArr[m];
+    if(isY1){y1Rev+=totRev;y1GP+=totGP;y1Opex+=totOpex;}else{y2Rev+=totRev;y2GP+=totGP;y2Opex+=totOpex;}
+    REV_TYPES.forEach(t=>{
+      const gp=rev[t.key][m]*t.gp;const dc=rev[t.key][m]*t.dc;
+      set(`disp_gp_${t.key}_${m}`,fmt(gp),fmtClass(gp));set(`disp_dc_${t.key}_${m}`,fmt(dc),'neg');
+      if(isY1){typeRevY1[t.key]+=rev[t.key][m];typeGPY1[t.key]+=gp;typeDCY1[t.key]+=dc;}
+      else{typeRevY2[t.key]+=rev[t.key][m];typeGPY2[t.key]+=gp;typeDCY2[t.key]+=dc;}
+    });
+    COST_DEFS.forEach(c=>{if(isY1)costY1[c.key]+=costs[c.key][m];else costY2[c.key]+=costs[c.key][m];});
+    set(`disp_totrev_${m}`,fmt(totRev),fmtClass(totRev));set(`disp_totgp_${m}`,fmt(totGP),fmtClass(totGP));
+    set(`disp_totopex_${m}`,fmt(totOpex),'');set(`disp_net_${m}`,fmt(net),fmtClass(net));set(`disp_cum_${m}`,fmt(cum),fmtClass(cum));
+  });
+  REV_TYPES.forEach(t=>{
+    const gt_rev=typeRevY1[t.key]+typeRevY2[t.key];const gt_gp=typeGPY1[t.key]+typeGPY2[t.key];const gt_dc=typeDCY1[t.key]+typeDCY2[t.key];
+    set(`y1_rev_${t.key}`,fmt(typeRevY1[t.key]));set(`y2_rev_${t.key}`,fmt(typeRevY2[t.key]));set(`gt_rev_${t.key}`,fmt(gt_rev));
+    set(`y1_gp_${t.key}`,fmt(typeGPY1[t.key]),fmtClass(typeGPY1[t.key]));set(`y2_gp_${t.key}`,fmt(typeGPY2[t.key]),fmtClass(typeGPY2[t.key]));set(`gt_gp_${t.key}`,fmt(gt_gp),fmtClass(gt_gp));
+    set(`y1_dc_${t.key}`,fmt(typeDCY1[t.key]),'neg');set(`y2_dc_${t.key}`,fmt(typeDCY2[t.key]),'neg');set(`gt_dc_${t.key}`,fmt(gt_dc),'neg');
+  });
+  COST_DEFS.forEach(c=>{set(`y1_cost_${c.key}`,fmt(costY1[c.key]));set(`y2_cost_${c.key}`,fmt(costY2[c.key]));set(`gt_cost_${c.key}`,fmt(costY1[c.key]+costY2[c.key]));});
+  set('y1_totrev',fmt(y1Rev),fmtClass(y1Rev));set('y2_totrev',fmt(y2Rev),fmtClass(y2Rev));set('gt_totrev',fmt(y1Rev+y2Rev),fmtClass(y1Rev+y2Rev));
+  set('y1_totgp',fmt(y1GP),fmtClass(y1GP));set('y2_totgp',fmt(y2GP),fmtClass(y2GP));set('gt_totgp',fmt(y1GP+y2GP),fmtClass(y1GP+y2GP));
+  set('y1_totopex',fmt(y1Opex));set('y2_totopex',fmt(y2Opex));set('gt_totopex',fmt(y1Opex+y2Opex));
+  const y1Net=y1GP-y1Opex;const y2Net=y2GP-y2Opex;
+  set('y1_net',fmt(y1Net),fmtClass(y1Net));set('y2_net',fmt(y2Net),fmtClass(y2Net));set('gt_net',fmt(y1Net+y2Net),fmtClass(y1Net+y2Net));
+  set('y1_cum',fmt(cumArr[11]),fmtClass(cumArr[11]));set('y2_cum',fmt(cumArr[23]),fmtClass(cumArr[23]));set('gt_cum',fmt(cumArr[23]),fmtClass(cumArr[23]));
+  const startup=getMinStartupCapital();
+  set('tbl_startup',fmt(startup),startup>0?'':'pos');
+  const gtRev=y1Rev+y2Rev;const gtGP=y1GP+y2GP;const gtOpex=y1Opex+y2Opex;const gtNet=gtGP-gtOpex;
+  set('kpi-rev',fmt(gtRev));set('kpi-gp',fmt(gtGP),fmtClass(gtGP));set('kpi-opex',fmt(gtOpex));set('kpi-net',fmt(gtNet),fmtClass(gtNet));set('kpi-startup',fmt(startup));
+  const cumArr2=getCumulatives();
+  QUARTERS.forEach((q,qi)=>{
+    const ms=q.months;const qRev=ms.reduce((s,m)=>s+getMonthlyRevenue(m),0);const qGP=ms.reduce((s,m)=>s+getMonthlyGP(m),0);
+    const qOpex=ms.reduce((s,m)=>s+getMonthlyOpex(m),0);const qNet=qGP-qOpex;const qCum=cumArr2[ms[ms.length-1]];
+    set(`qrev_${qi}`,fmt(qRev),fmtClass(qRev));set(`qgp_${qi}`,fmt(qGP),fmtClass(qGP));set(`qopex_${qi}`,fmt(qOpex));
+    set(`qnet_${qi}`,fmt(qNet),fmtClass(qNet));set(`qcum_${qi}`,fmt(qCum),fmtClass(qCum));
+  });
+  const netData=MONTHS.map((_,m)=>getMonthlyNet(m));const cumData=getCumulatives();
+  if(cashChart){cashChart.data.datasets[0].data=netData;cashChart.data.datasets[0].backgroundColor=netData.map(v=>v>=0?'#E85D04':'#991B1B');cashChart.data.datasets[1].data=cumData;cashChart.update();}
+}
+
+function set(id,text,cls){const el=document.getElementById(id);if(!el)return;el.textContent=text;if(cls!==undefined){el.className=el.className.replace(/\b(neg|pos|zero)\b/g,'').trim();if(cls)el.classList.add(cls);}}
+function onRevChange(input){const val=parseFloat(input.value)||0;rev[input.dataset.rtype][parseInt(input.dataset.m)]=val;recalculate();}
+function onCostChange(input){const val=parseFloat(input.value)||0;costs[input.dataset.ckey][parseInt(input.dataset.m)]=val;recalculate();}
+function showTab(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+id).classList.remove('hidden');btn.classList.add('active');if(id==='chart'&&cashChart)cashChart.resize();}
+
+// ── CSV EXPORT (replaces broken Excel) ─────────────────────
+function exportCSV(){
+  const rows=[];const cumArr=getCumulatives();
+  // Header
+  rows.push(['Category','Line Item',...MONTHS,'Year 1 Total','Year 2 Total','Grand Total']);
+  // Revenue section
+  rows.push(['REVENUE','','','','','','','','','','','','','','','','','','','','','','','','','','','']);
+  REV_TYPES.forEach(t=>{
+    let y1=0,y2=0;const mVals=MONTHS.map((_,m)=>{const v=rev[t.key][m];m<12?y1+=v:y2+=v;return v;});
+    rows.push([t.label,'Revenue (£)',...mVals,y1,y2,y1+y2]);
+    let g1=0,g2=0;const gVals=MONTHS.map((_,m)=>{const v=rev[t.key][m]*t.gp;m<12?g1+=v:g2+=v;return v.toFixed(2);});
+    rows.push(['',`Gross Profit @ ${Math.round(t.gp*100)}%`,...gVals,g1.toFixed(2),g2.toFixed(2),(g1+g2).toFixed(2)]);
+  });
+  // Totals
+  let tr1=0,tr2=0,tg1=0,tg2=0;
+  const trVals=MONTHS.map((_,m)=>{const v=getMonthlyRevenue(m);m<12?tr1+=v:tr2+=v;return v;});
+  rows.push(['TOTAL REVENUE','',...trVals,tr1,tr2,tr1+tr2]);
+  const tgVals=MONTHS.map((_,m)=>{const v=getMonthlyGP(m);m<12?tg1+=v:tg2+=v;return v.toFixed(2);});
+  rows.push(['TOTAL GROSS PROFIT','',...tgVals,tg1.toFixed(2),tg2.toFixed(2),(tg1+tg2).toFixed(2)]);
+  // Opex
+  rows.push(['OPERATING COSTS','','','','','','','','','','','','','','','','','','','','','','','','','','','']);
+  COST_DEFS.forEach(c=>{
+    let c1=0,c2=0;const cVals=MONTHS.map((_,m)=>{const v=costs[c.key][m];m<12?c1+=v:c2+=v;return v.toFixed(2);});
+    rows.push([c.label,c.desc,...cVals,c1.toFixed(2),c2.toFixed(2),(c1+c2).toFixed(2)]);
+  });
+  let to1=0,to2=0;const toVals=MONTHS.map((_,m)=>{const v=getMonthlyOpex(m);m<12?to1+=v:to2+=v;return v.toFixed(2);});
+  rows.push(['TOTAL OPERATING COSTS','',...toVals,to1.toFixed(2),to2.toFixed(2),(to1+to2).toFixed(2)]);
+  // Net
+  let n1=0,n2=0;const nVals=MONTHS.map((_,m)=>{const v=getMonthlyNet(m);m<12?n1+=v:n2+=v;return v.toFixed(2);});
+  rows.push(['Monthly Net Cash Flow','Gross Profit less Total Opex',...nVals,n1.toFixed(2),n2.toFixed(2),(n1+n2).toFixed(2)]);
+  rows.push(['Cumulative Cash in Bank','Running total',...cumArr.map(v=>v.toFixed(2)),cumArr[11].toFixed(2),cumArr[23].toFixed(2),cumArr[23].toFixed(2)]);
+  const startup=getMinStartupCapital();
+  rows.push(['Min. Startup Capital Required','Worst-case absolute',...new Array(24).fill(''),'','',startup.toFixed(2)]);
+  // Build CSV string
+  const csv=rows.map(r=>r.map(v=>{const s=String(v);return s.includes(',')||s.includes('"')?`"${s.replace(/"/g,'""')}"`:s;}).join(',')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download=`Fyrfly-Cash-Flow-${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+// ── PRINT / SAVE PDF ────────────────────────────────────────
+function printReport(){
+  // Show all views temporarily for print, then restore
+  const hidden=document.querySelectorAll('.view.hidden');
+  hidden.forEach(v=>v.classList.remove('hidden'));
+  window.print();
+  // Restore after print dialog closes
+  setTimeout(()=>{
+    // Re-hide all except current active
+    const active=document.querySelector('.tab-btn.active');
+    const activeId=active?(active.getAttribute('onclick').match(/'([^']+)'/)||['','monthly'])[1]:'monthly';
+    document.querySelectorAll('.view').forEach(v=>{
+      if(!v.id.endsWith(activeId))v.classList.add('hidden');
+    });
+  },500);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildMonthlyTable();
+  buildQuarterlyTable();
+  // Wait for Chart.js to be available
+  function tryInitChart() {
+    if (typeof Chart !== 'undefined') {
+      initChart();
+      recalculate();
+    } else {
+      setTimeout(tryInitChart, 50);
+    }
+  }
+  tryInitChart();
+  // Always recalculate immediately for the table even if chart not ready
+  recalculate();
+});
+</script>
+</body>
+</html>
