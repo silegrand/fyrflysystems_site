@@ -252,6 +252,9 @@
       .report-badge { background: #C8102E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
 </head>
 <body>
 
@@ -446,7 +449,7 @@
       <div class="ft-ct">Sectors</div>
       <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
-      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li></ul>
+      <ul class="ft-links"><li><a href="incident-analyser.html">Pattern Analyser</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li><li><a href="system-integration.html">System Integration</a></li><li><a href="your-site-tool.html">Your Site Tool</a></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
       <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
     </div>
@@ -842,51 +845,67 @@ function clearAll() {
 
 // ── Context modal ──────────────────────────────────────────
 const contextOverlay = document.getElementById('contextOverlay');
-contextOverlay.addEventListener('click', function(e) {
-  e.stopPropagation(); // prevent canvas catching this
 
-  // Option button clicked
-  const opt = e.target.closest('.q-opt');
-  if (opt) {
-    const group = opt.closest('[id^="q-"]');
-    if (group) {
-      group.querySelectorAll('.q-opt').forEach(b => b.classList.remove('selected'));
-      opt.classList.add('selected');
-      const key = group.id.replace('q-', '');
-      state.context[key] = opt.dataset.val;
-    }
-    return;
-  }
+// ── Attach directly to each button — avoids document-level listener
+//    conflicts (e.g. nav.js dropdown-close handlers). Uses
+//    stopImmediatePropagation so no other handler can intercept.
+function setupContextModal() {
+  // Answer option pills
+  document.querySelectorAll('.q-opt').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      var group = btn.closest('[id^="q-"]');
+      if (group) {
+        group.querySelectorAll('.q-opt').forEach(function(b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state.context[group.id.replace('q-', '')] = btn.dataset.val;
+      }
+    });
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var group = btn.closest('[id^="q-"]');
+      if (group) {
+        group.querySelectorAll('.q-opt').forEach(function(b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state.context[group.id.replace('q-', '')] = btn.dataset.val;
+      }
+    }, { passive: false });
+  });
 
   // Start Planning button
-  if (e.target.closest('#startPlanning')) {
-    contextOverlay.classList.remove('show');
-    canvas.style.pointerEvents = 'auto';
-    return;
+  var startBtn = document.getElementById('startPlanning');
+  if (startBtn) {
+    startBtn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      contextOverlay.classList.remove('show');
+      canvas.style.pointerEvents = 'auto';
+    });
+    startBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      contextOverlay.classList.remove('show');
+      canvas.style.pointerEvents = 'auto';
+    }, { passive: false });
   }
 
   // Skip button
-  if (e.target.closest('#skipContext')) {
-    contextOverlay.classList.remove('show');
-    canvas.style.pointerEvents = 'auto';
-    return;
+  var skipBtn = document.getElementById('skipContext');
+  if (skipBtn) {
+    skipBtn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      contextOverlay.classList.remove('show');
+      canvas.style.pointerEvents = 'auto';
+    });
+    skipBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      contextOverlay.classList.remove('show');
+      canvas.style.pointerEvents = 'auto';
+    }, { passive: false });
   }
-});
-
-// Also handle touch on the overlay explicitly
-contextOverlay.addEventListener('touchend', function(e) {
-  const opt = e.target.closest('.q-opt');
-  if (!opt) return;
-  e.preventDefault();
-  e.stopPropagation();
-  const group = opt.closest('[id^="q-"]');
-  if (group) {
-    group.querySelectorAll('.q-opt').forEach(b => b.classList.remove('selected'));
-    opt.classList.add('selected');
-    const key = group.id.replace('q-', '');
-    state.context[key] = opt.dataset.val;
-  }
-}, { passive: false });
+}
+setupContextModal();
 
 // ── Report generation ──────────────────────────────────────
 function getComplianceStandards() {
@@ -1052,8 +1071,7 @@ function downloadPDF() {
     '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com<br>NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015</div>' +
     '</div>' +
     '<script>window.onload = function(){ window.print(); }<\/script>' +
-    '<script src="/contact-modal.js"></script>
-</body></html>';
+    '</body></html>';
 
   // Open in new tab and print
   const printWindow = window.open('', '_blank');
@@ -1087,15 +1105,6 @@ document.getElementById('reportOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeReport();
 });
 
-// ── Nav ────────────────────────────────────────────────────
-const nav = document.getElementById('nav');
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 20); ticking = false; });
-    ticking = true;
-  }
-}, { passive: true });
 
 // ── Init ───────────────────────────────────────────────────
 function initPlanner() {
