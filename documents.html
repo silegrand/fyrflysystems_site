@@ -66,8 +66,6 @@
   .btn-pdf{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#fff;background:var(--grad);border:none;border-radius:6px;padding:0.5rem 1.1rem;transition:opacity 0.15s;}
   .btn-pdf:hover{opacity:0.88;}
   .btn-pdf svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
-  .btn-drive{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#fff;background:#1a73e8;border:none;border-radius:6px;padding:0.5rem 1.1rem;transition:opacity 0.15s;}
-  .btn-drive:hover{opacity:0.88;}
 
   /* ── FORM BODY ── */
   .form-body{flex:1;max-width:860px;margin:0 auto;padding:2rem 1.5rem;width:100%;}
@@ -147,7 +145,7 @@
 
   /* ── PRINT STYLES ── */
   @media print {
-    .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .btn-drive, .form-actions, .landing, .topbar { display: none !important; }
+    .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .form-actions, .landing, .topbar { display: none !important; }
     body { background: #fff; }
     .form-shell { display: flex !important; min-height: auto; }
     .form-body { padding: 0; max-width: 100%; }
@@ -237,7 +235,6 @@
     <div class="form-actions">
       <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
       <button class="btn-pdf" onclick="savePDF('signoff')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
-      <button class="btn-drive" onclick="saveToDrive('signoff')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
     </div>
   </div>
   <div class="form-body" id="pdf-signoff">
@@ -347,7 +344,6 @@
     <div class="form-actions">
       <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
       <button class="btn-pdf" onclick="savePDF('quote')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
-      <button class="btn-drive" onclick="saveToDrive('quote')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
     </div>
   </div>
   <div class="form-body" id="pdf-quote">
@@ -473,7 +469,6 @@
     <div class="form-actions">
       <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
       <button class="btn-pdf" onclick="savePDF('cctv-ppm')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
-      <button class="btn-drive" onclick="saveToDrive('cctv-ppm')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
     </div>
   </div>
   <div class="form-body" id="pdf-cctv-ppm">
@@ -583,7 +578,6 @@
     <div class="form-actions">
       <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
       <button class="btn-pdf" onclick="savePDF('ac-ppm')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
-      <button class="btn-drive" onclick="saveToDrive('ac-ppm')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
     </div>
   </div>
   <div class="form-body" id="pdf-ac-ppm">
@@ -1012,7 +1006,7 @@ function getPDFOptions(filename) {
           grp.style.display = 'none';
         });
         // Hide no-print elements
-        clonedDoc.querySelectorAll('.no-print, .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .btn-drive, .sig-label-bar .sig-clear').forEach(function(el) {
+        clonedDoc.querySelectorAll('.no-print, .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .sig-label-bar .sig-clear').forEach(function(el) {
           el.style.display = 'none';
         });
       }
@@ -1033,50 +1027,6 @@ function savePDF(doc) {
   const date = new Date().toISOString().slice(0, 10);
   const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
   html2pdf().from(el).set(getPDFOptions(filename)).save();
-}
-
-// ═══════════════════════════════════════════════════════════
-// GOOGLE DRIVE SAVE
-// Generates the PDF locally then downloads it AND opens
-// Google Drive in a new tab so the engineer can drag it in.
-// No OAuth or API key required.
-// ═══════════════════════════════════════════════════════════
-function saveToDrive(doc) {
-  const el = document.getElementById('pdf-' + doc);
-  if (!el) return;
-  if (typeof html2pdf === 'undefined') {
-    alert('PDF library loading — please try again in a moment.');
-    return;
-  }
-  const titles = { 'signoff':'Fyrfly-Sign-Off','quote':'Fyrfly-Quotation','cctv-ppm':'Fyrfly-CCTV-PPM','ac-ppm':'Fyrfly-AC-PPM' };
-  const date = new Date().toISOString().slice(0, 10);
-  const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
-
-  // Step 1: generate and download the PDF
-  html2pdf().from(el).set(getPDFOptions(filename)).outputPdf('blob').then(function(blob) {
-    // Download PDF to device
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = filename;
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a);
-    setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
-
-    // Step 2: open Google Drive upload page in new tab
-    setTimeout(function() {
-      window.open('https://drive.google.com/drive/my-drive', '_blank');
-      // Show a helpful toast
-      showToast('PDF downloaded — drag it into the Drive tab that just opened');
-    }, 500);
-  });
-}
-
-function showToast(msg) {
-  const t = document.createElement('div');
-  t.textContent = msg;
-  t.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#0E0E14;color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.83rem;font-weight:500;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.3);white-space:nowrap;border-bottom:3px solid #E85D04;';
-  document.body.appendChild(t);
-  setTimeout(function() { t.style.opacity='0'; t.style.transition='opacity 0.4s'; setTimeout(function(){ t.remove(); }, 400); }, 4000);
 }
 
 // ═══════════════════════════════════════════════════════════
