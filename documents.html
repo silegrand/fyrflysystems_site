@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Field Documents | Fyrfly Systems</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+  :root {
+    --c:#C8102E; --o:#E85D04; --a:#F5A623;
+    --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+    --dark:#0E0E14; --char:#1B1B24; --mid:#67677A; --mute:#9595A5;
+    --light:#F5F4F2; --bdr:#E6E5E1; --white:#fff;
+    --fh:'Roboto',sans-serif; --fb:'DM Sans',sans-serif;
+    --green:#10B981; --red:#EF4444; --amber:#F59E0B;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--fb);background:var(--light);color:var(--dark);-webkit-font-smoothing:antialiased;min-height:100vh;}
+  img{display:block;max-width:100%;}
+  button{cursor:pointer;font-family:var(--fb);}
+  input,select,textarea{font-family:var(--fb);}
+
+  /* ── TOP BAR ── */
+  .topbar{background:var(--dark);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .topbar-brand{display:flex;align-items:center;gap:0.75rem;}
+  .topbar-logo{height:36px;width:auto;}
+  .topbar-divider{width:1px;height:24px;background:rgba(255,255,255,0.15);}
+  .topbar-title{font-family:var(--fh);font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.08em;text-transform:uppercase;}
+  .topbar-badge{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;background:var(--grad);color:#fff;border-radius:100px;}
+
+  /* ── LANDING ── */
+  .landing{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem;}
+  .landing-head{text-align:center;margin-bottom:2.5rem;}
+  .landing-head h1{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--dark);letter-spacing:-0.025em;margin-bottom:0.5rem;}
+  .landing-head p{font-size:0.9rem;color:var(--mid);max-width:42ch;margin:0 auto;}
+  .doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;}
+  .doc-card{background:var(--white);border:1.5px solid var(--bdr);border-radius:16px;padding:1.75rem;cursor:pointer;transition:all 0.22s;display:flex;flex-direction:column;gap:0.75rem;position:relative;overflow:hidden;}
+  .doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+  .doc-card:hover{border-color:rgba(232,93,4,0.4);box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-2px);}
+  .doc-card:active{transform:translateY(0);}
+  .doc-icon{width:48px;height:48px;border-radius:12px;background:var(--light);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .doc-icon svg{width:22px;height:22px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+  .doc-name{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;}
+  .doc-desc{font-size:0.8rem;color:var(--mid);line-height:1.6;}
+  .doc-arrow{margin-top:auto;font-size:0.8rem;font-weight:600;color:var(--o);display:flex;align-items:center;gap:0.35rem;}
+
+  /* ── FORM SHELL ── */
+  .form-shell{display:none;min-height:100vh;flex-direction:column;}
+  .form-shell.active{display:flex;}
+  .form-topbar{background:var(--dark);padding:0.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+  .form-topbar-left{display:flex;align-items:center;gap:1rem;}
+  .btn-back{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:0.45rem 0.9rem;transition:all 0.15s;}
+  .btn-back:hover{color:#fff;background:rgba(255,255,255,0.14);}
+  .btn-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;}
+  .form-doc-title{font-family:var(--fh);font-size:0.88rem;font-weight:700;color:#fff;}
+  .form-actions{display:flex;align-items:center;gap:0.6rem;}
+  .btn-print{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:0.5rem 1rem;transition:all 0.15s;}
+  .btn-print:hover{color:#fff;}
+  .btn-print svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+  .btn-pdf{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#fff;background:var(--grad);border:none;border-radius:6px;padding:0.5rem 1.1rem;transition:opacity 0.15s;}
+  .btn-pdf:hover{opacity:0.88;}
+  .btn-pdf svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+  .btn-drive{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#fff;background:#1a73e8;border:none;border-radius:6px;padding:0.5rem 1.1rem;transition:opacity 0.15s;}
+  .btn-drive:hover{opacity:0.88;}
+
+  /* ── FORM BODY ── */
+  .form-body{flex:1;max-width:860px;margin:0 auto;padding:2rem 1.5rem;width:100%;}
+
+  /* form doc header (printed) */
+  .doc-header{background:var(--dark);border-radius:12px;padding:1.5rem;margin-bottom:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;overflow:hidden;}
+  .doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);}
+  .doc-header-left{}
+  .doc-header-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.3rem;}
+  .doc-header-title{font-family:var(--fh);font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-0.02em;}
+  .doc-header-meta{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.35rem;}
+  .doc-ref-box{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.6rem 1rem;text-align:right;}
+  .doc-ref-label{font-size:0.62rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;}
+  .doc-ref-input{background:transparent;border:none;color:#fff;font-family:var(--fh);font-size:1rem;font-weight:700;text-align:right;width:120px;outline:none;}
+  .doc-ref-input::placeholder{color:rgba(255,255,255,0.25);}
+
+  /* section */
+  .f-section{margin-bottom:1.5rem;}
+  .f-section-title{font-family:var(--fh);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);padding-bottom:0.6rem;border-bottom:2px solid var(--bdr);margin-bottom:1rem;}
+  .f-row{display:grid;gap:0.75rem;margin-bottom:0.75rem;}
+  .f-row.cols-2{grid-template-columns:1fr 1fr;}
+  .f-row.cols-3{grid-template-columns:1fr 1fr 1fr;}
+  .f-row.cols-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+  .f-field{display:flex;flex-direction:column;gap:0.3rem;}
+  .f-label{font-size:0.72rem;font-weight:600;color:var(--mid);letter-spacing:0.02em;}
+  .f-label .req{color:var(--c);}
+  .f-input{padding:0.65rem 0.85rem;border:1.5px solid var(--bdr);border-radius:8px;font-size:0.88rem;color:var(--dark);background:var(--white);transition:border-color 0.15s;outline:none;-webkit-appearance:none;}
+  .f-input:focus{border-color:var(--o);}
+  .f-input.tall{min-height:90px;resize:vertical;}
+  select.f-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2367677A' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.85rem center;padding-right:2.5rem;}
+
+  /* checklist items */
+  .checklist-table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;border:1px solid var(--bdr);}
+  .checklist-table th{background:var(--char);color:#fff;font-family:var(--fh);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.65rem 0.85rem;text-align:left;}
+  .checklist-table th.center{text-align:center;}
+  .checklist-table td{padding:0.65rem 0.85rem;border-bottom:1px solid var(--bdr);font-size:0.85rem;color:var(--dark);vertical-align:middle;}
+  .checklist-table tr:last-child td{border-bottom:none;}
+  .checklist-table tr:nth-child(even) td{background:rgba(245,244,242,0.6);}
+  .checklist-table td.center{text-align:center;}
+  .radio-group{display:flex;gap:0.5rem;justify-content:center;}
+  .radio-opt{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--mid);cursor:pointer;white-space:nowrap;}
+  .radio-opt input{width:16px;height:16px;accent-color:var(--o);cursor:pointer;}
+  .radio-opt.pass{color:var(--green);}
+  .radio-opt.fail{color:var(--red);}
+  .radio-opt.na{color:var(--mute);}
+
+  /* quotation line items */
+  .quote-table{width:100%;border-collapse:collapse;}
+  .quote-table th{background:var(--char);color:#fff;font-family:var(--fh);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.6rem 0.75rem;text-align:left;}
+  .quote-table th.right{text-align:right;}
+  .quote-table td{padding:0.5rem 0.5rem;border-bottom:1px solid var(--bdr);}
+  .quote-table tr:last-child td{border-bottom:none;}
+  .quote-input{width:100%;border:1.5px solid var(--bdr);border-radius:6px;padding:0.45rem 0.6rem;font-size:0.83rem;background:var(--white);outline:none;transition:border-color 0.15s;}
+  .quote-input:focus{border-color:var(--o);}
+  .quote-input.right{text-align:right;}
+  .quote-total-row td{background:var(--light);font-weight:700;font-family:var(--fh);}
+  .quote-grand-row td{background:var(--char);color:#fff;font-weight:800;font-family:var(--fh);font-size:1rem;}
+  .btn-add-row{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--o);background:rgba(232,93,4,0.06);border:1px dashed rgba(232,93,4,0.3);border-radius:6px;padding:0.5rem 1rem;margin-top:0.6rem;transition:all 0.15s;}
+  .btn-add-row:hover{background:rgba(232,93,4,0.1);}
+
+  /* signature pad */
+  .sig-wrap{border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;background:var(--white);}
+  .sig-label-bar{background:var(--light);padding:0.4rem 0.75rem;font-size:0.7rem;font-weight:600;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;}
+  .sig-clear{font-size:0.7rem;color:var(--o);background:none;border:none;cursor:pointer;font-weight:600;}
+  canvas.sig-canvas{display:block;width:100%;height:100px;touch-action:none;cursor:crosshair;}
+
+  /* status bar */
+  .status-bar{display:flex;align-items:center;gap:0.75rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:0.75rem 1rem;margin-top:1.25rem;}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
+  .status-text{font-size:0.8rem;color:var(--green);font-weight:600;}
+
+  /* form footer */
+  .form-footer{background:var(--dark);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;}
+  .footer-accreds{display:flex;gap:0.75rem;flex-wrap:wrap;}
+  .footer-accred{font-size:0.65rem;color:rgba(255,255,255,0.3);padding:0.2rem 0.55rem;border:1px solid rgba(255,255,255,0.1);border-radius:100px;}
+  .footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);}
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .btn-drive, .form-actions, .landing, .topbar { display: none !important; }
+    body { background: #fff; }
+    .form-shell { display: flex !important; min-height: auto; }
+    .form-body { padding: 0; max-width: 100%; }
+    .doc-header { background: #0E0E14 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; border-radius: 6px; }
+    .checklist-table th, .quote-table th { background: #1B1B24 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .f-input, .quote-input { border: 1px solid #ccc; }
+    .sig-canvas { border: 1px solid #ccc; }
+    @page { margin: 12mm; size: A4 portrait; }
+    .f-row.cols-2, .f-row.cols-3, .f-row.cols-4 { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .checklist-table tr:nth-child(even) td { background: #f9f9f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-break { page-break-before: always; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px) {
+    .doc-grid { grid-template-columns: 1fr; }
+    .f-row.cols-2, .f-row.cols-3, .f-row.cols-4 { grid-template-columns: 1fr; }
+    .form-topbar { flex-direction: column; align-items: flex-start; }
+    .form-actions { width: 100%; justify-content: flex-end; }
+    .radio-group { flex-wrap: wrap; }
+    .landing { padding: 1.5rem 1rem; }
+    .form-body { padding: 1.25rem 1rem; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- LANDING PAGE                                          -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="screen-landing">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <picture>
+        <source srcset="fyrfly-logo-dark.webp" type="image/webp">
+        <img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" class="topbar-logo">
+      </picture>
+      <div class="topbar-divider"></div>
+      <div class="topbar-title">Field Documents</div>
+    </div>
+    <div class="topbar-badge">Internal Use</div>
+  </div>
+
+  <div class="landing">
+    <div class="landing-head">
+      <h1>Select a Document</h1>
+      <p>Tap to open, fill in on screen or print a blank copy. All documents save to PDF.</p>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-card" onclick="openDoc('signoff')">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div class="doc-name">Manual Sign-Off Sheet</div>
+        <div class="doc-desc">Job completion sign-off. Records work carried out, engineer and client signatures, and any outstanding actions.</div>
+        <div class="doc-arrow">Open &rarr;</div>
+      </div>
+      <div class="doc-card" onclick="openDoc('quote')">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="doc-name">Quotation Form</div>
+        <div class="doc-desc">Itemised quotation for client. Covers systems, specification, labour, materials and total with validity and terms.</div>
+        <div class="doc-arrow">Open &rarr;</div>
+      </div>
+      <div class="doc-card" onclick="openDoc('cctv-ppm')">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <div class="doc-name">CCTV PPM Checklist</div>
+        <div class="doc-desc">Planned preventative maintenance checklist for CCTV systems. Camera, NVR, cabling, remote access and recording verification.</div>
+        <div class="doc-arrow">Open &rarr;</div>
+      </div>
+      <div class="doc-card" onclick="openDoc('ac-ppm')">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="doc-name">Access Control PPM Checklist</div>
+        <div class="doc-desc">Planned preventative maintenance checklist for access control systems. Readers, locks, software, credentials and fire integration.</div>
+        <div class="doc-arrow">Open &rarr;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SIGN-OFF SHEET                                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="form-shell" id="shell-signoff">
+  <div class="form-topbar no-print">
+    <div class="form-topbar-left">
+      <button class="btn-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+      <div class="form-doc-title">Manual Sign-Off Sheet</div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
+      <button class="btn-pdf" onclick="savePDF('signoff')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
+      <button class="btn-drive" onclick="saveToDrive('signoff')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
+    </div>
+  </div>
+  <div class="form-body" id="pdf-signoff">
+    <div class="doc-header">
+      <div class="doc-header-left">
+        <div class="doc-header-label">Fyrfly Systems Ltd</div>
+        <div class="doc-header-title">Job Sign-Off Sheet</div>
+        <div class="doc-header-meta">Complete all sections. Obtain client signature on completion.</div>
+      </div>
+      <div class="doc-ref-box">
+        <div class="doc-ref-label">Job Ref</div>
+        <input class="doc-ref-input" id="so-ref" placeholder="FYR-0000" maxlength="12">
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Site &amp; Job Details</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Client / Organisation <span class="req">*</span></label><input class="f-input" id="so-client" placeholder="School / Council name"></div>
+        <div class="f-field"><label class="f-label">Site Address <span class="req">*</span></label><input class="f-input" id="so-address" placeholder="Full site address"></div>
+      </div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">Date <span class="req">*</span></label><input class="f-input" type="date" id="so-date"></div>
+        <div class="f-field"><label class="f-label">Visit Type</label>
+          <select class="f-input" id="so-type">
+            <option>Installation</option><option>Maintenance</option><option>Fault Call</option><option>Survey</option><option>Commission</option><option>Other</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Systems Worked On</label><input class="f-input" id="so-systems" placeholder="CCTV, Access Control…"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Engineer Details</div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">Engineer Name <span class="req">*</span></label><input class="f-input" id="so-eng" placeholder="Full name"></div>
+        <div class="f-field"><label class="f-label">Time On Site</label><input class="f-input" type="time" id="so-timeon"></div>
+        <div class="f-field"><label class="f-label">Time Off Site</label><input class="f-input" type="time" id="so-timeoff"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Work Carried Out</div>
+      <div class="f-row">
+        <div class="f-field"><label class="f-label">Description of Work <span class="req">*</span></label><textarea class="f-input tall" id="so-work" placeholder="Describe all work carried out during this visit…" rows="5"></textarea></div>
+      </div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Parts / Materials Used</label><textarea class="f-input" id="so-parts" placeholder="List any parts or materials installed…" rows="3"></textarea></div>
+        <div class="f-field"><label class="f-label">Outstanding Actions / Follow-Up Required</label><textarea class="f-input" id="so-actions" placeholder="Any actions required before job is complete…" rows="3"></textarea></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">System Status on Departure</div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">System Left In</label>
+          <select class="f-input" id="so-status">
+            <option>Fully operational</option><option>Operational — minor issues noted</option><option>Partially operational — follow-up required</option><option>Awaiting parts</option><option>Not operational</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Alarm Set on Departure?</label>
+          <select class="f-input" id="so-alarm">
+            <option>Yes — system set</option><option>No — client to set</option><option>N/A</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Additional Notes</label><input class="f-input" id="so-notes" placeholder="Any other notes…"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Signatures</div>
+      <div class="f-row cols-2">
+        <div class="f-field">
+          <label class="f-label">Engineer Signature</label>
+          <div class="f-field"><label class="f-label" style="margin-bottom:0.3rem">Engineer Name (print)</label><input class="f-input" id="so-eng-name" placeholder="Print name"></div>
+          <div style="margin-top:0.5rem;" class="sig-wrap">
+            <div class="sig-label-bar">Sign here <button class="sig-clear" onclick="clearSig('sig-eng')">Clear</button></div>
+            <canvas class="sig-canvas" id="sig-eng"></canvas>
+          </div>
+        </div>
+        <div class="f-field">
+          <label class="f-label">Client Signature</label>
+          <div class="f-field"><label class="f-label" style="margin-bottom:0.3rem">Client Name &amp; Position (print)</label><input class="f-input" id="so-client-name" placeholder="Print name and job title"></div>
+          <div style="margin-top:0.5rem;" class="sig-wrap">
+            <div class="sig-label-bar">Sign here <button class="sig-clear" onclick="clearSig('sig-client')">Clear</button></div>
+            <canvas class="sig-canvas" id="sig-client"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer no-print">
+    <div class="footer-accreds"><span class="footer-accred">NSI NACOSS Gold</span><span class="footer-accred">SSAIB Approved</span><span class="footer-accred">BAFE Registered</span><span class="footer-accred">ISO 9001:2015</span></div>
+    <div class="footer-copy">&copy; 2026 Fyrfly Systems Ltd</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- QUOTATION FORM                                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="form-shell" id="shell-quote">
+  <div class="form-topbar no-print">
+    <div class="form-topbar-left">
+      <button class="btn-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+      <div class="form-doc-title">Quotation Form</div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
+      <button class="btn-pdf" onclick="savePDF('quote')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
+      <button class="btn-drive" onclick="saveToDrive('quote')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
+    </div>
+  </div>
+  <div class="form-body" id="pdf-quote">
+    <div class="doc-header">
+      <div class="doc-header-left">
+        <div class="doc-header-label">Fyrfly Systems Ltd — Quotation</div>
+        <div class="doc-header-title">Security Systems Quotation</div>
+        <div class="doc-header-meta">Valid for 30 days from date of issue unless otherwise stated. All prices exclude VAT.</div>
+      </div>
+      <div class="doc-ref-box">
+        <div class="doc-ref-label">Quote Ref</div>
+        <input class="doc-ref-input" id="qt-ref" placeholder="QT-0000" maxlength="12">
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Client Details</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Client / Organisation <span class="req">*</span></label><input class="f-input" id="qt-client" placeholder="Organisation name"></div>
+        <div class="f-field"><label class="f-label">Contact Name</label><input class="f-input" id="qt-contact" placeholder="Full name"></div>
+      </div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Site Address</label><input class="f-input" id="qt-address" placeholder="Full site address"></div>
+        <div class="f-field"><label class="f-label">Email / Phone</label><input class="f-input" id="qt-contact-detail" placeholder="Email or phone number"></div>
+      </div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">Date of Issue</label><input class="f-input" type="date" id="qt-date"></div>
+        <div class="f-field"><label class="f-label">Valid Until</label><input class="f-input" type="date" id="qt-valid"></div>
+        <div class="f-field"><label class="f-label">Prepared By</label><input class="f-input" id="qt-prepby" placeholder="Engineer / surveyor name"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Systems Included in This Quotation</div>
+      <div class="f-row cols-4">
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-cctv" style="accent-color:var(--o);width:16px;height:16px;"> CCTV</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-ac" style="accent-color:var(--o);width:16px;height:16px;"> Access Control</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-alarm" style="accent-color:var(--o);width:16px;height:16px;"> Intruder Alarm</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-fire" style="accent-color:var(--o);width:16px;height:16px;"> Fire System</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-network" style="accent-color:var(--o);width:16px;height:16px;"> Wireless Network</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-monitor" style="accent-color:var(--o);width:16px;height:16px;"> Monitoring</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-maint" style="accent-color:var(--o);width:16px;height:16px;"> Maintenance</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;"><input type="checkbox" id="qt-sys-other" style="accent-color:var(--o);width:16px;height:16px;"> Other</label>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Specification Summary</div>
+      <div class="f-row">
+        <div class="f-field"><label class="f-label">Scope of Works</label><textarea class="f-input tall" id="qt-scope" placeholder="Describe the full scope of works included in this quotation…" rows="4"></textarea></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Itemised Costs</div>
+      <table class="quote-table" id="qt-lines-table">
+        <thead>
+          <tr>
+            <th style="width:40%">Description</th>
+            <th style="width:20%">Category</th>
+            <th style="width:15%" class="right">Qty</th>
+            <th style="width:15%" class="right">Unit Price (£)</th>
+            <th style="width:15%" class="right">Total (£)</th>
+          </tr>
+        </thead>
+        <tbody id="qt-lines">
+          <tr>
+            <td><input class="quote-input" placeholder="Item description"></td>
+            <td><select class="quote-input"><option>Materials</option><option>Labour</option><option>Equipment</option><option>Software</option><option>Monitoring</option><option>Other</option></select></td>
+            <td><input class="quote-input right" type="number" value="1" min="0" step="0.5" oninput="calcQuote()"></td>
+            <td><input class="quote-input right" type="number" value="0" min="0" step="0.01" oninput="calcQuote()"></td>
+            <td><input class="quote-input right" readonly id="qt-line-0"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="quote-total-row"><td colspan="4" style="text-align:right;padding-right:0.75rem;font-size:0.85rem;">Subtotal (exc. VAT)</td><td><input class="quote-input right" readonly id="qt-subtotal" style="font-weight:700;"></td></tr>
+          <tr class="quote-total-row"><td colspan="4" style="text-align:right;padding-right:0.75rem;font-size:0.85rem;">VAT (20%)</td><td><input class="quote-input right" readonly id="qt-vat"></td></tr>
+          <tr class="quote-grand-row"><td colspan="4" style="text-align:right;padding-right:0.75rem;">Total inc. VAT</td><td><input class="quote-input right" readonly id="qt-total" style="background:transparent;color:#fff;font-weight:800;font-size:1rem;border-color:rgba(255,255,255,0.2);"></td></tr>
+        </tfoot>
+      </table>
+      <button class="btn-add-row" onclick="addQuoteLine()">+ Add Line</button>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Terms &amp; Conditions</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Payment Terms</label>
+          <select class="f-input" id="qt-payment">
+            <option>50% deposit, 50% on completion</option><option>100% on completion</option><option>30 days from invoice</option><option>Stage payments as agreed</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Warranty Period</label>
+          <select class="f-input" id="qt-warranty">
+            <option>12 months parts and labour</option><option>24 months parts and labour</option><option>Manufacturer warranty only</option><option>As specified in contract</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="f-field"><label class="f-label">Additional Terms / Exclusions</label><textarea class="f-input" id="qt-terms" placeholder="Any exclusions, assumptions or additional terms relevant to this quotation…" rows="3"></textarea></div>
+      </div>
+    </div>
+
+    <div style="background:var(--light);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.25rem;font-size:0.78rem;color:var(--mid);line-height:1.7;margin-top:1rem;">
+      <strong style="color:var(--dark);">Fyrfly Systems Ltd</strong> — NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015 &bull; Crown Commercial Service<br>
+      hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com &bull; Registered in England &amp; Wales
+    </div>
+  </div>
+  <div class="form-footer no-print">
+    <div class="footer-accreds"><span class="footer-accred">NSI NACOSS Gold</span><span class="footer-accred">SSAIB Approved</span><span class="footer-accred">BAFE Registered</span><span class="footer-accred">ISO 9001:2015</span></div>
+    <div class="footer-copy">&copy; 2026 Fyrfly Systems Ltd</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- CCTV PPM CHECKLIST                                    -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="form-shell" id="shell-cctv-ppm">
+  <div class="form-topbar no-print">
+    <div class="form-topbar-left">
+      <button class="btn-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+      <div class="form-doc-title">CCTV PPM Checklist</div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
+      <button class="btn-pdf" onclick="savePDF('cctv-ppm')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
+      <button class="btn-drive" onclick="saveToDrive('cctv-ppm')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
+    </div>
+  </div>
+  <div class="form-body" id="pdf-cctv-ppm">
+    <div class="doc-header">
+      <div class="doc-header-left">
+        <div class="doc-header-label">Fyrfly Systems Ltd — Planned Preventative Maintenance</div>
+        <div class="doc-header-title">CCTV System PPM Checklist</div>
+        <div class="doc-header-meta">Complete all items. Mark Pass, Fail or N/A. Record all findings and actions in the notes column.</div>
+      </div>
+      <div class="doc-ref-box">
+        <div class="doc-ref-label">PPM Ref</div>
+        <input class="doc-ref-input" id="cp-ref" placeholder="PPM-0000" maxlength="12">
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Site &amp; Visit Details</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Client / Site <span class="req">*</span></label><input class="f-input" id="cp-site" placeholder="Site name and address"></div>
+        <div class="f-field"><label class="f-label">Engineer <span class="req">*</span></label><input class="f-input" id="cp-eng" placeholder="Engineer name"></div>
+      </div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">Date <span class="req">*</span></label><input class="f-input" type="date" id="cp-date"></div>
+        <div class="f-field"><label class="f-label">System Make / Model</label><input class="f-input" id="cp-model" placeholder="e.g. Hikvision DS-7608NXI"></div>
+        <div class="f-field"><label class="f-label">Number of Cameras</label><input class="f-input" type="number" id="cp-cameras" placeholder="e.g. 16" min="1"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Recording System (NVR / DVR)</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="cctv-nvr-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Camera Checks</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="cctv-camera-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Cabling &amp; Infrastructure</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="cctv-cable-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Remote Access &amp; Compliance</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="cctv-remote-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Overall Findings &amp; Recommendations</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">System Status</label>
+          <select class="f-input" id="cp-status">
+            <option>Pass — No issues found</option><option>Pass — Minor issues noted, no immediate action</option><option>Fail — Remedial work required</option><option>Fail — System not operational</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Next PPM Due</label><input class="f-input" type="date" id="cp-nextppm"></div>
+      </div>
+      <div class="f-row">
+        <div class="f-field"><label class="f-label">Findings &amp; Remedial Actions Required</label><textarea class="f-input tall" id="cp-findings" placeholder="Describe any findings, defects or recommended actions…" rows="4"></textarea></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Engineer Sign-Off</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Engineer Name (print)</label><input class="f-input" id="cp-engname" placeholder="Print name"></div>
+        <div class="f-field"><label class="f-label">Client Representative (print)</label><input class="f-input" id="cp-clientname" placeholder="Name and position"></div>
+      </div>
+      <div class="f-row cols-2">
+        <div class="f-field">
+          <div class="sig-wrap"><div class="sig-label-bar">Engineer Signature <button class="sig-clear" onclick="clearSig('sig-cp-eng')">Clear</button></div><canvas class="sig-canvas" id="sig-cp-eng"></canvas></div>
+        </div>
+        <div class="f-field">
+          <div class="sig-wrap"><div class="sig-label-bar">Client Signature <button class="sig-clear" onclick="clearSig('sig-cp-client')">Clear</button></div><canvas class="sig-canvas" id="sig-cp-client"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer no-print">
+    <div class="footer-accreds"><span class="footer-accred">NSI NACOSS Gold</span><span class="footer-accred">SSAIB Approved</span><span class="footer-accred">BAFE Registered</span><span class="footer-accred">ISO 9001:2015</span></div>
+    <div class="footer-copy">&copy; 2026 Fyrfly Systems Ltd</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- ACCESS CONTROL PPM CHECKLIST                          -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="form-shell" id="shell-ac-ppm">
+  <div class="form-topbar no-print">
+    <div class="form-topbar-left">
+      <button class="btn-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+      <div class="form-doc-title">Access Control PPM Checklist</div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print</button>
+      <button class="btn-pdf" onclick="savePDF('ac-ppm')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Save PDF</button>
+      <button class="btn-drive" onclick="saveToDrive('ac-ppm')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M12 2l10 10-10 10"/></svg> Drive</button>
+    </div>
+  </div>
+  <div class="form-body" id="pdf-ac-ppm">
+    <div class="doc-header">
+      <div class="doc-header-left">
+        <div class="doc-header-label">Fyrfly Systems Ltd — Planned Preventative Maintenance</div>
+        <div class="doc-header-title">Access Control PPM Checklist</div>
+        <div class="doc-header-meta">Complete all items. Mark Pass, Fail or N/A. Record all findings in the notes column.</div>
+      </div>
+      <div class="doc-ref-box">
+        <div class="doc-ref-label">PPM Ref</div>
+        <input class="doc-ref-input" id="ap-ref" placeholder="PPM-0000" maxlength="12">
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Site &amp; Visit Details</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Client / Site <span class="req">*</span></label><input class="f-input" id="ap-site" placeholder="Site name and address"></div>
+        <div class="f-field"><label class="f-label">Engineer <span class="req">*</span></label><input class="f-input" id="ap-eng" placeholder="Engineer name"></div>
+      </div>
+      <div class="f-row cols-3">
+        <div class="f-field"><label class="f-label">Date <span class="req">*</span></label><input class="f-input" type="date" id="ap-date"></div>
+        <div class="f-field"><label class="f-label">System Make / Model</label><input class="f-input" id="ap-model" placeholder="e.g. Paxton Net2"></div>
+        <div class="f-field"><label class="f-label">Number of Doors</label><input class="f-input" type="number" id="ap-doors" placeholder="e.g. 8" min="1"></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Controller &amp; Software</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="ac-controller-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Door Hardware</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="ac-door-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Credentials &amp; Users</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="ac-cred-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Integration &amp; Safety</div>
+      <table class="checklist-table">
+        <thead><tr><th style="width:55%">Check Item</th><th class="center" style="width:28%">Result</th><th style="width:17%">Notes</th></tr></thead>
+        <tbody id="ac-integration-checks"></tbody>
+      </table>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Overall Findings &amp; Recommendations</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">System Status</label>
+          <select class="f-input" id="ap-status">
+            <option>Pass — No issues found</option><option>Pass — Minor issues noted, no immediate action</option><option>Fail — Remedial work required</option><option>Fail — System not operational</option>
+          </select>
+        </div>
+        <div class="f-field"><label class="f-label">Next PPM Due</label><input class="f-input" type="date" id="ap-nextppm"></div>
+      </div>
+      <div class="f-row">
+        <div class="f-field"><label class="f-label">Findings &amp; Remedial Actions Required</label><textarea class="f-input tall" id="ap-findings" placeholder="Describe any findings, defects or recommended actions…" rows="4"></textarea></div>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <div class="f-section-title">Engineer Sign-Off</div>
+      <div class="f-row cols-2">
+        <div class="f-field"><label class="f-label">Engineer Name (print)</label><input class="f-input" id="ap-engname" placeholder="Print name"></div>
+        <div class="f-field"><label class="f-label">Client Representative (print)</label><input class="f-input" id="ap-clientname" placeholder="Name and position"></div>
+      </div>
+      <div class="f-row cols-2">
+        <div class="f-field">
+          <div class="sig-wrap"><div class="sig-label-bar">Engineer Signature <button class="sig-clear" onclick="clearSig('sig-ap-eng')">Clear</button></div><canvas class="sig-canvas" id="sig-ap-eng"></canvas></div>
+        </div>
+        <div class="f-field">
+          <div class="sig-wrap"><div class="sig-label-bar">Client Signature <button class="sig-clear" onclick="clearSig('sig-ap-client')">Clear</button></div><canvas class="sig-canvas" id="sig-ap-client"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer no-print">
+    <div class="footer-accreds"><span class="footer-accred">NSI NACOSS Gold</span><span class="footer-accred">SSAIB Approved</span><span class="footer-accred">BAFE Registered</span><span class="footer-accred">ISO 9001:2015</span></div>
+    <div class="footer-copy">&copy; 2026 Fyrfly Systems Ltd</div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// CHECKLIST DATA
+// ═══════════════════════════════════════════════════════════
+const CCTV_CHECKS = {
+  'cctv-nvr-checks': [
+    'NVR/DVR powering correctly — no warning lights',
+    'Hard drive(s) healthy — SMART status checked',
+    'Storage capacity adequate — minimum 30 days retention confirmed',
+    'Recording mode verified — continuous / motion as specified',
+    'Date and time correct on all channels',
+    'Firmware version noted — update applied if available',
+    'Fan operation checked — no excessive noise or heat',
+    'Remote access credentials tested and working',
+    'Event log reviewed — no unresolved alerts',
+    'Maintenance label updated with date and engineer',
+  ],
+  'cctv-camera-checks': [
+    'All cameras displaying live image on NVR',
+    'Image quality checked — focus, brightness and contrast acceptable',
+    'Camera alignment verified — coverage as designed',
+    'IR night vision function tested',
+    'PTZ function tested (where applicable)',
+    'Camera housings clean and undamaged',
+    'No excessive glare, reflection or obstruction',
+    'Motion detection zones correct and functioning',
+    'Any AI analytics (loitering, tripwire) functioning correctly',
+    'Spot check of recorded footage — quality acceptable',
+  ],
+  'cctv-cable-checks': [
+    'All cable runs visually inspected — no damage or exposure',
+    'Cable management secure — no loose cables',
+    'Junction boxes secure and weatherproof where external',
+    'PoE switch / power supplies functioning correctly',
+    'IP addresses confirmed — no conflicts on network',
+    'Network switch health checked',
+  ],
+  'cctv-remote-checks': [
+    'Remote viewing tested from mobile or web browser',
+    'CCTV policy on display at site (UK GDPR requirement)',
+    'Retention period confirmed and correct in system settings',
+    'Subject access request procedure available if requested',
+    'Site handover documentation up to date',
+    'Client advised of any issues found during this visit',
+  ]
+};
+
+const AC_CHECKS = {
+  'ac-controller-checks': [
+    'Controller(s) powering correctly — no warning LEDs',
+    'Management software connecting to all controllers',
+    'Software version noted — update applied if available',
+    'System time and date correct',
+    'Event log reviewed — no unexplained access denied events',
+    'Backup battery tested — minimum 4 hours standby confirmed',
+    'Audit trail functioning and recording all events',
+    'Cloud/offsite backup of database confirmed (where applicable)',
+  ],
+  'ac-door-checks': [
+    'All door readers presenting correct LED / audio feedback',
+    'Door locks operating correctly — full release and re-lock',
+    'Door contacts functioning — open/closed status correct in software',
+    'Request-to-exit (RTE) devices functioning on all doors',
+    'Break glass units present, unactivated and accessible',
+    'Door closers functioning — doors returning to closed position',
+    'Anti-passback functioning correctly (where applicable)',
+    'Interlocking / airlock sequence functioning (where applicable)',
+  ],
+  'ac-cred-checks': [
+    'Leavers audit completed — departed staff credentials removed',
+    'No expired temporary credentials active in system',
+    'Visitor / contractor credentials reviewed',
+    'Keyholder list current and confirmed with site manager',
+    'Access level permissions reviewed — principle of least privilege applied',
+    'Any lost or stolen fobs / cards deactivated',
+  ],
+  'ac-integration-checks': [
+    'Fire alarm integration tested — doors release on activation',
+    'CCTV integration checked — door events trigger camera (where applicable)',
+    'Intruder alarm integration checked (where applicable)',
+    'Fail-safe / fail-secure mode confirmed appropriate for each door',
+    'Emergency override tested and functioning',
+    'Client advised of any issues found during this visit',
+  ]
+};
+
+// ═══════════════════════════════════════════════════════════
+// RENDER CHECKLISTS
+// ═══════════════════════════════════════════════════════════
+let checkCounter = 0;
+
+function renderChecklist(tbodyId, items) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  tbody.innerHTML = items.map((item, i) => {
+    const id = 'chk_' + tbodyId + '_' + i;
+    return `<tr>
+      <td>${item}</td>
+      <td class="center">
+        <div class="radio-group">
+          <label class="radio-opt pass"><input type="radio" name="${id}" value="pass"> Pass</label>
+          <label class="radio-opt fail"><input type="radio" name="${id}" value="fail"> Fail</label>
+          <label class="radio-opt na"><input type="radio" name="${id}" value="na"> N/A</label>
+        </div>
+      </td>
+      <td><input style="width:100%;border:1px solid var(--bdr);border-radius:4px;padding:0.3rem 0.5rem;font-size:0.78rem;outline:none;" placeholder="Notes…"></td>
+    </tr>`;
+  }).join('');
+}
+
+function initChecklists() {
+  Object.entries(CCTV_CHECKS).forEach(([id, items]) => renderChecklist(id, items));
+  Object.entries(AC_CHECKS).forEach(([id, items]) => renderChecklist(id, items));
+}
+
+// ═══════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════
+let currentDoc = null;
+
+function openDoc(doc) {
+  document.getElementById('screen-landing').style.display = 'none';
+  const shells = document.querySelectorAll('.form-shell');
+  shells.forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('shell-' + doc);
+  if (target) { target.classList.add('active'); currentDoc = doc; }
+  window.scrollTo(0, 0);
+  // Set today's date on date fields
+  const today = new Date().toISOString().split('T')[0];
+  const dateFields = target.querySelectorAll('input[type="date"]');
+  dateFields.forEach(f => { if (!f.value) f.value = today; });
+  calcQuote();
+}
+
+function goBack() {
+  document.querySelectorAll('.form-shell').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-landing').style.display = '';
+  currentDoc = null;
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUOTATION CALCULATOR
+// ═══════════════════════════════════════════════════════════
+let quoteLineCount = 1;
+
+function addQuoteLine() {
+  const tbody = document.getElementById('qt-lines');
+  const row = document.createElement('tr');
+  const idx = quoteLineCount++;
+  row.innerHTML = `
+    <td><input class="quote-input" placeholder="Item description"></td>
+    <td><select class="quote-input"><option>Materials</option><option>Labour</option><option>Equipment</option><option>Software</option><option>Monitoring</option><option>Other</option></select></td>
+    <td><input class="quote-input right" type="number" value="1" min="0" step="0.5" oninput="calcQuote()"></td>
+    <td><input class="quote-input right" type="number" value="0" min="0" step="0.01" oninput="calcQuote()"></td>
+    <td><input class="quote-input right" readonly id="qt-line-${idx}"></td>`;
+  tbody.appendChild(row);
+  calcQuote();
+}
+
+function calcQuote() {
+  const rows = document.querySelectorAll('#qt-lines tr');
+  let subtotal = 0;
+  rows.forEach((row, i) => {
+    const inputs = row.querySelectorAll('input[type="number"]');
+    if (inputs.length >= 2) {
+      const qty = parseFloat(inputs[0].value) || 0;
+      const unit = parseFloat(inputs[1].value) || 0;
+      const total = qty * unit;
+      subtotal += total;
+      const lineEl = row.querySelector('input[readonly]');
+      if (lineEl) lineEl.value = total > 0 ? '£' + total.toLocaleString('en-GB', {minimumFractionDigits:2,maximumFractionDigits:2}) : '';
+    }
+  });
+  const vat = subtotal * 0.20;
+  const grand = subtotal + vat;
+  const fmt = n => n > 0 ? '£' + n.toLocaleString('en-GB', {minimumFractionDigits:2,maximumFractionDigits:2}) : '';
+  const st = document.getElementById('qt-subtotal'); if (st) st.value = fmt(subtotal);
+  const vt = document.getElementById('qt-vat'); if (vt) vt.value = fmt(vat);
+  const gt = document.getElementById('qt-total'); if (gt) gt.value = fmt(grand);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SIGNATURE PADS
+// ═══════════════════════════════════════════════════════════
+const sigPads = {};
+
+function initSigPad(id) {
+  const canvas = document.getElementById(id);
+  if (!canvas || sigPads[id]) return;
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let lastX = 0, lastY = 0;
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return [(clientX - rect.left) * scaleX, (clientY - rect.top) * scaleY];
+  }
+
+  function start(e) {
+    e.preventDefault();
+    drawing = true;
+    [lastX, lastY] = getPos(e);
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 1, 0, Math.PI * 2);
+    ctx.fillStyle = '#0E0E14';
+    ctx.fill();
+  }
+  function draw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const [x, y] = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = '#0E0E14';
+    ctx.lineWidth = 1.8;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+  }
+  function stop() { drawing = false; }
+
+  // Size canvas to element
+  const resizeCanvas = () => {
+    const rect = canvas.getBoundingClientRect();
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    canvas.width = rect.width || 300;
+    canvas.height = 100;
+    ctx.putImageData(img, 0, 0);
+  };
+  resizeCanvas();
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stop);
+  canvas.addEventListener('mouseleave', stop);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stop);
+  sigPads[id] = ctx;
+}
+
+function clearSig(id) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function initAllSigPads() {
+  ['sig-eng','sig-client','sig-cp-eng','sig-cp-client','sig-ap-eng','sig-ap-client'].forEach(initSigPad);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PDF SAVE (via html2pdf)
+// ═══════════════════════════════════════════════════════════
+function savePDF(doc) {
+  const el = document.getElementById('pdf-' + doc);
+  if (!el) { alert('Document not found.'); return; }
+  if (typeof html2pdf === 'undefined') {
+    alert('PDF library loading — please try again in a moment.');
+    return;
+  }
+  const titles = {
+    'signoff': 'Fyrfly-Sign-Off',
+    'quote': 'Fyrfly-Quotation',
+    'cctv-ppm': 'Fyrfly-CCTV-PPM',
+    'ac-ppm': 'Fyrfly-AC-PPM'
+  };
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
+
+  html2pdf().from(el).set({
+    margin: [8, 8, 8, 8],
+    filename: filename,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  }).save();
+}
+
+// ═══════════════════════════════════════════════════════════
+// GOOGLE DRIVE SAVE
+// ═══════════════════════════════════════════════════════════
+function saveToDrive(doc) {
+  const el = document.getElementById('pdf-' + doc);
+  if (!el) return;
+  if (typeof html2pdf === 'undefined') {
+    alert('PDF library loading — please try again in a moment.');
+    return;
+  }
+  const titles = {
+    'signoff': 'Fyrfly-Sign-Off',
+    'quote': 'Fyrfly-Quotation',
+    'cctv-ppm': 'Fyrfly-CCTV-PPM',
+    'ac-ppm': 'Fyrfly-AC-PPM'
+  };
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
+
+  // Generate PDF blob then upload to Google Drive via picker
+  html2pdf().from(el).set({
+    margin: [8, 8, 8, 8],
+    filename: filename,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).outputPdf('blob').then(function(blob) {
+    // Upload to Google Drive using Drive API v3 multipart upload
+    // Requires user to be signed in to Google — opens auth if not
+    const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+    if (!window.gapi) {
+      // Load Google API client
+      const script = document.createElement('script');
+      script.src = 'https://apis.google.com/js/api.js';
+      script.onload = function() {
+        gapi.load('client:auth2', function() {
+          gapi.client.init({ clientId: CLIENT_ID, scope: SCOPES }).then(function() {
+            uploadToDrive(blob, filename);
+          });
+        });
+      };
+      document.head.appendChild(script);
+    } else {
+      uploadToDrive(blob, filename);
+    }
+  });
+}
+
+function uploadToDrive(blob, filename) {
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    gapi.auth2.getAuthInstance().signIn().then(function() {
+      doUpload(blob, filename);
+    });
+  } else {
+    doUpload(blob, filename);
+  }
+}
+
+function doUpload(blob, filename) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result.split(',')[1];
+    const metadata = { name: filename, mimeType: 'application/pdf' };
+    const boundary = 'fy_boundary_' + Date.now();
+    const delimiter = '\r\n--' + boundary + '\r\n';
+    const close = '\r\n--' + boundary + '--';
+    const body = delimiter +
+      'Content-Type: application/json\r\n\r\n' + JSON.stringify(metadata) +
+      delimiter +
+      'Content-Type: application/pdf\r\nContent-Transfer-Encoding: base64\r\n\r\n' + base64 +
+      close;
+
+    gapi.client.request({
+      path: 'https://www.googleapis.com/upload/drive/v3/files',
+      method: 'POST',
+      params: { uploadType: 'multipart' },
+      headers: { 'Content-Type': 'multipart/related; boundary=' + boundary },
+      body: body
+    }).then(function(res) {
+      alert('Saved to Google Drive: ' + filename);
+    }).catch(function(err) {
+      alert('Drive upload failed. File saved locally instead.');
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  };
+  reader.readAsDataURL(blob);
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  initChecklists();
+  // Init sig pads when their shell becomes visible
+  const observer = new MutationObserver(function() {
+    initAllSigPads();
+  });
+  document.querySelectorAll('.form-shell').forEach(function(el) {
+    observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+  });
+  calcQuote();
+});
+</script>
+</body>
+</html>
