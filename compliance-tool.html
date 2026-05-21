@@ -228,28 +228,25 @@
       .ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
 </head>
 <body>
 
 <div class="mob-nav" id="mobNav" style="display:none">
-  <div class="mob-nav-bar">
-    <span class="mob-nav-brand">Menu</span>
-    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
-  </div>
-  <div class="mob-nav-scroll">
+  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
   <span class="mob-sub">Services</span>
   <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
   <span class="mob-sub">Sectors</span>
   <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
   <span class="mob-sub">Tools</span>
-  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a>
-  <a href="your-site-tool.html">Your Site Tool</a>
+  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a><a href="your-site-tool.html">Your Site Tool</a>
   <span class="mob-sub">Insights</span>
   <a href="blog.html">All Articles</a>
   <span class="mob-sub">Company</span>
   <a href="index.html#about">About Us</a>
-  <a href="mailto:hello@fyrflysystems.com" class="mob-cta contact-trigger">Get in Touch &rarr;</a>
-  </div>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
 </div>
 
 <nav id="nav">
@@ -268,6 +265,7 @@
           <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
           <a href="system-integration.html" class="drop-item">System Integration</a>
           <a href="compliance-tool.html" class="drop-item active">Compliance Tool</a>
+          <a href="your-site-tool.html" class="drop-item">Your Site Tool</a>
         </div>
       </li>
       <li><a href="blog.html">Insights</a></li>
@@ -385,10 +383,10 @@
       </ul>
     </div>
     <div>
-      <div class="ft-ct">Tools</div>
-      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li></ul>
-      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
-      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
+      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li><li><a href="your-site-tool.html">Your Site Tool</a></li></ul>
     </div>
     <div>
       <div class="ft-ct">Get in Touch</div>
@@ -798,7 +796,7 @@ function goBack() {
 function showResults() {
   document.getElementById('step-questions').style.display = 'none';
   const resultsDiv = document.getElementById('step-results');
-  resultsDiv.style.display = '';
+  resultsDiv.style.display = 'block';
 
   // Score calculation
   let totalWeight = 0, earnedWeight = 0;
@@ -891,7 +889,7 @@ function showResults() {
     '<p>A free site survey from Fyrfly Systems will assess your systems against every standard that applies to your organisation, identify the specific gaps and give you a clear, prioritised plan to address them. No obligation, no pressure.</p>' +
     '<div class="cta-btns">' +
     '<button type="button" class="btn-p" onclick="downloadReport(' + pct + ')">Download Report as PDF</button>' +
-    '<button type="button" class="btn-s" onclick="shareReport()" data-contact-form>Share with Fyrfly by Email</button>' +
+    '<button type="button" class="btn-s" onclick="shareReport()">Share with Fyrfly by Email</button>' +
     '</div>' +
     '</div>' +
     '</div>' +
@@ -1025,6 +1023,6 @@ if (ham && mobNav) {
   mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 }
 </script>
-<script src="contact-modal.js"></script>
+<script src="/contact-modal.js"></script>
 </body>
 </html>
