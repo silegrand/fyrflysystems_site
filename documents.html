@@ -943,6 +943,85 @@ function initAllSigPads() {
 // ═══════════════════════════════════════════════════════════
 // PDF SAVE (via html2pdf)
 // ═══════════════════════════════════════════════════════════
+function freezeInputs(el) {
+  // Copy input values into data attributes so html2canvas can see them,
+  // then replace each input/select/textarea with a styled span for PDF capture
+  const replaced = [];
+  el.querySelectorAll('input, select, textarea').forEach(function(inp) {
+    const val = inp.type === 'checkbox' ? (inp.checked ? '☑' : '☐') : inp.value;
+    const span = document.createElement(inp.tagName === 'TEXTAREA' ? 'div' : 'span');
+    span.textContent = val || '';
+    span.setAttribute('data-pdf-placeholder', '');
+    // Copy key styles
+    span.style.cssText = window.getComputedStyle(inp).cssText;
+    span.style.display = inp.tagName === 'TEXTAREA' ? 'block' : 'inline-block';
+    span.style.minHeight = inp.tagName === 'TEXTAREA' ? '80px' : '';
+    span.style.whiteSpace = 'pre-wrap';
+    span.style.wordBreak = 'break-word';
+    inp.parentNode.insertBefore(span, inp);
+    inp.style.display = 'none';
+    replaced.push({ inp: inp, span: span });
+  });
+  return replaced;
+}
+
+function unfreezeInputs(replaced) {
+  replaced.forEach(function(r) {
+    r.inp.style.display = '';
+    if (r.span.parentNode) r.span.parentNode.removeChild(r.span);
+  });
+}
+
+function getPDFOptions(filename) {
+  return {
+    margin: [10, 10, 10, 10],
+    filename: filename,
+    image: { type: 'jpeg', quality: 0.97 },
+    html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0,
+      onclone: function(clonedDoc) {
+        // In the clone, make all inputs visible as their values
+        clonedDoc.querySelectorAll('input, select, textarea').forEach(function(inp) {
+          const val = inp.type === 'checkbox' ? (inp.checked ? '☑' : '☐') : inp.value;
+          const div = clonedDoc.createElement('div');
+          div.textContent = val || ' ';
+          div.style.padding = '6px 8px';
+          div.style.border = '1px solid #ccc';
+          div.style.borderRadius = '6px';
+          div.style.fontSize = '12px';
+          div.style.minHeight = inp.tagName === 'TEXTAREA' ? '80px' : '32px';
+          div.style.background = '#fff';
+          div.style.whiteSpace = 'pre-wrap';
+          div.style.wordBreak = 'break-word';
+          div.style.color = val ? '#0E0E14' : '#9595A5';
+          div.style.display = 'block';
+          div.style.width = '100%';
+          div.style.boxSizing = 'border-box';
+          inp.parentNode.insertBefore(div, inp);
+          inp.style.display = 'none';
+        });
+        // Show radio selections as text
+        clonedDoc.querySelectorAll('.radio-group').forEach(function(grp) {
+          const checked = grp.querySelector('input[type="radio"]:checked');
+          const div = clonedDoc.createElement('div');
+          div.textContent = checked ? checked.value.toUpperCase() : '—';
+          div.style.fontWeight = '700';
+          div.style.fontSize = '11px';
+          div.style.color = checked ? (checked.value === 'pass' ? '#10B981' : checked.value === 'fail' ? '#EF4444' : '#9595A5') : '#9595A5';
+          div.style.textAlign = 'center';
+          grp.parentNode.insertBefore(div, grp);
+          grp.style.display = 'none';
+        });
+        // Hide no-print elements
+        clonedDoc.querySelectorAll('.no-print, .form-topbar, .form-footer, .btn-back, .btn-print, .btn-pdf, .btn-drive, .sig-label-bar .sig-clear').forEach(function(el) {
+          el.style.display = 'none';
+        });
+      }
+    },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['css', 'legacy'] }
+  };
+}
+
 function savePDF(doc) {
   const el = document.getElementById('pdf-' + doc);
   if (!el) { alert('Document not found.'); return; }
@@ -950,27 +1029,17 @@ function savePDF(doc) {
     alert('PDF library loading — please try again in a moment.');
     return;
   }
-  const titles = {
-    'signoff': 'Fyrfly-Sign-Off',
-    'quote': 'Fyrfly-Quotation',
-    'cctv-ppm': 'Fyrfly-CCTV-PPM',
-    'ac-ppm': 'Fyrfly-AC-PPM'
-  };
+  const titles = { 'signoff':'Fyrfly-Sign-Off','quote':'Fyrfly-Quotation','cctv-ppm':'Fyrfly-CCTV-PPM','ac-ppm':'Fyrfly-AC-PPM' };
   const date = new Date().toISOString().slice(0, 10);
   const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
-
-  html2pdf().from(el).set({
-    margin: [8, 8, 8, 8],
-    filename: filename,
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-  }).save();
+  html2pdf().from(el).set(getPDFOptions(filename)).save();
 }
 
 // ═══════════════════════════════════════════════════════════
 // GOOGLE DRIVE SAVE
+// Generates the PDF locally then downloads it AND opens
+// Google Drive in a new tab so the engineer can drag it in.
+// No OAuth or API key required.
 // ═══════════════════════════════════════════════════════════
 function saveToDrive(doc) {
   const el = document.getElementById('pdf-' + doc);
@@ -979,89 +1048,35 @@ function saveToDrive(doc) {
     alert('PDF library loading — please try again in a moment.');
     return;
   }
-  const titles = {
-    'signoff': 'Fyrfly-Sign-Off',
-    'quote': 'Fyrfly-Quotation',
-    'cctv-ppm': 'Fyrfly-CCTV-PPM',
-    'ac-ppm': 'Fyrfly-AC-PPM'
-  };
+  const titles = { 'signoff':'Fyrfly-Sign-Off','quote':'Fyrfly-Quotation','cctv-ppm':'Fyrfly-CCTV-PPM','ac-ppm':'Fyrfly-AC-PPM' };
   const date = new Date().toISOString().slice(0, 10);
   const filename = (titles[doc] || 'Fyrfly-Document') + '-' + date + '.pdf';
 
-  // Generate PDF blob then upload to Google Drive via picker
-  html2pdf().from(el).set({
-    margin: [8, 8, 8, 8],
-    filename: filename,
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  }).outputPdf('blob').then(function(blob) {
-    // Upload to Google Drive using Drive API v3 multipart upload
-    // Requires user to be signed in to Google — opens auth if not
-    const CLIENT_ID = '930997474840-bq7okgf5m2cj7tnptu6ea8r38ma5r7lf.apps.googleusercontent.com';
-    const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+  // Step 1: generate and download the PDF
+  html2pdf().from(el).set(getPDFOptions(filename)).outputPdf('blob').then(function(blob) {
+    // Download PDF to device
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
 
-    if (!window.gapi) {
-      // Load Google API client
-      const script = document.createElement('script');
-      script.src = 'https://apis.google.com/js/api.js';
-      script.onload = function() {
-        gapi.load('client:auth2', function() {
-          gapi.client.init({ clientId: CLIENT_ID, scope: SCOPES }).then(function() {
-            uploadToDrive(blob, filename);
-          });
-        });
-      };
-      document.head.appendChild(script);
-    } else {
-      uploadToDrive(blob, filename);
-    }
+    // Step 2: open Google Drive upload page in new tab
+    setTimeout(function() {
+      window.open('https://drive.google.com/drive/my-drive', '_blank');
+      // Show a helpful toast
+      showToast('PDF downloaded — drag it into the Drive tab that just opened');
+    }, 500);
   });
 }
 
-function uploadToDrive(blob, filename) {
-  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
-    gapi.auth2.getAuthInstance().signIn().then(function() {
-      doUpload(blob, filename);
-    });
-  } else {
-    doUpload(blob, filename);
-  }
-}
-
-function doUpload(blob, filename) {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const base64 = e.target.result.split(',')[1];
-    const metadata = { name: filename, mimeType: 'application/pdf' };
-    const boundary = 'fy_boundary_' + Date.now();
-    const delimiter = '\r\n--' + boundary + '\r\n';
-    const close = '\r\n--' + boundary + '--';
-    const body = delimiter +
-      'Content-Type: application/json\r\n\r\n' + JSON.stringify(metadata) +
-      delimiter +
-      'Content-Type: application/pdf\r\nContent-Transfer-Encoding: base64\r\n\r\n' + base64 +
-      close;
-
-    gapi.client.request({
-      path: 'https://www.googleapis.com/upload/drive/v3/files',
-      method: 'POST',
-      params: { uploadType: 'multipart' },
-      headers: { 'Content-Type': 'multipart/related; boundary=' + boundary },
-      body: body
-    }).then(function(res) {
-      alert('Saved to Google Drive: ' + filename);
-    }).catch(function(err) {
-      alert('Drive upload failed. File saved locally instead.');
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = filename;
-      document.body.appendChild(a); a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  };
-  reader.readAsDataURL(blob);
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#0E0E14;color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.83rem;font-weight:500;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.3);white-space:nowrap;border-bottom:3px solid #E85D04;';
+  document.body.appendChild(t);
+  setTimeout(function() { t.style.opacity='0'; t.style.transition='opacity 0.4s'; setTimeout(function(){ t.remove(); }, 400); }, 4000);
 }
 
 // ═══════════════════════════════════════════════════════════
