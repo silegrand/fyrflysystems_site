@@ -494,16 +494,16 @@ function acPriceForDoors(doors) {
   // Tiered volume pricing — per door rate drops with quantity
   let total = 0;
   for (let d = 1; d <= doors; d++) {
-    if (d <= 5)       total += 3000;
-    else if (d <= 10) total += 2000;
+    if (d <= 5)       total += 2000;
+    else if (d <= 10) total += 1750;
     else if (d <= 20) total += 1500;
     else              total += 1250;
   }
   return total;
 }
 function acRateLabel(doors) {
-  if (doors <= 5)       return '£3,000 per door';
-  if (doors <= 10)      return 'from £2,000 per door';
+  if (doors <= 5)       return '£2,000 per door';
+  if (doors <= 10)      return 'from £1,750 per door';
   if (doors <= 20)      return 'from £1,500 per door';
   return 'from £1,250 per door';
 }
