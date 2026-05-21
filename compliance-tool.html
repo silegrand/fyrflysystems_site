@@ -1,377 +1,1030 @@
-<!-- README
-Project: 2-Year Cash Flow Forecast Tool
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fyrfly Systems — Cash Flow Forecast 2026–2028</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans','Segoe UI',Tahoma,sans-serif;background:#fff;color:#1a1a2e;font-size:13px;}
-.app-header{background:#0E0E14;color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border-bottom:3px solid transparent;background-image:linear-gradient(#0E0E14,#0E0E14),linear-gradient(135deg,#C8102E,#E85D04,#F5A623);background-origin:border-box;background-clip:padding-box,border-box;}
-.app-header h1{font-size:1.1rem;font-weight:900;letter-spacing:-.02em;font-family:'Roboto',sans-serif;}
-.app-header p{font-size:.75rem;opacity:.7;margin-top:2px;}
-.export-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);color:#fff;font-weight:700;font-size:.8rem;border:none;border-radius:5px;cursor:pointer;transition:opacity .2s;}
-.export-btn:hover{opacity:.85;}
-.tab-bar{display:flex;background:#1B1B24;border-bottom:3px solid #0E0E14;}
-.tab-btn{padding:.65rem 1.4rem;color:rgba(255,255,255,.75);border:none;background:transparent;cursor:pointer;font-size:.82rem;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color .2s,background .2s;}
-.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
-.tab-btn.active{color:#fff;background:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);border-bottom-color:transparent;}
-.summary-bar{background:#F5F4F2;border-bottom:2px solid #E6E5E1;padding:.85rem 1.5rem;display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;}
-.kpi{background:#fff;border:1px solid #E6E5E1;border-top:3px solid #C8102E;border-radius:7px;padding:.55rem 1rem;min-width:160px;}
-.kpi-label{font-size:.68rem;font-weight:600;font-family:'Roboto',sans-serif;color:#67677A;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
-.kpi-value{font-size:1.05rem;font-weight:700;font-family:'Roboto',sans-serif;color:#1B1B24;}
-.kpi.amber{border-top-color:#F5A623;border-color:#E6E5E1;background:#FFFBEB;}
-.kpi.amber .kpi-label{color:#92400E;}
-.kpi.amber .kpi-value{color:#92400E;}
-.view{padding:0;}
-.view.hidden{display:none;}
-.tbl-wrap{overflow-x:auto;overflow-y:auto;max-height:calc(100vh - 200px);position:relative;}
-table.cf{border-collapse:collapse;white-space:nowrap;min-width:max-content;}
-table.cf th,table.cf td{padding:.3rem .55rem;border:1px solid #E6E5E1;font-size:.77rem;vertical-align:middle;}
-table.cf th{background:#C8102E;color:#fff;text-align:center;position:sticky;top:0;z-index:5;font-family:'Roboto',sans-serif;font-weight:600;}
-table.cf th.sticky-cat{left:0;z-index:8;background:#1B1B24;}
-table.cf th.sticky-sub{left:155px;z-index:8;background:#1B1B24;}
-table.cf th.tot-col{background:#1B1B24;}
-.sticky-cat{position:sticky;left:0;z-index:3;background:inherit;}
-.sticky-sub{position:sticky;left:155px;z-index:3;background:inherit;}
-.row-sec td{background:#1B1B24;color:#fff;font-weight:700;font-size:.8rem;border-color:#0E0E14;font-family:'Roboto',sans-serif;letter-spacing:.04em;}
-.row-sec td.sticky-cat,.row-sec td.sticky-sub{background:#1B1B24;color:#fff;}
-.row-cat td{background:#FFF1F0;}
-.row-cat td.sticky-cat{background:#FFF1F0;font-weight:700;}
-.row-sub td{background:#FFF8F6;}
-.row-sub td.sticky-cat{background:#FFF8F6;}
-.row-tot td{background:#C8102E;color:#fff;font-weight:700;border-color:#991B1B;font-family:'Roboto',sans-serif;}
-.row-tot td.sticky-cat,.row-tot td.sticky-sub{background:#C8102E;color:#fff;}
-.row-net td{background:#FFF1F0;font-weight:600;}
-.row-net td.sticky-cat,.row-net td.sticky-sub{background:#FFF1F0;}
-.row-cum td{background:#FFEAE5;font-weight:700;}
-.row-cum td.sticky-cat,.row-cum td.sticky-sub{background:#FFEAE5;}
-.row-startup td{background:#FFFBEB;font-weight:700;}
-.row-startup td.sticky-cat,.row-startup td.sticky-sub{background:#FFFBEB;}
-.cat-cell{width:155px;min-width:155px;max-width:155px;font-weight:600;}
-.sub-cell{width:235px;min-width:235px;max-width:235px;color:#67677A;}
-.month-cell{width:100px;min-width:100px;text-align:right;}
-.tot-cell{width:115px;min-width:115px;text-align:right;background:#FFF8F6;font-weight:600;}
-.row-tot .tot-cell,.row-tot .month-cell{background:#C8102E;color:#fff;}
-.row-sec .tot-cell,.row-sec .month-cell{background:#1B1B24;color:#fff;}
-.input-cell{background:#FFFACD !important;}
-.input-cell input{width:100%;border:none;background:transparent;text-align:right;font-size:.77rem;font-family:inherit;padding:0;outline:none;color:#1a1a2e;}
-.input-cell input:focus{background:rgba(255,220,0,.2);border-radius:2px;}
-.neg{color:#CC0000 !important;}
-.pos{color:#1a7a1a;}
-.zero{color:#888;}
-table.qtr{border-collapse:collapse;width:100%;margin:1.5rem;}
-table.qtr th,table.qtr td{padding:.5rem 1rem;border:1px solid #E6E5E1;font-size:.82rem;}
-table.qtr th{background:#C8102E;color:#fff;text-align:center;font-family:'Roboto',sans-serif;}
-table.qtr .yr-hdr{background:#1B1B24;color:#fff;font-weight:700;}
-table.qtr .row-label{background:#F5F4F2;font-weight:600;color:#1B1B24;}
-table.qtr td{text-align:right;}
-table.qtr .row-rev td:not(:first-child){background:#FFF8F6;}
-table.qtr .row-gp td:not(:first-child){background:#FFF1F0;}
-table.qtr .row-op td:not(:first-child){background:#FFF8F8;}
-table.qtr .row-net td:not(:first-child){background:#FFF1F0;font-weight:700;}
-table.qtr .row-cum td:not(:first-child){background:#FFEAE5;font-weight:700;}
-.chart-view{padding:1.5rem;max-width:1200px;margin:0 auto;}
-.chart-view h2{font-size:.9rem;font-weight:700;font-family:'Roboto',sans-serif;color:#1B1B24;margin-bottom:1rem;}
-.chart-container{background:#F5F4F2;border:1px solid #E6E5E1;border-radius:8px;padding:1.25rem;height:440px;position:relative;}
-/* Print styles */
-@media print {
-  .app-header .export-btn, .tab-bar, .no-print { display: none !important; }
-  .view.hidden { display: block !important; }
-  .tbl-wrap { max-height: none !important; overflow: visible !important; }
-  body { font-size: 10px; }
-  table.cf { font-size: 7px; }
-  .month-cell, .tot-cell { width: 60px; min-width: 60px; }
-  .cat-cell { width: 100px; min-width: 100px; }
-  .sub-cell { width: 150px; min-width: 150px; }
-  @page { margin: 8mm; size: A3 landscape; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Compliance Checker for Schools & Public Sector | Fyrfly Systems</title>
+  <meta name="description" content="Free security compliance checker for schools, colleges, local authorities and NHS estates. Check your compliance against KCSiE, UK GDPR, BS 5839, Surveillance Camera Code and more.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/compliance-tool.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/compliance-tool.html">
+  <meta property="og:title" content="Security Compliance Checker | Fyrfly Systems">
+  <meta property="og:description" content="Check your security compliance against KCSiE, UK GDPR, BS 5839 and the Surveillance Camera Code. Get a personalised gap analysis in under 5 minutes.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);
+      --green:#10B981;--amber:#F59E0B;--red:#EF4444;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+    button{cursor:pointer;font-family:var(--fb);}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}
+    nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
+    .nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}
+    .nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.12);padding:0.5rem;padding-top:1rem;min-width:220px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s,visibility 0.2s;}
+    .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;}
+    .drop-menu::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:14px;height:14px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;margin-top:1px;}
+    .drop-item{display:block;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);}
+    .drop-item:hover{background:var(--light);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+    .ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;}
+    .mob-nav.open{display:flex;opacity:1;}
+    .mob-nav a{font-family:var(--fh);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}
+    .mob-nav a:hover{color:#fff;}
+    .mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}
+    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}
+    .mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}
+    .mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}
+    .mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
+
+    /* HERO */
+    .hero{background:var(--char);padding:4rem 0 3rem;position:relative;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 78% 40%,rgba(232,93,4,0.11) 0%,transparent 55%),radial-gradient(ellipse at 10% 65%,rgba(200,16,46,0.08) 0%,transparent 50%);}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.055) 1px,transparent 1px);background-size:38px 38px;}
+    .hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem;}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.9rem;}
+    .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:50ch;}
+    .standards-list{display:flex;flex-direction:column;gap:0.5rem;}
+    .std-badge{display:flex;align-items:center;gap:0.65rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.65);}
+    .std-badge svg{width:14px;height:14px;stroke:var(--o);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+    /* MAIN CONTENT */
+    .main{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;}
+
+    /* STEP INDICATOR */
+    .steps{display:flex;align-items:center;gap:0;margin-bottom:3rem;}
+    .step{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;font-weight:500;color:var(--mute);}
+    .step.active{color:var(--dark);}
+    .step.done{color:var(--green);}
+    .step-num{width:26px;height:26px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--mute);flex-shrink:0;background:var(--white);}
+    .step.active .step-num{border-color:var(--o);color:var(--o);background:rgba(232,93,4,0.05);}
+    .step.done .step-num{border-color:var(--green);background:var(--green);color:#fff;}
+    .step-line{flex:1;height:1px;background:var(--bdr);margin:0 0.5rem;}
+
+    /* SECTOR SELECTION */
+    .sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin-top:1.5rem;}
+    .sector-btn{padding:1.25rem 1rem;border-radius:12px;border:2px solid var(--bdr);background:var(--white);color:var(--mid);font-size:0.83rem;font-weight:500;text-align:center;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:0.6rem;}
+    .sector-btn svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .sector-btn:hover{border-color:rgba(232,93,4,0.4);color:var(--dark);}
+    .sector-btn.active{border-color:var(--o);background:rgba(232,93,4,0.04);color:var(--dark);}
+    .sector-btn.active svg{stroke:var(--o);}
+
+    /* QUESTION CARD */
+    .q-card{background:var(--white);border:1px solid var(--bdr);border-radius:16px;padding:2rem;margin-bottom:1.25rem;transition:border-color 0.2s,box-shadow 0.2s;}
+    .q-card.answered{border-color:rgba(16,185,129,0.3);box-shadow:0 2px 12px rgba(16,185,129,0.06);}
+    .q-num{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;}
+    .q-standard{display:inline-flex;align-items:center;padding:0.18rem 0.6rem;background:var(--light);border-radius:100px;font-size:0.65rem;font-weight:600;color:var(--mid);letter-spacing:0.05em;}
+    .q-text{font-family:var(--fh);font-size:1.05rem;font-weight:600;color:var(--dark);line-height:1.35;margin-bottom:0.5rem;}
+    .q-sub{font-size:0.82rem;color:var(--mid);line-height:1.6;margin-bottom:1.25rem;}
+    .q-options{display:flex;gap:0.6rem;flex-wrap:wrap;}
+    .q-opt{padding:0.6rem 1.2rem;border-radius:8px;border:1.5px solid var(--bdr);background:var(--white);color:var(--mid);font-size:0.85rem;font-weight:500;transition:all 0.15s;}
+    .q-opt:hover{border-color:rgba(232,93,4,0.5);color:var(--dark);}
+    .q-opt.yes{border-color:var(--green);background:rgba(16,185,129,0.06);color:var(--green);}
+    .q-opt.partial{border-color:var(--amber);background:rgba(245,158,11,0.06);color:#92400E;}
+    .q-opt.no{border-color:var(--red);background:rgba(239,68,68,0.06);color:var(--red);}
+    .q-opt.na{border-color:var(--mute);background:var(--light);color:var(--mute);}
+
+    /* PROGRESS BAR */
+    .progress-wrap{background:var(--light);border-radius:100px;height:6px;margin-bottom:2rem;overflow:hidden;}
+    .progress-bar{height:100%;background:var(--grad);border-radius:100px;transition:width 0.4s var(--ease);}
+
+    /* RESULTS */
+    .results{display:none;}
+    .score-hero{background:var(--char);border-radius:20px;padding:2.5rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden;}
+    .score-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .score-hero-c{position:relative;z-index:2;}
+    .score-label{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;}
+    .score-num{font-family:var(--fh);font-size:4rem;font-weight:900;line-height:1;margin-bottom:0.5rem;}
+    .score-desc{font-size:0.9rem;color:rgba(255,255,255,0.55);max-width:38ch;margin:0 auto;}
+    .score-pill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;border-radius:100px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;margin-bottom:1rem;}
+
+    /* RAG GRID */
+    .rag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin-bottom:2rem;}
+    .rag-card{border-radius:12px;padding:1.25rem;text-align:center;}
+    .rag-card-red{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);}
+    .rag-card-amber{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);}
+    .rag-card-green{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);}
+    .rag-count{font-family:var(--fh);font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:0.3rem;}
+    .rag-card-red .rag-count{color:var(--red);}
+    .rag-card-amber .rag-count{color:var(--amber);}
+    .rag-card-green .rag-count{color:var(--green);}
+    .rag-label{font-size:0.75rem;font-weight:600;color:var(--mid);}
+
+    /* RESULTS BREAKDOWN */
+    .results-section-title{font-family:var(--fh);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-bottom:1rem;margin-top:2rem;padding-bottom:0.5rem;border-bottom:2px solid var(--bdr);}
+    .result-item{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.25rem;border-radius:12px;border:1px solid var(--bdr);margin-bottom:0.75rem;transition:border-color 0.2s;}
+    .result-item.red{border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.02);}
+    .result-item.amber{border-color:rgba(245,158,11,0.25);background:rgba(245,158,11,0.02);}
+    .result-item.green{border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.02);}
+    .result-rag{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:0.35rem;}
+    .result-rag.red{background:var(--red);}
+    .result-rag.amber{background:var(--amber);}
+    .result-rag.green{background:var(--green);}
+    .result-content{}
+    .result-q{font-size:0.88rem;font-weight:600;color:var(--dark);margin-bottom:0.25rem;}
+    .result-std{font-size:0.68rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--mute);margin-bottom:0.35rem;}
+    .result-impact{font-size:0.8rem;color:var(--mid);line-height:1.6;}
+    .result-action{font-size:0.78rem;font-weight:600;color:var(--o);margin-top:0.4rem;display:flex;align-items:center;gap:0.35rem;}
+    .result-action::before{content:'Action:';color:var(--mute);font-weight:400;}
+
+    /* PRIORITY ACTIONS */
+    .action-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.25rem;border-radius:10px;border:1px solid var(--bdr);margin-bottom:0.6rem;background:var(--light);}
+    .action-num{width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;}
+    .action-text strong{display:block;font-size:0.85rem;color:var(--dark);margin-bottom:0.15rem;}
+    .action-text span{font-size:0.78rem;color:var(--mid);line-height:1.55;}
+    .action-urgency{font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-left:auto;flex-shrink:0;}
+    .urgency-high{background:rgba(239,68,68,0.1);color:var(--red);}
+    .urgency-med{background:rgba(245,158,11,0.1);color:#92400E;}
+    .urgency-low{background:rgba(16,185,129,0.1);color:#065F46;}
+
+    /* CTA BLOCK */
+    .results-cta{background:var(--char);border-radius:16px;padding:2rem;margin-top:2rem;position:relative;overflow:hidden;}
+    .results-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .results-cta-c{position:relative;z-index:2;}
+    .results-cta h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
+    .results-cta p{font-size:0.87rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:1.5rem;max-width:52ch;}
+    .cta-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 1.75rem;background:var(--grad);color:#fff;font-size:0.87rem;font-weight:600;border-radius:8px;border:none;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-p:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-s{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 1.75rem;color:rgba(255,255,255,0.65);font-size:0.87rem;font-weight:500;border-radius:8px;border:1px solid rgba(255,255,255,0.18);background:transparent;transition:all 0.2s;}
+    .btn-s:hover{color:#fff;border-color:rgba(255,255,255,0.4);}
+    .btn-restart{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.25rem;color:var(--mid);font-size:0.82rem;border:1px solid var(--bdr);border-radius:8px;background:var(--white);transition:all 0.2s;margin-top:1.5rem;}
+    .btn-restart:hover{color:var(--dark);border-color:var(--dark);}
+
+    /* NAV BUTTONS */
+    .q-nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;}
+    .btn-back{display:inline-flex;align-items:center;gap:0.4rem;padding:0.75rem 1.5rem;color:var(--mid);font-size:0.85rem;border:1px solid var(--bdr);border-radius:8px;background:var(--white);transition:all 0.2s;}
+    .btn-back:hover{color:var(--dark);border-color:var(--dark);}
+    .btn-next{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.87rem;font-weight:600;border-radius:8px;border:none;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-next:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-next:disabled{opacity:0.35;cursor:not-allowed;transform:none;}
+
+    /* FOOTER */
+    .site-footer{background:var(--dark);padding:3rem 0 1.5rem;}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+
+    @media(max-width:768px){
+      .nav-links,.nav-cta{display:none;}.ham{display:flex;}
+      .hero-c{grid-template-columns:1fr;}.standards-list{display:none;}
+      .sector-grid{grid-template-columns:1fr 1fr;}
+      .rag-grid{grid-template-columns:repeat(3,1fr);}
+      .cta-btns{flex-direction:column;}
+      .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+      .ft-grid>div:first-child{grid-column:span 2;}
+      .ft-grid>div:last-child{grid-column:span 2;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;}
+      .ft-bot{flex-direction:column;align-items:flex-start;}
+      .main{padding:2rem 1.25rem 4rem;}
+    }
+    @media(max-width:480px){
+      .sector-grid{grid-template-columns:1fr 1fr;}
+      .q-options{flex-direction:column;}
+      .q-opt{text-align:center;}
+      .ft-grid{grid-template-columns:1fr;}
+      .ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}
+    }
+  </style>
 </head>
 <body>
-<div class="app-header">
-  <div>
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <div style="display:flex;align-items:center;gap:.45rem;">
-        <div style="background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);padding:3px 8px;border-radius:4px;font-family:'Roboto',sans-serif;font-size:.65rem;font-weight:900;letter-spacing:.12em;color:#fff;">FYRFLY</div>
-        <div style="width:1px;height:20px;background:rgba(255,255,255,.2);"></div>
-      </div>
-      <h1>Cash Flow Forecast</h1>
+
+<div class="mob-nav" id="mobNav" style="display:none">
+  <div class="mob-nav-bar">
+    <span class="mob-nav-brand">Menu</span>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
+  </div>
+  <div class="mob-nav-scroll">
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a><a href="compliance-tool.html">Compliance Tool</a>
+  <a href="your-site-tool.html">Your Site Tool</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta contact-trigger">Get in Touch &rarr;</a>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <picture><source srcset="fyrfly-logo.webp" type="image/webp"><img src="fyrfly-logo.png" alt="Fyrfly Systems" width="160" height="50" fetchpriority="high"></picture>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item active">Compliance Tool</a>
+        </div>
+      </li>
+      <li><a href="blog.html">Insights</a></li>
+    </ul>
+    <a href="mailto:hello@fyrflysystems.com" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-c">
+    <div>
+      <div class="sec-lbl">Free Compliance Tool</div>
+      <h1>Know Your Gaps.<br><span class="acc">Before Someone Else Finds Them.</span></h1>
+      <p class="hero-sub">Answer 10 questions tailored to your organisation and get a personalised compliance scorecard against the standards that actually apply to you — KCSiE, UK GDPR, BS 5839, the Surveillance Camera Code and more.</p>
     </div>
-    <p style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:3px;">July 2026 – June 2028 &nbsp;&bull;&nbsp; All figures in GBP &nbsp;&bull;&nbsp; Confidential</p>
-  </div>
-  <div style="display:flex;align-items:center;gap:.6rem;">
-    <button class="export-btn" onclick="exportCSV()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      Export CSV
-    </button>
-    <button class="export-btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);" onclick="printReport()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      Print / Save PDF
-    </button>
-  </div>
-</div>
-
-<div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('monthly',this)">Monthly Cash Flow</button>
-  <button class="tab-btn" onclick="showTab('quarterly',this)">Quarterly Summary</button>
-  <button class="tab-btn" onclick="showTab('chart',this)">Cash Position Chart</button>
-</div>
-
-<div class="summary-bar">
-  <div class="kpi"><div class="kpi-label">24-Month Revenue</div><div class="kpi-value" id="kpi-rev">£0</div></div>
-  <div class="kpi"><div class="kpi-label">24-Month Gross Profit</div><div class="kpi-value" id="kpi-gp">£0</div></div>
-  <div class="kpi"><div class="kpi-label">24-Month Total Opex</div><div class="kpi-value" id="kpi-opex">£0</div></div>
-  <div class="kpi"><div class="kpi-label">24-Month Net Cash Flow</div><div class="kpi-value" id="kpi-net">£0</div></div>
-  <div class="kpi amber"><div class="kpi-label">⚠ Min. Startup Capital Required</div><div class="kpi-value" id="kpi-startup">£0</div></div>
-</div>
-
-<div class="view" id="view-monthly">
-  <div class="tbl-wrap"><table class="cf" id="cf-table"></table></div>
-</div>
-<div class="view hidden" id="view-quarterly">
-  <table class="qtr" id="qtr-table"></table>
-</div>
-<div class="view hidden" id="view-chart">
-  <div class="chart-view">
-    <h2>Monthly Cash Position — 24 Month Overview (Jul 2026 – Jun 2028)</h2>
-    <div class="chart-container"><canvas id="cashChart"></canvas></div>
-    <div style="display:flex;gap:1.5rem;margin-top:.85rem;font-size:.75rem;color:#666;">
-      <span><span style="display:inline-block;width:12px;height:12px;background:#E85D04;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Positive Monthly Net</span>
-      <span><span style="display:inline-block;width:12px;height:12px;background:#CC0000;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Negative Monthly Net</span>
-      <span><span style="display:inline-block;width:28px;height:3px;background:#F5A623;margin-right:4px;vertical-align:middle;border-radius:2px;"></span>Cumulative Cash</span>
+    <div class="standards-list">
+      <div class="std-badge"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Keeping Children Safe in Education (KCSiE)</div>
+      <div class="std-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>UK GDPR &amp; Data Protection Act 2018</div>
+      <div class="std-badge"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>BS 5839-1 — Fire Alarm Systems</div>
+      <div class="std-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>Surveillance Camera Code of Practice</div>
+      <div class="std-badge"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>BS 8243 — Intruder Alarm Systems</div>
+      <div class="std-badge"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Regulatory Reform (Fire Safety) Order</div>
     </div>
   </div>
+</section>
+
+<div class="main" id="mainWrap">
+
+  <!-- STEP 1: SECTOR -->
+  <div id="step-sector">
+    <div class="steps">
+      <div class="step active"><div class="step-num">1</div>Your Organisation</div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-num">2</div>Compliance Questions</div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-num">3</div>Your Results</div>
+    </div>
+    <div style="font-family:var(--fh);font-size:1.3rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem;">What type of organisation are you?</div>
+    <div style="font-size:0.87rem;color:var(--mid);margin-bottom:0;line-height:1.6;">Your questions will be tailored to the compliance obligations that apply specifically to you.</div>
+    <div class="sector-grid" id="sectorGrid">
+      <button type="button" class="sector-btn" data-sector="primary" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Primary School
+      </button>
+      <button type="button" class="sector-btn" data-sector="secondary" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Secondary School
+      </button>
+      <button type="button" class="sector-btn" data-sector="college" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 09 3 12 0v-5"/></svg>
+        College / University
+      </button>
+      <button type="button" class="sector-btn" data-sector="mat" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Multi-Academy Trust
+      </button>
+      <button type="button" class="sector-btn" data-sector="council" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Local Authority
+      </button>
+      <button type="button" class="sector-btn" data-sector="nhs" onclick="setSector(this)">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        NHS / Healthcare
+      </button>
+    </div>
+    <div class="q-nav" style="justify-content:flex-end;">
+      <button type="button" class="btn-next" id="btnSectorNext" onclick="startQuestions()" disabled>Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: QUESTIONS -->
+  <div id="step-questions" style="display:none;">
+    <div class="steps" id="stepsQ">
+      <div class="step done"><div class="step-num">&#10003;</div>Your Organisation</div>
+      <div class="step-line"></div>
+      <div class="step active"><div class="step-num">2</div>Compliance Questions</div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-num">3</div>Your Results</div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+    <div id="questionsContainer"></div>
+    <div class="q-nav">
+      <button type="button" class="btn-back" onclick="goBack()">&larr; Back</button>
+      <button type="button" class="btn-next" id="btnSubmit" onclick="showResults()" disabled>See My Results &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: RESULTS -->
+  <div id="step-results" class="results">
+    <div class="steps">
+      <div class="step done"><div class="step-num">&#10003;</div>Your Organisation</div>
+      <div class="step-line"></div>
+      <div class="step done"><div class="step-num">&#10003;</div>Compliance Questions</div>
+      <div class="step-line"></div>
+      <div class="step active"><div class="step-num">3</div>Your Results</div>
+    </div>
+    <div id="resultsContent"></div>
+  </div>
+
 </div>
+
+<footer class="site-footer">
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" width="160" height="50" loading="lazy" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Tools</div>
+      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li></ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
 
 <script>
-const MONTHS=['Jul-26','Aug-26','Sep-26','Oct-26','Nov-26','Dec-26','Jan-27','Feb-27','Mar-27','Apr-27','May-27','Jun-27','Jul-27','Aug-27','Sep-27','Oct-27','Nov-27','Dec-27','Jan-28','Feb-28','Mar-28','Apr-28','May-28','Jun-28'];
-const REV_TYPES=[{key:'inst',label:'Installations',gp:0.40,dc:0.60},{key:'maint',label:'Maintenance',gp:0.75,dc:0.25},{key:'subc',label:'Subcontracting Work',gp:0.40,dc:0.60},{key:'other',label:'Other',gp:0.30,dc:0.70}];
-const COST_DEFS=[{key:'staff1',label:'Staff 1',desc:'Gross £60,000 + 15% on-costs',def:5750.00},{key:'staff2',label:'Staff 2',desc:'Gross £35,000 + 15% on-costs',def:3354.17},{key:'sweng',label:'Software Engineer',desc:'Gross £50,000 + 15% on-costs',def:4791.67},{key:'travel',label:'Travel & Accommodation',desc:'Monthly budget',def:1000.00},{key:'genexp',label:'General Business Expenses',desc:'Insurance, utilities, subscriptions etc.',def:500.00},{key:'subcntr',label:'Ad-hoc Subcontracting',desc:'£30k pa spread monthly',def:2500.00},{key:'misc',label:'Miscellaneous Costs',desc:'£50k pa spread monthly',def:4166.67}];
-const QUARTERS=[{label:'Q1 FY26/27',subtitle:'Jul–Sep 26',months:[0,1,2]},{label:'Q2 FY26/27',subtitle:'Oct–Dec 26',months:[3,4,5]},{label:'Q3 FY26/27',subtitle:'Jan–Mar 27',months:[6,7,8]},{label:'Q4 FY26/27',subtitle:'Apr–Jun 27',months:[9,10,11]},{label:'Q1 FY27/28',subtitle:'Jul–Sep 27',months:[12,13,14]},{label:'Q2 FY27/28',subtitle:'Oct–Dec 27',months:[15,16,17]},{label:'Q3 FY27/28',subtitle:'Jan–Mar 28',months:[18,19,20]},{label:'Q4 FY27/28',subtitle:'Apr–Jun 28',months:[21,22,23]}];
-const rev={};const costs={};
-REV_TYPES.forEach(t=>{rev[t.key]=new Array(24).fill(0);});
-COST_DEFS.forEach(c=>{costs[c.key]=new Array(24).fill(c.def);});
-function fmt(val){if(val===0)return'£0';const r=Math.round(Math.abs(val)*100)/100;const dec=(r!==Math.round(r));const s=r.toLocaleString('en-GB',{minimumFractionDigits:dec?2:0,maximumFractionDigits:dec?2:0});return(val<0?'-£':'£')+s;}
-function fmtClass(val){if(val<0)return'neg';if(val>0)return'pos';return'zero';}
-function getMonthlyGP(m){return REV_TYPES.reduce((s,t)=>s+rev[t.key][m]*t.gp,0);}
-function getMonthlyRevenue(m){return REV_TYPES.reduce((s,t)=>s+rev[t.key][m],0);}
-function getMonthlyOpex(m){return COST_DEFS.reduce((s,c)=>s+costs[c.key][m],0);}
-function getMonthlyNet(m){return getMonthlyGP(m)-getMonthlyOpex(m);}
-function getCumulatives(){let run=0;return MONTHS.map((_,m)=>{run+=getMonthlyNet(m);return run;});}
-function getMinStartupCapital(){const cum=getCumulatives();const worst=Math.min(...cum);return worst<0?Math.abs(worst):0;}
+// ═══════════════════════════════════════════════════════════
+// COMPLIANCE TOOL ENGINE
+// ═══════════════════════════════════════════════════════════
 
-function buildMonthlyTable(){
-  const tbl=document.getElementById('cf-table');
-  let html='<thead><tr>';
-  html+='<th class="sticky-cat" style="text-align:left;min-width:155px;">Category</th>';
-  html+='<th class="sticky-sub" style="text-align:left;min-width:235px;">Line Item</th>';
-  MONTHS.forEach(m=>{html+=`<th class="month-cell">${m}</th>`;});
-  html+='<th class="tot-col month-cell">Year 1 Total</th>';
-  html+='<th class="tot-col month-cell">Year 2 Total</th>';
-  html+='<th class="tot-col month-cell">Grand Total</th>';
-  html+='</tr></thead><tbody>';
-  html+='<tr class="row-sec"><td class="sticky-cat cat-cell" colspan="1">REVENUE</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
-  REV_TYPES.forEach(t=>{
-    html+=`<tr class="row-cat"><td class="sticky-cat cat-cell">${t.label}</td><td class="sticky-sub sub-cell" style="color:#555;">Revenue (£)</td>`;
-    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell input-cell"><input type="number" min="0" step="1" value="0" id="inp_rev_${t.key}_${m}" data-rtype="${t.key}" data-m="${m}" onchange="onRevChange(this)" oninput="onRevChange(this)"></td>`;});
-    html+=`<td class="month-cell tot-cell" id="y1_rev_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_rev_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_rev_${t.key}">£0</td></tr>`;
-    html+=`<tr class="row-sub"><td class="sticky-cat cat-cell"></td><td class="sticky-sub sub-cell" style="color:#E85D04;font-style:italic;">Gross Profit @ ${Math.round(t.gp*100)}%</td>`;
-    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_gp_${t.key}_${m}">£0</td>`;});
-    html+=`<td class="month-cell tot-cell" id="y1_gp_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_gp_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_gp_${t.key}">£0</td></tr>`;
-    html+=`<tr class="row-sub"><td class="sticky-cat cat-cell"></td><td class="sticky-sub sub-cell" style="color:#888;font-style:italic;">Direct Costs @ ${Math.round(t.dc*100)}%</td>`;
-    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_dc_${t.key}_${m}">£0</td>`;});
-    html+=`<td class="month-cell tot-cell" id="y1_dc_${t.key}">£0</td><td class="month-cell tot-cell" id="y2_dc_${t.key}">£0</td><td class="month-cell tot-cell" id="gt_dc_${t.key}">£0</td></tr>`;
-  });
-  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL REVENUE</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totrev_${m}">£0</td>`;});
-  html+='<td class="month-cell" id="y1_totrev">£0</td><td class="month-cell" id="y2_totrev">£0</td><td class="month-cell" id="gt_totrev">£0</td></tr>';
-  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL GROSS PROFIT</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totgp_${m}">£0</td>`;});
-  html+='<td class="month-cell" id="y1_totgp">£0</td><td class="month-cell" id="y2_totgp">£0</td><td class="month-cell" id="gt_totgp">£0</td></tr>';
-  html+='<tr class="row-sec"><td class="sticky-cat cat-cell">OPERATING COSTS</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
-  COST_DEFS.forEach(c=>{
-    html+=`<tr class="row-cat"><td class="sticky-cat cat-cell">${c.label}</td><td class="sticky-sub sub-cell" style="color:#555;">${c.desc}</td>`;
-    MONTHS.forEach((_,m)=>{html+=`<td class="month-cell input-cell"><input type="number" step="0.01" value="${c.def}" id="inp_cost_${c.key}_${m}" data-ckey="${c.key}" data-m="${m}" onchange="onCostChange(this)" oninput="onCostChange(this)"></td>`;});
-    html+=`<td class="month-cell tot-cell" id="y1_cost_${c.key}">${fmt(c.def*12)}</td><td class="month-cell tot-cell" id="y2_cost_${c.key}">${fmt(c.def*12)}</td><td class="month-cell tot-cell" id="gt_cost_${c.key}">${fmt(c.def*24)}</td></tr>`;
-  });
-  const defOpex=COST_DEFS.reduce((s,c)=>s+c.def,0);
-  html+='<tr class="row-tot"><td class="sticky-cat cat-cell">TOTAL OPERATING COSTS</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell" id="disp_totopex_${m}">${fmt(defOpex)}</td>`;});
-  html+=`<td class="month-cell" id="y1_totopex">${fmt(defOpex*12)}</td><td class="month-cell" id="y2_totopex">${fmt(defOpex*12)}</td><td class="month-cell" id="gt_totopex">${fmt(defOpex*24)}</td></tr>`;
-  html+='<tr class="row-sec"><td class="sticky-cat cat-cell">NET POSITION</td><td class="sticky-sub sub-cell"></td>';
-  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td><td></td></tr>';
-  html+='<tr class="row-net"><td class="sticky-cat cat-cell">Monthly Net Cash Flow</td><td class="sticky-sub sub-cell" style="color:#555;">Gross Profit less Total Opex</td>';
-  MONTHS.forEach((_,m)=>{html+=`<td class="month-cell neg" id="disp_net_${m}">${fmt(-defOpex)}</td>`;});
-  html+=`<td class="month-cell tot-cell neg" id="y1_net">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="y2_net">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="gt_net">${fmt(-defOpex*24)}</td></tr>`;
-  let defCum=0;
-  html+='<tr class="row-cum"><td class="sticky-cat cat-cell">★ Cumulative Cash in Bank</td><td class="sticky-sub sub-cell" style="color:#555;">Running total from Month 1</td>';
-  MONTHS.forEach((_,m)=>{defCum+=-defOpex;html+=`<td class="month-cell neg" id="disp_cum_${m}">${fmt(defCum)}</td>`;});
-  html+=`<td class="month-cell tot-cell neg" id="y1_cum">${fmt(-defOpex*12)}</td><td class="month-cell tot-cell neg" id="y2_cum">${fmt(defCum)}</td><td class="month-cell tot-cell neg" id="gt_cum">${fmt(defCum)}</td></tr>`;
-  html+='<tr class="row-startup"><td class="sticky-cat cat-cell" style="color:#92400E;">⚠ Min. Startup Capital Required</td><td class="sticky-sub sub-cell" style="color:#92400E;">Worst-case cumulative balance (absolute)</td>';
-  MONTHS.forEach(()=>{html+='<td></td>';});html+='<td></td><td></td>';
-  html+=`<td class="month-cell" id="tbl_startup" style="color:#92400E;font-weight:700;">${fmt(defOpex*24)}</td></tr>`;
-  html+='</tbody>';
-  tbl.innerHTML=html;
-}
-
-function buildQuarterlyTable(){
-  const tbl=document.getElementById('qtr-table');let html='';
-  html+='<thead><tr class="yr-hdr"><th></th>';
-  html+='<th colspan="4" style="background:#1B1B24;text-align:center;padding:.4rem;">Year 1: FY 2026/27 (Jul 26 – Jun 27)</th>';
-  html+='<th colspan="4" style="background:#C8102E;text-align:center;padding:.4rem;">Year 2: FY 2027/28 (Jul 27 – Jun 28)</th></tr>';
-  html+='<tr><th style="text-align:left;min-width:200px;">Metric</th>';
-  QUARTERS.forEach(q=>{html+=`<th style="min-width:130px;">${q.label}<br><span style="font-weight:400;font-size:.72rem;opacity:.85;">${q.subtitle}</span></th>`;});
-  html+='</tr></thead><tbody>';
-  [{id:'qrev',label:'Total Revenue',cls:'row-rev'},{id:'qgp',label:'Total Gross Profit',cls:'row-gp'},{id:'qopex',label:'Total Opex',cls:'row-op'},{id:'qnet',label:'Net Cash Flow',cls:'row-net'},{id:'qcum',label:'Cash in Bank (End of Q)',cls:'row-cum'}].forEach(r=>{
-    html+=`<tr class="${r.cls}"><td class="row-label">${r.label}</td>`;
-    QUARTERS.forEach((_,qi)=>{html+=`<td id="${r.id}_${qi}">£0</td>`;});
-    html+='</tr>';
-  });
-  html+='</tbody>';tbl.innerHTML=html;
-}
-
-let cashChart=null;
-function initChart(){
-  const ctx=document.getElementById('cashChart').getContext('2d');
-  cashChart=new Chart(ctx,{type:'bar',data:{labels:MONTHS,datasets:[{type:'bar',label:'Monthly Net Cash Flow',data:new Array(24).fill(0),backgroundColor:new Array(24).fill('#E85D04'),borderWidth:0,order:2,yAxisID:'y'},{type:'line',label:'Cumulative Cash in Bank',data:new Array(24).fill(0),borderColor:'#F5A623',backgroundColor:'rgba(245,166,35,.08)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#F5A623',tension:0.25,fill:true,order:1,yAxisID:'y'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},padding:16}},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmt(ctx.parsed.y)}`}}},scales:{y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},callback:val=>{const abs=Math.abs(val);if(abs>=1000000)return(val<0?'-':'')+'£'+(abs/1000000).toFixed(1)+'M';if(abs>=1000)return(val<0?'-':'')+'£'+(abs/1000).toFixed(0)+'k';return fmt(val);}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
-}
-
-function recalculate(){
-  const cumArr=getCumulatives();let y1Rev=0,y2Rev=0,y1GP=0,y2GP=0,y1Opex=0,y2Opex=0;
-  const typeRevY1={},typeRevY2={},typeGPY1={},typeGPY2={},typeDCY1={},typeDCY2={};
-  REV_TYPES.forEach(t=>{typeRevY1[t.key]=0;typeRevY2[t.key]=0;typeGPY1[t.key]=0;typeGPY2[t.key]=0;typeDCY1[t.key]=0;typeDCY2[t.key]=0;});
-  const costY1={},costY2={};
-  COST_DEFS.forEach(c=>{costY1[c.key]=0;costY2[c.key]=0;});
-  MONTHS.forEach((_,m)=>{
-    const isY1=m<12;const totRev=getMonthlyRevenue(m);const totGP=getMonthlyGP(m);const totOpex=getMonthlyOpex(m);const net=getMonthlyNet(m);const cum=cumArr[m];
-    if(isY1){y1Rev+=totRev;y1GP+=totGP;y1Opex+=totOpex;}else{y2Rev+=totRev;y2GP+=totGP;y2Opex+=totOpex;}
-    REV_TYPES.forEach(t=>{
-      const gp=rev[t.key][m]*t.gp;const dc=rev[t.key][m]*t.dc;
-      set(`disp_gp_${t.key}_${m}`,fmt(gp),fmtClass(gp));set(`disp_dc_${t.key}_${m}`,fmt(dc),'neg');
-      if(isY1){typeRevY1[t.key]+=rev[t.key][m];typeGPY1[t.key]+=gp;typeDCY1[t.key]+=dc;}
-      else{typeRevY2[t.key]+=rev[t.key][m];typeGPY2[t.key]+=gp;typeDCY2[t.key]+=dc;}
-    });
-    COST_DEFS.forEach(c=>{if(isY1)costY1[c.key]+=costs[c.key][m];else costY2[c.key]+=costs[c.key][m];});
-    set(`disp_totrev_${m}`,fmt(totRev),fmtClass(totRev));set(`disp_totgp_${m}`,fmt(totGP),fmtClass(totGP));
-    set(`disp_totopex_${m}`,fmt(totOpex),'');set(`disp_net_${m}`,fmt(net),fmtClass(net));set(`disp_cum_${m}`,fmt(cum),fmtClass(cum));
-  });
-  REV_TYPES.forEach(t=>{
-    const gt_rev=typeRevY1[t.key]+typeRevY2[t.key];const gt_gp=typeGPY1[t.key]+typeGPY2[t.key];const gt_dc=typeDCY1[t.key]+typeDCY2[t.key];
-    set(`y1_rev_${t.key}`,fmt(typeRevY1[t.key]));set(`y2_rev_${t.key}`,fmt(typeRevY2[t.key]));set(`gt_rev_${t.key}`,fmt(gt_rev));
-    set(`y1_gp_${t.key}`,fmt(typeGPY1[t.key]),fmtClass(typeGPY1[t.key]));set(`y2_gp_${t.key}`,fmt(typeGPY2[t.key]),fmtClass(typeGPY2[t.key]));set(`gt_gp_${t.key}`,fmt(gt_gp),fmtClass(gt_gp));
-    set(`y1_dc_${t.key}`,fmt(typeDCY1[t.key]),'neg');set(`y2_dc_${t.key}`,fmt(typeDCY2[t.key]),'neg');set(`gt_dc_${t.key}`,fmt(gt_dc),'neg');
-  });
-  COST_DEFS.forEach(c=>{set(`y1_cost_${c.key}`,fmt(costY1[c.key]));set(`y2_cost_${c.key}`,fmt(costY2[c.key]));set(`gt_cost_${c.key}`,fmt(costY1[c.key]+costY2[c.key]));});
-  set('y1_totrev',fmt(y1Rev),fmtClass(y1Rev));set('y2_totrev',fmt(y2Rev),fmtClass(y2Rev));set('gt_totrev',fmt(y1Rev+y2Rev),fmtClass(y1Rev+y2Rev));
-  set('y1_totgp',fmt(y1GP),fmtClass(y1GP));set('y2_totgp',fmt(y2GP),fmtClass(y2GP));set('gt_totgp',fmt(y1GP+y2GP),fmtClass(y1GP+y2GP));
-  set('y1_totopex',fmt(y1Opex));set('y2_totopex',fmt(y2Opex));set('gt_totopex',fmt(y1Opex+y2Opex));
-  const y1Net=y1GP-y1Opex;const y2Net=y2GP-y2Opex;
-  set('y1_net',fmt(y1Net),fmtClass(y1Net));set('y2_net',fmt(y2Net),fmtClass(y2Net));set('gt_net',fmt(y1Net+y2Net),fmtClass(y1Net+y2Net));
-  set('y1_cum',fmt(cumArr[11]),fmtClass(cumArr[11]));set('y2_cum',fmt(cumArr[23]),fmtClass(cumArr[23]));set('gt_cum',fmt(cumArr[23]),fmtClass(cumArr[23]));
-  const startup=getMinStartupCapital();
-  set('tbl_startup',fmt(startup),startup>0?'':'pos');
-  const gtRev=y1Rev+y2Rev;const gtGP=y1GP+y2GP;const gtOpex=y1Opex+y2Opex;const gtNet=gtGP-gtOpex;
-  set('kpi-rev',fmt(gtRev));set('kpi-gp',fmt(gtGP),fmtClass(gtGP));set('kpi-opex',fmt(gtOpex));set('kpi-net',fmt(gtNet),fmtClass(gtNet));set('kpi-startup',fmt(startup));
-  const cumArr2=getCumulatives();
-  QUARTERS.forEach((q,qi)=>{
-    const ms=q.months;const qRev=ms.reduce((s,m)=>s+getMonthlyRevenue(m),0);const qGP=ms.reduce((s,m)=>s+getMonthlyGP(m),0);
-    const qOpex=ms.reduce((s,m)=>s+getMonthlyOpex(m),0);const qNet=qGP-qOpex;const qCum=cumArr2[ms[ms.length-1]];
-    set(`qrev_${qi}`,fmt(qRev),fmtClass(qRev));set(`qgp_${qi}`,fmt(qGP),fmtClass(qGP));set(`qopex_${qi}`,fmt(qOpex));
-    set(`qnet_${qi}`,fmt(qNet),fmtClass(qNet));set(`qcum_${qi}`,fmt(qCum),fmtClass(qCum));
-  });
-  const netData=MONTHS.map((_,m)=>getMonthlyNet(m));const cumData=getCumulatives();
-  if(cashChart){cashChart.data.datasets[0].data=netData;cashChart.data.datasets[0].backgroundColor=netData.map(v=>v>=0?'#E85D04':'#991B1B');cashChart.data.datasets[1].data=cumData;cashChart.update();}
-}
-
-function set(id,text,cls){const el=document.getElementById(id);if(!el)return;el.textContent=text;if(cls!==undefined){el.className=el.className.replace(/\b(neg|pos|zero)\b/g,'').trim();if(cls)el.classList.add(cls);}}
-function onRevChange(input){const val=parseFloat(input.value)||0;rev[input.dataset.rtype][parseInt(input.dataset.m)]=val;recalculate();}
-function onCostChange(input){const val=parseFloat(input.value)||0;costs[input.dataset.ckey][parseInt(input.dataset.m)]=val;recalculate();}
-function showTab(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+id).classList.remove('hidden');btn.classList.add('active');if(id==='chart'&&cashChart)cashChart.resize();}
-
-// ── CSV EXPORT (replaces broken Excel) ─────────────────────
-function exportCSV(){
-  const rows=[];const cumArr=getCumulatives();
-  // Header
-  rows.push(['Category','Line Item',...MONTHS,'Year 1 Total','Year 2 Total','Grand Total']);
-  // Revenue section
-  rows.push(['REVENUE','','','','','','','','','','','','','','','','','','','','','','','','','','','']);
-  REV_TYPES.forEach(t=>{
-    let y1=0,y2=0;const mVals=MONTHS.map((_,m)=>{const v=rev[t.key][m];m<12?y1+=v:y2+=v;return v;});
-    rows.push([t.label,'Revenue (£)',...mVals,y1,y2,y1+y2]);
-    let g1=0,g2=0;const gVals=MONTHS.map((_,m)=>{const v=rev[t.key][m]*t.gp;m<12?g1+=v:g2+=v;return v.toFixed(2);});
-    rows.push(['',`Gross Profit @ ${Math.round(t.gp*100)}%`,...gVals,g1.toFixed(2),g2.toFixed(2),(g1+g2).toFixed(2)]);
-  });
-  // Totals
-  let tr1=0,tr2=0,tg1=0,tg2=0;
-  const trVals=MONTHS.map((_,m)=>{const v=getMonthlyRevenue(m);m<12?tr1+=v:tr2+=v;return v;});
-  rows.push(['TOTAL REVENUE','',...trVals,tr1,tr2,tr1+tr2]);
-  const tgVals=MONTHS.map((_,m)=>{const v=getMonthlyGP(m);m<12?tg1+=v:tg2+=v;return v.toFixed(2);});
-  rows.push(['TOTAL GROSS PROFIT','',...tgVals,tg1.toFixed(2),tg2.toFixed(2),(tg1+tg2).toFixed(2)]);
-  // Opex
-  rows.push(['OPERATING COSTS','','','','','','','','','','','','','','','','','','','','','','','','','','','']);
-  COST_DEFS.forEach(c=>{
-    let c1=0,c2=0;const cVals=MONTHS.map((_,m)=>{const v=costs[c.key][m];m<12?c1+=v:c2+=v;return v.toFixed(2);});
-    rows.push([c.label,c.desc,...cVals,c1.toFixed(2),c2.toFixed(2),(c1+c2).toFixed(2)]);
-  });
-  let to1=0,to2=0;const toVals=MONTHS.map((_,m)=>{const v=getMonthlyOpex(m);m<12?to1+=v:to2+=v;return v.toFixed(2);});
-  rows.push(['TOTAL OPERATING COSTS','',...toVals,to1.toFixed(2),to2.toFixed(2),(to1+to2).toFixed(2)]);
-  // Net
-  let n1=0,n2=0;const nVals=MONTHS.map((_,m)=>{const v=getMonthlyNet(m);m<12?n1+=v:n2+=v;return v.toFixed(2);});
-  rows.push(['Monthly Net Cash Flow','Gross Profit less Total Opex',...nVals,n1.toFixed(2),n2.toFixed(2),(n1+n2).toFixed(2)]);
-  rows.push(['Cumulative Cash in Bank','Running total',...cumArr.map(v=>v.toFixed(2)),cumArr[11].toFixed(2),cumArr[23].toFixed(2),cumArr[23].toFixed(2)]);
-  const startup=getMinStartupCapital();
-  rows.push(['Min. Startup Capital Required','Worst-case absolute',...new Array(24).fill(''),'','',startup.toFixed(2)]);
-  // Build CSV string
-  const csv=rows.map(r=>r.map(v=>{const s=String(v);return s.includes(',')||s.includes('"')?`"${s.replace(/"/g,'""')}"`:s;}).join(',')).join('\n');
-  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');
-  a.href=url;a.download=`Fyrfly-Cash-Flow-${new Date().toISOString().slice(0,10)}.csv`;
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-}
-
-// ── PRINT / SAVE PDF ────────────────────────────────────────
-function printReport(){
-  // Show all views temporarily for print, then restore
-  const hidden=document.querySelectorAll('.view.hidden');
-  hidden.forEach(v=>v.classList.remove('hidden'));
-  window.print();
-  // Restore after print dialog closes
-  setTimeout(()=>{
-    // Re-hide all except current active
-    const active=document.querySelector('.tab-btn.active');
-    const activeId=active?(active.getAttribute('onclick').match(/'([^']+)'/)||['','monthly'])[1]:'monthly';
-    document.querySelectorAll('.view').forEach(v=>{
-      if(!v.id.endsWith(activeId))v.classList.add('hidden');
-    });
-  },500);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  buildMonthlyTable();
-  buildQuarterlyTable();
-  // Wait for Chart.js to be available
-  function tryInitChart() {
-    if (typeof Chart !== 'undefined') {
-      initChart();
-      recalculate();
-    } else {
-      setTimeout(tryInitChart, 50);
-    }
+// ── Question bank ──────────────────────────────────────────
+// sectors: 'all' | 'education' | 'public' | 'mat'
+// weight: 3=critical, 2=important, 1=good practice
+const ALL_QUESTIONS = [
+  {
+    id: 'cctv_policy',
+    sectors: ['all'],
+    standard: 'UK GDPR / Surveillance Camera Code',
+    q: 'Do you have a written, published CCTV policy?',
+    sub: 'This should state why you operate CCTV, the lawful basis, retention periods, access rights and how to make a Subject Access Request.',
+    weight: 3,
+    impact: {
+      no: 'Operating CCTV without a written policy is a UK GDPR compliance failure. The ICO can issue enforcement notices and fines. Any footage used in a safeguarding or disciplinary case without a documented policy may be challenged.',
+      partial: 'A partial policy leaves gaps the ICO or insurers can challenge. Ensure it covers lawful basis, retention, access controls and Subject Access Request procedures.',
+      yes: 'Good — a published CCTV policy is your primary evidence of accountability under UK GDPR and the Surveillance Camera Code.'
+    },
+    action: {
+      no: 'Draft and publish a CCTV policy immediately. Review the ICO guidance on CCTV for schools and public authorities.',
+      partial: 'Complete the gaps in your current policy. The Surveillance Camera Code\'s 12 principles are a useful checklist.',
+      yes: 'Review annually and whenever your system changes.'
+    },
+    link: 'cctv.html'
+  },
+  {
+    id: 'cctv_retention',
+    sectors: ['all'],
+    standard: 'UK GDPR',
+    q: 'Is your CCTV retention period documented, enforced and no longer than necessary?',
+    sub: 'ICO guidance recommends most organisations retain footage for no more than 30 days. Indefinite retention is a GDPR breach.',
+    weight: 2,
+    impact: {
+      no: 'Retaining footage without a documented retention period is a UK GDPR breach. Footage accumulating indefinitely creates significant data protection risk.',
+      partial: 'If retention is documented but not automatically enforced by the system, it relies on manual deletion — which is unreliable.',
+      yes: 'Compliant. Ensure the retention period is configured in your recording system and reviewed annually.'
+    },
+    action: {
+      no: 'Set a documented retention period (typically 30 days) and configure your NVR or cloud system to delete automatically after that period.',
+      partial: 'Configure automatic deletion in your recording system rather than relying on manual processes.',
+      yes: 'No action required. Review if your use of CCTV changes.'
+    },
+    link: 'cctv.html'
+  },
+  {
+    id: 'fire_maintenance',
+    sectors: ['all'],
+    standard: 'BS 5839-1 / Fire Safety Order',
+    q: 'Has your fire alarm system been serviced by a competent person in the last 6 months?',
+    sub: 'BS 5839-1 requires six-monthly maintenance by a competent, ideally BAFE-registered, engineer.',
+    weight: 3,
+    impact: {
+      no: 'This is a legal requirement under BS 5839-1 and the Fire Safety Order. An unserviced fire alarm system is grounds for enforcement action by the Fire Authority and may void your insurance.',
+      partial: 'If serviced but not by a BAFE-registered or competent engineer, the service record may not satisfy insurers or the Responsible Person\'s legal obligation.',
+      yes: 'Compliant. Ensure you have written service records and the next service date is scheduled.'
+    },
+    action: {
+      no: 'Book a fire alarm service immediately with a BAFE-registered engineer. This is a legal obligation, not a recommendation.',
+      partial: 'Ensure future services are carried out by a BAFE-registered company and that full written reports are produced.',
+      yes: 'Ensure the next service date is in the calendar and records are retained.'
+    },
+    link: 'fire-systems.html'
+  },
+  {
+    id: 'fire_risk_assessment',
+    sectors: ['all'],
+    standard: 'Regulatory Reform (Fire Safety) Order 2005',
+    q: 'Do you have a current fire risk assessment, reviewed within the last 12 months?',
+    sub: 'The Responsible Person is legally required to maintain a current fire risk assessment. It must be reviewed after any significant change.',
+    weight: 3,
+    impact: {
+      no: 'A missing or out-of-date fire risk assessment is a breach of the Fire Safety Order. The Responsible Person faces personal liability. The fire authority can issue Prohibition Notices.',
+      partial: 'An assessment older than 12 months, or not reviewed after building changes, may no longer accurately reflect the risk.',
+      yes: 'Compliant. Ensure the Responsible Person is named and the assessment is accessible.'
+    },
+    action: {
+      no: 'Commission a fire risk assessment from a competent person immediately. This is a legal requirement.',
+      partial: 'Review and update the assessment. Any significant building or occupancy changes require an immediate review.',
+      yes: 'Schedule the next review and ensure it is triggered by any significant changes.'
+    },
+    link: 'fire-systems.html'
+  },
+  {
+    id: 'alarm_certified',
+    sectors: ['all'],
+    standard: 'NSI / SSAIB / BS 8243',
+    q: 'Was your intruder alarm system installed and maintained by an NSI or SSAIB certified company?',
+    sub: 'Most insurers require NSI or SSAIB certification as a condition of cover. Without it, claims may be rejected.',
+    weight: 2,
+    impact: {
+      no: 'Your insurer may reject claims if your alarm was not installed by an NSI or SSAIB certified company. You may also be ineligible for a police Unique Reference Number.',
+      partial: 'If installed but not maintained by a certified company, your ongoing compliance is at risk. Insurers check maintenance records.',
+      yes: 'Compliant. Ensure certification documents are retained and the maintenance contract is current.'
+    },
+    action: {
+      no: 'Contact an NSI or SSAIB certified installer for an assessment. Check your insurance policy requirements.',
+      partial: 'Transfer ongoing maintenance to an NSI or SSAIB certified company.',
+      yes: 'Retain certification documents and ensure the maintenance contract is renewed annually.'
+    },
+    link: 'intruder-alarms.html'
+  },
+  {
+    id: 'alarm_monitoring',
+    sectors: ['all'],
+    standard: 'NSI / Insurer requirement',
+    q: 'Is your intruder alarm professionally monitored 24/7 by an NSI or SSAIB approved Alarm Receiving Centre?',
+    sub: 'A monitored alarm ensures response regardless of whether any staff are available. Many insurers require this.',
+    weight: 2,
+    impact: {
+      no: 'An unmonitored alarm relies on someone hearing it or being alerted by staff — unreliable out of hours. Many insurers require monitoring as a condition of cover.',
+      partial: 'Self-monitoring via an app depends on the keyholder being available and responsive. This does not satisfy most insurer requirements.',
+      yes: 'Good. Ensure the ARC has current keyholder details and your URN is active.'
+    },
+    action: {
+      no: 'Connect your alarm to an NSI-approved ARC. Check your insurance policy for monitoring requirements.',
+      partial: 'Upgrade to professional ARC monitoring. Update your insurance policy to reflect this.',
+      yes: 'Review keyholder details with the ARC every 6 months.'
+    },
+    link: 'monitoring.html'
+  },
+  {
+    id: 'visitor_management',
+    sectors: ['primary', 'secondary', 'college', 'mat'],
+    standard: 'KCSiE 2024',
+    q: 'Do you use a digital visitor management system rather than a paper sign-in book?',
+    sub: 'Keeping Children Safe in Education requires schools to know who is on site at all times. Paper sign-in books cannot generate evacuation reports or flag DBS concerns.',
+    weight: 3,
+    impact: {
+      no: 'Paper sign-in books cannot satisfy modern KCSiE obligations. They cannot produce evacuation reports, cannot flag DBS status, and are not searchable in real time.',
+      partial: 'If using a basic digital system without DBS checking or evacuation report capability, key KCSiE obligations are still unmet.',
+      yes: 'Good. Ensure the system is used consistently and staff are trained on its use.'
+    },
+    action: {
+      no: 'Implement a digital visitor management system with photo capture, DBS flagging and evacuation report capability.',
+      partial: 'Upgrade to a system with full DBS integration and real-time evacuation reporting.',
+      yes: 'Audit usage consistency across all entry points and ensure all staff follow the procedure.'
+    },
+    link: 'access-control.html'
+  },
+  {
+    id: 'access_control',
+    sectors: ['primary', 'secondary', 'college', 'mat'],
+    standard: 'KCSiE 2024',
+    q: 'Does your access control system prevent unauthorised adults from accessing areas where pupils are present?',
+    sub: 'Schools must have measures in place to prevent unvetted adults accessing pupils. This goes beyond a receptionist — it applies to all entry points.',
+    weight: 3,
+    impact: {
+      no: 'Without controlled access to pupil areas, your site is vulnerable to unauthorised access. Ofsted inspectors look for evidence that schools control who enters and where they go.',
+      partial: 'If some but not all access points are controlled, gaps exist that an unvetted individual could exploit.',
+      yes: 'Good. Review access control coverage at every entry point annually and after any building changes.'
+    },
+    action: {
+      no: 'Assess all entry points to pupil areas and implement access control or enhanced supervision at each one.',
+      partial: 'Map the gaps in your access control coverage and prioritise the highest-risk entry points.',
+      yes: 'Review annually and after any building changes or new lettings arrangements.'
+    },
+    link: 'access-control.html'
+  },
+  {
+    id: 'dbs_checking',
+    sectors: ['primary', 'secondary', 'college', 'mat'],
+    standard: 'KCSiE 2024',
+    q: 'Do you have a documented process for checking and recording the DBS status of all regular contractors and visitors?',
+    sub: 'Regular contractors working unsupervised must be DBS checked. Supervised visitors must be escorted by a vetted adult at all times.',
+    weight: 3,
+    impact: {
+      no: 'Allowing unsupervised contractor access without DBS verification is a safeguarding failure that could result in Ofsted intervention and reputational damage.',
+      partial: 'An undocumented or inconsistently applied process means you cannot demonstrate compliance to Ofsted or in the event of an incident.',
+      yes: 'Good. Ensure records are kept and the process is applied consistently for all contractors.'
+    },
+    action: {
+      no: 'Implement a documented DBS checking process for all regular contractors. Ensure supervision protocols are in place for those without checks.',
+      partial: 'Document your process formally and ensure it is consistently applied. Train all staff responsible for contractor management.',
+      yes: 'Review the process annually and audit for consistency.'
+    },
+    link: 'access-control.html'
+  },
+  {
+    id: 'surveillance_code',
+    sectors: ['council', 'nhs'],
+    standard: 'Surveillance Camera Code of Practice',
+    q: 'Has your CCTV deployment been reviewed against the Home Office Surveillance Camera Code of Practice (12 principles)?',
+    sub: 'Local authorities and police are subject to the Surveillance Camera Code. Public bodies operating CCTV must demonstrate compliance with all 12 principles.',
+    weight: 3,
+    impact: {
+      no: 'Operating CCTV as a public authority without documenting compliance with the Surveillance Camera Code is a legal exposure. The Surveillance Camera Commissioner can audit compliance.',
+      partial: 'A partial review leaves you exposed if the Commissioner or a legal challenge requires evidence of compliance across all 12 principles.',
+      yes: 'Compliant. Document the review and repeat annually.'
+    },
+    action: {
+      no: 'Conduct a formal review of your CCTV operation against the 12 principles of the Surveillance Camera Code. Document the outcome.',
+      partial: 'Complete the review for all 12 principles and address any gaps identified.',
+      yes: 'Review annually and whenever your CCTV operation changes.'
+    },
+    link: 'cctv.html'
+  },
+  {
+    id: 'psn_cyber',
+    sectors: ['council', 'nhs'],
+    standard: 'PSN / Cyber Essentials',
+    q: 'Are your IP security systems (cameras, access control panels) included in your Cyber Essentials scope or network security review?',
+    sub: 'IP-connected security devices are network endpoints. Unpatched cameras and access control panels with default passwords are a common attack vector.',
+    weight: 2,
+    impact: {
+      no: 'IP security devices are frequently targeted by attackers. Default passwords, unpatched firmware and open ports on CCTV cameras are among the most common vulnerabilities in public sector networks.',
+      partial: 'Partial inclusion means some devices remain unscoped and therefore unprotected by your security controls.',
+      yes: 'Good. Ensure firmware updates and password policies are applied consistently to all security devices.'
+    },
+    action: {
+      no: 'Include all IP security devices in your next Cyber Essentials assessment scope. Change all default passwords and enable automatic firmware updates.',
+      partial: 'Extend your security review to cover all IP cameras, access control panels and alarm communicators.',
+      yes: 'Maintain a device inventory and ensure firmware updates are applied promptly.'
+    },
+    link: 'wireless-networks.html'
+  },
+  {
+    id: 'lone_worker',
+    sectors: ['council', 'nhs'],
+    standard: 'HSE Lone Worker Guidance',
+    q: 'Do staff who work alone in your buildings have access to a lone worker monitoring system or defined check-in procedure?',
+    sub: 'HSE guidance requires employers to assess the risk to lone workers and put measures in place. A monitored lone worker device or app is the most reliable solution.',
+    weight: 2,
+    impact: {
+      no: 'Unmonitored lone workers are a health and safety liability. In the event of an incident, the absence of a lone worker policy and monitoring system will be scrutinised.',
+      partial: 'An informal check-in procedure relies on the other person being available and responsive. A technical solution is more reliable.',
+      yes: 'Good. Ensure the system is tested regularly and staff know how to use it.'
+    },
+    action: {
+      no: 'Implement a lone worker monitoring solution — a dedicated device or smartphone app with ARC connection. Document your lone working policy.',
+      partial: 'Upgrade to a technical monitoring solution. Review and document your lone working policy.',
+      yes: 'Test the system regularly and ensure all lone workers are enrolled.'
+    },
+    link: 'monitoring.html'
+  },
+  {
+    id: 'mat_central',
+    sectors: ['mat'],
+    standard: 'KCSiE 2024 / MAT governance',
+    q: 'Can you centrally manage security credentials, access rights and keyholder lists across all schools in your trust?',
+    sub: 'When a staff member leaves one school in a MAT, their access to all schools must be revoked centrally. Standalone systems make this unreliable.',
+    weight: 3,
+    impact: {
+      no: 'Without central management, a leaver\'s credentials may remain active at other schools in the trust. This is a safeguarding gap with direct KCSiE implications.',
+      partial: 'If central management exists but is inconsistently used, the risk remains. A process is only as good as its consistent application.',
+      yes: 'Good. Document the process and audit it annually.'
+    },
+    action: {
+      no: 'Implement a centralised access control management platform across the trust. Establish a joiners/leavers process that covers all schools simultaneously.',
+      partial: 'Audit the consistency of your central management process and address any gaps.',
+      yes: 'Review the process annually and ensure it covers all schools and all credential types.'
+    },
+    link: 'access-control.html'
+  },
+  {
+    id: 'security_policy',
+    sectors: ['all'],
+    standard: 'DfE / Public sector governance',
+    q: 'Do you have a written security policy for your site, reviewed in the last 12 months?',
+    sub: 'A security policy sets out how you manage physical access, respond to incidents and protect assets. DfE and public sector governance frameworks expect this to be documented.',
+    weight: 2,
+    impact: {
+      no: 'Without a written security policy, your security arrangements are undocumented and unaccountable. Insurers, inspectors and auditors expect this documentation to exist.',
+      partial: 'An out-of-date policy may not reflect current risks, systems or regulatory requirements.',
+      yes: 'Good. Ensure it is accessible to relevant staff and reviewed whenever significant changes occur.'
+    },
+    action: {
+      no: 'Draft a security policy covering physical access, CCTV use, incident response and asset protection. Have it approved by governors or senior leadership.',
+      partial: 'Update the policy to reflect current systems and obligations. Schedule an annual review.',
+      yes: 'Schedule an annual review and link it to your risk register.'
+    },
+    link: 'index.html'
+  },
+  {
+    id: 'keyholder_register',
+    sectors: ['all'],
+    standard: 'NSI / Insurer requirement',
+    q: 'Is your keyholder register current, tested in the last 6 months, and held by your monitoring centre?',
+    sub: 'An out-of-date keyholder list means alarms go unanswered. Monitoring centres need current contact details and they should be tested by an actual call-out.',
+    weight: 2,
+    impact: {
+      no: 'An absent or untested keyholder register means your monitoring centre cannot reach anyone when an alarm activates. This renders your monitoring subscription ineffective.',
+      partial: 'If the register exists but has not been tested or updated recently, it may contain outdated numbers that fail in a real event.',
+      yes: 'Good. Ensure the monitoring centre has the current version and test it every 6 months.'
+    },
+    action: {
+      no: 'Create a keyholder register with at least 3 contacts and provide it to your monitoring centre immediately. Test it within 30 days.',
+      partial: 'Update the register with current contact details and schedule a test call-out within 30 days.',
+      yes: 'Test and review every 6 months.'
+    },
+    link: 'monitoring.html'
   }
-  tryInitChart();
-  // Always recalculate immediately for the table even if chart not ready
-  recalculate();
-});
+];
+
+// ── State ──────────────────────────────────────────────────
+let state = { sector: null, questions: [], answers: {} };
+
+const SECTOR_LABELS = {
+  primary: 'Primary School', secondary: 'Secondary School',
+  college: 'College / University', mat: 'Multi-Academy Trust',
+  council: 'Local Authority', nhs: 'NHS / Healthcare'
+};
+
+function isEducation(s) { return ['primary','secondary','college','mat'].includes(s); }
+function isPublic(s)    { return ['council','nhs'].includes(s); }
+
+function getQuestions(sector) {
+  return ALL_QUESTIONS.filter(q => {
+    if (q.sectors.includes('all')) return true;
+    if (q.sectors.includes('mat') && sector === 'mat') return true;
+    if (q.sectors.some(s => ['primary','secondary','college','mat'].includes(s)) && isEducation(sector)) return true;
+    if (q.sectors.some(s => ['council','nhs'].includes(s)) && isPublic(sector)) return true;
+    return false;
+  });
+}
+
+// ── Sector selection ───────────────────────────────────────
+function setSector(btn) {
+  document.querySelectorAll('.sector-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.sector = btn.dataset.sector;
+  document.getElementById('btnSectorNext').disabled = false;
+}
+
+function startQuestions() {
+  state.questions = getQuestions(state.sector);
+  state.answers = {};
+  document.getElementById('step-sector').style.display = 'none';
+  document.getElementById('step-questions').style.display = '';
+  renderQuestions();
+}
+
+// ── Render questions ───────────────────────────────────────
+function renderQuestions() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  state.questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'q-card' + (state.answers[q.id] ? ' answered' : '');
+    card.id = 'qcard-' + q.id;
+    card.innerHTML =
+      '<div class="q-num">Question ' + (i+1) + ' of ' + state.questions.length +
+      ' &nbsp;<span class="q-standard">' + q.standard + '</span></div>' +
+      '<div class="q-text">' + q.q + '</div>' +
+      '<div class="q-sub">' + q.sub + '</div>' +
+      '<div class="q-options">' +
+        '<button type="button" class="q-opt' + (state.answers[q.id]==='yes'?' yes':'') + '" onclick="answer(\'' + q.id + '\',\'yes\',this)">Yes — in place</button>' +
+        '<button type="button" class="q-opt' + (state.answers[q.id]==='partial'?' partial':'') + '" onclick="answer(\'' + q.id + '\',\'partial\',this)">Partially</button>' +
+        '<button type="button" class="q-opt' + (state.answers[q.id]==='no'?' no':'') + '" onclick="answer(\'' + q.id + '\',\'no\',this)">No — not in place</button>' +
+        '<button type="button" class="q-opt' + (state.answers[q.id]==='na'?' na':'') + '" onclick="answer(\'' + q.id + '\',\'na\',this)">Not applicable</button>' +
+      '</div>';
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+
+function answer(id, val, btn) {
+  state.answers[id] = val;
+  const card = document.getElementById('qcard-' + id);
+  card.classList.add('answered');
+  card.querySelectorAll('.q-opt').forEach(b => {
+    b.className = 'q-opt';
+    if (b === btn) b.classList.add(val);
+  });
+  updateProgress();
+  // Auto scroll to next unanswered
+  const answered = Object.keys(state.answers).length;
+  if (answered < state.questions.length) {
+    const nextQ = state.questions[answered];
+    const nextCard = document.getElementById('qcard-' + nextQ.id);
+    if (nextCard) setTimeout(() => nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+  }
+}
+
+function updateProgress() {
+  const total = state.questions.length;
+  const done = Object.keys(state.answers).length;
+  const pct = (done / total) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('btnSubmit').disabled = done < total;
+}
+
+function goBack() {
+  document.getElementById('step-questions').style.display = 'none';
+  document.getElementById('step-sector').style.display = '';
+}
+
+// ── Results ────────────────────────────────────────────────
+function showResults() {
+  document.getElementById('step-questions').style.display = 'none';
+  const resultsDiv = document.getElementById('step-results');
+  resultsDiv.style.display = '';
+
+  // Score calculation
+  let totalWeight = 0, earnedWeight = 0;
+  let reds = [], ambers = [], greens = [];
+
+  state.questions.forEach(q => {
+    const ans = state.answers[q.id];
+    if (ans === 'na') return;
+    totalWeight += q.weight;
+    if (ans === 'yes') { earnedWeight += q.weight; greens.push(q); }
+    else if (ans === 'partial') { earnedWeight += q.weight * 0.4; ambers.push(q); }
+    else { reds.push(q); }
+  });
+
+  const pct = totalWeight > 0 ? Math.round((earnedWeight / totalWeight) * 100) : 100;
+  let rating, ratingColor, ratingBg, scoreColor;
+  if (pct >= 80)      { rating = 'Good'; ratingColor = '#065F46'; ratingBg = 'rgba(16,185,129,0.15)'; scoreColor = 'var(--green)'; }
+  else if (pct >= 55) { rating = 'Needs Attention'; ratingColor = '#92400E'; ratingBg = 'rgba(245,158,11,0.15)'; scoreColor = 'var(--amber)'; }
+  else                { rating = 'Action Required'; ratingColor = '#991B1B'; ratingBg = 'rgba(239,68,68,0.15)'; scoreColor = 'var(--red)'; }
+
+  const sectorLabel = SECTOR_LABELS[state.sector];
+
+  // Priority actions (reds first by weight, then ambers)
+  const priorityItems = [
+    ...reds.sort((a,b) => b.weight - a.weight),
+    ...ambers.sort((a,b) => b.weight - a.weight)
+  ].slice(0, 5);
+
+  const actionsHtml = priorityItems.map((q, i) => {
+    const ans = state.answers[q.id];
+    const urgency = q.weight === 3 ? 'high' : (q.weight === 2 ? 'med' : 'low');
+    const urgencyLabel = urgency === 'high' ? 'Urgent' : (urgency === 'med' ? 'Important' : 'Good practice');
+    return '<div class="action-item">' +
+      '<div class="action-num">' + (i+1) + '</div>' +
+      '<div class="action-text">' +
+      '<strong>' + q.q + '</strong>' +
+      '<span>' + q.action[ans] + '</span>' +
+      '</div>' +
+      '<div class="action-urgency urgency-' + urgency + '">' + urgencyLabel + '</div>' +
+      '</div>';
+  }).join('');
+
+  // Full breakdown
+  const mkResult = (q, rag) => {
+    const ans = state.answers[q.id];
+    return '<div class="result-item ' + rag + '">' +
+      '<div class="result-rag ' + rag + '"></div>' +
+      '<div class="result-content">' +
+      '<div class="result-std">' + q.standard + '</div>' +
+      '<div class="result-q">' + q.q + '</div>' +
+      '<div class="result-impact">' + q.impact[ans] + '</div>' +
+      (ans !== 'yes' ? '<div class="result-action">' + q.action[ans] + '</div>' : '') +
+      '</div>' +
+      '</div>';
+  };
+
+  const redHtml = reds.map(q => mkResult(q, 'red')).join('');
+  const amberHtml = ambers.map(q => mkResult(q, 'amber')).join('');
+  const greenHtml = greens.map(q => mkResult(q, 'green')).join('');
+  const naCount = state.questions.filter(q => state.answers[q.id] === 'na').length;
+
+  document.getElementById('resultsContent').innerHTML =
+    '<div class="score-hero">' +
+    '<div class="score-hero-bg"></div>' +
+    '<div class="score-hero-c">' +
+    '<div class="score-label">Compliance Score — ' + sectorLabel + '</div>' +
+    '<div class="score-pill" style="background:' + ratingBg + ';color:' + ratingColor + '">' + rating + '</div>' +
+    '<div class="score-num" style="color:' + scoreColor + '">' + pct + '%</div>' +
+    '<div class="score-desc">' + getScoreDesc(pct, reds.length) + '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="rag-grid">' +
+    '<div class="rag-card rag-card-red"><div class="rag-count">' + reds.length + '</div><div class="rag-label">Not in place</div></div>' +
+    '<div class="rag-card rag-card-amber"><div class="rag-count">' + ambers.length + '</div><div class="rag-label">Partially in place</div></div>' +
+    '<div class="rag-card rag-card-green"><div class="rag-count">' + greens.length + '</div><div class="rag-label">Fully in place</div></div>' +
+    '</div>' +
+
+    (priorityItems.length > 0 ?
+      '<div class="results-section-title">Priority Actions</div>' + actionsHtml : '') +
+
+    (redHtml ? '<div class="results-section-title">Not in Place — Immediate Attention</div>' + redHtml : '') +
+    (amberHtml ? '<div class="results-section-title">Partially in Place — Improvement Needed</div>' + amberHtml : '') +
+    (greenHtml ? '<div class="results-section-title">Fully in Place — Well Done</div>' + greenHtml : '') +
+
+    '<div class="results-cta">' +
+    '<div class="results-cta-bg"></div>' +
+    '<div class="results-cta-c">' +
+    '<h3>' + (reds.length > 0 ? 'You have ' + reds.length + ' compliance gap' + (reds.length > 1 ? 's' : '') + ' that need addressing.' : 'Your compliance position is strong — let\'s keep it that way.') + '</h3>' +
+    '<p>A free site survey from Fyrfly Systems will assess your systems against every standard that applies to your organisation, identify the specific gaps and give you a clear, prioritised plan to address them. No obligation, no pressure.</p>' +
+    '<div class="cta-btns">' +
+    '<button type="button" class="btn-p" onclick="downloadReport(' + pct + ')">Download Report as PDF</button>' +
+    '<button type="button" class="btn-s" onclick="shareReport()" data-contact-form>Share with Fyrfly by Email</button>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<div style="text-align:center;margin-top:1.5rem;">' +
+    '<button type="button" class="btn-restart" onclick="restart()">&larr; Start Again</button>' +
+    '</div>';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getScoreDesc(pct, redCount) {
+  if (pct >= 80) return 'Your compliance position is strong. Focus on the amber areas and schedule a review to maintain this standard.';
+  if (pct >= 55) return 'There are meaningful gaps in your compliance. Addressing the priority actions below will significantly reduce your risk exposure.';
+  return 'Your assessment identifies ' + redCount + ' significant compliance gap' + (redCount !== 1 ? 's' : '') + '. Some of these carry legal or safeguarding implications that require prompt action.';
+}
+
+// ── Download / Share ───────────────────────────────────────
+function downloadReport(pct) {
+  const sectorLabel = SECTOR_LABELS[state.sector];
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  let reds = [], ambers = [], greens = [];
+  state.questions.forEach(q => {
+    const ans = state.answers[q.id];
+    if (ans === 'na') return;
+    if (ans === 'yes') greens.push(q);
+    else if (ans === 'partial') ambers.push(q);
+    else reds.push(q);
+  });
+
+  const mkRow = (q, rag, color) => {
+    const ans = state.answers[q.id];
+    return '<div style="background:#f9f9f9;border:1px solid #e0e0e0;border-left:4px solid ' + color + ';border-radius:6px;padding:12px 14px;margin-bottom:10px;page-break-inside:avoid">' +
+      '<div style="font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em">' + q.standard + '</div>' +
+      '<div style="font-size:14px;font-weight:600;color:#111;margin-bottom:6px">' + q.q + '</div>' +
+      '<div style="font-size:12px;color:#555;margin-bottom:6px">' + q.impact[ans] + '</div>' +
+      (ans !== 'yes' ? '<div style="font-size:12px;color:#C8102E;font-weight:600">Action: ' + q.action[ans] + '</div>' : '') +
+      '</div>';
+  };
+
+  const priorityItems = [...reds.sort((a,b) => b.weight-a.weight), ...ambers.sort((a,b) => b.weight-a.weight)].slice(0,5);
+
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Compliance Report</title>' +
+    '<style>body{font-family:Arial,sans-serif;margin:0;padding:0;background:#fff;color:#111;font-size:14px;}' +
+    '.page{max-width:800px;margin:0 auto;padding:32px;}' +
+    '.header{background:#0E0E14;color:#fff;padding:24px 28px;border-radius:8px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;}' +
+    '.brand{font-size:16px;font-weight:800;}.badge{background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}' +
+    '.score-box{text-align:center;border:1px solid #e0e0e0;border-radius:12px;padding:20px;margin-bottom:24px;}' +
+    '.score-big{font-size:48px;font-weight:900;line-height:1;}' +
+    'h3{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin:20px 0 10px;border-bottom:2px solid #eee;padding-bottom:6px;}' +
+    '.action-row{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#f5f5f5;border-radius:6px;margin-bottom:8px;page-break-inside:avoid;}' +
+    '.action-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}' +
+    '.cta{background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:16px;text-align:center;margin-top:20px;}' +
+    '.footer{text-align:center;font-size:11px;color:#aaa;margin-top:24px;padding-top:16px;border-top:1px solid #eee;}' +
+    '@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.header,.score-big,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}' +
+    '</style></head><body><div class="page">' +
+    '<div class="header"><div><div class="brand">FYRFLY SYSTEMS</div><div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 4px">Security Compliance Report</div><div style="font-size:12px;color:rgba(255,255,255,0.5)">Generated ' + date + ' &bull; ' + sectorLabel + '</div></div><div class="badge">Compliance Tool</div></div>' +
+    '<div class="score-box"><div style="font-size:12px;color:#888;margin-bottom:6px">Overall Compliance Score</div><div class="score-big" style="color:' + (pct>=80?'#10B981':pct>=55?'#F59E0B':'#EF4444') + '">' + pct + '%</div><div style="font-size:13px;color:#555;margin-top:6px">' + getScoreDesc(pct, reds.length) + '</div></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:24px;">' +
+    '<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;text-align:center"><div style="font-size:28px;font-weight:900;color:#EF4444">' + reds.length + '</div><div style="font-size:11px;color:#666">Not in place</div></div>' +
+    '<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;text-align:center"><div style="font-size:28px;font-weight:900;color:#F59E0B">' + ambers.length + '</div><div style="font-size:11px;color:#666">Partially in place</div></div>' +
+    '<div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:12px;text-align:center"><div style="font-size:28px;font-weight:900;color:#10B981">' + greens.length + '</div><div style="font-size:11px;color:#666">Fully in place</div></div>' +
+    '</div>' +
+    (priorityItems.length > 0 ? '<h3>Priority Actions</h3>' + priorityItems.map((q,i) => {
+      const ans = state.answers[q.id];
+      return '<div class="action-row"><div class="action-num">' + (i+1) + '</div><div><div style="font-size:13px;font-weight:600;margin-bottom:3px">' + q.q + '</div><div style="font-size:12px;color:#555">' + q.action[ans] + '</div></div></div>';
+    }).join('') : '') +
+    (reds.length > 0 ? '<h3>Not in Place</h3>' + reds.map(q => mkRow(q,'red','#EF4444')).join('') : '') +
+    (ambers.length > 0 ? '<h3>Partially in Place</h3>' + ambers.map(q => mkRow(q,'amber','#F59E0B')).join('') : '') +
+    (greens.length > 0 ? '<h3>Fully in Place</h3>' + greens.map(q => mkRow(q,'green','#10B981')).join('') : '') +
+    '<div class="cta"><h3 style="border:none;color:#333;letter-spacing:0;font-size:14px;margin:0 0 6px">Ready for a free site survey?</h3><p style="font-size:12px;color:#555;margin:0 0 10px">A Fyrfly Systems site survey will assess your building against every applicable standard and give you a clear, costed action plan.</p><a href="mailto:hello@fyrflysystems.com?subject=Compliance Report — Free Survey Request" style="display:inline-block;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600">Request a Free Survey</a></div>' +
+    '<div class="footer">Fyrfly Systems Ltd &bull; hello@fyrflysystems.com &bull; 01234 567 890 &bull; www.fyrflysystems.com<br>NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered &bull; Constructionline &bull; ISO 9001:2015</div>' +
+    '</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(html); w.document.close(); }
+  else alert('Please allow popups to download the PDF, then try again.');
+}
+
+function shareReport() {
+  const reds = state.questions.filter(q => state.answers[q.id] === 'no');
+  const ambers = state.questions.filter(q => state.answers[q.id] === 'partial');
+  const sectorLabel = SECTOR_LABELS[state.sector];
+  const subject = encodeURIComponent('Compliance Tool Results — Free Survey Request');
+  const body = encodeURIComponent(
+    'Hi Fyrfly Systems,\n\n' +
+    'I have completed the Compliance Tool on your website and would like to discuss a free site survey.\n\n' +
+    'Organisation type: ' + sectorLabel + '\n' +
+    'Compliance gaps (not in place): ' + reds.length + '\n' +
+    'Partial compliance: ' + ambers.length + '\n\n' +
+    'Key gaps identified:\n' +
+    reds.slice(0,3).map(q => '- ' + q.q).join('\n') + '\n\n' +
+    'Please get in touch to arrange a survey.\n\nKind regards'
+  );
+  window.location.href = 'mailto:hello@fyrflysystems.com?subject=' + subject + '&body=' + body;
+}
+
+function restart() {
+  state = { sector: null, questions: [], answers: {} };
+  document.querySelectorAll('.sector-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btnSectorNext').disabled = true;
+  document.getElementById('step-results').style.display = 'none';
+  document.getElementById('step-sector').style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Nav ────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 20); ticking = false; });
+    ticking = true;
+  }
+}, { passive: true });
+
+const ham = document.getElementById('hamBtn');
+const mobNav = document.getElementById('mobNav');
+const mobClose = document.getElementById('mobClose');
+if (ham && mobNav) {
+  ham.addEventListener('click', () => {
+    mobNav.style.display = 'flex';
+    requestAnimationFrame(() => { mobNav.classList.add('open'); ham.setAttribute('aria-expanded', 'true'); });
+  });
+  const closeNav = () => {
+    mobNav.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { mobNav.style.display = 'none'; }, 260);
+  };
+  mobClose.addEventListener('click', closeNav);
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+}
 </script>
+<script src="contact-modal.js"></script>
 </body>
 </html>
