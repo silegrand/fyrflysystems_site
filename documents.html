@@ -998,7 +998,7 @@ function saveToDrive(doc) {
   }).outputPdf('blob').then(function(blob) {
     // Upload to Google Drive using Drive API v3 multipart upload
     // Requires user to be signed in to Google — opens auth if not
-    const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+    const CLIENT_ID = '930997474840-bq7okgf5m2cj7tnptu6ea8r38ma5r7lf.apps.googleusercontent.com';
     const SCOPES = 'https://www.googleapis.com/auth/drive.file';
 
     if (!window.gapi) {
