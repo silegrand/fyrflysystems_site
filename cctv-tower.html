@@ -657,6 +657,614 @@
 </section>
 
 
+
+<!-- ── SYSTEM CONFIGURATOR ─────────────────────────────────── -->
+<section class="cfg-sec" id="configure">
+  <div class="cfg-sec-bg"></div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-lbl" style="justify-content:center;margin-bottom:0.75rem;">System Configurator</div>
+      <h2 style="font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-0.025em;margin-bottom:0.75rem;">Build Your Tower Specification</h2>
+      <p style="font-size:0.97rem;color:rgba(255,255,255,0.45);max-width:56ch;margin:0 auto;line-height:1.72;">Select the components and capabilities you need. Your configuration builds in real time on the right. When you're done, save it as a PDF or send it directly to the Fyrfly team.</p>
+    </div>
+
+    <div class="cfg-layout">
+
+      <!-- ── LEFT: CATEGORIES ─────────────────────────────── -->
+      <div class="cfg-cats">
+
+        <!-- 01 CAMERAS -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#3B82F6">01</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Cameras</div>
+              <div class="cfg-cat-hint">Select all that apply</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-multi" data-cat="cameras">
+            <div class="cfg-card" data-key="ptz" data-label="PTZ Camera">
+              <div class="cfg-card-icon" style="--ci:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M15 10l4.553-2.069A1 1 0 0121 8.882V15.12a1 1 0 01-1.447.89L15 14"/><rect x="2" y="8" width="13" height="8" rx="2"/><circle cx="7.5" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">PTZ Camera</div>
+                <div class="cfg-card-desc">Motorised pan, tilt and optical zoom. Tracks moving targets and covers wide areas from a single unit.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="bullet" data-label="Static Bullet Camera">
+              <div class="cfg-card-icon" style="--ci:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="9" width="14" height="6" rx="1.5"/><path d="M16 10.5l5-2v7l-5-2"/><circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Static Bullet Camera</div>
+                <div class="cfg-card-desc">Fixed wide-angle HD. Ideal for monitoring specific zones, entrances or perimeter sections permanently.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="pano" data-label="360° Panoramic Camera">
+              <div class="cfg-card-icon" style="--ci:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">360° Panoramic Camera</div>
+                <div class="cfg-card-desc">Full-site overview with a single unit. Eliminates blind spots across large open areas.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="thermal" data-label="Thermal Imaging Camera">
+              <div class="cfg-card-icon" style="--ci:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 2a5 5 0 00-5 5v3a5 5 0 0010 0V7a5 5 0 00-5-5z"/><path d="M12 17v5M8 21h8"/><path d="M7 10c-2.5 1-4 3-4 5a5 5 0 005 5"/><path d="M17 10c2.5 1 4 3 4 5a5 5 0 01-5 5"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Thermal Imaging Camera</div>
+                <div class="cfg-card-desc">Detects through complete darkness, fog and foliage. Essential for 24/7 detection without lighting.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 SECURITY IoT -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#8B5CF6">02</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Security IoT</div>
+              <div class="cfg-cat-hint">Select all that apply</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-multi" data-cat="iot">
+            <div class="cfg-card" data-key="radar" data-label="Radar Detection">
+              <div class="cfg-card-icon" style="--ci:#8B5CF6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49M7.76 16.24a6 6 0 010-8.49M19.07 4.93a10 10 0 010 14.14M4.93 19.07a10 10 0 010-14.14"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Radar</div>
+                <div class="cfg-card-desc">Active perimeter detection up to 100m. Works in all weather and lighting conditions.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="pir" data-label="PIR Sensor">
+              <div class="cfg-card-icon" style="--ci:#8B5CF6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 22V12M12 12l-4-4M12 12l4-4M12 2v4M5 19l3-3M19 19l-3-3"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">PIR Sensor</div>
+                <div class="cfg-card-desc">Passive infrared motion detection. Low power, reliable, and effective for perimeter monitoring.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="acoustic" data-label="Acoustic Sensor">
+              <div class="cfg-card-icon" style="--ci:#8B5CF6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Acoustic Sensor</div>
+                <div class="cfg-card-desc">Detects gunshot, glass break and anomalous sounds. Triggers instant escalation alerts.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 TELECOMMUNICATIONS -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#06B6D4">03</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Telecommunications</div>
+              <div class="cfg-cat-hint">Select one</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-single" data-cat="telecom">
+            <div class="cfg-card" data-key="5g" data-label="5G Cellular">
+              <div class="cfg-card-icon" style="--ci:#06B6D4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M1.33 6A11.97 11.97 0 0012 2c2.92 0 5.59 1.04 7.64 2.76M4.22 9.22A7.97 7.97 0 0012 6c2.1 0 4.01.81 5.44 2.12M7.76 12.76A3.97 3.97 0 0112 11c1.11 0 2.12.45 2.85 1.18"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">5G Cellular</div>
+                <div class="cfg-card-desc">Dual-SIM 4G/5G. Standard connection for most UK and European sites. Lowest latency.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="ptp" data-label="Wireless PTP Link">
+              <div class="cfg-card-icon" style="--ci:#06B6D4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="3" width="6" height="4" rx="1"/><rect x="16" y="17" width="6" height="4" rx="1"/><path d="M8 5h4a4 4 0 014 4v5M12 5l2-2M12 5l2 2"/><path d="M16 19H12a4 4 0 01-4-4v-5M12 19l2-2M12 19l2 2" transform="rotate(180,12,12)"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Wireless PTP</div>
+                <div class="cfg-card-desc">Point-to-point microwave link to existing site infrastructure. Ideal where cellular is unavailable.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="starlink" data-label="Starlink Satellite">
+              <div class="cfg-card-icon" style="--ci:#06B6D4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Starlink Satellite</div>
+                <div class="cfg-card-desc">Global broadband via LEO satellite. For remote, off-grid or international deployments.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 MAST -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#10B981">04</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Mast Height</div>
+              <div class="cfg-cat-hint">Select one</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-single cfg-two" data-cat="mast">
+            <div class="cfg-card" data-key="5m" data-label="5m Mast">
+              <div class="cfg-card-icon" style="--ci:#10B981"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="12" y1="22" x2="12" y2="2"/><path d="M8 6l4-4 4 4M7 11l5-3 5 3M9 16l3-2 3 2"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">5 Metre Mast</div>
+                <div class="cfg-card-desc">Standard deployment height. Suitable for most open sites and construction applications.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="6m" data-label="6m Mast">
+              <div class="cfg-card-icon" style="--ci:#10B981"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="12" y1="22" x2="12" y2="1"/><path d="M8 5l4-4 4 4M7 10l5-3 5 3M9 15.5l3-2 3 2"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">6 Metre Mast</div>
+                <div class="cfg-card-desc">Extended height for wider camera coverage. Recommended for large open sites and highways.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 SOLAR ARRAY -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#F5A623">05</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Solar Array</div>
+              <div class="cfg-cat-hint">Select one</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-single" data-cat="solar">
+            <div class="cfg-card" data-key="800w" data-label="800W Solar Array">
+              <div class="cfg-card-icon" style="--ci:#F5A623"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">800W Array</div>
+                <div class="cfg-card-desc">Standard configuration. Proven performance across UK and European sites year-round with battery backup.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="1000w" data-label="1000W Solar Array">
+              <div class="cfg-card-icon" style="--ci:#F5A623"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">1000W Array</div>
+                <div class="cfg-card-desc">Enhanced output for northern latitudes or high-power sensor loads. Extends winter autonomy.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="1200w" data-label="1200W Solar Array">
+              <div class="cfg-card-icon" style="--ci:#F5A623"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="6"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M7 12h10M12 7v10" stroke-width="1.5"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">1200W Array</div>
+                <div class="cfg-card-desc">Maximum output. For Scottish Highlands, Scandinavia, or sites with extended high-load operations.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 BATTERY -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#E85D04">06</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Battery System</div>
+              <div class="cfg-cat-hint">Select one</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-single cfg-two" data-cat="battery">
+            <div class="cfg-card" data-key="leadacid" data-label="Lead Acid Battery">
+              <div class="cfg-card-icon" style="--ci:#E85D04"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V4M8 7V4"/><line x1="6" y1="13" x2="10" y2="13"/><line x1="14" y1="11" x2="14" y2="15"/><line x1="12" y1="13" x2="16" y2="13"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Lead Acid</div>
+                <div class="cfg-card-desc">Cost-effective and proven. Heavier, shorter cycle life. Suitable for fixed deployments with regular servicing.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="lithium" data-label="Lithium LiFePO4 Battery">
+              <div class="cfg-card-icon" style="--ci:#E85D04"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V4M8 7V4"/><path d="M7 13l3 3 7-6"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Lithium LiFePO4</div>
+                <div class="cfg-card-desc">Lightweight, 3000+ cycle life, better cold-weather performance. Recommended for mobile and long-term deployments.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 DEPLOYMENT -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#C8102E">07</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Deployment Type</div>
+              <div class="cfg-cat-hint">Select one</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-single cfg-two" data-cat="deployment">
+            <div class="cfg-card" data-key="static" data-label="Static Deployment">
+              <div class="cfg-card-icon" style="--ci:#C8102E"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Static</div>
+                <div class="cfg-card-desc">Fixed position on site with permanent stabilising legs. For long-term or semi-permanent installations.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="mobile" data-label="Mobile Deployment">
+              <div class="cfg-card-icon" style="--ci:#C8102E"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Mobile</div>
+                <div class="cfg-card-desc">Trailer-mounted and towable. Repositionable as site phases progress. Forklift and pump-truck slots included.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 ADDITIONS -->
+        <div class="cfg-cat">
+          <div class="cfg-cat-hdr">
+            <div class="cfg-cat-num" style="--col:#EC4899">08</div>
+            <div class="cfg-cat-info">
+              <div class="cfg-cat-name">Additional Capabilities</div>
+              <div class="cfg-cat-hint">Select all that apply</div>
+            </div>
+          </div>
+          <div class="cfg-cards cfg-multi" data-cat="additions">
+            <div class="cfg-card" data-key="audio" data-label="Audio Warning System">
+              <div class="cfg-card-icon" style="--ci:#EC4899"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Audio Warning</div>
+                <div class="cfg-card-desc">High-output PA horn for live operator challenges and AI-triggered pre-recorded deterrence messages.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="arc" data-label="Monitoring Centre Alerts">
+              <div class="cfg-card-icon" style="--ci:#EC4899"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">Alerts to Monitoring Centre</div>
+                <div class="cfg-card-desc">NSI-approved ARC integration with visual CCTV verification and graduated response protocols.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="cfg-card" data-key="co2" data-label="CO₂e Savings Monitoring">
+              <div class="cfg-card-icon" style="--ci:#EC4899"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 22V12M12 12L7 17M12 12l5 5M3 3h4l2.5 7H5L3 3zM16.5 10H21l-3 7h-4.5L16.5 10z"/><path d="M8.5 3C10.5 3 12 4.5 12 6.5S10.5 10 8.5 10"/></svg></div>
+              <div class="cfg-card-body">
+                <div class="cfg-card-title">CO&#x2082;e Savings Monitoring</div>
+                <div class="cfg-card-desc">Real-time dashboard reporting carbon offset vs diesel-equivalent. ESG and sustainability reporting ready.</div>
+              </div>
+              <div class="cfg-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /cfg-cats -->
+
+      <!-- ── RIGHT: SUMMARY PANEL ───────────────────────────── -->
+      <div class="cfg-panel-wrap">
+        <div class="cfg-panel" id="cfgPanel">
+
+          <div class="cfg-panel-hdr">
+            <div class="cfg-panel-title">Your Configuration</div>
+            <div class="cfg-panel-ref" id="cfgRef"></div>
+          </div>
+
+          <!-- Empty state -->
+          <div class="cfg-empty" id="cfgEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 8h3M15 12h3M15 16h3"/></svg>
+            <p>Start selecting options to build your specification</p>
+          </div>
+
+          <!-- Populated state -->
+          <div class="cfg-items" id="cfgItems" style="display:none"></div>
+
+          <!-- Actions -->
+          <div class="cfg-actions" id="cfgActions" style="display:none">
+            <button class="cfg-btn-save" onclick="cfgSavePDF()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Save as PDF
+            </button>
+            <button class="cfg-btn-send" id="cfgBtnSend" onclick="cfgShowSendForm()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send to Fyrfly
+            </button>
+          </div>
+
+          <!-- Send form -->
+          <div class="cfg-send-form" id="cfgSendForm" style="display:none">
+            <div class="cfg-send-title">Your details</div>
+            <input class="cfg-inp" id="cfgName"  type="text"  placeholder="Your name *"          autocomplete="name">
+            <input class="cfg-inp" id="cfgOrg"   type="text"  placeholder="Organisation *">
+            <input class="cfg-inp" id="cfgEmail" type="email" placeholder="Email address *"       autocomplete="email">
+            <input class="cfg-inp" id="cfgPhone" type="tel"   placeholder="Phone (optional)"      autocomplete="tel">
+            <textarea class="cfg-inp cfg-ta" id="cfgNotes" placeholder="Additional notes or site details (optional)"></textarea>
+            <button class="cfg-btn-send" onclick="cfgSubmitSend()" style="margin-top:0.5rem;width:100%">Send Specification &rarr;</button>
+            <button class="cfg-btn-cancel" onclick="cfgHideSendForm()">Cancel</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /cfg-layout -->
+  </div>
+</section>
+
+<style>
+/* ── CONFIGURATOR STYLES ──────────────────────────────────── */
+.cfg-sec{background:#0A0D14;padding:6rem 0;position:relative;overflow:hidden;}
+.cfg-sec-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(232,93,4,0.06) 0%,transparent 55%),radial-gradient(ellipse at 10% 80%,rgba(200,16,46,0.04) 0%,transparent 50%);}
+.cfg-sec .wrap{position:relative;z-index:1;}
+.cfg-sec .section-head{margin-bottom:3.5rem;}
+
+/* Layout */
+.cfg-layout{display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start;}
+.cfg-cats{display:flex;flex-direction:column;gap:2.5rem;}
+
+/* Category header */
+.cfg-cat-hdr{display:flex;align-items:center;gap:0.85rem;margin-bottom:1.1rem;}
+.cfg-cat-num{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.7rem;font-weight:700;letter-spacing:0.05em;color:var(--col,rgba(255,255,255,0.5));border-color:color-mix(in srgb, var(--col,rgba(255,255,255,0.3)) 40%, transparent);}
+.cfg-cat-name{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:#fff;}
+.cfg-cat-hint{font-size:0.73rem;color:rgba(255,255,255,0.3);margin-top:0.1rem;}
+
+/* Cards grid */
+.cfg-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+.cfg-cards.cfg-two{grid-template-columns:repeat(2,1fr);}
+
+/* Individual card */
+.cfg-card{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.1rem;cursor:pointer;transition:border-color 0.18s,background 0.18s,transform 0.15s;display:flex;flex-direction:column;gap:0.65rem;position:relative;user-select:none;}
+.cfg-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.15);transform:translateY(-1px);}
+.cfg-card.selected{background:rgba(232,93,4,0.06);border-color:rgba(232,93,4,0.5);}
+.cfg-card-icon{width:38px;height:38px;border-radius:9px;background:rgba(var(--ci-rgb,255,255,255),0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ci,rgba(255,255,255,0.5));border:1px solid transparent;}
+.cfg-card.selected .cfg-card-icon{background:rgba(232,93,4,0.12);border-color:rgba(232,93,4,0.25);color:var(--a);}
+.cfg-card-icon svg{width:18px;height:18px;}
+.cfg-card-title{font-family:var(--fh);font-size:0.88rem;font-weight:700;color:#fff;}
+.cfg-card-desc{font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.55;flex:1;}
+.cfg-card-check{position:absolute;top:0.85rem;right:0.85rem;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;transition:all 0.18s;}
+.cfg-card-check svg{width:10px;height:10px;stroke:transparent;transition:stroke 0.18s;}
+.cfg-card.selected .cfg-card-check{background:var(--grad);border-color:transparent;}
+.cfg-card.selected .cfg-card-check svg{stroke:#fff;}
+
+/* Panel wrap (sticky) */
+.cfg-panel-wrap{position:sticky;top:calc(var(--nh) + 1.5rem);}
+.cfg-panel{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;}
+
+.cfg-panel-hdr{padding:1.25rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;}
+.cfg-panel-title{font-family:var(--fh);font-size:0.9rem;font-weight:700;color:#fff;}
+.cfg-panel-ref{font-size:0.68rem;color:rgba(255,255,255,0.25);font-family:monospace;letter-spacing:0.05em;}
+
+/* Empty state */
+.cfg-empty{padding:2.5rem 1.5rem;text-align:center;}
+.cfg-empty svg{width:40px;height:40px;stroke:rgba(255,255,255,0.1);margin:0 auto 0.85rem;}
+.cfg-empty p{font-size:0.82rem;color:rgba(255,255,255,0.25);line-height:1.6;max-width:24ch;margin:0 auto;}
+
+/* Items list */
+.cfg-items{padding:0.85rem 1.4rem;display:flex;flex-direction:column;gap:0.35rem;max-height:380px;overflow-y:auto;}
+.cfg-items::-webkit-scrollbar{width:3px;}
+.cfg-items::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+.cfg-item-group{margin-bottom:0.5rem;}
+.cfg-item-group-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.35rem;}
+.cfg-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:rgba(255,255,255,0.7);padding:0.3rem 0;}
+.cfg-item-dot{width:6px;height:6px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+.cfg-item-none{font-size:0.78rem;color:rgba(255,255,255,0.2);font-style:italic;}
+
+/* Action buttons */
+.cfg-actions{padding:1.1rem 1.4rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:0.6rem;}
+.cfg-btn-save{width:100%;padding:0.75rem;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:0.83rem;font-weight:600;font-family:var(--fh);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;}
+.cfg-btn-save:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);}
+.cfg-btn-save svg{width:14px;height:14px;}
+.cfg-btn-send{width:100%;padding:0.75rem;border-radius:8px;background:var(--grad);border:none;color:#fff;font-size:0.83rem;font-weight:600;font-family:var(--fh);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:opacity 0.2s;}
+.cfg-btn-send:hover{opacity:0.88;}
+.cfg-btn-send svg{width:14px;height:14px;}
+
+/* Send form */
+.cfg-send-form{padding:1.1rem 1.4rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:0.5rem;}
+.cfg-send-title{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.3rem;}
+.cfg-inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.65rem 0.85rem;color:#fff;font-size:0.82rem;font-family:var(--fb);outline:none;transition:border-color 0.2s;}
+.cfg-inp:focus{border-color:rgba(232,93,4,0.5);}
+.cfg-inp::placeholder{color:rgba(255,255,255,0.25);}
+.cfg-ta{resize:vertical;min-height:70px;line-height:1.5;}
+.cfg-btn-cancel{width:100%;padding:0.6rem;border-radius:8px;background:transparent;border:none;color:rgba(255,255,255,0.3);font-size:0.78rem;cursor:pointer;transition:color 0.2s;margin-top:0.25rem;}
+.cfg-btn-cancel:hover{color:rgba(255,255,255,0.5);}
+
+/* Responsive */
+@media(max-width:1100px){.cfg-layout{grid-template-columns:1fr;}.cfg-panel-wrap{position:static;}.cfg-cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.cfg-cards,.cfg-cards.cfg-two{grid-template-columns:1fr;}}
+</style>
+
+<script>
+(function(){
+'use strict';
+
+// ── State
+const CFG={cameras:new Set(),iot:new Set(),telecom:null,mast:null,solar:null,battery:null,deployment:null,additions:new Set()};
+
+const CAT_CONFIG={
+  cameras:    {label:'Cameras',              multi:true},
+  iot:        {label:'Security IoT',         multi:true},
+  telecom:    {label:'Telecommunications',   multi:false},
+  mast:       {label:'Mast Height',          multi:false},
+  solar:      {label:'Solar Array',          multi:false},
+  battery:    {label:'Battery System',       multi:false},
+  deployment: {label:'Deployment Type',      multi:false},
+  additions:  {label:'Additional Capabilities', multi:true}
+};
+
+// Reference code
+let cfgRef='FLY-'+new Date().getFullYear()+(String(new Date().getMonth()+1).padStart(2,'0'))+'-'+Math.floor(Math.random()*9000+1000);
+document.getElementById('cfgRef').textContent=cfgRef;
+
+// ── Card click handling
+document.querySelectorAll('.cfg-cards').forEach(function(grid){
+  const cat=grid.dataset.cat;
+  const isMulti=grid.classList.contains('cfg-multi');
+  grid.querySelectorAll('.cfg-card').forEach(function(card){
+    card.addEventListener('click',function(){
+      const key=card.dataset.key;
+      if(isMulti){
+        if(CFG[cat].has(key)){CFG[cat].delete(key);card.classList.remove('selected');}
+        else{CFG[cat].add(key);card.classList.add('selected');}
+      } else {
+        // Deselect all in group
+        grid.querySelectorAll('.cfg-card').forEach(function(c){c.classList.remove('selected');});
+        CFG[cat]=key;
+        card.classList.add('selected');
+      }
+      updatePanel();
+    });
+  });
+});
+
+// ── Update summary panel
+function getLabel(cat,key){
+  var el=document.querySelector('.cfg-cards[data-cat="'+cat+'"] .cfg-card[data-key="'+key+'"]');
+  return el ? el.dataset.label : key;
+}
+
+function updatePanel(){
+  const hasAny=Object.keys(CFG).some(function(cat){
+    return CFG[cat] instanceof Set ? CFG[cat].size>0 : CFG[cat]!==null;
+  });
+
+  document.getElementById('cfgEmpty').style.display=hasAny?'none':'block';
+  document.getElementById('cfgItems').style.display=hasAny?'block':'none';
+  document.getElementById('cfgActions').style.display=hasAny?'flex':'none';
+  document.getElementById('cfgActions').style.flexDirection='column';
+
+  if(!hasAny)return;
+
+  let html='';
+  Object.keys(CAT_CONFIG).forEach(function(cat){
+    const conf=CAT_CONFIG[cat];
+    const val=CFG[cat];
+    const isEmpty=val instanceof Set?val.size===0:val===null;
+    html+='<div class="cfg-item-group"><div class="cfg-item-group-label">'+conf.label+'</div>';
+    if(isEmpty){
+      html+='<div class="cfg-item-none">Not selected</div>';
+    } else if(val instanceof Set){
+      val.forEach(function(k){html+='<div class="cfg-item"><div class="cfg-item-dot"></div>'+getLabel(cat,k)+'</div>';});
+    } else {
+      html+='<div class="cfg-item"><div class="cfg-item-dot"></div>'+getLabel(cat,val)+'</div>';
+    }
+    html+='</div>';
+  });
+  document.getElementById('cfgItems').innerHTML=html;
+}
+
+// ── Build text summary
+function buildSummary(){
+  var lines=['FYRFLY SOLAR CCTV TOWER — SYSTEM SPECIFICATION','Configuration Reference: '+cfgRef,'Generated: '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),'','─────────────────────────────────────────────'];
+  Object.keys(CAT_CONFIG).forEach(function(cat){
+    const conf=CAT_CONFIG[cat];
+    const val=CFG[cat];
+    lines.push('');
+    lines.push(conf.label.toUpperCase());
+    if(val instanceof Set){
+      if(val.size===0){lines.push('  Not selected');}
+      else{val.forEach(function(k){lines.push('  ✓ '+getLabel(cat,k));});}
+    } else {
+      lines.push(val ? '  ✓ '+getLabel(cat,val) : '  Not selected');
+    }
+  });
+  lines.push('');
+  lines.push('─────────────────────────────────────────────');
+  lines.push('Fyrfly Systems Ltd | hello@fyrflysystems.com | 01234 567 890');
+  lines.push('www.fyrflysystems.com/cctv-tower.html');
+  return lines.join('\n');
+}
+
+// ── Save as PDF (print window)
+window.cfgSavePDF=function(){
+  const summary=buildSummary();
+  var rows='';
+  Object.keys(CAT_CONFIG).forEach(function(cat){
+    const conf=CAT_CONFIG[cat];
+    const val=CFG[cat];
+    var items='';
+    if(val instanceof Set){
+      if(val.size===0){items='<span style="color:#999;font-style:italic">Not selected</span>';}
+      else{val.forEach(function(k){items+='<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);flex-shrink:0;display:inline-block"></span>'+getLabel(cat,k)+'</div>';});}
+    } else {
+      items=val?('<div style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);flex-shrink:0;display:inline-block"></span>'+getLabel(cat,val)+'</div>'):'<span style="color:#999;font-style:italic">Not selected</span>';
+    }
+    rows+='<tr><td style="padding:10px 12px;font-weight:600;color:#333;border-bottom:1px solid #eee;vertical-align:top;width:35%;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:#666">'+conf.label+'</td><td style="padding:10px 12px;border-bottom:1px solid #eee;font-size:13px">'+items+'</td></tr>';
+  });
+
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Solar CCTV Tower Specification &mdash; Fyrfly Systems</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;background:#fff;color:#111;}.page{max-width:700px;margin:0 auto;padding:32px;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body><div class="page">'
+    +'<div style="background:#0E0E14;border-radius:8px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:flex-start;justify-content:space-between;">'
+    +'<div><div style="font-family:Arial;font-size:18px;font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">FYRFLY SYSTEMS</div>'
+    +'<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:4px">Solar CCTV Tower &mdash; System Specification</div>'
+    +'<div style="font-size:11px;color:rgba(255,255,255,0.45)">Reference: '+cfgRef+' &bull; '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+'</div></div>'
+    +'<div style="background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);padding:5px 12px;border-radius:100px;font-size:10px;font-weight:700;color:#fff;letter-spacing:0.08em;text-transform:uppercase;align-self:flex-start">Configuration</div></div>'
+    +'<table style="width:100%;border-collapse:collapse;border:1px solid #eee;border-radius:8px;overflow:hidden;margin-bottom:24px">'+rows+'</table>'
+    +'<div style="background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:16px;text-align:center;margin-bottom:24px">'
+    +'<div style="font-size:14px;font-weight:700;margin-bottom:6px">Request a formal quotation</div>'
+    +'<div style="font-size:12px;color:#555;margin-bottom:10px">Send this specification to the Fyrfly team to receive a detailed, itemised quote for your configuration.</div>'
+    +'<div style="font-size:12px;font-weight:600">hello@fyrflysystems.com &bull; 01234 567 890</div></div>'
+    +'<div style="text-align:center;font-size:10px;color:#aaa;border-top:1px solid #eee;padding-top:14px">Fyrfly Systems Ltd &bull; www.fyrflysystems.com &bull; NSI NACOSS Gold &bull; SSAIB Approved &bull; BAFE Registered</div>'
+    +'</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+
+  var w=window.open('','_blank');
+  if(w){w.document.write(html);w.document.close();}
+  else{alert('Please allow popups to save the PDF.');}
+};
+
+// ── Send form
+window.cfgShowSendForm=function(){
+  document.getElementById('cfgSendForm').style.display='flex';
+  document.getElementById('cfgSendForm').style.flexDirection='column';
+  document.getElementById('cfgBtnSend').style.display='none';
+};
+window.cfgHideSendForm=function(){
+  document.getElementById('cfgSendForm').style.display='none';
+  document.getElementById('cfgBtnSend').style.display='flex';
+};
+
+window.cfgSubmitSend=function(){
+  var name=document.getElementById('cfgName').value.trim();
+  var org=document.getElementById('cfgOrg').value.trim();
+  var email=document.getElementById('cfgEmail').value.trim();
+  var phone=document.getElementById('cfgPhone').value.trim();
+  var notes=document.getElementById('cfgNotes').value.trim();
+
+  if(!name||!org||!email){
+    alert('Please complete your name, organisation and email address.');
+    return;
+  }
+
+  var body=buildSummary()+'\n\n─────────────────────────────────────────────\nFROM\n'
+    +'Name: '+name+'\nOrganisation: '+org+'\nEmail: '+email
+    +(phone?'\nPhone: '+phone:'')
+    +(notes?'\n\nAdditional notes:\n'+notes:'');
+
+  var subject='Solar CCTV Tower Configuration — '+org+' ('+cfgRef+')';
+  var mailto='mailto:hello@fyrflysystems.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+
+  // Create anchor so contact-modal.js can intercept it
+  var a=document.createElement('a');
+  a.href=mailto;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
+})();
+</script>
+
 <!-- ── SOLAR VIABILITY CALCULATOR ─────────────────────────── -->
 <section class="sol-sec" id="solar-viability">
   <div class="sol-bg"></div>
@@ -701,7 +1309,7 @@
           <span class="sol-leg-item sol-leg-green">Self-sufficient</span>
           <span class="sol-leg-item sol-leg-amber">Marginal</span>
           <span class="sol-leg-item sol-leg-red">Generator recommended</span>
-          <span class="sol-leg-item sol-leg-line">&#9135; Daily draw (1.1 kWh)</span>
+          <span class="sol-leg-item sol-leg-line">&#9135; Daily draw (2.6 kWh)</span>
         </div>
         <div id="solChart" class="sol-chart"></div>
       </div>
@@ -717,9 +1325,9 @@
         <div class="sol-assm-title">Calculation assumptions</div>
         <div class="sol-assm-grid">
           <div><span>Solar array</span><strong>800W monocrystalline</strong></div>
-          <div><span>Avg. system draw</span><strong>~40W continuous = 0.9 kWh/day</strong></div>
+          <div><span>Avg. system draw</span><strong>~42W continuous average = 1.0 kWh/day</strong></div>
           <div><span>Battery capacity</span><strong>440Ah &times; 24V = 10.6 kWh (8.5 kWh usable)</strong></div>
-          <div><span>Battery autonomy</span><strong>~3.2 days at full load with no solar input</strong></div>
+          <div><span>Battery autonomy</span><strong>~8.5 days at full load with no solar input</strong></div>
           <div><span>Panel tilt / aspect</span><strong>35&deg; tilt, south-facing (optimal)</strong></div>
           <div><span>System losses</span><strong>14% (wiring, inverter, temperature)</strong></div>
         </div>
@@ -908,7 +1516,7 @@ const LOCS=[
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DAYS_IN_MONTH=[31,28,31,30,31,30,31,31,30,31,30,31];
-const DAILY_DRAW=2.6;       // kWh — based on ~110W continuous average
+const DAILY_DRAW=1.0;       // kWh — based on ~110W continuous average
 const BATT_KWH=8.45;        // kWh usable (440Ah × 24V × 80% DoD)
 const THRESH_GREEN=DAILY_DRAW;       // ≥ draw → self-sufficient
 const THRESH_AMBER=DAILY_DRAW*0.5;   // ≥ 50% draw → marginal
