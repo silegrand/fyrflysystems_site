@@ -656,6 +656,455 @@
   </div>
 </section>
 
+
+<!-- ── SOLAR VIABILITY CALCULATOR ─────────────────────────── -->
+<section class="sol-sec" id="solar-viability">
+  <div class="sol-bg"></div>
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="sec-lbl" style="justify-content:center;margin-bottom:0.75rem;">Solar Viability Tool</div>
+      <h2 style="font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-0.025em;margin-bottom:0.75rem;">Will It Work at Your Site?</h2>
+      <p style="font-size:0.97rem;color:rgba(255,255,255,0.45);max-width:54ch;margin:0 auto;line-height:1.72;">Enter any location in the UK or Europe. We calculate month-by-month solar production from the 800W array against the tower's actual power draw — and tell you honestly where you'll need the generator input.</p>
+    </div>
+
+    <!-- INPUT BAR -->
+    <div class="sol-input-wrap">
+      <div class="sol-input-row">
+        <div class="sol-input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <input type="text" id="solInput" class="sol-input" placeholder="Enter a town, postcode or site location&hellip;" autocomplete="off" onkeydown="if(event.key==='Enter')solCheck()">
+        <button class="sol-btn" id="solBtn" onclick="solCheck()">Check &rarr;</button>
+      </div>
+      <div class="sol-examples">Try: <span onclick="solSet(this)">London</span> &bull; <span onclick="solSet(this)">Edinburgh</span> &bull; <span onclick="solSet(this)">Manchester</span> &bull; <span onclick="solSet(this)">Oslo</span> &bull; <span onclick="solSet(this)">Madrid</span> &bull; <span onclick="solSet(this)">Dubai</span></div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="sol-loading" id="solLoading">
+      <div class="sol-spinner"></div>
+      <p>Locating site and calculating solar production&hellip;</p>
+    </div>
+
+    <!-- ERROR -->
+    <div class="sol-error" id="solError"></div>
+
+    <!-- RESULTS -->
+    <div class="sol-results" id="solResults">
+
+      <!-- Location bar -->
+      <div class="sol-loc-bar" id="solLocBar"></div>
+
+      <!-- Chart -->
+      <div class="sol-chart-card">
+        <div class="sol-chart-legend">
+          <span class="sol-leg-item sol-leg-green">Self-sufficient</span>
+          <span class="sol-leg-item sol-leg-amber">Marginal</span>
+          <span class="sol-leg-item sol-leg-red">Generator recommended</span>
+          <span class="sol-leg-item sol-leg-line">&#9135; Daily draw (2.6 kWh)</span>
+        </div>
+        <div id="solChart" class="sol-chart"></div>
+      </div>
+
+      <!-- Summary cards -->
+      <div class="sol-summary-row" id="solSummary"></div>
+
+      <!-- Month grid -->
+      <div class="sol-month-grid" id="solMonthGrid"></div>
+
+      <!-- System assumptions -->
+      <div class="sol-assumptions">
+        <div class="sol-assm-title">Calculation assumptions</div>
+        <div class="sol-assm-grid">
+          <div><span>Solar array</span><strong>800W monocrystalline</strong></div>
+          <div><span>Avg. system draw</span><strong>~110W continuous = 2.6 kWh/day</strong></div>
+          <div><span>Battery capacity</span><strong>440Ah &times; 24V = 10.6 kWh (8.5 kWh usable)</strong></div>
+          <div><span>Battery autonomy</span><strong>~3.2 days at full load with no solar input</strong></div>
+          <div><span>Panel tilt / aspect</span><strong>35&deg; tilt, south-facing (optimal)</strong></div>
+          <div><span>System losses</span><strong>14% (wiring, inverter, temperature)</strong></div>
+        </div>
+        <p class="sol-assm-note">Production figures are long-term monthly averages from the PVGIS dataset (EU Joint Research Centre). Actual output varies with local horizon, shading and cloud patterns. The generator input port on the tower is designed to supplement during low-production months.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="sol-cta">
+        <div>
+          <div class="sol-cta-title">Ready to discuss your site?</div>
+          <p>Tell us your location and we will confirm the right configuration and whether any supplementary power provision is needed.</p>
+        </div>
+        <a href="mailto:hello@fyrflysystems.com?subject=Solar CCTV Tower — Site Viability" class="btn-p">Discuss Your Site &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── SOLAR CALCULATOR STYLES ──────────────────────────── */
+.sol-sec{background:#080B12;padding:6rem 0;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
+.sol-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,166,35,0.05) 0%,transparent 60%),radial-gradient(ellipse at 20% 100%,rgba(200,16,46,0.04) 0%,transparent 50%);}
+.sol-sec .wrap{position:relative;z-index:1;}
+
+/* Input */
+.sol-input-wrap{max-width:680px;margin:3rem auto 0;}
+.sol-input-row{display:flex;align-items:center;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;overflow:hidden;transition:border-color 0.2s;}
+.sol-input-row:focus-within{border-color:rgba(245,166,35,0.5);}
+.sol-input-icon{padding:0 1rem;color:rgba(255,255,255,0.3);}
+.sol-input-icon svg{width:18px;height:18px;stroke:var(--a);}
+.sol-input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:0.95rem;font-family:var(--fb);padding:0.95rem 0.5rem;}
+.sol-input::placeholder{color:rgba(255,255,255,0.3);}
+.sol-btn{padding:0.95rem 1.75rem;background:var(--grad);border:none;color:#fff;font-size:0.88rem;font-weight:600;font-family:var(--fb);cursor:pointer;transition:opacity 0.2s;white-space:nowrap;flex-shrink:0;}
+.sol-btn:hover{opacity:0.88;}
+.sol-examples{margin-top:0.85rem;font-size:0.78rem;color:rgba(255,255,255,0.3);text-align:center;}
+.sol-examples span{color:rgba(245,166,35,0.7);cursor:pointer;text-decoration:underline;margin:0 0.2rem;transition:color 0.2s;}
+.sol-examples span:hover{color:var(--a);}
+
+/* Loading */
+.sol-loading{display:none;text-align:center;padding:3rem 0;color:rgba(255,255,255,0.5);font-size:0.88rem;}
+.sol-loading.show{display:block;}
+.sol-spinner{width:36px;height:36px;border:2.5px solid rgba(255,255,255,0.1);border-top-color:var(--a);border-radius:50%;animation:sol-spin 0.75s linear infinite;margin:0 auto 1rem;}
+@keyframes sol-spin{to{transform:rotate(360deg);}}
+
+/* Error */
+.sol-error{display:none;max-width:680px;margin:1.5rem auto 0;padding:1rem 1.25rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:10px;color:rgba(255,255,255,0.6);font-size:0.87rem;text-align:center;}
+.sol-error.show{display:block;}
+
+/* Results */
+.sol-results{display:none;margin-top:2.5rem;animation:sol-fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;}
+.sol-results.show{display:block;}
+@keyframes sol-fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* Location bar */
+.sol-loc-bar{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.6);}
+.sol-loc-bar svg{width:16px;height:16px;stroke:var(--a);fill:none;stroke-width:2;flex-shrink:0;}
+.sol-loc-name{color:#fff;font-weight:600;}
+.sol-loc-ref{margin-left:auto;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+
+/* Chart */
+.sol-chart-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.75rem;margin-bottom:1.5rem;}
+.sol-chart-legend{display:flex;gap:1.5rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+.sol-leg-item{font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.4rem;}
+.sol-leg-item::before{content:'';display:inline-block;width:10px;height:10px;border-radius:2px;}
+.sol-leg-green::before{background:#10B981;}
+.sol-leg-amber::before{background:#F5A623;}
+.sol-leg-red::before{background:#EF4444;}
+.sol-leg-line::before{background:transparent;border-top:2px dashed rgba(255,255,255,0.4);height:0;border-radius:0;width:16px;}
+.sol-chart{width:100%;overflow-x:auto;}
+.sol-chart svg{min-width:480px;}
+
+/* Summary row */
+.sol-summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.sol-summ-card{border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+.sol-summ-card.green{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);}
+.sol-summ-card.amber{background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);}
+.sol-summ-card.red{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);}
+.sol-summ-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sol-summ-card.green .sol-summ-icon{background:rgba(16,185,129,0.15);}
+.sol-summ-card.amber .sol-summ-icon{background:rgba(245,166,35,0.15);}
+.sol-summ-card.red .sol-summ-icon{background:rgba(239,68,68,0.15);}
+.sol-summ-icon svg{width:18px;height:18px;fill:none;stroke-width:2;stroke-linecap:round;}
+.sol-summ-card.green .sol-summ-icon svg{stroke:#10B981;}
+.sol-summ-card.amber .sol-summ-icon svg{stroke:#F5A623;}
+.sol-summ-card.red .sol-summ-icon svg{stroke:#EF4444;}
+.sol-summ-n{font-family:var(--fh);font-size:1.6rem;font-weight:900;line-height:1;}
+.sol-summ-card.green .sol-summ-n{color:#10B981;}
+.sol-summ-card.amber .sol-summ-n{color:#F5A623;}
+.sol-summ-card.red .sol-summ-n{color:#EF4444;}
+.sol-summ-label{font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:0.2rem;line-height:1.4;}
+.sol-summ-months{font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:0.15rem;}
+
+/* Month grid */
+.sol-month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0.6rem;margin-bottom:1.5rem;}
+.sol-month-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:0.85rem 0.75rem;text-align:center;}
+.sol-month-card.green{border-color:rgba(16,185,129,0.25);background:rgba(16,185,129,0.05);}
+.sol-month-card.amber{border-color:rgba(245,166,35,0.25);background:rgba(245,166,35,0.05);}
+.sol-month-card.red{border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.05);}
+.sol-month-name{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;}
+.sol-month-kwh{font-family:var(--fh);font-size:1.05rem;font-weight:800;line-height:1;margin-bottom:0.25rem;}
+.sol-month-card.green .sol-month-kwh{color:#10B981;}
+.sol-month-card.amber .sol-month-kwh{color:#F5A623;}
+.sol-month-card.red .sol-month-kwh{color:#EF4444;}
+.sol-month-pct{font-size:0.68rem;color:rgba(255,255,255,0.35);}
+.sol-month-dot{width:6px;height:6px;border-radius:50%;margin:0.5rem auto 0;}
+.sol-month-card.green .sol-month-dot{background:#10B981;}
+.sol-month-card.amber .sol-month-dot{background:#F5A623;}
+.sol-month-card.red .sol-month-dot{background:#EF4444;}
+
+/* Assumptions */
+.sol-assumptions{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.sol-assm-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+.sol-assm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1rem;}
+.sol-assm-grid div{font-size:0.78rem;}
+.sol-assm-grid span{display:block;color:rgba(255,255,255,0.35);margin-bottom:0.15rem;font-size:0.72rem;}
+.sol-assm-grid strong{color:rgba(255,255,255,0.7);}
+.sol-assm-note{font-size:0.75rem;color:rgba(255,255,255,0.25);line-height:1.65;}
+
+/* CTA */
+.sol-cta{background:rgba(200,16,46,0.07);border:1px solid rgba(200,16,46,0.15);border-radius:14px;padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.sol-cta-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.sol-cta p{font-size:0.83rem;color:rgba(255,255,255,0.5);line-height:1.6;max-width:50ch;}
+
+/* Responsive */
+@media(max-width:768px){
+  .sol-summary-row{grid-template-columns:1fr 1fr 1fr;}
+  .sol-month-grid{grid-template-columns:repeat(4,1fr);}
+  .sol-assm-grid{grid-template-columns:1fr 1fr;}
+  .sol-cta{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  .sol-summary-row{grid-template-columns:1fr;}
+  .sol-month-grid{grid-template-columns:repeat(3,1fr);}
+  .sol-assm-grid{grid-template-columns:1fr;}
+  .sol-input-row{border-radius:10px;}
+}
+</style>
+
+<script>
+// ── SOLAR VIABILITY CALCULATOR ──────────────────────────────
+(function(){
+'use strict';
+
+// ── Pre-computed reference locations (PVGIS monthly averages)
+// Daily kWh from 800W crystalline silicon, 35° tilt, south-facing, 14% losses
+// Values: Jan–Dec average daily production in kWh
+const LOCS=[
+  // ── UK ─────────────────────────────────────────────────────
+  {n:'London',        r:'South East England',     lat:51.51, lon:-0.13, d:[0.70,1.05,1.87,2.84,3.63,3.88,3.72,3.17,2.33,1.46,0.82,0.55]},
+  {n:'Southampton',   r:'South England',           lat:50.90, lon:-1.40, d:[0.74,1.11,1.96,2.96,3.75,4.01,3.85,3.28,2.41,1.52,0.86,0.59]},
+  {n:'Plymouth',      r:'South West England',      lat:50.37, lon:-4.14, d:[0.77,1.15,2.02,3.07,3.88,4.16,3.99,3.41,2.50,1.58,0.90,0.63]},
+  {n:'Bristol',       r:'South West England',      lat:51.45, lon:-2.59, d:[0.72,1.08,1.92,2.91,3.70,3.96,3.80,3.23,2.37,1.49,0.84,0.57]},
+  {n:'Cardiff',       r:'Wales',                   lat:51.48, lon:-3.18, d:[0.70,1.07,1.89,2.87,3.67,3.93,3.77,3.21,2.35,1.47,0.82,0.56]},
+  {n:'Birmingham',    r:'Midlands',                lat:52.48, lon:-1.90, d:[0.65,0.99,1.79,2.74,3.52,3.77,3.61,3.07,2.22,1.38,0.76,0.51]},
+  {n:'Manchester',    r:'North West England',      lat:53.48, lon:-2.24, d:[0.57,0.89,1.64,2.61,3.38,3.63,3.47,2.95,2.09,1.27,0.68,0.44]},
+  {n:'Leeds',         r:'Yorkshire',               lat:53.80, lon:-1.55, d:[0.56,0.88,1.61,2.57,3.33,3.58,3.42,2.91,2.06,1.25,0.66,0.43]},
+  {n:'Sheffield',     r:'Yorkshire',               lat:53.38, lon:-1.47, d:[0.58,0.91,1.66,2.63,3.41,3.66,3.50,2.98,2.12,1.29,0.69,0.45]},
+  {n:'Newcastle',     r:'North East England',      lat:54.97, lon:-1.61, d:[0.50,0.82,1.52,2.49,3.27,3.53,3.36,2.85,1.98,1.17,0.60,0.37]},
+  {n:'Glasgow',       r:'Scotland',                lat:55.86, lon:-4.25, d:[0.39,0.67,1.34,2.40,3.26,3.62,3.28,2.78,1.84,1.04,0.48,0.28]},
+  {n:'Edinburgh',     r:'Scotland',                lat:55.95, lon:-3.19, d:[0.40,0.68,1.36,2.43,3.29,3.65,3.32,2.81,1.87,1.06,0.50,0.29]},
+  {n:'Aberdeen',      r:'North Scotland',          lat:57.15, lon:-2.11, d:[0.33,0.59,1.21,2.24,3.08,3.44,3.10,2.60,1.69,0.92,0.41,0.23]},
+  {n:'Inverness',     r:'Scottish Highlands',      lat:57.48, lon:-4.22, d:[0.29,0.55,1.16,2.19,3.03,3.40,3.06,2.56,1.65,0.87,0.37,0.19]},
+  {n:'Belfast',       r:'Northern Ireland',        lat:54.60, lon:-5.93, d:[0.44,0.75,1.49,2.50,3.28,3.56,3.33,2.82,1.91,1.09,0.52,0.31]},
+  {n:'Dublin',        r:'Ireland',                 lat:53.33, lon:-6.25, d:[0.47,0.80,1.57,2.58,3.39,3.66,3.44,2.92,2.00,1.16,0.55,0.34]},
+  // ── Europe ─────────────────────────────────────────────────
+  {n:'Paris',         r:'France',                  lat:48.85, lon:2.35,  d:[0.76,1.16,2.09,3.13,3.93,4.27,4.26,3.87,2.86,1.76,0.88,0.62]},
+  {n:'Brussels',      r:'Belgium',                 lat:50.85, lon:4.35,  d:[0.60,0.98,1.86,2.90,3.68,3.99,3.88,3.47,2.44,1.41,0.65,0.42]},
+  {n:'Amsterdam',     r:'Netherlands',             lat:52.37, lon:4.90,  d:[0.57,0.95,1.83,2.93,3.74,4.05,3.94,3.52,2.47,1.44,0.64,0.41]},
+  {n:'Frankfurt',     r:'Germany',                 lat:50.11, lon:8.68,  d:[0.69,1.11,2.03,3.13,3.94,4.27,4.17,3.76,2.70,1.59,0.76,0.51]},
+  {n:'Berlin',        r:'Germany',                 lat:52.52, lon:13.40, d:[0.61,1.00,1.90,3.03,3.86,4.17,4.06,3.63,2.58,1.52,0.69,0.45]},
+  {n:'Warsaw',        r:'Poland',                  lat:52.23, lon:21.01, d:[0.52,0.91,1.84,3.00,3.83,4.18,4.06,3.61,2.50,1.42,0.61,0.37]},
+  {n:'Copenhagen',    r:'Denmark',                 lat:55.68, lon:12.57, d:[0.30,0.61,1.43,2.75,3.80,4.27,4.01,3.38,2.13,1.08,0.39,0.20]},
+  {n:'Stockholm',     r:'Sweden',                  lat:59.33, lon:18.07, d:[0.20,0.50,1.28,2.67,3.81,4.30,3.97,3.19,1.92,0.89,0.28,0.13]},
+  {n:'Oslo',          r:'Norway',                  lat:59.91, lon:10.75, d:[0.17,0.45,1.22,2.58,3.70,4.21,3.88,3.10,1.84,0.81,0.24,0.11]},
+  {n:'Helsinki',      r:'Finland',                 lat:60.17, lon:24.94, d:[0.16,0.45,1.24,2.64,3.80,4.32,3.99,3.20,1.91,0.86,0.24,0.11]},
+  {n:'Zurich',        r:'Switzerland',             lat:47.37, lon:8.54,  d:[0.83,1.34,2.37,3.43,4.19,4.56,4.57,4.18,3.06,1.86,0.92,0.66]},
+  {n:'Vienna',        r:'Austria',                 lat:48.21, lon:16.37, d:[0.80,1.28,2.28,3.38,4.18,4.55,4.51,4.09,2.99,1.78,0.84,0.58]},
+  {n:'Madrid',        r:'Spain',                   lat:40.42, lon:-3.70, d:[2.14,2.87,3.97,4.88,5.68,6.21,6.44,5.90,4.76,3.41,2.30,1.89]},
+  {n:'Barcelona',     r:'Spain',                   lat:41.39, lon:2.15,  d:[1.82,2.53,3.59,4.53,5.30,5.91,6.11,5.55,4.30,2.95,1.92,1.55]},
+  {n:'Rome',          r:'Italy',                   lat:41.90, lon:12.50, d:[1.78,2.45,3.47,4.46,5.26,5.84,6.07,5.51,4.27,2.89,1.83,1.49]},
+  {n:'Milan',         r:'Italy',                   lat:45.47, lon:9.19,  d:[0.99,1.57,2.64,3.72,4.51,4.95,5.11,4.69,3.50,2.17,1.07,0.72]},
+  {n:'Dubai',         r:'UAE',                     lat:25.20, lon:55.27, d:[4.12,4.59,5.21,5.81,5.93,5.73,5.34,5.44,5.58,5.40,4.72,3.99]},
+];
+
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_S=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS_IN_MONTH=[31,28,31,30,31,30,31,31,30,31,30,31];
+const DAILY_DRAW=2.6;       // kWh — based on ~110W continuous average
+const BATT_KWH=8.45;        // kWh usable (440Ah × 24V × 80% DoD)
+const THRESH_GREEN=DAILY_DRAW;       // ≥ draw → self-sufficient
+const THRESH_AMBER=DAILY_DRAW*0.5;   // ≥ 50% draw → marginal
+
+// ── Haversine distance (km)
+function hdist(la1,lo1,la2,lo2){
+  const R=6371,d2r=Math.PI/180;
+  const dLa=(la2-la1)*d2r,dLo=(lo2-lo1)*d2r;
+  const a=Math.sin(dLa/2)**2+Math.cos(la1*d2r)*Math.cos(la2*d2r)*Math.sin(dLo/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+// ── Find nearest reference location
+function nearest(lat,lon){
+  return LOCS.reduce((best,loc)=>{
+    const d=hdist(lat,lon,loc.lat,loc.lon);
+    return d<best.d ? {loc,d} : best;
+  },{loc:null,d:Infinity});
+}
+
+// ── UI helpers
+function show(id,cls){const el=document.getElementById(id);if(el){el.style.display='';el.className=el.className.replace(/\b(show|hide)\b/g,'').trim()+' '+(cls||'show');}}
+function hide(id){const el=document.getElementById(id);if(el){el.style.display='none';el.className=el.className.replace(/\bshow\b/g,'').trim();}}
+function setHTML(id,html){const el=document.getElementById(id);if(el)el.innerHTML=html;}
+function status(val){return val>=THRESH_GREEN?'green':val>=THRESH_AMBER?'amber':'red';}
+function statusLabel(val){return val>=THRESH_GREEN?'Self-sufficient':val>=THRESH_AMBER?'Marginal':'Generator recommended';}
+function pct(val){return Math.round(val/DAILY_DRAW*100);}
+function battDays(val){
+  if(val>=DAILY_DRAW)return null;
+  const deficit=DAILY_DRAW-val;
+  return (BATT_KWH/deficit).toFixed(1);
+}
+
+// ── Build SVG chart
+function buildChart(monthly){
+  const VW=700,VH=240,PL=50,PR=40,PT=14,PB=32;
+  const CW=VW-PL-PR,CH=VH-PT-PB;
+  const maxY=Math.max(...monthly,DAILY_DRAW+0.8);
+  const colW=CW/12,barW=colW*0.68;
+
+  function yp(v){return PT+CH-(v/maxY)*CH;}
+
+  let s=`<svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg" style="width:100%">`;
+
+  // Grid lines
+  const gridSteps=[0,1,2,3,4,5,6,7].filter(v=>v<=maxY+0.5);
+  gridSteps.forEach(v=>{
+    const y=yp(v);
+    s+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${VW-PR}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    s+=`<text x="${PL-7}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10" fill="rgba(255,255,255,0.25)" font-family="DM Sans,sans-serif">${v}</text>`;
+  });
+
+  // Y axis label
+  s+=`<text x="11" y="${(PT+CH/2).toFixed(1)}" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" transform="rotate(-90,11,${(PT+CH/2).toFixed(1)})">kWh / day</text>`;
+
+  // Bars
+  monthly.forEach((val,i)=>{
+    const x=PL+colW*i+(colW-barW)/2;
+    const bh=(val/maxY)*CH;
+    const y=yp(val);
+    const col=val>=THRESH_GREEN?'#10B981':val>=THRESH_AMBER?'#F5A623':'#EF4444';
+
+    // Bar background (subtle full-height ghost)
+    s+=`<rect x="${x.toFixed(1)}" y="${PT}" width="${barW.toFixed(1)}" height="${CH}" rx="3" fill="${col}" opacity="0.04"/>`;
+
+    // Actual bar
+    s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="${col}" opacity="0.85"/>`;
+
+    // Value on bar if tall enough
+    if(bh>18){
+      s+=`<text x="${(x+barW/2).toFixed(1)}" y="${(y+14).toFixed(1)}" text-anchor="middle" font-size="9" fill="white" font-weight="700" font-family="DM Sans,sans-serif">${val.toFixed(1)}</text>`;
+    }
+
+    // Month label
+    s+=`<text x="${(PL+colW*i+colW/2).toFixed(1)}" y="${VH-5}" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif">${MONTHS_S[i]}</text>`;
+  });
+
+  // 50% threshold line (amber guide)
+  const thrY=yp(THRESH_AMBER);
+  s+=`<line x1="${PL}" y1="${thrY.toFixed(1)}" x2="${VW-PR}" y2="${thrY.toFixed(1)}" stroke="#F5A623" stroke-width="1" stroke-dasharray="4,5" opacity="0.35"/>`;
+
+  // Consumption line
+  const cY=yp(DAILY_DRAW);
+  s+=`<line x1="${PL}" y1="${cY.toFixed(1)}" x2="${VW-PR}" y2="${cY.toFixed(1)}" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-dasharray="6,5"/>`;
+  s+=`<text x="${(VW-PR+5).toFixed(1)}" y="${(cY-4).toFixed(1)}" font-size="9" fill="rgba(255,255,255,0.45)" font-family="DM Sans,sans-serif">Draw</text>`;
+  s+=`<text x="${(VW-PR+5).toFixed(1)}" y="${(cY+8).toFixed(1)}" font-size="9" fill="rgba(255,255,255,0.45)" font-family="DM Sans,sans-serif">${DAILY_DRAW}kWh</text>`;
+
+  // Axes
+  s+=`<line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+CH}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
+
+  s+='</svg>';
+  return s;
+}
+
+// ── Render results
+function renderResults(loc,resolvedName,distKm){
+  // Location bar
+  const distNote=distKm<5?'Exact match':'Nearest reference: '+loc.n+' ('+Math.round(distKm)+'km)';
+  setHTML('solLocBar',
+    `<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`+
+    `<span><span class="sol-loc-name">${resolvedName}</span></span>`+
+    `<span class="sol-loc-ref">${distNote} &bull; ${loc.lat.toFixed(2)}&deg;N, ${Math.abs(loc.lon).toFixed(2)}&deg;${loc.lon>=0?'E':'W'}</span>`
+  );
+
+  // Chart
+  setHTML('solChart',buildChart(loc.d));
+
+  // Count status months
+  let greens=[],ambers=[],reds=[];
+  loc.d.forEach((v,i)=>{
+    const s=status(v);
+    if(s==='green')greens.push(MONTHS_S[i]);
+    else if(s==='amber')ambers.push(MONTHS_S[i]);
+    else reds.push(MONTHS_S[i]);
+  });
+
+  const annualProd=loc.d.reduce((sum,v,i)=>sum+v*DAYS_IN_MONTH[i],0);
+  const annualCons=DAILY_DRAW*365;
+  const surplus=annualProd-annualCons;
+
+  // Summary cards
+  setHTML('solSummary',
+    `<div class="sol-summ-card green"><div class="sol-summ-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="sol-summ-n">${greens.length}</div><div class="sol-summ-label">Self-sufficient months</div><div class="sol-summ-months">${greens.length>0?greens.join(', '):'None'}</div></div></div>`+
+    `<div class="sol-summ-card amber"><div class="sol-summ-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div><div><div class="sol-summ-n">${ambers.length}</div><div class="sol-summ-label">Marginal months</div><div class="sol-summ-months">${ambers.length>0?ambers.join(', '):'None'}</div></div></div>`+
+    `<div class="sol-summ-card red"><div class="sol-summ-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="sol-summ-n">${reds.length}</div><div class="sol-summ-label">Generator recommended</div><div class="sol-summ-months">${reds.length>0?reds.join(', '):'None'}</div></div></div>`
+  );
+
+  // Month grid
+  let monthHTML='';
+  loc.d.forEach((val,i)=>{
+    const st=status(val);
+    const bd=battDays(val);
+    const battNote=bd?`${bd}d battery`:'Surplus';
+    monthHTML+=`<div class="sol-month-card ${st}">
+      <div class="sol-month-name">${MONTHS_S[i]}</div>
+      <div class="sol-month-kwh">${val.toFixed(2)}</div>
+      <div class="sol-month-pct">${pct(val)}% of draw</div>
+      <div class="sol-month-pct" style="margin-top:2px">${battNote}</div>
+      <div class="sol-month-dot"></div>
+    </div>`;
+  });
+  setHTML('solMonthGrid',monthHTML);
+
+  show('solResults','show');
+}
+
+// ── Main check function (exposed globally)
+window.solCheck=function(){
+  const q=document.getElementById('solInput').value.trim();
+  if(!q)return;
+  hide('solResults');
+  hide('solError');
+  document.getElementById('solLoading').classList.add('show');
+  document.getElementById('solLoading').style.display='block';
+  document.getElementById('solBtn').disabled=true;
+
+  const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(q)+'&format=json&limit=1&addressdetails=0';
+
+  fetch(url,{headers:{'Accept':'application/json','Accept-Language':'en','User-Agent':'FyrflySolarCalculator/1.0'}})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      document.getElementById('solLoading').style.display='none';
+      document.getElementById('solLoading').classList.remove('show');
+      document.getElementById('solBtn').disabled=false;
+
+      if(!data||data.length===0){
+        const errEl=document.getElementById('solError');
+        errEl.textContent='Could not find that location. Try a city name, region, or country.';
+        errEl.style.display='block';
+        return;
+      }
+      const lat=parseFloat(data[0].lat),lon=parseFloat(data[0].lon);
+      const result=nearest(lat,lon);
+      // Build readable name from Nominatim display_name (first 2 parts)
+      const parts=data[0].display_name.split(',');
+      const displayName=parts.slice(0,Math.min(3,parts.length)).join(',').trim();
+      renderResults(result.loc,displayName,result.d);
+    })
+    .catch(function(){
+      document.getElementById('solLoading').style.display='none';
+      document.getElementById('solLoading').classList.remove('show');
+      document.getElementById('solBtn').disabled=false;
+      const errEl=document.getElementById('solError');
+      errEl.textContent='Could not connect to the location service. Check your internet connection and try again.';
+      errEl.style.display='block';
+    });
+};
+
+window.solSet=function(el){
+  document.getElementById('solInput').value=el.textContent;
+  window.solCheck();
+};
+
+})();
+</script>
+
 <!-- ── FAQ ───────────────────────────────────────────────── -->
 <section class="faq">
   <div class="wrap">
