@@ -295,3 +295,13 @@
   }
 
 })();
+
+// ── Cookie notice ─────────────────────────────────────────
+// Loads cookie-banner.js on every page except legal.html
+(function() {
+  if (window.location.pathname.indexOf('legal') !== -1) return;
+  var s = document.createElement('script');
+  s.src = '/cookie-banner.js';
+  s.defer = true;
+  document.head.appendChild(s);
+})();
