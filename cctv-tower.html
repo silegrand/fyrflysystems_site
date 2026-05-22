@@ -658,6 +658,407 @@
 
 
 
+
+<!-- ── ROI CALCULATOR ───────────────────────────────────────── -->
+<section class="roi-sec" id="roi-calculator">
+  <div class="roi-bg"></div>
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="sec-lbl" style="justify-content:center;margin-bottom:0.75rem;">Cost Comparison Tool</div>
+      <h2 style="font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-0.025em;margin-bottom:0.75rem;">Solar CCTV Tower vs Manned Guarding</h2>
+      <p style="font-size:0.97rem;color:rgba(255,255,255,0.45);max-width:56ch;margin:0 auto;line-height:1.72;">Configure your site and see the cost difference instantly. At every site size and deployment length, the Solar CCTV Tower costs less than equivalent guarding — from week one.</p>
+    </div>
+
+    <div class="roi-layout">
+
+      <!-- ── INPUTS ─────────────────────────────────────────── -->
+      <div class="roi-inputs">
+
+        <!-- Site size -->
+        <div class="roi-field">
+          <div class="roi-field-hdr">
+            <span class="roi-field-label">Site Size</span>
+            <span class="roi-field-val"><span id="roiHaVal">2</span> hectares &mdash; <span id="roiTowersVal">1</span> tower<span id="roiTowersS"></span> needed</span>
+          </div>
+          <input type="range" class="roi-range" id="roiHa" min="0" max="7" step="1" value="1">
+          <div class="roi-range-labels">
+            <span>1 ha</span><span>2 ha</span><span>4 ha</span><span>6 ha</span><span>8 ha</span><span>12 ha</span><span>16 ha</span><span>20+ ha</span>
+          </div>
+          <div class="roi-site-pills" id="roiSitePills">
+            <div class="roi-site-pill active" data-ha="1"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="8" width="16" height="12" rx="1"/><rect x="12" y="14" width="4" height="6"/><line x1="4" y1="20" x2="28" y2="20"/></svg><span>Small</span><span class="roi-site-ha">1 ha</span></div>
+            <div class="roi-site-pill" data-ha="2"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="12" height="12" rx="1"/><rect x="18" y="10" width="10" height="10" rx="1"/><line x1="2" y1="20" x2="30" y2="20"/></svg><span>Medium</span><span class="roi-site-ha">2 ha</span></div>
+            <div class="roi-site-pill" data-ha="4"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="12" height="14" rx="1"/><rect x="16" y="8" width="10" height="12" rx="1"/><rect x="22" y="4" width="8" height="16" rx="1"/><line x1="1" y1="20" x2="31" y2="20"/></svg><span>Large</span><span class="roi-site-ha">4 ha</span></div>
+            <div class="roi-site-pill" data-ha="6"><svg viewBox="0 0 36 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="10" height="13" rx="1"/><rect x="13" y="5" width="10" height="15" rx="1"/><rect x="25" y="8" width="10" height="12" rx="1"/><line x1="0" y1="20" x2="36" y2="20"/></svg><span>XL Site</span><span class="roi-site-ha">6 ha</span></div>
+            <div class="roi-site-pill" data-ha="8"><svg viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="1" y="8" width="8" height="12" rx="1"/><rect x="11" y="5" width="8" height="15" rx="1"/><rect x="21" y="7" width="9" height="13" rx="1"/><rect x="32" y="9" width="7" height="11" rx="1"/><line x1="0" y1="20" x2="40" y2="20"/></svg><span>Major</span><span class="roi-site-ha">8 ha</span></div>
+            <div class="roi-site-pill" data-ha="12"><svg viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="1" y="9" width="7" height="11" rx="1"/><rect x="10" y="6" width="7" height="14" rx="1"/><rect x="19" y="8" width="7" height="12" rx="1"/><rect x="28" y="5" width="7" height="15" rx="1"/><rect x="37" y="8" width="6" height="12" rx="1"/><line x1="0" y1="20" x2="44" y2="20"/></svg><span>Infrastructure</span><span class="roi-site-ha">12 ha</span></div>
+            <div class="roi-site-pill" data-ha="16"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="1" y="10" width="6" height="10" rx="1"/><rect x="9" y="7" width="6" height="13" rx="1"/><rect x="17" y="9" width="6" height="11" rx="1"/><rect x="25" y="6" width="6" height="14" rx="1"/><rect x="33" y="8" width="6" height="12" rx="1"/><rect x="41" y="9" width="6" height="11" rx="1"/><line x1="0" y1="20" x2="48" y2="20"/></svg><span>Estate</span><span class="roi-site-ha">16 ha</span></div>
+            <div class="roi-site-pill" data-ha="20"><svg viewBox="0 0 52 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="1" y="11" width="5" height="9" rx="1"/><rect x="8" y="8" width="5" height="12" rx="1"/><rect x="15" y="10" width="5" height="10" rx="1"/><rect x="22" y="7" width="5" height="13" rx="1"/><rect x="29" y="9" width="5" height="11" rx="1"/><rect x="36" y="8" width="5" height="12" rx="1"/><rect x="43" y="10" width="5" height="10" rx="1"/><line x1="0" y1="20" x2="52" y2="20"/></svg><span>Major Scheme</span><span class="roi-site-ha">20+ ha</span></div>
+          </div>
+        </div>
+
+        <!-- Duration -->
+        <div class="roi-field">
+          <div class="roi-field-hdr">
+            <span class="roi-field-label">Deployment Duration</span>
+            <span class="roi-field-val"><span id="roiWeeksVal">12</span> weeks</span>
+          </div>
+          <input type="range" class="roi-range" id="roiWeeks" min="1" max="104" step="1" value="12">
+          <div class="roi-range-labels">
+            <span>1 wk</span><span>3 mo</span><span>6 mo</span><span>1 yr</span><span>2 yr</span>
+          </div>
+        </div>
+
+        <!-- Coverage hours -->
+        <div class="roi-field">
+          <div class="roi-field-hdr">
+            <span class="roi-field-label">Guard Coverage Hours per Day</span>
+            <span class="roi-field-val"><span id="roiHrsVal">12</span> hrs/day</span>
+          </div>
+          <div class="roi-pills" id="roiHrsPills">
+            <button class="roi-pill" data-val="8">8 hrs<span>Days</span></button>
+            <button class="roi-pill active" data-val="12">12 hrs<span>Nights</span></button>
+            <button class="roi-pill" data-val="16">16 hrs<span>Day+Night</span></button>
+            <button class="roi-pill" data-val="24">24 hrs<span>Round Clock</span></button>
+          </div>
+        </div>
+
+        <!-- Coverage days -->
+        <div class="roi-field">
+          <div class="roi-field-hdr">
+            <span class="roi-field-label">Guard Coverage Days per Week</span>
+            <span class="roi-field-val"><span id="roiDaysVal">7</span> days/week</span>
+          </div>
+          <div class="roi-pills" id="roiDaysPills">
+            <button class="roi-pill" data-val="5">5 days<span>Weekdays</span></button>
+            <button class="roi-pill" data-val="6">6 days<span>Mon–Sat</span></button>
+            <button class="roi-pill active" data-val="7">7 days<span>Every day</span></button>
+          </div>
+        </div>
+
+        <!-- Guard rate note -->
+        <div class="roi-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Manned guarding at £15/hr (SIA-licensed, standard rate). Solar CCTV Tower at £300/week per unit. Site coverage modelled at 1 tower equivalent per 2 hectares.
+        </div>
+      </div>
+
+      <!-- ── RESULTS ─────────────────────────────────────────── -->
+      <div class="roi-results">
+
+        <!-- Headline saving -->
+        <div class="roi-saving-card" id="roiSavingCard">
+          <div class="roi-saving-label">Total saving over deployment</div>
+          <div class="roi-saving-amount" id="roiTotalSaving">£0</div>
+          <div class="roi-saving-sub" id="roiSavingSub">Loading&hellip;</div>
+        </div>
+
+        <!-- Weekly breakdown -->
+        <div class="roi-weekly-row">
+          <div class="roi-weekly-card roi-tower">
+            <div class="roi-weekly-label">Solar CCTV Tower</div>
+            <div class="roi-weekly-amount" id="roiTowerWeekly">£0</div>
+            <div class="roi-weekly-sub" id="roiTowerSub">per week</div>
+          </div>
+          <div class="roi-weekly-vs">vs</div>
+          <div class="roi-weekly-card roi-guard">
+            <div class="roi-weekly-label">Manned Guarding</div>
+            <div class="roi-weekly-amount" id="roiGuardWeekly">£0</div>
+            <div class="roi-weekly-sub" id="roiGuardSub">per week</div>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="roi-chart-wrap">
+          <div class="roi-chart-title">Cumulative cost over deployment</div>
+          <div id="roiChart"></div>
+          <div class="roi-chart-legend">
+            <span class="roi-leg-tower"><span></span>Solar CCTV Tower</span>
+            <span class="roi-leg-guard"><span></span>Manned Guarding</span>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="roi-stats-row" id="roiStatsRow"></div>
+
+        <!-- Disclaimer -->
+        <p class="roi-disclaimer">Manned guarding comparison assumes equivalent surveillance coverage area. Physical intervention capability requires separate provision. Guard hours assume single operative per coverage position per shift. Rates and requirements vary by sector and risk assessment.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── ROI CALCULATOR ───────────────────────────────────────── */
+.roi-sec{background:#080B12;padding:6rem 0;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);}
+.roi-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(16,185,129,0.05) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(200,16,46,0.04) 0%,transparent 50%);}
+.roi-sec .wrap{position:relative;z-index:1;}
+.roi-sec .section-head{margin-bottom:3.5rem;}
+
+/* Layout */
+.roi-layout{display:grid;grid-template-columns:420px 1fr;gap:2.5rem;align-items:start;}
+
+/* Fields */
+.roi-inputs{display:flex;flex-direction:column;gap:2rem;}
+.roi-field{}
+.roi-field-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.85rem;}
+.roi-field-label{font-family:var(--fh);font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.02em;}
+.roi-field-val{font-size:0.78rem;color:var(--a);font-weight:600;}
+
+/* Range slider */
+.roi-range{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,0.1);outline:none;margin-bottom:0.5rem;}
+.roi-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--grad);cursor:pointer;border:2px solid #080B12;box-shadow:0 0 0 2px rgba(232,93,4,0.3);}
+.roi-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);cursor:pointer;border:2px solid #080B12;}
+.roi-range-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:rgba(255,255,255,0.2);}
+
+/* Site pills (visual) */
+.roi-site-pills{display:grid;grid-template-columns:repeat(4,1fr);gap:0.45rem;margin-top:0.75rem;}
+.roi-site-pill{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.07);border-radius:10px;padding:0.6rem 0.5rem 0.5rem;text-align:center;cursor:pointer;transition:all 0.18s;display:flex;flex-direction:column;align-items:center;gap:0.3rem;}
+.roi-site-pill:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);}
+.roi-site-pill.active{background:rgba(232,93,4,0.08);border-color:rgba(232,93,4,0.45);}
+.roi-site-pill svg{width:36px;height:24px;stroke:rgba(255,255,255,0.3);}
+.roi-site-pill.active svg{stroke:var(--a);}
+.roi-site-pill span:first-of-type{font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.5);line-height:1;}
+.roi-site-pill.active span:first-of-type{color:#fff;}
+.roi-site-ha{font-size:0.62rem;color:rgba(255,255,255,0.25);}
+.roi-site-pill.active .roi-site-ha{color:var(--o);}
+
+/* Pill toggles (hours / days) */
+.roi-pills{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.roi-pill{flex:1;min-width:80px;padding:0.65rem 0.5rem;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;color:rgba(255,255,255,0.5);font-size:0.8rem;font-weight:600;font-family:var(--fh);cursor:pointer;transition:all 0.18s;display:flex;flex-direction:column;align-items:center;gap:0.15rem;line-height:1.2;}
+.roi-pill span{font-size:0.65rem;font-weight:400;color:rgba(255,255,255,0.25);}
+.roi-pill:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);}
+.roi-pill.active{background:rgba(232,93,4,0.1);border-color:rgba(232,93,4,0.45);color:#fff;}
+.roi-pill.active span{color:rgba(255,255,255,0.5);}
+
+/* Note */
+.roi-note{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:0.9rem 1rem;font-size:0.77rem;color:rgba(255,255,255,0.35);line-height:1.6;display:flex;gap:0.65rem;align-items:flex-start;}
+.roi-note svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;stroke:rgba(255,255,255,0.25);}
+
+/* Results */
+.roi-results{display:flex;flex-direction:column;gap:1.25rem;}
+
+/* Saving card */
+.roi-saving-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.75rem;text-align:center;position:relative;overflow:hidden;}
+.roi-saving-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(16,185,129,0.08) 0%,transparent 65%);pointer-events:none;}
+.roi-saving-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.6rem;}
+.roi-saving-amount{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;background:linear-gradient(135deg,#10B981,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;}
+.roi-saving-sub{font-size:0.83rem;color:rgba(255,255,255,0.4);}
+
+/* Weekly breakdown */
+.roi-weekly-row{display:grid;grid-template-columns:1fr auto 1fr;gap:0.75rem;align-items:center;}
+.roi-weekly-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.1rem;text-align:center;}
+.roi-weekly-card.roi-tower{border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.04);}
+.roi-weekly-card.roi-guard{border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04);}
+.roi-weekly-label{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.35rem;}
+.roi-weekly-amount{font-family:var(--fh);font-size:1.5rem;font-weight:900;line-height:1;margin-bottom:0.2rem;}
+.roi-weekly-card.roi-tower .roi-weekly-amount{color:#10B981;}
+.roi-weekly-card.roi-guard .roi-weekly-amount{color:#EF4444;}
+.roi-weekly-sub{font-size:0.72rem;color:rgba(255,255,255,0.3);}
+.roi-weekly-vs{font-family:var(--fh);font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.2);text-align:center;}
+
+/* Chart */
+.roi-chart-wrap{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.4rem;}
+.roi-chart-title{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+.roi-chart-legend{display:flex;gap:1.5rem;margin-top:0.85rem;font-size:0.75rem;color:rgba(255,255,255,0.4);}
+.roi-leg-tower,.roi-leg-guard{display:flex;align-items:center;gap:0.45rem;}
+.roi-leg-tower span{display:inline-block;width:20px;height:3px;background:linear-gradient(90deg,#10B981,#34D399);border-radius:2px;}
+.roi-leg-guard span{display:inline-block;width:20px;height:3px;background:#EF4444;border-radius:2px;}
+
+/* Stats row */
+.roi-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;}
+.roi-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1rem;text-align:center;}
+.roi-stat-num{font-family:var(--fh);font-size:1.3rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.3rem;}
+.roi-stat-label{font-size:0.7rem;color:rgba(255,255,255,0.35);line-height:1.45;}
+
+/* Disclaimer */
+.roi-disclaimer{font-size:0.73rem;color:rgba(255,255,255,0.2);line-height:1.6;border-top:1px solid rgba(255,255,255,0.05);padding-top:1rem;}
+
+/* Responsive */
+@media(max-width:1024px){.roi-layout{grid-template-columns:1fr;}}
+@media(max-width:600px){.roi-site-pills{grid-template-columns:repeat(4,1fr);gap:0.35rem;}.roi-weekly-row{grid-template-columns:1fr auto 1fr;}.roi-stats-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:420px){.roi-site-pills{grid-template-columns:repeat(2,1fr);}.roi-stats-row{grid-template-columns:1fr;}}
+</style>
+
+<script>
+(function(){
+'use strict';
+
+// ── State
+var roi={siteHa:2,weeks:12,hoursPerDay:12,daysPerWeek:7};
+
+var HA_VALUES=[1,2,4,6,8,12,16,20];
+var TOWER_RATE=300;
+var GUARD_RATE=15;
+
+function towersNeeded(ha){return Math.max(1,Math.ceil(ha/2));}
+function fmt(n){return '\xA3'+Math.round(n).toLocaleString('en-GB');}
+function fmtK(n){return n>=1000?'\xA3'+(n/1000).toFixed(1).replace(/\.0$/,'')+'k':fmt(n);}
+
+// ── Build SVG cumulative chart
+function buildChart(weeks,towerWeekly,guardWeekly){
+  var VW=560,VH=180,PL=52,PR=16,PT=12,PB=30;
+  var CW=VW-PL-PR,CH=VH-PT-PB;
+  var maxY=guardWeekly*weeks;
+  var pts=Math.min(weeks,52); // cap x-axis points at 52 for readability
+  var step=Math.max(1,Math.floor(weeks/pts));
+
+  function xp(w){return PL+(w/weeks)*CW;}
+  function yp(v){return PT+CH-(v/maxY)*CH;}
+
+  var tPath='M '+xp(0)+' '+yp(0);
+  var gPath='M '+xp(0)+' '+yp(0);
+  var tArea='M '+xp(0)+' '+yp(0);
+  var gArea='M '+xp(0)+' '+yp(0);
+
+  for(var w=1;w<=weeks;w++){
+    var tx=xp(w),ty=yp(towerWeekly*w);
+    var gx=xp(w),gy=yp(guardWeekly*w);
+    tPath+=' L '+tx+' '+ty;
+    gPath+=' L '+gx+' '+gy;
+    tArea+=' L '+tx+' '+ty;
+    gArea+=' L '+gx+' '+gy;
+  }
+  tArea+=' L '+xp(weeks)+' '+(PT+CH)+' L '+xp(0)+' '+(PT+CH)+' Z';
+  gArea+=' L '+xp(weeks)+' '+(PT+CH)+' L '+xp(0)+' '+(PT+CH)+' Z';
+
+  // Y axis labels
+  var ySteps=4;
+  var yLabels='';
+  for(var i=0;i<=ySteps;i++){
+    var val=(maxY/ySteps)*i;
+    var y=yp(val);
+    yLabels+='<line x1="'+PL+'" y1="'+y.toFixed(1)+'" x2="'+(VW-PR)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
+    yLabels+='<text x="'+(PL-5)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">'+fmtK(val)+'</text>';
+  }
+
+  // X axis labels
+  var xTicks=[0,Math.round(weeks*0.25),Math.round(weeks*0.5),Math.round(weeks*0.75),weeks];
+  var xLabels='';
+  xTicks.forEach(function(w){
+    var x=xp(w);
+    var label=w===0?'Start':w+' wk'+(w!==1?'s':'');
+    xLabels+='<text x="'+x.toFixed(1)+'" y="'+(VH-4)+'" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">'+label+'</text>';
+  });
+
+  // Saving area (between the two lines)
+  var savingPath='M '+xp(0)+' '+yp(0);
+  for(var w2=1;w2<=weeks;w2++) savingPath+=' L '+xp(w2)+' '+yp(towerWeekly*w2);
+  for(var w3=weeks;w3>=0;w3--) savingPath+=' L '+xp(w3)+' '+yp(guardWeekly*w3);
+  savingPath+=' Z';
+
+  return '<svg viewBox="0 0 '+VW+' '+VH+'" xmlns="http://www.w3.org/2000/svg" style="width:100%">'
+    +'<defs><linearGradient id="roiGradT" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10B981" stop-opacity="0.15"/><stop offset="100%" stop-color="#10B981" stop-opacity="0"/></linearGradient>'
+    +'<linearGradient id="roiGradG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.12"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0"/></linearGradient>'
+    +'<linearGradient id="roiGradS" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10B981" stop-opacity="0.08"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.02"/></linearGradient></defs>'
+    +yLabels+xLabels
+    // Saving area
+    +'<path d="'+savingPath+'" fill="url(#roiGradS)"/>'
+    // Area fills
+    +'<path d="'+tArea+'" fill="url(#roiGradT)"/>'
+    +'<path d="'+gArea+'" fill="url(#roiGradG)"/>'
+    // Lines
+    +'<path d="'+gPath+'" stroke="#EF4444" stroke-width="2" fill="none" stroke-linecap="round"/>'
+    +'<path d="'+tPath+'" stroke="#10B981" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+    // End dots
+    +'<circle cx="'+xp(weeks).toFixed(1)+'" cy="'+yp(towerWeekly*weeks).toFixed(1)+'" r="4" fill="#10B981"/>'
+    +'<circle cx="'+xp(weeks).toFixed(1)+'" cy="'+yp(guardWeekly*weeks).toFixed(1)+'" r="4" fill="#EF4444"/>'
+    +'</svg>';
+}
+
+// ── Main update function
+function update(){
+  var ha=roi.siteHa;
+  var towers=towersNeeded(ha);
+  var guardHrsPerWeek=towers*roi.hoursPerDay*roi.daysPerWeek;
+
+  var towerWeekly=towers*TOWER_RATE;
+  var guardWeekly=guardHrsPerWeek*GUARD_RATE;
+  var totalSaving=(guardWeekly-towerWeekly)*roi.weeks;
+  var annualSaving=(guardWeekly-towerWeekly)*52;
+
+  // Labels
+  document.getElementById('roiHaVal').textContent=ha>=20?'20+':ha;
+  document.getElementById('roiTowersVal').textContent=towers;
+  document.getElementById('roiTowersS').textContent=towers!==1?'s':'';
+  document.getElementById('roiWeeksVal').textContent=roi.weeks;
+  document.getElementById('roiHrsVal').textContent=roi.hoursPerDay;
+  document.getElementById('roiDaysVal').textContent=roi.daysPerWeek;
+
+  // Saving card
+  document.getElementById('roiTotalSaving').textContent=fmt(totalSaving);
+  document.getElementById('roiSavingSub').textContent=
+    fmt(guardWeekly-towerWeekly)+' per week saving \u2014 '+
+    fmt(towerWeekly)+' tower vs '+fmt(guardWeekly)+' guarding';
+
+  // Weekly cards
+  document.getElementById('roiTowerWeekly').textContent=fmt(towerWeekly);
+  document.getElementById('roiTowerSub').textContent=towers+' tower'+(towers!==1?'s':'')+' \u00D7 \xA3300/wk';
+  document.getElementById('roiGuardWeekly').textContent=fmt(guardWeekly);
+  document.getElementById('roiGuardSub').textContent=guardHrsPerWeek+' hrs \u00D7 \xA315/hr';
+
+  // Chart
+  document.getElementById('roiChart').innerHTML=buildChart(roi.weeks,towerWeekly,guardWeekly);
+
+  // Stats row
+  var guardTotal=guardWeekly*roi.weeks;
+  var towerTotal=towerWeekly*roi.weeks;
+  var savingPct=Math.round((guardTotal-towerTotal)/guardTotal*100);
+  document.getElementById('roiStatsRow').innerHTML=
+    '<div class="roi-stat"><div class="roi-stat-num">'+savingPct+'%</div><div class="roi-stat-label">Cost reduction vs manned guarding</div></div>'+
+    '<div class="roi-stat"><div class="roi-stat-num">'+fmt(annualSaving)+'</div><div class="roi-stat-label">Equivalent annual saving</div></div>'+
+    '<div class="roi-stat"><div class="roi-stat-num">'+towers+'</div><div class="roi-stat-label">Tower'+(towers!==1?'s':'')+' covering '+ha+(ha>=20?'+':'')+' ha</div></div>';
+}
+
+// ── Site pill interaction
+document.querySelectorAll('.roi-site-pill').forEach(function(pill){
+  pill.addEventListener('click',function(){
+    document.querySelectorAll('.roi-site-pill').forEach(function(p){p.classList.remove('active');});
+    pill.classList.add('active');
+    roi.siteHa=parseInt(pill.dataset.ha);
+    // Sync hidden range (cosmetic only — range is now decorative)
+    var idx=HA_VALUES.indexOf(roi.siteHa);
+    document.getElementById('roiHa').value=idx>=0?idx:HA_VALUES.length-1;
+    update();
+  });
+});
+
+// ── Duration range
+document.getElementById('roiWeeks').addEventListener('input',function(){
+  roi.weeks=parseInt(this.value);
+  update();
+});
+
+// ── Hours pills
+document.querySelectorAll('#roiHrsPills .roi-pill').forEach(function(pill){
+  pill.addEventListener('click',function(){
+    document.querySelectorAll('#roiHrsPills .roi-pill').forEach(function(p){p.classList.remove('active');});
+    pill.classList.add('active');
+    roi.hoursPerDay=parseInt(pill.dataset.val);
+    update();
+  });
+});
+
+// ── Days pills
+document.querySelectorAll('#roiDaysPills .roi-pill').forEach(function(pill){
+  pill.addEventListener('click',function(){
+    document.querySelectorAll('#roiDaysPills .roi-pill').forEach(function(p){p.classList.remove('active');});
+    pill.classList.add('active');
+    roi.daysPerWeek=parseInt(pill.dataset.val);
+    update();
+  });
+});
+
+// ── Hide the range slider (site pills do the work) — keep for a11y
+document.getElementById('roiHa').style.display='none';
+
+// ── Init
+update();
+
+})();
+</script>
+
 <!-- ── SYSTEM CONFIGURATOR ─────────────────────────────────── -->
 <section class="cfg-sec" id="configure">
   <div class="cfg-sec-bg"></div>
