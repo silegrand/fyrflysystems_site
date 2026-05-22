@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Invisible Shield: 2026 Guide to Integrated Safeguarding & Security Infrastructure for UK Schools | Fyrfly Systems</title>
+  <meta name="description" content="A comprehensive guide for Headteachers, MAT Estate Directors, School Business Managers and Designated Safeguarding Leads on integrated CCTV, access control and wireless networks for school safeguarding in 2026.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/invisible-shield.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-4XLH0L6H2Z");</script>
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#fff;
+      --fh:"Roboto",sans-serif;--fb:"DM Sans",sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--light);line-height:1.7;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── SCREEN NAV ─────────────────────────────────────── */
+    .g-nav{background:var(--dark);padding:0.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+    .g-nav-brand{display:flex;align-items:center;gap:0.75rem;font-family:'Roboto',sans-serif;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.7);}
+    .g-nav-pill{background:var(--grad);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:100px;}
+    .g-nav-actions{display:flex;align-items:center;gap:0.75rem;}
+    .g-nav-back{font-size:0.8rem;color:rgba(255,255,255,0.4);transition:color 0.2s;}
+    .g-nav-back:hover{color:rgba(255,255,255,0.8);}
+    .g-nav-print{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1.1rem;background:var(--grad);color:#fff;font-size:0.8rem;font-weight:600;border-radius:6px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+    .g-nav-print:hover{opacity:0.88;}
+    .g-nav-print svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    /* ── GUIDE CONTAINER ────────────────────────────────── */
+    .guide{max-width:860px;margin:0 auto;background:#fff;box-shadow:0 4px 40px rgba(0,0,0,0.08);}
+
+    /* ── COVER ──────────────────────────────────────────── */
+    .g-cover{background:var(--char);min-height:520px;padding:4rem 4rem 3rem;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
+    .g-cover-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(232,93,4,0.18) 0%,transparent 55%),radial-gradient(ellipse at 10% 85%,rgba(200,16,46,0.12) 0%,transparent 50%);pointer-events:none;}
+    .g-cover-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;}
+    .g-cover-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;}
+    .g-cover-logo{font-family:'Roboto',sans-serif;font-size:1.1rem;font-weight:900;color:#fff;letter-spacing:-0.02em;}
+    .g-cover-logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .g-cover-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:100px;padding:0.35rem 0.9rem;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+    .g-cover-body{position:relative;z-index:2;}
+    .g-cover-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--a);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+    .g-cover-eyebrow::before{content:"";display:inline-block;width:20px;height:1.5px;background:var(--a);}
+    .g-cover h1{font-family:'Roboto',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-0.03em;margin-bottom:1.25rem;}
+    .g-cover-sub{font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.7;max-width:52ch;margin-bottom:2rem;}
+    .g-cover-tags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .g-cover-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;color:rgba(255,255,255,0.5);}
+    .g-cover-foot{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;font-size:0.77rem;color:rgba(255,255,255,0.25);}
+
+    /* ── TABLE OF CONTENTS ──────────────────────────────── */
+    .g-toc{padding:3rem 4rem;background:#F9F8F6;border-bottom:2px solid var(--bdr);}
+    .g-toc-title{font-family:'Roboto',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-bottom:1.5rem;}
+    .g-toc-list{list-style:none;display:flex;flex-direction:column;gap:0.1rem;}
+    .g-toc-item{display:flex;align-items:baseline;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--bdr);}
+    .g-toc-item:last-child{border-bottom:none;}
+    .g-toc-num{font-family:'Roboto',sans-serif;font-size:0.68rem;font-weight:700;color:var(--o);width:28px;flex-shrink:0;}
+    .g-toc-name{font-size:0.9rem;font-weight:600;color:var(--dark);flex:1;}
+    .g-toc-name a{transition:color 0.2s;}
+    .g-toc-name a:hover{color:var(--o);}
+    .g-toc-sub{font-size:0.75rem;color:var(--mute);margin-top:0.15rem;}
+
+    /* ── SECTION ────────────────────────────────────────── */
+    .g-sec{padding:3.5rem 4rem;border-bottom:1px solid var(--bdr);}
+    .g-sec:last-child{border-bottom:none;}
+    .g-sec-hdr{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;}
+    .g-sec-num{width:44px;height:44px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Roboto',sans-serif;font-size:1rem;font-weight:900;color:#fff;flex-shrink:0;margin-top:2px;}
+    .g-sec-hdr-text{}
+    .g-sec-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.35rem;}
+    .g-sec h2{font-family:'Roboto',sans-serif;font-size:1.65rem;font-weight:800;color:var(--dark);letter-spacing:-0.02em;line-height:1.2;}
+
+    /* Typography */
+    .g-sec h3{font-family:'Roboto',sans-serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-top:2rem;margin-bottom:0.85rem;}
+    .g-sec h4{font-family:'Roboto',sans-serif;font-size:0.88rem;font-weight:700;color:var(--dark);margin-top:1.5rem;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;}
+    .g-sec p{font-size:0.95rem;color:#2A2A35;line-height:1.78;margin-bottom:1.15rem;}
+    .g-sec p:last-child{margin-bottom:0;}
+
+    /* Pull quote */
+    .g-pull{background:var(--light);border-left:4px solid;border-image:var(--grad) 1;padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 8px 8px 0;}
+    .g-pull p{font-size:1.05rem;font-weight:500;color:var(--dark);font-style:italic;line-height:1.65;margin:0;}
+    .g-pull cite{display:block;margin-top:0.6rem;font-size:0.75rem;font-weight:600;color:var(--o);font-style:normal;letter-spacing:0.04em;}
+
+    /* Bullet list */
+    .g-list{list-style:none;margin:1rem 0 1.25rem;display:flex;flex-direction:column;gap:0.6rem;}
+    .g-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.93rem;color:#2A2A35;line-height:1.65;}
+    .g-list li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:0.55rem;}
+
+    /* Pillar cards */
+    .g-pillar{background:var(--light);border:1px solid var(--bdr);border-radius:14px;padding:1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+    .g-pillar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad);}
+    .g-pillar-hdr{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;}
+    .g-pillar-icon{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,rgba(200,16,46,0.1),rgba(232,93,4,0.1));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .g-pillar-icon svg{width:18px;height:18px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;}
+    .g-pillar-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.1rem;}
+    .g-pillar-title{font-family:'Roboto',sans-serif;font-size:1rem;font-weight:700;color:var(--dark);}
+    .g-pillar p{font-size:0.88rem;color:var(--mid);line-height:1.7;margin-bottom:0.75rem;}
+    .g-pillar p:last-child{margin-bottom:0;}
+
+    /* Stat callout */
+    .g-stat{background:var(--dark);border-radius:12px;padding:1.5rem;margin:2rem 0;display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:center;}
+    .g-stat-num{font-family:'Roboto',sans-serif;font-size:2.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .g-stat-text{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.6;}
+    .g-stat-text strong{color:#fff;display:block;font-size:0.93rem;margin-bottom:0.2rem;}
+
+    /* Checklist */
+    .g-check-group{margin-bottom:2rem;}
+    .g-check-group-title{font-family:'Roboto',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.85rem;padding-bottom:0.5rem;border-bottom:1px solid var(--bdr);}
+    .g-check-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+    .g-check-item{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:var(--dark);line-height:1.6;padding:0.55rem 0.85rem;background:var(--light);border-radius:8px;border:1px solid var(--bdr);}
+    .g-check-box{width:18px;height:18px;border-radius:4px;border:2px solid var(--bdr);flex-shrink:0;margin-top:0.1rem;display:flex;align-items:center;justify-content:center;}
+
+    /* Warning box */
+    .g-warn{background:rgba(200,16,46,0.05);border:1px solid rgba(200,16,46,0.2);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;gap:0.85rem;align-items:flex-start;}
+    .g-warn-icon{font-size:1.1rem;flex-shrink:0;}
+    .g-warn p{font-size:0.88rem;color:var(--dark);line-height:1.65;margin:0;}
+    .g-warn strong{color:var(--c);}
+
+    /* Info box */
+    .g-info{background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.25);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+    .g-info-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--a);margin-bottom:0.5rem;}
+    .g-info p{font-size:0.87rem;color:var(--dark);line-height:1.65;margin:0;}
+
+    /* CTA section */
+    .g-cta{background:var(--char);padding:3.5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+    .g-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(200,16,46,0.1) 0%,transparent 65%);pointer-events:none;}
+    .g-cta-c{position:relative;z-index:2;}
+    .g-cta-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--a);margin-bottom:0.75rem;}
+    .g-cta h2{font-family:'Roboto',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.85rem;}
+    .g-cta p{font-size:0.92rem;color:rgba(255,255,255,0.5);max-width:52ch;margin:0 auto 1.75rem;line-height:1.72;}
+    .g-cta-btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.9rem 2.25rem;background:var(--grad);color:#fff;font-size:0.92rem;font-weight:600;border-radius:8px;transition:opacity 0.2s,transform 0.2s;}
+    .g-cta-btn:hover{opacity:0.88;transform:translateY(-2px);}
+    .g-cta-detail{margin-top:1.75rem;font-size:0.8rem;color:rgba(255,255,255,0.25);}
+
+    /* Guide footer */
+    .g-footer{padding:1.25rem 4rem;background:#F9F8F6;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--mute);}
+    .g-footer-brand{font-weight:700;color:var(--dark);}
+
+    /* ── PRINT STYLES ───────────────────────────────────── */
+    @media print{
+      @page{margin:15mm 18mm;size:A4;}
+      .g-nav,.g-nav-print{display:none!important;}
+      body{background:#fff;}
+      .guide{max-width:100%;box-shadow:none;}
+      .g-cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;min-height:200mm;page-break-after:always;}
+      .g-sec{page-break-inside:avoid;border-bottom:1px solid #ddd;}
+      .g-sec-hdr{page-break-after:avoid;}
+      h2,h3,h4{page-break-after:avoid;}
+      .g-pillar{page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-stat{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-pull{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-cta{-webkit-print-color-adjust:exact;print-color-adjust:exact;page-break-before:always;}
+      .g-footer{display:flex!important;border-top:1px solid #ddd;}
+      .g-toc{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    }
+
+    @media(max-width:720px){
+      .g-cover,.g-sec,.g-toc,.g-cta,.g-footer{padding-left:1.75rem;padding-right:1.75rem;}
+      .g-cover{min-height:auto;padding-top:2.5rem;padding-bottom:2rem;}
+      .g-stat{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- SCREEN NAV -->
+<nav class="g-nav">
+  <div class="g-nav-brand">
+    FYRFLY SYSTEMS &nbsp;<span class="g-nav-pill">Education Resource</span>
+  </div>
+  <div class="g-nav-actions">
+    <a href="education.html" class="g-nav-back">&larr; Back to Education</a>
+    <button class="g-nav-print" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+  </div>
+</nav>
+
+<div class="guide">
+
+<!-- ── COVER ──────────────────────────────────────────── -->
+<div class="g-cover">
+  <div class="g-cover-bg"></div>
+  <div class="g-cover-dots"></div>
+  <div class="g-cover-top">
+    <div class="g-cover-logo">FYRFLY<span>SYSTEMS</span></div>
+    <div class="g-cover-badge">2026 Edition</div>
+  </div>
+  <div class="g-cover-body">
+    <div class="g-cover-eyebrow">Safeguarding &amp; Security Infrastructure</div>
+    <h1>The Invisible Shield</h1>
+    <p class="g-cover-sub">The 2026 Guide to Integrated Safeguarding &amp; Security Infrastructure for UK Schools — for Headteachers, MAT Estate Directors, School Business Managers and Designated Safeguarding Leads.</p>
+    <div class="g-cover-tags">
+      <span class="g-cover-tag">KCSiE 2025</span>
+      <span class="g-cover-tag">Martyn&rsquo;s Law</span>
+      <span class="g-cover-tag">UK GDPR</span>
+      <span class="g-cover-tag">Ofsted Readiness</span>
+      <span class="g-cover-tag">MAT Estate Management</span>
+    </div>
+  </div>
+  <div class="g-cover-foot">
+    Fyrfly Systems Ltd &nbsp;&bull;&nbsp; www.fyrflysystems.com/education.html &nbsp;&bull;&nbsp; hello@fyrflysystems.com &nbsp;&bull;&nbsp; NSI NACOSS Gold &bull; SSAIB Approved
+  </div>
+</div>
+
+<!-- ── TABLE OF CONTENTS ──────────────────────────────── -->
+<div class="g-toc">
+  <div class="g-toc-title">Contents</div>
+  <ul class="g-toc-list">
+    <li class="g-toc-item"><span class="g-toc-num">01</span><div><div class="g-toc-name"><a href="#section1">The Evolution of School Safeguarding</a></div><div class="g-toc-sub">From reactive, siloed security to a proactive, unified duty of care</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">02</span><div><div class="g-toc-name"><a href="#section2">The Three Pillars of a Safeguarding Ecosystem</a></div><div class="g-toc-sub">Proactive CCTV &bull; Intelligent Access Control &bull; Secure Wireless Networks</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">03</span><div><div class="g-toc-name"><a href="#section3">Emergency Preparedness &amp; Martyn&rsquo;s Law</a></div><div class="g-toc-sub">How an integrated system addresses the new statutory requirements</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">04</span><div><div class="g-toc-name"><a href="#section4">Compliance &amp; Privacy: The DSL &amp; MAT Director&rsquo;s Checklist</a></div><div class="g-toc-sub">UK GDPR, ICO guidelines, data retention and Subject Access Requests</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">05</span><div><div class="g-toc-name"><a href="#section5">Next Steps: Your Campus Vulnerability Assessment</a></div><div class="g-toc-sub">Book a no-obligation infrastructure and safeguarding audit with Fyrfly Systems</div></div></li>
+  </ul>
+</div>
+
+<!-- ── SECTION 1 ───────────────────────────────────────── -->
+<div class="g-sec" id="section1">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">01</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Introduction</div>
+      <h2>The Evolution of School Safeguarding</h2>
+    </div>
+  </div>
+
+  <p>Not so long ago, a school&rsquo;s security provision consisted of a CCTV system installed by a local electrician, a push-button door interlock on the main entrance, and a paper visitor book on the reception desk. If something went wrong, you checked the tape. If a visitor behaved oddly, you wrote their name down. If a window was broken overnight, you called the police in the morning.</p>
+
+  <p>That era is over. It has to be. The statutory, operational, and reputational expectations placed on school leaders in 2026 demand something categorically different: not more cameras, not heavier doors, but a <em>unified safeguarding ecosystem</em> that sees, responds, and protects as a single coordinated system.</p>
+
+  <h3>From Reactive to Proactive: A Necessary Shift</h3>
+
+  <p>Reactive security is security that responds to incidents that have already happened. It is, by definition, too late. A DSL reviewing CCTV footage of a safeguarding incident is not preventing harm &mdash; they are gathering evidence of harm already done. A headteacher who discovers an unauthorised adult was on site for twenty minutes before anyone noticed has already failed in their duty of care.</p>
+
+  <p>Proactive safeguarding means the system is working continuously, flagging anomalies before they become incidents. An AI-enabled camera that alerts staff when an unidentified adult has been loitering near the perimeter fence for three minutes. A door system that refuses entry to a credentialed visitor who has been flagged on the barred list. A network that notifies your IT team the moment a security device goes offline, rather than discovering it failed three weeks ago during a routine check.</p>
+
+  <div class="g-pull">
+    <p>&ldquo;Schools should have appropriate safeguarding arrangements in place to keep children safe. Leaders and managers should create a culture in which safeguarding concerns are always taken seriously.&rdquo;</p>
+    <cite>Keeping Children Safe in Education (KCSiE), DfE</cite>
+  </div>
+
+  <h3>The Hidden Danger of Fragmented Systems</h3>
+
+  <p>Walk through the typical UK school estate and you will find the same pattern: a CCTV system installed under one capital budget, running on its own isolated network; an intercom or door entry system from a different supplier, on a different protocol; and a school Wi-Fi network that was designed primarily for learning and is perpetually overloaded, serving as an afterthought backbone for everything security-related.</p>
+
+  <p>These systems do not talk to each other. They were never designed to. And this fragmentation creates a specific, dangerous failure mode:</p>
+
+  <ul class="g-list">
+    <li>During an emergency lockdown, staff must operate three separate systems simultaneously &mdash; while also managing frightened children</li>
+    <li>A camera goes offline because the shared school Wi-Fi fails &mdash; and the outage is not noticed for days</li>
+    <li>The access control system cannot be locked remotely because it is not connected to any central management platform</li>
+    <li>Visitor logs exist in paper form and cannot be searched or audited efficiently for a Subject Access Request</li>
+    <li>CCTV footage cannot be easily retrieved because access rights are poorly defined and the system is managed by a member of staff who left eighteen months ago</li>
+  </ul>
+
+  <div class="g-warn">
+    <span class="g-warn-icon">&#9888;</span>
+    <p><strong>The fragmentation risk:</strong> In an emergency, a system that requires staff to operate multiple disconnected tools under extreme stress will fail at the worst possible moment. Unified infrastructure is not a luxury &mdash; it is a safeguarding imperative.</p>
+  </div>
+
+  <h3>The 2026 Landscape: Three Pressures No School Can Ignore</h3>
+
+  <p><strong>1. MAT Consolidation</strong><br>Multi-academy trusts are increasingly responsible for security and safeguarding infrastructure across multiple sites, often with inconsistent legacy provision at each school. The operational challenge &mdash; and the reputational risk &mdash; of managing non-standardised systems across a trust estate is considerable. Central visibility, consistent standards, and remote management capability are no longer desirable: they are essential.</p>
+
+  <p><strong>2. Shrinking Budgets, Increasing Accountability</strong><br>School budgets remain under sustained pressure. Capital investment in physical infrastructure must now be justified not merely on security grounds, but on demonstrable compliance value, reduced liability exposure, and operational efficiency. A unified system that integrates CCTV, access control and network management demonstrates responsible stewardship to governors and the DfE alike.</p>
+
+  <p><strong>3. Martyn&rsquo;s Law</strong><br>The Terrorism (Protection of Premises) Act 2025, commonly known as Martyn&rsquo;s Law, creates statutory requirements for venues &mdash; including schools &mdash; to have documented emergency preparedness plans and protective security measures in place. This is not a guidance document: it is legislation with compliance obligations and inspection powers. Schools are almost certainly in scope. The question is not whether to comply, but whether your current infrastructure makes compliance achievable. We address this directly in Section 3.</p>
+
+  <div class="g-stat">
+    <div class="g-stat-num">87%</div>
+    <div class="g-stat-text"><strong>of school security incidents occur outside standard teaching hours</strong><br>Evening, weekend and holiday periods represent the highest vulnerability window for most school sites &mdash; exactly when staff presence is minimal and fragmented systems are least likely to be monitored.</div>
+  </div>
+</div>
+
+<!-- ── SECTION 2 ───────────────────────────────────────── -->
+<div class="g-sec" id="section2">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">02</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Core Framework</div>
+      <h2>The Three Pillars of a Safeguarding Ecosystem</h2>
+    </div>
+  </div>
+
+  <p>An integrated safeguarding ecosystem is not a single product: it is three interconnected systems &mdash; each essential, each more powerful for being connected to the others. Think of them as the eyes, the gates, and the nervous system of your campus.</p>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg></div>
+      <div>
+        <div class="g-pillar-label">Pillar One</div>
+        <div class="g-pillar-title">Proactive CCTV &mdash; The Eyes of Your Campus</div>
+      </div>
+    </div>
+    <p>Modern school CCTV should not be a passive recording device. The shift from analogue recording to AI-enabled, network-connected cameras fundamentally changes what CCTV does: it moves from <em>capturing evidence of incidents</em> to <em>preventing incidents from escalating</em>.</p>
+    <p>AI analytics running at the camera edge &mdash; without requiring footage to be sent to an external server &mdash; can continuously analyse the scene for specific behavioural patterns and alert staff the moment something is detected. This is the intelligence layer that transforms a camera from a witness into a safeguarding tool.</p>
+    <ul class="g-list">
+      <li><strong>Loitering detection:</strong> An unidentified individual remaining in an out-of-bounds area &mdash; a stairwell, a service corridor, a remote corner of the grounds &mdash; for longer than a defined threshold triggers an immediate alert to the duty DSL. The system identifies the anomaly before any member of staff would ordinarily notice.</li>
+      <li><strong>Perimeter monitoring:</strong> AI distinguishes between a ball crossing a fence and a person crossing a fence. Perimeter breach alerts can escalate directly to staff devices and, if integrated with access control, automatically lock external gates.</li>
+      <li><strong>Blind spot coverage:</strong> KCSiE requires schools to actively consider where child-on-child abuse might occur. Unsupervised areas &mdash; toilets aside, where CCTV is rightly prohibited &mdash; including external spaces, corridors and social areas, can be continuously monitored without requiring additional staff supervision.</li>
+      <li><strong>Visitor tracking:</strong> Where linked to the access control system, cameras can confirm that a visitor&rsquo;s physical location matches their declared destination. A visitor credentialled to attend a meeting in the main building appearing in the Key Stage 1 corridor will trigger an alert.</li>
+    </ul>
+  </div>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <div class="g-pillar-label">Pillar Two</div>
+        <div class="g-pillar-title">Intelligent Access Control &mdash; The Gates That Think</div>
+      </div>
+    </div>
+    <p>A school must simultaneously be a welcoming community space and an impenetrable safeguarding environment. These two demands feel contradictory. A well-designed access control system resolves them by operating invisibly for authorised individuals and absolutely for anyone else.</p>
+    <p><strong>Staff access</strong> should be frictionless. Smart credentials &mdash; a card, fob, or mobile device &mdash; allow teachers and support staff to move freely through the building without creating bottlenecks at controlled points. Where appropriate, multi-factor authentication can be applied to sensitive areas such as the server room, pastoral office or pharmacy storage.</p>
+    <p><strong>Visitor management</strong> is where access control most directly supports KCSiE obligations. A digital visitor management system &mdash; integrated with the barred list and the school&rsquo;s own records &mdash; captures photo identification, records the purpose of each visit, generates a printed time-stamped badge, and creates a digital audit trail that satisfies both safeguarding and UK GDPR requirements simultaneously. The paper visitor book is not a safeguarding tool: it is a liability.</p>
+    <p><strong>Dynamic lockdown</strong> is where integration becomes life-critical. A single authenticated action &mdash; available from the headteacher&rsquo;s device, the reception console, or a discrete trigger point in key locations &mdash; can immediately lock every controlled access door across the site, alert the monitoring centre, and initiate the emergency communication protocol. This is possible only when access control, CCTV and network infrastructure operate as a unified system.</p>
+    <div class="g-info">
+      <div class="g-info-title">KCSiE Alignment</div>
+      <p>Keeping Children Safe in Education requires schools to have robust procedures for managing visitors, including checking the identity of anyone who works or volunteers with children. An integrated access control and visitor management system with barred-list checking is the only reliable mechanism for meeting this requirement at scale, particularly in larger or multi-building schools.</p>
+    </div>
+  </div>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><path d="M1 6l5.5 5.5L12 5l5.5 6.5L23 6"/><path d="M1 12l5.5 5.5L12 11l5.5 6.5L23 12"/><path d="M1 18l5.5 5.5L12 17l5.5 6.5L23 18"/></svg></div>
+      <div>
+        <div class="g-pillar-label">Pillar Three</div>
+        <div class="g-pillar-title">Secure Wireless Networks &mdash; The Nervous System</div>
+      </div>
+    </div>
+    <p>Your CCTV cameras and access control doors are only as reliable as the network that connects them. And this is precisely where most school security estates have their most critical, least visible, and least discussed vulnerability.</p>
+    <p>The typical school Wi-Fi network was designed for one purpose: to get 600 pupils and 60 members of staff online for learning. It was not designed to simultaneously carry live CCTV streams from 40 cameras, maintain real-time access control authentication across 30 doors, and support emergency communications during a lockdown &mdash; all while Period 4 is running and every iPad on the estate is streaming an educational video.</p>
+
+    <div class="g-stat">
+      <div class="g-stat-num">200+</div>
+      <div class="g-stat-text"><strong>Mbps dedicated bandwidth required</strong><br>A CCTV system with 30 cameras recording at 1080p with AI analytics requires at minimum 200 Mbps of dedicated bandwidth. This cannot share infrastructure with the school&rsquo;s learning network without compromising both.</div>
+    </div>
+
+    <p>A correctly specified school security network must be <strong>physically and logically separate</strong> from the student and staff Wi-Fi. This means a dedicated VLAN &mdash; or, in higher-risk environments, a completely separate network infrastructure &mdash; that carries only security-related traffic.</p>
+    <ul class="g-list">
+      <li><strong>Resilience:</strong> The security network must have failover capability. If the primary internet link fails, security systems must remain operational on a secondary connection, preventing the brief outage window that represents the most common point of failure in real incidents.</li>
+      <li><strong>Monitoring:</strong> Every device on the security network &mdash; every camera, every access control reader, every wireless access point &mdash; should be continuously monitored for connectivity. The security team should know a camera has gone offline in minutes, not weeks.</li>
+      <li><strong>Zero competition:</strong> During an emergency, the network that carries your lockdown command to every access door on the site must not be competing for bandwidth with classroom activity. This is non-negotiable.</li>
+    </ul>
+  </div>
+
+  <div class="g-pull">
+    <p>&ldquo;The greatest threat to school safeguarding in 2026 is not a lack of cameras &mdash; it is cameras, doors and networks that cannot talk to each other when it matters most.&rdquo;</p>
+    <cite>Fyrfly Systems &mdash; Campus Infrastructure Assessment Team</cite>
+  </div>
+</div>
+
+<!-- ── SECTION 3 ───────────────────────────────────────── -->
+<div class="g-sec" id="section3">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">03</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Statutory Compliance</div>
+      <h2>Emergency Preparedness &amp; Martyn&rsquo;s Law</h2>
+    </div>
+  </div>
+
+  <p>Martyn&rsquo;s Law &mdash; formally the Terrorism (Protection of Premises) Act 2025 &mdash; is the most significant piece of UK counter-terrorism legislation directly affecting schools in a generation. Named in memory of Martyn Hett, who was killed in the Manchester Arena attack in 2017, the Act creates a legal framework requiring venues to have documented protective security procedures, trained staff, and appropriate physical measures.</p>
+
+  <div class="g-warn">
+    <span class="g-warn-icon">&#9888;</span>
+    <p><strong>Are schools in scope?</strong> If your school&rsquo;s main hall, gymnasium or external grounds can accommodate 100 or more people simultaneously, your site is almost certainly a Standard Tier venue under Martyn&rsquo;s Law. Secondary schools, larger primaries and any school hosting community events should treat this as a live compliance obligation, not a future consideration.</p>
+  </div>
+
+  <h3>What Martyn&rsquo;s Law Requires</h3>
+
+  <p><strong>Standard Tier (100&ndash;799 capacity):</strong> Schools in this tier must designate a responsible person, document written emergency procedures, and ensure staff are trained in those procedures. They must also undertake ongoing monitoring of the public protection measures they have in place.</p>
+
+  <p><strong>Enhanced Tier (800+ capacity):</strong> Larger schools and MAT sites with significant community use may fall into the Enhanced Tier, which requires additional physical security measures, a suitably qualified security professional, and more detailed documented planning.</p>
+
+  <p>For both tiers, the key word is <em>documented</em>. A plan that exists in the headteacher&rsquo;s head is not a compliant plan. A lockdown procedure that relies on staff remembering to operate three separate systems under duress is not a robust procedure. Documentation must reflect the actual technical capability of the systems in place.</p>
+
+  <h3>The Integrated Response: One Authenticated Action, Site-Wide Security</h3>
+
+  <p>This is where the three-pillar approach described in Section 2 directly addresses Martyn&rsquo;s Law compliance. An integrated system is not merely more convenient &mdash; it is the only credible basis for a documented emergency procedure that will stand up to inspection.</p>
+
+  <p>In a properly integrated system, a declared lockdown emergency triggers the following sequence from a single authenticated action:</p>
+
+  <ul class="g-list">
+    <li><strong>Access control:</strong> Every controlled door across the site locks immediately. Entrances are secured from external access. Internal zone boundaries are controlled to contain movement within safe areas.</li>
+    <li><strong>CCTV:</strong> All cameras switch to maximum-resolution continuous recording. Pre-defined camera groups covering external perimeters, main entrances and key internal areas activate enhanced AI monitoring for intruder detection.</li>
+    <li><strong>Network:</strong> Emergency communications are prioritised on the dedicated security network. Staff devices receive an immediate alert. The Alarm Receiving Centre is notified with camera access for live visual assessment before the emergency services arrive.</li>
+    <li><strong>Audit trail:</strong> Every action taken during the lockdown is logged with a timestamp to a secure, tamper-evident record &mdash; supporting both post-incident review and any subsequent legal or regulatory inquiry.</li>
+  </ul>
+
+  <div class="g-info">
+    <div class="g-info-title">Ofsted Relevance</div>
+    <p>Ofsted&rsquo;s inspection framework assesses &ldquo;how effectively leaders and managers ensure the safeguarding of pupils.&rdquo; A school that can demonstrate a documented, tested, and technology-supported emergency response procedure &mdash; including evidence of regular drills with integrated system activation &mdash; is demonstrating precisely the kind of outstanding leadership and management that distinguishes a Good inspection from an Outstanding one.</p>
+  </div>
+
+  <h3>Writing an Emergency Communication Plan That Works</h3>
+
+  <p>A Martyn&rsquo;s Law-compliant emergency plan must reflect your actual technical capabilities. It must specify:</p>
+
+  <ul class="g-list">
+    <li>Who is authorised to initiate a lockdown and from what devices or locations</li>
+    <li>The precise sequence of actions that occur when a lockdown is initiated (automated and manual)</li>
+    <li>How the plan is communicated to all staff, including supply teachers and contractors</li>
+    <li>How the plan is tested, with what frequency, and how test results are recorded</li>
+    <li>The escalation path from internal response to emergency services contact</li>
+    <li>The role of the Alarm Receiving Centre in providing visual assessment support to emergency responders</li>
+  </ul>
+
+  <p>Fyrfly Systems prepares a documented Emergency Response Protocol as part of every integrated campus installation, written specifically to reflect the capabilities of the installed system and suitable for submission as evidence of Martyn&rsquo;s Law compliance.</p>
+</div>
+
+<!-- ── SECTION 4 ───────────────────────────────────────── -->
+<div class="g-sec" id="section4">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">04</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Compliance Checklist</div>
+      <h2>Compliance &amp; Privacy: The DSL &amp; MAT Director&rsquo;s Checklist</h2>
+    </div>
+  </div>
+
+  <p>The deployment of CCTV, access control and visitor management systems across a school estate involves the processing of personal data at significant scale. For many schools, this will be the largest and most complex personal data processing activity they undertake. Getting it right is a safeguarding obligation, a legal requirement, and &mdash; given the ICO&rsquo;s enforcement activity &mdash; a reputational imperative.</p>
+
+  <p>The following checklist is designed for Designated Safeguarding Leads, Data Protection Officers, and MAT Estate Directors. It is not exhaustive legal advice, but it covers the key areas of UK GDPR and ICO guidance that apply to school physical security infrastructure.</p>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">CCTV Deployment &mdash; UK GDPR &amp; ICO Requirements</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Lawful basis for CCTV processing documented &mdash; typically &ldquo;public task&rdquo; or &ldquo;legitimate interests,&rdquo; with a Legitimate Interests Assessment (LIA) completed where applicable</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Data Protection Impact Assessment (DPIA) completed prior to CCTV system deployment or significant expansion</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Retention period defined and documented &mdash; typically 31 days for general footage, extended only where footage relates to an ongoing incident or legal proceeding</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Visible signage at all camera locations, compliant with ICO guidance, identifying the data controller and the purpose of the system</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Role-based access controls implemented &mdash; only named, authorised individuals can access live or recorded footage, with access logged and auditable</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Documented process for handling Subject Access Requests (SARs), including redaction of third-party images from footage provided in response to a SAR</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Third-party data processor agreements in place with all system suppliers (CCTV hardware, software, and remote monitoring providers)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Footage encrypted at rest and in transit</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Incident log maintained for all footage access, including purpose, name of accessor, and timestamp</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Privacy notice in the school&rsquo;s published privacy policy covers CCTV processing</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Visitor Management &mdash; Data Minimisation &amp; Retention</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Lawful basis for collecting visitor identity data documented (typically public task or legitimate interests)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Data minimisation applied &mdash; only data necessary for safeguarding purposes collected at reception</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Retention period for visitor records defined and automated (e.g., records automatically deleted after 12 months unless subject to an ongoing inquiry)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Privacy notice displayed at reception point of data collection</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Process in place for responding to deletion requests from former visitors</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Access Control &mdash; Credential Data &amp; Audit Trails</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Credential data (card, fob, or mobile authentication) handled under a documented lawful basis with appropriate retention limits</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Biometric data, if used, documented under Article 9 of UK GDPR as a special category; explicit consent obtained or an alternative lawful basis identified</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Access audit trail retained for a defined period and searchable for safeguarding investigation purposes</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Process in place for revoking access credentials immediately upon staff departure</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Network &amp; Data Security</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Security network logically or physically separated from the student and staff learning network</li>
+      <li class="g-check-item"><div class="g-check-box"></div>All security-related data in transit encrypted (TLS 1.2 minimum)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Network monitoring in place with alerting for device outages on the security infrastructure</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Annual penetration testing or security audit of network infrastructure</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Disaster recovery and business continuity plan covers security system outage scenarios</li>
+    </ul>
+  </div>
+
+  <div class="g-pull">
+    <p>&ldquo;Privacy and safeguarding are not in conflict. A properly designed system protects pupils from harm and protects the school from liability &mdash; simultaneously. The question is not whether to collect data, but how to collect only what is necessary and protect it absolutely.&rdquo;</p>
+    <cite>Fyrfly Systems &mdash; Data Protection &amp; Safeguarding Advisory</cite>
+  </div>
+
+  <div class="g-info">
+    <div class="g-info-title">A Note on the ICO&rsquo;s CCTV Guidance for Schools</div>
+    <p>The Information Commissioner&rsquo;s Office has published specific guidance on the use of CCTV in schools. The ICO is clear that CCTV must be proportionate, that systems must not be used for purposes beyond those for which they were installed, and that staff surveillance requires additional legal justification. Headteachers and DSLs should review the ICO guidance annually and ensure their CCTV policy is kept up to date. Fyrfly Systems provides a compliant CCTV policy template and annual review process as part of the ongoing service agreement.</p>
+  </div>
+</div>
+
+<!-- ── SECTION 5 ───────────────────────────────────────── -->
+<div class="g-sec" id="section5">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">05</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Your Next Step</div>
+      <h2>The Campus Infrastructure &amp; Vulnerability Assessment</h2>
+    </div>
+  </div>
+
+  <p>Reading this guide is the beginning of the conversation, not the end of it. Every school estate is different. The right safeguarding infrastructure for a 200-pupil village primary is not the same as the right solution for a 1,800-pupil secondary in an urban environment, or a multi-site MAT with 12 schools and a central estates team.</p>
+
+  <p>What is consistent is the need to understand the gap between where you are and where your statutory obligations, your duty of care, and your safeguarding culture require you to be.</p>
+
+  <h3>What a Fyrfly Systems Assessment Includes</h3>
+
+  <ul class="g-list">
+    <li><strong>CCTV coverage audit:</strong> Identification of blind spots, legacy equipment, network dependency risks, and AI analytics upgrade opportunities</li>
+    <li><strong>Access control review:</strong> Assessment of entry points against KCSiE visitor management requirements, lockdown capability, and credential management practices</li>
+    <li><strong>Network infrastructure assessment:</strong> Evaluation of whether security systems are adequately separated from the learning network, with bandwidth analysis and resilience testing</li>
+    <li><strong>Martyn&rsquo;s Law gap analysis:</strong> A plain-language assessment of where your current provision stands against the Standard or Enhanced Tier requirements, and what is needed to achieve compliance</li>
+    <li><strong>Written report:</strong> A prioritised, costed set of recommendations written in plain language suitable for sharing with governors, the MAT board, or the local authority</li>
+  </ul>
+
+  <div class="g-info">
+    <div class="g-info-title">No obligation. No sales pressure.</div>
+    <p>Our assessments are carried out by Fyrfly Systems specialists, not salespeople. The report is yours to keep and act on, whether or not you choose to work with us. We believe that schools with better information make better decisions &mdash; and better decisions mean safer pupils.</p>
+  </div>
+
+  <p>The assessment typically takes half a day on site and a further week to produce the written report. It is available to single schools and to MAT estate teams assessing multiple sites simultaneously.</p>
+
+  <p>To arrange your assessment, or simply to speak with a member of the Fyrfly team about any aspect of this guide, contact us at <strong>hello@fyrflysystems.com</strong> or call <strong>01234 567 890</strong>.</p>
+</div>
+
+<!-- ── CTA ─────────────────────────────────────────────── -->
+<div class="g-cta" id="cta">
+  <div class="g-cta-bg"></div>
+  <div class="g-cta-c">
+    <div class="g-cta-label">Book Your Assessment</div>
+    <h2>Request a Campus Infrastructure &amp; Vulnerability Assessment</h2>
+    <p>A no-obligation, half-day site visit with a written report covering CCTV, access control, network resilience, and Martyn&rsquo;s Law compliance. Written for headteachers, business managers and governing bodies.</p>
+    <a href="mailto:hello@fyrflysystems.com?subject=Campus Infrastructure Assessment Request" class="g-cta-btn">
+      Request Your Free Assessment &rarr;
+    </a>
+    <div class="g-cta-detail">
+      Or call 01234 567 890 &nbsp;&bull;&nbsp; hello@fyrflysystems.com &nbsp;&bull;&nbsp; NSI NACOSS Gold &bull; SSAIB Approved &bull; ISO 9001:2015
+    </div>
+  </div>
+</div>
+
+<div class="g-footer">
+  <div><span class="g-footer-brand">Fyrfly Systems Ltd</span> &mdash; Intelligent Security for Education</div>
+  <div>www.fyrflysystems.com/education.html &nbsp;&bull;&nbsp; &copy; 2026</div>
+</div>
+
+</div><!-- /guide -->
+</body>
+</html>

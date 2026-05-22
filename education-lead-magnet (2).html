@@ -1,0 +1,261 @@
+<!-- ─────────────────────────────────────────────────────────────
+     INVISIBLE SHIELD LEAD MAGNET — drop this section into education.html
+     Place it wherever you want the guide offer to appear on the page.
+     Requires: contact-modal.js NOT to intercept this form (it won't —
+     this is a <form> that posts to Formbold, not a mailto: link).
+     On Formbold success → redirects to /invisible-shield.html
+
+     FONTS: paste the two lines below into education.html <head> if not
+     already present (the preconnects are on every other Fyrfly page):
+
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+       <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+     ───────────────────────────────────────────────────────────── -->
+
+<!-- FONT LOAD (safe to remove if education.html already loads Roboto + DM Sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+
+<section class="lm-sec" id="guide-download">
+  <div class="wrap">
+    <div class="lm-card">
+
+      <!-- LEFT: Cover visual -->
+      <div class="lm-visual" aria-hidden="true">
+        <div class="lm-book">
+          <div class="lm-book-spine"></div>
+          <div class="lm-book-face">
+            <div class="lm-book-eyebrow">Fyrfly Systems</div>
+            <div class="lm-book-title">The Invisible Shield</div>
+            <div class="lm-book-sub">2026 Safeguarding Guide</div>
+            <div class="lm-book-tags">
+              <span>KCSiE</span><span>Martyn&rsquo;s Law</span><span>UK GDPR</span>
+            </div>
+            <div class="lm-book-glow"></div>
+          </div>
+        </div>
+        <div class="lm-visual-badge">Free Guide</div>
+      </div>
+
+      <!-- RIGHT: Content + form -->
+      <div class="lm-content">
+        <div class="lm-eyebrow">Free Download &mdash; 2026 Edition</div>
+        <h2 class="lm-title">The Invisible Shield</h2>
+        <p class="lm-desc">The complete guide to integrated safeguarding &amp; security infrastructure for UK schools &mdash; written for Headteachers, MAT Estate Directors, School Business Managers and DSLs.</p>
+
+        <ul class="lm-bullets">
+          <li>How AI-enabled CCTV actively prevents incidents rather than recording them</li>
+          <li>Why fragmented systems fail during emergencies &mdash; and how to fix them</li>
+          <li>Martyn&rsquo;s Law compliance for schools: what you need and what it requires</li>
+          <li>The complete UK GDPR &amp; ICO compliance checklist for DSLs and DPOs</li>
+          <li>How to make the case to governors for integrated infrastructure investment</li>
+        </ul>
+
+        <!-- Form -->
+        <div class="lm-form-wrap" id="lmFormWrap">
+          <form
+            id="lmForm"
+            class="lm-form"
+            action="https://formbold.com/s/3A7kr"
+            method="POST"
+            novalidate>
+
+            <input type="hidden" name="_subject" value="Guide Download — The Invisible Shield">
+            <input type="hidden" name="guide" value="The Invisible Shield 2026">
+            <input type="hidden" name="_next" value="https://www.fyrflysystems.com/invisible-shield.html">
+
+            <div class="lm-form-row">
+              <div class="lm-form-field">
+                <label class="lm-label" for="lmName">Your name <span class="lm-req">*</span></label>
+                <input class="lm-input" type="text" id="lmName" name="name" placeholder="Jane Smith" autocomplete="name" required>
+              </div>
+              <div class="lm-form-field">
+                <label class="lm-label" for="lmRole">Your role</label>
+                <select class="lm-input lm-select" id="lmRole" name="role">
+                  <option value="">Select&hellip;</option>
+                  <option>Headteacher / Principal</option>
+                  <option>Deputy Headteacher</option>
+                  <option>School Business Manager</option>
+                  <option>MAT Estate Director</option>
+                  <option>Designated Safeguarding Lead</option>
+                  <option>Data Protection Officer</option>
+                  <option>IT Manager</option>
+                  <option>Governor / Trustee</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="lm-form-row">
+              <div class="lm-form-field">
+                <label class="lm-label" for="lmOrg">School or trust <span class="lm-req">*</span></label>
+                <input class="lm-input" type="text" id="lmOrg" name="organisation" placeholder="Your school or MAT name" required>
+              </div>
+              <div class="lm-form-field">
+                <label class="lm-label" for="lmEmail">Work email <span class="lm-req">*</span></label>
+                <input class="lm-input" type="email" id="lmEmail" name="email" placeholder="you@school.ac.uk" autocomplete="email" required>
+              </div>
+            </div>
+
+            <button class="lm-submit" type="submit" id="lmSubmit">
+              <span class="lm-submit-text">Read the Guide &rarr;</span>
+              <div class="lm-spinner"></div>
+            </button>
+
+            <p class="lm-privacy">Your details are used only to send you this guide and occasional relevant resources from Fyrfly Systems. We will never share your information with third parties. <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div class="lm-success" id="lmSuccess" style="display:none">
+          <div class="lm-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="lm-success-title">Opening your guide&hellip;</div>
+          <p>The Invisible Shield is opening in a new tab. If nothing happened, <a href="/invisible-shield.html" target="_blank">click here to open it</a>.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── LEAD MAGNET STYLES ────────────────────────────────── */
+.lm-sec{background:var(--char,#1B1B24);padding:5rem 0;position:relative;overflow:hidden;}
+.lm-sec::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.1) 0%,transparent 55%),radial-gradient(ellipse at 10% 80%,rgba(200,16,46,0.08) 0%,transparent 50%);pointer-events:none;}
+.lm-sec .wrap{position:relative;z-index:1;}
+
+/* Card */
+.lm-card{display:grid;grid-template-columns:280px 1fr;gap:3.5rem;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:3rem 3.5rem;}
+
+/* Book visual */
+.lm-visual{display:flex;flex-direction:column;align-items:center;gap:0.85rem;position:relative;}
+.lm-book{display:flex;border-radius:4px;box-shadow:12px 12px 40px rgba(0,0,0,0.5),-2px 2px 0 rgba(255,255,255,0.04);width:180px;}
+.lm-book-spine{width:20px;background:linear-gradient(135deg,#6b0a1a,#C8102E);border-radius:4px 0 0 4px;flex-shrink:0;}
+.lm-book-face{flex:1;background:var(--char,#1B1B24);border:1px solid rgba(255,255,255,0.1);border-left:none;border-radius:0 4px 4px 0;padding:1.5rem 1.25rem;min-height:240px;display:flex;flex-direction:column;gap:0.75rem;position:relative;overflow:hidden;}
+.lm-book-glow{position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(232,93,4,0.15) 0%,transparent 70%);pointer-events:none;}
+.lm-book-eyebrow{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.lm-book-title{font-family:"Roboto",sans-serif;font-size:1.05rem;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-0.02em;flex:1;}
+.lm-book-sub{font-size:0.65rem;color:rgba(255,255,255,0.4);}
+.lm-book-tags{display:flex;flex-direction:column;gap:0.3rem;margin-top:auto;}
+.lm-book-tags span{font-size:0.58rem;font-weight:600;color:rgba(255,255,255,0.35);padding:0.2rem 0.5rem;border:1px solid rgba(255,255,255,0.1);border-radius:100px;display:inline-block;width:fit-content;}
+.lm-visual-badge{background:linear-gradient(135deg,#C8102E,#E85D04,#F5A623);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:100px;}
+
+/* Content */
+.lm-eyebrow{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--a,#F5A623);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.45rem;}
+.lm-eyebrow::before{content:"";display:inline-block;width:14px;height:1.5px;background:var(--a,#F5A623);}
+.lm-title{font-family:"Roboto",sans-serif;font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:0.75rem;}
+.lm-desc{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.25rem;}
+.lm-bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.75rem;}
+.lm-bullets li{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.83rem;color:rgba(255,255,255,0.6);line-height:1.5;}
+.lm-bullets li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);flex-shrink:0;margin-top:0.45rem;}
+
+/* Form */
+.lm-form{display:flex;flex-direction:column;gap:0.75rem;}
+.lm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.lm-form-field{display:flex;flex-direction:column;gap:0.3rem;}
+.lm-label{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.03em;}
+.lm-req{color:var(--c,#C8102E);}
+.lm-input{width:100%;padding:0.65rem 0.9rem;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;font-size:0.85rem;font-family:"DM Sans",sans-serif;outline:none;transition:border-color 0.2s;}
+.lm-input:focus{border-color:rgba(232,93,4,0.6);}
+.lm-input::placeholder{color:rgba(255,255,255,0.25);}
+.lm-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9' stroke='%239595A5' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center;background-size:14px;-webkit-appearance:none;appearance:none;cursor:pointer;}
+.lm-select option{background:#1B1B24;color:#fff;}
+.lm-submit{width:100%;padding:0.95rem;background:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);border:none;color:#fff;font-size:0.93rem;font-weight:700;border-radius:9px;cursor:pointer;font-family:"DM Sans",sans-serif;transition:opacity 0.2s,transform 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;min-height:50px;}
+.lm-submit:hover:not(:disabled){opacity:0.88;transform:translateY(-1px);}
+.lm-submit:disabled{opacity:0.55;cursor:not-allowed;}
+.lm-spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:lm-spin 0.7s linear infinite;}
+.lm-submit.loading .lm-submit-text{display:none;}
+.lm-submit.loading .lm-spinner{display:block;}
+@keyframes lm-spin{to{transform:rotate(360deg);}}
+.lm-privacy{font-size:0.73rem;color:rgba(255,255,255,0.25);line-height:1.55;}
+.lm-privacy a{color:rgba(255,255,255,0.4);text-decoration:underline;}
+
+/* Success */
+.lm-success{padding:1.5rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:12px;text-align:center;}
+.lm-success-icon{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04);display:flex;align-items:center;justify-content:center;margin:0 auto 0.85rem;}
+.lm-success-icon svg{width:22px;height:22px;color:#fff;}
+.lm-success-title{font-family:"Roboto",sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.lm-success p{font-size:0.83rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+.lm-success a{color:var(--a,#F5A623);text-decoration:underline;}
+
+/* Responsive */
+@media(max-width:900px){.lm-card{grid-template-columns:1fr;gap:2rem;padding:2.25rem;}.lm-visual{display:none;}}
+@media(max-width:560px){.lm-form-row{grid-template-columns:1fr;}}
+</style>
+
+<script>
+(function(){
+'use strict';
+
+var form = document.getElementById('lmForm');
+var submit = document.getElementById('lmSubmit');
+var formWrap = document.getElementById('lmFormWrap');
+var success = document.getElementById('lmSuccess');
+if(!form) return;
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  // Basic validation
+  var name  = document.getElementById('lmName').value.trim();
+  var org   = document.getElementById('lmOrg').value.trim();
+  var email = document.getElementById('lmEmail').value.trim();
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if(!name || !org || !emailOk){
+    if(!name)  document.getElementById('lmName').style.borderColor  = '#C8102E';
+    if(!org)   document.getElementById('lmOrg').style.borderColor   = '#C8102E';
+    if(!emailOk) document.getElementById('lmEmail').style.borderColor = '#C8102E';
+    return;
+  }
+
+  submit.classList.add('loading');
+  submit.disabled = true;
+
+  var data = new FormData(form);
+
+  fetch('https://formbold.com/s/3A7kr', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: data
+  })
+  .then(function(res){
+    submit.classList.remove('loading');
+    submit.disabled = false;
+    if(res.ok){
+      formWrap.style.display = 'none';
+      success.style.display  = 'block';
+      window.open('/invisible-shield.html', '_blank');
+    } else {
+      // Fallback: open guide anyway (soft gate)
+      formWrap.style.display = 'none';
+      success.style.display  = 'block';
+      window.open('/invisible-shield.html', '_blank');
+    }
+  })
+  .catch(function(){
+    submit.classList.remove('loading');
+    submit.disabled = false;
+    // Network error: still open the guide (soft gate)
+    formWrap.style.display = 'none';
+    success.style.display  = 'block';
+    window.open('/invisible-shield.html', '_blank');
+  });
+});
+
+// Clear error styling on re-focus
+['lmName','lmOrg','lmEmail'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('input', function(){
+    this.style.borderColor = '';
+  });
+});
+
+})();
+</script>
