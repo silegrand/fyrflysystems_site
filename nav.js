@@ -139,6 +139,7 @@
   <div class="mob-nav-scroll">
     <span class="mob-sub">Services</span>
     <a href="cctv.html">CCTV</a>
+    <a href="cctv-tower.html">Solar CCTV Tower</a>
     <a href="access-control.html">Access Control</a>
     <a href="wireless-networks.html">Wireless Networks</a>
     <a href="intruder-alarms.html">Intruder Alarms</a>
@@ -153,7 +154,6 @@
     <a href="zone-planner.html">Zone Planner</a>
     <a href="compliance-tool.html">Compliance Tool</a>
     <a href="system-integration.html">System Integration</a>
-    <a href="incident-analyser.html">Pattern Analyser</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
@@ -179,6 +179,10 @@
           <a href="cctv.html"${dropActive('cctv.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
             <span class="drop-label">CCTV</span>
+          </a>
+          <a href="cctv-tower.html"${dropActive('cctv-tower.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <span class="drop-label">Solar CCTV Tower</span>
           </a>
           <a href="access-control.html"${dropActive('access-control.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
@@ -228,10 +232,6 @@
           <a href="system-integration.html"${dropActive('system-integration.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
             <span class="drop-label">System Integration</span>
-          </a>
-          <a href="incident-analyser.html"${dropActive('incident-analyser.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <span class="drop-label">Pattern Analyser</span>
           </a>
         </div>
       </li>
