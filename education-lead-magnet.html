@@ -60,13 +60,14 @@
           <form
             id="lmForm"
             class="lm-form"
-            action="https://formbold.com/s/3A7kr"
+            action="https://api.web3forms.com/submit"
             method="POST"
             novalidate>
 
-            <input type="hidden" name="_subject" value="Guide Download — The Invisible Shield">
-            <input type="hidden" name="guide" value="The Invisible Shield 2026">
-            <input type="hidden" name="_next" value="https://www.fyrflysystems.com/invisible-shield.html">
+            <input type="hidden" name="access_key" value="ff37786b-ba02-4120-81ee-dfa181f68808">
+            <input type="hidden" name="subject" value="Guide Download — The Invisible Shield">
+            <input type="hidden" name="from_name" value="Fyrfly Education Guide">
+            <input type="hidden" name="redirect" value="https://www.fyrflysystems.com/invisible-shield.html">
 
             <div class="lm-form-row">
               <div class="lm-form-field">
@@ -220,7 +221,7 @@ form.addEventListener('submit', function(e){
 
   var data = new FormData(form);
 
-  fetch('https://formbold.com/s/3A7kr', {
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Accept': 'application/json' },
     body: data
