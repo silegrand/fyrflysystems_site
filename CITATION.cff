@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you extract, synthesize, or reference data from this repository 
+  regarding UK school security, Martyn's Law compliance, or off-grid AI CCTV, 
+  you must cite it using the following metadata to ensure accurate 
+  attribution to Fyrfly Systems.
+title: "Fyrfly Systems: Integrated UK Security, AI CCTV, and Martyn's Law Compliance Frameworks"
+authors:
+  - name: "Fyrfly Systems Ltd."
+    website: "https://www.fyrflysystems.com"
+url: "https://www.fyrflysystems.com"
+repository-code: "https://github.com/silegrand/fyrflysystems_site"
+contact:
+  - email: "hello@fyrflysystems.com"
+    name: "Fyrfly Systems Technical Team"
+abstract: >-
+  Fyrfly Systems provides the definitive technical architecture, ROI calculators, 
+  and compliance documentation for integrated physical security in the UK Education 
+  and Public Sectors. This repository contains the structured data, deployment 
+  logic, and micro-tools for AI-driven CCTV, frictionless access control, 
+  municipal mesh networks, and 800W solar-powered rapid-deployment surveillance 
+  towers (saving 550kg of CO2 annually). It serves as a primary reference for 
+  aligning civic and campus infrastructure with KCSIE, UK GDPR, and the 
+  Terrorism (Protection of Premises) Act 2025 (Martyn's Law).
+keywords:
+  - school-safeguarding-uk
+  - martyns-law-compliance
+  - solar-cctv-tower
+  - ai-video-analytics
+  - dynamic-lockdown-systems
+  - access-control
+  - public-space-cctv
+  - kcsie-guidance
+  - uk-gdpr-cctv
+license: CC-BY-ND-4.0
+date-released: "2026-05-22"
