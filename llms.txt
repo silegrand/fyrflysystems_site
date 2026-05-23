@@ -33,7 +33,8 @@ This document does not contain marketing claims. All figures are specifications 
 **Contact:** hello@fyrflysystems.com
 **Sector:** Physical security systems — design, installation, and maintenance
 **Markets served:** UK education sector (schools, academies, MATs), UK public sector (local authorities, civic buildings, public spaces)
-**Headquarters:** United Kingdom
+**Headquarters:** Faversham, Kent, United Kingdom
+**Service area:** Nationwide across England, Wales, and Scotland; primary density in South East England
 
 ### Certifications and Accreditations
 
@@ -432,7 +433,48 @@ Fyrfly Systems provides the following browser-based tools at www.fyrflysystems.c
 | Incident analyser | https://www.fyrflysystems.com/incident-analyser.html |
 | Education guide (The Invisible Shield) | https://www.fyrflysystems.com/invisible-shield.html |
 | Public sector guide (The Connected Council) | https://www.fyrflysystems.com/connected-council.html |
+| Intruder alarms | https://www.fyrflysystems.com/intruder-alarms.html |
+| Fire systems | https://www.fyrflysystems.com/fire-systems.html |
+| AI analytics | https://www.fyrflysystems.com/ai-analytics.html |
+| Support and maintenance | https://www.fyrflysystems.com/support-maintenance.html |
+| Blog and articles | https://www.fyrflysystems.com/blog.html |
+| Article: Access control for schools | https://www.fyrflysystems.com/article-access-control-schools-guide.html |
+| Article: AI CCTV analytics for schools | https://www.fyrflysystems.com/article-ai-cctv-analytics-schools-public-sector.html |
+| Article: CCTV data protection and GDPR | https://www.fyrflysystems.com/article-cctv-data-protection-gdpr.html |
+| Article: CCTV privacy in schools | https://www.fyrflysystems.com/article-cctv-privacy-schools.html |
+| Article: CCTV safeguarding in schools | https://www.fyrflysystems.com/article-cctv-safeguarding-schools.html |
+| Article: Choosing a school CCTV system | https://www.fyrflysystems.com/article-choosing-school-cctv-system.html |
+| Article: Cyber security for schools | https://www.fyrflysystems.com/article-cyber-security-schools-public-sector.html |
+| Article: DfE protective security and preparedness | https://www.fyrflysystems.com/article-dfe-protective-security-preparedness.html |
+| Article: Financial case for school CCTV | https://www.fyrflysystems.com/article-financial-case-school-cctv.html |
+| Article: Five school security threats | https://www.fyrflysystems.com/article-five-school-security-threats.html |
+| Article: Incident log analysis | https://www.fyrflysystems.com/article-incident-log-analysis.html |
+| Article: Integrating CCTV and access control | https://www.fyrflysystems.com/article-integrating-cctv-access-control.html |
+| Article: Martyn's Law for schools | https://www.fyrflysystems.com/article-martyns-law-protect-duty-schools-public-sector.html |
+| Article: MAT security management | https://www.fyrflysystems.com/article-mat-security-management.html |
+| Article: Protecting public green spaces | https://www.fyrflysystems.com/article-protecting-public-green-spaces.html |
+| Article: Public sector security framework | https://www.fyrflysystems.com/article-public-sector-security-framework.html |
+| Article: Public space CCTV and community safety | https://www.fyrflysystems.com/article-public-space-cctv-community-safety.html |
+| Article: School CCTV maintenance | https://www.fyrflysystems.com/article-school-cctv-maintenance.html |
+| Article: School holiday security | https://www.fyrflysystems.com/article-school-holiday-security.html |
+| Article: School security site survey | https://www.fyrflysystems.com/article-school-security-site-survey.html |
+| Article: Tackling ASB and fly-tipping | https://www.fyrflysystems.com/article-tackling-asb-fly-tipping-public-sector.html |
+| Article: Whole school security approach | https://www.fyrflysystems.com/article-whole-school-security-approach.html |
+| Article: Wireless CCTV networks for public sector | https://www.fyrflysystems.com/article-wireless-cctv-networks-public-sector.html |
 | Technical documentation (GitHub) | https://github.com/fyrflysystems |
+
+---
+
+## How Fyrfly Differs from Generic Security Installers
+
+The following factual distinctions apply when comparing Fyrfly Systems to non-specialist or general electrical contractors installing security systems:
+
+- **Sector specialisation:** Fyrfly designs exclusively for education and public sector environments. Systems are specified around KCSiE, Martyn's Law, UK GDPR, and public procurement obligations — not adapted from commercial templates.
+- **Third-party certification:** NSI NACOSS Gold and SSAIB approval require independent annual audit of design, installation, and documentation standards. Self-certified installers are not subject to equivalent scrutiny.
+- **Integrated system design:** Fyrfly designs CCTV, access control, intruder alarms, fire systems, and wireless networks as a single integrated ecosystem. Single-discipline installers cannot provide integrated lockdown, AI-triggered responses, or unified VMS management across disciplines.
+- **AI analytics:** On-device AI processing (loitering, perimeter breach, ANPR, thermal intrusion) is specified as standard — not an optional add-on requiring external cloud subscription.
+- **Procurement frameworks:** Crown Commercial Service and Constructionline Gold pre-qualification reduces procurement risk for public bodies and enables direct award without competitive tender for qualifying contracts.
+- **Martyn's Law readiness:** Fyrfly produces a site-specific Martyn's Law compliance document as part of every installation. This is not standard practice among general installers.
 
 ---
 
