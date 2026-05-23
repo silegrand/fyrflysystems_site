@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Connected Council: 2026 Guide to Integrated Public Space Surveillance, Security & Resilience | Fyrfly Systems</title>
+  <meta name="description" content="A comprehensive guide for Local Authority Chief Executives, SIROs, Emergency Planners, Community Safety Managers and DPOs on integrated public space surveillance, civic access control, and municipal wireless networks.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/connected-council.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-4XLH0L6H2Z");</script>
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#fff;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--light);line-height:1.7;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    .g-nav{background:var(--dark);padding:0.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+    .g-nav-brand{display:flex;align-items:center;gap:0.75rem;font-family:'Roboto',sans-serif;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.7);}
+    .g-nav-pill{background:var(--grad);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:100px;}
+    .g-nav-actions{display:flex;align-items:center;gap:0.75rem;}
+    .g-nav-back{font-size:0.8rem;color:rgba(255,255,255,0.4);transition:color 0.2s;}
+    .g-nav-back:hover{color:rgba(255,255,255,0.8);}
+    .g-nav-print{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1.1rem;background:var(--grad);color:#fff;font-size:0.8rem;font-weight:600;border-radius:6px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+    .g-nav-print:hover{opacity:0.88;}
+    .g-nav-print svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+    .guide{max-width:860px;margin:0 auto;background:#fff;box-shadow:0 4px 40px rgba(0,0,0,0.08);}
+
+    .g-cover{background:var(--char);min-height:520px;padding:4rem 4rem 3rem;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
+    .g-cover-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 15%,rgba(200,16,46,0.15) 0%,transparent 55%),radial-gradient(ellipse at 15% 85%,rgba(232,93,4,0.1) 0%,transparent 50%);pointer-events:none;}
+    .g-cover-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;}
+    .g-cover-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;}
+    .g-cover-logo{font-family:'Roboto',sans-serif;font-size:1.1rem;font-weight:900;color:#fff;letter-spacing:-0.02em;}
+    .g-cover-logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .g-cover-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:100px;padding:0.35rem 0.9rem;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+    .g-cover-body{position:relative;z-index:2;}
+    .g-cover-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--a);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+    .g-cover-eyebrow::before{content:"";display:inline-block;width:20px;height:1.5px;background:var(--a);}
+    .g-cover h1{font-family:'Roboto',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-0.03em;margin-bottom:1.25rem;}
+    .g-cover-sub{font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.7;max-width:52ch;margin-bottom:2rem;}
+    .g-cover-tags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .g-cover-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;color:rgba(255,255,255,0.5);}
+    .g-cover-foot{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;font-size:0.77rem;color:rgba(255,255,255,0.25);}
+
+    .g-toc{padding:3rem 4rem;background:#F9F8F6;border-bottom:2px solid var(--bdr);}
+    .g-toc-title{font-family:'Roboto',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-bottom:1.5rem;}
+    .g-toc-list{list-style:none;display:flex;flex-direction:column;gap:0.1rem;}
+    .g-toc-item{display:flex;align-items:baseline;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--bdr);}
+    .g-toc-item:last-child{border-bottom:none;}
+    .g-toc-num{font-family:'Roboto',sans-serif;font-size:0.68rem;font-weight:700;color:var(--o);width:28px;flex-shrink:0;}
+    .g-toc-name{font-size:0.9rem;font-weight:600;color:var(--dark);flex:1;}
+    .g-toc-name a{transition:color 0.2s;}
+    .g-toc-name a:hover{color:var(--o);}
+    .g-toc-sub{font-size:0.75rem;color:var(--mute);margin-top:0.15rem;}
+
+    .g-sec{padding:3.5rem 4rem;border-bottom:1px solid var(--bdr);}
+    .g-sec:last-child{border-bottom:none;}
+    .g-sec-hdr{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;}
+    .g-sec-num{width:44px;height:44px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Roboto',sans-serif;font-size:1rem;font-weight:900;color:#fff;flex-shrink:0;margin-top:2px;}
+    .g-sec-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.35rem;}
+    .g-sec h2{font-family:'Roboto',sans-serif;font-size:1.65rem;font-weight:800;color:var(--dark);letter-spacing:-0.02em;line-height:1.2;}
+    .g-sec h3{font-family:'Roboto',sans-serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-top:2rem;margin-bottom:0.85rem;}
+    .g-sec h4{font-family:'Roboto',sans-serif;font-size:0.88rem;font-weight:700;color:var(--dark);margin-top:1.5rem;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;}
+    .g-sec p{font-size:0.95rem;color:#2A2A35;line-height:1.78;margin-bottom:1.15rem;}
+    .g-sec p:last-child{margin-bottom:0;}
+
+    .g-pull{background:var(--light);border-left:4px solid;border-image:var(--grad) 1;padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 8px 8px 0;}
+    .g-pull p{font-size:1.05rem;font-weight:500;color:var(--dark);font-style:italic;line-height:1.65;margin:0;}
+    .g-pull cite{display:block;margin-top:0.6rem;font-size:0.75rem;font-weight:600;color:var(--o);font-style:normal;letter-spacing:0.04em;}
+
+    .g-list{list-style:none;margin:1rem 0 1.25rem;display:flex;flex-direction:column;gap:0.6rem;}
+    .g-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.93rem;color:#2A2A35;line-height:1.65;}
+    .g-list li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:0.55rem;}
+
+    .g-pillar{background:var(--light);border:1px solid var(--bdr);border-radius:14px;padding:1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+    .g-pillar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad);}
+    .g-pillar-hdr{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;}
+    .g-pillar-icon{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,rgba(200,16,46,0.1),rgba(232,93,4,0.1));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .g-pillar-icon svg{width:18px;height:18px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;}
+    .g-pillar-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.1rem;}
+    .g-pillar-title{font-family:'Roboto',sans-serif;font-size:1rem;font-weight:700;color:var(--dark);}
+    .g-pillar p{font-size:0.88rem;color:var(--mid);line-height:1.7;margin-bottom:0.75rem;}
+    .g-pillar p:last-child{margin-bottom:0;}
+
+    .g-stat{background:var(--dark);border-radius:12px;padding:1.5rem;margin:2rem 0;display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:center;}
+    .g-stat-num{font-family:'Roboto',sans-serif;font-size:2.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .g-stat-text{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.6;}
+    .g-stat-text strong{color:#fff;display:block;font-size:0.93rem;margin-bottom:0.2rem;}
+
+    .g-check-group{margin-bottom:2rem;}
+    .g-check-group-title{font-family:'Roboto',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);margin-bottom:0.85rem;padding-bottom:0.5rem;border-bottom:1px solid var(--bdr);}
+    .g-check-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+    .g-check-item{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:var(--dark);line-height:1.6;padding:0.55rem 0.85rem;background:var(--light);border-radius:8px;border:1px solid var(--bdr);}
+    .g-check-box{width:18px;height:18px;border-radius:4px;border:2px solid var(--bdr);flex-shrink:0;margin-top:0.1rem;}
+
+    .g-warn{background:rgba(200,16,46,0.05);border:1px solid rgba(200,16,46,0.2);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;gap:0.85rem;align-items:flex-start;}
+    .g-warn-icon{font-size:1.1rem;flex-shrink:0;}
+    .g-warn p{font-size:0.88rem;color:var(--dark);line-height:1.65;margin:0;}
+    .g-warn strong{color:var(--c);}
+
+    .g-info{background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.25);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+    .g-info-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--a);margin-bottom:0.5rem;}
+    .g-info p{font-size:0.87rem;color:var(--dark);line-height:1.65;margin:0;}
+
+    .g-roi-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.87rem;}
+    .g-roi-table th{background:var(--dark);color:#fff;padding:0.75rem 1rem;text-align:left;font-family:'Roboto',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;}
+    .g-roi-table th:first-child{border-radius:8px 0 0 0;}
+    .g-roi-table th:last-child{border-radius:0 8px 0 0;}
+    .g-roi-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--bdr);color:#2A2A35;line-height:1.55;vertical-align:top;}
+    .g-roi-table tr:last-child td{border-bottom:none;}
+    .g-roi-table tr:nth-child(even) td{background:var(--light);}
+    .g-roi-bad{color:var(--c);font-weight:600;}
+    .g-roi-good{color:#10B981;font-weight:600;}
+
+    .g-cta{background:var(--char);padding:3.5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+    .g-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(200,16,46,0.1) 0%,transparent 65%);pointer-events:none;}
+    .g-cta-c{position:relative;z-index:2;}
+    .g-cta-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--a);margin-bottom:0.75rem;}
+    .g-cta h2{font-family:'Roboto',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.85rem;}
+    .g-cta p{font-size:0.92rem;color:rgba(255,255,255,0.5);max-width:52ch;margin:0 auto 1.75rem;line-height:1.72;}
+    .g-cta-btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.9rem 2.25rem;background:var(--grad);color:#fff;font-size:0.92rem;font-weight:600;border-radius:8px;transition:opacity 0.2s,transform 0.2s;}
+    .g-cta-btn:hover{opacity:0.88;transform:translateY(-2px);}
+    .g-cta-detail{margin-top:1.75rem;font-size:0.8rem;color:rgba(255,255,255,0.25);}
+
+    .g-footer{padding:1.25rem 4rem;background:#F9F8F6;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--mute);}
+    .g-footer-brand{font-weight:700;color:var(--dark);}
+
+    @media print{
+      @page{margin:15mm 18mm;size:A4;}
+      .g-nav,.g-nav-print{display:none!important;}
+      body{background:#fff;}
+      .guide{max-width:100%;box-shadow:none;}
+      .g-cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;min-height:200mm;page-break-after:always;}
+      .g-sec{page-break-inside:avoid;border-bottom:1px solid #ddd;}
+      .g-sec-hdr{page-break-after:avoid;}
+      h2,h3,h4{page-break-after:avoid;}
+      .g-pillar{page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-stat{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-roi-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .g-cta{-webkit-print-color-adjust:exact;print-color-adjust:exact;page-break-before:always;}
+      .g-footer{display:flex!important;border-top:1px solid #ddd;}
+    }
+
+    @media(max-width:720px){
+      .g-cover,.g-sec,.g-toc,.g-cta,.g-footer{padding-left:1.75rem;padding-right:1.75rem;}
+      .g-cover{min-height:auto;padding-top:2.5rem;padding-bottom:2rem;}
+      .g-stat{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="g-nav">
+  <div class="g-nav-brand">FYRFLY SYSTEMS &nbsp;<span class="g-nav-pill">Public Sector Resource</span></div>
+  <div class="g-nav-actions">
+    <a href="public-sector.html" class="g-nav-back">&larr; Back to Public Sector</a>
+    <button class="g-nav-print" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+  </div>
+</nav>
+
+<div class="guide">
+
+<div class="g-cover">
+  <div class="g-cover-bg"></div>
+  <div class="g-cover-dots"></div>
+  <div class="g-cover-top">
+    <div class="g-cover-logo">FYRFLY<span>SYSTEMS</span></div>
+    <div class="g-cover-badge">2026 Edition</div>
+  </div>
+  <div class="g-cover-body">
+    <div class="g-cover-eyebrow">Public Sector Security &amp; Resilience</div>
+    <h1>The Connected Council</h1>
+    <p class="g-cover-sub">The 2026 Guide to Integrated Public Space Surveillance, Security &amp; Resilience &mdash; for Local Authority Chief Executives, SIROs, Emergency Planners, Community Safety Managers and DPOs.</p>
+    <div class="g-cover-tags">
+      <span class="g-cover-tag">Martyn&rsquo;s Law 2025</span>
+      <span class="g-cover-tag">CONTEST Strategy</span>
+      <span class="g-cover-tag">Data (Use &amp; Access) Act 2025</span>
+      <span class="g-cover-tag">Surveillance Camera Code</span>
+      <span class="g-cover-tag">UK GDPR</span>
+    </div>
+  </div>
+  <div class="g-cover-foot">Fyrfly Systems Ltd &nbsp;&bull;&nbsp; www.fyrflysystems.com/public-sector.html &nbsp;&bull;&nbsp; hello@fyrflysystems.com &nbsp;&bull;&nbsp; NSI NACOSS Gold &bull; SSAIB Approved &bull; ISO 9001:2015</div>
+</div>
+
+<div class="g-toc">
+  <div class="g-toc-title">Contents</div>
+  <ul class="g-toc-list">
+    <li class="g-toc-item"><span class="g-toc-num">01</span><div><div class="g-toc-name"><a href="#section1">The New Era of Civic Resilience</a></div><div class="g-toc-sub">From analogue town-centre CCTV to integrated, AI-assisted municipal networks</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">02</span><div><div class="g-toc-name"><a href="#section2">The Three Pillars of Public Sector Infrastructure</a></div><div class="g-toc-sub">Public Space CCTV &bull; Civic Access Control &bull; Municipal Wireless Networks</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">03</span><div><div class="g-toc-name"><a href="#section3">Martyn&rsquo;s Law &amp; The Emergency Planner&rsquo;s Mandate</a></div><div class="g-toc-sub">Meeting the Terrorism (Protection of Premises) Act 2025 for venues and public events</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">04</span><div><div class="g-toc-name"><a href="#section4">Governance, Privacy &amp; Public Trust</a></div><div class="g-toc-sub">The SIRO &amp; DPO checklist: DPIAs, data minimisation, SAR compliance and transparency</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">05</span><div><div class="g-toc-name"><a href="#section5">The Financial Case for Consolidation</a></div><div class="g-toc-sub">How a unified ecosystem replaces fragmented legacy contracts and delivers council-taxpayer ROI</div></div></li>
+    <li class="g-toc-item"><span class="g-toc-num">06</span><div><div class="g-toc-name"><a href="#section6">Next Steps: Your Civic Infrastructure &amp; Compliance Audit</a></div><div class="g-toc-sub">Book a no-obligation audit covering surveillance, access control, network resilience and statutory compliance</div></div></li>
+  </ul>
+</div>
+
+<div class="g-sec" id="section1">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">01</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Introduction</div>
+      <h2>The New Era of Civic Resilience</h2>
+    </div>
+  </div>
+  <p>The typical UK town centre CCTV estate was built in a different era. Analogue cameras on coaxial cables. Footage recorded to tape or early digital video recorders and monitored by staff conducting manual screen-watches in council control rooms. Reactive by design, siloed by default, and patched repeatedly over decades as budgets permitted and equipment failed.</p>
+  <p>In 2026, that model is not merely obsolete. In many authorities it constitutes a live governance risk &mdash; an infrastructure gap between the civic resilience obligations that local authorities now bear under statute and the systems they actually have in place to meet them.</p>
+  <p>The pressure facing public sector leaders has never been more acute or more convergent. Martyn&rsquo;s Law &mdash; the Terrorism (Protection of Premises) Act 2025 &mdash; creates mandatory emergency preparedness duties for public venues and events, with enforcement commencing April 2027. The Data (Use and Access) Act 2025 adds material new accountability requirements for how surveillance data is governed and processed. Council budgets are under sustained structural pressure, eliminating the option of simply adding capability on top of legacy systems. And public trust in surveillance technology &mdash; which cannot be assumed; it must be earned and demonstrably maintained &mdash; demands that every camera, every system, and every data retention decision be proportionate, transparent, and auditable.</p>
+  <div class="g-pull">
+    <p>&ldquo;Public space surveillance is not about watching the public. It is about protecting them &mdash; with their knowledge, with their consent, and within a governance framework they can scrutinise.&rdquo;</p>
+    <cite>Fyrfly Systems &mdash; Civic Resilience Advisory</cite>
+  </div>
+  <h3>The Fragmentation Problem</h3>
+  <p>Across most local authority areas, the reality is a patchwork of systems procured under different capital programmes, maintained by different contractors, running on different networks, and producing data in different formats that cannot easily be shared between them. Town centre CCTV runs on one system. Civic building access control runs on another. Emergency communications rely on the public Wi-Fi network that was never designed to be a resilience backbone.</p>
+  <p>The consequence of this fragmentation is predictable and well-documented: systems fail during critical incidents precisely because they have never been designed to work together under pressure. A lockdown command cannot propagate across a civic building because the access control system is not connected to the CCTV management platform. A control room operator cannot verify the location of an incident because the cameras covering the relevant area are offline due to a bandwidth conflict on the shared network. A Subject Access Request takes three weeks to fulfil because footage is stored across four separate systems with no unified search capability.</p>
+  <div class="g-stat">
+    <div class="g-stat-num">April<br style="line-height:0.5"> 2027</div>
+    <div class="g-stat-text"><strong>Martyn&rsquo;s Law enforcement deadline</strong><br>The Terrorism (Protection of Premises) Act 2025 enters full enforcement in April 2027. Local authorities with venues or public events of 100 or more capacity must have documented protective security measures and emergency procedures in place before that date. Most town centres, civic halls, libraries and council-managed public spaces are in scope.</div>
+  </div>
+  <h3>The 2026 Landscape: Three Convergent Pressures</h3>
+  <p><strong>1. Legislative Compliance Deadlines</strong><br>Martyn&rsquo;s Law is not guidance; it is statute. The April 2027 enforcement date is not moveable. Local authorities that have not audited their current provision, identified gaps, and begun procurement by early 2026 face a realistic risk of non-compliance. The consequence is not merely reputational: it is a criminal liability for the responsible person.</p>
+  <p><strong>2. Data Governance Accountability</strong><br>The Data (Use and Access) Act 2025 reinforces and extends the obligations that existed under UK GDPR and the Data Protection Act 2018. Senior Information Risk Owners and Data Protection Officers now face enhanced personal accountability for data processing decisions. A CCTV system with no documented DPIA, unclear retention periods, and uncontrolled access rights is not a legacy problem: it is a live regulatory exposure.</p>
+  <p><strong>3. The Budget Imperative</strong><br>Local authority capital and revenue budgets are not recovering. Every infrastructure investment must be justified in terms of long-term value, reduced maintenance overhead, and consolidation of supplier relationships. The case for integrated infrastructure is not primarily a technology argument &mdash; it is a financial governance argument. One integrated system, one contract, one accountable supplier, maintained to a single documented standard.</p>
+</div>
+
+<div class="g-sec" id="section2">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">02</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Core Framework</div>
+      <h2>The Three Pillars of Public Sector Infrastructure</h2>
+    </div>
+  </div>
+  <p>An integrated civic security ecosystem comprises three interdependent systems. Each is essential. Each becomes substantially more powerful when connected to the others. The failure of any one creates a gap that the other two cannot compensate for.</p>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg></div>
+      <div><div class="g-pillar-label">Pillar One</div><div class="g-pillar-title">Proactive Public Space CCTV &mdash; The Eyes of the Town Centre</div></div>
+    </div>
+    <p>The shift from passive recording to active, AI-assisted monitoring is the single most significant development in public space surveillance in two decades. Edge AI analytics &mdash; running on the camera or at a local processing node, without requiring footage to be transmitted to an external cloud server &mdash; allow control room operators to manage significantly larger camera estates with greater effectiveness, because the system is continuously prioritising what requires human attention.</p>
+    <p>This is not autonomous decision-making. It is operator support. The AI flags; the human decides. This distinction is important for compliance with the Surveillance Camera Code of Practice, which requires that all processing be proportionate, purposeful, and subject to appropriate human oversight.</p>
+    <ul class="g-list">
+      <li><strong>Behavioural analytics:</strong> Detection of loitering, rapid crowd formation, abandoned objects, and aggressive posturing alerts operators to developing situations before they escalate, typically within seconds of the behaviour commencing.</li>
+      <li><strong>ANPR integration:</strong> Automatic Number Plate Recognition linked to the Police National Computer and council permit databases enables real-time vehicle monitoring for traffic management, parking enforcement and counter-terrorism screening without manual operator intervention.</li>
+      <li><strong>Illegal dumping detection:</strong> Cameras monitoring known fly-tipping locations can automatically trigger alerts when a vehicle stops, deposits material, and departs &mdash; capturing registration data and footage for enforcement action.</li>
+      <li><strong>Rapid-deployment solar towers:</strong> For temporary public events &mdash; Christmas markets, community festivals, civic gatherings &mdash; Fyrfly&rsquo;s solar-powered mobile CCTV towers provide immediate surveillance coverage without civil infrastructure. Deployed in under ninety minutes, powered entirely by solar with battery backup, and connected via 5G or Starlink, they extend the council&rsquo;s monitoring capability to any location on demand.</li>
+    </ul>
+    <div class="g-info">
+      <div class="g-info-title">CONTEST Alignment &mdash; Protect and Prepare</div>
+      <p>The UK Government&rsquo;s CONTEST counter-terrorism strategy identifies &ldquo;Protect&rdquo; and &ldquo;Prepare&rdquo; as two of its four principal strands. Proactive public space CCTV with AI-assisted anomaly detection directly supports both: it protects by deterring and identifying threats, and prepares by providing control room operators with real-time situational awareness during an unfolding incident.</p>
+    </div>
+  </div>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="g-pillar-label">Pillar Two</div><div class="g-pillar-title">Civic Access Control &amp; Lockdown &mdash; Protecting Public Buildings</div></div>
+    </div>
+    <p>Civic buildings &mdash; council offices, civic centres, libraries, registrar offices, planning departments &mdash; present a specific and frequently underestimated security challenge. They must be genuinely accessible to the public they serve. They must protect the staff who work in them, who regularly face confrontational behaviour from members of the public in stressful circumstances. And they must be capable of immediate, site-wide protective action in the event of a serious threat.</p>
+    <p>Access control in a civic building context is not about restricting public access to public services. It is about ensuring that access is managed, logged, and capable of being instantly controlled when circumstances require it.</p>
+    <ul class="g-list">
+      <li><strong>Tiered access architecture:</strong> Public reception areas, staff offices, and sensitive zones (data server rooms, mayoral suites, emergency planning facilities) are each controlled at the appropriate level, with credentials assigned proportionate to role and reviewed regularly against the council&rsquo;s data minimisation obligations.</li>
+      <li><strong>Visitor management:</strong> Digital visitor registration at every public-facing entry point creates an auditable record of who is on the premises, when they arrived, and their stated purpose &mdash; satisfying both safeguarding and UK GDPR requirements simultaneously.</li>
+      <li><strong>Dynamic lockdown:</strong> A single authenticated action &mdash; available from the control room, the duty manager&rsquo;s device, or designated trigger points throughout the building &mdash; locks every controlled access point, alerts the monitoring centre, and initiates the documented emergency communication protocol. This is the technical foundation of a Martyn&rsquo;s Law-compliant lockdown procedure.</li>
+      <li><strong>Integration with CCTV:</strong> When an access control event occurs &mdash; a forced door, an attempted tailgate, a lockdown trigger &mdash; the relevant cameras are automatically directed to cover the affected point and begin enhanced recording. Control room operators receive a unified alert rather than separate notifications from disconnected systems.</li>
+    </ul>
+  </div>
+
+  <div class="g-pillar">
+    <div class="g-pillar-hdr">
+      <div class="g-pillar-icon"><svg viewBox="0 0 24 24"><path d="M1 6l5.5 5.5L12 5l5.5 6.5L23 6"/><path d="M1 12l5.5 5.5L12 11l5.5 6.5L23 12"/></svg></div>
+      <div><div class="g-pillar-label">Pillar Three</div><div class="g-pillar-title">Municipal Wireless Networks &mdash; The Resilience Backbone</div></div>
+    </div>
+    <p>The single most common point of failure in local authority security infrastructure is the network. Not the cameras. Not the access control hardware. The network that is supposed to connect them.</p>
+    <p>Public sector Wi-Fi networks were designed for connectivity, not resilience. They were not designed to simultaneously carry live CCTV streams from forty town centre cameras, maintain access control authentication across twenty civic buildings, support body-worn video upload from community safety officers, and provide emergency communications to a control room during a major public safety incident &mdash; all while the general public is connecting to the same infrastructure via the free town centre Wi-Fi.</p>
+    <ul class="g-list">
+      <li><strong>Dedicated, encrypted mesh backbone:</strong> A municipal security network must be physically and logically separate from public-facing connectivity. A dedicated VLAN or separate infrastructure carries only security-critical traffic, with end-to-end encryption and no bandwidth competition from public users.</li>
+      <li><strong>Guaranteed uptime for emergency responders:</strong> Quality of Service (QoS) configuration ensures that during a declared emergency, security system traffic is prioritised absolutely over all other network activity. A lockdown command propagates to every access door in under a second, regardless of what else is happening on the network.</li>
+      <li><strong>Continuous device monitoring:</strong> Every camera, access reader, and wireless access point on the security network is monitored for connectivity in real time. A device outage triggers an immediate alert to the control room and the maintenance team, not a discovery three weeks later during a routine check.</li>
+      <li><strong>Failover resilience:</strong> Primary and secondary connectivity paths ensure that the loss of a single link does not take the security network offline. In high-risk environments, a secondary 5G connection provides automatic failover with zero manual intervention.</li>
+    </ul>
+  </div>
+
+  <div class="g-pull">
+    <p>&ldquo;A civic security network is emergency infrastructure. It must be treated with the same design rigour as a blue-light communications system &mdash; because during a critical incident, it performs the same function.&rdquo;</p>
+    <cite>Fyrfly Systems &mdash; Municipal Network Design Team</cite>
+  </div>
+</div>
+
+<div class="g-sec" id="section3">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">03</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Statutory Compliance</div>
+      <h2>Martyn&rsquo;s Law &amp; The Emergency Planner&rsquo;s Mandate</h2>
+    </div>
+  </div>
+  <p>The Terrorism (Protection of Premises) Act 2025 &mdash; Martyn&rsquo;s Law &mdash; is the most significant piece of counter-terrorism legislation directly affecting public sector organisations in a generation. For local authorities, the Act is not a distant corporate compliance matter: it affects the buildings councils manage, the events they organise, and the public spaces for which they bear statutory responsibility.</p>
+  <div class="g-warn">
+    <span class="g-warn-icon">&#9888;</span>
+    <p><strong>Is your authority in scope?</strong> Any venue or event with a capacity of 100 or more people falls within the Act&rsquo;s Standard Tier. Any venue or event with a capacity of 800 or more falls within the Enhanced Tier with significantly more demanding requirements. The typical local authority operates multiple venues in both tiers: civic halls, libraries, town squares, council chambers, leisure centres, and managed event spaces.</p>
+  </div>
+  <h3>Understanding the Tiers</h3>
+  <p><strong>Standard Tier (100&ndash;799 capacity):</strong> The responsible person &mdash; in a council context, typically the Chief Executive or a nominated senior officer &mdash; must document emergency procedures, ensure all staff who may be present during an event are trained in those procedures, and maintain ongoing monitoring of the protective measures in place. The key obligation is that the procedures are written, tested, and reflective of actual technical capability.</p>
+  <p><strong>Enhanced Tier (800+ capacity):</strong> Additional requirements apply, including physical protective security measures, a suitably qualified security professional engaged in the planning process, and significantly more detailed documented procedures. Town centre Christmas markets, civic festivals, and major public events managed by the council are highly likely to trigger Enhanced Tier duties.</p>
+  <h3>The Integrated Response: What &ldquo;One Button&rdquo; Actually Means</h3>
+  <p>Martyn&rsquo;s Law requires that documented emergency procedures reflect the actual technical capability of the systems in place. A procedure that requires an operator to take twelve separate manual actions across four disconnected systems is not a robust emergency procedure &mdash; it is a list of things that will not happen correctly under pressure.</p>
+  <p>A properly integrated system enables the following sequence from a single authenticated action:</p>
+  <ul class="g-list">
+    <li><strong>Immediate lockdown:</strong> Every controlled access door in the venue or event perimeter locks. Entry points are secured from further external access. Where the event uses temporary barriers integrated with the access control system, those are also actioned.</li>
+    <li><strong>Automatic CCTV escalation:</strong> All cameras in the affected area switch to maximum-resolution continuous recording. Pre-defined camera groups covering event perimeters, principal exits, and control areas activate enhanced monitoring protocols.</li>
+    <li><strong>Control room notification:</strong> The Alarm Receiving Centre receives an immediate alert with live camera access, enabling visual assessment of the incident before emergency services arrive and can be briefed accordingly.</li>
+    <li><strong>Staff communication:</strong> Designated staff devices receive an immediate alert via the secure network, activating the documented communication cascade without relying on public mobile networks which are frequently overwhelmed during major incidents.</li>
+    <li><strong>Tamper-evident audit trail:</strong> Every action taken during the incident &mdash; every door locked, every camera redirected, every alert sent &mdash; is logged to a secure, timestamped record supporting post-incident review and any subsequent regulatory or legal inquiry.</li>
+  </ul>
+  <div class="g-info">
+    <div class="g-info-title">For Temporary Events &mdash; Rapid-Deployment Solar Towers</div>
+    <p>Martyn&rsquo;s Law applies to events as well as permanent venues. A Christmas market occupying the town square for four weeks is a Martyn&rsquo;s Law-regulated event if it can accommodate 100 or more people simultaneously &mdash; which virtually all town centre events can. Fyrfly&rsquo;s rapid-deployment solar CCTV towers provide the monitoring and communications backbone for temporary events without requiring civil infrastructure. Deployed in under ninety minutes, they provide 24/7 AI-assisted monitoring, 5G or Starlink connectivity, and integration with the council&rsquo;s permanent control room for the duration of the event.</p>
+  </div>
+</div>
+
+<div class="g-sec" id="section4">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">04</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Governance Checklist</div>
+      <h2>Governance, Privacy &amp; Public Trust</h2>
+    </div>
+  </div>
+  <p>Public confidence in council-operated CCTV is not automatic. It is contingent on the authority demonstrating &mdash; publicly and through its published policies &mdash; that surveillance is proportionate, purposeful, and rigorously governed. The Senior Information Risk Owner and Data Protection Officer bear primary responsibility for that demonstration. The following checklist is designed as a practical governance tool for those roles.</p>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Legal Basis &amp; Data Protection Impact Assessment</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Lawful basis for each category of public space surveillance documented &mdash; typically Public Task under Article 6(1)(e) UK GDPR, with a legitimate interests assessment where applicable</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Data Protection Impact Assessment (DPIA) completed before deployment of any new CCTV capability, AI analytics, or ANPR system and reviewed annually</li>
+      <li class="g-check-item"><div class="g-check-box"></div>DPIA signed off by the SIRO and DPO and held on record for ICO inspection</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Processing activities register updated to reflect all surveillance systems, data types, retention periods and third-party processors</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Surveillance Camera Code of Practice self-assessment completed and published</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Purpose Limitation &amp; Proportionality</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Each camera location justified against a documented &ldquo;specified pressing need&rdquo; (PoFA 2012) &mdash; anti-social behaviour hotspot, traffic enforcement zone, or identified crime pattern</li>
+      <li class="g-check-item"><div class="g-check-box"></div>AI analytics functions limited to those specified in the DPIA. No &ldquo;function creep&rdquo; &mdash; analytics not documented in the DPIA must not be activated without a new assessment</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Facial recognition technology, if deployed, subject to a separate Enhanced DPIA and explicit Chief Executive sign-off, with public consultation documented</li>
+      <li class="g-check-item"><div class="g-check-box"></div>ANPR systems: only data required for the stated enforcement purpose retained; no speculative retention of vehicle movements beyond the defined period</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Transparency &amp; Public Communication</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Visible, compliant signage at all camera locations identifying the data controller, purpose, and contact for enquiries &mdash; meeting ICO and Surveillance Camera Commissioner standards</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Comprehensive CCTV privacy notice published on the council website and reviewed annually</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Annual transparency report published covering the number of cameras, footage access events, SARs received, and police disclosures made</li>
+      <li class="g-check-item"><div class="g-check-box"></div>CCTV policy approved by Full Council or relevant committee and available on the council&rsquo;s publication scheme</li>
+    </ul>
+  </div>
+
+  <div class="g-check-group">
+    <div class="g-check-group-title">Data Security, Retention &amp; Access Controls</div>
+    <ul class="g-check-list">
+      <li class="g-check-item"><div class="g-check-box"></div>Standard retention period set at 30 days for general footage, with documented extension process for evidential material only</li>
+      <li class="g-check-item"><div class="g-check-box"></div>All footage encrypted at rest (AES-256 minimum) and in transit (TLS 1.3)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Role-based access controls: named individuals authorised to view footage, with access logged and auditable</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Documented process for Subject Access Requests including third-party redaction capability (automated or semi-automated)</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Police disclosure process documented with a designated point of contact and a log of all disclosures</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Third-party data processor agreements in place with all system suppliers and monitoring centres</li>
+      <li class="g-check-item"><div class="g-check-box"></div>Annual penetration test of network infrastructure carried out by an accredited CREST provider</li>
+    </ul>
+  </div>
+
+  <div class="g-pull">
+    <p>&ldquo;Surveillance by consent is not a slogan. It is a governance discipline. The council that can show its residents exactly what it records, why, for how long, who can see it, and how they can challenge it is the council that has earned the right to operate a surveillance estate.&rdquo;</p>
+    <cite>Fyrfly Systems &mdash; Public Sector Governance Advisory</cite>
+  </div>
+</div>
+
+<div class="g-sec" id="section5">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">05</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Financial Governance</div>
+      <h2>The Financial Case for Consolidation</h2>
+    </div>
+  </div>
+  <p>The financial argument for integrated infrastructure is not primarily about capital cost. It is about the total cost of ownership across the system lifecycle &mdash; and the hidden costs of the fragmented alternative that most authorities are currently bearing without fully accounting for them.</p>
+  <h3>The True Cost of Legacy Fragmentation</h3>
+  <p>A local authority operating five separate security systems under five separate maintenance contracts with three different suppliers is not saving money through competition. It is incurring costs in ways that do not appear in any single budget line:</p>
+  <table class="g-roi-table">
+    <tr><th>Hidden Cost</th><th>Fragmented Systems</th><th>Integrated System</th></tr>
+    <tr><td>Contract management overhead</td><td class="g-roi-bad">Multiple SLAs, renewal cycles, performance reviews</td><td class="g-roi-good">Single contract, single SLA, single review</td></tr>
+    <tr><td>Incident investigation time</td><td class="g-roi-bad">Staff manually correlating data from 4+ systems</td><td class="g-roi-good">Unified search across all systems in seconds</td></tr>
+    <tr><td>SAR/FOI compliance cost</td><td class="g-roi-bad">Manual review and redaction across multiple systems</td><td class="g-roi-good">Automated redaction, single export process</td></tr>
+    <tr><td>Maintenance response time</td><td class="g-roi-bad">Multiple callout windows; supplier finger-pointing on faults</td><td class="g-roi-good">Single accountable supplier, unified fault response</td></tr>
+    <tr><td>Staff training overhead</td><td class="g-roi-bad">Multiple interfaces; training required for each system</td><td class="g-roi-good">Single unified management platform</td></tr>
+    <tr><td>Compliance audit preparation</td><td class="g-roi-bad">Manual evidence compilation across disparate records</td><td class="g-roi-good">Single auditable record, automated report generation</td></tr>
+  </table>
+  <h3>The Consolidation Dividend</h3>
+  <p>Authorities that have migrated from fragmented legacy provision to an integrated Fyrfly ecosystem typically report three categories of measurable saving within the first twelve months of operation:</p>
+  <ul class="g-list">
+    <li><strong>Contract overhead reduction:</strong> Replacing multiple supplier relationships with a single managed service agreement reduces procurement, contract management and performance monitoring overhead. In medium-sized authorities, this typically represents 0.5 to 1.0 full-time equivalent of officer time annually.</li>
+    <li><strong>Maintenance cost reduction:</strong> A single integrated system with remote monitoring and proactive maintenance typically delivers a 25&ndash;35% reduction in reactive callout costs compared to the aggregate maintenance cost of the systems it replaces.</li>
+    <li><strong>Compliance efficiency:</strong> Automated SAR redaction, unified audit trails, and centralised data governance documentation substantially reduce the officer time required to respond to ICO enquiries, FOI requests, and police disclosure requests.</li>
+  </ul>
+  <div class="g-stat">
+    <div class="g-stat-num">25&ndash;35%</div>
+    <div class="g-stat-text"><strong>Typical reduction in reactive maintenance costs</strong><br>Based on Fyrfly Systems client transitions from fragmented legacy provision to integrated managed service. Savings vary by estate size, system age and prior maintenance regime. Full ROI analysis provided as part of the Civic Infrastructure &amp; Compliance Audit.</div>
+  </div>
+  <h3>Making the Case to Members</h3>
+  <p>Capital investment in integrated security infrastructure requires member-level approval in most local authority governance structures. The most effective case is built on three arguments that resonate with elected members and their constituents: statutory compliance (Martyn&rsquo;s Law is not optional), public protection (demonstrated capability to respond to critical incidents), and financial prudence (a single integrated system replacing multiple legacy contracts at lower total cost of ownership).</p>
+  <p>Fyrfly Systems provides a written financial case document suitable for committee submission as part of the Civic Infrastructure &amp; Compliance Audit &mdash; including a five-year total cost of ownership comparison and a risk-weighted assessment of the cost of non-compliance.</p>
+</div>
+
+<div class="g-sec" id="section6">
+  <div class="g-sec-hdr">
+    <div class="g-sec-num">06</div>
+    <div class="g-sec-hdr-text">
+      <div class="g-sec-label">Your Next Step</div>
+      <h2>The Civic Infrastructure &amp; Compliance Audit</h2>
+    </div>
+  </div>
+  <p>Every local authority estate is different. The right integrated infrastructure for a district council with a civic centre, a market square and a handful of managed car parks is not the same as the solution for a metropolitan borough with fifty public buildings, a major event programme and a 24-hour control room operation.</p>
+  <p>What is consistent is the need to understand the gap between current provision and current obligation &mdash; and to have that assessment in writing, prepared by a specialist with direct experience of public sector security infrastructure.</p>
+  <h3>What the Audit Includes</h3>
+  <ul class="g-list">
+    <li><strong>Public space CCTV review:</strong> Assessment of existing town centre and public building camera coverage, identification of legacy equipment, network dependency risks, and AI analytics upgrade opportunities</li>
+    <li><strong>Access control assessment:</strong> Evaluation of civic building entry points against current best practice, lockdown capability, and Martyn&rsquo;s Law compliance requirements</li>
+    <li><strong>Network infrastructure audit:</strong> Assessment of whether security systems are adequately separated from public-facing connectivity, with bandwidth analysis, resilience testing and failover capability review</li>
+    <li><strong>Martyn&rsquo;s Law gap analysis:</strong> A written assessment of each venue and event type against Standard and Enhanced Tier requirements, with a prioritised compliance roadmap</li>
+    <li><strong>SIRO/DPO governance review:</strong> Assessment of DPIA status, retention policies, access controls and SAR process capability against current ICO guidance</li>
+    <li><strong>Financial case document:</strong> A five-year total cost of ownership comparison and committee-ready investment case, suitable for submission to Cabinet or the relevant scrutiny committee</li>
+  </ul>
+  <div class="g-info">
+    <div class="g-info-title">No obligation. No sales pressure. Council-taxpayer accountable.</div>
+    <p>Our audits are carried out by Fyrfly Systems specialists with direct experience of public sector procurement, governance and infrastructure. The written report is yours to keep, act on, and share with members &mdash; whether or not you proceed with Fyrfly. We believe that better-informed authorities make better decisions. And better decisions mean better-protected communities.</p>
+  </div>
+  <p>Audits are available to single local authorities and to combined authorities or regional partnerships assessing shared infrastructure. A standard audit covers one site visit per venue type and produces a written report within ten working days.</p>
+  <p>To arrange your audit, contact us at <strong>hello@fyrflysystems.com</strong> or call <strong>01234 567 890</strong>.</p>
+</div>
+
+<div class="g-cta" id="cta">
+  <div class="g-cta-bg"></div>
+  <div class="g-cta-c">
+    <div class="g-cta-label">Book Your Audit</div>
+    <h2>Request a Civic Infrastructure &amp; Compliance Audit</h2>
+    <p>A no-obligation assessment covering public space CCTV, civic access control, network resilience, Martyn&rsquo;s Law compliance, and a five-year financial case document suitable for member approval.</p>
+    <a href="mailto:hello@fyrflysystems.com?subject=Civic Infrastructure Audit Request" class="g-cta-btn">Request Your Free Audit &rarr;</a>
+    <div class="g-cta-detail">Or call 01234 567 890 &nbsp;&bull;&nbsp; hello@fyrflysystems.com &nbsp;&bull;&nbsp; NSI NACOSS Gold &bull; SSAIB Approved &bull; ISO 9001:2015 &bull; CCS Framework</div>
+  </div>
+</div>
+
+<div class="g-footer">
+  <div><span class="g-footer-brand">Fyrfly Systems Ltd</span> &mdash; Intelligent Security for the Public Sector</div>
+  <div>www.fyrflysystems.com/public-sector.html &nbsp;&bull;&nbsp; &copy; 2026</div>
+</div>
+
+</div>
+</body>
+</html>
