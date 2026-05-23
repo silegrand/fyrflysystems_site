@@ -36,38 +36,38 @@
     button{cursor:pointer;font-family:var(--fb);}
 
     /* NAV */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    nav{position:sticky;top:0;z-index:200;height:var(--nh);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow 0.3s var(--ease);}
+    nav.scrolled{box-shadow:0 2px 28px rgba(0,0,0,0.07);}
+    .nav-i{max-width:var(--max);margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .nav-logo{display:flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:50px;width:auto;}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--mid);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--dark);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:0.3rem;cursor:pointer;}
+    .nav-dropdown>a svg{width:11px;height:11px;stroke:var(--mid);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s;}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);stroke:var(--dark);}
+    .nav-dropdown:hover>a{color:var(--dark);}
+    .drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--bdr);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.12);padding:0.5rem;padding-top:1rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s,visibility 0.2s;}
+    .nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;}
+    .drop-menu::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:14px;height:14px;background:#fff;border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);rotate:45deg;margin-top:1px;}
+    .drop-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;transition:background 0.15s;font-size:0.83rem;font-weight:500;color:var(--dark);text-decoration:none;display:block;}
+    .drop-item:hover{background:var(--light);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;flex-shrink:0;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+    .ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+    .mob-nav{display:none;position:fixed;inset:0;z-index:300;background:rgba(14,14,20,0.97);flex-direction:column;align-items:flex-start;padding:5rem 2rem 2rem;gap:0;opacity:0;transition:opacity 0.25s;}
+    .mob-nav.open{display:flex;opacity:1;}
+    .mob-nav a{font-family:var(--fh);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.85);padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.07);width:100%;transition:color 0.2s;}
+    .mob-nav a:hover{color:#fff;}
+    .mob-nav .mob-sub{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.38);padding:0.5rem 0;border-bottom:none;letter-spacing:0.08em;text-transform:uppercase;margin-top:1rem;}
+    .mob-nav .mob-cta{margin-top:1.5rem;display:inline-flex;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:1rem;font-weight:600;border-radius:8px;border-bottom:none;width:auto;}
+    .mob-close{position:absolute;top:1.1rem;right:1.5rem;background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;}
+    .mob-close span{width:24px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;display:block;}
+    .mob-close span:first-child{transform:rotate(45deg) translate(5px,5px);}
+    .mob-close span:last-child{transform:rotate(-45deg) translate(5px,-5px);}
 
     /* HERO */
     .hero{background:#080B12;padding:3.5rem 0 2.5rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.05);}
@@ -145,7 +145,7 @@
       .detail-panel.open{transform:translateY(0);}
     }
     @media(max-width:768px){
-      
+      .nav-links,.nav-cta{display:none;}.ham{display:flex;}
       .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
       .ft-grid>div:first-child{grid-column:span 2;}
       .ft-grid>div:last-child{grid-column:span 2;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;}
@@ -156,11 +156,141 @@
       .ft-grid>div:first-child,.ft-grid>div:last-child{grid-column:span 1;}
     }
   </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.fyrflysystems.com/#organisation",
+      "name": "Fyrfly Systems",
+      "url": "https://www.fyrflysystems.com",
+      "logo": "https://www.fyrflysystems.com/assets/fyrfly-logo.png",
+      "sameAs": [
+        "https://github.com/silegrand/fyrflysystems"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.fyrflysystems.com/#website",
+      "url": "https://www.fyrflysystems.com",
+      "name": "Fyrfly Systems",
+      "publisher": {
+        "@id": "https://www.fyrflysystems.com/#organisation"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fyrflysystems.com/system-integration.html#webpage",
+      "url": "https://www.fyrflysystems.com/system-integration.html",
+      "name": "Free Security System Integration Compatibility Tool — Fyrfly Systems",
+      "description": "Check CCTV, access control, and network integration compatibility with existing school or public sector infrastructure. Free tool covering ONVIF, Active Directory, and OSDP protocols.",
+      "isPartOf": {
+        "@id": "https://www.fyrflysystems.com/#website"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.fyrflysystems.com/system-integration.html#tool",
+      "name": "Security System Integration Compatibility Tool — Fyrfly Systems",
+      "description": "A free compatibility and integration assessment tool for UK campus security infrastructure. Check your existing CCTV, access control, Active Directory, VMS, and network configuration for compatibility with Fyrfly's platform. Covers ONVIF Profile S/G/T/A/C, LDAP/S Active Directory sync, OSDP v2 and Wiegand protocols, and SIEM/syslog integration. Built for IT Directors and system integrators.",
+      "url": "https://www.fyrflysystems.com/system-integration.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Fyrfly Systems",
+        "url": "https://www.fyrflysystems.com"
+      },
+      "featureList": [
+        "ONVIF Profile S/G/T/A/C compatibility check",
+        "Active Directory and Azure Entra ID sync assessment",
+        "OSDP v2 and Wiegand protocol compatibility",
+        "VMS platform integration evaluation",
+        "SIEM and syslog integration review",
+        "Free to use, no registration required"
+      ],
+      "browserRequirements": "Requires JavaScript. Compatible with all modern browsers.",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "IT Directors, System Integrators, Network Architects, MAT IT Managers, Local Authority IT Teams"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.fyrflysystems.com/system-integration.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I integrate a new CCTV or access control system with my school's existing infrastructure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In most cases yes. IP security systems using ONVIF protocols can integrate with existing hardware regardless of manufacturer. Active Directory integration enables automatic credential provisioning and revocation. Fyrfly's free System Integration Tool at www.fyrflysystems.com/system-integration.html assesses your existing infrastructure for compatibility before any procurement decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What protocols does Fyrfly use to integrate with existing school CCTV and access control systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fyrfly supports ONVIF Profile S/G/T/A/C, RTSP streaming, OSDP v2 and Wiegand door readers, LDAP/S for Active Directory and Azure Entra ID sync, and CEF/syslog for SIEM integration. The free System Integration Tool at www.fyrflysystems.com/system-integration.html assesses your specific configuration."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
-<div id="nav-placeholder"></div>
-<script src="nav.js"></script>
+<div class="mob-nav" id="mobNav" style="display:none">
+  <button class="mob-close" id="mobClose" aria-label="Close menu"><span></span><span></span></button>
+  <span class="mob-sub">Services</span>
+  <a href="cctv.html">CCTV</a><a href="access-control.html">Access Control</a><a href="wireless-networks.html">Wireless Networks</a><a href="intruder-alarms.html">Intruder Alarms</a><a href="fire-systems.html">Fire Systems</a><a href="monitoring.html">24/7 Monitoring</a>
+  <span class="mob-sub">Sectors</span>
+  <a href="education.html">Education</a><a href="public-sector.html">Public Sector</a>
+  <span class="mob-sub">Tools</span>
+  <a href="zone-planner.html">Zone Planner</a><a href="cost-estimator.html">Cost Estimator</a><a href="system-integration.html">System Integration</a>
+  <span class="mob-sub">Insights</span>
+  <a href="blog.html">All Articles</a>
+  <span class="mob-sub">Company</span>
+  <a href="index.html#about">About Us</a>
+  <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <picture><source srcset="fyrfly-logo.webp" type="image/webp"><img src="fyrfly-logo.png" alt="Fyrfly Systems" width="160" height="50" fetchpriority="high"></picture>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="public-sector.html">Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="zone-planner.html" class="drop-item">Zone Planner</a>
+          <a href="cost-estimator.html" class="drop-item">Cost Estimator</a>
+          <a href="system-integration.html" class="drop-item active">System Integration</a>
+          <a href="compliance-tool.html" class="drop-item">Compliance Tool</a>
+        </div>
+      </li>
+      <li><a href="blog.html">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-bg"></div>
@@ -177,7 +307,7 @@
       <div class="leg-item"><div class="leg-dot" style="background:var(--alarm)"></div><span><strong>Intruder Alarm</strong> — detection &amp; response</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--fire)"></div><span><strong>Fire System</strong> — detection &amp; evacuation</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--monitor)"></div><span><strong>Monitoring Centre</strong> — 24/7 human response</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--network)"></div><span><strong>Data Network</strong> — connects everything</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--network)"></div><span><strong>Wireless Network</strong> — connects everything</span></div>
       <div class="leg-divider"></div>
       <div class="leg-group-label">Animated lines show live signals</div>
       <div class="leg-item"><div class="leg-pulse" style="background:var(--alarm)"></div><span>Alarm &amp; alert signals</span></div>
@@ -218,7 +348,7 @@
       <div class="ft-ct">Sectors</div>
       <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
       <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
-      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li></ul>
+      <ul class="ft-links"><li><a href="zone-planner.html">Zone Planner</a></li><li><a href="cost-estimator.html">Cost Estimator</a></li><li><a href="system-integration.html">System Integration</a></li><li><a href="compliance-tool.html">Compliance Tool</a></li></ul>
     </div>
     <div>
       <div class="ft-ct">Get in Touch</div>
@@ -251,7 +381,7 @@ const NODES = {
       { to: 'monitor', color: '#3B82F6', label: 'Live feed to monitoring centre', detail: 'When an intruder alarm activates, the ARC operator pulls up live camera footage to verify the event before deciding on response. This prevents false alarm police calls and ensures genuine events get an immediate reaction.' },
       { to: 'access', color: '#10B981', label: 'Door open triggers camera capture', detail: 'Every time a door reader is activated, the nearest camera automatically captures the face of the person entering. This links access log entries to visual evidence, which is invaluable for safeguarding investigations and insurance claims.' },
       { to: 'alarm', color: '#EF4444', label: 'Alarm activation triggers recording', detail: 'When the intruder alarm is triggered, cameras covering the activation zone switch to high-frame-rate recording and stream live to the monitoring centre. This provides visual context to the alarm event within seconds.' },
-      { to: 'network', color: '#06B6D4', label: 'Carried over the data network', detail: 'IP cameras transmit video data over the data network infrastructure. The network is designed with a dedicated VLAN for security systems, ensuring camera streams are never degraded by general internet usage on the same site.' }
+      { to: 'network', color: '#06B6D4', label: 'Carried over wireless network', detail: 'IP cameras transmit video data over the wireless network infrastructure. The network is designed with a dedicated VLAN for security systems, ensuring camera streams are never degraded by general internet usage on the same site.' }
     ],
     page: 'cctv.html'
   },
@@ -277,7 +407,7 @@ const NODES = {
       { to: 'monitor', color: '#8B5CF6', label: 'Alarm signal to monitoring centre', detail: 'The moment an alarm zone is triggered, a digital signal travels to the NSI-approved Alarm Receiving Centre via dual-path signalling — broadband and 4G cellular. Operators respond within seconds, contacting keyholders and coordinating police response if required.' },
       { to: 'cctv', color: '#3B82F6', label: 'Triggers cameras in the alarm zone', detail: 'Alarm activation tells the CCTV system exactly which zone has been triggered. The nearest cameras switch to event recording and stream live to the monitoring centre. This visual verification determines whether the response is a keyholder call or an emergency police response.' },
       { to: 'access', color: '#10B981', label: 'Can initiate zone lockdown', detail: 'Depending on the installation configuration, a confirmed intruder alarm can trigger access control to lock down specific zones. This prevents a detected intruder from moving to other parts of the building while keyholders and response teams are en route.' },
-      { to: 'network', color: '#06B6D4', label: 'Dual-path signal via network', detail: 'The alarm communicator uses the site data network as the primary signalling path to the monitoring centre, with 4G cellular as the backup. If an intruder cuts the broadband connection, the cellular path ensures the signal gets through.' }
+      { to: 'network', color: '#06B6D4', label: 'Dual-path signal via network', detail: 'The alarm communicator uses the site wireless network as the primary signalling path to the monitoring centre, with 4G cellular as the backup. If an intruder cuts the broadband connection, the cellular path ensures the signal gets through.' }
     ],
     page: 'intruder-alarms.html'
   },
@@ -306,10 +436,10 @@ const NODES = {
     page: 'monitoring.html'
   },
   network: {
-    id: 'network', label: 'Data Network', color: '#06B6D4',
+    id: 'network', label: 'Wireless Network', color: '#06B6D4',
     icon: 'wifi',
     tagline: 'The secure infrastructure that carries data between every system on site',
-    desc: 'The data network is the invisible backbone that makes integration possible. Without a properly designed, segmented network, IP cameras cannot stream, access control cannot communicate, and alarm signals cannot travel. The network is designed with security systems on their own dedicated VLAN — isolated from general internet traffic and protected against cyber threats.',
+    desc: 'The wireless network is the invisible backbone that makes integration possible. Without a properly designed, segmented network, IP cameras cannot stream, access control cannot communicate, and alarm signals cannot travel. The network is designed with security systems on their own dedicated VLAN — isolated from general internet traffic and protected against cyber threats.',
     connections: [
       { to: 'cctv', color: '#3B82F6', label: 'Carries IP camera video streams', detail: 'HD and 4K camera streams require significant bandwidth and low latency. The network is designed with security systems on a dedicated VLAN, sized for the full camera load. This ensures camera streams are never affected by pupils streaming video or other general internet usage.' },
       { to: 'access', color: '#10B981', label: 'Carries access events and credentials', detail: 'Access control panels communicate with the management server over the network. Every door event, every credential change and every access log entry travels over this path. The network is configured to prioritise access control traffic to ensure real-time responsiveness.' },
@@ -652,22 +782,27 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// ── Init ───────────────────────────────────────────────────
-function init() {
-  resize();
-  draw();
-  window.addEventListener('resize', () => {
-    cancelAnimationFrame(animReq);
-    resize();
-    draw();
+const ham = document.getElementById('hamBtn');
+const mobNav = document.getElementById('mobNav');
+const mobClose = document.getElementById('mobClose');
+if (ham && mobNav) {
+  ham.addEventListener('click', () => {
+    mobNav.style.display = 'flex';
+    requestAnimationFrame(() => { mobNav.classList.add('open'); ham.setAttribute('aria-expanded', 'true'); });
   });
+  const closeNav = () => {
+    mobNav.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { mobNav.style.display = 'none'; }, 260);
+  };
+  mobClose.addEventListener('click', closeNav);
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 }
-if (document.readyState === 'complete') {
-  init();
-} else {
-  window.addEventListener('load', init);
-}
+
+// ── Init ───────────────────────────────────────────────────
+resize();
+draw();
+window.addEventListener('resize', () => { resize(); });
 </script>
-<script src="/contact-modal.js"></script>
 </body>
 </html>
