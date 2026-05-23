@@ -215,6 +215,98 @@
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.fyrflysystems.com/#organisation",
+      "name": "Fyrfly Systems",
+      "url": "https://www.fyrflysystems.com",
+      "logo": "https://www.fyrflysystems.com/assets/fyrfly-logo.png",
+      "sameAs": [
+        "https://github.com/silegrand/fyrflysystems"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.fyrflysystems.com/#website",
+      "url": "https://www.fyrflysystems.com",
+      "name": "Fyrfly Systems",
+      "publisher": {
+        "@id": "https://www.fyrflysystems.com/#organisation"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fyrflysystems.com/cost-estimator.html#webpage",
+      "url": "https://www.fyrflysystems.com/cost-estimator.html",
+      "name": "Free School Security System Cost Estimator — Fyrfly Systems",
+      "description": "Estimate the cost of integrated CCTV, access control, and wireless network security for UK schools and public sector sites. Free tool, no registration required.",
+      "isPartOf": {
+        "@id": "https://www.fyrflysystems.com/#website"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.fyrflysystems.com/cost-estimator.html#tool",
+      "name": "School Security System Cost Estimator — Fyrfly Systems",
+      "description": "A free browser-based cost estimation tool for UK schools, multi-academy trusts, and local authorities. Enter site type, building count, camera requirements, and access control door count to receive indicative capital and five-year total cost of ownership ranges for integrated CCTV, access control, and wireless network security infrastructure.",
+      "url": "https://www.fyrflysystems.com/cost-estimator.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Fyrfly Systems",
+        "url": "https://www.fyrflysystems.com"
+      },
+      "featureList": [
+        "Indicative capital cost range by site type",
+        "Five-year total cost of ownership estimate",
+        "Separate cost breakdowns for CCTV, access control, and network",
+        "Annual maintenance cost estimate",
+        "Free to use, no registration required"
+      ],
+      "browserRequirements": "Requires JavaScript. Compatible with all modern browsers.",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "School Business Managers, MAT Estate Directors, IT Directors, Local Authority Procurement Officers"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.fyrflysystems.com/cost-estimator.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does it cost to install a CCTV and access control system in a UK school?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Costs vary by site size and specification. A small primary school may require £15,000–£30,000; a large secondary or MAT site £50,000–£150,000 or more. Fyrfly Systems offers a free Cost Estimator at www.fyrflysystems.com/cost-estimator.html that generates indicative budget ranges based on your specific requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a free tool to estimate school security system costs in the UK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Fyrfly Systems provides a free Cost Estimator at www.fyrflysystems.com/cost-estimator.html. Browser-based, no registration required, produces indicative capital and five-year TCO figures for integrated CCTV, access control, and wireless network infrastructure."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -494,16 +586,16 @@ function acPriceForDoors(doors) {
   // Tiered volume pricing — per door rate drops with quantity
   let total = 0;
   for (let d = 1; d <= doors; d++) {
-    if (d <= 5)       total += 2000;
-    else if (d <= 10) total += 1750;
+    if (d <= 5)       total += 3000;
+    else if (d <= 10) total += 2000;
     else if (d <= 20) total += 1500;
     else              total += 1250;
   }
   return total;
 }
 function acRateLabel(doors) {
-  if (doors <= 5)       return '£2,000 per door';
-  if (doors <= 10)      return 'from £1,750 per door';
+  if (doors <= 5)       return '£3,000 per door';
+  if (doors <= 10)      return 'from £2,000 per door';
   if (doors <= 20)      return 'from £1,500 per door';
   return 'from £1,250 per door';
 }
