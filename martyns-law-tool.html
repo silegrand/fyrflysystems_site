@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Martyn's Law Readiness Assessment | Fyrfly Systems</title>
+  <meta name="description" content="Free Martyn's Law readiness assessment for schools, colleges and public venues. Find out your tier, obligations and what you need to do before April 2027 enforcement.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/martyns-law-tool.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/martyns-law-tool.html">
+  <meta property="og:title" content="Martyn's Law Readiness Assessment | Fyrfly Systems">
+  <meta property="og:description" content="Free Martyn's Law readiness assessment for schools, colleges and public venues. Find out your tier, obligations and what you need to do before April 2027 enforcement.">
+  <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Martyn's Law Readiness Assessment Tool",
+    "url": "https://www.fyrflysystems.com/martyns-law-tool.html",
+    "description": "Free interactive assessment tool for UK venues to determine their Martyn's Law tier, obligations and readiness before April 2027 enforcement.",
+    "applicationCategory": "SecurityApplication",
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.fyrflysystems.com/#organization",
+      "name": "Fyrfly Systems"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Schools, Colleges, Local Authorities, NHS Estates, Event Venues, Public Buildings"
+    }
+  }</script>
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Martyn's Law?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Martyn's Law, formally the Terrorism (Protection of Premises) Act 2025, requires venues above a certain capacity to have protective security and preparedness procedures in place. It was named after Martyn Hett, who was killed in the 2017 Manchester Arena attack. Enforcement begins April 2027."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does Martyn's Law come into force?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Martyn's Law received Royal Assent in April 2025. The implementation period runs until April 2027, when enforcement begins. Venues should be fully compliant by that date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Martyn's Law apply to schools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Schools, colleges and universities with a capacity of 100 or more are in scope for Martyn's Law. Most secondary schools and many primary schools will fall under the Standard Tier (100-799 capacity). Schools with large sports halls, theatres or event spaces used by the public may need to consider their maximum capacity carefully."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Standard Tier and Enhanced Tier?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard Tier applies to venues with a capacity of 100-799. It requires documented procedures for terrorism events, staff awareness training, and a named responsible person. Enhanced Tier applies to venues with a capacity of 800 or more. It requires all Standard Tier obligations plus a formal security plan, a qualified Security Manager, public area monitoring, and notification to the Security Industry Authority (SIA)."
+        }
+      }
+    ]
+  }</script>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:860px;--ease:cubic-bezier(0.22,1,0.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block;max-width:100%;}
+
+    /* ── Page hero ── */
+    .tool-hero{background:var(--char);padding:4rem 2rem 3rem;text-align:center;}
+    .tool-hero-tag{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.9rem;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.3);border-radius:100px;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#F87171;margin-bottom:1.25rem;}
+    .tool-hero h1{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.9rem;}
+    .tool-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .tool-hero p{font-size:0.97rem;color:rgba(255,255,255,0.5);max-width:52ch;margin:0 auto 1.5rem;font-weight:300;line-height:1.72;}
+    .countdown-bar{display:inline-flex;align-items:center;gap:1.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.75rem 1.5rem;flex-wrap:wrap;justify-content:center;}
+    .countdown-item{text-align:center;}
+    .countdown-n{font-family:var(--fh);font-size:1.6rem;font-weight:900;color:#fff;line-height:1;}
+    .countdown-l{font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;}
+    .countdown-div{width:1px;height:28px;background:rgba(255,255,255,0.1);}
+
+    /* ── Tool wrapper ── */
+    .tool-wrap{max-width:var(--max);margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+
+    /* ── Progress ── */
+    .progress-bar{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+    .progress-steps{display:flex;align-items:center;gap:0.4rem;flex:1;}
+    .progress-step{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;transition:all 0.3s var(--ease);flex-shrink:0;}
+    .progress-step.done{background:var(--grad);color:#fff;}
+    .progress-step.active{background:var(--dark);color:#fff;}
+    .progress-step.todo{background:var(--light);color:var(--mute);border:1px solid var(--bdr);}
+    .progress-line{flex:1;height:2px;background:var(--bdr);border-radius:2px;transition:background 0.3s;}
+    .progress-line.done{background:var(--grad);}
+    .progress-label{font-size:0.8rem;font-weight:500;color:var(--mid);white-space:nowrap;}
+
+    /* ── Stage cards ── */
+    .stage{display:none;}
+    .stage.active{display:block;}
+    .stage-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem 2rem 1.5rem;}
+    .stage-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.5rem;}
+    .stage-h{font-family:var(--fh);font-size:1.3rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.4rem;}
+    .stage-sub{font-size:0.88rem;color:var(--mid);margin-bottom:1.75rem;line-height:1.65;}
+
+    /* ── Option grid ── */
+    .opt-grid{display:grid;gap:0.75rem;}
+    .opt-grid.cols2{grid-template-columns:1fr 1fr;}
+    .opt{display:flex;align-items:flex-start;gap:0.85rem;padding:1rem 1.1rem;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;transition:all 0.2s var(--ease);background:#fff;text-align:left;width:100%;}
+    .opt:hover{border-color:var(--o);background:#FFFBF8;}
+    .opt.selected{border-color:var(--c);background:#FFF5F6;}
+    .opt-icon{width:36px;height:36px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+    .opt.selected .opt-icon{background:rgba(200,16,46,0.08);}
+    .opt-text strong{display:block;font-size:0.88rem;font-weight:600;color:var(--dark);margin-bottom:0.15rem;}
+    .opt-text span{font-size:0.78rem;color:var(--mid);line-height:1.45;}
+
+    /* ── Checkbox options ── */
+    .chk-grid{display:flex;flex-direction:column;gap:0.6rem;}
+    .chk-opt{display:flex;align-items:center;gap:0.85rem;padding:0.85rem 1.1rem;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;transition:all 0.2s;background:#fff;}
+    .chk-opt:hover{border-color:var(--o);}
+    .chk-opt.checked{border-color:var(--c);background:#FFF5F6;}
+    .chk-box{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+    .chk-opt.checked .chk-box{background:var(--c);border-color:var(--c);}
+    .chk-tick{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;display:none;}
+    .chk-opt.checked .chk-tick{display:block;}
+    .chk-label{font-size:0.87rem;color:var(--dark);}
+
+    /* ── Capacity input ── */
+    .cap-input-wrap{position:relative;margin-bottom:1rem;}
+    .cap-input{width:100%;padding:0.9rem 1rem 0.9rem 3rem;font-size:1.1rem;font-weight:600;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:10px;color:var(--dark);background:#fff;outline:none;transition:border-color 0.2s;}
+    .cap-input:focus{border-color:var(--c);}
+    .cap-prefix{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:0.85rem;color:var(--mute);}
+    .cap-hint{font-size:0.8rem;color:var(--mid);margin-top:0.5rem;}
+    .tier-preview{margin-top:1rem;padding:0.85rem 1.1rem;border-radius:10px;font-size:0.85rem;font-weight:500;display:none;}
+    .tier-preview.std{background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);color:#92600A;}
+    .tier-preview.enh{background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.2);color:#9B1C1C;}
+    .tier-preview.oos{background:rgba(149,149,165,0.1);border:1px solid var(--bdr);color:var(--mid);}
+
+    /* ── Nav buttons ── */
+    .stage-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--bdr);}
+    .btn-back{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.4rem;font-size:0.87rem;color:var(--mid);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;background:#fff;transition:all 0.2s;font-family:var(--fb);}
+    .btn-back:hover{color:var(--dark);border-color:var(--mid);}
+    .btn-next{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.6rem;font-size:0.87rem;font-weight:500;color:#fff;border:none;border-radius:7px;cursor:pointer;background:var(--grad);transition:opacity 0.2s,transform 0.2s;font-family:var(--fb);}
+    .btn-next:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-next:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+
+    /* ── Lead capture ── */
+    .lead-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem;}
+    .lead-h{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem;}
+    .lead-sub{font-size:0.87rem;color:var(--mid);margin-bottom:1.5rem;line-height:1.6;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
+    .form-field{display:flex;flex-direction:column;gap:0.35rem;}
+    .form-field label{font-size:0.77rem;font-weight:600;color:var(--mid);letter-spacing:0.04em;text-transform:uppercase;}
+    .form-field input,.form-field select{padding:0.7rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;transition:border-color 0.2s;}
+    .form-field input:focus,.form-field select:focus{border-color:var(--c);}
+    .form-field.full{grid-column:span 2;}
+    .disclaimer{font-size:0.75rem;color:var(--mute);margin-top:0.75rem;line-height:1.55;}
+    .btn-submit{width:100%;padding:0.9rem;font-size:0.95rem;font-weight:600;color:#fff;border:none;border-radius:8px;cursor:pointer;background:var(--grad);font-family:var(--fb);margin-top:1rem;transition:opacity 0.2s;}
+    .btn-submit:hover{opacity:0.88;}
+    .btn-submit:disabled{opacity:0.5;cursor:not-allowed;}
+
+    /* ── Results ── */
+    .results-hero{border-radius:14px;padding:2rem;margin-bottom:1.25rem;position:relative;overflow:hidden;}
+    .results-hero.std{background:linear-gradient(135deg,#92600A 0%,#B27B1A 100%);}
+    .results-hero.enh{background:linear-gradient(135deg,#7F1D1D 0%,#C8102E 100%);}
+    .results-hero.oos{background:linear-gradient(135deg,#374151 0%,#4B5563 100%);}
+    .results-tier-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.28rem 0.85rem;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:100px;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:0.75rem;}
+    .results-tier-name{font-family:var(--fh);font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+    .results-tier-desc{font-size:0.87rem;color:rgba(255,255,255,0.65);max-width:44ch;line-height:1.6;}
+    .results-deadline{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.45rem 1rem;background:rgba(0,0,0,0.2);border-radius:100px;font-size:0.78rem;color:rgba(255,255,255,0.75);}
+
+    .score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.25rem;}
+    .score-card{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:1.1rem;text-align:center;}
+    .score-n{font-family:var(--fh);font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:0.25rem;}
+    .score-n.red{color:var(--c);}
+    .score-n.amber{color:#D97706;}
+    .score-n.green{color:#059669;}
+    .score-l{font-size:0.72rem;color:var(--mute);letter-spacing:0.05em;}
+
+    .obligations-card{background:#fff;border:1px solid var(--bdr);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;}
+    .obligations-h{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1rem;}
+    .obligation-item{display:flex;align-items:flex-start;gap:0.85rem;padding:0.85rem 0;border-bottom:1px solid var(--bdr);}
+    .obligation-item:last-child{border-bottom:none;padding-bottom:0;}
+    .ob-status{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .ob-status.met{background:rgba(5,150,105,0.1);}
+    .ob-status.partial{background:rgba(217,119,6,0.1);}
+    .ob-status.gap{background:rgba(200,16,46,0.08);}
+    .ob-status svg{width:12px;height:12px;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+    .ob-status.met svg{stroke:#059669;}
+    .ob-status.partial svg{stroke:#D97706;}
+    .ob-status.gap svg{stroke:var(--c);}
+    .ob-text strong{display:block;font-size:0.85rem;font-weight:600;color:var(--dark);margin-bottom:0.15rem;}
+    .ob-text span{font-size:0.78rem;color:var(--mid);line-height:1.5;}
+    .ob-badge{display:inline-block;margin-top:0.3rem;font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.15rem 0.55rem;border-radius:100px;}
+    .ob-badge.met{background:rgba(5,150,105,0.1);color:#059669;}
+    .ob-badge.partial{background:rgba(217,119,6,0.1);color:#D97706;}
+    .ob-badge.gap{background:rgba(200,16,46,0.08);color:var(--c);}
+
+    .actions-card{background:var(--char);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;}
+    .actions-h{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+    .action-item{display:flex;align-items:flex-start;gap:0.85rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .action-item:last-child{border-bottom:none;}
+    .action-n{width:22px;height:22px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+    .action-text strong{display:block;font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:0.15rem;}
+    .action-text span{font-size:0.78rem;color:rgba(255,255,255,0.42);line-height:1.5;}
+
+    .cta-card{background:var(--grad);border-radius:14px;padding:1.75rem;text-align:center;}
+    .cta-card h3{font-family:var(--fh);font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:0.5rem;}
+    .cta-card p{font-size:0.87rem;color:rgba(255,255,255,0.7);margin-bottom:1.25rem;line-height:1.6;}
+    .cta-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+    .cta-btn-p{padding:0.75rem 1.6rem;background:#fff;color:var(--c);font-size:0.87rem;font-weight:700;border-radius:7px;border:none;cursor:pointer;font-family:var(--fb);}
+    .cta-btn-s{padding:0.75rem 1.6rem;color:rgba(255,255,255,0.8);font-size:0.87rem;border:1px solid rgba(255,255,255,0.3);border-radius:7px;background:transparent;cursor:pointer;font-family:var(--fb);}
+
+    .disclaimer-box{background:#fff;border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;}
+    .disclaimer-box p{font-size:0.75rem;color:var(--mute);line-height:1.6;}
+
+    .print-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.25rem;font-size:0.83rem;color:var(--mid);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;background:#fff;font-family:var(--fb);margin-top:0.75rem;transition:all 0.2s;}
+    .print-btn:hover{color:var(--dark);border-color:var(--mid);}
+
+    @media(max-width:640px){
+      .opt-grid.cols2{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .form-field.full{grid-column:span 1;}
+      .score-grid{grid-template-columns:1fr 1fr;}
+      .stage-card,.lead-card{padding:1.25rem;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- Hero -->
+<div class="tool-hero">
+  <div class="tool-hero-tag">⚠ Enforcement: April 2027</div>
+  <h1>Martyn's Law<br><span>Readiness Assessment</span></h1>
+  <p>Answer 5 questions to receive a personalised readiness report showing your tier, legal obligations and priority actions — free, instant and specific to your venue.</p>
+  <div class="countdown-bar" id="countdown-bar">
+    <div class="countdown-item"><div class="countdown-n" id="cd-days">--</div><div class="countdown-l">Days</div></div>
+    <div class="countdown-div"></div>
+    <div class="countdown-item"><div class="countdown-n" id="cd-months">--</div><div class="countdown-l">Months</div></div>
+    <div class="countdown-div"></div>
+    <div class="countdown-item"><div class="countdown-n" id="cd-pct">--%</div><div class="countdown-l">of time remaining</div></div>
+  </div>
+</div>
+
+<div class="tool-wrap">
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <div class="progress-steps" id="progress-steps"></div>
+    <div class="progress-label" id="progress-label">Step 1 of 5</div>
+  </div>
+
+  <!-- Stage 1: Venue type -->
+  <div class="stage active" id="stage-1">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 1 — Venue Type</div>
+      <h2 class="stage-h">What best describes your venue?</h2>
+      <p class="stage-sub">Martyn's Law applies to any premises or event that admits members of the public. Select the category that best fits your primary use.</p>
+      <div class="opt-grid cols2" id="venue-opts">
+        <button class="opt" data-val="school" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🏫</div>
+          <div class="opt-text"><strong>School / Academy</strong><span>Primary, secondary, special school, free school or academy</span></div>
+        </button>
+        <button class="opt" data-val="college" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🎓</div>
+          <div class="opt-text"><strong>College / University</strong><span>Further or higher education institution</span></div>
+        </button>
+        <button class="opt" data-val="council" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🏛</div>
+          <div class="opt-text"><strong>Council / Civic Building</strong><span>Local authority offices, civic centre, library or community hub</span></div>
+        </button>
+        <button class="opt" data-val="nhs" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🏥</div>
+          <div class="opt-text"><strong>NHS / Healthcare</strong><span>Hospital, health centre, GP surgery or NHS estate</span></div>
+        </button>
+        <button class="opt" data-val="leisure" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🎭</div>
+          <div class="opt-text"><strong>Leisure / Events</strong><span>Sports venue, theatre, concert hall, museum or events space</span></div>
+        </button>
+        <button class="opt" data-val="other" onclick="selectOpt(this,'venue')">
+          <div class="opt-icon">🏢</div>
+          <div class="opt-text"><strong>Other Public Venue</strong><span>Any other premises that admits members of the public</span></div>
+        </button>
+      </div>
+      <div class="stage-nav">
+        <div></div>
+        <button class="btn-next" id="next-1" disabled onclick="goTo(2)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2: Capacity -->
+  <div class="stage" id="stage-2">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 2 — Venue Capacity</div>
+      <h2 class="stage-h">What is your maximum capacity?</h2>
+      <p class="stage-sub">This is the maximum number of people your premises can hold at any one time — including staff, visitors and contractors. For schools, this includes pupils, staff and any visitors on site simultaneously.</p>
+      <div class="cap-input-wrap">
+        <span class="cap-prefix">👥</span>
+        <input type="number" class="cap-input" id="capacity-input" placeholder="e.g. 450" min="1" max="99999" oninput="updateCapacity(this.value)">
+      </div>
+      <p class="cap-hint">Not sure? Use your fire risk assessment maximum occupancy figure.</p>
+      <div class="tier-preview" id="tier-preview"></div>
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(1)">← Back</button>
+        <button class="btn-next" id="next-2" disabled onclick="goTo(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 3: Current procedures -->
+  <div class="stage" id="stage-3">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 3 — Procedures</div>
+      <h2 class="stage-h">Which procedures do you currently have in place?</h2>
+      <p class="stage-sub">Select all that apply. Be honest — this assessment is only useful if it reflects your actual current position.</p>
+      <div class="chk-grid" id="proc-opts">
+        <div class="chk-opt" onclick="toggleChk(this,'proc_evacuation')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Written evacuation and invacuation procedures for a terrorist attack</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'proc_lockdown')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Lockdown procedures (shelter in place / dynamic lockdown)</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'proc_communication')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Communication plan for alerting staff and visitors during an incident</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'proc_training')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Counter-terrorism awareness training completed by staff (e.g. ACT Awareness)</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'proc_responsible')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Named Responsible Person / Senior Leadership owner for security preparedness</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'proc_review')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Security procedures reviewed within the last 12 months</span>
+        </div>
+      </div>
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(2)">← Back</button>
+        <button class="btn-next" onclick="goTo(4)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4: Physical security -->
+  <div class="stage" id="stage-4">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 4 — Physical Security</div>
+      <h2 class="stage-h">What physical security measures are in place?</h2>
+      <p class="stage-sub">Select all that currently exist at your venue. These will determine your readiness score and gap analysis.</p>
+      <div class="chk-grid" id="phys-opts">
+        <div class="chk-opt" onclick="toggleChk(this,'phys_cctv')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">CCTV covering main entrances, perimeter and public areas</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_access')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Electronic access control on main entry points</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_intercom')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Intercom / video door entry controlling visitor access</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_perimeter')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Perimeter fencing / barriers preventing unauthorised vehicle or pedestrian access</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_alarm')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Intruder alarm system professionally installed and monitored</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_monitoring')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">24/7 remote monitoring by an Alarm Receiving Centre (ARC)</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_lighting')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">Security lighting covering external areas and car parks</span>
+        </div>
+        <div class="chk-opt" onclick="toggleChk(this,'phys_signage')">
+          <div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span class="chk-label">CCTV signage and privacy notices displayed (UK GDPR / Surveillance Camera Code)</span>
+        </div>
+      </div>
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(3)">← Back</button>
+        <button class="btn-next" onclick="goTo(5)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 5: Lead capture -->
+  <div class="stage" id="stage-5">
+    <div class="lead-card">
+      <h2 class="lead-h">Almost there — where shall we send your report?</h2>
+      <p class="lead-sub">Enter your details below to generate your personalised Martyn's Law Readiness Report. We'll also email you a copy for your records.</p>
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" id="f-fname" placeholder="Sarah">
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" id="f-lname" placeholder="Johnson">
+        </div>
+        <div class="form-field full">
+          <label>Organisation</label>
+          <input type="text" id="f-org" placeholder="Greenfield Academy">
+        </div>
+        <div class="form-field full">
+          <label>Email address</label>
+          <input type="email" id="f-email" placeholder="s.johnson@greenfieldacademy.org">
+        </div>
+        <div class="form-field">
+          <label>Your role</label>
+          <select id="f-role">
+            <option value="">Select role…</option>
+            <option>Headteacher / Principal</option>
+            <option>School Business Manager</option>
+            <option>Estates / Facilities Manager</option>
+            <option>IT Director / Manager</option>
+            <option>Designated Safeguarding Lead</option>
+            <option>Chief Executive / CEO</option>
+            <option>Governor / Trustee</option>
+            <option>Security Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Phone (optional)</label>
+          <input type="tel" id="f-phone" placeholder="01234 567 890">
+        </div>
+      </div>
+      <p class="disclaimer">By submitting this form you agree to Fyrfly Systems contacting you about your assessment results. We will not share your data with third parties. You can unsubscribe at any time.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitLead()">Generate My Readiness Report →</button>
+      <div id="submit-msg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:var(--mid);"></div>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="stage" id="stage-results">
+    <div id="results-content"></div>
+  </div>
+
+</div><!-- /tool-wrap -->
+
+<div id="footer-placeholder"></div>
+<script src="/nav.js"></script>
+<script src="/contact-modal.js"></script>
+<script src="/footer.js"></script>
+
+<script>
+// ── State ─────────────────────────────────────────────────
+const state = {
+  venue: null,
+  capacity: null,
+  procedures: {},
+  physical: {}
+};
+
+const STEP_LABELS = ['Venue','Capacity','Procedures','Physical Security','Your Details'];
+const ENFORCE_DATE = new Date('2027-04-01T00:00:00');
+const START_DATE = new Date('2025-04-01T00:00:00');
+
+// ── Countdown ─────────────────────────────────────────────
+function updateCountdown(){
+  const now = new Date();
+  const diff = ENFORCE_DATE - now;
+  if(diff <= 0){ document.getElementById('countdown-bar').innerHTML = '<span style="color:#F87171;font-weight:600">Enforcement has begun</span>'; return; }
+  const days = Math.floor(diff / 86400000);
+  const months = Math.floor(days / 30.44);
+  const total = ENFORCE_DATE - START_DATE;
+  const elapsed = now - START_DATE;
+  const pct = Math.max(0, Math.min(100, Math.round((elapsed/total)*100)));
+  document.getElementById('cd-days').textContent = days.toLocaleString();
+  document.getElementById('cd-months').textContent = months;
+  document.getElementById('cd-pct').textContent = pct + '%';
+}
+updateCountdown();
+
+// ── Progress bar ──────────────────────────────────────────
+function renderProgress(step){
+  const container = document.getElementById('progress-steps');
+  let html = '';
+  for(let i=1;i<=5;i++){
+    if(i>1) html += `<div class="progress-line ${i<=step?'done':''}"></div>`;
+    const cls = i<step?'done':i===step?'active':'todo';
+    html += `<div class="progress-step ${cls}">${i<step?'✓':i}</div>`;
+  }
+  container.innerHTML = html;
+  document.getElementById('progress-label').textContent = `Step ${step} of 5`;
+}
+
+// ── Navigation ────────────────────────────────────────────
+function goTo(step){
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+  const el = step === 'results'
+    ? document.getElementById('stage-results')
+    : document.getElementById('stage-'+step);
+  if(el) el.classList.add('active');
+  if(step !== 'results') renderProgress(step);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Option selection ──────────────────────────────────────
+function selectOpt(btn, key){
+  btn.closest('.opt-grid').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  btn.classList.add('selected');
+  state[key] = btn.dataset.val;
+  const nextBtn = document.getElementById('next-1');
+  if(nextBtn) nextBtn.disabled = false;
+}
+
+// ── Checkbox toggle ───────────────────────────────────────
+function toggleChk(el, key){
+  el.classList.toggle('checked');
+  if(el.classList.contains('checked')){ state.procedures[key]=true; state.physical[key]=true; }
+  else { delete state.procedures[key]; delete state.physical[key]; }
+}
+
+// ── Capacity ──────────────────────────────────────────────
+function updateCapacity(val){
+  const n = parseInt(val);
+  state.capacity = isNaN(n) ? null : n;
+  const preview = document.getElementById('tier-preview');
+  const nextBtn = document.getElementById('next-2');
+  if(!state.capacity || state.capacity < 1){ preview.style.display='none'; if(nextBtn) nextBtn.disabled=true; return; }
+  if(nextBtn) nextBtn.disabled = false;
+  preview.style.display = 'block';
+  if(state.capacity < 100){
+    preview.className='tier-preview oos';
+    preview.textContent='⚪ Below 100 capacity — your venue is likely out of scope for Martyn\'s Law. However, we recommend reviewing voluntary guidance.';
+  } else if(state.capacity < 800){
+    preview.className='tier-preview std';
+    preview.textContent=`🟡 Standard Tier — venues with 100–799 capacity. You have procedural obligations to meet by April 2027.`;
+  } else {
+    preview.className='tier-preview enh';
+    preview.textContent=`🔴 Enhanced Tier — venues with 800+ capacity. You have the most stringent obligations including a formal security plan and SIA notification.`;
+  }
+}
+
+// ── Tier logic ────────────────────────────────────────────
+function getTier(){
+  if(!state.capacity || state.capacity < 100) return 'oos';
+  if(state.capacity < 800) return 'std';
+  return 'enh';
+}
+
+// ── Score calculation ─────────────────────────────────────
+function calcScore(){
+  const tier = getTier();
+  if(tier === 'oos') return {proc:100, phys:100, overall:100};
+
+  const PROC_KEYS = ['proc_evacuation','proc_lockdown','proc_communication','proc_training','proc_responsible','proc_review'];
+  const PHYS_KEYS_STD = ['phys_cctv','phys_access','phys_intercom','phys_perimeter','phys_alarm','phys_lighting','phys_signage'];
+  const PHYS_KEYS_ENH = [...PHYS_KEYS_STD,'phys_monitoring'];
+
+  const allState = {...state.procedures, ...state.physical};
+  const procScore = Math.round((PROC_KEYS.filter(k=>allState[k]).length / PROC_KEYS.length)*100);
+  const physKeys = tier==='enh' ? PHYS_KEYS_ENH : PHYS_KEYS_STD;
+  const physScore = Math.round((physKeys.filter(k=>allState[k]).length / physKeys.length)*100);
+  const overall = Math.round((procScore*0.55)+(physScore*0.45));
+  return {proc:procScore, phys:physScore, overall};
+}
+
+// ── Obligations ───────────────────────────────────────────
+function getObligations(tier){
+  const allState = {...state.procedures, ...state.physical};
+  const base = [
+    {key:'proc_responsible', label:'Named Responsible Person', detail:'A senior individual must be designated as the Responsible Person with accountability for security preparedness.', tier:'std'},
+    {key:'proc_evacuation', label:'Evacuation & invacuation procedures', detail:'Documented procedures for evacuation and invacuation specific to a terrorist attack scenario — not just fire evacuation.', tier:'std'},
+    {key:'proc_lockdown', label:'Lockdown procedures', detail:'Written lockdown (shelter in place) procedures rehearsed with staff and tested at least annually.', tier:'std'},
+    {key:'proc_communication', label:'Staff communication plan', detail:'A plan for communicating with staff, visitors and emergency services during an incident, including who calls 999.', tier:'std'},
+    {key:'proc_training', label:'Counter-terrorism staff training', detail:'All relevant staff complete ACT Awareness e-learning or equivalent. Enhanced Tier requires more comprehensive training programmes.', tier:'std'},
+    {key:'proc_review', label:'Annual procedures review', detail:'Security procedures reviewed and updated within the last 12 months, signed off by the Responsible Person.', tier:'std'},
+    {key:'phys_cctv', label:'CCTV public area coverage', detail:'Camera coverage of all public-facing areas, entrances, and perimeter. Enhanced Tier requires monitored CCTV as part of the formal security plan.', tier:'std'},
+    {key:'phys_access', label:'Access control on entry points', detail:'Electronic access control preventing unauthorised entry. Enhanced Tier requires integration with the security plan.', tier:'std'},
+    {key:'phys_signage', label:'CCTV & privacy signage', detail:'Compliant signage under the Surveillance Camera Code of Practice and UK GDPR. Required wherever CCTV is in operation.', tier:'std'},
+    {key:'phys_monitoring', label:'24/7 ARC monitoring', detail:'Enhanced Tier requires monitored security systems with an Alarm Receiving Centre providing out-of-hours response capability.', tier:'enh'},
+  ];
+
+  return base.filter(o => tier==='enh' || o.tier==='std').map(o => {
+    const met = !!allState[o.key];
+    return {...o, status: met ? 'met' : 'gap'};
+  });
+}
+
+// ── Priority actions ──────────────────────────────────────
+function getPriorityActions(tier, obligations){
+  const gaps = obligations.filter(o=>o.status==='gap');
+  const actions = [];
+
+  if(gaps.find(g=>g.key==='proc_responsible')) actions.push({title:'Appoint a Responsible Person',detail:'Designate a member of senior leadership to own security preparedness. Document their responsibilities formally.'});
+  if(gaps.find(g=>g.key==='proc_evacuation')||gaps.find(g=>g.key==='proc_lockdown')) actions.push({title:'Write terrorism-specific evacuation & lockdown plans',detail:'Your fire evacuation plan is not sufficient. Create separate procedures for Run-Hide-Tell and lockdown scenarios, tailored to your site.'});
+  if(gaps.find(g=>g.key==='proc_training')) actions.push({title:'Complete ACT Awareness training',detail:'Register all staff on the free ACT Awareness e-learning at gov.uk/act-awareness-e-learning. Takes approximately 45 minutes.'});
+  if(gaps.find(g=>g.key==='proc_communication')) actions.push({title:'Establish a communications cascade',detail:'Document who does what in the first 60 seconds of an incident. Who calls 999? Who alerts staff? Who manages visitors?'});
+  if(gaps.find(g=>g.key==='phys_cctv')) actions.push({title:'Install or upgrade CCTV coverage',detail:'Ensure all public areas, entrances and perimeter are covered. Consider AI analytics for automated threat detection.'});
+  if(gaps.find(g=>g.key==='phys_access')) actions.push({title:'Implement electronic access control',detail:'Prevent unauthorised access to staff and restricted areas. Integrates with lockdown systems for sub-2-second site lockdown.'});
+  if(tier==='enh' && gaps.find(g=>g.key==='phys_monitoring')) actions.push({title:'Connect to 24/7 Alarm Receiving Centre',detail:'Enhanced Tier venues require monitored security. ARC monitoring ensures out-of-hours incidents are responded to immediately.'});
+  if(gaps.find(g=>g.key==='proc_review')) actions.push({title:'Schedule an annual security review',detail:'Review all procedures, test lockdown systems, and update your responsible person documentation at least once per year.'});
+
+  if(actions.length === 0) actions.push({title:'Commission an independent security audit',detail:'Your self-assessment looks strong. An NSI-certified security consultant can provide a formal audit and gap report for your governors.'});
+
+  return actions.slice(0,5);
+}
+
+// ── Render results ────────────────────────────────────────
+function renderResults(){
+  const tier = getTier();
+  const scores = calcScore();
+  const obligations = getObligations(tier);
+  const actions = getPriorityActions(tier, obligations);
+  const venueLabels = {school:'School / Academy',college:'College / University',council:'Council / Civic Building',nhs:'NHS / Healthcare',leisure:'Leisure / Events',other:'Public Venue'};
+  const venueLabel = venueLabels[state.venue] || 'Your Venue';
+
+  const tierMeta = {
+    std:{cls:'std',badge:'Standard Tier',name:'Standard Tier — Procedural Obligations Apply',desc:`As a ${venueLabel} with a capacity of ${state.capacity?.toLocaleString()}, you fall under Martyn's Law Standard Tier. You must have protective procedures in place by April 2027.`},
+    enh:{cls:'enh',badge:'Enhanced Tier',name:'Enhanced Tier — Full Security Plan Required',desc:`As a ${venueLabel} with a capacity of ${state.capacity?.toLocaleString()}, you fall under Martyn's Law Enhanced Tier. You must submit a security plan to the SIA and have it in place by April 2027.`},
+    oos:{cls:'oos',badge:'Likely Out of Scope',name:'Below Threshold — Voluntary Guidance Applies',desc:`With a capacity of ${state.capacity?.toLocaleString()}, your venue is likely below the 100-person Martyn's Law threshold. However, reviewing ProtectUK voluntary guidance is strongly recommended.`}
+  };
+  const tm = tierMeta[tier];
+
+  const scoreColor = s => s>=75?'green':s>=50?'amber':'red';
+
+  const metCount = obligations.filter(o=>o.status==='met').length;
+  const gapCount = obligations.filter(o=>o.status==='gap').length;
+
+  const obHtml = obligations.map(o=>`
+    <div class="obligation-item">
+      <div class="ob-status ${o.status}">
+        ${o.status==='met'
+          ? '<svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>'
+          : '<svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>'}
+      </div>
+      <div class="ob-text">
+        <strong>${o.label}</strong>
+        <span>${o.detail}</span>
+        <span class="ob-badge ${o.status}">${o.status==='met'?'In place':'Gap identified'}</span>
+      </div>
+    </div>`).join('');
+
+  const actHtml = actions.map((a,i)=>`
+    <div class="action-item">
+      <div class="action-n">${i+1}</div>
+      <div class="action-text"><strong>${a.title}</strong><span>${a.detail}</span></div>
+    </div>`).join('');
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('results-content').innerHTML = `
+    <div class="results-hero ${tm.cls}">
+      <div class="results-tier-badge">${tm.badge}</div>
+      <div class="results-tier-name">${tm.name}</div>
+      <p class="results-tier-desc">${tm.desc}</p>
+      <div class="results-deadline">⏱ Enforcement deadline: 1 April 2027</div>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="score-n ${scoreColor(scores.overall)}">${scores.overall}%</div>
+        <div class="score-l">Overall readiness</div>
+      </div>
+      <div class="score-card">
+        <div class="score-n ${scoreColor(scores.proc)}">${scores.proc}%</div>
+        <div class="score-l">Procedures score</div>
+      </div>
+      <div class="score-card">
+        <div class="score-n ${scoreColor(scores.phys)}">${scores.phys}%</div>
+        <div class="score-l">Physical security</div>
+      </div>
+    </div>
+
+    <div class="obligations-card">
+      <div class="obligations-h">Obligations checklist — ${metCount} met, ${gapCount} gap${gapCount!==1?'s':''} identified</div>
+      ${obHtml}
+    </div>
+
+    <div class="actions-card">
+      <div class="actions-h">Priority actions before April 2027</div>
+      ${actHtml}
+    </div>
+
+    <div class="cta-card">
+      <h3>Ready to close your gaps?</h3>
+      <p>Fyrfly Systems designs integrated CCTV, access control and lockdown systems specifically for schools and public sector venues. We produce a site-specific Martyn's Law readiness document as part of every installation.</p>
+      <div class="cta-btns">
+        <button class="cta-btn-p" onclick="window.location.href='mailto:hello@fyrflysystems.com?subject=Martyn%27s+Law+Assessment+Follow-up&body=Hi%2C+I+completed+the+Martyn%27s+Law+readiness+assessment+and+would+like+to+discuss+next+steps.'">Book a Free Site Survey →</button>
+        <button class="cta-btn-s" onclick="printReport()">Download Report ↓</button>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      <p><strong>Important:</strong> This Martyn's Law Readiness Report is an indicative self-assessment tool only. It does not constitute legal advice and does not certify compliance with the Terrorism (Protection of Premises) Act 2025. Actual compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this assessment. Always seek independent legal and security advice for formal compliance purposes. Assessment generated ${dateStr}.</p>
+    </div>
+    <button class="print-btn" onclick="printReport()">⬇ Download / Print Report</button>
+  `;
+
+  goTo('results');
+  document.getElementById('progress-steps').innerHTML = '';
+  document.getElementById('progress-label').textContent = 'Assessment complete';
+}
+
+// ── Lead submission ───────────────────────────────────────
+async function submitLead(){
+  const fname = document.getElementById('f-fname').value.trim();
+  const lname = document.getElementById('f-lname').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+  const role = document.getElementById('f-role').value;
+
+  if(!fname||!email||!org){
+    document.getElementById('submit-msg').style.display='block';
+    document.getElementById('submit-msg').textContent='Please fill in your name, email and organisation.';
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Generating report…';
+
+  const tier = getTier();
+  const scores = calcScore();
+  const tierLabel = {std:'Standard Tier',enh:'Enhanced Tier',oos:'Out of Scope'}[tier];
+
+  try {
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        access_key: 'ff37786b-ba02-4120-81ee-dfa181f68808',
+        subject: `Martyn's Law Assessment — ${org} (${tierLabel})`,
+        from_name: 'Fyrfly Martyn\'s Law Tool',
+        name: `${fname} ${lname}`,
+        email: email,
+        organisation: org,
+        role: role || 'Not specified',
+        venue_type: state.venue,
+        capacity: state.capacity,
+        tier: tierLabel,
+        overall_score: scores.overall + '%',
+        procedures_score: scores.proc + '%',
+        physical_score: scores.phys + '%',
+        phone: document.getElementById('f-phone').value || 'Not provided',
+        message: `Martyn's Law self-assessment completed. Tier: ${tierLabel}. Overall readiness: ${scores.overall}%. Procedures: ${scores.proc}%. Physical security: ${scores.phys}%.`
+      })
+    });
+  } catch(e){ /* silent — still show results */ }
+
+  renderResults();
+}
+
+// ── Print / PDF ───────────────────────────────────────────
+function printReport(){
+  const tier = getTier();
+  const scores = calcScore();
+  const tierLabel = {std:'Standard Tier',enh:'Enhanced Tier',oos:'Likely Out of Scope'}[tier];
+  const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const obligations = getObligations(tier);
+  const actions = getPriorityActions(tier, obligations);
+
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Martyn's Law Readiness Report — Fyrfly Systems</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;max-width:680px;margin:2rem auto;padding:0 1.5rem;font-size:13px;line-height:1.6;}
+    h1{font-size:22px;font-weight:900;margin-bottom:0.25rem;}
+    h2{font-size:15px;font-weight:700;margin:1.5rem 0 0.5rem;}
+    .header{border-bottom:3px solid #C8102E;padding-bottom:1rem;margin-bottom:1.5rem;}
+    .meta{font-size:11px;color:#666;margin-bottom:0.25rem;}
+    .score-row{display:flex;gap:1rem;margin:1rem 0;}
+    .score-box{flex:1;border:1px solid #ddd;border-radius:6px;padding:0.75rem;text-align:center;}
+    .score-n{font-size:24px;font-weight:900;}
+    .score-l{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.05em;}
+    .ob-row{display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid #eee;align-items:flex-start;}
+    .ob-status{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;}
+    .ob-met{background:#D1FAE5;color:#059669;}
+    .ob-gap{background:#FEE2E2;color:#DC2626;}
+    .action-row{padding:0.4rem 0;border-bottom:1px solid #eee;}
+    .action-n{font-weight:700;color:#C8102E;}
+    .disclaimer{font-size:10px;color:#888;border-top:1px solid #eee;margin-top:2rem;padding-top:1rem;line-height:1.5;}
+    .footer-brand{font-size:11px;color:#999;text-align:center;margin-top:1.5rem;}
+    @media print{body{margin:0;}}
+  </style></head><body>
+  <div class="header">
+    <div class="meta">MARTYN'S LAW READINESS REPORT — INDICATIVE SELF-ASSESSMENT</div>
+    <h1>Martyn's Law Readiness Report</h1>
+    <div class="meta">Organisation: <strong>${document.getElementById('f-org')?.value||'—'}</strong> &nbsp;|&nbsp; Venue type: <strong>${state.venue||'—'}</strong> &nbsp;|&nbsp; Capacity: <strong>${state.capacity?.toLocaleString()||'—'}</strong></div>
+    <div class="meta">Tier: <strong>${tierLabel}</strong> &nbsp;|&nbsp; Generated: <strong>${now}</strong> &nbsp;|&nbsp; Enforcement deadline: <strong>1 April 2027</strong></div>
+  </div>
+  <h2>Readiness Scores</h2>
+  <div class="score-row">
+    <div class="score-box"><div class="score-n">${scores.overall}%</div><div class="score-l">Overall readiness</div></div>
+    <div class="score-box"><div class="score-n">${scores.proc}%</div><div class="score-l">Procedures</div></div>
+    <div class="score-box"><div class="score-n">${scores.phys}%</div><div class="score-l">Physical security</div></div>
+  </div>
+  <h2>Obligations Checklist</h2>
+  ${obligations.map(o=>`<div class="ob-row"><div class="ob-status ${o.status==='met'?'ob-met':'ob-gap'}">${o.status==='met'?'✓':'✗'}</div><div><strong>${o.label}</strong><br><span style="color:#555;font-size:12px">${o.detail}</span></div></div>`).join('')}
+  <h2>Priority Actions</h2>
+  ${actions.map((a,i)=>`<div class="action-row"><span class="action-n">${i+1}. ${a.title}</span><br><span style="color:#555">${a.detail}</span></div>`).join('')}
+  <h2>Next Steps</h2>
+  <p>Fyrfly Systems can help you close the gaps identified in this report. We design integrated CCTV, access control, intruder alarm and lockdown systems specifically for schools and public sector venues, and produce a site-specific Martyn's Law readiness document as part of every installation.</p>
+  <p><strong>Contact:</strong> hello@fyrflysystems.com &nbsp;|&nbsp; 01234 567 890 &nbsp;|&nbsp; www.fyrflysystems.com</p>
+  <div class="disclaimer">This report is an indicative self-assessment only and does not constitute legal advice or certify compliance with the Terrorism (Protection of Premises) Act 2025. Compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this assessment. Always seek independent legal and security advice.</div>
+  <div class="footer-brand">Fyrfly Systems Ltd — Intelligent Physical Security for Schools & Public Sector — www.fyrflysystems.com</div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`);
+  w.document.close();
+}
+</script>
+</body>
+</html>
