@@ -340,6 +340,93 @@
     }
   </script>
 
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do schools need planning permission to install CCTV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most CCTV installations in schools do not require planning permission if cameras are mounted on existing structures and are not visible from a public highway. However, listed buildings and schools in conservation areas may require consent. Fyrfly Systems advises on permitted development rights as part of every site survey."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should schools retain CCTV footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ICO recommends retaining CCTV footage for no longer than 31 days in most cases. Fyrfly Systems configures all systems with 31-day rolling retention as standard, with automated deletion and AES-256 encryption at rest. Evidential footage can be flagged for indefinite retention pending manual review."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is CCTV in schools compliant with UK GDPR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when correctly implemented. Schools must complete a Data Protection Impact Assessment (DPIA), display signage, appoint a Data Protection Officer, and restrict access to footage to named authorised individuals. Fyrfly Systems provides a completed DPIA template, role-based access controls, full audit logging, and a subject access request (SAR) workflow with automated third-party face blurring as part of every installation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Surveillance Camera Code of Practice and does it apply to schools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Surveillance Camera Code of Practice (issued under the Protection of Freedoms Act 2012) applies to all relevant authorities including local authorities and schools maintained by local authorities. It sets out 12 guiding principles for the use of surveillance cameras in public spaces. Fyrfly Systems designs all systems to comply with the Code, including purpose limitation, proportionality, and data minimisation requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can CCTV help schools meet their KCSiE safeguarding obligations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Keeping Children Safe in Education (KCSiE) requires schools to have systems in place to identify and act on safeguarding concerns. AI-monitored CCTV covering blind spots such as isolated corridors, external areas, and car parks supports the Designated Safeguarding Lead's duty to prevent child-on-child abuse in unsupervised areas. Visitor tracking via CCTV and access control confirms physical location matches the declared destination."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a school CCTV system cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The cost of a school CCTV system depends on site size, number of cameras, camera type, and whether AI analytics and 24/7 monitoring are included. Fyrfly Systems provides free site surveys and detailed quotations. An indicative budget can be generated using the Fyrfly Cost Estimator tool at www.fyrflysystems.com/cost-estimator.html."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What accreditations should a school CCTV installer have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Schools should require installers to hold NSI NACOSS Gold or SSAIB approval for CCTV installation. These are independent third-party certifications that audit design, installation, and documentation standards annually. Fyrfly Systems holds NSI NACOSS Gold certification. Unaccredited installers cannot provide the same level of documented assurance to governors and insurers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can school CCTV be used to monitor staff as well as students?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CCTV can be used in areas where staff work, but schools must be transparent about this in their privacy notice and DPIA. Covert monitoring of staff is only lawful in very limited circumstances involving suspected criminal activity. Footage of staff is subject to the same retention, access control, and SAR obligations as footage of students."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between HD and 4K CCTV for schools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HD cameras (1080p, 2MP) provide adequate coverage for general monitoring of corridors and playgrounds. 4K cameras (8MP) provide significantly higher resolution, enabling post-incident digital zoom to identify individuals, vehicles, or objects at distance without loss of clarity. Fyrfly Systems recommends 4K cameras at entry and exit points, car parks, and perimeter locations where evidential quality footage is most likely to be required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a school CCTV system integrate with access control and intruder alarms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Fyrfly Systems designs CCTV, access control, and intruder alarms as a single integrated ecosystem. When an intruder alarm activates, the CCTV system automatically brings up cameras covering the triggered zone. Access control events — door forced open, tailgate detected — trigger CCTV recording and alerts. All systems are managed from a single VMS (Video Management System)."
+        }
+      }
+    ]
+  }</script>
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -357,7 +444,7 @@
 <body>
 <!-- MOBILE NAV OVERLAY -->
 <div id="nav-placeholder"></div>
-<script src="nav.js"></script>
+
 
 <div class="breadcrumb">
   <div class="breadcrumb-i">
@@ -662,10 +749,8 @@
     </div>
   </div>
 </section>
-
-<footer>
- <div id="footer-placeholder"></div>
-
+<div id="footer-placeholder"></div>
+<script src="/nav.js"></script>
 <script src="/contact-modal.js"></script>
 <script src="/footer.js"></script>
 </body>
