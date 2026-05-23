@@ -9,40 +9,21 @@ url: "https://www.fyrflysystems.com"
 baseurl: ""
 
 # ── Build ───────────────────────────────────────────────────
-# Serve all HTML files as-is — no Jekyll layouts or processing
 theme: null
 plugins: []
 
 # ── Exclude from Jekyll processing ──────────────────────────
-# These files are served as static assets or ignored entirely.
-# Without this list, Jekyll may try to process them and fail.
 exclude:
   - CITATION.cff
   - README.md
-  - llms.txt
-  - robots.txt
-  - sitemap.xml
-  - "*.js"
-  - "*.json"
   - Gemfile
   - Gemfile.lock
   - node_modules/
   - vendor/
 
 # ── Include ─────────────────────────────────────────────────
-# Ensure dotfiles and well-known paths are served correctly
 include:
   - .well-known
-
-# ── Markdown ────────────────────────────────────────────────
-markdown: kramdown
-kramdown:
-  input: GFM
-
-# ── Sass ────────────────────────────────────────────────────
-# No Sass in use — disable processing to speed up builds
-sass:
-  style: compressed
 
 # ── Defaults ────────────────────────────────────────────────
 defaults:
@@ -50,7 +31,3 @@ defaults:
       path: ""
     values:
       layout: null
-
-# ── Performance ─────────────────────────────────────────────
-incremental: false
-profile: false
