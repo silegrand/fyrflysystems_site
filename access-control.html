@@ -35,18 +35,6 @@
     img{display:block;max-width:100%;}
     a{text-decoration:none;color:inherit;}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
     .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
     .sec-h{font-family:var(--fh);font-size:clamp(1.75rem,2.8vw,2.7rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--dark);}
@@ -165,184 +153,22 @@
     .cta-c h2{font-family:var(--fh);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:var(--white);letter-spacing:-0.03em;line-height:1.08;margin-bottom:1.1rem;}
     .cta-c p{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;margin-bottom:2.4rem;font-weight:300;}
     .cta-btns{display:flex;align-items:center;justify-content:center;gap:0.9rem;flex-wrap:wrap;}
-    footer{background:var(--dark);padding:4rem 0 2rem;}
-    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
-    .ft-logo{margin-bottom:1rem;}
-    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;}
-    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
-    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
-    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
-    .ft-links a:hover{color:rgba(255,255,255,0.8);}
-    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
-    .ft-legal{display:flex;gap:1.5rem;}
-    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
-    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
-/* ═══════════════════════════════════════════════════════════
-   FYRFLY SYSTEMS — SHARED RESPONSIVE CSS (service pages)
-   Breakpoints: 1024px | 768px | 480px
-═══════════════════════════════════════════════════════════ */
-
-/* ─── TABLET LANDSCAPE (≤1024px) ─────────────────────────── */
-@media (max-width: 1024px) {
-  .hero-c { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
-  .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .context-grid { gap: 3rem; }
-  .svc-detail-grid { grid-template-columns: 1fr 1fr; }
-  .svc-card.full { grid-column: span 2; }
-  .compliance-grid { gap: 3rem; }
-  .why-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  .arc-grid { grid-template-columns: 1fr 1fr; }
-  .ft-grid { grid-template-columns: 1.2fr 1fr 1fr; gap: 2rem; }
-  .ft-grid > div:last-child { grid-column: span 3; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
-}
-
-/* ─── TABLET PORTRAIT (≤768px) ───────────────────────────── */
-@media (max-width: 768px) {
-  /* Nav */
-  
-  
-  /* Mobile 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  /* Hero */
-  .hero { min-height: auto; }
-  .hero-c { padding: 3.5rem 1.5rem; }
-  .hero-right { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(2rem, 5.5vw, 2.8rem); }
-  .hero-sub { font-size: 0.95rem; max-width: 100%; }
-
-  /* Context */
-  .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .context { padding: 3.5rem 0; }
-
-  /* Service cards */
-  .svc-detail { padding: 4rem 0; }
-  .svc-detail-grid { grid-template-columns: 1fr; }
-  .svc-card.full { grid-column: span 1; display: flex; flex-direction: column; }
-  .svc-card.full .svc-body { padding-left: 0; border-left: none; border-top: 1px solid var(--bdr); padding-top: 1.25rem; margin-top: 0.5rem; }
-
-  /* Compliance */
-  .compliance { padding: 4rem 0; }
-  .compliance-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .comp-right { order: -1; }
-
-  /* Why grid */
-  .why { padding: 4rem 0; }
-  .why-grid { grid-template-columns: 1fr; gap: 1rem; }
-
-  /* Trust */
-  .trust-div { display: none; }
-  .trust-i { justify-content: center; gap: 2rem; }
-  .trust { padding: 2.25rem 0; }
-
-  /* Sector CTA cards */
-  .sectors-cta { padding: 4rem 0; }
-  .sectors-grid { grid-template-columns: 1fr; }
-  .sec-card { min-height: 260px; }
-
-  /* ARC partners */
-  .arc-grid { grid-template-columns: 1fr; }
-  .arc-partners { padding: 4rem 0; }
-
-  /* Footer */
-  .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .ft-grid > div:first-child { grid-column: span 2; }
-  .ft-grid > div:last-child { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
-  .ft-bot { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-
-  /* Accreds */
-  .accreds-i { gap: 1.5rem; }
-  .accreds-list { gap: 0.75rem; }
-
-  /* CTA */
-  .cta-ban { padding: 4.5rem 0; }
-
-  /* Section spacing */
-  .wrap { padding: 0 1.5rem; }
-  .sec-h { font-size: clamp(1.5rem, 4.5vw, 2.2rem); }
-}
-
-/* ─── MOBILE (≤480px) ────────────────────────────────────── */
-@media (max-width: 480px) {
-  .hero-c { padding: 3rem 1.25rem; }
-  .hero h1 { font-size: clamp(1.9rem, 7vw, 2.4rem); }
-  .hero-acts { flex-direction: column; align-items: stretch; }
-  .hero-acts a { text-align: center; justify-content: center; }
-  .hero-pill { flex-direction: row; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-
-  .svc-card.full { padding: 1.5rem; }
-  .comp-blocks { gap: 0.75rem; }
-
-  .why-grid { gap: 0.85rem; }
-  .why-card { padding: 1.5rem; }
-
-  .ft-grid { grid-template-columns: 1fr; }
-  .ft-grid > div:first-child { grid-column: span 1; }
-  .ft-grid > div:last-child { grid-column: span 1; }
-  .ft-legal { flex-wrap: wrap; gap: 1rem; }
-
-  .cta-btns { flex-direction: column; align-items: stretch; }
-  .cta-btns a { text-align: center; justify-content: center; }
-
-  .wrap { padding: 0 1rem; }
-  .context { padding: 3rem 0; }
-  .svc-detail { padding: 3rem 0; }
-  .compliance { padding: 3rem 0; }
-  .why { padding: 3rem 0; }
-  .sectors-cta { padding: 3rem 0; }
-  .cta-ban { padding: 3.5rem 0; }
-  footer { padding: 3rem 0 1.5rem; }
-}
-
-      /* ── Nav dropdown – sticky hover (won't close until cursor leaves menu) ── */
-    
-    
-    
-    
-    
-    
-    /* Bridge gap so cursor moving from trigger to menu doesn't close it */
-    
-    
-    
-    
-    
-    
-    
-    
+    @media(max-width:1024px){.hero-c{grid-template-columns:1fr;gap:2.5rem;padding:4rem 2rem;}.hero-right{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}.context-grid{gap:3rem;}.svc-detail-grid{grid-template-columns:1fr 1fr;}.svc-card.full{grid-column:span 2;}.compliance-grid{gap:3rem;}.why-grid{grid-template-columns:1fr 1fr;gap:1.25rem;}}
+    @media(max-width:768px){.hero{min-height:auto;}.hero-c{padding:3.5rem 1.5rem;}.hero-right{grid-template-columns:1fr;}.hero h1{font-size:clamp(2rem,5.5vw,2.8rem);}.hero-sub{font-size:0.95rem;max-width:100%;}.context-grid{grid-template-columns:1fr;gap:2.5rem;}.context{padding:3.5rem 0;}.svc-detail{padding:4rem 0;}.svc-detail-grid{grid-template-columns:1fr;}.svc-card.full{grid-column:span 1;display:flex;flex-direction:column;}.svc-card.full .svc-body{padding-left:0;border-left:none;border-top:1px solid var(--bdr);padding-top:1.25rem;margin-top:0.5rem;}.compliance{padding:4rem 0;}.compliance-grid{grid-template-columns:1fr;gap:2.5rem;}.comp-right{order:-1;}.why{padding:4rem 0;}.why-grid{grid-template-columns:1fr;gap:1rem;}.trust-div{display:none;}.trust-i{justify-content:center;gap:2rem;}.trust{padding:2.25rem 0;}.sectors-cta{padding:4rem 0;}.sectors-grid{grid-template-columns:1fr;}.sec-card{min-height:260px;}.accreds-i{gap:1.5rem;}.accreds-list{gap:0.75rem;}.cta-ban{padding:4.5rem 0;}.wrap{padding:0 1.5rem;}.sec-h{font-size:clamp(1.5rem,4.5vw,2.2rem);}}
+    @media(max-width:480px){.hero-c{padding:3rem 1.25rem;}.hero h1{font-size:clamp(1.9rem,7vw,2.4rem);}.hero-acts{flex-direction:column;align-items:stretch;}.hero-acts a{text-align:center;justify-content:center;}.svc-card.full{padding:1.5rem;}.comp-blocks{gap:0.75rem;}.why-grid{gap:0.85rem;}.why-card{padding:1.5rem;}.ft-legal{flex-wrap:wrap;gap:1rem;}.cta-btns{flex-direction:column;align-items:stretch;}.cta-btns a{text-align:center;justify-content:center;}.wrap{padding:0 1rem;}.context{padding:3rem 0;}.svc-detail{padding:3rem 0;}.compliance{padding:3rem 0;}.why{padding:3rem 0;}.sectors-cta{padding:3rem 0;}.cta-ban{padding:3.5rem 0;}}
   </style>
 
-  <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Access Control for Schools and Public Sector",
-      "url": "https://www.fyrflysystems.com/access-control.html",
-      "description": "Role-based door access, visitor management and video door entry for schools, colleges, local authorities and NHS estates. KCSiE compliant with full audit trails.",
-      "provider": {
-        "@type": "LocalBusiness",
-        "@id": "https://www.fyrflysystems.com/#organization",
-        "name": "Fyrfly Systems"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "United Kingdom"
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Schools, Colleges, Universities, Local Authorities, NHS Estates, Housing Associations, Government Bodies"
-      },
-      "keywords": "access control schools, school visitor management, KCSiE access control, NHS access control, council building access control, door entry system education"
-    }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"Organization","@id":"https://www.fyrflysystems.com/#organisation","name":"Fyrfly Systems","url":"https://www.fyrflysystems.com","logo":"https://www.fyrflysystems.com/assets/fyrfly-logo.png","sameAs":["https://github.com/silegrand/fyrflysystems"]},
+      {"@type":"WebSite","@id":"https://www.fyrflysystems.com/#website","url":"https://www.fyrflysystems.com","name":"Fyrfly Systems","publisher":{"@id":"https://www.fyrflysystems.com/#organisation"}},
+      {"@type":"WebPage","@id":"https://www.fyrflysystems.com/access-control.html#webpage","url":"https://www.fyrflysystems.com/access-control.html","name":"Access Control for Schools & Public Sector | Fyrfly Systems","description":"Role-based access control for schools, colleges, councils and NHS estates. DBS-aware visitor management, audit trails and KCSiE-compliant design. NSI certified.","isPartOf":{"@id":"https://www.fyrflysystems.com/#website"}},
+      {"@type":"Service","@id":"https://www.fyrflysystems.com/access-control.html#service","name":"Access Control for Schools and Public Sector","url":"https://www.fyrflysystems.com/access-control.html","description":"Role-based door access, visitor management, video door entry, and multi-site estate control for UK schools, colleges, local authorities and NHS estates. KCSiE-compliant with DBS-aware visitor management, full audit trails, and fire-safe fail-secure hardware. NSI NACOSS Gold certified.","provider":{"@id":"https://www.fyrflysystems.com/#organisation"},"areaServed":{"@type":"Country","name":"United Kingdom"},"serviceType":"Physical Security — Access Control","audience":{"@type":"Audience","audienceType":"Schools, Colleges, Universities, Local Authorities, NHS Estates, Housing Associations, Government Bodies"}},
+      {"@type":"FAQPage","@id":"https://www.fyrflysystems.com/access-control.html#faq","mainEntity":[{"@type":"Question","name":"How does access control help schools comply with Keeping Children Safe in Education?","acceptedAnswer":{"@type":"Answer","text":"KCSiE requires schools to control site access and maintain records of all visitors. A digital visitor management system captures photo ID, flags DBS status, creates timestamped records, and grants time-limited access automatically. Fyrfly Systems designs and installs KCSiE-aligned access control for UK schools. Contact us at www.fyrflysystems.com/access-control.html for a free site survey."}},{"@type":"Question","name":"Can access control be managed centrally across multiple school sites in a Multi-Academy Trust?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fyrfly Systems provides centralised multi-site access control management for Multi-Academy Trusts from a single platform. Add a new staff member once, grant access across all sites; revoke a leaver instantly across the entire estate. Integrates with HR platforms for automated joiner and leaver workflows. See www.fyrflysystems.com/access-control.html."}}]}
+    ]
+  }
   </script>
 
   <!-- Favicon -->
@@ -352,15 +178,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4XLH0L6H2Z');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
 </head>
 <body>
-<!-- MOBILE NAV OVERLAY -->
+
 <div id="nav-placeholder"></div>
 <script src="nav.js"></script>
 
@@ -448,13 +269,10 @@
       <div class="svc-card full">
         <div class="svc-head">
           <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-          <div>
-            <div class="svc-n">Door Access &amp; Reader Systems</div>
-            <div class="svc-tag">Core Service · Most Specified</div>
-          </div>
+          <div><div class="svc-n">Door Access &amp; Reader Systems</div><div class="svc-tag">Core Service · Most Specified</div></div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Card, fob, PIN and biometric reader systems that control access to individual doors, zones and buildings. We specify the right credential technology for each environment — proximity cards for staff, PIN-only for low-security areas, biometric for high-security zones — and integrate everything into a single management platform.</p>
+          <p class="svc-desc">Card, fob, PIN and biometric reader systems that control access to individual doors, zones and buildings. We specify the right credential technology for each environment and integrate everything into a single management platform.</p>
           <ul class="svc-bullets">
             <li>Proximity card, fob and smart card readers</li>
             <li>PIN and combination credential options</li>
@@ -467,12 +285,9 @@
       <div class="svc-card">
         <div class="svc-head">
           <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <div>
-            <div class="svc-n">Visitor Management</div>
-            <div class="svc-tag">Safeguarding Essential</div>
-          </div>
+          <div><div class="svc-n">Visitor Management</div><div class="svc-tag">Safeguarding Essential</div></div>
         </div>
-        <p class="svc-desc">Digital visitor management systems that replace paper sign-in books with a compliant, auditable process. Pre-registration, photo ID capture, DBS status flagging and printed visitor badges — all integrated with your access control system to grant time-limited site access automatically.</p>
+        <p class="svc-desc">Digital visitor management systems that replace paper sign-in books with a compliant, auditable process. Pre-registration, photo ID capture, DBS status flagging and printed visitor badges — integrated with your access control system.</p>
         <ul class="svc-bullets">
           <li>Pre-registration and pre-screening for expected visitors</li>
           <li>Photo capture and printed visitor badges on arrival</li>
@@ -483,12 +298,9 @@
       <div class="svc-card">
         <div class="svc-head">
           <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-          <div>
-            <div class="svc-n">Video Door Entry &amp; Intercoms</div>
-            <div class="svc-tag">Reception &amp; Perimeter</div>
-          </div>
+          <div><div class="svc-n">Video Door Entry &amp; Intercoms</div><div class="svc-tag">Reception &amp; Perimeter</div></div>
         </div>
-        <p class="svc-desc">IP video door entry systems that let reception staff see, speak to and grant access to visitors from their desk — without leaving the office. Integrated with your access control and CCTV for a complete picture of who is at each entrance point.</p>
+        <p class="svc-desc">IP video door entry systems that let reception staff see, speak to and grant access to visitors from their desk. Integrated with your access control and CCTV for a complete picture of every entrance point.</p>
         <ul class="svc-bullets">
           <li>HD video door stations at main entrances and gates</li>
           <li>Desk-based and mobile app answer points</li>
@@ -499,12 +311,9 @@
       <div class="svc-card">
         <div class="svc-head">
           <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
-          <div>
-            <div class="svc-n">Multi-Site Management</div>
-            <div class="svc-tag">MAT &amp; Estate Capability</div>
-          </div>
+          <div><div class="svc-n">Multi-Site Management</div><div class="svc-tag">MAT &amp; Estate Capability</div></div>
         </div>
-        <p class="svc-desc">Centralised access control management for Multi-Academy Trusts, local authorities and NHS estates with multiple buildings. Manage credentials, zones and access levels across your entire estate from a single platform — add a new staff member once, grant access everywhere they need it.</p>
+        <p class="svc-desc">Centralised access control for Multi-Academy Trusts, local authorities and NHS estates. Manage credentials, zones and access levels across your entire estate from a single platform.</p>
         <ul class="svc-bullets">
           <li>Single platform for all sites across your estate</li>
           <li>Centralised credential management and provisioning</li>
@@ -515,12 +324,9 @@
       <div class="svc-card">
         <div class="svc-head">
           <div class="svc-ico"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div>
-            <div class="svc-n">Reporting &amp; Audit Trails</div>
-            <div class="svc-tag">Compliance &amp; Governance</div>
-          </div>
+          <div><div class="svc-n">Reporting &amp; Audit Trails</div><div class="svc-tag">Compliance &amp; Governance</div></div>
         </div>
-        <p class="svc-desc">Comprehensive access event reporting for compliance, insurance and safeguarding purposes. Who unlocked which door, when, using which credential — all timestamped and exportable. Automated muster reports for fire evacuations show exactly who was in the building at any given moment.</p>
+        <p class="svc-desc">Comprehensive access event reporting for compliance, insurance and safeguarding. Who unlocked which door, when, using which credential — timestamped and exportable. Automated muster reports for fire evacuations.</p>
         <ul class="svc-bullets">
           <li>Full timestamped access event log</li>
           <li>Automated fire muster and roll call reports</li>
@@ -643,7 +449,12 @@
   <div class="accreds-i">
     <div class="accreds-lbl">Accreditations</div>
     <div class="accreds-list">
-      <div class="accred">NSI NACOSS Gold</div><div class="accred">SSAIB Approved</div><div class="accred">BAFE Registered</div><div class="accred">Constructionline</div><div class="accred">ISO 9001:2015</div><div class="accred">Crown Commercial Service</div>
+      <div class="accred">NSI NACOSS Gold</div>
+      <div class="accred">SSAIB Approved</div>
+      <div class="accred">BAFE Registered</div>
+      <div class="accred">Constructionline</div>
+      <div class="accred">ISO 9001:2015</div>
+      <div class="accred">Crown Commercial Service</div>
     </div>
   </div>
 </div>
@@ -661,40 +472,8 @@
   </div>
 </section>
 
-<footer>
-  <div class="ft-grid">
-    <div class="ft-brand">
-      <div class="ft-logo"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" style="height:50px"></div>
-      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
-    </div>
-    <div>
-      <div class="ft-ct">Services</div>
-      <ul class="ft-links">
-        <li><a href="cctv.html">CCTV</a></li><li><a href="access-control.html">Access Control</a></li><li><a href="wireless-networks.html">Wireless Networks</a></li><li><a href="intruder-alarms.html">Intruder Alarms</a></li><li><a href="fire-systems.html">Fire Systems</a></li><li><a href="monitoring.html">24/7 Monitoring</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="ft-ct">Sectors</div>
-      <ul class="ft-links"><li><a href="education.html">Education</a></li><li><a href="public-sector.html">Public Sector</a></li></ul>
-      <div class="ft-ct" style="margin-top:1.75rem">Company</div>
-      <ul class="ft-links"><li><a href="index.html#about">About Us</a></li><li><a href="#contact">Contact</a></li></ul>
-    </div>
-    <div>
-      <div class="ft-ct">Get in Touch</div>
-      <ul class="ft-links">
-        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
-        <li><a href="tel:+441234567890">01234 567 890</a></li>
-        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
-      </ul>
-    </div>
-  </div>
-  <div class="ft-bot">
-    <div class="ft-copy">© 2026 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
-    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Service</a></div>
-  </div>
-</footer>
-  
 <div id="footer-placeholder"></div>
+<script src="/nav.js"></script>
 <script src="/contact-modal.js"></script>
 <script src="/footer.js"></script>
 </body>
