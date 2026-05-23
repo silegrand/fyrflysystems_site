@@ -194,6 +194,7 @@
     +     '<li><a href="/system-integration.html">System Integration</a></li>'
     +     '<li><a href="/incident-analyser.html">Incident Analyser</a></li>'
     +     '<li><a href="/your-site-tool.html">Your Site Tool</a></li>'
+    +     '<li><a href="/martyns-law-tool.html">Martyn\'s Law Assessment<span class="sft-badge">New</span></a></li>'
     +   '</ul>'
     + '</div>'
 
