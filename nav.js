@@ -154,6 +154,7 @@
     <a href="zone-planner.html">Zone Planner</a>
     <a href="compliance-tool.html">Compliance Tool</a>
     <a href="system-integration.html">System Integration</a>
+    <a href="martyns-law-tool.html">Martyn's Law Assessment ⚠</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
@@ -232,6 +233,10 @@
           <a href="system-integration.html"${dropActive('system-integration.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
             <span class="drop-label">System Integration</span>
+          </a>
+          <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
+            <div class="drop-ico" style="background:rgba(200,16,46,0.08);"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="drop-label">Martyn's Law Assessment</span>
           </a>
         </div>
       </li>
