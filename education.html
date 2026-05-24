@@ -409,9 +409,10 @@
     .tools-trust { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
     .tools-trust-item { font-size: 0.78rem; color: var(--mute); display: flex; align-items: center; gap: 0.4rem; }
     .tools-trust-item::before { content: '✓'; color: #059669; font-weight: 700; }
+    @media(max-width:1024px) { .tools-grid { grid-template-columns: 1fr 1fr !important; } }
     @media(max-width:768px) {
       .comp-tools-top { grid-template-columns: 1fr; gap: 1.75rem; }
-      .tools-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr !important; }
       .comp-tools { padding: 4rem 0; }
     }
   </style>
@@ -1067,7 +1068,7 @@ form.addEventListener('submit', function(e){
       </div>
     </div>
 
-    <div class="tools-grid">
+    <div class="tools-grid" style="grid-template-columns:repeat(3,1fr);">
       <!-- Martyn's Law Tool -->
       <div class="tool-card">
         <div class="tool-card-glow red"></div>
@@ -1102,6 +1103,24 @@ form.addEventListener('submit', function(e){
           <li>Print-ready PDF — ready to present to governors</li>
         </ul>
         <a href="/lockdown-procedure-tool.html" class="tool-card-link">Generate Your Procedure →</a>
+      </div>
+
+      <!-- CCTV Policy Generator -->
+      <div class="tool-card">
+        <div class="tool-card-glow" style="background:radial-gradient(circle,#10B981,transparent 70%);"></div>
+        <div class="tool-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="tool-card-tag">UK GDPR compliant · Free</div>
+        <h3>CCTV Policy Generator</h3>
+        <p>Generate three essential CCTV compliance documents — Acceptable Use Policy, UK GDPR Privacy Notice and DPIA Summary — ready for governor approval and DPO review.</p>
+        <ul class="tool-card-bullets">
+          <li>CCTV Acceptable Use Policy — 15 sections, governor sign-off table</li>
+          <li>UK GDPR Privacy Notice — for display at camera locations</li>
+          <li>DPIA Summary — legally required before CCTV installation</li>
+          <li>Print-ready PDF for each document</li>
+        </ul>
+        <a href="/school-security-policy-generator.html" class="tool-card-link">Generate Your Policy →</a>
       </div>
     </div>
 
