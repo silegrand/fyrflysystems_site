@@ -13,7 +13,7 @@
   'use strict';
 
   const PROXY_URL = 'https://fyrflyagent.icy-heart-14c9.workers.dev';
-  const MODEL     = 'claude-sonnet-4-20250514';
+  const MODEL     = 'claude-sonnet-4-5';
 
   // ── System prompt ─────────────────────────────────────────
   const SYSTEM_PROMPT = `You are the Fyrfly Security Advisor — a specialist AI assistant for Fyrfly Systems (www.fyrflysystems.com), a UK security company that designs and installs physical security systems exclusively for schools, colleges, and the public sector.
