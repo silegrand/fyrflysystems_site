@@ -234,9 +234,9 @@
     + '<div class="sft-bottom">'
     +   '<span class="sft-copy">&copy; ' + year + ' Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</span>'
     +   '<div class="sft-legal">'
-    +     '<a href="/privacy-policy.html">Privacy Policy</a>'
-    +     '<a href="/cookie-policy.html">Cookie Policy</a>'
-    +     '<a href="/terms.html">Terms of Service</a>'
+    +     '<a href="/legal.html">Privacy Policy</a>'
+    +     '<a href="/legal.html#cookies">Cookie Policy</a>'
+    +     '<a href="/legal.html#terms">Terms of Service</a>'
     +   '</div>'
     + '</div>'
 
