@@ -148,7 +148,7 @@
     + '<div class="sft-col-brand">'
     +   '<div class="sft-logo">'
     +     '<a href="/index.html">'
-    +       '<img src="/fyrfly-logo-dark.png" alt="Fyrfly Systems">'
+    +       '<picture><source srcset="/fyrfly-logo-dark.webp" type="image/webp"><img src="/fyrfly-logo-dark.png" alt="Fyrfly Systems" loading="lazy" width="160" height="50"></picture>'
     +     '</a>'
     +   '</div>'
     +   '<p class="sft-tagline">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>'
