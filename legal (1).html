@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal — Privacy, Cookies &amp; Terms | Fyrfly Systems</title>
+  <meta name="description" content="Privacy Policy, Cookie Policy and Terms of Service for Fyrfly Systems Ltd. Compliant with UK GDPR, DPA 2018, Data (Use and Access) Act 2025, PECR 2003 and ICO guidance (April 2026).">
+  <link rel="canonical" href="https://www.fyrflysystems.com/legal.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--off:#F8F7F5;--bdr:#E6E5E1;--white:#fff;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:1200px;--nh:70px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── HERO ── */
+    .l-hero{background:var(--dark);padding:5rem 0 3.5rem;position:relative;overflow:hidden;}
+    .l-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--grad);}
+    .l-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(200,16,46,0.09) 0%,transparent 55%);}
+    .l-hero-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--a);margin-bottom:0.9rem;}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--a);}
+    .l-hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3vw,2.8rem);font-weight:900;color:#fff;letter-spacing:-0.025em;margin-bottom:0.6rem;}
+    .l-hero-sub{font-size:0.85rem;color:rgba(255,255,255,0.38);line-height:1.65;}
+    .l-hero-sub strong{color:rgba(255,255,255,0.6);font-weight:500;}
+
+    /* ── TAB BAR ── */
+    .tab-bar{background:var(--char);position:sticky;top:var(--nh);z-index:90;border-bottom:1px solid rgba(255,255,255,0.07);}
+    .tab-bar-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;}
+    .tab-btn{padding:1rem 1.6rem;font-size:0.85rem;font-weight:600;font-family:var(--fh);color:rgba(255,255,255,0.42);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all 0.18s;margin-bottom:-1px;white-space:nowrap;}
+    .tab-btn:hover{color:rgba(255,255,255,0.75);}
+    .tab-btn.active{color:#fff;border-bottom-color:var(--o);}
+
+    /* ── PAGE LAYOUT ── */
+    .l-layout{max-width:var(--max);margin:0 auto;padding:3.5rem 2rem 6rem;display:grid;grid-template-columns:210px 1fr;gap:4rem;align-items:start;}
+
+    /* ── SIDEBAR ── */
+    .l-sidebar{position:sticky;top:calc(var(--nh) + 56px + 1.5rem);}
+    .sidebar-group{display:none;flex-direction:column;}
+    .sidebar-group.active{display:flex;}
+    .sb-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);padding:0.8rem 0.7rem 0.3rem;}
+    .sb-label:first-child{padding-top:0;}
+    .sidebar-group a{font-size:0.82rem;color:var(--mid);padding:0.32rem 0.7rem;border-radius:6px;border-left:2px solid transparent;transition:all 0.14s;display:block;line-height:1.4;}
+    .sidebar-group a:hover{color:var(--dark);background:var(--light);}
+    .sidebar-group a.active{color:var(--o);border-left-color:var(--o);background:rgba(232,93,4,0.06);}
+
+    /* ── CONTENT ── */
+    .l-content{min-width:0;}
+    .policy-pane{display:none;}
+    .policy-pane.active{display:block;}
+
+    /* Typography */
+    .policy-pane h2{font-family:var(--fh);font-size:1.55rem;font-weight:900;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.5rem;}
+    .policy-intro{font-size:0.97rem;color:var(--mid);line-height:1.8;margin-bottom:2rem;padding-bottom:2rem;border-bottom:2px solid var(--bdr);}
+    .policy-pane h3{font-family:var(--fh);font-size:0.97rem;font-weight:700;color:var(--dark);margin:2.5rem 0 0.7rem;display:flex;align-items:center;gap:0.55rem;scroll-margin-top:calc(var(--nh) + 56px + 1rem);}
+    .policy-pane h3::before{content:'';display:inline-block;width:3.5px;height:15px;border-radius:2px;background:var(--grad);flex-shrink:0;}
+    .policy-pane p{font-size:0.91rem;color:var(--mid);line-height:1.8;margin-bottom:0.85rem;}
+    .policy-pane ul,.policy-pane ol{margin:0.6rem 0 0.9rem 1.2rem;display:flex;flex-direction:column;gap:0.38rem;}
+    .policy-pane li{font-size:0.91rem;color:var(--mid);line-height:1.72;}
+    .policy-pane strong{color:var(--dark);}
+    .policy-pane a{color:var(--o);text-decoration:underline;}
+    .policy-pane a:hover{color:var(--c);}
+    .policy-pane hr{border:none;border-top:1px solid var(--bdr);margin:2.5rem 0;}
+
+    /* Callout boxes */
+    .callout{border-radius:0 10px 10px 0;padding:1.1rem 1.35rem;margin:1.5rem 0;border-left:4px solid var(--o);background:var(--off);}
+    .callout.info{border-left-color:#3B82F6;background:#EFF6FF;}
+    .callout.warn{border-left-color:var(--c);background:#FFF5F5;}
+    .callout.good{border-left-color:#10B981;background:#ECFDF5;}
+    .callout p{font-size:0.88rem;color:var(--dark);line-height:1.72;margin:0;}
+    .callout p+p{margin-top:0.5rem;}
+
+    /* Tables */
+    .l-table{width:100%;border-collapse:collapse;font-size:0.86rem;margin:1rem 0 1.5rem;overflow:hidden;border-radius:10px;border:1px solid var(--bdr);}
+    .l-table th{background:var(--char);color:#fff;font-family:var(--fh);font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.7rem 1rem;text-align:left;}
+    .l-table td{padding:0.7rem 1rem;border-bottom:1px solid var(--bdr);color:var(--mid);vertical-align:top;line-height:1.6;}
+    .l-table tr:last-child td{border-bottom:none;}
+    .l-table tr:nth-child(even) td{background:var(--off);}
+    .l-table td:first-child{color:var(--dark);font-weight:500;}
+
+    /* Contact block */
+    .contact-blk{background:var(--dark);border-radius:12px;padding:1.5rem 1.75rem;margin-top:2rem;}
+    .contact-blk p{color:rgba(255,255,255,0.55);font-size:0.88rem;line-height:1.78;margin:0;}
+    .contact-blk p+p{margin-top:0.6rem;}
+    .contact-blk strong{color:#fff;}
+    .contact-blk a{color:var(--a);}
+
+    /* Footer */
+    footer{background:var(--dark);padding:3rem 0 1.5rem;border-top:1px solid rgba(255,255,255,0.06);}
+    .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a:hover{color:rgba(255,255,255,0.8);}
+    .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-legal{display:flex;gap:1.5rem;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+
+    @media(max-width:960px){
+      .l-layout{grid-template-columns:1fr;}
+      .l-sidebar{position:static;}
+    }
+    @media(max-width:600px){
+      .tab-btn{padding:0.8rem 0.9rem;font-size:0.78rem;}
+      .l-layout{padding:2rem 1.25rem 4rem;}
+      .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+      .ft-grid>div:first-child{grid-column:span 2;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── HERO ── -->
+<div class="l-hero">
+  <div class="l-hero-bg"></div>
+  <div class="l-hero-inner">
+    <div class="sec-lbl">Legal Documents</div>
+    <h1>Privacy, Cookies &amp; Terms</h1>
+    <p class="l-hero-sub">
+      <strong>Fyrfly Systems Ltd</strong> &nbsp;&bull;&nbsp;
+      Last reviewed: <strong>May 2026</strong> &nbsp;&bull;&nbsp;
+      Compliant with <strong>UK GDPR &bull; DPA 2018 &bull; DUAA 2025 &bull; PECR 2003</strong> and ICO finalised guidance (April 2026)
+    </p>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <div class="tab-bar-inner">
+    <button class="tab-btn active" onclick="switchTab('privacy',this)">Privacy Policy</button>
+    <button class="tab-btn" onclick="switchTab('cookies',this)">Cookie Policy</button>
+    <button class="tab-btn" onclick="switchTab('terms',this)">Terms of Service</button>
+  </div>
+</div>
+
+<!-- ── LAYOUT ── -->
+<div class="l-layout">
+
+  <!-- SIDEBAR -->
+  <nav class="l-sidebar" aria-label="Policy navigation">
+
+    <div id="sb-privacy" class="sidebar-group active">
+      <span class="sb-label">Privacy Policy</span>
+      <a href="#pp-controller">Who we are</a>
+      <a href="#pp-collect">What we collect</a>
+      <a href="#pp-use">How we use it</a>
+      <a href="#pp-basis">Lawful basis</a>
+      <a href="#pp-retention">How long we keep it</a>
+      <a href="#pp-sharing">Who we share with</a>
+      <a href="#pp-transfers">International transfers</a>
+      <a href="#pp-rights">Your rights</a>
+      <a href="#pp-security">Security</a>
+      <a href="#pp-children">Children</a>
+      <a href="#pp-changes">Policy changes</a>
+      <a href="#pp-contact">Contact &amp; complaints</a>
+    </div>
+
+    <div id="sb-cookies" class="sidebar-group">
+      <span class="sb-label">Cookie Policy</span>
+      <a href="#ck-what">What are cookies</a>
+      <a href="#ck-which">Cookies we use</a>
+      <a href="#ck-analytics">Google Analytics 4</a>
+      <a href="#ck-third">Third-party services</a>
+      <a href="#ck-control">Your controls</a>
+      <a href="#ck-changes">Policy changes</a>
+    </div>
+
+    <div id="sb-terms" class="sidebar-group">
+      <span class="sb-label">Terms of Service</span>
+      <a href="#ts-accept">Acceptance</a>
+      <a href="#ts-site">About this site</a>
+      <a href="#ts-tools">Our free tools</a>
+      <a href="#ts-conduct">Acceptable use</a>
+      <a href="#ts-ip">Intellectual property</a>
+      <a href="#ts-disclaimer">Disclaimers</a>
+      <a href="#ts-liability">Limitation of liability</a>
+      <a href="#ts-indemnity">Indemnity</a>
+      <a href="#ts-links">Third-party links</a>
+      <a href="#ts-law">Governing law</a>
+      <a href="#ts-changes">Changes</a>
+      <a href="#ts-contact">Contact</a>
+    </div>
+
+  </nav>
+
+  <!-- ── CONTENT ── -->
+  <div class="l-content">
+
+
+    <!-- ════════════════════════════════════════════
+         PRIVACY POLICY
+         UK GDPR Arts 13 & 14 | DPA 2018 | DUAA 2025
+         ════════════════════════════════════════════ -->
+    <div id="pane-privacy" class="policy-pane active">
+
+      <h2>Privacy Policy</h2>
+      <p class="policy-intro">This Privacy Policy sets out how <strong>Fyrfly Systems Ltd</strong> collects, uses, stores and protects your personal data when you visit <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a> or contact us about our physical security services. We are committed to handling your data lawfully, fairly and transparently in accordance with the <strong>UK General Data Protection Regulation (UK GDPR)</strong>, the <strong>Data Protection Act 2018 (DPA 2018)</strong> and the <strong>Data (Use and Access) Act 2025 (DUAA 2025)</strong>. This policy satisfies our transparency obligations under Articles 13 and 14 of the UK GDPR.</p>
+
+      <div class="callout info">
+        <p><strong>Plain-language summary.</strong> We collect only the information we need to respond to enquiries and provide our services. We do not sell, rent or share your data with advertisers. We do not use it for behavioural profiling. You have the right to see, correct, restrict or delete it at any time.</p>
+      </div>
+
+      <!-- 1. CONTROLLER -->
+      <h3 id="pp-controller">1. Who we are — the data controller</h3>
+      <p>The data controller responsible for your personal data is:</p>
+      <p>
+        <strong>Fyrfly Systems Ltd</strong><br>
+        Registered in England &amp; Wales<br>
+        Website: <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a><br>
+        Email: <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a><br>
+        Telephone: 01234 567 890
+      </p>
+      <p>As a data controller we determine the purposes and means of processing your personal data. We are registered with the <strong>Information Commissioner's Office (ICO)</strong>. You can verify our registration at <a href="https://ico.org.uk/about-the-ico/what-we-do/register-of-fee-payers/" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+      <p><strong>Data Protection Officer (DPO):</strong> We are not required to appoint a statutory DPO under Article 37 UK GDPR — we are not a public authority, and our core activities do not consist of large-scale systematic monitoring or large-scale processing of special category data. For all data protection queries, please use the contact details above.</p>
+
+      <!-- 2. WHAT WE COLLECT -->
+      <h3 id="pp-collect">2. Personal data we collect and the sources</h3>
+      <p>We collect personal data in three ways:</p>
+
+      <p><strong>(a) Data you give us directly</strong> — when you contact us, submit a form or request a survey:</p>
+      <ul>
+        <li>Name and job title or role</li>
+        <li>Organisation name, sector and address</li>
+        <li>Email address and telephone number</li>
+        <li>The content of your message, enquiry or requirement</li>
+        <li>Any other information you choose to include</li>
+      </ul>
+
+      <p><strong>(b) Data generated by your use of our website</strong> — collected automatically:</p>
+      <ul>
+        <li>IP address (anonymised before storage — see Cookie Policy)</li>
+        <li>Browser type, version and operating system</li>
+        <li>Pages visited, time on page, scroll depth and navigation path</li>
+        <li>Referring URL (the site you came from)</li>
+        <li>Approximate geographic region (derived from anonymised IP)</li>
+      </ul>
+      <p>This data is collected via Google Analytics 4. No individual is identifiable from it.</p>
+
+      <p><strong>(c) Data you enter into our interactive tools</strong> — the Pattern Analyser, Compliance Tool, Cost Estimator, Zone Planner, System Integration Tool, Your Site Tool and Solar CCTV Tower Configurator. <strong>All tool processing occurs entirely within your browser. We do not receive or store any data you enter into these tools on our servers.</strong> If you choose to email a report from a tool, the data is sent directly from your own email application.</p>
+
+      <p><strong>Special category data:</strong> We do not intentionally collect any special category personal data (health information, biometric data, criminal records etc.) through this website. If you include such information in a free-text message, we will treat it with heightened care and will not retain it beyond what is strictly necessary to respond to you.</p>
+
+      <!-- 3. HOW WE USE IT -->
+      <h3 id="pp-use">3. How we use your personal data</h3>
+      <table class="l-table">
+        <thead>
+          <tr><th>Purpose</th><th>Personal data used</th><th>Lawful basis (UK GDPR Art. 6)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Responding to enquiries and providing quotations</td>
+            <td>Contact details, enquiry content</td>
+            <td>Legitimate interests — Art. 6(1)(f)</td>
+          </tr>
+          <tr>
+            <td>Performing a contract for the supply of our security systems services</td>
+            <td>Contact details, site and project information</td>
+            <td>Contract performance — Art. 6(1)(b)</td>
+          </tr>
+          <tr>
+            <td>Service communications (appointment confirmations, maintenance reminders, project updates)</td>
+            <td>Contact details</td>
+            <td>Contract performance / Legitimate interests</td>
+          </tr>
+          <tr>
+            <td>Analysing anonymous website usage to improve our site and content</td>
+            <td>Anonymised analytics data</td>
+            <td>Legitimate interests and DUAA 2025 statistical exception to PECR consent</td>
+          </tr>
+          <tr>
+            <td>Complying with legal, regulatory and tax obligations</td>
+            <td>As required by applicable law</td>
+            <td>Legal obligation — Art. 6(1)(c)</td>
+          </tr>
+          <tr>
+            <td>Establishing, exercising or defending legal claims</td>
+            <td>Contact and correspondence data</td>
+            <td>Legitimate interests / Legal obligation</td>
+          </tr>
+          <tr>
+            <td>Sending optional marketing communications (only where you have opted in)</td>
+            <td>Name, email address, expressed interests</td>
+            <td>Consent — Art. 6(1)(a)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Automated decision-making:</strong> We do not subject you to any automated decision-making or profiling as defined under Article 22 UK GDPR that produces legal or similarly significant effects on you.</p>
+      <p><strong>Direct marketing:</strong> We will only send you marketing communications if you have provided explicit consent. You may withdraw consent at any time by contacting us at <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a> or by clicking the unsubscribe link in any marketing email.</p>
+
+      <!-- 4. LAWFUL BASIS -->
+      <h3 id="pp-basis">4. Our lawful bases for processing</h3>
+      <p>We rely on the following lawful bases under Article 6 UK GDPR:</p>
+      <ul>
+        <li><strong>Legitimate interests (Art. 6(1)(f)):</strong> Processing enquiry data to respond to you, maintain our business relationship, and improve our services. We have conducted a Legitimate Interests Assessment (LIA) and are satisfied our interests are not overridden by your rights and freedoms, particularly as you would reasonably expect us to process your enquiry data to respond to you.</li>
+        <li><strong>Contract performance (Art. 6(1)(b)):</strong> Where you have engaged us to provide services, processing is necessary to fulfil our contractual obligations to you.</li>
+        <li><strong>Legal obligation (Art. 6(1)(c)):</strong> Where processing is required by law — for example financial record-keeping obligations under the Companies Act 2006 and HMRC requirements.</li>
+        <li><strong>Consent (Art. 6(1)(a)):</strong> For optional marketing communications. Consent is always freely given, specific, informed and unambiguous. You may withdraw it at any time without any negative consequence to you.</li>
+      </ul>
+
+      <!-- 5. RETENTION -->
+      <h3 id="pp-retention">5. How long we keep your data</h3>
+      <table class="l-table">
+        <thead>
+          <tr><th>Category of data</th><th>Retention period</th><th>Reason</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Enquiry and pre-contract correspondence (where no contract is formed)</td>
+            <td>12 months from last contact</td>
+            <td>Legitimate interests — follow-up and relationship management</td>
+          </tr>
+          <tr>
+            <td>Customer and contract records</td>
+            <td>7 years from end of contract or last transaction</td>
+            <td>Legal obligation — Companies Act 2006 and HMRC requirements</td>
+          </tr>
+          <tr>
+            <td>Financial records and invoices</td>
+            <td>7 years</td>
+            <td>Legal obligation — HMRC requirement</td>
+          </tr>
+          <tr>
+            <td>Email correspondence</td>
+            <td>3 years from last meaningful contact</td>
+            <td>Legitimate interests — dispute resolution and service continuity</td>
+          </tr>
+          <tr>
+            <td>Website analytics data (via Google Analytics 4)</td>
+            <td>14 months (configured in GA4 settings)</td>
+            <td>Legitimate interests — website performance analysis</td>
+          </tr>
+          <tr>
+            <td>Marketing consent records</td>
+            <td>Until consent is withdrawn, then immediately deleted</td>
+            <td>Accountability — ICO guidance on consent records</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>At the end of each retention period, personal data is securely and permanently deleted or anonymised. We review our data holdings annually as part of our data protection governance.</p>
+
+      <!-- 6. SHARING -->
+      <h3 id="pp-sharing">6. Who we share your personal data with</h3>
+      <p>We do not sell, rent or trade your personal data to any third party. We may share it in the following limited and controlled circumstances:</p>
+      <ul>
+        <li><strong>Data processors acting on our instructions:</strong> Carefully selected third-party suppliers who process data solely on our behalf and under a written data processing agreement (DPA), including Web3Forms (our contact form processor), Google LLC (analytics), and our email and document hosting providers. All processors are contractually bound to process data only in accordance with our documented instructions, to implement appropriate security measures, and not to sub-process without our authorisation.</li>
+        <li><strong>Professional advisers:</strong> Solicitors, accountants, auditors and insurers, where necessary and subject to enforceable professional confidentiality obligations.</li>
+        <li><strong>Statutory and regulatory authorities:</strong> Where we are legally required to disclose information — for example to HMRC, the ICO, the police or a court of competent jurisdiction.</li>
+        <li><strong>Business transfers:</strong> In the event of a merger, acquisition, restructuring or sale of all or part of our business assets, personal data held by us may be transferred to the acquiring entity as part of that transaction. We will notify you in advance if your data is to be transferred and will become subject to a different privacy policy.</li>
+      </ul>
+      <p>In each case, we share only the minimum data necessary for the purpose and require recipients to handle it with the same level of care we apply ourselves.</p>
+
+      <!-- 7. TRANSFERS -->
+      <h3 id="pp-transfers">7. International transfers of personal data</h3>
+      <p>Some of our third-party processors are based outside the United Kingdom. Where personal data is transferred outside the UK, we ensure that appropriate safeguards are in place in accordance with Chapter V UK GDPR:</p>
+      <ul>
+        <li><strong>Google LLC (Google Analytics 4):</strong> Data may be transferred to Google servers in the United States. Google LLC participates in the <strong>UK Extension to the EU-US Data Privacy Framework (UK-US Data Bridge)</strong>, which provides an adequacy mechanism for UK-to-US transfers. We have also incorporated standard contractual clauses (SCCs) as an additional safeguard. For details see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+        <li><strong>Web3Forms:</strong> Form submission data is processed in accordance with UK GDPR requirements. Where processing occurs outside the UK, appropriate safeguards including SCCs are in place.</li>
+      </ul>
+      <p>We do not otherwise transfer your personal data to countries outside the UK without ensuring that adequate safeguards are in place. You may request a copy of the relevant safeguards by contacting us.</p>
+
+      <!-- 8. YOUR RIGHTS -->
+      <h3 id="pp-rights">8. Your data protection rights</h3>
+      <p>Under the UK GDPR (as supplemented by the DPA 2018 and the DUAA 2025), you have the following rights. These rights are subject to certain exemptions and conditions, but we will always acknowledge your request within 72 hours and respond in full within <strong>one calendar month</strong> (extendable by a further two months for complex or numerous requests, with written notice):</p>
+      <ul>
+        <li><strong>Right of access (Art. 15):</strong> To obtain confirmation that we process your data and to receive a copy of it, together with supplementary information (a Subject Access Request or SAR). We will respond free of charge unless a request is manifestly unfounded or excessive.</li>
+        <li><strong>Right to rectification (Art. 16):</strong> To have inaccurate personal data corrected and incomplete data completed without undue delay.</li>
+        <li><strong>Right to erasure — "right to be forgotten" (Art. 17):</strong> To request deletion of your personal data where there is no overriding legitimate reason for us to continue processing it (e.g. a legal obligation to retain it).</li>
+        <li><strong>Right to restriction of processing (Art. 18):</strong> To request that we limit how we use your data in certain circumstances — for example while the accuracy of data is contested.</li>
+        <li><strong>Right to data portability (Art. 20):</strong> Where processing is based on consent or contract and carried out by automated means, to receive your data in a structured, commonly used, machine-readable format and to transmit it to another controller.</li>
+        <li><strong>Right to object (Art. 21):</strong> To object to processing based on our legitimate interests or carried out for direct marketing purposes. We must cease direct marketing immediately on request. For other processing, we must cease unless we can demonstrate compelling legitimate grounds that override your interests.</li>
+        <li><strong>Rights related to automated decision-making (Art. 22):</strong> Not to be subject to a decision based solely on automated processing — including profiling — that produces legal or similarly significant effects. We do not conduct such processing.</li>
+        <li><strong>Right to withdraw consent:</strong> At any time where processing relies on your consent, without affecting the lawfulness of processing carried out before withdrawal.</li>
+      </ul>
+
+      <p>To exercise any right, contact us at <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>. We may need to verify your identity before acting on a request. We will not charge a fee except where a request is manifestly unfounded, excessive or repetitive.</p>
+
+      <div class="callout warn">
+        <p><strong>Right to complain to the ICO.</strong> If you are dissatisfied with how we have handled your personal data, you have the right to lodge a complaint with the UK supervisory authority — the Information Commissioner's Office — at <a href="https://ico.org.uk/make-a-complaint" target="_blank" rel="noopener">ico.org.uk/make-a-complaint</a> or by calling <strong>0303 123 1113</strong>. We would always prefer the opportunity to resolve any concern with you directly first, so please contact us in the first instance.</p>
+      </div>
+
+      <!-- 9. SECURITY -->
+      <h3 id="pp-security">9. How we protect your personal data</h3>
+      <p>We implement appropriate technical and organisational measures to protect personal data against accidental or unlawful destruction, loss, alteration, unauthorised disclosure or access, in accordance with Article 32 UK GDPR. Our measures include:</p>
+      <ul>
+        <li>All data transmitted between your browser and our website is encrypted using TLS/HTTPS</li>
+        <li>Access to personal data is restricted on a strict need-to-know basis to employees and contractors who require it to fulfil their responsibilities</li>
+        <li>All staff who handle personal data are bound by confidentiality obligations and receive data protection awareness training</li>
+        <li>Third-party processors are subject to rigorous due diligence and contractual data processing agreements before being permitted to process data on our behalf</li>
+        <li>We maintain an internal record of processing activities (RoPA) as required by Article 30 UK GDPR</li>
+        <li>We review and test our security measures regularly</li>
+      </ul>
+      <p><strong>Data breaches:</strong> In the unlikely event of a personal data breach that is likely to result in a risk to the rights and freedoms of individuals, we will notify the ICO within <strong>72 hours</strong> of becoming aware of it, in accordance with Article 33 UK GDPR. Where the breach is likely to result in a high risk to you personally, we will also notify you directly without undue delay.</p>
+
+      <!-- 10. CHILDREN -->
+      <h3 id="pp-children">10. Children's personal data</h3>
+      <p>Our website and services are directed at professionals, business users and public sector organisations — not at children under the age of 18. We do not knowingly collect personal data from children through this website.</p>
+      <p>We recognise that our primary clients include schools and educational establishments. In that context, we operate as a <strong>data processor</strong> or <strong>sub-processor</strong> in relation to any pupil data held by the school, which remains under the school's control as data controller. We do not collect, store or process pupil data through this website. Any data relating to pupils or children that is incidentally received will be deleted promptly.</p>
+      <p>The DUAA 2025 introduced enhanced protections for children's personal data. We remain attentive to these developments and will update our practices accordingly as further ICO guidance is issued.</p>
+
+      <!-- 11. CHANGES -->
+      <h3 id="pp-changes">11. Changes to this Privacy Policy</h3>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our data processing activities, to comply with changes in the law or regulatory guidance, or to align with updated ICO guidance. We will update the "Last reviewed" date at the top of this page on each revision. Where changes are material, we will bring them to your attention by a prominent notice on this page. We encourage you to review this policy periodically.</p>
+
+      <!-- 12. CONTACT -->
+      <h3 id="pp-contact">12. Contact us and your right to complain</h3>
+      <p>For any questions, concerns or requests relating to this Privacy Policy or to your personal data, please contact us using the details below. We aim to respond to all data protection enquiries within five working days.</p>
+      <div class="contact-blk">
+        <p><strong>Fyrfly Systems Ltd — Data Controller</strong><br>
+        Email: <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a><br>
+        Telephone: 01234 567 890<br>
+        Website: <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a></p>
+        <p><strong>Information Commissioner's Office (ICO) — UK Supervisory Authority</strong><br>
+        Website: <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a><br>
+        Helpline: 0303 123 1113<br>
+        Complaints: <a href="https://ico.org.uk/make-a-complaint" target="_blank" rel="noopener">ico.org.uk/make-a-complaint</a></p>
+      </div>
+
+    </div><!-- end pane-privacy -->
+
+
+    <!-- ════════════════════════════════════════════
+         COOKIE POLICY
+         PECR 2003 | DUAA 2025 | ICO SAT Guidance
+         April 2026 (final)
+         ════════════════════════════════════════════ -->
+    <div id="pane-cookies" class="policy-pane">
+
+      <h2>Cookie Policy</h2>
+      <p class="policy-intro">This Cookie Policy explains how Fyrfly Systems Ltd uses cookies and similar storage and access technologies on <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a>. It should be read alongside our Privacy Policy. Our use of these technologies is governed by the <strong>Privacy and Electronic Communications Regulations 2003 (PECR)</strong>, as amended by the <strong>Data (Use and Access) Act 2025 (DUAA 2025)</strong>, the <strong>UK GDPR</strong> and the <strong>ICO's finalised guidance on Storage and Access Technologies (29 April 2026)</strong>.</p>
+
+      <div class="callout good">
+        <p><strong>We keep this simple.</strong> We use two categories of technology on this site: functionality cookies that are strictly necessary for the site to work, and Google Analytics for anonymous usage measurement. We use no advertising cookies, no tracking pixels, no social media embeds and no behavioural profiling technologies of any kind.</p>
+      </div>
+
+      <!-- 1. WHAT ARE COOKIES -->
+      <h3 id="ck-what">1. What are cookies and storage technologies</h3>
+      <p>Cookies are small text files placed on your device when you visit a website. They are widely used to make websites function correctly, to collect aggregate usage statistics, and to remember user preferences.</p>
+      <p>The ICO's April 2026 guidance broadened the regulatory scope beyond traditional cookies to cover all <strong>"storage and access technologies" (SATs)</strong> — any technology that stores information on, or accesses information stored on, your device. This includes local storage, session storage, fingerprinting techniques, pixels and scripts, regardless of how they are labelled. Our Cookie Policy applies to all such technologies.</p>
+      <p>Cookies set by us are called <strong>first-party cookies</strong>. Cookies set by third parties (such as Google Analytics) are <strong>third-party cookies</strong>.</p>
+
+      <!-- 2. WHICH COOKIES -->
+      <h3 id="ck-which">2. Cookies and technologies we use</h3>
+      <p>We use a minimal and carefully considered set of technologies. The following table provides full transparency about each one:</p>
+
+      <table class="l-table">
+        <thead>
+          <tr><th>Name / Technology</th><th>Provider</th><th>Category</th><th>Purpose</th><th>Duration</th><th>Legal basis under PECR</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Session state &amp; form tokens</td>
+            <td>Fyrfly Systems (first-party)</td>
+            <td>Strictly necessary</td>
+            <td>Enables the website to function correctly — including form submission security and page navigation state. No personal data is stored beyond the session.</td>
+            <td>Session (deleted when you close your browser)</td>
+            <td>Strictly necessary exception — Reg. 6(4)(b) PECR. No consent required.</td>
+          </tr>
+          <tr>
+            <td>_ga</td>
+            <td>Google LLC (third-party)</td>
+            <td>Analytics / Statistical</td>
+            <td>Distinguishes unique visitors for anonymous aggregate traffic analysis. Used solely to understand how visitors use this site so we can improve it. Not used for advertising, remarketing or cross-site tracking.</td>
+            <td>2 years</td>
+            <td>DUAA 2025 statistical purposes exception — Reg. 6(4)(c) PECR (as amended). No consent required where used solely for this purpose.</td>
+          </tr>
+          <tr>
+            <td>_ga_[MEASUREMENT-ID]</td>
+            <td>Google LLC (third-party)</td>
+            <td>Analytics / Statistical</td>
+            <td>Maintains session state for Google Analytics 4. Used solely for anonymous aggregate traffic analysis as above.</td>
+            <td>2 years</td>
+            <td>DUAA 2025 statistical purposes exception — Reg. 6(4)(c) PECR (as amended). No consent required where used solely for this purpose.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <p><strong>Why we do not display a cookie consent banner.</strong> Under the PECR as amended by the DUAA 2025 (provisions in force from 5 February 2026), certain categories of storage and access technologies are exempt from the consent requirement. These exemptions are purpose-limited and cannot be applied where the technology is used for secondary purposes such as advertising. Our analytics cookies are configured and used exclusively for measuring how this website is used — with no advertising, remarketing or cross-site functionality enabled. The ICO's finalised guidance (29 April 2026) confirms that such use falls within the statistical purposes exemption. If we add any technology that requires consent in future, we will implement a compliant consent mechanism before deployment.</p>
+        <p><strong>Important:</strong> The DUAA 2025 significantly increased the maximum penalty for PECR breaches to <strong>£17.5 million or 4% of annual worldwide turnover</strong> (whichever is higher). We take our cookie compliance obligations seriously and review this policy against ICO guidance as it evolves.</p>
+      </div>
+
+      <!-- 3. GOOGLE ANALYTICS -->
+      <h3 id="ck-analytics">3. How we use Google Analytics 4</h3>
+      <p>We use Google Analytics 4 (GA4) to generate anonymous, aggregate reports on how visitors interact with our website. The information collected includes pages visited, time spent on each page, the type of device and browser used, and the broad geographic region of the visitor (derived from an anonymised IP address).</p>
+      <p>We have configured GA4 with the following privacy-protective settings:</p>
+      <ul>
+        <li><strong>IP anonymisation enabled:</strong> Your IP address is truncated by Google before any processing or storage — we never receive or store your full IP address</li>
+        <li><strong>Advertising features disabled:</strong> We have turned off all Google signals, remarketing and advertising personalisation features</li>
+        <li><strong>Data sharing with Google restricted:</strong> We do not share data with Google for their own products or advertising</li>
+        <li><strong>Data retention set to 14 months:</strong> Event-level data is automatically deleted after 14 months</li>
+        <li><strong>No cross-site or cross-device tracking enabled</strong></li>
+        <li><strong>No User-ID feature enabled</strong></li>
+      </ul>
+      <p>The resulting data is aggregated and statistical — it does not identify any individual. For information on how Google processes data on our behalf, see Google's privacy policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a> and Google's data processing terms for GA4.</p>
+
+      <!-- 4. THIRD-PARTY SERVICES -->
+      <h3 id="ck-third">4. Third-party services on this site</h3>
+      <p>The following third-party services operate on this website. We have assessed each against the PECR requirements and confirmed they do not set consent-requiring cookies:</p>
+      <ul>
+        <li><strong>Google Fonts:</strong> We load typefaces (Roboto and DM Sans) from Google's font delivery network. Google's servers receive your IP address to deliver the font files. We use <code>preconnect</code> directives to minimise data transfer. No cookies are set. See <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts privacy FAQ</a>.</li>
+        <li><strong>Web3Forms:</strong> Our enquiry and contact forms use Web3Forms as a processing intermediary to deliver form submissions to our inbox. Web3Forms does not set cookies in your browser. Data submitted through our forms is subject to this Privacy Policy and Web3Forms' own privacy policy at <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a>.</li>
+        <li><strong>GitHub Pages (hosting):</strong> Our website is hosted on GitHub Pages. GitHub may log server-side access data — including IP addresses — for security, abuse prevention and operational purposes. This data is not accessible to us in individual form. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a>.</li>
+      </ul>
+      <p>We do not embed social media buttons, advertising pixels, retargeting tags, heat-mapping scripts, session-recording tools or any other third-party tracking technologies on this website.</p>
+
+      <!-- 5. YOUR CONTROLS -->
+      <h3 id="ck-control">5. Your controls and opt-out options</h3>
+      <p>Even where consent is not required for our current cookie use, you retain full control over all storage and access technologies through the following means:</p>
+      <ul>
+        <li><strong>Browser cookie settings:</strong> Most browsers allow you to view, manage, block and delete cookies through their settings menus. Guidance for the most commonly used browsers: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a> · <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Firefox</a> · <a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a> · <a href="https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Edge</a>. Please note that blocking essential cookies may affect the functionality of this site.</li>
+        <li><strong>Google Analytics opt-out add-on:</strong> You can prevent Google Analytics from tracking your sessions on any website by installing the official <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</li>
+        <li><strong>Google's advertising controls:</strong> You can review and manage Google's use of your data at <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">myaccount.google.com/data-and-privacy</a>.</li>
+        <li><strong>Right to object:</strong> You may object to our use of analytics cookies at any time by contacting us at <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>. We will implement any reasonable technical measure to exclude your device from analytics tracking.</li>
+      </ul>
+
+      <!-- 6. CHANGES -->
+      <h3 id="ck-changes">6. Changes to this Cookie Policy</h3>
+      <p>We will update this Cookie Policy if we change the technologies deployed on this site, if the legal framework changes (including further ICO guidance under the DUAA 2025 implementation timetable), or if our purpose for using any technology changes. The "Last reviewed" date at the top of this page will be updated on each revision. We recommend checking back periodically, particularly as the DUAA 2025 implementation continues through 2026.</p>
+
+    </div><!-- end pane-cookies -->
+
+
+    <!-- ════════════════════════════════════════════
+         TERMS OF SERVICE
+         Contract law (England & Wales)
+         Consumer Rights Act 2015 | UCTA 1977
+         Supply of Goods & Services Act 1982
+         Electronic Commerce Regulations 2002
+         ════════════════════════════════════════════ -->
+    <div id="pane-terms" class="policy-pane">
+
+      <h2>Terms of Service</h2>
+      <p class="policy-intro">These Terms of Service (<strong>"Terms"</strong>) govern your access to and use of the website at <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a> (the <strong>"Site"</strong>) operated by <strong>Fyrfly Systems Ltd</strong> (<strong>"we"</strong>, <strong>"us"</strong>, <strong>"our"</strong>). By accessing or using the Site, you confirm that you have read, understood and agree to be bound by these Terms. If you do not agree, please do not use the Site. These Terms apply to use of the website only and do not govern the supply of our security installation and maintenance services, which are subject to separate terms agreed with you in writing.</p>
+
+      <div class="callout info">
+        <p><strong>Business users.</strong> This Site is directed at professionals, business users and public sector organisations. It is not intended for use by consumers as defined under the Consumer Rights Act 2015. If you are a consumer, additional statutory rights may apply to you and nothing in these Terms limits or excludes those rights.</p>
+      </div>
+
+      <!-- 1. ACCEPTANCE -->
+      <h3 id="ts-accept">1. Acceptance of these Terms</h3>
+      <p>By accessing the Site, submitting an enquiry or using any of our tools or interactive features, you confirm that:</p>
+      <ul>
+        <li>You are at least 18 years of age</li>
+        <li>Where you are acting on behalf of an organisation, you have authority to bind that organisation to these Terms</li>
+        <li>You have read and accept these Terms in full, together with our Privacy Policy and Cookie Policy</li>
+        <li>All information you provide to us is accurate, complete and not misleading</li>
+      </ul>
+      <p>We reserve the right to amend these Terms at any time. The current version will always be published on this page with the date of last review shown at the top. Continued use of the Site following publication of revised Terms constitutes your acceptance of those revisions.</p>
+
+      <!-- 2. ABOUT THE SITE -->
+      <h3 id="ts-site">2. About this Site</h3>
+      <p>The Site provides information about Fyrfly Systems Ltd, our physical security systems and services, educational content in the form of articles and guides, and a number of free interactive tools. The Site is provided free of charge as a marketing and informational resource.</p>
+      <p>We reserve the right to modify, suspend or withdraw the Site or any part of it at any time and without notice, including for maintenance, updates or commercial reasons. We will not be liable to you if the Site is unavailable at any time or for any period.</p>
+
+      <!-- 3. THE TOOLS -->
+      <h3 id="ts-tools">3. Our free interactive tools</h3>
+      <p>The following tools are available free of charge on this Site: Pattern Analyser, Compliance Tool, Cost Estimator, Zone Planner, System Integration Tool, Your Site Tool and Solar CCTV Tower Configurator (the <strong>"Tools"</strong>).</p>
+      <p>The Tools are designed to assist you in understanding security requirements, exploring system configurations and assessing compliance posture. They are <strong>informational and indicative only</strong>. You acknowledge and agree that:</p>
+      <ul>
+        <li>Results, scores, recommendations and estimates produced by the Tools are based solely on the information you enter and the assumptions built into each tool — they do not constitute professional advice of any kind</li>
+        <li>The Tools do not constitute security consultancy, legal advice, regulatory compliance certification, formal quotation or any form of professional service</li>
+        <li>You should not rely on Tool outputs as the sole basis for procurement decisions, compliance submissions, safeguarding policies or risk management strategies</li>
+        <li>Tool outputs may not reflect your specific site, operational or regulatory circumstances</li>
+        <li>Standards, legislation and best practice evolve, and Tool content may not reflect the most recent changes at any given time</li>
+        <li>We strongly recommend obtaining a professional site survey and independent expert advice before making any significant security investment or compliance decision</li>
+      </ul>
+
+      <!-- 4. ACCEPTABLE USE -->
+      <h3 id="ts-conduct">4. Acceptable use</h3>
+      <p>You agree to use the Site only for lawful purposes and in a manner that does not infringe the rights of any person. You must not:</p>
+      <ul>
+        <li>Use the Site in any way that violates any applicable UK or international law or regulation</li>
+        <li>Transmit any material that is unlawful, defamatory, abusive, offensive, obscene, threatening or otherwise objectionable</li>
+        <li>Introduce or transmit viruses, trojan horses, worms, logic bombs, ransomware or any other malicious or technologically harmful material</li>
+        <li>Attempt to gain unauthorised access to any part of the Site, its hosting infrastructure, servers, databases or any connected system or network</li>
+        <li>Mount or facilitate a denial-of-service or distributed denial-of-service attack against the Site or its infrastructure</li>
+        <li>Scrape, harvest, extract or systematically copy data or content from the Site using automated means (bots, crawlers, scrapers or similar) without our prior written consent</li>
+        <li>Use the Site to transmit unsolicited commercial communications (spam)</li>
+        <li>Impersonate any person or entity or misrepresent your affiliation with any person or organisation</li>
+        <li>Use the Site or its content for competitive intelligence purposes, including to benchmark our services, tools, pricing or market positioning for the benefit of a competitor</li>
+        <li>Use the Site in any way that could damage, disable, overburden or impair its performance</li>
+      </ul>
+      <p>Breach of these provisions may result in immediate withdrawal of your access to the Site. We will cooperate fully with law enforcement authorities and may disclose your identity and access details where required by law or a court order.</p>
+
+      <!-- 5. INTELLECTUAL PROPERTY -->
+      <h3 id="ts-ip">5. Intellectual property</h3>
+      <p>All content on this Site — including but not limited to text, articles, guides, tool software and logic, graphics, logos, icons, illustrations, layouts and the overall design — is the property of Fyrfly Systems Ltd or its licensors and is protected by UK copyright law, trade mark law, database rights and all other applicable intellectual property rights.</p>
+      <p><strong>You may:</strong></p>
+      <ul>
+        <li>Access and view the Site for your own personal or internal business use</li>
+        <li>Print or download a reasonable number of pages or extracts for personal reference or internal use within your organisation, provided you do not alter the content and you acknowledge Fyrfly Systems Ltd as the source</li>
+        <li>Share hyperlinks to our content, provided you do so fairly, accurately and in a manner that does not damage or misrepresent our reputation</li>
+      </ul>
+      <p><strong>You must not:</strong></p>
+      <ul>
+        <li>Reproduce, copy, republish, modify, adapt, translate, create derivative works from or systematically extract any content from this Site for any commercial purpose without our prior written consent</li>
+        <li>Use any content from this Site in a way that implies endorsement or affiliation with Fyrfly Systems Ltd without our express written permission</li>
+        <li>Remove, obscure or alter any copyright notice, trade mark notice or other proprietary legend displayed on or within the Site</li>
+        <li>Frame or mirror any part of the Site on another website without our prior written consent</li>
+      </ul>
+      <p>Requests for permission to reproduce content should be directed to <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>. Approval will be considered on a case-by-case basis and is at our sole discretion.</p>
+
+      <!-- 6. DISCLAIMERS -->
+      <h3 id="ts-disclaimer">6. Disclaimers</h3>
+      <p><strong>Accuracy and completeness:</strong> We take reasonable care to ensure the content on this Site is accurate and up to date. However, we make no representation or warranty — express or implied — as to the accuracy, completeness, currency or fitness for purpose of any content. Content may become out of date and we are under no obligation to update it. You should verify any information before relying on it.</p>
+      <p><strong>Articles and guidance:</strong> Articles, guides and educational content published on this Site are provided for general informational purposes only. They are not a substitute for professional security consultancy, legal advice, regulatory advice or any other professional service. You should not act or refrain from acting on the basis of any content on this Site without obtaining appropriate professional advice tailored to your specific circumstances.</p>
+      <p><strong>Availability:</strong> We do not guarantee that the Site will be continuously available, uninterrupted, timely, secure or error-free. We may suspend or withdraw access to all or part of the Site at any time.</p>
+      <p><strong>Viruses:</strong> We take reasonable steps to ensure the Site is free of malware and harmful code, but we do not guarantee this. You are responsible for ensuring that your device has appropriate up-to-date anti-virus protection.</p>
+
+      <!-- 7. LIMITATION OF LIABILITY -->
+      <h3 id="ts-liability">7. Limitation of liability</h3>
+      <p>To the maximum extent permitted by law, we exclude all conditions, warranties, representations and other terms which might otherwise be implied by statute, common law or the law of equity in relation to this Site and its content.</p>
+      <p><strong>Nothing in these Terms excludes or limits our liability for:</strong></p>
+      <ul>
+        <li>Death or personal injury caused by our negligence</li>
+        <li>Fraud or fraudulent misrepresentation</li>
+        <li>Any liability that cannot lawfully be excluded or limited under applicable law, including under the Consumer Rights Act 2015 where it applies</li>
+      </ul>
+      <p>Subject to the above exclusions, Fyrfly Systems Ltd shall not be liable — whether in contract, tort (including negligence), breach of statutory duty, or otherwise — for any:</p>
+      <ul>
+        <li>Loss of profits, revenue, business, contracts, anticipated savings or goodwill</li>
+        <li>Loss of data or corruption of data</li>
+        <li>Wasted management or staff time</li>
+        <li>Indirect, special, consequential or incidental loss or damage of any kind</li>
+        <li>Loss arising from your reliance on Tool outputs, articles or other content on this Site</li>
+        <li>Loss arising from interruption to or unavailability of the Site</li>
+        <li>Loss arising from events outside our reasonable control (force majeure)</li>
+      </ul>
+      <p>Where liability cannot be excluded, our total aggregate liability to you in connection with your use of this Site (other than in respect of the non-excludable matters listed above) shall not exceed <strong>£100</strong>.</p>
+
+      <!-- 8. INDEMNITY -->
+      <h3 id="ts-indemnity">8. Indemnity</h3>
+      <p>You agree to indemnify, defend and hold harmless Fyrfly Systems Ltd, its directors, officers, employees, agents and contractors from and against any and all losses, liabilities, claims, damages, costs and expenses (including reasonable legal fees) arising out of or in connection with:</p>
+      <ul>
+        <li>Your access to or use of the Site</li>
+        <li>Your breach of these Terms or any applicable law or regulation</li>
+        <li>Any content, data or information you submit to or through the Site</li>
+        <li>Any claim by a third party arising from your use of the Site</li>
+      </ul>
+
+      <!-- 9. THIRD-PARTY LINKS -->
+      <h3 id="ts-links">9. Third-party links and resources</h3>
+      <p>This Site may contain links to third-party websites, services and resources that are not owned or controlled by Fyrfly Systems Ltd. We have no control over and accept no responsibility for the content, privacy practices, terms or availability of any third-party site. The inclusion of a link does not imply our endorsement of or affiliation with the linked site or its operator.</p>
+      <p>We strongly recommend reading the terms of service and privacy policy of any third-party website you visit. We are not liable for any loss, damage or consequence arising from your use of or reliance on any third-party website.</p>
+
+      <!-- 10. GOVERNING LAW -->
+      <h3 id="ts-law">10. Governing law and jurisdiction</h3>
+      <p>These Terms, their subject matter and their formation (including any non-contractual disputes or claims) are governed exclusively by the laws of <strong>England and Wales</strong>.</p>
+      <p>Subject to the paragraph below, you and Fyrfly Systems Ltd irrevocably agree to submit to the exclusive jurisdiction of the courts of <strong>England and Wales</strong> to settle any dispute or claim arising out of or in connection with these Terms.</p>
+      <p>If you are a consumer resident in Scotland, Northern Ireland or another UK jurisdiction, you may also be entitled to bring proceedings in your local courts under applicable statutory rules. Nothing in these Terms affects your statutory rights as a consumer.</p>
+
+      <div class="callout">
+        <p><strong>Disputes and alternative resolution.</strong> If you have a complaint about this Site or our conduct, please contact us at <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>. We will use reasonable endeavours to resolve the matter amicably. If direct resolution is not possible, you may also consider alternative dispute resolution through a certified ADR provider — details available from the Civil Mediation Council at <a href="https://www.civilmediation.org" target="_blank" rel="noopener">civilmediation.org</a>. The European ODR platform is available at <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>, though as a UK-based business we are not obliged to participate in it.</p>
+      </div>
+
+      <!-- 11. CHANGES -->
+      <h3 id="ts-changes">11. Changes to these Terms</h3>
+      <p>We may revise these Terms at any time by amending this page. We will update the "Last reviewed" date at the top of this page on each revision. You are advised to check this page periodically, as these Terms are binding on you. Where changes are material, we will endeavour to bring them to your attention by a notice on the Site.</p>
+
+      <!-- 12. CONTACT -->
+      <h3 id="ts-contact">12. Contact</h3>
+      <p>If you have any questions about these Terms or about your use of this Site, please contact us:</p>
+      <div class="contact-blk">
+        <p><strong>Fyrfly Systems Ltd</strong><br>
+        Email: <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a><br>
+        Telephone: 01234 567 890<br>
+        Website: <a href="https://www.fyrflysystems.com">www.fyrflysystems.com</a></p>
+      </div>
+
+    </div><!-- end pane-terms -->
+
+  </div><!-- end l-content -->
+</div><!-- end l-layout -->
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <picture><source srcset="fyrfly-logo-dark.webp" type="image/webp"><img src="fyrfly-logo-dark.png" alt="Fyrfly Systems" width="160" height="50" loading="lazy" style="height:50px"></picture>
+      <p class="ft-tag">Intelligent physical security systems for schools and the public sector across the United Kingdom.</p>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-links">
+        <li><a href="cctv.html">CCTV</a></li>
+        <li><a href="cctv-tower.html">Solar CCTV Tower</a></li>
+        <li><a href="access-control.html">Access Control</a></li>
+        <li><a href="wireless-networks.html">Wireless Networks</a></li>
+        <li><a href="intruder-alarms.html">Intruder Alarms</a></li>
+        <li><a href="fire-systems.html">Fire Systems</a></li>
+        <li><a href="monitoring.html">24/7 Monitoring</a></li>
+        <li><a href="support-maintenance.html">Support &amp; Maintenance</a></li>
+        <li><a href="ai-analytics.html">AI &amp; Analytics</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Sectors</div>
+      <ul class="ft-links">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="public-sector.html">Public Sector</a></li>
+      </ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Tools</div>
+      <ul class="ft-links">
+        <li><a href="incident-analyser.html">Pattern Analyser</a></li>
+        <li><a href="cost-estimator.html">Cost Estimator</a></li>
+        <li><a href="zone-planner.html">Zone Planner</a></li>
+        <li><a href="compliance-tool.html">Compliance Tool</a></li>
+        <li><a href="system-integration.html">System Integration</a></li>
+        <li><a href="your-site-tool.html">Your Site Tool</a></li>
+      </ul>
+      <div class="ft-ct" style="margin-top:1.75rem">Insights</div>
+      <ul class="ft-links"><li><a href="blog.html">All Articles</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Get in Touch</div>
+      <ul class="ft-links">
+        <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
+        <li><a href="tel:+441234567890">01234 567 890</a></li>
+        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2026 Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</div>
+    <div class="ft-legal">
+      <a href="legal.html">Privacy Policy</a>
+      <a href="legal.html#cookies">Cookie Policy</a>
+      <a href="legal.html#terms">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script src="contact-modal.js"></script>
+<script>
+'use strict';
+
+// ── Tab / pane switching ──────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.policy-pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.sidebar-group').forEach(function(s){ s.classList.remove('active'); });
+
+  document.getElementById('pane-' + name).classList.add('active');
+  document.getElementById('sb-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+
+  try { history.replaceState(null, '', '#' + name); } catch(e) {}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Sidebar scroll-spy ────────────────────────────────────
+var spyObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var id = entry.target.id;
+      document.querySelectorAll('.sidebar-group a').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-15% 0px -72% 0px' });
+
+document.querySelectorAll('.policy-pane h3[id]').forEach(function(el){ spyObs.observe(el); });
+
+// ── Hash-based routing on load ────────────────────────────
+(function() {
+  var hash = window.location.hash.replace('#', '');
+  var tabs = document.querySelectorAll('.tab-btn');
+  if (hash === 'cookies') {
+    document.querySelectorAll('.policy-pane').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.sidebar-group').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('pane-cookies').classList.add('active');
+    document.getElementById('sb-cookies').classList.add('active');
+    tabs[1].classList.add('active');
+    try { history.replaceState(null, '', '#cookies'); } catch(e) {}
+  } else if (hash === 'terms') {
+    document.querySelectorAll('.policy-pane').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.sidebar-group').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('pane-terms').classList.add('active');
+    document.getElementById('sb-terms').classList.add('active');
+    tabs[2].classList.add('active');
+    try { history.replaceState(null, '', '#terms'); } catch(e) {}
+  }
+})();
+</script>
+</body>
+</html>
