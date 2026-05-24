@@ -156,6 +156,8 @@
     <a href="compliance-tool.html">Compliance Tool</a>
     <a href="system-integration.html">System Integration</a>
     <a href="martyns-law-tool.html">Martyn's Law Assessment ⚠</a>
+    <a href="school-security-policy-generator.html">CCTV Policy Generator</a>
+    <a href="lockdown-procedure-tool.html">Lockdown Procedure Generator</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
@@ -242,6 +244,14 @@
           <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
             <div class="drop-ico" style="background:rgba(200,16,46,0.08);"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
             <span class="drop-label">Martyn's Law Assessment</span>
+          </a>
+          <a href="school-security-policy-generator.html"${dropActive('school-security-policy-generator.html')}>
+            <div class="drop-ico" style="background:rgba(232,93,4,0.08);"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <span class="drop-label">CCTV Policy Generator</span>
+          </a>
+          <a href="lockdown-procedure-tool.html"${dropActive('lockdown-procedure-tool.html')}>
+            <div class="drop-ico" style="background:rgba(245,166,35,0.08);"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <span class="drop-label">Lockdown Procedure Generator</span>
           </a>
         </div>
       </li>
