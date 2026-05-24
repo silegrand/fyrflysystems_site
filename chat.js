@@ -460,15 +460,8 @@ Important:
     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
   });
 
-  // Close on outside click — only when user deliberately clicks outside
-  let userInteracting = false;
-  panel.addEventListener('mousedown', () => { userInteracting = true; });
-  document.addEventListener('mousedown', (e) => {
-    if (isOpen && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-      toggleChat();
-    }
-    userInteracting = false;
-  });
+  // Panel stays open until user clicks the X button
+  // (outside-click-to-close removed — conflicts with response rendering)
 
   // ── Show notification dot after 8 seconds if not opened ──
   setTimeout(() => {
