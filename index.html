@@ -780,50 +780,51 @@
 <!-- AREAS WE COVER -->
 <section class="areas">
 <style>
-.areas{background:#F5F4F2;padding:4rem 0;border-top:1px solid #E6E5E1;}
+.areas{background:#F5F4F2;padding:2.5rem 0;border-top:1px solid #E6E5E1;border-bottom:1px solid #E6E5E1;}
 .areas-inner{max-width:1200px;margin:0 auto;padding:0 2rem;}
-.areas-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;gap:1rem;flex-wrap:wrap;}
-.areas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.area-col{display:flex;flex-direction:column;gap:0.5rem;}
-.area-col-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9595A5;margin-bottom:0.25rem;}
-.area-link{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 0.9rem;background:#fff;border:1px solid #E6E5E1;border-radius:8px;font-size:0.85rem;color:#67677A;transition:all 0.2s;text-decoration:none;}
-.area-link:hover{border-color:#E85D04;color:#0E0E14;background:#FFFBF8;}
-@media(max-width:768px){.areas-grid{grid-template-columns:1fr;}.areas{padding:3rem 0;}}
+.areas-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+.areas-title{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9595A5;white-space:nowrap;}
+.areas-row{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.85rem;flex-wrap:wrap;}
+.areas-row:last-child{margin-bottom:0;}
+.areas-row-label{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9595A5;white-space:nowrap;min-width:120px;}
+.areas-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.area-pill{display:inline-flex;align-items:center;padding:0.32rem 0.85rem;background:#fff;border:1px solid #E6E5E1;border-radius:100px;font-size:0.8rem;font-weight:500;color:#67677A;transition:all 0.2s;text-decoration:none;white-space:nowrap;}
+.area-pill:hover{border-color:#E85D04;color:#E85D04;background:#FFFBF8;}
+@media(max-width:640px){.areas-row{flex-direction:column;align-items:flex-start;gap:0.5rem;}.areas-row-label{min-width:unset;}}
 </style>
   <div class="areas-inner">
-    <div class="areas-top">
-      <div>
-        <div class="sec-lbl">Coverage</div>
-        <h2 class="sec-h">Areas We Cover</h2>
-        <p class="sec-sub">Based in Faversham, Kent — serving schools and public sector organisations nationally across England.</p>
+    <div class="areas-header">
+      <div class="areas-title">📍 Areas We Cover</div>
+      <p style="font-size:0.82rem;color:#9595A5;font-family:'DM Sans',sans-serif;">Based in Faversham, Kent — serving schools and public sector organisations nationally.</p>
+    </div>
+    <div class="areas-row">
+      <div class="areas-row-label">🎓 Schools</div>
+      <div class="areas-pills">
+        <a href="/school-security-kent.html" class="area-pill">Kent</a>
+        <a href="/school-security-london.html" class="area-pill">London</a>
+        <a href="/school-security-surrey.html" class="area-pill">Surrey</a>
+        <a href="/school-security-essex.html" class="area-pill">Essex</a>
+        <a href="/school-security-sussex.html" class="area-pill">Sussex</a>
+        <a href="/school-security-hampshire.html" class="area-pill">Hampshire</a>
+        <a href="/school-security-hertfordshire.html" class="area-pill">Hertfordshire</a>
+        <a href="/school-security-berkshire.html" class="area-pill">Berkshire</a>
+        <a href="/school-security-oxfordshire.html" class="area-pill">Oxfordshire</a>
+        <a href="/school-security-east-anglia.html" class="area-pill">East Anglia</a>
       </div>
     </div>
-    <div class="areas-grid">
-      <div class="area-col">
-        <div class="area-col-label">🎓 School Security</div>
-        <a href="/school-security-kent.html" class="area-link">Kent →</a>
-        <a href="/school-security-london.html" class="area-link">London →</a>
-        <a href="/school-security-surrey.html" class="area-link">Surrey →</a>
-        <a href="/school-security-essex.html" class="area-link">Essex →</a>
-        <a href="/school-security-sussex.html" class="area-link">Sussex →</a>
-        <a href="/school-security-hampshire.html" class="area-link">Hampshire →</a>
-        <a href="/school-security-hertfordshire.html" class="area-link">Hertfordshire →</a>
-        <a href="/school-security-berkshire.html" class="area-link">Berkshire →</a>
-        <a href="/school-security-oxfordshire.html" class="area-link">Oxfordshire →</a>
-        <a href="/school-security-east-anglia.html" class="area-link">East Anglia →</a>
-      </div>
-      <div class="area-col">
-        <div class="area-col-label">🏛 Public Sector Security</div>
-        <a href="/public-sector-security-kent.html" class="area-link">Kent →</a>
-        <a href="/public-sector-security-london.html" class="area-link">London →</a>
-        <a href="/public-sector-security-surrey.html" class="area-link">Surrey →</a>
-        <a href="/public-sector-security-essex.html" class="area-link">Essex →</a>
-        <a href="/public-sector-security-sussex.html" class="area-link">Sussex →</a>
-        <a href="/public-sector-security-hampshire.html" class="area-link">Hampshire →</a>
-        <a href="/public-sector-security-hertfordshire.html" class="area-link">Hertfordshire →</a>
-        <a href="/public-sector-security-berkshire.html" class="area-link">Berkshire →</a>
-        <a href="/public-sector-security-oxfordshire.html" class="area-link">Oxfordshire →</a>
-        <a href="/public-sector-security-east-anglia.html" class="area-link">East Anglia →</a>
+    <div class="areas-row">
+      <div class="areas-row-label">🏛 Public Sector</div>
+      <div class="areas-pills">
+        <a href="/public-sector-security-kent.html" class="area-pill">Kent</a>
+        <a href="/public-sector-security-london.html" class="area-pill">London</a>
+        <a href="/public-sector-security-surrey.html" class="area-pill">Surrey</a>
+        <a href="/public-sector-security-essex.html" class="area-pill">Essex</a>
+        <a href="/public-sector-security-sussex.html" class="area-pill">Sussex</a>
+        <a href="/public-sector-security-hampshire.html" class="area-pill">Hampshire</a>
+        <a href="/public-sector-security-hertfordshire.html" class="area-pill">Hertfordshire</a>
+        <a href="/public-sector-security-berkshire.html" class="area-pill">Berkshire</a>
+        <a href="/public-sector-security-oxfordshire.html" class="area-pill">Oxfordshire</a>
+        <a href="/public-sector-security-east-anglia.html" class="area-pill">East Anglia</a>
       </div>
     </div>
   </div>
