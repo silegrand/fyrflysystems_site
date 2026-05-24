@@ -145,6 +145,7 @@
     <a href="intruder-alarms.html">Intruder Alarms</a>
     <a href="fire-systems.html">Fire Systems</a>
     <a href="monitoring.html">24/7 Monitoring</a>
+    <a href="ai-analytics.html">AI Analytics</a>
     <span class="mob-sub">Sectors</span>
     <a href="education.html">Education</a>
     <a href="public-sector.html">Public Sector</a>
@@ -204,6 +205,10 @@
           <a href="monitoring.html"${dropActive('monitoring.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
             <span class="drop-label">24/7 Monitoring</span>
+          </a>
+          <a href="ai-analytics.html"${dropActive('ai-analytics.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 12l2 2 4-4"/></svg></div>
+            <span class="drop-label">AI Analytics</span>
           </a>
         </div>
       </li>
