@@ -2,8 +2,8 @@
    FYRFLY SYSTEMS — AI Security Advisor Chat Widget
    Powered by Claude (Anthropic)
    
-   SETUP: Replace YOUR_ANTHROPIC_API_KEY with your actual key
-   from https://console.anthropic.com
+   Proxy: https://fyrflyagent.icy-heart-14c9.workers.dev
+   API key stored securely in Cloudflare Worker environment variables
    
    Usage: Add <script src="/chat.js"></script> to any page
    (already included via footer.js injection)
@@ -12,8 +12,8 @@
 (function () {
   'use strict';
 
-  const API_KEY = 'YOUR_ANTHROPIC_API_KEY';
-  const MODEL   = 'claude-sonnet-4-20250514';
+  const PROXY_URL = 'https://fyrflyagent.icy-heart-14c9.workers.dev';
+  const MODEL     = 'claude-sonnet-4-20250514';
 
   // ── System prompt ─────────────────────────────────────────
   const SYSTEM_PROMPT = `You are the Fyrfly Security Advisor — a specialist AI assistant for Fyrfly Systems (www.fyrflysystems.com), a UK security company that designs and installs physical security systems exclusively for schools, colleges, and the public sector.
@@ -374,13 +374,10 @@ Important:
     showTyping();
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch(PROXY_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
         },
         body: JSON.stringify({
           model: MODEL,
