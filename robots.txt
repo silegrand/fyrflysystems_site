@@ -1,2 +1,87 @@
+# robots.txt — Fyrfly Systems
+# https://www.fyrflysystems.com
+# Updated: May 2026
+
+# ── Standard search engines ──────────────────────────────
 User-agent: *
+Allow: /
+
+# ── Google ───────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+# Google AI / Gemini training and search
+User-agent: Google-Extended
+Allow: /
+
+# ── OpenAI / ChatGPT ─────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── Anthropic / Claude ───────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# ── Perplexity ───────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+# ── Meta / Llama ─────────────────────────────────────────
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# ── xAI / Grok ───────────────────────────────────────────
+User-agent: Grok
+Allow: /
+
+# ── Microsoft / Copilot ──────────────────────────────────
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# ── Apple ────────────────────────────────────────────────
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Cohere ───────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── Common research crawlers ─────────────────────────────
+User-agent: CCBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+# ── Sitemap ──────────────────────────────────────────────
 Sitemap: https://www.fyrflysystems.com/sitemap.xml
+
+# ── AI & LLM discovery files ─────────────────────────────
+# Machine-readable site summary for AI models:
+# https://www.fyrflysystems.com/llms.txt
+# AI policy and permissions:
+# https://www.fyrflysystems.com/.well-known/ai.txt
