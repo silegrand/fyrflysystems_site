@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Lockdown Procedure Generator | DfE Template | Fyrfly Systems</title>
+  <meta name="description" content="Generate a DfE-compliant school lockdown procedure in minutes. Based on the official Department for Education lockdown template. Free, instant download.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/lockdown-procedure-tool.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/lockdown-procedure-tool.html">
+  <meta property="og:title" content="School Lockdown Procedure Generator | DfE Template | Fyrfly Systems">
+  <meta property="og:description" content="Generate a DfE-compliant school lockdown procedure in minutes. Based on the official Department for Education lockdown template. Free, instant download.">
+  <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "School Lockdown Procedure Generator",
+    "url": "https://www.fyrflysystems.com/lockdown-procedure-tool.html",
+    "description": "Interactive tool to generate a DfE-compliant school lockdown procedure based on the official Department for Education lockdown template.",
+    "applicationCategory": "SecurityApplication",
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.fyrflysystems.com/#organization",
+      "name": "Fyrfly Systems"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Headteachers, School Business Managers, Designated Safeguarding Leads, Governors, Estates Managers"
+    }
+  }</script>
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are schools required to have a lockdown procedure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The DfE guidance 'Protective security and preparedness for education settings' strongly advises all schools to have a lockdown procedure. Under Martyn's Law (Terrorism (Protection of Premises) Act 2025), schools with a capacity of 100 or more must have documented procedures for terrorist attack scenarios, including lockdown, by April 2027."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between lockdown and evacuation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lockdown (also called shelter-in-place or invacuation) means securing people inside the building. Evacuation means moving people out of the building. The DfE guidance is clear that lockdown is usually the safer option during a hostile intruder or terrorist attack, as a blind evacuation may move people towards the threat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should schools test their lockdown procedure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The DfE recommends schools practise lockdown procedures at least once per academic year, similar to fire drills. The practice should be age-appropriate and communicated to parents in advance. The outcome should be reviewed and used to update the written procedure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Run Hide Tell?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Run Hide Tell is the UK counter-terrorism guidance for individuals caught in a terrorist attack or hostile intruder situation. Run — escape if safe to do so. Hide — if you cannot run, find cover and stay quiet. Tell — call 999 when safe. Schools should incorporate Run Hide Tell into their lockdown training."
+        }
+      }
+    ]
+  }</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:860px;--ease:cubic-bezier(0.22,1,0.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    /* Hero */
+    .hero{background:var(--char);padding:4rem 2rem 3rem;text-align:center;}
+    .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.9rem;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.3);border-radius:100px;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#F87171;margin-bottom:1.25rem;}
+    .hero h1{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.9rem;}
+    .hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero p{font-size:0.97rem;color:rgba(255,255,255,0.5);max-width:52ch;margin:0 auto 1.5rem;font-weight:300;line-height:1.72;}
+    .hero-badges{display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.85rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;font-size:0.72rem;color:rgba(255,255,255,0.5);}
+
+    /* Wrap */
+    .wrap{max-width:var(--max);margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+
+    /* Progress */
+    .progress-bar{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+    .progress-steps{display:flex;align-items:center;gap:0.4rem;flex:1;}
+    .progress-step{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;transition:all 0.3s var(--ease);flex-shrink:0;}
+    .progress-step.done{background:var(--grad);color:#fff;}
+    .progress-step.active{background:var(--dark);color:#fff;}
+    .progress-step.todo{background:var(--light);color:var(--mute);border:1px solid var(--bdr);}
+    .progress-line{flex:1;height:2px;background:var(--bdr);border-radius:2px;transition:background 0.3s;}
+    .progress-line.done{background:var(--grad);}
+    .progress-label{font-size:0.8rem;font-weight:500;color:var(--mid);white-space:nowrap;}
+
+    /* Stage */
+    .stage{display:none;}
+    .stage.active{display:block;}
+    .stage-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem;}
+    .stage-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.4rem;}
+    .stage-h{font-family:var(--fh);font-size:1.25rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.4rem;}
+    .stage-sub{font-size:0.87rem;color:var(--mid);margin-bottom:1.75rem;line-height:1.65;}
+
+    /* Form fields */
+    .field-group{margin-bottom:1.25rem;}
+    .field-group label{display:block;font-size:0.77rem;font-weight:600;color:var(--mid);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:0.35rem;}
+    .field-group input,.field-group select,.field-group textarea{width:100%;padding:0.75rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;transition:border-color 0.2s;}
+    .field-group input:focus,.field-group select:focus,.field-group textarea:focus{border-color:var(--c);}
+    .field-group textarea{min-height:90px;resize:vertical;line-height:1.6;}
+    .field-hint{font-size:0.75rem;color:var(--mute);margin-top:0.3rem;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;}
+
+    /* Repeater tables */
+    .repeater{border:1px solid var(--bdr);border-radius:10px;overflow:hidden;margin-bottom:0.75rem;}
+    .repeater-head{display:grid;padding:0.6rem 0.85rem;background:var(--light);border-bottom:1px solid var(--bdr);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mute);}
+    .repeater-row{display:grid;gap:0.5rem;padding:0.6rem 0.85rem;border-bottom:1px solid var(--bdr);align-items:center;}
+    .repeater-row:last-child{border-bottom:none;}
+    .repeater-row input{padding:0.55rem 0.7rem;font-size:0.85rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:6px;color:var(--dark);background:#fff;outline:none;width:100%;transition:border-color 0.2s;}
+    .repeater-row input:focus{border-color:var(--c);}
+    .btn-add-row{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;font-size:0.8rem;color:var(--o);border:1px dashed rgba(232,93,4,0.4);border-radius:7px;cursor:pointer;background:rgba(232,93,4,0.04);font-family:var(--fb);transition:all 0.2s;}
+    .btn-add-row:hover{background:rgba(232,93,4,0.08);border-color:var(--o);}
+    .btn-del-row{width:24px;height:24px;border-radius:50%;border:1px solid var(--bdr);background:#fff;color:var(--mute);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;transition:all 0.2s;}
+    .btn-del-row:hover{border-color:var(--c);color:var(--c);}
+
+    /* Checkboxes */
+    .chk-grid{display:flex;flex-direction:column;gap:0.5rem;}
+    .chk-opt{display:flex;align-items:center;gap:0.85rem;padding:0.75rem 1rem;border:1.5px solid var(--bdr);border-radius:9px;cursor:pointer;transition:all 0.2s;background:#fff;}
+    .chk-opt:hover{border-color:var(--o);}
+    .chk-opt.checked{border-color:var(--c);background:#FFF5F6;}
+    .chk-box{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+    .chk-opt.checked .chk-box{background:var(--c);border-color:var(--c);}
+    .chk-tick{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;display:none;}
+    .chk-opt.checked .chk-tick{display:block;}
+    .chk-label{font-size:0.87rem;color:var(--dark);}
+
+    /* Nav */
+    .stage-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--bdr);}
+    .btn-back{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.4rem;font-size:0.87rem;color:var(--mid);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;background:#fff;font-family:var(--fb);transition:all 0.2s;}
+    .btn-back:hover{color:var(--dark);border-color:var(--mid);}
+    .btn-next{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.6rem;font-size:0.87rem;font-weight:500;color:#fff;border:none;border-radius:7px;cursor:pointer;background:var(--grad);font-family:var(--fb);transition:opacity 0.2s,transform 0.2s;}
+    .btn-next:hover{opacity:0.88;transform:translateY(-1px);}
+
+    /* Lead capture */
+    .lead-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem;}
+    .lead-h{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem;}
+    .lead-sub{font-size:0.87rem;color:var(--mid);margin-bottom:1.5rem;line-height:1.6;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
+    .form-field{display:flex;flex-direction:column;gap:0.35rem;}
+    .form-field label{font-size:0.77rem;font-weight:600;color:var(--mid);letter-spacing:0.04em;text-transform:uppercase;}
+    .form-field input,.form-field select{padding:0.7rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;transition:border-color 0.2s;}
+    .form-field input:focus,.form-field select:focus{border-color:var(--c);}
+    .form-field.full{grid-column:span 2;}
+    .disclaimer{font-size:0.75rem;color:var(--mute);margin-top:0.75rem;line-height:1.55;}
+    .btn-submit{width:100%;padding:0.9rem;font-size:0.95rem;font-weight:600;color:#fff;border:none;border-radius:8px;cursor:pointer;background:var(--grad);font-family:var(--fb);margin-top:1rem;transition:opacity 0.2s;}
+    .btn-submit:hover{opacity:0.88;}
+    .btn-submit:disabled{opacity:0.5;cursor:not-allowed;}
+
+    /* Document preview */
+    .doc-preview{background:#fff;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;margin-bottom:1.25rem;}
+    .doc-toolbar{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;}
+    .doc-toolbar-title{font-size:0.85rem;font-weight:600;color:var(--dark);}
+    .doc-toolbar-actions{display:flex;gap:0.5rem;}
+    .btn-doc{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;font-size:0.8rem;font-weight:500;border-radius:6px;cursor:pointer;font-family:var(--fb);transition:all 0.2s;}
+    .btn-doc-pri{background:var(--grad);color:#fff;border:none;}
+    .btn-doc-pri:hover{opacity:0.88;}
+    .btn-doc-sec{background:#fff;color:var(--mid);border:1px solid var(--bdr);}
+    .btn-doc-sec:hover{color:var(--dark);border-color:var(--mid);}
+    .doc-body{padding:2rem 2.5rem;font-size:0.88rem;line-height:1.8;color:var(--dark);}
+    .doc-body h1{font-family:var(--fh);font-size:1.2rem;font-weight:900;color:var(--dark);margin-bottom:0.25rem;letter-spacing:-0.01em;}
+    .doc-body .doc-school{font-size:0.95rem;font-weight:600;color:var(--c);margin-bottom:1.5rem;}
+    .doc-body h2{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--dark);margin:1.5rem 0 0.5rem;padding-bottom:0.3rem;border-bottom:1px solid var(--bdr);letter-spacing:-0.01em;}
+    .doc-body table{width:100%;border-collapse:collapse;margin:0.75rem 0;font-size:0.83rem;}
+    .doc-body th{background:var(--light);padding:0.5rem 0.75rem;text-align:left;font-weight:700;font-size:0.75rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);border:1px solid var(--bdr);}
+    .doc-body td{padding:0.5rem 0.75rem;border:1px solid var(--bdr);vertical-align:top;}
+    .doc-body .doc-meta{font-size:0.75rem;color:var(--mute);margin-bottom:1.5rem;}
+    .doc-body .signal-box{background:var(--light);border:1px solid var(--bdr);border-radius:8px;padding:0.75rem 1rem;margin:0.5rem 0;font-size:0.85rem;}
+    .doc-body .signal-box strong{display:block;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--mute);margin-bottom:0.2rem;}
+    .doc-body .info-box{background:#FFF8F0;border:1px solid rgba(232,93,4,0.2);border-radius:8px;padding:0.85rem 1rem;margin:0.75rem 0;font-size:0.82rem;color:#7C3A00;line-height:1.6;}
+    .doc-body .info-box strong{color:var(--o);}
+    .doc-body ul{padding-left:1.25rem;margin:0.5rem 0;}
+    .doc-body li{margin-bottom:0.3rem;}
+    .doc-dfe-badge{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--mute);margin-bottom:0.5rem;}
+    .doc-footer-note{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--bdr);font-size:0.72rem;color:var(--mute);line-height:1.6;}
+
+    .cta-card{background:var(--grad);border-radius:14px;padding:1.75rem;text-align:center;margin-bottom:1.25rem;}
+    .cta-card h3{font-family:var(--fh);font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.5rem;}
+    .cta-card p{font-size:0.87rem;color:rgba(255,255,255,0.7);margin-bottom:1.25rem;}
+    .cta-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+    .cta-btn-p{padding:0.7rem 1.5rem;background:#fff;color:var(--c);font-size:0.87rem;font-weight:700;border-radius:7px;border:none;cursor:pointer;font-family:var(--fb);}
+    .cta-btn-s{padding:0.7rem 1.5rem;color:rgba(255,255,255,0.8);font-size:0.87rem;border:1px solid rgba(255,255,255,0.3);border-radius:7px;background:transparent;cursor:pointer;font-family:var(--fb);}
+
+    .disclaimer-box{background:#fff;border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.25rem;}
+    .disclaimer-box p{font-size:0.75rem;color:var(--mute);line-height:1.6;}
+
+    @media(max-width:640px){
+      .field-row{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .form-field.full{grid-column:span 1;}
+      .stage-card,.lead-card{padding:1.25rem;}
+      .doc-body{padding:1.25rem;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">🔒 DfE Template Based</div>
+  <h1>School Lockdown<br><span>Procedure Generator</span></h1>
+  <p>Answer a few questions about your school and generate a complete, DfE-compliant lockdown procedure ready to print, share with staff and present to governors — in under 10 minutes.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✓ Based on official DfE lockdown template</span>
+    <span class="hero-badge">✓ Martyn's Law compliant</span>
+    <span class="hero-badge">✓ Instant PDF download</span>
+    <span class="hero-badge">✓ Free</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <div class="progress-steps" id="progress-steps"></div>
+    <div class="progress-label" id="progress-label">Step 1 of 6</div>
+  </div>
+
+  <!-- Stage 1: School details -->
+  <div class="stage active" id="stage-1">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 1 — School Details</div>
+      <h2 class="stage-h">Tell us about your school</h2>
+      <p class="stage-sub">This information will appear in the header of your lockdown procedure document.</p>
+
+      <div class="field-group">
+        <label>School / Academy name</label>
+        <input type="text" id="s-name" placeholder="e.g. Greenfield Community Academy">
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>Local authority / MAT</label>
+          <input type="text" id="s-mat" placeholder="e.g. Greenfield MAT">
+        </div>
+        <div class="field-group">
+          <label>School phase</label>
+          <select id="s-phase">
+            <option value="">Select…</option>
+            <option>Primary school</option>
+            <option>Secondary school</option>
+            <option>All-through school</option>
+            <option>Special school</option>
+            <option>Nursery / EYFS</option>
+            <option>Sixth form / college</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>Approximate pupil roll</label>
+          <input type="number" id="s-roll" placeholder="e.g. 650">
+        </div>
+        <div class="field-group">
+          <label>Approximate staff count</label>
+          <input type="number" id="s-staff" placeholder="e.g. 85">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>Document version</label>
+          <input type="text" id="s-version" placeholder="e.g. 1.0" value="1.0">
+        </div>
+        <div class="field-group">
+          <label>Review date</label>
+          <input type="text" id="s-review" placeholder="e.g. September 2026">
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <div></div>
+        <button class="btn-next" onclick="goTo(2)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2: Key personnel -->
+  <div class="stage" id="stage-2">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 2 — Key Personnel</div>
+      <h2 class="stage-h">Who is responsible for lockdown?</h2>
+      <p class="stage-sub">These are the named individuals who will lead the lockdown response. You need at least one Incident Control Officer and one deputy.</p>
+
+      <div class="field-group">
+        <label>Incident Control Officer (primary)</label>
+        <div class="field-row">
+          <input type="text" id="ico-name" placeholder="Full name">
+          <input type="text" id="ico-role" placeholder="Role (e.g. Headteacher)">
+        </div>
+        <input type="text" id="ico-phone" placeholder="Emergency contact number" style="margin-top:0.5rem;width:100%;padding:0.75rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;">
+      </div>
+
+      <div class="field-group">
+        <label>Deputies &amp; Communications Officer</label>
+        <div class="repeater" id="deputies-repeater">
+          <div class="repeater-head" style="grid-template-columns:1fr 1fr 1fr 24px;">
+            <span>Name</span><span>Role</span><span>Contact number</span><span></span>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 1fr 24px;">
+            <input type="text" placeholder="Deputy name">
+            <input type="text" placeholder="Role">
+            <input type="text" placeholder="Contact number">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 1fr 24px;">
+            <input type="text" placeholder="Communications Officer">
+            <input type="text" placeholder="Role">
+            <input type="text" placeholder="Contact number">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+        </div>
+        <button class="btn-add-row" onclick="addDeputyRow()">+ Add person</button>
+      </div>
+
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(1)">← Back</button>
+        <button class="btn-next" onclick="goTo(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 3: Signals & communications -->
+  <div class="stage" id="stage-3">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 3 — Signals &amp; Communications</div>
+      <h2 class="stage-h">How will lockdown be signalled?</h2>
+      <p class="stage-sub">The DfE template requires you to define distinct signals for lockdown initiation and stand-down. These must be different from your fire alarm signal.</p>
+
+      <div class="field-group">
+        <label>Lockdown alarm / signal</label>
+        <input type="text" id="sig-lockdown" placeholder="e.g. Three long blasts on the PA system, repeated three times">
+        <p class="field-hint">Must be clearly distinguishable from the fire alarm. Consider a verbal announcement over PA as a backup.</p>
+      </div>
+      <div class="field-group">
+        <label>Stand-down / all-clear signal</label>
+        <input type="text" id="sig-standdown" placeholder="e.g. Verbal all-clear announced on PA by Headteacher by name">
+        <p class="field-hint">The stand-down must be given verbally by a named, recognised person to prevent confusion.</p>
+      </div>
+
+      <div class="field-group" style="margin-top:1.5rem;">
+        <label>Communication methods available during lockdown</label>
+        <p class="field-hint" style="margin-bottom:0.75rem;">Select all that are available at your school. The DfE recommends silent communications wherever possible.</p>
+        <div class="chk-grid" id="comms-opts">
+          <div class="chk-opt checked" onclick="toggleChk(this,'comms_pa')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">PA / tannoy system</span></div>
+          <div class="chk-opt checked" onclick="toggleChk(this,'comms_phone')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">Classroom telephones (internal)</span></div>
+          <div class="chk-opt" onclick="toggleChk(this,'comms_radio')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">Two-way radios (staff)</span></div>
+          <div class="chk-opt checked" onclick="toggleChk(this,'comms_mobile')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">Mobile phones (staff only — silent mode)</span></div>
+          <div class="chk-opt" onclick="toggleChk(this,'comms_im')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">Instant messaging / Teams / email</span></div>
+          <div class="chk-opt" onclick="toggleChk(this,'comms_display')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">Digital displays / smartboards (visual alert)</span></div>
+          <div class="chk-opt" onclick="toggleChk(this,'comms_cctv')"><div class="chk-box"><svg class="chk-tick" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span class="chk-label">CCTV live monitoring (control room / office)</span></div>
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(2)">← Back</button>
+        <button class="btn-next" onclick="goTo(4)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4: Rooms & safe areas -->
+  <div class="stage" id="stage-4">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 4 — Safe Areas</div>
+      <h2 class="stage-h">Where will people shelter?</h2>
+      <p class="stage-sub">Identify the rooms and spaces most suitable for lockdown. The DfE template requires you to list these in order of preference. Also identify your off-site place of safety.</p>
+
+      <div class="field-group">
+        <label>Lockdown safe rooms / areas</label>
+        <div class="repeater" id="rooms-repeater">
+          <div class="repeater-head" style="grid-template-columns:2fr 1fr 24px;">
+            <span>Room / area</span><span>Capacity (approx.)</span><span></span>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:2fr 1fr 24px;">
+            <input type="text" placeholder="e.g. All classrooms (ground floor first)">
+            <input type="text" placeholder="e.g. 30 per room">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:2fr 1fr 24px;">
+            <input type="text" placeholder="e.g. School hall">
+            <input type="text" placeholder="e.g. 200">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:2fr 1fr 24px;">
+            <input type="text" placeholder="e.g. Sports hall">
+            <input type="text" placeholder="e.g. 300">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+        </div>
+        <button class="btn-add-row" onclick="addRoomRow()">+ Add room</button>
+      </div>
+
+      <div class="field-group" style="margin-top:1.5rem;">
+        <label>Off-site place of safety</label>
+        <p class="field-hint" style="margin-bottom:0.75rem;">The DfE template requires a pre-arranged off-site venue in case evacuation from the site becomes necessary.</p>
+        <input type="text" id="offsite-name" placeholder="Name of venue (e.g. Greenfield Leisure Centre)" style="margin-bottom:0.5rem;">
+        <div class="field-row">
+          <input type="text" id="offsite-contact" placeholder="Contact name">
+          <input type="text" id="offsite-phone" placeholder="Contact telephone number">
+        </div>
+        <input type="text" id="offsite-info" placeholder="Distance, directions, capacity, opening hours" style="margin-top:0.5rem;width:100%;padding:0.75rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;">
+      </div>
+
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(3)">← Back</button>
+        <button class="btn-next" onclick="goTo(5)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 5: Procedures & contacts -->
+  <div class="stage" id="stage-5">
+    <div class="stage-card">
+      <div class="stage-lbl">Step 5 — Procedures &amp; Emergency Contacts</div>
+      <h2 class="stage-h">Procedures and key contacts</h2>
+      <p class="stage-sub">Define any site-specific procedures and add your emergency and utility contacts.</p>
+
+      <div class="field-group">
+        <label>Any site-specific lockdown considerations</label>
+        <textarea id="s-specific" placeholder="e.g. The sports hall has no internal telephone — staff must use radios or mobile phones. The science prep room contains hazardous materials and should be secured first. The main gate can only be locked from the office using the electronic release..."></textarea>
+        <p class="field-hint">Include anything specific to your buildings, site layout, or special circumstances (e.g. shared sites, SEN pupils, nursery provision).</p>
+      </div>
+
+      <div class="field-group" style="margin-top:0.5rem;">
+        <label>Emergency &amp; utility contacts</label>
+        <div class="repeater" id="contacts-repeater">
+          <div class="repeater-head" style="grid-template-columns:1fr 1fr 24px;">
+            <span>Name / organisation</span><span>Contact number</span><span></span>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 24px;">
+            <input type="text" value="Police (emergency)">
+            <input type="text" value="999">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 24px;">
+            <input type="text" value="Police (non-emergency)">
+            <input type="text" value="101">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 24px;">
+            <input type="text" placeholder="Local authority emergency line">
+            <input type="text" placeholder="Number">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 24px;">
+            <input type="text" placeholder="Gas emergency">
+            <input type="text" value="0800 111 999">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+          <div class="repeater-row" style="grid-template-columns:1fr 1fr 24px;">
+            <input type="text" placeholder="Electricity emergency">
+            <input type="text" placeholder="Number">
+            <button class="btn-del-row" onclick="delRow(this)">×</button>
+          </div>
+        </div>
+        <button class="btn-add-row" onclick="addContactRow()">+ Add contact</button>
+      </div>
+
+      <div class="stage-nav">
+        <button class="btn-back" onclick="goTo(4)">← Back</button>
+        <button class="btn-next" onclick="goTo(6)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 6: Lead capture -->
+  <div class="stage" id="stage-6">
+    <div class="lead-card">
+      <h2 class="lead-h">Ready to generate your lockdown procedure</h2>
+      <p class="lead-sub">Enter your details to generate and download your DfE-based lockdown procedure document. We'll also email you a copy for your records.</p>
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" id="f-fname" placeholder="Sarah">
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" id="f-lname" placeholder="Johnson">
+        </div>
+        <div class="form-field full">
+          <label>Email address</label>
+          <input type="email" id="f-email" placeholder="s.johnson@greenfieldacademy.org">
+        </div>
+        <div class="form-field">
+          <label>Your role</label>
+          <select id="f-role">
+            <option value="">Select role…</option>
+            <option>Headteacher / Principal</option>
+            <option>School Business Manager</option>
+            <option>Estates / Facilities Manager</option>
+            <option>Designated Safeguarding Lead</option>
+            <option>Deputy Headteacher</option>
+            <option>Governor / Trustee</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Phone (optional)</label>
+          <input type="tel" id="f-phone" placeholder="01234 567 890">
+        </div>
+      </div>
+      <p class="disclaimer">By submitting you agree to Fyrfly Systems contacting you about your lockdown procedure. We will not share your data with third parties.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitAndGenerate()">Generate My Lockdown Procedure →</button>
+      <div id="submit-msg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:var(--c);"></div>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <button class="btn-back" onclick="goTo(5)">← Back</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="stage" id="stage-results">
+    <div id="results-content"></div>
+  </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/nav.js"></script>
+<script src="/contact-modal.js"></script>
+<script src="/footer.js"></script>
+
+<script>
+// ── State ─────────────────────────────────────────────────
+const commsState = {comms_pa:true,comms_phone:true,comms_mobile:true};
+const STEPS = 6;
+
+// ── Progress ──────────────────────────────────────────────
+function renderProgress(step){
+  const c = document.getElementById('progress-steps');
+  let h = '';
+  for(let i=1;i<=STEPS;i++){
+    if(i>1) h += `<div class="progress-line ${i<=step?'done':''}"></div>`;
+    const cls = i<step?'done':i===step?'active':'todo';
+    h += `<div class="progress-step ${cls}">${i<step?'✓':i}</div>`;
+  }
+  c.innerHTML = h;
+  document.getElementById('progress-label').textContent = `Step ${step} of ${STEPS}`;
+}
+
+function goTo(step){
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+  const el = step==='results'
+    ? document.getElementById('stage-results')
+    : document.getElementById('stage-'+step);
+  if(el) el.classList.add('active');
+  if(step!=='results') renderProgress(step);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Checkbox ──────────────────────────────────────────────
+function toggleChk(el,key){
+  el.classList.toggle('checked');
+  if(el.classList.contains('checked')) commsState[key]=true;
+  else delete commsState[key];
+}
+
+// ── Repeater rows ─────────────────────────────────────────
+function delRow(btn){ btn.closest('.repeater-row').remove(); }
+
+function addDeputyRow(){
+  const r = document.createElement('div');
+  r.className='repeater-row';
+  r.style.gridTemplateColumns='1fr 1fr 1fr 24px';
+  r.innerHTML=`<input type="text" placeholder="Name"><input type="text" placeholder="Role"><input type="text" placeholder="Contact number"><button class="btn-del-row" onclick="delRow(this)">×</button>`;
+  document.getElementById('deputies-repeater').appendChild(r);
+}
+function addRoomRow(){
+  const r = document.createElement('div');
+  r.className='repeater-row';
+  r.style.gridTemplateColumns='2fr 1fr 24px';
+  r.innerHTML=`<input type="text" placeholder="Room / area"><input type="text" placeholder="Capacity"><button class="btn-del-row" onclick="delRow(this)">×</button>`;
+  document.getElementById('rooms-repeater').appendChild(r);
+}
+function addContactRow(){
+  const r = document.createElement('div');
+  r.className='repeater-row';
+  r.style.gridTemplateColumns='1fr 1fr 24px';
+  r.innerHTML=`<input type="text" placeholder="Name / organisation"><input type="text" placeholder="Contact number"><button class="btn-del-row" onclick="delRow(this)">×</button>`;
+  document.getElementById('contacts-repeater').appendChild(r);
+}
+
+// ── Collect data ──────────────────────────────────────────
+function collectData(){
+  const g = id => (document.getElementById(id)||{}).value||'';
+
+  // Deputies
+  const depRows = document.querySelectorAll('#deputies-repeater .repeater-row');
+  const deputies = Array.from(depRows).map(r=>{
+    const inputs = r.querySelectorAll('input');
+    return {name:inputs[0]?.value||'',role:inputs[1]?.value||'',phone:inputs[2]?.value||''};
+  }).filter(d=>d.name);
+
+  // Rooms
+  const roomRows = document.querySelectorAll('#rooms-repeater .repeater-row');
+  const rooms = Array.from(roomRows).map(r=>{
+    const inputs = r.querySelectorAll('input');
+    return {name:inputs[0]?.value||'',cap:inputs[1]?.value||''};
+  }).filter(r=>r.name);
+
+  // Contacts
+  const contactRows = document.querySelectorAll('#contacts-repeater .repeater-row');
+  const contacts = Array.from(contactRows).map(r=>{
+    const inputs = r.querySelectorAll('input');
+    return {name:inputs[0]?.value||'',phone:inputs[1]?.value||''};
+  }).filter(c=>c.name);
+
+  // Comms
+  const commsLabels = {
+    comms_pa:'PA / tannoy system',comms_phone:'Classroom telephones',
+    comms_radio:'Two-way radios',comms_mobile:'Mobile phones (staff, silent)',
+    comms_im:'Instant messaging / Teams / email',comms_display:'Digital displays / smartboards',
+    comms_cctv:'CCTV live monitoring'
+  };
+  const comms = Object.keys(commsState).filter(k=>commsState[k]).map(k=>commsLabels[k]||k);
+
+  return {
+    school: g('s-name')||'[School Name]',
+    mat: g('s-mat'),
+    phase: g('s-phase'),
+    roll: g('s-roll'),
+    staff: g('s-staff'),
+    version: g('s-version')||'1.0',
+    review: g('s-review'),
+    ico: {name:g('ico-name'),role:g('ico-role'),phone:g('ico-phone')},
+    deputies, rooms, contacts, comms,
+    signals: {lockdown:g('sig-lockdown')||'[Insert lockdown signal]',standdown:g('sig-standdown')||'[Insert stand-down signal]'},
+    offsite: {name:g('offsite-name'),contact:g('offsite-contact'),phone:g('offsite-phone'),info:g('offsite-info')},
+    specific: g('s-specific')
+  };
+}
+
+// ── Lead submit ───────────────────────────────────────────
+async function submitAndGenerate(){
+  const fname = document.getElementById('f-fname').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if(!fname||!email){
+    const msg = document.getElementById('submit-msg');
+    msg.style.display='block'; msg.textContent='Please enter your name and email address.'; return;
+  }
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Generating…';
+  const d = collectData();
+  try{
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        access_key:'ff37786b-ba02-4120-81ee-dfa181f68808',
+        subject:`Lockdown Procedure Generated — ${d.school}`,
+        from_name:"Fyrfly Lockdown Tool",
+        name:`${fname} ${document.getElementById('f-lname').value}`,
+        email,
+        school:d.school,
+        phase:d.phase,
+        roll:d.roll,
+        role:document.getElementById('f-role').value||'Not specified',
+        phone:document.getElementById('f-phone').value||'Not provided',
+        message:`Lockdown procedure generated for ${d.school} (${d.phase}, ${d.roll} pupils).`
+      })
+    });
+  }catch(e){}
+  renderResults(d);
+}
+
+// ── Render document ───────────────────────────────────────
+function renderResults(d){
+  const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  const deputyRows = d.deputies.length
+    ? d.deputies.map(dep=>`<tr><td>${dep.name||'—'}</td><td>${dep.role||'—'}</td><td>${dep.phone||'—'}</td></tr>`).join('')
+    : '<tr><td colspan="3" style="color:#9595A5;font-style:italic;">No deputies entered</td></tr>';
+
+  const roomRows = d.rooms.length
+    ? d.rooms.map((r,i)=>`<tr><td>${i+1}</td><td>${r.name||'—'}</td><td>${r.cap||'—'}</td></tr>`).join('')
+    : '<tr><td colspan="3" style="color:#9595A5;font-style:italic;">No rooms entered</td></tr>';
+
+  const contactRows = d.contacts.map(c=>`<tr><td>${c.name||'—'}</td><td>${c.phone||'—'}</td></tr>`).join('');
+
+  const commsHtml = d.comms.length
+    ? '<ul>'+d.comms.map(c=>`<li>${c}</li>`).join('')+'</ul>'
+    : '<p style="color:#9595A5;font-style:italic">Not specified</p>';
+
+  document.getElementById('results-content').innerHTML = `
+    <div class="doc-preview">
+      <div class="doc-toolbar">
+        <div class="doc-toolbar-title">📄 ${d.school} — Lockdown Procedure v${d.version}</div>
+        <div class="doc-toolbar-actions">
+          <button class="btn-doc btn-doc-sec" onclick="window.scrollTo({top:0,behavior:'smooth'});goTo(1)">✏ Edit</button>
+          <button class="btn-doc btn-doc-pri" onclick="printDoc()">⬇ Download / Print PDF</button>
+        </div>
+      </div>
+      <div class="doc-body" id="doc-body-content">
+
+        <div class="doc-dfe-badge">📋 Based on the Department for Education Lockdown Template</div>
+        <h1>Lockdown Procedure</h1>
+        <div class="doc-school">${d.school}${d.mat?' — '+d.mat:''}</div>
+        <div class="doc-meta">
+          ${d.phase?d.phase+' &nbsp;·&nbsp; ':''}
+          ${d.roll?'Approx. '+d.roll+' pupils &nbsp;·&nbsp; ':''}
+          ${d.staff?'Approx. '+d.staff+' staff &nbsp;·&nbsp; ':''}
+          Version ${d.version}${d.review?' &nbsp;·&nbsp; Review: '+d.review:''} &nbsp;·&nbsp; Generated: ${now}
+        </div>
+
+        <div class="info-box">
+          <strong>Important:</strong> There are important differences between lockdown and evacuation. Lockdown is necessary when children and staff need to be secured within buildings — for example during a hostile intruder, terrorist attack, or civil disturbance. Unless the location of the threat is known, a "blind" evacuation may put people in more danger than remaining inside. This procedure should be read alongside the school's fire evacuation plan and the DfE guidance on Protective Security and Preparedness for Education Settings.
+        </div>
+
+        <h2>1. Signals</h2>
+        <div class="signal-box"><strong>Lockdown alarm / signal</strong>${d.signals.lockdown}</div>
+        <div class="signal-box"><strong>Stand-down / all-clear signal</strong>${d.signals.standdown}</div>
+
+        <h2>2. Incident Control Officers &amp; Response Team</h2>
+        <table>
+          <thead><tr><th>Role</th><th>Name</th><th>Emergency Contact</th></tr></thead>
+          <tbody>
+            <tr><td>Incident Control Officer</td><td>${d.ico.name||'[Insert name]'}</td><td>${d.ico.phone||'[Insert number]'}</td></tr>
+            ${deputyRows}
+          </tbody>
+        </table>
+
+        <h2>3. Lockdown Procedure — Step by Step</h2>
+        <p><strong>On hearing the lockdown signal:</strong></p>
+        <ol style="padding-left:1.5rem;margin:0.75rem 0;">
+          <li style="margin-bottom:0.5rem">All staff immediately move pupils indoors. Anyone outside must enter the nearest building immediately.</li>
+          <li style="margin-bottom:0.5rem">All external doors and windows are locked. Blinds or curtains should be closed where possible.</li>
+          <li style="margin-bottom:0.5rem">Pupils and staff move to the designated safe areas (see Section 5) and stay away from windows and doors.</li>
+          <li style="margin-bottom:0.5rem">All lights are switched off. Noise is kept to an absolute minimum.</li>
+          <li style="margin-bottom:0.5rem">The Incident Control Officer calls 999 and reports the incident. Give: school name, address, nature of threat, number of people on site.</li>
+          <li style="margin-bottom:0.5rem">Staff take a register of all pupils and report to the Incident Control Officer via silent communication (see Section 4).</li>
+          <li style="margin-bottom:0.5rem">Mobile phones are kept on silent. Staff do not use phones for personal calls unless instructed.</li>
+          <li style="margin-bottom:0.5rem">No-one leaves the building until the all-clear is given by the Incident Control Officer personally.</li>
+        </ol>
+
+        <div class="info-box">
+          <strong>Run, Hide, Tell:</strong> If staff or pupils cannot reach a safe room, they should follow the national counter-terrorism guidance — Run (escape if a safe route exists), Hide (find cover, be quiet, turn phones to silent), Tell (call 999 when safe to do so).
+        </div>
+
+        <h2>4. Communication During Lockdown</h2>
+        <p>Wherever possible, use silent communications and keep noise to an absolute minimum. The following communication methods are available at ${d.school}:</p>
+        ${commsHtml}
+        <p style="margin-top:0.5rem;">Communications with parents and media will be managed by the Incident Control Officer or their delegate only. Staff must not post on social media during an incident.</p>
+
+        <h2>5. Safe Rooms &amp; Areas</h2>
+        <table>
+          <thead><tr><th>#</th><th>Room / area</th><th>Approximate capacity</th></tr></thead>
+          <tbody>${roomRows}</tbody>
+        </table>
+        <div class="info-box">
+          <strong>Note:</strong> Items that could be used as weapons (kitchen implements, sports equipment, tools, cleaning products) must be securely locked away when not in use. Science labs and design technology rooms should be locked and staff should not allow pupils to remain in these areas during lockdown.
+        </div>
+
+        <h2>6. Off-Site Place of Safety</h2>
+        <table>
+          <thead><tr><th>Detail</th><th>Information</th></tr></thead>
+          <tbody>
+            <tr><td>Venue name</td><td>${d.offsite.name||'[Insert venue]'}</td></tr>
+            <tr><td>Contact name</td><td>${d.offsite.contact||'[Insert name]'}</td></tr>
+            <tr><td>Contact telephone</td><td>${d.offsite.phone||'[Insert number]'}</td></tr>
+            <tr><td>Location / directions / capacity</td><td>${d.offsite.info||'[Insert details]'}</td></tr>
+          </tbody>
+        </table>
+
+        ${d.specific?`<h2>7. Site-Specific Considerations</h2><p>${d.specific.replace(/\n/g,'<br>')}</p>`:''}
+
+        <h2>${d.specific?'8':'7'}. Stand-Down Procedure</h2>
+        <p>The stand-down will only be declared by the Incident Control Officer (${d.ico.name||'[Name]'}) personally and verbally. Staff must confirm the all-clear verbally with a named colleague before allowing pupils to move. The signal is: <strong>${d.signals.standdown}</strong>.</p>
+        <p style="margin-top:0.5rem;">Following stand-down: complete a full register, identify any missing individuals, record the incident, notify parents as appropriate, and provide staff and pupil support.</p>
+
+        <h2>${d.specific?'9':'8'}. Emergency &amp; Utility Contacts</h2>
+        <table>
+          <thead><tr><th>Name / Organisation</th><th>Contact Number</th></tr></thead>
+          <tbody>${contactRows}</tbody>
+        </table>
+
+        <h2>${d.specific?'10':'9'}. Training &amp; Testing</h2>
+        <p>This lockdown procedure should be practised at least once per academic year. Practice drills should be age-appropriate and communicated to parents in advance. The outcome of each drill should be reviewed and used to update this document. Staff should complete ACT Awareness counter-terrorism training (available free at gov.uk).</p>
+
+        <h2>${d.specific?'11':'10'}. Document Control</h2>
+        <table>
+          <thead><tr><th>Detail</th><th>Information</th></tr></thead>
+          <tbody>
+            <tr><td>Document owner</td><td>${d.ico.role||'Headteacher'} — ${d.ico.name||'[Name]'}</td></tr>
+            <tr><td>Version</td><td>${d.version}</td></tr>
+            <tr><td>Review date</td><td>${d.review||'[Insert date]'}</td></tr>
+            <tr><td>Date generated</td><td>${now}</td></tr>
+            <tr><td>Approved by</td><td>[Governing body / SLT — insert name and date]</td></tr>
+          </tbody>
+        </table>
+
+        <div class="doc-footer-note">
+          This document was generated using the Fyrfly Systems Lockdown Procedure Generator, based on the Department for Education model lockdown template. It should be reviewed by the school's legal adviser and governor body before adoption. Fyrfly Systems Ltd accepts no liability for the completeness or accuracy of this document for any specific school's circumstances. Always refer to the current DfE guidance at www.gov.uk and seek independent legal advice. Generated ${now}.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h3>Make your lockdown procedure enforceable</h3>
+      <p>A written procedure is only as good as the technology behind it. Fyrfly Systems installs integrated CCTV, access control and electronic lockdown systems that execute your procedure automatically — locking every door in under 2 seconds from a single command.</p>
+      <div class="cta-btns">
+        <button class="cta-btn-p" onclick="window.location.href='mailto:hello@fyrflysystems.com?subject=Lockdown+System+Enquiry&body=Hi%2C+I+generated+a+lockdown+procedure+and+would+like+to+discuss+how+Fyrfly+can+support+this+with+physical+security+systems.'">Book a Free Survey →</button>
+        <button class="cta-btn-s" onclick="window.location.href='/martyns-law-tool.html'">Take the Martyn's Law Assessment</button>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      <p><strong>Important:</strong> This document is generated as a starting point only. It does not constitute legal advice and should be reviewed and adapted by your school's leadership team, legal advisers and governing body before adoption. The DfE guidance "Protective security and preparedness for education settings" should be read alongside this document. Fyrfly Systems Ltd accepts no liability for the use of this document.</p>
+    </div>
+  `;
+
+  document.getElementById('progress-steps').innerHTML='';
+  document.getElementById('progress-label').textContent='Document ready';
+  goTo('results');
+}
+
+// ── Print ─────────────────────────────────────────────────
+function printDoc(){
+  const body = document.getElementById('doc-body-content');
+  if(!body) return;
+  const d = collectData();
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Lockdown Procedure — ${d.school}</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;max-width:720px;margin:2rem auto;padding:0 1.5rem;font-size:12px;line-height:1.65;}
+    h1{font-size:20px;font-weight:900;margin-bottom:0.2rem;}
+    h2{font-size:13px;font-weight:700;margin:1.5rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid #ddd;}
+    table{width:100%;border-collapse:collapse;margin:0.6rem 0;font-size:11px;}
+    th{background:#f5f4f2;padding:0.4rem 0.6rem;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.04em;border:1px solid #e6e5e1;}
+    td{padding:0.4rem 0.6rem;border:1px solid #e6e5e1;vertical-align:top;}
+    .meta{font-size:10px;color:#666;margin-bottom:1.25rem;}
+    .school{font-size:14px;font-weight:700;color:#C8102E;margin-bottom:1rem;}
+    .signal-box{background:#f5f4f2;border:1px solid #e6e5e1;border-radius:5px;padding:0.5rem 0.75rem;margin:0.4rem 0;font-size:11px;}
+    .signal-box strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#9595A5;margin-bottom:0.15rem;}
+    .info-box{background:#FFF8F0;border:1px solid rgba(232,93,4,0.2);border-radius:5px;padding:0.6rem 0.75rem;margin:0.5rem 0;font-size:11px;color:#7C3A00;}
+    ol,ul{padding-left:1.25rem;margin:0.4rem 0;}
+    li{margin-bottom:0.3rem;}
+    .footer{font-size:9px;color:#aaa;border-top:1px solid #eee;margin-top:2rem;padding-top:0.75rem;line-height:1.5;}
+    .dfe-badge{font-size:10px;color:#666;margin-bottom:0.5rem;}
+    .brand{font-size:10px;color:#ccc;text-align:center;margin-top:1rem;}
+    @media print{body{margin:0;}}
+  </style></head><body>
+  ${body.innerHTML}
+  <div class="brand">Fyrfly Systems Ltd — Intelligent Physical Security for Schools &amp; Public Sector — www.fyrflysystems.com</div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+// Init
+renderProgress(1);
+</script>
+</body>
+</html>
