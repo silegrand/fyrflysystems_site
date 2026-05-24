@@ -250,4 +250,12 @@
     document.body.insertAdjacentHTML('beforeend', html);
   }
 
+  // ── Load chat widget ─────────────────────────────────────
+  if (!document.getElementById('fyrfly-chat-btn')) {
+    var chatScript = document.createElement('script');
+    chatScript.src = '/chat.js';
+    chatScript.defer = true;
+    document.body.appendChild(chatScript);
+  }
+
 }());
