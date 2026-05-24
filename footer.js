@@ -196,6 +196,8 @@
     +     '<li><a href="/incident-analyser.html">Incident Analyser</a></li>'
     +     '<li><a href="/your-site-tool.html">Your Site Tool</a></li>'
     +     '<li><a href="/martyns-law-tool.html">Martyn\'s Law Assessment<span class="sft-badge">New</span></a></li>'
+    +     '<li><a href="/school-security-policy-generator.html">CCTV Policy Generator<span class="sft-badge">New</span></a></li>'
+    +     '<li><a href="/lockdown-procedure-tool.html">Lockdown Procedure</a></li>'
     +   '</ul>'
     + '</div>'
 
