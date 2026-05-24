@@ -171,8 +171,8 @@
   <div class="nav-i">
     <a href="index.html" class="nav-logo">
       <picture>
-        <source srcset="fyrfly-logo.webp" type="image/webp">
-        <img src="fyrfly-logo.png" alt="Fyrfly Systems" width="160" height="50">
+        <source srcset="/fyrfly-logo.webp" type="image/webp">
+        <img src="/fyrfly-logo.png" alt="Fyrfly Systems" width="160" height="50">
       </picture>
     </a>
     <ul class="nav-links">
