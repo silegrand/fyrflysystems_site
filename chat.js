@@ -164,8 +164,8 @@ Important:
       max-width: 82%; padding: 0.65rem 0.85rem; border-radius: 14px;
       font-family: 'DM Sans', sans-serif; font-size: 0.84rem; line-height: 1.6; color: #0E0E14;
     }
-    .fca-msg.assistant .fca-msg-bubble { background: #F5F4F2; border-radius: 14px 14px 14px 4px; }
-    .fca-msg.user .fca-msg-bubble { background: linear-gradient(135deg, #C8102E, #E85D04); color: #fff; border-radius: 14px 14px 4px 14px; }
+    .fca-msg.assistant .fca-msg-bubble { background: #F5F4F2; border-radius: 14px 14px 14px 4px; text-align: left; word-wrap: break-word; overflow-wrap: break-word; max-width: 82%; }
+    .fca-msg.user .fca-msg-bubble { background: linear-gradient(135deg, #C8102E, #E85D04); color: #fff; border-radius: 14px 14px 4px 14px; text-align: left; word-wrap: break-word; overflow-wrap: break-word; }
     .fca-msg-bubble a { color: #E85D04; text-decoration: underline; }
     .fca-msg.user .fca-msg-bubble a { color: rgba(255,255,255,0.85); }
     .fca-msg-bubble strong { font-weight: 600; }
