@@ -460,11 +460,14 @@ Important:
     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
   });
 
-  // Close on outside click
-  document.addEventListener('click', (e) => {
+  // Close on outside click — only when user deliberately clicks outside
+  let userInteracting = false;
+  panel.addEventListener('mousedown', () => { userInteracting = true; });
+  document.addEventListener('mousedown', (e) => {
     if (isOpen && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
       toggleChat();
     }
+    userInteracting = false;
   });
 
   // ── Show notification dot after 8 seconds if not opened ──
