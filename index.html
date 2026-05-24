@@ -391,41 +391,181 @@
     }
   </style>
 
+  <!-- Schema 1: Organization + LocalBusiness -->
   <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@type": ["LocalBusiness","ProfessionalService"],
-      "@id": "https://www.fyrflysystems.com/#organization",
-      "name": "Fyrfly Systems",
-      "url": "https://www.fyrflysystems.com",
-      "logo": "https://www.fyrflysystems.com/fyrfly-logo.png",
-      "image": "https://www.fyrflysystems.com/fyrfly-logo.png",
-      "description": "Fyrfly Systems delivers intelligent CCTV, access control, wireless networks, intruder alarms, fire systems and 24/7 monitoring for schools and the public sector across the UK.",
-      "telephone": "+441234567890",
-      "email": "hello@fyrflysystems.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "GB"
+    "@context": "https://schema.org",
+    "@type": ["Organization","LocalBusiness","ProfessionalService"],
+    "@id": "https://www.fyrflysystems.com/#organization",
+    "name": "Fyrfly Systems",
+    "legalName": "Fyrfly Systems Ltd",
+    "url": "https://www.fyrflysystems.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.fyrflysystems.com/fyrfly-logo.png",
+      "width": 320,
+      "height": 100
+    },
+    "image": "https://www.fyrflysystems.com/fyrfly-logo.png",
+    "description": "Fyrfly Systems designs and installs intelligent physical security systems — CCTV, access control, intruder alarms, fire systems, wireless networks and AI analytics — exclusively for schools, colleges and the public sector across the United Kingdom. NSI NACOSS Gold and SSAIB certified.",
+    "foundingDate": "2024",
+    "telephone": "+441234567890",
+    "email": "hello@fyrflysystems.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Faversham",
+      "addressRegion": "Kent",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.3148",
+      "longitude": "0.8898"
+    },
+    "areaServed": [
+      {"@type":"Country","name":"United Kingdom"},
+      {"@type":"AdministrativeArea","name":"England"},
+      {"@type":"AdministrativeArea","name":"Wales"},
+      {"@type":"AdministrativeArea","name":"Scotland"}
+    ],
+    "knowsAbout": [
+      "CCTV installation for schools",
+      "Access control systems",
+      "Intruder alarm systems",
+      "Fire alarm systems",
+      "Wireless network installation",
+      "AI video analytics",
+      "24/7 security monitoring",
+      "Martyn's Law compliance",
+      "KCSiE safeguarding",
+      "UK GDPR surveillance compliance",
+      "Surveillance Camera Code of Practice",
+      "NSI NACOSS Gold certification",
+      "SSAIB approval",
+      "BAFE SP203-1 fire alarm certification",
+      "Crown Commercial Service framework",
+      "Constructionline Gold",
+      "ISO 9001:2015",
+      "School security",
+      "Public sector security",
+      "Multi-Academy Trust security management"
+    ],
+    "hasCredential": [
+      {"@type":"EducationalOccupationalCredential","name":"NSI NACOSS Gold","credentialCategory":"Professional Certification","recognizedBy":{"@type":"Organization","name":"National Security Inspectorate"}},
+      {"@type":"EducationalOccupationalCredential","name":"SSAIB Approved Installer","credentialCategory":"Professional Certification","recognizedBy":{"@type":"Organization","name":"Security Systems and Alarms Inspection Board"}},
+      {"@type":"EducationalOccupationalCredential","name":"BAFE SP203-1","credentialCategory":"Professional Certification","recognizedBy":{"@type":"Organization","name":"British Approvals for Fire Equipment"}},
+      {"@type":"EducationalOccupationalCredential","name":"ISO 9001:2015","credentialCategory":"Quality Management Certification"},
+      {"@type":"EducationalOccupationalCredential","name":"Constructionline Gold","credentialCategory":"Procurement Qualification"},
+      {"@type":"EducationalOccupationalCredential","name":"Crown Commercial Service Supplier","credentialCategory":"Government Framework"}
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Physical Security Services for Schools and Public Sector",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"CCTV Systems for Schools","url":"https://www.fyrflysystems.com/cctv.html","description":"NSI-certified CCTV design and installation for schools, colleges and public sector. 4K cameras, AI analytics, UK GDPR compliant."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Access Control","url":"https://www.fyrflysystems.com/access-control.html","description":"Role-based access control, DBS-aware visitor management and KCSiE-compliant entry systems for education and public sector."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Intruder Alarms","url":"https://www.fyrflysystems.com/intruder-alarms.html","description":"Grade 2 and Grade 3 intruder alarm systems for schools and public buildings. NSI NACOSS Gold certified installation."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fire Alarm Systems","url":"https://www.fyrflysystems.com/fire-systems.html","description":"BAFE SP203-1 registered addressable fire alarm systems to BS 5839-1 for schools, colleges, councils and NHS estates."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wireless Networks","url":"https://www.fyrflysystems.com/wireless-networks.html","description":"Enterprise wireless network design and installation for schools and public sector. Supports CCTV, access control and staff devices."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"24/7 Security Monitoring","url":"https://www.fyrflysystems.com/monitoring.html","description":"NSI-approved Alarm Receiving Centre monitoring for CCTV, intruder alarms and fire systems. 24/7 staffed response."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Solar CCTV Tower","url":"https://www.fyrflysystems.com/cctv-tower.html","description":"Rapid-deploy solar-powered CCTV towers for construction sites, events and temporary surveillance. No mains power required."}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"AI Video Analytics","url":"https://www.fyrflysystems.com/ai-analytics.html","description":"On-device AI analytics for CCTV — loitering detection, perimeter breach, ANPR, thermal intrusion and tailgating alerts."}}
+      ]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/fyrflysystems",
+      "https://github.com/silegrand/fyrflysystems_site"
+    ]
+  }</script>
+
+  <!-- Schema 2: WebSite with SearchAction -->
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.fyrflysystems.com/#website",
+    "name": "Fyrfly Systems",
+    "url": "https://www.fyrflysystems.com",
+    "description": "Intelligent physical security systems for schools and the public sector — CCTV, access control, intruder alarms, fire systems, wireless networks and AI analytics.",
+    "publisher": {
+      "@id": "https://www.fyrflysystems.com/#organization"
+    },
+    "inLanguage": "en-GB"
+  }</script>
+
+  <!-- Schema 3: Free Tools as SoftwareApplication -->
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Free Security Tools for Schools and Public Sector",
+    "description": "Free interactive tools from Fyrfly Systems to help schools and public sector organisations with security planning, compliance and Martyn's Law readiness.",
+    "url": "https://www.fyrflysystems.com",
+    "itemListElement": [
+      {
+        "@type":"ListItem","position":1,
+        "item":{
+          "@type":"SoftwareApplication",
+          "name":"Martyn's Law Readiness Assessment",
+          "url":"https://www.fyrflysystems.com/martyns-law-tool.html",
+          "description":"Free interactive assessment tool for UK venues to determine their Martyn's Law tier, obligations and readiness before April 2027 enforcement.",
+          "applicationCategory":"SecurityApplication",
+          "operatingSystem":"Web browser",
+          "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+          "provider":{"@id":"https://www.fyrflysystems.com/#organization"}
+        }
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "United Kingdom"
+      {
+        "@type":"ListItem","position":2,
+        "item":{
+          "@type":"SoftwareApplication",
+          "name":"School Lockdown Procedure Generator",
+          "url":"https://www.fyrflysystems.com/lockdown-procedure-tool.html",
+          "description":"Generate a DfE-compliant school lockdown procedure in minutes. Based on the official Department for Education lockdown template.",
+          "applicationCategory":"SecurityApplication",
+          "operatingSystem":"Web browser",
+          "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+          "provider":{"@id":"https://www.fyrflysystems.com/#organization"}
+        }
       },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Physical Security Services",
-        "itemListElement": [
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"CCTV Systems","url":"https://www.fyrflysystems.com/cctv.html"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Access Control","url":"https://www.fyrflysystems.com/access-control.html"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wireless Networks","url":"https://www.fyrflysystems.com/wireless-networks.html"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Intruder Alarms","url":"https://www.fyrflysystems.com/intruder-alarms.html"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fire Systems","url":"https://www.fyrflysystems.com/fire-systems.html"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"24/7 Monitoring","url":"https://www.fyrflysystems.com/monitoring.html"}}
-        ]
+      {
+        "@type":"ListItem","position":3,
+        "item":{
+          "@type":"SoftwareApplication",
+          "name":"Security Cost Estimator",
+          "url":"https://www.fyrflysystems.com/cost-estimator.html",
+          "description":"Estimate the cost of CCTV and access control systems for your school or public sector site.",
+          "applicationCategory":"SecurityApplication",
+          "operatingSystem":"Web browser",
+          "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+          "provider":{"@id":"https://www.fyrflysystems.com/#organization"}
+        }
       },
-      "sameAs": [],
-      "knowsAbout": ["CCTV","Access Control","Intruder Alarms","Fire Alarms","Wireless Networks","School Security","Public Sector Security","NSI NACOSS Gold","BAFE","KCSiE","DfE Security"]
-    }
-  </script>
+      {
+        "@type":"ListItem","position":4,
+        "item":{
+          "@type":"SoftwareApplication",
+          "name":"CCTV Zone Planner",
+          "url":"https://www.fyrflysystems.com/zone-planner.html",
+          "description":"Plan CCTV camera zones and coverage for your school or public sector site with an interactive zone planning tool.",
+          "applicationCategory":"SecurityApplication",
+          "operatingSystem":"Web browser",
+          "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+          "provider":{"@id":"https://www.fyrflysystems.com/#organization"}
+        }
+      },
+      {
+        "@type":"ListItem","position":5,
+        "item":{
+          "@type":"SoftwareApplication",
+          "name":"Security Compliance Checker",
+          "url":"https://www.fyrflysystems.com/compliance-tool.html",
+          "description":"Check your school or public sector venue's compliance with UK security legislation including Martyn's Law, KCSiE and UK GDPR.",
+          "applicationCategory":"SecurityApplication",
+          "operatingSystem":"Web browser",
+          "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+          "provider":{"@id":"https://www.fyrflysystems.com/#organization"}
+        }
+      }
+    ]
+  }</script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
