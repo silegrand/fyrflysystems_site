@@ -532,31 +532,38 @@ async function startAnalysis() {
   const policyLabel = policyTypeLabels[selectedPolicyType] || 'security document';
   const orgType = document.getElementById('f-orgtype').value || 'school / public sector organisation';
 
-  const systemPrompt = `You are an expert UK school and public sector security consultant with deep knowledge of:
-- Martyn's Law (Terrorism (Protection of Premises) Act 2025) — Standard Tier (100-799 capacity) and Enhanced Tier (800+)
-- DfE Protective Security and Preparedness for Education Settings guidance
-- ProtectUK / NaCTSO five-stage risk management framework
-- UK GDPR and the Surveillance Camera Code of Practice (for CCTV policies)
-- KCSiE (Keeping Children Safe in Education) safeguarding requirements
-- Home Office counter-terrorism guidance including Run Hide Tell
+  const systemPrompt = `You are an expert UK school and public sector security consultant. You are reviewing a ` + policyLabel + ` submitted by ` + org + `, a ` + orgType + `.
 
-You are reviewing a ${policyLabel} submitted by ${org}, a ${orgType}.
+You must respond in a strict pipe-delimited plain text format. No JSON, no markdown, no quotes around values.
 
-Your role is to provide a genuinely useful, honest, specific and constructive review.
+RESPOND WITH EXACTLY THESE LINE TYPES:
+SCORE|number between 0 and 100
+SUMMARY|two sentence assessment of the document overall
+STRENGTH|title max 60 chars|detail max 120 chars|legislation reference
+STRENGTH|title|detail|reference
+STRENGTH|title|detail|reference
+GAP|title max 60 chars|detail max 120 chars|legislation reference|high
+GAP|title|detail|reference|medium
+GAP|title|detail|reference|low
+IMPROVEMENT|title max 60 chars|detail max 120 chars|standard reference
+IMPROVEMENT|title|detail|reference
+ACTION|action title max 60 chars|detail max 120 chars
+ACTION|action|detail
+ACTION|action|detail
+MARTYNS_LAW|compliant or partial or non-compliant or not-applicable
+UK_GDPR|compliant or partial or non-compliant or not-applicable
+DFE|compliant or partial or not-applicable
+KCSIE|compliant or partial or non-compliant or not-applicable
 
-CRITICAL RESPONSE RULES:
-1. Respond ONLY with a valid JSON object - no other text before or after
-2. All string values must be on a SINGLE LINE - no newlines inside strings
-3. Do NOT use apostrophes in string values - write "Martyns Law" not "Martyn's Law"
-4. Do NOT use smart quotes or curly quotes - ASCII double quotes only
-5. Keep each string value under 150 characters
-6. Do not use backslashes except to escape double quotes as \"
-
-RESPONSE FORMAT - use EXACTLY this structure with NO variations:
-{"overallScore":75,"scoreRationale":"One sentence only.","summary":"Two sentences maximum.","strengths":[{"title":"Short title","detail":"One sentence detail","reference":"Legislation name"}],"gaps":[{"title":"Short title","detail":"One sentence detail","reference":"Legislation name","priority":"high"}],"improvements":[{"title":"Short title","detail":"One sentence suggestion","reference":"Standard name"}],"priorityActions":[{"action":"Short action","detail":"One sentence explanation"}],"complianceFlags":{"martynsLaw":"compliant","ukGdpr":"partial","dfGuidance":"compliant","kcsie":"not-applicable"}}
-
-Provide 2-4 strengths, 2-5 gaps, 2-3 improvements, 3-4 priority actions.
-Valid values for complianceFlags: "compliant" "partial" "non-compliant" "not-applicable"`;
+IMPORTANT RULES:
+- Provide 2 to 4 STRENGTH lines
+- Provide 2 to 5 GAP lines  
+- Provide 2 to 3 IMPROVEMENT lines
+- Provide 3 to 4 ACTION lines
+- No apostrophes in any text field
+- No pipe characters inside field values
+- Each entry must be on exactly one line
+- Do not add any other text or headings`;
 
   try {
     const response = await fetch(PROXY_URL, {
@@ -578,44 +585,76 @@ Valid values for complianceFlags: "compliant" "partial" "non-compliant" "not-app
 
     if(data.content && data.content[0] && data.content[0].text) {
       let raw = data.content[0].text.trim();
-      // Strip markdown code fences
-      raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
-      // Extract JSON object from first { to last }
-      const fb = raw.indexOf('{');
-      const lb = raw.lastIndexOf('}');
-      if(fb !== -1 && lb !== -1) raw = raw.substring(fb, lb + 1);
-      // Replace smart/curly quotes with straight quotes
-      raw = raw.replace(/[\u2018\u2019\u02BC]/g, '').replace(/[\u201C\u201D]/g, '\"');
-      // Remove all newlines and control chars inside the JSON
-      raw = raw.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, ' ');
-      // Collapse newlines inside string values to spaces
-      raw = raw.replace(/\n/g, ' ').replace(/\r/g, ' ');
+      console.log('Raw response:', raw.substring(0, 500));
 
-      function tryParse(str) {
-        try { return JSON.parse(str); } catch(e) { return null; }
-      }
-
-      let review = tryParse(raw);
-
-      if(!review) {
-        // Try removing trailing incomplete array/object elements
-        let attempt = raw;
-        // Remove last incomplete element - find last complete },
-        const lastComma = Math.max(attempt.lastIndexOf('},'), attempt.lastIndexOf('"}'));
-        if(lastComma > 0) {
-          attempt = attempt.substring(0, lastComma + 1);
-          // Close any open arrays and the main object
-          const opens = (attempt.match(/\[/g)||[]).length - (attempt.match(/\]/g)||[]).length;
-          const objOpens = (attempt.match(/\{/g)||[]).length - (attempt.match(/\}/g)||[]).length;
-          for(let i=0;i<opens;i++) attempt += ']';
-          for(let i=0;i<objOpens;i++) attempt += '}';
-          review = tryParse(attempt);
+      // Parse pipe-delimited plain text response
+      function parseResponse(text) {
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        const result = {
+          overallScore: 50,
+          scoreRationale: '',
+          summary: '',
+          strengths: [],
+          gaps: [],
+          improvements: [],
+          priorityActions: [],
+          complianceFlags: {
+            martynsLaw: 'not-applicable',
+            ukGdpr: 'not-applicable',
+            dfGuidance: 'not-applicable',
+            kcsie: 'not-applicable'
+          }
+        };
+        for(const line of lines) {
+          const parts = line.split('|');
+          const key = parts[0].toUpperCase().trim();
+          if(key === 'SCORE' && parts[1]) {
+            result.overallScore = parseInt(parts[1]) || 50;
+          } else if(key === 'SUMMARY' && parts[1]) {
+            result.summary = parts.slice(1).join(' ').trim();
+          } else if(key === 'STRENGTH' && parts[1]) {
+            result.strengths.push({
+              title: parts[1] || '',
+              detail: parts[2] || '',
+              reference: parts[3] || ''
+            });
+          } else if(key === 'GAP' && parts[1]) {
+            result.gaps.push({
+              title: parts[1] || '',
+              detail: parts[2] || '',
+              reference: parts[3] || '',
+              priority: parts[4] || 'medium'
+            });
+          } else if(key === 'IMPROVEMENT' && parts[1]) {
+            result.improvements.push({
+              title: parts[1] || '',
+              detail: parts[2] || '',
+              reference: parts[3] || ''
+            });
+          } else if(key === 'ACTION' && parts[1]) {
+            result.priorityActions.push({
+              action: parts[1] || '',
+              detail: parts[2] || ''
+            });
+          } else if(key === 'MARTYNS_LAW' && parts[1]) {
+            result.complianceFlags.martynsLaw = parts[1].trim().toLowerCase();
+          } else if(key === 'UK_GDPR' && parts[1]) {
+            result.complianceFlags.ukGdpr = parts[1].trim().toLowerCase();
+          } else if(key === 'DFE' && parts[1]) {
+            result.complianceFlags.dfGuidance = parts[1].trim().toLowerCase();
+          } else if(key === 'KCSIE' && parts[1]) {
+            result.complianceFlags.kcsie = parts[1].trim().toLowerCase();
+          }
         }
+        return result;
       }
 
-      if(!review) {
-        console.error('All JSON parse attempts failed. Raw response:', raw.substring(0, 1000));
-        throw new Error('The AI returned an unexpected format. Please try again — this usually resolves itself.');
+      const review = parseResponse(raw);
+
+      // Validate we got something useful
+      if(!review.strengths.length && !review.gaps.length) {
+        console.error('Parser returned empty results. Raw:', raw.substring(0, 500));
+        throw new Error('The AI response was not in the expected format. Please try again.');
       }
 
       // Submit lead
