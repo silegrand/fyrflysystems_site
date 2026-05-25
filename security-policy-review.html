@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Policy Health Check | AI-Powered Review | Fyrfly Systems</title>
+  <meta name="description" content="Upload your school or public sector security policy and receive an instant AI-powered health check against Martyn's Law, UK GDPR and DfE guidance. Free, confidential, instant.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/security-policy-review.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/security-policy-review.html">
+  <meta property="og:title" content="Security Policy Health Check | AI-Powered Review | Fyrfly Systems">
+  <meta property="og:description" content="Upload your school or public sector security policy and receive an instant AI-powered health check against Martyn's Law, UK GDPR and DfE guidance.">
+  <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Security Policy Health Check",
+    "url": "https://www.fyrflysystems.com/security-policy-review.html",
+    "description": "AI-powered review of school and public sector security policies against Martyn's Law, UK GDPR and DfE protective security guidance.",
+    "applicationCategory": "SecurityApplication",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+    "provider": {"@type": "LocalBusiness", "@id": "https://www.fyrflysystems.com/#organization", "name": "Fyrfly Systems"}
+  }</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
+
+  <style>
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:860px;--ease:cubic-bezier(0.22,1,0.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    /* Hero */
+    .hero{background:var(--char);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,16,46,0.12) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(232,93,4,0.08) 0%,transparent 60%);}
+    .hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+    .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.9rem;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.3);border-radius:100px;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#F87171;margin-bottom:1.25rem;}
+    .hero h1{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.9rem;}
+    .hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero p{font-size:0.97rem;color:rgba(255,255,255,0.5);margin-bottom:1.75rem;font-weight:300;line-height:1.72;}
+    .hero-badges{display:flex;align-items:center;justify-content:center;gap:0.65rem;flex-wrap:wrap;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.35rem;padding:0.28rem 0.75rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:0.7rem;color:rgba(255,255,255,0.45);}
+
+    /* Wrap */
+    .wrap{max-width:var(--max);margin:0 auto;padding:2.5rem 1.5rem 5rem;}
+
+    /* Upload zone */
+    .upload-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem;margin-bottom:1.5rem;}
+    .upload-zone{border:2px dashed var(--bdr);border-radius:12px;padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.25s var(--ease);position:relative;}
+    .upload-zone:hover,.upload-zone.drag{border-color:var(--o);background:#FFFBF8;}
+    .upload-zone.has-file{border-color:#059669;border-style:solid;background:#F0FDF4;}
+    .upload-icon{width:52px;height:52px;border-radius:14px;background:var(--light);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+    .upload-zone.has-file .upload-icon{background:rgba(5,150,105,0.1);}
+    .upload-icon svg{width:26px;height:26px;stroke:var(--mid);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+    .upload-zone.has-file .upload-icon svg{stroke:#059669;}
+    .upload-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:0.35rem;}
+    .upload-sub{font-size:0.83rem;color:var(--mute);line-height:1.5;}
+    .upload-types{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.85rem;flex-wrap:wrap;}
+    .upload-type{font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.2rem 0.6rem;background:var(--light);border:1px solid var(--bdr);border-radius:5px;color:var(--mute);}
+    .upload-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .upload-file-info{margin-top:1rem;display:none;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:rgba(5,150,105,0.06);border:1px solid rgba(5,150,105,0.2);border-radius:8px;}
+    .upload-file-info.show{display:flex;}
+    .file-icon{width:32px;height:32px;border-radius:7px;background:rgba(5,150,105,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .file-icon svg{width:16px;height:16px;stroke:#059669;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .file-name{font-size:0.85rem;font-weight:600;color:var(--dark);flex:1;}
+    .file-size{font-size:0.75rem;color:var(--mute);}
+    .file-remove{background:none;border:none;cursor:pointer;color:var(--mute);font-size:1.1rem;padding:0.2rem;transition:color 0.2s;}
+    .file-remove:hover{color:var(--c);}
+
+    /* Policy type selector */
+    .policy-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-top:1.25rem;}
+    .policy-type{display:flex;flex-direction:column;align-items:center;gap:0.4rem;padding:0.85rem 0.5rem;background:var(--light);border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;transition:all 0.2s;text-align:center;}
+    .policy-type:hover{border-color:var(--o);background:#FFFBF8;}
+    .policy-type.selected{border-color:var(--c);background:#FFF5F6;}
+    .policy-type-icon{font-size:1.25rem;}
+    .policy-type-label{font-size:0.75rem;font-weight:600;color:var(--mid);line-height:1.3;}
+    .policy-type.selected .policy-type-label{color:var(--c);}
+
+    /* Lead form */
+    .lead-card{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:2rem;margin-bottom:1.5rem;}
+    .lead-h{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;}
+    .lead-sub{font-size:0.85rem;color:var(--mid);margin-bottom:1.25rem;line-height:1.6;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
+    .form-field{display:flex;flex-direction:column;gap:0.3rem;}
+    .form-field label{font-size:0.72rem;font-weight:700;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;}
+    .form-field input,.form-field select{padding:0.7rem 0.9rem;font-size:0.88rem;font-family:var(--fb);border:1.5px solid var(--bdr);border-radius:8px;color:var(--dark);background:#fff;outline:none;transition:border-color 0.2s;}
+    .form-field input:focus,.form-field select:focus{border-color:var(--c);}
+    .form-field.full{grid-column:span 2;}
+    .privacy-note{font-size:0.73rem;color:var(--mute);margin-top:0.6rem;line-height:1.55;padding:0.65rem 0.85rem;background:var(--light);border-radius:7px;}
+    .btn-analyse{width:100%;padding:1rem;font-size:0.97rem;font-weight:600;color:#fff;border:none;border-radius:9px;cursor:pointer;background:var(--grad);font-family:var(--fb);margin-top:1rem;transition:opacity 0.2s,transform 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+    .btn-analyse:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-analyse:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+
+    /* Processing state */
+    .processing{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:3rem 2rem;text-align:center;display:none;}
+    .processing.show{display:block;}
+    .processing-spinner{width:48px;height:48px;border:3px solid var(--bdr);border-top-color:var(--c);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1.5rem;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .processing-title{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem;}
+    .processing-steps{display:flex;flex-direction:column;gap:0.5rem;margin-top:1.5rem;max-width:320px;margin-left:auto;margin-right:auto;}
+    .proc-step{display:flex;align-items:center;gap:0.65rem;font-size:0.83rem;color:var(--mute);transition:color 0.3s;}
+    .proc-step.active{color:var(--dark);}
+    .proc-step.done{color:#059669;}
+    .proc-dot{width:8px;height:8px;border-radius:50%;background:var(--bdr);flex-shrink:0;transition:background 0.3s;}
+    .proc-step.active .proc-dot{background:var(--c);animation:pulse 1s ease-in-out infinite;}
+    .proc-step.done .proc-dot{background:#059669;}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
+
+    /* Results */
+    .results-wrap{display:none;}
+    .results-wrap.show{display:block;}
+
+    .score-hero{background:var(--char);border-radius:16px;padding:2rem;margin-bottom:1.25rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+    .score-hero-text .score-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;}
+    .score-hero-text h2{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+    .score-hero-text p{font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.6;}
+    .score-circle{width:96px;height:96px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;border:3px solid rgba(255,255,255,0.1);}
+    .score-circle.red{border-color:rgba(200,16,46,0.5);background:rgba(200,16,46,0.12);}
+    .score-circle.amber{border-color:rgba(245,166,35,0.5);background:rgba(245,166,35,0.1);}
+    .score-circle.green{border-color:rgba(5,150,105,0.5);background:rgba(5,150,105,0.1);}
+    .score-n{font-family:var(--fh);font-size:1.9rem;font-weight:900;line-height:1;color:#fff;}
+    .score-pct{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.1rem;}
+
+    .findings-card{background:#fff;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;margin-bottom:1.25rem;}
+    .findings-header{padding:1.1rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+    .findings-title{font-family:var(--fh);font-size:0.9rem;font-weight:700;color:var(--dark);}
+    .findings-count{font-size:0.75rem;font-weight:600;padding:0.2rem 0.65rem;border-radius:100px;}
+    .findings-count.red{background:rgba(200,16,46,0.08);color:var(--c);}
+    .findings-count.amber{background:rgba(245,166,35,0.1);color:#92600A;}
+    .findings-count.green{background:rgba(5,150,105,0.08);color:#059669;}
+    .finding-item{padding:1rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;gap:0.85rem;}
+    .finding-item:last-child{border-bottom:none;}
+    .finding-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:0.45rem;}
+    .finding-dot.gap{background:var(--c);}
+    .finding-dot.improvement{background:#D97706;}
+    .finding-dot.strength{background:#059669;}
+    .finding-text strong{display:block;font-size:0.85rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem;}
+    .finding-text span{font-size:0.8rem;color:var(--mid);line-height:1.55;}
+    .finding-ref{display:inline-block;margin-top:0.3rem;font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--mute);padding:0.1rem 0.5rem;background:var(--light);border-radius:4px;}
+
+    .actions-card{background:var(--char);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;}
+    .actions-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+    .action-row{display:flex;align-items:flex-start;gap:0.85rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .action-row:last-child{border-bottom:none;}
+    .action-num{width:22px;height:22px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+    .action-text strong{display:block;font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:0.15rem;}
+    .action-text span{font-size:0.78rem;color:rgba(255,255,255,0.42);line-height:1.5;}
+
+    .cta-card{background:var(--grad);border-radius:14px;padding:1.75rem;text-align:center;margin-bottom:1.25rem;}
+    .cta-card h3{font-family:var(--fh);font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.5rem;}
+    .cta-card p{font-size:0.87rem;color:rgba(255,255,255,0.75);margin-bottom:1.25rem;}
+    .cta-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+    .cta-btn-p{padding:0.7rem 1.5rem;background:#fff;color:var(--c);font-size:0.87rem;font-weight:700;border-radius:7px;border:none;cursor:pointer;font-family:var(--fb);text-decoration:none;display:inline-flex;}
+    .cta-btn-s{padding:0.7rem 1.5rem;color:#fff;font-size:0.87rem;border:1.5px solid rgba(255,255,255,0.5);border-radius:7px;background:transparent;cursor:pointer;font-family:var(--fb);text-decoration:none;display:inline-flex;}
+
+    .disclaimer-box{background:#fff;border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
+    .disclaimer-box p{font-size:0.75rem;color:var(--mute);line-height:1.6;}
+
+    .btn-restart{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.25rem;font-size:0.82rem;color:var(--mid);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;background:#fff;font-family:var(--fb);margin-top:0.5rem;transition:all 0.2s;}
+    .btn-restart:hover{color:var(--dark);border-color:var(--mid);}
+
+    @media(max-width:640px){
+      .policy-type-grid{grid-template-columns:repeat(2,1fr);}
+      .form-row{grid-template-columns:1fr;}
+      .form-field.full{grid-column:span 1;}
+      .score-hero{grid-template-columns:1fr;text-align:center;}
+      .score-circle{margin:0 auto;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">🤖 AI-Powered · Instant · Confidential</div>
+    <h1>Security Policy<br><span>Health Check</span></h1>
+    <p>Upload your existing security policy, lockdown procedure or risk assessment. Our AI reviews it against Martyn's Law, UK GDPR and DfE guidance — and tells you exactly what's good, what's missing and what needs updating.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">✓ Martyn's Law compliance</span>
+      <span class="hero-badge">✓ UK GDPR obligations</span>
+      <span class="hero-badge">✓ DfE protective security guidance</span>
+      <span class="hero-badge">✓ ProtectUK framework</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Upload + form -->
+  <div id="upload-section">
+
+    <div class="upload-card">
+      <div style="margin-bottom:1.25rem;">
+        <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.4rem;">Step 1 — Upload your document</div>
+        <div style="font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">Upload your policy or procedure</div>
+        <div style="font-size:0.85rem;color:var(--mid);">Your document is processed securely and never stored. All data is held in browser memory only and destroyed when you close the page.</div>
+      </div>
+
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" class="upload-input" id="file-input" accept=".pdf,.doc,.docx,.txt">
+        <div class="upload-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="upload-title" id="upload-title">Drop your document here or click to browse</div>
+        <div class="upload-sub" id="upload-sub">PDF, Word (.docx), or plain text accepted</div>
+        <div class="upload-types">
+          <span class="upload-type">PDF</span>
+          <span class="upload-type">DOCX</span>
+          <span class="upload-type">TXT</span>
+        </div>
+      </div>
+
+      <div class="upload-file-info" id="file-info">
+        <div class="file-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <span class="file-name" id="file-name-display"></span>
+        <span class="file-size" id="file-size-display"></span>
+        <button class="file-remove" onclick="clearFile()" title="Remove file">×</button>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-bottom:0.75rem;">What type of document is this?</div>
+        <div class="policy-type-grid" id="policy-type-grid">
+          <div class="policy-type" onclick="selectPolicyType(this,'lockdown')" data-type="lockdown">
+            <div class="policy-type-icon">🔒</div>
+            <div class="policy-type-label">Lockdown / Invacuation Procedure</div>
+          </div>
+          <div class="policy-type" onclick="selectPolicyType(this,'security-plan')" data-type="security-plan">
+            <div class="policy-type-icon">📋</div>
+            <div class="policy-type-label">Security Plan / Martyn's Law Procedures</div>
+          </div>
+          <div class="policy-type" onclick="selectPolicyType(this,'risk-assessment')" data-type="risk-assessment">
+            <div class="policy-type-icon">⚠️</div>
+            <div class="policy-type-label">Security Risk Assessment</div>
+          </div>
+          <div class="policy-type" onclick="selectPolicyType(this,'cctv-policy')" data-type="cctv-policy">
+            <div class="policy-type-icon">📹</div>
+            <div class="policy-type-label">CCTV / Surveillance Policy</div>
+          </div>
+          <div class="policy-type" onclick="selectPolicyType(this,'evacuation')" data-type="evacuation">
+            <div class="policy-type-icon">🚪</div>
+            <div class="policy-type-label">Evacuation Procedure</div>
+          </div>
+          <div class="policy-type" onclick="selectPolicyType(this,'other')" data-type="other">
+            <div class="policy-type-icon">📄</div>
+            <div class="policy-type-label">Other Security Document</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lead-card">
+      <div class="lead-h">Your details</div>
+      <div class="lead-sub">So we can send you a copy of the review report.</div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" id="f-fname" placeholder="Sarah">
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" id="f-lname" placeholder="Johnson">
+        </div>
+        <div class="form-field full">
+          <label>Organisation</label>
+          <input type="text" id="f-org" placeholder="Greenfield Academy">
+        </div>
+        <div class="form-field full">
+          <label>Email address</label>
+          <input type="email" id="f-email" placeholder="s.johnson@greenfieldacademy.org">
+        </div>
+        <div class="form-field">
+          <label>Organisation type</label>
+          <select id="f-orgtype">
+            <option value="">Select…</option>
+            <option>Primary school</option>
+            <option>Secondary school</option>
+            <option>Academy / MAT</option>
+            <option>Independent school</option>
+            <option>Special school</option>
+            <option>Sixth form / college</option>
+            <option>Local authority</option>
+            <option>NHS estate</option>
+            <option>Leisure / events venue</option>
+            <option>Voluntary sector</option>
+            <option>Other public sector</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Your role</label>
+          <select id="f-role">
+            <option value="">Select…</option>
+            <option>Headteacher / Principal</option>
+            <option>School Business Manager</option>
+            <option>Designated Safeguarding Lead</option>
+            <option>Estates / Facilities Manager</option>
+            <option>Data Protection Officer</option>
+            <option>Governor / Trustee</option>
+            <option>CEO / Director</option>
+            <option>Security Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="privacy-note">🔒 Your document is never stored or shared. It is processed in memory only, used solely to generate this review, then permanently destroyed. We will contact you about your review results only.</div>
+      <button class="btn-analyse" id="analyse-btn" onclick="startAnalysis()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Analyse My Document →
+      </button>
+      <div id="error-msg" style="display:none;margin-top:0.75rem;font-size:0.83rem;color:var(--c);padding:0.65rem 0.85rem;background:rgba(200,16,46,0.06);border-radius:7px;border:1px solid rgba(200,16,46,0.15);"></div>
+    </div>
+
+  </div>
+
+  <!-- Processing -->
+  <div class="processing" id="processing-state">
+    <div class="processing-spinner"></div>
+    <div class="processing-title">Analysing your document…</div>
+    <p style="font-size:0.85rem;color:var(--mid);margin-top:0.4rem;">This usually takes 20–40 seconds</p>
+    <div class="processing-steps">
+      <div class="proc-step active" id="ps-1"><div class="proc-dot"></div>Reading and parsing document</div>
+      <div class="proc-step" id="ps-2"><div class="proc-dot"></div>Checking Martyn's Law obligations</div>
+      <div class="proc-step" id="ps-3"><div class="proc-dot"></div>Reviewing against DfE guidance</div>
+      <div class="proc-step" id="ps-4"><div class="proc-dot"></div>Assessing UK GDPR compliance</div>
+      <div class="proc-step" id="ps-5"><div class="proc-dot"></div>Generating recommendations</div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-wrap" id="results-wrap">
+    <div id="results-content"></div>
+    <button class="btn-restart" onclick="restart()">↩ Review another document</button>
+  </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/fyrfly.js" defer></script>
+
+<script>
+const PROXY_URL = 'https://fyrflyagent.icy-heart-14c9.workers.dev';
+let uploadedFile = null;
+let fileText = '';
+let selectedPolicyType = '';
+
+// ── File handling ─────────────────────────────────────────
+const fileInput = document.getElementById('file-input');
+const uploadZone = document.getElementById('upload-zone');
+
+fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadZone.classList.remove('drag');
+  if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+
+function handleFile(file) {
+  if(!file) return;
+  const allowed = ['application/pdf','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/msword','text/plain'];
+  const ext = file.name.split('.').pop().toLowerCase();
+  if(!['pdf','docx','doc','txt'].includes(ext)) {
+    showError('Please upload a PDF, Word document (.docx) or text file (.txt).');
+    return;
+  }
+  uploadedFile = file;
+  document.getElementById('upload-title').textContent = 'Document ready';
+  document.getElementById('upload-sub').textContent = 'Click to change document';
+  uploadZone.classList.add('has-file');
+  document.getElementById('file-name-display').textContent = file.name;
+  document.getElementById('file-size-display').textContent = formatSize(file.size);
+  document.getElementById('file-info').classList.add('show');
+}
+
+function clearFile() {
+  uploadedFile = null;
+  fileText = '';
+  fileInput.value = '';
+  uploadZone.classList.remove('has-file');
+  document.getElementById('upload-title').textContent = 'Drop your document here or click to browse';
+  document.getElementById('upload-sub').textContent = 'PDF, Word (.docx), or plain text accepted';
+  document.getElementById('file-info').classList.remove('show');
+}
+
+function formatSize(bytes) {
+  if(bytes < 1024) return bytes + ' B';
+  if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1048576).toFixed(1) + ' MB';
+}
+
+function selectPolicyType(el, type) {
+  document.querySelectorAll('.policy-type').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPolicyType = type;
+}
+
+// ── Extract text from file ────────────────────────────────
+async function extractText(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  if(ext === 'txt') {
+    return await file.text();
+  }
+  if(ext === 'pdf') {
+    // Use PDF.js via CDN for text extraction
+    return await extractPDF(file);
+  }
+  if(ext === 'docx' || ext === 'doc') {
+    return await extractDocx(file);
+  }
+  return '';
+}
+
+async function extractPDF(file) {
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    // Load PDF.js dynamically
+    if(!window.pdfjsLib) {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+    const pdf = await window.pdfjsLib.getDocument({data: arrayBuffer}).promise;
+    let text = '';
+    for(let i = 1; i <= Math.min(pdf.numPages, 30); i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(item => item.str).join(' ') + '\n';
+    }
+    return text.trim();
+  } catch(e) {
+    console.error('PDF extraction error:', e);
+    return '';
+  }
+}
+
+async function extractDocx(file) {
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    if(!window.mammoth) {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
+    }
+    const result = await window.mammoth.extractRawText({arrayBuffer});
+    return result.value.trim();
+  } catch(e) {
+    console.error('DOCX extraction error:', e);
+    return '';
+  }
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+// ── Analysis ──────────────────────────────────────────────
+async function startAnalysis() {
+  const fname = document.getElementById('f-fname').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+
+  if(!uploadedFile) { showError('Please upload a document first.'); return; }
+  if(!selectedPolicyType) { showError('Please select the type of document you are uploading.'); return; }
+  if(!fname || !email || !org) { showError('Please complete your name, organisation and email.'); return; }
+  if(uploadedFile.size > 5 * 1024 * 1024) { showError('File size exceeds 5MB. Please upload a smaller document.'); return; }
+
+  clearError();
+  document.getElementById('upload-section').style.display = 'none';
+  document.getElementById('processing-state').classList.add('show');
+
+  // Animate processing steps
+  const steps = [1,2,3,4,5];
+  let stepIdx = 0;
+  const stepInterval = setInterval(() => {
+    if(stepIdx > 0) {
+      document.getElementById(`ps-${stepIdx}`).classList.remove('active');
+      document.getElementById(`ps-${stepIdx}`).classList.add('done');
+    }
+    stepIdx++;
+    if(stepIdx <= 5) {
+      document.getElementById(`ps-${stepIdx}`).classList.add('active');
+    } else {
+      clearInterval(stepInterval);
+    }
+  }, 6000);
+
+  // Extract text
+  fileText = await extractText(uploadedFile);
+
+  if(!fileText || fileText.length < 50) {
+    clearInterval(stepInterval);
+    document.getElementById('processing-state').classList.remove('show');
+    document.getElementById('upload-section').style.display = 'block';
+    showError('Could not extract text from this document. Please try a .txt or .docx file, or copy and paste the content into a text file and upload that.');
+    return;
+  }
+
+  // Truncate to ~8000 chars to stay within token limits
+  const truncated = fileText.length > 8000 ? fileText.substring(0, 8000) + '\n\n[Document truncated for analysis — first 8,000 characters reviewed]' : fileText;
+
+  const policyTypeLabels = {
+    'lockdown': 'lockdown / invacuation procedure',
+    'security-plan': "security plan / Martyn's Law procedures",
+    'risk-assessment': 'security risk assessment',
+    'cctv-policy': 'CCTV / surveillance policy',
+    'evacuation': 'evacuation procedure',
+    'other': 'security document'
+  };
+  const policyLabel = policyTypeLabels[selectedPolicyType] || 'security document';
+  const orgType = document.getElementById('f-orgtype').value || 'school / public sector organisation';
+
+  const systemPrompt = `You are an expert UK school and public sector security consultant with deep knowledge of:
+- Martyn's Law (Terrorism (Protection of Premises) Act 2025) — Standard Tier (100-799 capacity) and Enhanced Tier (800+)
+- DfE Protective Security and Preparedness for Education Settings guidance
+- ProtectUK / NaCTSO five-stage risk management framework
+- UK GDPR and the Surveillance Camera Code of Practice (for CCTV policies)
+- KCSiE (Keeping Children Safe in Education) safeguarding requirements
+- Home Office counter-terrorism guidance including Run Hide Tell
+
+You are reviewing a ${policyLabel} submitted by ${org}, a ${orgType}.
+
+Your role is to provide a genuinely useful, honest, specific and constructive review. You are not a box-ticker — you are a trusted advisor who has worked alongside schools and public sector organisations operationally.
+
+RESPONSE FORMAT — respond ONLY with valid JSON in exactly this structure:
+{
+  "overallScore": <number 0-100>,
+  "scoreRationale": "<2 sentences explaining the score>",
+  "summary": "<3-4 sentence honest overall assessment>",
+  "strengths": [
+    {"title": "<strength title>", "detail": "<specific detail from the document>", "reference": "<relevant standard/legislation>"},
+    ...
+  ],
+  "gaps": [
+    {"title": "<gap title>", "detail": "<specific explanation of what is missing or insufficient>", "reference": "<relevant standard/legislation>", "priority": "high|medium|low"},
+    ...
+  ],
+  "improvements": [
+    {"title": "<improvement title>", "detail": "<specific suggestion>", "reference": "<relevant standard>"},
+    ...
+  ],
+  "priorityActions": [
+    {"action": "<specific action>", "detail": "<why this matters and how to address it>"},
+    ...
+  ],
+  "complianceFlags": {
+    "martynsLaw": "compliant|partial|non-compliant|not-applicable",
+    "ukGdpr": "compliant|partial|non-compliant|not-applicable",
+    "dfGuidance": "compliant|partial|not-applicable",
+    "kcsie": "compliant|partial|non-compliant|not-applicable"
+  }
+}
+
+Rules:
+- Be specific — reference actual content from the document, not generic observations
+- Be honest — do not inflate scores or findings to be kind
+- Be constructive — every gap should have a clear path to resolution
+- Provide 2-5 strengths, 2-6 gaps, 2-4 improvements, 3-5 priority actions
+- Keep all text concise and professional
+- Do not include any text outside the JSON object`;
+
+  try {
+    const response = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 2000,
+        system: systemPrompt,
+        messages: [{
+          role: 'user',
+          content: `Please review this ${policyLabel} from ${org}:\n\n${truncated}`
+        }]
+      })
+    });
+
+    const data = await response.json();
+    clearInterval(stepInterval);
+
+    if(data.content && data.content[0] && data.content[0].text) {
+      let raw = data.content[0].text.trim();
+      raw = raw.replace(/^```json\n?/, '').replace(/\n?```$/, '').trim();
+      const review = JSON.parse(raw);
+
+      // Submit lead
+      try {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            access_key: 'ff37786b-ba02-4120-81ee-dfa181f68808',
+            subject: `Security Policy Review — ${org} (${review.overallScore}% score)`,
+            from_name: 'Fyrfly Policy Review Tool',
+            name: `${fname} ${document.getElementById('f-lname').value}`,
+            email,
+            organisation: org,
+            org_type: orgType,
+            role: document.getElementById('f-role').value || 'Not specified',
+            document_type: policyLabel,
+            overall_score: review.overallScore + '%',
+            martyns_law: review.complianceFlags?.martynsLaw || 'not assessed',
+            gaps_found: review.gaps?.length || 0,
+            message: `Security policy review completed. Document: ${policyLabel}. Score: ${review.overallScore}%. Gaps: ${review.gaps?.length || 0}. Martyn's Law: ${review.complianceFlags?.martynsLaw || 'n/a'}.`
+          })
+        });
+      } catch(e) {}
+
+      renderResults(review, org, policyLabel);
+    } else {
+      throw new Error('No response content');
+    }
+  } catch(e) {
+    clearInterval(stepInterval);
+    document.getElementById('processing-state').classList.remove('show');
+    document.getElementById('upload-section').style.display = 'block';
+    showError('There was an error analysing your document. Please try again or contact us at hello@fyrflysystems.com.');
+  }
+}
+
+// ── Render results ────────────────────────────────────────
+function renderResults(r, org, docType) {
+  const score = r.overallScore || 0;
+  const scoreClass = score >= 75 ? 'green' : score >= 50 ? 'amber' : 'red';
+  const scoreLabel = score >= 75 ? 'Good — some areas for improvement' : score >= 50 ? 'Developing — gaps require attention' : 'Requires significant work';
+  const now = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+  const flagHtml = (label, val) => {
+    if(!val || val === 'not-applicable') return '';
+    const cls = val === 'compliant' ? 'green' : val === 'partial' ? 'amber' : 'red';
+    const txt = val === 'compliant' ? 'Compliant' : val === 'partial' ? 'Partial' : 'Non-compliant';
+    return `<span style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.22rem 0.65rem;border-radius:100px;font-size:0.7rem;font-weight:700;background:${cls==='green'?'rgba(5,150,105,0.1)':cls==='amber'?'rgba(245,166,35,0.1)':'rgba(200,16,46,0.08)'};color:${cls==='green'?'#059669':cls==='amber'?'#92600A':'#C8102E'};margin-right:0.4rem;">${label}: ${txt}</span>`;
+  };
+
+  const strengthsHtml = (r.strengths || []).map(s => `
+    <div class="finding-item">
+      <div class="finding-dot strength"></div>
+      <div class="finding-text">
+        <strong>${s.title}</strong>
+        <span>${s.detail}</span>
+        ${s.reference ? `<span class="finding-ref">${s.reference}</span>` : ''}
+      </div>
+    </div>`).join('');
+
+  const gapsHtml = (r.gaps || []).map(g => `
+    <div class="finding-item">
+      <div class="finding-dot gap"></div>
+      <div class="finding-text">
+        <strong>${g.title}</strong>
+        <span>${g.detail}</span>
+        ${g.reference ? `<span class="finding-ref">${g.reference}</span>` : ''}
+      </div>
+    </div>`).join('');
+
+  const improvementsHtml = (r.improvements || []).map(i => `
+    <div class="finding-item">
+      <div class="finding-dot improvement"></div>
+      <div class="finding-text">
+        <strong>${i.title}</strong>
+        <span>${i.detail}</span>
+        ${i.reference ? `<span class="finding-ref">${i.reference}</span>` : ''}
+      </div>
+    </div>`).join('');
+
+  const actionsHtml = (r.priorityActions || []).map((a,i) => `
+    <div class="action-row">
+      <div class="action-num">${i+1}</div>
+      <div class="action-text">
+        <strong>${a.action}</strong>
+        <span>${a.detail}</span>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('results-content').innerHTML = `
+    <div class="score-hero">
+      <div class="score-hero-text">
+        <div class="score-label">Security Policy Health Check — ${org}</div>
+        <h2>${scoreLabel}</h2>
+        <p>${r.summary || ''}</p>
+        <div style="margin-top:0.75rem;flex-wrap:wrap;display:flex;">
+          ${flagHtml("Martyn's Law", r.complianceFlags?.martynsLaw)}
+          ${flagHtml('UK GDPR', r.complianceFlags?.ukGdpr)}
+          ${flagHtml('DfE Guidance', r.complianceFlags?.dfGuidance)}
+          ${flagHtml('KCSiE', r.complianceFlags?.kcsie)}
+        </div>
+      </div>
+      <div class="score-circle ${scoreClass}">
+        <div class="score-n">${score}</div>
+        <div class="score-pct">/ 100</div>
+      </div>
+    </div>
+
+    ${strengthsHtml ? `
+    <div class="findings-card">
+      <div class="findings-header">
+        <div class="findings-title">✓ What's working well</div>
+        <span class="findings-count green">${r.strengths?.length || 0} identified</span>
+      </div>
+      ${strengthsHtml}
+    </div>` : ''}
+
+    ${gapsHtml ? `
+    <div class="findings-card">
+      <div class="findings-header">
+        <div class="findings-title">✗ Gaps identified</div>
+        <span class="findings-count red">${r.gaps?.length || 0} found</span>
+      </div>
+      ${gapsHtml}
+    </div>` : ''}
+
+    ${improvementsHtml ? `
+    <div class="findings-card">
+      <div class="findings-header">
+        <div class="findings-title">↑ Improvements recommended</div>
+        <span class="findings-count amber">${r.improvements?.length || 0} suggestions</span>
+      </div>
+      ${improvementsHtml}
+    </div>` : ''}
+
+    <div class="actions-card">
+      <div class="actions-label">Priority actions</div>
+      ${actionsHtml}
+    </div>
+
+    <div class="cta-card">
+      <h3>Need help closing the gaps?</h3>
+      <p>Fyrfly Systems designs security systems and produces compliance documentation specifically for schools and public sector organisations. We can help you address every gap identified in this review.</p>
+      <div class="cta-btns">
+        <a href="mailto:hello@fyrflysystems.com?subject=Policy+Review+Follow-up+—+${encodeURIComponent(org)}" class="cta-btn-p">Book a Free Survey →</a>
+        <a href="/martyns-law-tool.html" class="cta-btn-s">Martyn's Law Assessment</a>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      <p><strong>Important:</strong> This health check is an AI-generated indicative review only. It does not constitute legal advice and does not certify compliance with any legislation. Findings are based on the text extracted from your document and may not capture all relevant context. Always seek independent legal and security advice before making compliance decisions. Your document was not stored — all data was held in browser memory only and has now been destroyed. Review generated ${now} by Fyrfly Systems AI Policy Review tool.</p>
+    </div>`;
+
+  document.getElementById('processing-state').classList.remove('show');
+  document.getElementById('results-wrap').classList.add('show');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── Helpers ───────────────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.style.display = 'block';
+  el.textContent = msg;
+}
+function clearError() {
+  document.getElementById('error-msg').style.display = 'none';
+}
+function restart() {
+  document.getElementById('results-wrap').classList.remove('show');
+  document.getElementById('upload-section').style.display = 'block';
+  clearFile();
+  document.querySelectorAll('.policy-type').forEach(p => p.classList.remove('selected'));
+  selectedPolicyType = '';
+  fileText = '';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
