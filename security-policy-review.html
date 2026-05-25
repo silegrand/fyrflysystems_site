@@ -542,47 +542,21 @@ async function startAnalysis() {
 
 You are reviewing a ${policyLabel} submitted by ${org}, a ${orgType}.
 
-Your role is to provide a genuinely useful, honest, specific and constructive review. You are not a box-ticker — you are a trusted advisor who has worked alongside schools and public sector organisations operationally.
+Your role is to provide a genuinely useful, honest, specific and constructive review.
 
-RESPONSE FORMAT — respond ONLY with valid JSON in exactly this structure:
-{
-  "overallScore": <number 0-100>,
-  "scoreRationale": "<2 sentences explaining the score>",
-  "summary": "<3-4 sentence honest overall assessment>",
-  "strengths": [
-    {"title": "<strength title>", "detail": "<specific detail from the document>", "reference": "<relevant standard/legislation>"},
-    ...
-  ],
-  "gaps": [
-    {"title": "<gap title>", "detail": "<specific explanation of what is missing or insufficient>", "reference": "<relevant standard/legislation>", "priority": "high|medium|low"},
-    ...
-  ],
-  "improvements": [
-    {"title": "<improvement title>", "detail": "<specific suggestion>", "reference": "<relevant standard>"},
-    ...
-  ],
-  "priorityActions": [
-    {"action": "<specific action>", "detail": "<why this matters and how to address it>"},
-    ...
-  ],
-  "complianceFlags": {
-    "martynsLaw": "compliant|partial|non-compliant|not-applicable",
-    "ukGdpr": "compliant|partial|non-compliant|not-applicable",
-    "dfGuidance": "compliant|partial|not-applicable",
-    "kcsie": "compliant|partial|non-compliant|not-applicable"
-  }
-}
+CRITICAL RESPONSE RULES:
+1. Respond ONLY with a valid JSON object - no other text before or after
+2. All string values must be on a SINGLE LINE - no newlines inside strings
+3. Do NOT use apostrophes in string values - write "Martyns Law" not "Martyn's Law"
+4. Do NOT use smart quotes or curly quotes - ASCII double quotes only
+5. Keep each string value under 150 characters
+6. Do not use backslashes except to escape double quotes as \"
 
-Rules:
-- Be specific — reference actual content from the document, not generic observations
-- Be honest — do not inflate scores or findings to be kind
-- Be constructive — every gap should have a clear path to resolution
-- Provide 2-5 strengths, 2-6 gaps, 2-4 improvements, 3-5 priority actions
-- Keep all text concise and professional
-- Do not include any text outside the JSON object
-- CRITICAL: Use only straight double quotes for JSON. Never use apostrophes, smart quotes, or single quotes inside string values — they break JSON parsing. Write "Martyn's Law" as "Martyns Law" if needed.
-- Keep string values short and on a single line — no line breaks inside JSON string values
-- Escape any double quotes inside values with backslash`;
+RESPONSE FORMAT - use EXACTLY this structure with NO variations:
+{"overallScore":75,"scoreRationale":"One sentence only.","summary":"Two sentences maximum.","strengths":[{"title":"Short title","detail":"One sentence detail","reference":"Legislation name"}],"gaps":[{"title":"Short title","detail":"One sentence detail","reference":"Legislation name","priority":"high"}],"improvements":[{"title":"Short title","detail":"One sentence suggestion","reference":"Standard name"}],"priorityActions":[{"action":"Short action","detail":"One sentence explanation"}],"complianceFlags":{"martynsLaw":"compliant","ukGdpr":"partial","dfGuidance":"compliant","kcsie":"not-applicable"}}
+
+Provide 2-4 strengths, 2-5 gaps, 2-3 improvements, 3-4 priority actions.
+Valid values for complianceFlags: "compliant" "partial" "non-compliant" "not-applicable"`;
 
   try {
     const response = await fetch(PROXY_URL, {
@@ -611,23 +585,37 @@ Rules:
       const lb = raw.lastIndexOf('}');
       if(fb !== -1 && lb !== -1) raw = raw.substring(fb, lb + 1);
       // Replace smart/curly quotes with straight quotes
-      raw = raw.replace(/[\u2018\u2019]/g, "\'").replace(/[\u201C\u201D]/g, '\"');
-      // Remove control characters (keep newline and tab)
+      raw = raw.replace(/[\u2018\u2019\u02BC]/g, '').replace(/[\u201C\u201D]/g, '\"');
+      // Remove all newlines and control chars inside the JSON
       raw = raw.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, ' ');
-      let review;
-      try {
-        review = JSON.parse(raw);
-      } catch(jsonErr) {
-        // Try stripping trailing content after last complete object
-        const lastClose = raw.lastIndexOf('}');
-        const trimmed = lastClose > 0 ? raw.substring(0, lastClose + 1) : raw;
-        try {
-          review = JSON.parse(trimmed);
-        } catch(e2) {
-          console.error('JSON parse error:', jsonErr.message);
-          console.error('Around error pos:', raw.substring(3350, 3450));
-          throw new Error('Try again — the AI occasionally returns formatting issues on complex documents.');
+      // Collapse newlines inside string values to spaces
+      raw = raw.replace(/\n/g, ' ').replace(/\r/g, ' ');
+
+      function tryParse(str) {
+        try { return JSON.parse(str); } catch(e) { return null; }
+      }
+
+      let review = tryParse(raw);
+
+      if(!review) {
+        // Try removing trailing incomplete array/object elements
+        let attempt = raw;
+        // Remove last incomplete element - find last complete },
+        const lastComma = Math.max(attempt.lastIndexOf('},'), attempt.lastIndexOf('"}'));
+        if(lastComma > 0) {
+          attempt = attempt.substring(0, lastComma + 1);
+          // Close any open arrays and the main object
+          const opens = (attempt.match(/\[/g)||[]).length - (attempt.match(/\]/g)||[]).length;
+          const objOpens = (attempt.match(/\{/g)||[]).length - (attempt.match(/\}/g)||[]).length;
+          for(let i=0;i<opens;i++) attempt += ']';
+          for(let i=0;i<objOpens;i++) attempt += '}';
+          review = tryParse(attempt);
         }
+      }
+
+      if(!review) {
+        console.error('All JSON parse attempts failed. Raw response:', raw.substring(0, 1000));
+        throw new Error('The AI returned an unexpected format. Please try again — this usually resolves itself.');
       }
 
       // Submit lead
