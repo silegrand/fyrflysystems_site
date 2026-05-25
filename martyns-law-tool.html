@@ -810,7 +810,7 @@ function printReport(){
   const w = window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Martyn's Law Readiness Report — Fyrfly Systems</title>
   <style>
-    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;max-width:680px;margin:2rem auto;padding:0 1.5rem;font-size:13px;line-height:1.6;}
+    body{font-family:Helvetica Neue,Arial,sans-serif;color:#111;max-width:680px;margin:2rem auto;padding:0 1.5rem;font-size:13px;line-height:1.6;}
     h1{font-size:22px;font-weight:900;margin-bottom:0.25rem;}
     h2{font-size:15px;font-weight:700;margin:1.5rem 0 0.5rem;}
     .header{border-bottom:3px solid #C8102E;padding-bottom:1rem;margin-bottom:1.5rem;}
@@ -850,9 +850,9 @@ function printReport(){
   <p><strong>Contact:</strong> hello@fyrflysystems.com &nbsp;|&nbsp; 01234 567 890 &nbsp;|&nbsp; www.fyrflysystems.com</p>
   <div class="disclaimer">This report is an indicative self-assessment only and does not constitute legal advice or certify compliance with the Terrorism (Protection of Premises) Act 2025. Compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this assessment. Always seek independent legal and security advice.</div>
   <div class="footer-brand">Fyrfly Systems Ltd — Intelligent Physical Security for Schools & Public Sector — www.fyrflysystems.com</div>
-  <script>window.onload=function(){window.print();}<\/script>
   </body></html>`);
   w.document.close();
+  if(w){ setTimeout(function(){ w.print(); }, 400); }
 }
 // ── Tab switching ─────────────────────────────────────────
 function switchResultTab(btn, tabId){
@@ -887,7 +887,7 @@ function renderProceduresSummary(){
   const purposeRows = [
     ['Safeguarding and safety of staff, pupils and visitors','✓'],
     ['Security of the premises against unauthorised access','✓'],
-    ['Counter-terrorism preparedness (Martyn's Law)','✓'],
+    ["Counter-terrorism preparedness (Martyns Law)","✓"],
     ['Providing evidence in disciplinary or criminal proceedings','✓'],
   ].map(([p,c])=>`<tr><td>${p}</td><td style="text-align:center;font-weight:700;">${c}</td></tr>`).join('');
 
@@ -934,7 +934,7 @@ function renderProceduresSummary(){
           ${metRows}
           ${gapRows}
         </table>
-        ${gapObs.length > 0 ? `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--c);"><strong>Note:</strong> ${gapObs.length} gap${gapObs.length!==1?'s':''} identified above require remediation before April 2027 enforcement date.</p>` : '<p style="margin-top:0.5rem;font-size:0.82rem;color:#059669;"><strong>All assessed obligations are currently in place.</strong> Maintain and review annually.</p>'}
+        ${gapObs.length > 0 ? `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--c);"><strong>Note:</strong> ${gapObs.length} gap${gapObs.length!==1?'s':''} identified above require remediation before April 2027 enforcement date.</p>` : `<p style="margin-top:0.5rem;font-size:0.82rem;color:#059669;"><strong>All assessed obligations are currently in place.</strong> Maintain and review annually.</p>`}
 
         <h2>4. Readiness Scores (Self-Assessment)</h2>
         <table>
@@ -981,7 +981,7 @@ function renderProceduresSummary(){
         </table>
 
         <div class="doc-footer">
-          <strong>Important:</strong> This Procedures Summary is generated as a self-assessment record only. It does not constitute legal advice and does not certify compliance with the Terrorism (Protection of Premises) Act 2025. Actual compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this document. Always seek independent legal and security advice. Generated ${now} using the Fyrfly Systems Martyn's Law Readiness Assessment tool at www.fyrflysystems.com.
+          <strong>Important:</strong> This Procedures Summary is generated as a self-assessment record only. It does not constitute legal advice and does not certify compliance with the Terrorism (Protection of Premises) Act 2025. Actual compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this document. Always seek independent legal and security advice. Generated ${now} using the Fyrfly Systems Martyns Law Readiness Assessment tool at www.fyrflysystems.com.
         </div>
 
       </div>
@@ -1006,7 +1006,7 @@ function printProceduresSummary(){
   const w = window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Martyn's Law Procedures Summary — ${org}</title>
   <style>
-    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;max-width:720px;margin:2rem auto;padding:0 1.5rem;font-size:12px;line-height:1.65;}
+    body{font-family:Helvetica Neue,Arial,sans-serif;color:#111;max-width:720px;margin:2rem auto;padding:0 1.5rem;font-size:12px;line-height:1.65;}
     h1{font-size:18px;font-weight:900;margin-bottom:0.2rem;}
     h2{font-size:11px;font-weight:700;margin:1.25rem 0 0.4rem;padding-bottom:0.2rem;border-bottom:1px solid #ddd;text-transform:uppercase;letter-spacing:0.05em;}
     table{width:100%;border-collapse:collapse;margin:0.5rem 0;font-size:11px;}
@@ -1023,9 +1023,9 @@ function printProceduresSummary(){
   </style></head><body>
   ${body.innerHTML}
   <div class="brand">Fyrfly Systems Ltd — Intelligent Physical Security for Schools &amp; Public Sector — www.fyrflysystems.com</div>
-  <script>window.onload=function(){window.print();}<\/script>
   </body></html>`);
   w.document.close();
+  if(w){ setTimeout(function(){ w.print(); }, 400); }
 }
 
 </script>
