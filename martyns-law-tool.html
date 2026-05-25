@@ -477,15 +477,22 @@
 
   <!-- Results -->
   <div class="stage" id="stage-results">
-    <div id="results-content"></div>
+    <div class="result-tabs" id="result-tabs" style="display:none;">
+      <button class="result-tab active" onclick="switchResultTab(this,'tab-report')">📊 Readiness Report</button>
+      <button class="result-tab" onclick="switchResultTab(this,'tab-summary')">📋 Procedures Summary</button>
+    </div>
+    <div class="result-panel active" id="tab-report">
+      <div id="results-content"></div>
+    </div>
+    <div class="result-panel" id="tab-summary">
+      <div id="summary-content"></div>
+    </div>
   </div>
 
 </div><!-- /tool-wrap -->
 
 <div id="footer-placeholder"></div>
-<script src="/nav.js"></script>
-<script src="/contact-modal.js"></script>
-<script src="/footer.js"></script>
+<script src="/fyrfly.js" defer></script>
 
 <script>
 // ── State ─────────────────────────────────────────────────
@@ -737,6 +744,9 @@ function renderResults(){
   goTo('results');
   document.getElementById('progress-steps').innerHTML = '';
   document.getElementById('progress-label').textContent = 'Assessment complete';
+  // Show tabs and render summary
+  document.getElementById('result-tabs').style.display = 'flex';
+  renderProceduresSummary();
 }
 
 // ── Lead submission ───────────────────────────────────────
@@ -844,6 +854,180 @@ function printReport(){
   </body></html>`);
   w.document.close();
 }
+// ── Tab switching ─────────────────────────────────────────
+function switchResultTab(btn, tabId){
+  document.querySelectorAll('.result-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.result-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Procedures Summary document ───────────────────────────
+function renderProceduresSummary(){
+  const tier = getTier();
+  const scores = calcScore();
+  const obligations = getObligations(tier);
+  const tierLabel = {std:'Standard Tier',enh:'Enhanced Tier',oos:'Out of Scope'}[tier];
+  const tierFull = {
+    std:'Standard Tier (100–799 capacity) — Procedural obligations apply',
+    enh:'Enhanced Tier (800+ capacity) — Full security plan and SIA notification required',
+    oos:'Below threshold (under 100 capacity) — Voluntary guidance applies'
+  }[tier];
+  const venueLabels = {school:'School / Academy',college:'College / University',council:'Council / Civic Building',nhs:'NHS / Healthcare',leisure:'Leisure / Events',other:'Public Venue'};
+  const venueLabel = venueLabels[state.venue] || 'Public Venue';
+  const org = document.getElementById('f-org')?.value || '[Organisation Name]';
+  const fname = document.getElementById('f-fname')?.value || '';
+  const lname = document.getElementById('f-lname')?.value || '';
+  const role = document.getElementById('f-role')?.value || '[Role]';
+  const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const metObs = obligations.filter(o=>o.status==='met');
+  const gapObs = obligations.filter(o=>o.status==='gap');
+
+  const purposeRows = [
+    ['Safeguarding and safety of staff, pupils and visitors','✓'],
+    ['Security of the premises against unauthorised access','✓'],
+    ['Counter-terrorism preparedness (Martyn's Law)','✓'],
+    ['Providing evidence in disciplinary or criminal proceedings','✓'],
+  ].map(([p,c])=>`<tr><td>${p}</td><td style="text-align:center;font-weight:700;">${c}</td></tr>`).join('');
+
+  const metRows = metObs.map(o=>`<tr><td>${o.label}</td><td style="color:#059669;font-weight:600;text-align:center;">✓ In place</td></tr>`).join('');
+  const gapRows = gapObs.map(o=>`<tr><td>${o.label}</td><td style="color:#C8102E;font-weight:600;text-align:center;">✗ Gap identified</td></tr>`).join('');
+
+  document.getElementById('summary-content').innerHTML = `
+    <div class="proc-doc">
+      <div class="proc-doc-toolbar">
+        <div class="proc-doc-title">📋 Martyn's Law Procedures Summary — ${org}</div>
+        <button class="print-btn" onclick="printProceduresSummary()" style="margin:0;">⬇ Download / Print</button>
+      </div>
+      <div class="proc-doc-body" id="proc-doc-body">
+
+        <div style="font-size:0.72rem;color:var(--mute);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.08em;">MARTYN'S LAW PROCEDURES SUMMARY — STANDARD TIER COMPLIANCE RECORD</div>
+        <h1>Martyn's Law Procedures Summary</h1>
+        <div class="proc-org">${org}</div>
+        <div class="proc-meta">
+          Venue type: ${venueLabel} &nbsp;·&nbsp;
+          Capacity: ${state.capacity?.toLocaleString()||'[Capacity]'} &nbsp;·&nbsp;
+          Tier: ${tierLabel} &nbsp;·&nbsp;
+          Date: ${now}
+        </div>
+
+        <h2>1. Organisation Details</h2>
+        <table>
+          <tr><th>Field</th><th>Detail</th></tr>
+          <tr><td>Organisation name</td><td>${org}</td></tr>
+          <tr><td>Venue type</td><td>${venueLabel}</td></tr>
+          <tr><td>Maximum capacity</td><td>${state.capacity?.toLocaleString()||'[Insert capacity]'} persons</td></tr>
+          <tr><td>Martyn's Law tier</td><td><strong>${tierFull}</strong></td></tr>
+          <tr><td>Responsible Person</td><td>${fname} ${lname}${role?' — '+role:''}</td></tr>
+          <tr><td>Date of assessment</td><td>${now}</td></tr>
+          <tr><td>Next review due</td><td>[Insert date — recommend annually]</td></tr>
+        </table>
+
+        <h2>2. Statement of Compliance</h2>
+        <p>This document records that <strong>${org}</strong> has conducted a self-assessment of its readiness to comply with the Terrorism (Protection of Premises) Act 2025 (Martyn's Law). The Responsible Person confirms that the organisation has considered its obligations under the Act and has taken reasonable steps to implement appropriate protective security procedures proportionate to the nature and capacity of the venue.</p>
+        <p>This document should be retained as evidence of compliance and reviewed annually or following any material change to the site, operations, or capacity of the venue.</p>
+
+        <h2>3. Obligations Status</h2>
+        <table>
+          <tr><th>Obligation</th><th>Status</th></tr>
+          ${metRows}
+          ${gapRows}
+        </table>
+        ${gapObs.length > 0 ? `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--c);"><strong>Note:</strong> ${gapObs.length} gap${gapObs.length!==1?'s':''} identified above require remediation before April 2027 enforcement date.</p>` : '<p style="margin-top:0.5rem;font-size:0.82rem;color:#059669;"><strong>All assessed obligations are currently in place.</strong> Maintain and review annually.</p>'}
+
+        <h2>4. Readiness Scores (Self-Assessment)</h2>
+        <table>
+          <tr><th>Category</th><th>Score</th><th>Status</th></tr>
+          <tr><td>Overall readiness</td><td><strong>${scores.overall}%</strong></td><td>${scores.overall>=75?'✓ Good':scores.overall>=50?'⚠ Developing':'✗ Requires attention'}</td></tr>
+          <tr><td>Procedures</td><td><strong>${scores.proc}%</strong></td><td>${scores.proc>=75?'✓ Good':scores.proc>=50?'⚠ Developing':'✗ Requires attention'}</td></tr>
+          <tr><td>Physical security</td><td><strong>${scores.phys}%</strong></td><td>${scores.phys>=75?'✓ Good':scores.phys>=50?'⚠ Developing':'✗ Requires attention'}</td></tr>
+        </table>
+
+        <h2>5. Documented Procedures</h2>
+        <p>The following procedures have been documented and are held by the Responsible Person:</p>
+        <table>
+          <tr><th>Procedure</th><th>In place</th><th>Location / reference</th></tr>
+          <tr><td>Evacuation procedure (terrorist attack scenario)</td><td>[Yes / No / In progress]</td><td>[Document title or location]</td></tr>
+          <tr><td>Invacuation / lockdown procedure</td><td>[Yes / No / In progress]</td><td>[Document title or location]</td></tr>
+          <tr><td>Communication plan (staff, 999, parents)</td><td>[Yes / No / In progress]</td><td>[Document title or location]</td></tr>
+          <tr><td>Stand-down procedure</td><td>[Yes / No / In progress]</td><td>[Document title or location]</td></tr>
+        </table>
+        <p style="font-size:0.8rem;color:var(--mute);margin-top:0.4rem;">Complete this table with actual procedure titles and storage locations before presenting to governors.</p>
+
+        <h2>6. Staff Awareness</h2>
+        <table>
+          <tr><th>Requirement</th><th>Status</th><th>Date completed / planned</th></tr>
+          <tr><td>ACT Awareness e-learning (all relevant staff)</td><td>[Complete / In progress / Planned]</td><td>[Date]</td></tr>
+          <tr><td>Staff briefing on evacuation procedure</td><td>[Complete / In progress / Planned]</td><td>[Date]</td></tr>
+          <tr><td>Staff briefing on lockdown procedure</td><td>[Complete / In progress / Planned]</td><td>[Date]</td></tr>
+          <tr><td>Tabletop exercise completed</td><td>[Complete / In progress / Planned]</td><td>[Date]</td></tr>
+        </table>
+
+        <h2>7. Governance</h2>
+        <table>
+          <tr><th>Item</th><th>Detail</th></tr>
+          <tr><td>Responsible Person formally appointed</td><td>${fname} ${lname}${role?' — '+role:''}</td></tr>
+          <tr><td>Procedures presented to governing body / board</td><td>[Date — insert when completed]</td></tr>
+          <tr><td>Annual review scheduled</td><td>[Insert date]</td></tr>
+        </table>
+
+        <h2>8. Sign-Off</h2>
+        <p>I confirm that as the named Responsible Person for <strong>${org}</strong>, I have reviewed the organisation's Martyn's Law obligations, assessed current compliance, and taken reasonable steps to implement appropriate procedures proportionate to our venue type and capacity.</p>
+        <table>
+          <tr><th>Role</th><th>Name</th><th>Signature</th><th>Date</th></tr>
+          <tr><td>Responsible Person</td><td>${fname} ${lname}</td><td><div class="sig-box"></div></td><td>${now}</td></tr>
+          <tr><td>Governing body / Board approval</td><td>[Chair of Governors / Trustee]</td><td><div class="sig-box"></div></td><td>[Date]</td></tr>
+        </table>
+
+        <div class="doc-footer">
+          <strong>Important:</strong> This Procedures Summary is generated as a self-assessment record only. It does not constitute legal advice and does not certify compliance with the Terrorism (Protection of Premises) Act 2025. Actual compliance is determined by the Security Industry Authority (SIA). Fyrfly Systems Ltd accepts no liability for decisions made solely on the basis of this document. Always seek independent legal and security advice. Generated ${now} using the Fyrfly Systems Martyn's Law Readiness Assessment tool at www.fyrflysystems.com.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cta-card" style="margin-top:1.25rem;">
+      <h3>Need help closing your gaps?</h3>
+      <p>Fyrfly Systems produces a site-specific Martyn's Law readiness document as part of every security installation — covering CCTV, access control, lockdown systems and procedures documentation.</p>
+      <div class="cta-btns">
+        <button class="cta-btn-p" onclick="window.location.href='mailto:hello@fyrflysystems.com?subject=Martyn%27s+Law+Procedures+Summary+Follow-up'">Book a Free Survey →</button>
+        <button class="cta-btn-s" onclick="window.location.href='/lockdown-procedure-tool.html'">Generate Lockdown Procedure</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Print Procedures Summary ──────────────────────────────
+function printProceduresSummary(){
+  const body = document.getElementById('proc-doc-body');
+  if(!body) return;
+  const org = document.getElementById('f-org')?.value || 'Organisation';
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Martyn's Law Procedures Summary — ${org}</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;max-width:720px;margin:2rem auto;padding:0 1.5rem;font-size:12px;line-height:1.65;}
+    h1{font-size:18px;font-weight:900;margin-bottom:0.2rem;}
+    h2{font-size:11px;font-weight:700;margin:1.25rem 0 0.4rem;padding-bottom:0.2rem;border-bottom:1px solid #ddd;text-transform:uppercase;letter-spacing:0.05em;}
+    table{width:100%;border-collapse:collapse;margin:0.5rem 0;font-size:11px;}
+    th{background:#f5f4f2;padding:0.35rem 0.6rem;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.04em;border:1px solid #e6e5e1;}
+    td{padding:0.35rem 0.6rem;border:1px solid #e6e5e1;vertical-align:top;}
+    .proc-org{font-size:13px;font-weight:700;color:#C8102E;margin-bottom:0.2rem;}
+    .proc-meta{font-size:10px;color:#999;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:2px solid #111;}
+    .sig-box{border:1px solid #ddd;border-radius:4px;min-height:40px;background:#fafaf9;}
+    p{margin-bottom:0.6rem;color:#555;}
+    strong{color:#111;}
+    .doc-footer{font-size:9px;color:#aaa;border-top:1px solid #eee;margin-top:1.5rem;padding-top:0.75rem;line-height:1.5;}
+    .brand{font-size:10px;color:#ccc;text-align:center;margin-top:1rem;}
+    @media print{body{margin:0;}}
+  </style></head><body>
+  ${body.innerHTML}
+  <div class="brand">Fyrfly Systems Ltd — Intelligent Physical Security for Schools &amp; Public Sector — www.fyrflysystems.com</div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
 </script>
 </body>
 </html>
