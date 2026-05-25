@@ -579,7 +579,10 @@ Rules:
 - Be constructive — every gap should have a clear path to resolution
 - Provide 2-5 strengths, 2-6 gaps, 2-4 improvements, 3-5 priority actions
 - Keep all text concise and professional
-- Do not include any text outside the JSON object`;
+- Do not include any text outside the JSON object
+- CRITICAL: Use only straight double quotes for JSON. Never use apostrophes, smart quotes, or single quotes inside string values — they break JSON parsing. Write "Martyn's Law" as "Martyns Law" if needed.
+- Keep string values short and on a single line — no line breaks inside JSON string values
+- Escape any double quotes inside values with backslash`;
 
   try {
     const response = await fetch(PROXY_URL, {
@@ -602,22 +605,29 @@ Rules:
     if(data.content && data.content[0] && data.content[0].text) {
       let raw = data.content[0].text.trim();
       // Strip markdown code fences
-      raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/,'').trim();
+      raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
       // Extract JSON object from first { to last }
       const fb = raw.indexOf('{');
       const lb = raw.lastIndexOf('}');
       if(fb !== -1 && lb !== -1) raw = raw.substring(fb, lb + 1);
-      // Remove control characters that break JSON.parse
-      raw = raw.replace(/[\u0000-\u001F\u007F-\u009F]/g, function(c){
-        return c === '\n' || c === '\r' || c === '\t' ? c : ' ';
-      });
+      // Replace smart/curly quotes with straight quotes
+      raw = raw.replace(/[\u2018\u2019]/g, "\'").replace(/[\u201C\u201D]/g, '\"');
+      // Remove control characters (keep newline and tab)
+      raw = raw.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, ' ');
       let review;
       try {
         review = JSON.parse(raw);
       } catch(jsonErr) {
-        console.error('JSON parse error:', jsonErr.message);
-        console.error('Raw (first 500):', raw.substring(0, 500));
-        throw new Error('The AI response could not be parsed. Please try with a shorter document (under 4 pages works best).');
+        // Try stripping trailing content after last complete object
+        const lastClose = raw.lastIndexOf('}');
+        const trimmed = lastClose > 0 ? raw.substring(0, lastClose + 1) : raw;
+        try {
+          review = JSON.parse(trimmed);
+        } catch(e2) {
+          console.error('JSON parse error:', jsonErr.message);
+          console.error('Around error pos:', raw.substring(3350, 3450));
+          throw new Error('Try again — the AI occasionally returns formatting issues on complex documents.');
+        }
       }
 
       // Submit lead
