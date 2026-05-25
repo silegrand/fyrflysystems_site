@@ -158,6 +158,7 @@
     <a href="martyns-law-tool.html">Martyn's Law Assessment ⚠</a>
     <a href="school-security-policy-generator.html">CCTV Policy Generator</a>
     <a href="lockdown-procedure-tool.html">Lockdown Procedure Generator</a>
+    <a href="security-policy-review.html">Policy Health Check 🤖</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
@@ -252,6 +253,10 @@
           <a href="lockdown-procedure-tool.html"${dropActive('lockdown-procedure-tool.html')}>
             <div class="drop-ico" style="background:rgba(245,166,35,0.08);"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
             <span class="drop-label">Lockdown Procedure Generator</span>
+          </a>
+          <a href="security-policy-review.html"${dropActive('security-policy-review.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
+            <div class="drop-ico" style="background:rgba(5,150,105,0.08);"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <span class="drop-label">Policy Health Check <span style="font-size:0.6rem;background:rgba(5,150,105,0.15);color:#059669;padding:0.1rem 0.35rem;border-radius:4px;margin-left:0.25rem;">AI</span></span>
           </a>
         </div>
       </li>
