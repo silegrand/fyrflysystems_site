@@ -198,6 +198,7 @@
     +     '<li><a href="/martyns-law-tool.html">Martyn\'s Law Assessment<span class="sft-badge">New</span></a></li>'
     +     '<li><a href="/school-security-policy-generator.html">CCTV Policy Generator<span class="sft-badge">New</span></a></li>'
     +     '<li><a href="/lockdown-procedure-tool.html">Lockdown Procedure</a></li>'
+    +     '<li><a href="/security-policy-review.html">Policy Health Check<span class="sft-badge">AI</span></a></li>'
     +   '</ul>'
     + '</div>'
 
