@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Wireless Network Planner — Fyrfly Systems</title>
+<meta name="description" content="Plan your wireless point-to-point network. Upload your site plan, place PTP nodes, auto-connect links, then save as PDF or share with the Fyrfly team."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --navy:#C8102E;--navy-dark:#A00D26;--navy-deeper:#1B1B24;
+  --accent:#E85D04;--accent-lt:#F5A623;
+  --steel:#4A5568;--mist:#F4F6FB;--white:#fff;
+  --border:#DDE2EE;--text:#2D3748;--muted:#64748B;
+  --ubiquiti:#0559C9;--cambium:#00A651;--mikrotik:#CC0000;--generic:#7C3AED;
+  --fb:'DM Sans',system-ui,sans-serif;
+  --fd:'DM Serif Display',Georgia,serif;
+  --nh:68px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;font-family:var(--fb)}
+
+/* NAV */
+nav{height:var(--nh);background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);flex-shrink:0;transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07)}
+.nav-i{max-width:1400px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;gap:1.5rem}
+.nav-logo img{height:40px;width:auto;max-width:160px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:.2rem;flex:1;justify-content:center;list-style:none}
+.nav-link{padding:.45rem .8rem;font-size:.88rem;font-weight:500;color:var(--steel);border-radius:6px;transition:color .2s,background .2s}
+.nav-link:hover{color:var(--navy);background:var(--mist)}
+.nav-dropdown{position:relative}
+.nav-dropdown>a,.nav-dropdown>button{display:flex;align-items:center;gap:.3rem;cursor:pointer;padding:.45rem .8rem;font-size:.88rem;font-weight:500;color:var(--steel);border-radius:6px;background:none;border:none;font-family:var(--fb);transition:color .2s,background .2s}
+.nav-dropdown:hover>a,.nav-dropdown:hover>button{color:var(--navy);background:var(--mist)}
+.nav-dropdown>a svg,.nav-dropdown>button svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.nav-dropdown:hover>a svg,.nav-dropdown:hover>button svg{transform:rotate(180deg)}
+.drop-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.1);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s;z-index:100}
+.nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:11px;height:11px;background:#fff;border-left:1px solid var(--border);border-top:1px solid var(--border);rotate:45deg}
+.drop-item{display:flex;align-items:center;gap:.7rem;padding:.6rem .85rem;border-radius:6px;font-size:.84rem;font-weight:500;color:var(--text);transition:background .15s,color .15s}
+.drop-item:hover{background:var(--mist);color:var(--navy)}
+.drop-item.active{color:var(--navy);font-weight:600}
+.drop-item svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.75;flex-shrink:0}
+.nav-cta{padding:.5rem 1.2rem;background:var(--navy);color:#fff;font-size:.86rem;font-weight:600;border-radius:6px;transition:background .2s,transform .2s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+
+/* HERO BAR */
+.hero-bar{background:var(--navy-deeper);padding:1.25rem 0;flex-shrink:0;position:relative;overflow:hidden}
+.hero-bar-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,116,12,.12) 0%,transparent 55%)}
+.hero-bar-c{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.hero-bar-text{}
+.sec-lbl{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.sec-lbl::before{content:'';width:14px;height:1.5px;background:var(--accent);display:inline-block}
+.hero-bar h1{font-family:var(--fd);font-size:1.4rem;color:#fff;line-height:1.1;margin-bottom:.25rem}
+.hero-bar-sub{font-size:.82rem;color:rgba(255,255,255,.45);max-width:50ch}
+.hero-bar-steps{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.step-pill{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;color:rgba(255,255,255,.5)}
+.step-n{width:18px;height:18px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;flex-shrink:0}
+.step-sep{width:16px;height:1px;background:rgba(255,255,255,.15)}
+
+/* WORKSPACE */
+.workspace{flex:1;display:flex;overflow:hidden;min-height:0}
+
+/* TOOLBAR */
+.toolbar{width:72px;background:var(--navy-deeper);display:flex;flex-direction:column;align-items:center;padding:.6rem 0;gap:.15rem;border-right:1px solid rgba(255,255,255,.06);flex-shrink:0;overflow-y:auto}
+.tb-group{display:flex;flex-direction:column;align-items:center;gap:.1rem;width:100%}
+.tb-divider{width:34px;height:1px;background:rgba(255,255,255,.08);margin:.35rem 0}
+.tb-btn{width:50px;height:50px;border-radius:10px;border:none;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:background .18s,transform .15s;position:relative;color:rgba(255,255,255,.4)}
+.tb-btn:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);transform:scale(1.04)}
+.tb-btn.active{background:rgba(232,116,12,.2);color:#fff}
+.tb-btn.active svg{stroke:var(--accent)}
+.tb-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.tb-lbl{font-size:.5rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:currentColor;line-height:1;text-align:center}
+.tb-btn.danger:hover{background:rgba(239,68,68,.15);color:#ef4444}
+.tb-btn.danger:hover svg{stroke:#ef4444}
+.tb-tip{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);background:var(--navy-deeper);color:#fff;font-size:.7rem;font-weight:500;padding:.28rem .55rem;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:10;border:1px solid rgba(255,255,255,.1)}
+.tb-btn:hover .tb-tip{opacity:1}
+.tb-tip::before{content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:var(--navy-deeper)}
+
+/* EQUIPMENT PICKER */
+.equip-picker{width:72px;background:#111428;border-right:1px solid rgba(255,255,255,.06);flex-shrink:0;display:flex;flex-direction:column;padding:.5rem 0;gap:.15rem;overflow-y:auto}
+.equip-label{font-size:.48rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:center;padding:.4rem 0 .2rem}
+.eq-btn{width:54px;height:40px;margin:0 auto;border-radius:8px;border:1.5px solid transparent;background:rgba(255,255,255,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:background .15s,border-color .15s;position:relative}
+.eq-btn:hover{background:rgba(255,255,255,.09)}
+.eq-btn.active{border-color:var(--accent);background:rgba(232,116,12,.12)}
+.eq-btn-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.eq-btn-name{font-size:.48rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.55)}
+.eq-btn.active .eq-btn-name{color:rgba(255,255,255,.9)}
+.eq-tip{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);background:var(--navy-deeper);color:#fff;font-size:.7rem;font-weight:500;padding:.28rem .55rem;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:10;border:1px solid rgba(255,255,255,.1)}
+.eq-btn:hover .eq-tip{opacity:1}
+.eq-tip::before{content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:var(--navy-deeper)}
+
+/* CANVAS */
+.canvas-wrap{flex:1;position:relative;overflow:hidden;background:#E2E4EE}
+.canvas-wrap.drag-over{background:#D6DAF0}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.upload-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.upload-overlay.hidden{display:none}
+.upload-box{pointer-events:all;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;width:min(380px,80%);aspect-ratio:4/3;border:2px dashed var(--border);border-radius:16px;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);transition:border-color .2s,background .2s;cursor:pointer;padding:1.75rem;text-align:center}
+.upload-box:hover,.canvas-wrap.drag-over .upload-box{border-color:var(--accent);background:rgba(255,255,255,.92)}
+.upload-icon{width:52px;height:52px;border-radius:12px;background:var(--mist);display:flex;align-items:center;justify-content:center}
+.upload-icon svg{width:26px;height:26px;stroke:var(--steel);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.upload-title{font-family:var(--fd);font-size:.95rem;color:var(--navy-deeper)}
+.upload-sub{font-size:.76rem;color:var(--muted);line-height:1.5}
+.upload-types{font-size:.68rem;color:var(--muted);padding:.25rem .65rem;border:1px solid var(--border);border-radius:100px}
+#fileInput{display:none}
+.canvas-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(13,14,48,.82);backdrop-filter:blur(6px);color:rgba(255,255,255,.85);font-size:.7rem;padding:.28rem .85rem;border-radius:100px;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .3s}
+.canvas-hint.show{opacity:1}
+.zoom-badge{position:absolute;top:8px;right:8px;background:rgba(13,14,48,.75);backdrop-filter:blur(6px);color:rgba(255,255,255,.75);font-size:.7rem;font-weight:600;padding:.22rem .6rem;border-radius:100px;pointer-events:none}
+
+/* SUMMARY PANEL */
+.summary-panel{width:250px;background:var(--white);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
+.sp-head{padding:.85rem 1.1rem .7rem;border-bottom:1px solid var(--border)}
+.sp-head-title{font-size:.74rem;font-weight:700;color:var(--navy);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.65rem}
+.sp-counters{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.sp-ctr{border-radius:9px;padding:.6rem .75rem;position:relative;overflow:hidden}
+.sp-ctr-nodes{background:#EEF0FF;border:1px solid #C5CAEE}
+.sp-ctr-links{background:#FFF4EE;border:1px solid #FECBA0}
+.sp-ctr-total{grid-column:span 2;background:var(--mist);border:1px solid var(--border)}
+.sp-ctr-n{font-size:1.6rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+.sp-ctr-nodes .sp-ctr-n{color:var(--navy)}
+.sp-ctr-links .sp-ctr-n{color:var(--accent)}
+.sp-ctr-total .sp-ctr-n{font-size:1.25rem;color:var(--navy-deeper)}
+.sp-ctr-lbl{font-size:.62rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.15rem}
+.sp-ctr-icon{position:absolute;top:.5rem;right:.6rem;opacity:.1}
+.sp-ctr-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.sp-ctr-nodes .sp-ctr-icon{color:var(--navy)}
+.sp-ctr-links .sp-ctr-icon{color:var(--accent)}
+.sp-body{flex:1;overflow-y:auto;padding:.6rem 0}
+.sp-empty{padding:1.25rem 1.1rem;text-align:center;color:var(--muted);font-size:.8rem;line-height:1.5}
+.sp-sec-lbl{padding:0 1.1rem .2rem;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sp-item{display:flex;align-items:center;gap:.55rem;padding:.4rem 1.1rem;transition:background .15s;cursor:default}
+.sp-item:hover{background:var(--mist)}
+.sp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sp-item-main{font-size:.78rem;font-weight:600;color:var(--navy-deeper);flex:1;min-width:0}
+.sp-item-sub{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-item-del{width:18px;height:18px;border:none;background:none;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--muted);transition:color .15s,background .15s;flex-shrink:0;padding:0}
+.sp-item-del:hover{color:#ef4444;background:#fef2f2}
+.sp-item-del svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sp-foot{padding:.7rem 1.1rem;border-top:1px solid var(--border)}
+.sp-note{font-size:.68rem;color:var(--muted);line-height:1.5}
+
+/* EXPORT BAR */
+.export-bar{background:var(--navy-deeper);padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+.export-bar-text{font-size:.8rem;color:rgba(255,255,255,.4);max-width:40ch;line-height:1.4}
+.export-bar-text strong{color:rgba(255,255,255,.72)}
+.export-btns{display:flex;align-items:center;gap:.6rem}
+.btn-exp{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.3rem;border-radius:7px;font-size:.83rem;font-weight:600;border:none;transition:opacity .2s,transform .2s;min-height:40px}
+.btn-exp:hover{opacity:.88;transform:translateY(-1px)}
+.btn-exp.primary{background:var(--accent);color:#fff}
+.btn-exp.secondary{background:rgba(255,255,255,.08);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.14)}
+.btn-exp.secondary:hover{background:rgba(255,255,255,.14)}
+.btn-exp svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.btn-exp:disabled{opacity:.28;pointer-events:none}
+
+@media(max-width:900px){.summary-panel{display:none}}
+@media(max-width:720px){.equip-picker{display:none}.toolbar{width:56px}.tb-btn{width:44px;height:44px}.tb-lbl{display:none}.export-bar{height:auto;padding:.7rem 1rem}.export-bar-text{display:none}.export-btns{width:100%}.btn-exp{flex:1;justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo" aria-label="Fyrfly Systems home">
+      <span style="font-family:var(--fd);font-size:1.4rem;color:#1B1B24;letter-spacing:-.02em;font-weight:400">Fyrfly Systems</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services" class="nav-link">Services</a></li>
+      <li><a href="index.html#about" class="nav-link">Sectors</a></li>
+      <li class="nav-dropdown">
+        <button aria-haspopup="true">Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="drop-menu">
+          <a href="your-site-tool.html" class="drop-item">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="15" height="12" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>Your Site Tool
+          </a>
+          <a href="wireless-planner.html" class="drop-item active">
+            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>Wireless Planner
+          </a>
+        </div>
+      </li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO BAR -->
+<div class="hero-bar">
+  <div class="hero-bar-bg"></div>
+  <div class="hero-bar-c">
+    <div class="hero-bar-text">
+      <div class="sec-lbl">Interactive Tool</div>
+      <h1>Wireless Network Planner</h1>
+      <p class="hero-bar-sub">Upload your site plan, place PTP nodes and auto-connect wireless links. Save as PDF or share directly with the Fyrfly team.</p>
+    </div>
+    <div class="hero-bar-steps">
+      <div class="step-pill"><div class="step-n">1</div>Upload plan</div>
+      <div class="step-sep"></div>
+      <div class="step-pill"><div class="step-n">2</div>Choose equipment</div>
+      <div class="step-sep"></div>
+      <div class="step-pill"><div class="step-n">3</div>Place &amp; connect</div>
+      <div class="step-sep"></div>
+      <div class="step-pill"><div class="step-n">4</div>Save or share</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKSPACE -->
+<div class="workspace">
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="tb-group">
+      <button class="tb-btn" id="btnPan" onclick="setTool('pan')" aria-label="Pan">
+        <svg viewBox="0 0 24 24"><path d="M9 11V6.5a1.5 1.5 0 013 0M12 11V5a1.5 1.5 0 013 0v1m0 0V5.5a1.5 1.5 0 013 0V12c0 3.314-2.686 6-6 6a6 6 0 01-6-6v-1a1.5 1.5 0 013 0"/></svg>
+        <span class="tb-lbl">Pan</span>
+        <span class="tb-tip">Pan / Move</span>
+      </button>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-group">
+      <button class="tb-btn active" id="btnNode" onclick="setTool('node')" aria-label="Place PTP node">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        <span class="tb-lbl">Node</span>
+        <span class="tb-tip">Place PTP Node</span>
+      </button>
+      <button class="tb-btn" id="btnDelete" onclick="setTool('delete')" aria-label="Delete">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        <span class="tb-lbl">Delete</span>
+        <span class="tb-tip">Click node/link to delete</span>
+      </button>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="undoLast()" aria-label="Undo">
+        <svg viewBox="0 0 24 24"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 00-4-4H4"/></svg>
+        <span class="tb-lbl">Undo</span>
+        <span class="tb-tip">Undo last action</span>
+      </button>
+      <button class="tb-btn danger" onclick="clearAll()" aria-label="Clear all">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+        <span class="tb-lbl">Clear</span>
+        <span class="tb-tip">Clear everything</span>
+      </button>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="zoomBy(1.25)" aria-label="Zoom in">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <span class="tb-lbl">In</span>
+        <span class="tb-tip">Zoom In</span>
+      </button>
+      <button class="tb-btn" onclick="zoomBy(0.8)" aria-label="Zoom out">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <span class="tb-lbl">Out</span>
+        <span class="tb-tip">Zoom Out</span>
+      </button>
+      <button class="tb-btn" onclick="fitToCanvas()" aria-label="Fit to screen">
+        <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        <span class="tb-lbl">Fit</span>
+        <span class="tb-tip">Fit to Screen</span>
+      </button>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="triggerUpload()" aria-label="Upload plan">
+        <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+        <span class="tb-lbl">Upload</span>
+        <span class="tb-tip">Upload New Plan</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- EQUIPMENT PICKER -->
+  <div class="equip-picker" id="equipPicker">
+    <div class="equip-label">Equipment</div>
+    <button class="eq-btn active" id="eq-ubiquiti" onclick="setEquip('ubiquiti')" aria-label="Ubiquiti">
+      <div class="eq-btn-dot" style="background:#0559C9"></div>
+      <div class="eq-btn-name">Ubiquiti</div>
+      <span class="eq-tip">Ubiquiti</span>
+    </button>
+    <button class="eq-btn" id="eq-cambium" onclick="setEquip('cambium')" aria-label="Cambium">
+      <div class="eq-btn-dot" style="background:#00A651"></div>
+      <div class="eq-btn-name">Cambium</div>
+      <span class="eq-tip">Cambium</span>
+    </button>
+    <button class="eq-btn" id="eq-mikrotik" onclick="setEquip('mikrotik')" aria-label="Mikrotik">
+      <div class="eq-btn-dot" style="background:#CC0000"></div>
+      <div class="eq-btn-name">Mikrotik</div>
+      <span class="eq-tip">MikroTik</span>
+    </button>
+    <button class="eq-btn" id="eq-generic" onclick="setEquip('generic')" aria-label="Generic">
+      <div class="eq-btn-dot" style="background:#7C3AED"></div>
+      <div class="eq-btn-name">Generic</div>
+      <span class="eq-tip">Generic</span>
+    </button>
+  </div>
+
+  <!-- CANVAS -->
+  <div class="canvas-wrap" id="canvasWrap">
+    <canvas id="siteCanvas"></canvas>
+    <div class="zoom-badge" id="zoomBadge">100%</div>
+    <div class="canvas-hint" id="canvasHint"></div>
+    <div class="upload-overlay" id="uploadOverlay">
+      <div class="upload-box" onclick="triggerUpload()" role="button" tabindex="0" aria-label="Upload site plan">
+        <div class="upload-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="3 9 9 9 9 3"/><polyline points="15 3 15 9 21 9"/><polyline points="21 15 15 15 15 21"/><polyline points="9 21 9 15 3 15"/></svg>
+        </div>
+        <div class="upload-title">Upload Your Site Plan</div>
+        <p class="upload-sub">Drag &amp; drop a plan, aerial photo or site map. Works with any image format.</p>
+        <span class="upload-types">PNG &bull; JPG &bull; WebP &bull; GIF</span>
+      </div>
+    </div>
+    <input type="file" id="fileInput" accept="image/*"/>
+  </div>
+
+  <!-- SUMMARY PANEL -->
+  <div class="summary-panel">
+    <div class="sp-head">
+      <div class="sp-head-title">Network Plan</div>
+      <div class="sp-counters">
+        <div class="sp-ctr sp-ctr-nodes">
+          <div class="sp-ctr-n" id="nodeCount">0</div>
+          <div class="sp-ctr-lbl">Nodes</div>
+          <div class="sp-ctr-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3"/></svg></div>
+        </div>
+        <div class="sp-ctr sp-ctr-links">
+          <div class="sp-ctr-n" id="linkCount">0</div>
+          <div class="sp-ctr-lbl">Links</div>
+          <div class="sp-ctr-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+        <div class="sp-ctr sp-ctr-total">
+          <div class="sp-ctr-n" id="totalCount">0 <span style="font-size:.85rem;font-weight:500;color:var(--muted)">points</span></div>
+          <div class="sp-ctr-lbl">Total Network Points</div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-body" id="spBody">
+      <div class="sp-empty" id="spEmpty">No nodes placed yet. Upload a plan and start building your wireless network.</div>
+    </div>
+    <div class="sp-foot">
+      <p class="sp-note">Place nodes in pairs — each pair auto-connects as a PTP link. Click a node or link to hover-highlight, or use Delete tool to remove.</p>
+    </div>
+  </div>
+
+</div><!-- /workspace -->
+
+<!-- EXPORT BAR -->
+<div class="export-bar">
+  <div class="export-bar-text"><strong>Ready to share?</strong> Save a branded PDF of your wireless plan, or send requirements directly to the Fyrfly team.</div>
+  <div class="export-btns">
+    <button class="btn-exp secondary" id="btnPDF" onclick="savePDF()" disabled>
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Save as PDF
+    </button>
+    <button class="btn-exp primary" id="btnShare" onclick="shareWithFyrfly()" disabled>
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Share with Vesta
+    </button>
+  </div>
+</div>
+
+<script>
+// ── CONSTANTS ─────────────────────────────────────────────────
+const EQUIP_COLORS = {
+  ubiquiti: '#0559C9',
+  cambium:  '#00A651',
+  mikrotik: '#CC0000',
+  generic:  '#7C3AED'
+};
+const EQUIP_LABELS = {
+  ubiquiti: 'Ubiquiti',
+  cambium:  'Cambium',
+  mikrotik: 'MikroTik',
+  generic:  'Generic'
+};
+
+// ── STATE ─────────────────────────────────────────────────────
+const canvas  = document.getElementById('siteCanvas');
+const ctx     = canvas.getContext('2d');
+const canvasWrap    = document.getElementById('canvasWrap');
+const uploadOverlay = document.getElementById('uploadOverlay');
+const fileInput     = document.getElementById('fileInput');
+const zoomBadge     = document.getElementById('zoomBadge');
+const canvasHint    = document.getElementById('canvasHint');
+
+let planImage  = null;
+let scale = 1, offsetX = 0, offsetY = 0;
+let activeTool = 'node';
+let activeEquip = 'ubiquiti';
+let nodes = [];   // {id, x, y, equip, label, seq}
+let links = [];   // {id, a, b, label, seq}
+let nodeSeq = 0, linkSeq = 0;
+let pendingNode = null; // node waiting for its pair
+let isDragging = false, dragStartX = 0, dragStartY = 0, snapOffX = 0, snapOffY = 0;
+let hasMoved = false;
+let hoveredNode = null, hoveredLink = null;
+let hintTimer = null;
+let dpr = Math.min(window.devicePixelRatio || 1, 2);
+let logW, logH;
+let animFrame = 0;
+
+// ── RESIZE ────────────────────────────────────────────────────
+function resizeCanvas() {
+  logW = canvasWrap.clientWidth;
+  logH = canvasWrap.clientHeight;
+  canvas.width  = logW * dpr;
+  canvas.height = logH * dpr;
+  canvas.style.width  = logW + 'px';
+  canvas.style.height = logH + 'px';
+  ctx.scale(dpr, dpr);
+  draw();
+}
+new ResizeObserver(resizeCanvas).observe(canvasWrap);
+
+// ── TOOL / EQUIP ──────────────────────────────────────────────
+function setTool(tool) {
+  activeTool = tool;
+  document.querySelectorAll('.tb-btn').forEach(b => b.classList.remove('active'));
+  const map = {pan:'btnPan', node:'btnNode', delete:'btnDelete'};
+  if (map[tool]) document.getElementById(map[tool]).classList.add('active');
+  const cursors = {pan:'grab', node:'crosshair', delete:'not-allowed'};
+  canvas.style.cursor = cursors[tool] || 'default';
+  const hints = {
+    pan:    'Drag to pan the view',
+    node:   pendingNode ? 'Click to place the 2nd node and complete the link' : 'Click to place the 1st PTP node',
+    delete: 'Click a node or link to remove it'
+  };
+  showHint(hints[tool]);
+}
+setTool('node');
+
+function setEquip(eq) {
+  activeEquip = eq;
+  document.querySelectorAll('.eq-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('eq-' + eq).classList.add('active');
+}
+
+// ── DRAW ──────────────────────────────────────────────────────
+function rr(c, x, y, w, h, r) {
+  if (c.roundRect) { c.roundRect(x, y, w, h, r); return; }
+  c.beginPath();
+  c.moveTo(x+r,y); c.lineTo(x+w-r,y); c.arcTo(x+w,y,x+w,y+r,r);
+  c.lineTo(x+w,y+h-r); c.arcTo(x+w,y+h,x+w-r,y+h,r);
+  c.lineTo(x+r,y+h); c.arcTo(x,y+h,x,y+h-r,r);
+  c.lineTo(x,y+r); c.arcTo(x,y,x+r,y,r); c.closePath();
+}
+
+function draw() {
+  animFrame++;
+  ctx.clearRect(0, 0, logW, logH);
+
+  if (!planImage) {
+    ctx.fillStyle = '#E2E4EE';
+    ctx.fillRect(0, 0, logW, logH);
+    ctx.strokeStyle = 'rgba(30,33,99,0.06)'; ctx.lineWidth = 1;
+    for (let x = 0; x < logW; x += 32) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,logH); ctx.stroke(); }
+    for (let y = 0; y < logH; y += 32) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(logW,y); ctx.stroke(); }
+    return;
+  }
+
+  // Checkerboard
+  const cw = 12;
+  for (let cx = 0; cx < logW; cx += cw)
+    for (let cy = 0; cy < logH; cy += cw) {
+      ctx.fillStyle = ((Math.floor(cx/cw)+Math.floor(cy/cw))%2===0) ? '#ccc':'#eee';
+      ctx.fillRect(cx,cy,cw,cw);
+    }
+
+  ctx.save(); ctx.translate(offsetX,offsetY); ctx.scale(scale,scale);
+  ctx.drawImage(planImage, 0, 0);
+  ctx.restore();
+
+  // Plan shadow
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,0.15)'; ctx.shadowBlur=18;
+  ctx.strokeStyle='rgba(0,0,0,0.08)'; ctx.lineWidth=1;
+  ctx.strokeRect(offsetX,offsetY,planImage.naturalWidth*scale,planImage.naturalHeight*scale);
+  ctx.restore();
+
+  // Draw links first (below nodes)
+  links.forEach(lk => {
+    const sa = pToS(lk.a.x, lk.a.y);
+    const sb = pToS(lk.b.x, lk.b.y);
+    drawLink(sa.x, sa.y, sb.x, sb.y, lk, lk === hoveredLink);
+  });
+
+  // Pending node helper line
+  if (pendingNode && activeTool === 'node') {
+    const sp = pToS(pendingNode.x, pendingNode.y);
+    ctx.save();
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = 'rgba(232,116,12,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(sp.x, sp.y); ctx.lineTo(lastMouse.x, lastMouse.y); ctx.stroke();
+    ctx.restore();
+  }
+
+  // Draw nodes on top
+  nodes.forEach(n => {
+    const s = pToS(n.x, n.y);
+    drawNode(s.x, s.y, n, n === hoveredNode || n === pendingNode);
+  });
+
+  zoomBadge.textContent = Math.round(scale*100) + '%';
+}
+
+// ── LINK DRAWING ──────────────────────────────────────────────
+function drawLink(x1, y1, x2, y2, lk, hov) {
+  const col = EQUIP_COLORS[lk.a.equip] || '#1E2163';
+  const alpha = hov ? 1 : 0.72;
+
+  ctx.save();
+  // Glow
+  if (hov) {
+    ctx.shadowColor = col; ctx.shadowBlur = 10;
+  }
+  // Animated dash
+  ctx.setLineDash([10, 6]);
+  ctx.lineDashOffset = -(animFrame * 0.4) % 16;
+  ctx.strokeStyle = col.replace(')', `,${alpha})`).replace('rgb(','rgba(') || col;
+  ctx.lineWidth = hov ? 3 : 2;
+  ctx.globalAlpha = alpha;
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  ctx.restore();
+
+  // Link label at midpoint
+  const mx = (x1+x2)/2, my = (y1+y2)/2;
+  ctx.save();
+  ctx.font = 'bold 7.5px "DM Sans",sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const tw = ctx.measureText(lk.label).width;
+  const pw = tw + 10, ph = 14;
+  ctx.fillStyle = hov ? col : 'rgba(13,14,48,0.82)';
+  rr(ctx, mx-pw/2, my-ph/2, pw, ph, 3); ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.fillText(lk.label, mx, my);
+  ctx.restore();
+}
+
+// ── NODE DRAWING ──────────────────────────────────────────────
+function drawNode(x, y, n, hov) {
+  const col = EQUIP_COLORS[n.equip] || '#1E2163';
+  const R = 13;
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.35)'; ctx.shadowBlur = 8; ctx.shadowOffsetY = 2;
+
+  // Outer ring (pulse for pending)
+  if (n === pendingNode) {
+    const pulse = 0.5 + 0.5 * Math.sin(animFrame * 0.12);
+    ctx.beginPath(); ctx.arc(x, y, R + 5 + pulse*3, 0, Math.PI*2);
+    ctx.strokeStyle = col + '50'; ctx.lineWidth = 2; ctx.stroke();
+  }
+
+  // Main circle
+  ctx.beginPath(); ctx.arc(x, y, R, 0, Math.PI*2);
+  ctx.fillStyle = hov ? lightenColor(col, 20) : col; ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.strokeStyle = hov ? '#fff' : 'rgba(255,255,255,0.7)';
+  ctx.lineWidth = 2; ctx.stroke();
+
+  // WiFi/antenna icon inside
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.4;
+  // Three arcs = wifi symbol
+  for (let i = 0; i < 3; i++) {
+    const r = 3 + i*2.5;
+    ctx.beginPath();
+    ctx.arc(x, y+1, r, Math.PI*1.15, Math.PI*1.85);
+    ctx.stroke();
+  }
+  // dot
+  ctx.beginPath(); ctx.arc(x, y+1, 1.2, 0, Math.PI*2);
+  ctx.fillStyle = '#fff'; ctx.fill();
+
+  ctx.restore();
+
+  // Label below
+  ctx.save();
+  ctx.font = 'bold 7.5px "DM Sans",sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const lbl = n.label;
+  const tw = ctx.measureText(lbl).width, pw = Math.max(tw+8,22), ph = 12;
+  ctx.fillStyle = 'rgba(13,14,48,0.85)';
+  rr(ctx, x-pw/2, y+R+2, pw, ph, 3); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.fillText(lbl, x, y+R+3.5);
+  // Equip tag
+  const etw = ctx.measureText(EQUIP_LABELS[n.equip]).width;
+  ctx.fillStyle = col;
+  rr(ctx, x-etw/2-4, y+R+ph+4, etw+8, 10, 2); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = '6px "DM Sans",sans-serif';
+  ctx.fillText(EQUIP_LABELS[n.equip], x, y+R+ph+5.5);
+  ctx.restore();
+}
+
+function lightenColor(hex, amt) {
+  const num = parseInt(hex.slice(1), 16);
+  const r = Math.min(255, (num>>16)+amt);
+  const g = Math.min(255, ((num>>8)&0xff)+amt);
+  const b = Math.min(255, (num&0xff)+amt);
+  return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+
+// Animate the dashes
+function animate() {
+  if (links.length > 0 || pendingNode) { draw(); }
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── COORDINATES ───────────────────────────────────────────────
+function pToS(px, py) { return { x: px*scale+offsetX, y: py*scale+offsetY }; }
+function sToP(sx, sy) { return { x: (sx-offsetX)/scale, y: (sy-offsetY)/scale }; }
+
+function getNodeAt(sx, sy, r=18) {
+  for (let i=nodes.length-1; i>=0; i--) {
+    const s = pToS(nodes[i].x, nodes[i].y);
+    if (Math.hypot(sx-s.x, sy-s.y) < r) return nodes[i];
+  }
+  return null;
+}
+function getLinkAt(sx, sy, thresh=8) {
+  for (let i=links.length-1; i>=0; i--) {
+    const lk = links[i];
+    const sa = pToS(lk.a.x, lk.a.y);
+    const sb = pToS(lk.b.x, lk.b.y);
+    const d = pointToSegDist(sx, sy, sa.x, sa.y, sb.x, sb.y);
+    if (d < thresh) return lk;
+  }
+  return null;
+}
+function pointToSegDist(px, py, ax, ay, bx, by) {
+  const dx = bx-ax, dy = by-ay;
+  const lenSq = dx*dx + dy*dy;
+  if (lenSq === 0) return Math.hypot(px-ax, py-ay);
+  const t = Math.max(0, Math.min(1, ((px-ax)*dx+(py-ay)*dy)/lenSq));
+  return Math.hypot(px-(ax+t*dx), py-(ay+t*dy));
+}
+
+// ── ZOOM / PAN ────────────────────────────────────────────────
+function zoomAt(cx, cy, factor) {
+  const px=(cx-offsetX)/scale, py=(cy-offsetY)/scale;
+  scale = Math.min(Math.max(scale*factor, 0.05), 8);
+  offsetX=cx-px*scale; offsetY=cy-py*scale; draw();
+}
+function zoomBy(f) { zoomAt(logW/2, logH/2, f); }
+function fitToCanvas() {
+  if (!planImage) return;
+  scale = Math.min(logW/planImage.naturalWidth*0.92, logH/planImage.naturalHeight*0.92);
+  offsetX=(logW-planImage.naturalWidth*scale)/2;
+  offsetY=(logH-planImage.naturalHeight*scale)/2; draw();
+}
+
+// ── MOUSE / TOUCH ─────────────────────────────────────────────
+let touchDist = 0;
+let lastMouse = {x:0, y:0};
+
+function getXY(e) {
+  const rect = canvas.getBoundingClientRect();
+  const src = e.touches ? e.touches[0] : e;
+  return { x: src.clientX-rect.left, y: src.clientY-rect.top };
+}
+
+canvas.addEventListener('mousedown', onDown);
+canvas.addEventListener('touchstart', onDown, {passive:false});
+canvas.addEventListener('mousemove', onMove);
+canvas.addEventListener('touchmove', onMove, {passive:false});
+canvas.addEventListener('mouseup', onUp);
+canvas.addEventListener('touchend', onUp);
+canvas.addEventListener('wheel', onWheel, {passive:false});
+canvas.addEventListener('contextmenu', e=>e.preventDefault());
+
+function onDown(e) {
+  e.preventDefault();
+  if (e.touches && e.touches.length===2) {
+    touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+    return;
+  }
+  const p = getXY(e);
+  isDragging=true; hasMoved=false;
+  dragStartX=p.x; dragStartY=p.y; snapOffX=offsetX; snapOffY=offsetY;
+  if (activeTool==='pan') canvas.style.cursor='grabbing';
+}
+
+function onMove(e) {
+  e.preventDefault();
+  if (e.touches && e.touches.length===2) {
+    const d = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+    const cx = (e.touches[0].clientX+e.touches[1].clientX)/2-canvas.getBoundingClientRect().left;
+    const cy = (e.touches[0].clientY+e.touches[1].clientY)/2-canvas.getBoundingClientRect().top;
+    zoomAt(cx, cy, d/touchDist); touchDist=d; return;
+  }
+  const p = getXY(e);
+  lastMouse = p;
+  const dx=p.x-dragStartX, dy=p.y-dragStartY;
+  if (Math.hypot(dx,dy)>4) hasMoved=true;
+  if (isDragging && (activeTool==='pan' || hasMoved)) {
+    offsetX=snapOffX+dx; offsetY=snapOffY+dy; draw();
+  }
+  // Hover detection
+  const hn = planImage ? getNodeAt(p.x,p.y) : null;
+  const hl = (!hn && planImage) ? getLinkAt(p.x,p.y) : null;
+  if (hn!==hoveredNode || hl!==hoveredLink) {
+    hoveredNode=hn; hoveredLink=hl;
+    canvas.style.cursor = (hn||hl) && activeTool==='delete' ? 'pointer' :
+      activeTool==='pan' ? (isDragging?'grabbing':'grab') : 'crosshair';
+    draw();
+  }
+  if (pendingNode) draw(); // update dashed line
+}
+
+function onUp(e) {
+  e.preventDefault();
+  if (e.touches && e.touches.length>=2) return;
+  if (!hasMoved && isDragging) handleClick(getXY(e.changedTouches ? {touches:e.changedTouches} : e));
+  isDragging=false;
+  if (activeTool==='pan') canvas.style.cursor='grab';
+}
+function onWheel(e) {
+  e.preventDefault();
+  const p = getXY(e);
+  zoomAt(p.x, p.y, e.deltaY<0 ? 1.12 : 0.89);
+}
+
+// ── CLICK HANDLER ─────────────────────────────────────────────
+function handleClick(p) {
+  if (!planImage) { showHint('Please upload a plan first'); return; }
+  const plan = sToP(p.x, p.y);
+  if (plan.x<0||plan.y<0||plan.x>planImage.naturalWidth||plan.y>planImage.naturalHeight) return;
+
+  if (activeTool==='delete') {
+    const hn = getNodeAt(p.x,p.y);
+    if (hn) { removeNode(hn); return; }
+    const hl = getLinkAt(p.x,p.y);
+    if (hl) { removeLink(hl); return; }
+    showHint('No node or link at that position'); return;
+  }
+
+  if (activeTool==='node') {
+    if (!pendingNode) {
+      // Place first node
+      nodeSeq++;
+      const n = { id:Date.now(), x:plan.x, y:plan.y, equip:activeEquip, label:'N'+nodeSeq, seq:nodeSeq };
+      nodes.push(n);
+      pendingNode = n;
+      showHint('Node placed \u2014 click to place the 2nd node and complete the PTP link');
+      updateUI(); draw();
+    } else {
+      // Check not clicking same spot
+      const sp = pToS(pendingNode.x, pendingNode.y);
+      if (Math.hypot(p.x-sp.x, p.y-sp.y) < 12) {
+        showHint('Place the 2nd node somewhere else on the plan');
+        return;
+      }
+      // Place second node and auto-link
+      nodeSeq++;
+      const n2 = { id:Date.now()+1, x:plan.x, y:plan.y, equip:activeEquip, label:'N'+nodeSeq, seq:nodeSeq };
+      nodes.push(n2);
+      linkSeq++;
+      const lk = { id:Date.now()+2, a:pendingNode, b:n2, label:'L'+linkSeq, seq:linkSeq };
+      links.push(lk);
+      pendingNode = null;
+      showHint('Link L'+linkSeq+' created \u2014 click to start a new PTP pair');
+      updateUI(); draw();
+    }
+  }
+}
+
+// ── NODE / LINK MANAGEMENT ────────────────────────────────────
+function removeNode(n) {
+  // Remove all links that include this node
+  links = links.filter(lk => lk.a!==n && lk.b!==n);
+  nodes = nodes.filter(x => x!==n);
+  if (pendingNode===n) pendingNode=null;
+  if (hoveredNode===n) hoveredNode=null;
+  updateUI(); draw();
+}
+function removeLink(lk) {
+  // Also remove both nodes in that link
+  const a=lk.a, b=lk.b;
+  links = links.filter(x=>x!==lk);
+  nodes = nodes.filter(n=>n!==a && n!==b);
+  if (pendingNode===a||pendingNode===b) pendingNode=null;
+  updateUI(); draw();
+}
+function undoLast() {
+  if (pendingNode) {
+    // Cancel pending node
+    nodes = nodes.filter(n=>n!==pendingNode);
+    pendingNode=null; updateUI(); draw();
+    showHint('Node cancelled'); return;
+  }
+  if (links.length) {
+    const lk = links[links.length-1];
+    removeLink(lk); showHint('Last link removed'); return;
+  }
+  if (nodes.length) {
+    nodes.pop(); updateUI(); draw();
+    showHint('Last node removed'); return;
+  }
+  showHint('Nothing to undo');
+}
+function clearAll() {
+  if (!nodes.length && !links.length) return;
+  if (!confirm('Clear all '+nodes.length+' node(s) and '+links.length+' link(s)?')) return;
+  nodes=[]; links=[]; pendingNode=null; hoveredNode=null; hoveredLink=null;
+  nodeSeq=0; linkSeq=0; updateUI(); draw();
+}
+
+// ── UI ────────────────────────────────────────────────────────
+function updateUI() {
+  document.getElementById('nodeCount').textContent = nodes.length;
+  document.getElementById('linkCount').textContent = links.length;
+  document.getElementById('totalCount').innerHTML = nodes.length + ' <span style="font-size:.85rem;font-weight:500;color:var(--muted)">points</span>';
+
+  const body = document.getElementById('spBody');
+  const empty = document.getElementById('spEmpty');
+  body.innerHTML = '';
+
+  if (!nodes.length && !links.length) {
+    body.appendChild(empty); empty.style.display=''; enableExport(false); return;
+  }
+  enableExport(!!planImage && links.length>0);
+
+  if (links.length) {
+    const lbl = document.createElement('div'); lbl.className='sp-sec-lbl'; lbl.textContent='PTP LINKS';
+    body.appendChild(lbl);
+    links.forEach(lk => body.appendChild(buildLinkItem(lk)));
+  }
+  if (pendingNode) {
+    const lbl = document.createElement('div'); lbl.className='sp-sec-lbl'; lbl.style.marginTop='0.6rem'; lbl.textContent='PENDING';
+    body.appendChild(lbl);
+    body.appendChild(buildNodeItem(pendingNode, true));
+  }
+}
+
+function buildLinkItem(lk) {
+  const col = EQUIP_COLORS[lk.a.equip];
+  const el = document.createElement('div'); el.className='sp-item';
+  el.innerHTML = `<div class="sp-dot" style="background:${col}"></div>
+    <div style="flex:1;min-width:0">
+      <div class="sp-item-main">${lk.label}</div>
+      <div class="sp-item-sub">${lk.a.label} \u2194 ${lk.b.label} &bull; ${EQUIP_LABELS[lk.a.equip]}</div>
+    </div>
+    <button class="sp-item-del" aria-label="Remove ${lk.label}">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  el.querySelector('.sp-item-del').onclick = () => removeLink(lk);
+  el.onmouseenter = () => { hoveredLink=lk; hoveredNode=lk.a; draw(); };
+  el.onmouseleave = () => { hoveredLink=null; hoveredNode=null; draw(); };
+  return el;
+}
+function buildNodeItem(n, pending) {
+  const col = EQUIP_COLORS[n.equip];
+  const el = document.createElement('div'); el.className='sp-item';
+  el.innerHTML = `<div class="sp-dot" style="background:${col};opacity:.5"></div>
+    <div style="flex:1;min-width:0">
+      <div class="sp-item-main">${n.label} ${pending?'<span style="color:var(--accent);font-size:.65rem">(waiting for pair)</span>':''}</div>
+      <div class="sp-item-sub">${EQUIP_LABELS[n.equip]}</div>
+    </div>
+    <button class="sp-item-del" aria-label="Cancel ${n.label}">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  el.querySelector('.sp-item-del').onclick = () => removeNode(n);
+  el.onmouseenter = () => { hoveredNode=n; draw(); };
+  el.onmouseleave = () => { hoveredNode=null; draw(); };
+  return el;
+}
+function enableExport(on) {
+  document.getElementById('btnPDF').disabled = !on;
+  document.getElementById('btnShare').disabled = !on;
+}
+
+// ── HINT ──────────────────────────────────────────────────────
+function showHint(msg) {
+  canvasHint.textContent=msg; canvasHint.classList.add('show');
+  clearTimeout(hintTimer);
+  hintTimer=setTimeout(()=>canvasHint.classList.remove('show'), 2500);
+}
+
+// ── FILE ──────────────────────────────────────────────────────
+function triggerUpload() { fileInput.click(); }
+fileInput.addEventListener('change', e=>{ if(e.target.files[0]) loadFile(e.target.files[0]); });
+canvasWrap.addEventListener('dragover', e=>{ e.preventDefault(); canvasWrap.classList.add('drag-over'); });
+canvasWrap.addEventListener('dragleave', ()=>canvasWrap.classList.remove('drag-over'));
+canvasWrap.addEventListener('drop', e=>{
+  e.preventDefault(); canvasWrap.classList.remove('drag-over');
+  const file=e.dataTransfer.files[0];
+  if(file&&file.type.startsWith('image/')) loadFile(file);
+  else showHint('Please drop an image file');
+});
+function loadFile(file) {
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      planImage=img; uploadOverlay.classList.add('hidden');
+      nodes=[]; links=[]; pendingNode=null; nodeSeq=0; linkSeq=0;
+      updateUI(); fitToCanvas(); setTool('node');
+      showHint('Plan loaded \u2014 choose equipment and click to place the first PTP node');
+    };
+    img.src=ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── OFFSCREEN RENDER ──────────────────────────────────────────
+function renderForExport(targetW) {
+  if(!planImage) return null;
+  const ratio=planImage.naturalHeight/planImage.naturalWidth;
+  const w=targetW, h=Math.round(targetW*ratio);
+  const sc=w/planImage.naturalWidth;
+  const off=document.createElement('canvas'); off.width=w; off.height=h;
+  const oc=off.getContext('2d');
+  oc.fillStyle='#fff'; oc.fillRect(0,0,w,h);
+  oc.drawImage(planImage,0,0,w,h);
+
+  function rrC(c,x,y,w2,h2,r){if(c.roundRect){c.roundRect(x,y,w2,h2,r);return;}c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w2-r,y);c.arcTo(x+w2,y,x+w2,y+r,r);c.lineTo(x+w2,y+h2-r);c.arcTo(x+w2,y+h2,x+w2-r,y+h2,r);c.lineTo(x+r,y+h2);c.arcTo(x,y+h2,x,y+h2-r,r);c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);c.closePath();}
+
+  // Draw links
+  links.forEach(lk=>{
+    const x1=lk.a.x*sc, y1=lk.a.y*sc, x2=lk.b.x*sc, y2=lk.b.y*sc;
+    const col=EQUIP_COLORS[lk.a.equip];
+    oc.save(); oc.setLineDash([10,6]); oc.strokeStyle=col; oc.lineWidth=2;
+    oc.beginPath(); oc.moveTo(x1,y1); oc.lineTo(x2,y2); oc.stroke();
+    // Midpoint label
+    const mx=(x1+x2)/2, my=(y1+y2)/2;
+    oc.font='bold 9px Helvetica'; oc.textAlign='center'; oc.textBaseline='middle';
+    const tw=oc.measureText(lk.label).width, pw=tw+10, ph=14;
+    oc.fillStyle='rgba(13,14,48,0.85)'; rrC(oc,mx-pw/2,my-ph/2,pw,ph,3); oc.fill();
+    oc.fillStyle='#fff'; oc.fillText(lk.label,mx,my);
+    oc.restore();
+  });
+
+  // Draw nodes
+  nodes.forEach(n=>{
+    const x=n.x*sc, y=n.y*sc, R=14, col=EQUIP_COLORS[n.equip];
+    oc.save();
+    oc.shadowColor='rgba(0,0,0,0.3)'; oc.shadowBlur=6; oc.shadowOffsetY=2;
+    oc.beginPath(); oc.arc(x,y,R,0,Math.PI*2); oc.fillStyle=col; oc.fill();
+    oc.shadowBlur=0; oc.strokeStyle='rgba(255,255,255,0.8)'; oc.lineWidth=2; oc.stroke();
+    oc.strokeStyle='#fff'; oc.lineWidth=1.4;
+    for(let i=0;i<3;i++){const r=3+i*2.5;oc.beginPath();oc.arc(x,y+1,r,Math.PI*1.15,Math.PI*1.85);oc.stroke();}
+    oc.beginPath();oc.arc(x,y+1,1.2,0,Math.PI*2);oc.fillStyle='#fff';oc.fill();
+    oc.restore();
+    oc.font='bold 8px Helvetica'; oc.textAlign='center'; oc.textBaseline='top';
+    const tw=oc.measureText(n.label).width, pw=Math.max(tw+8,20);
+    oc.fillStyle='rgba(13,14,48,0.85)'; rrC(oc,x-pw/2,y+R+2,pw,12,3); oc.fill();
+    oc.fillStyle='#fff'; oc.fillText(n.label,x,y+R+3.5);
+    const etw=oc.measureText(EQUIP_LABELS[n.equip]).width;
+    oc.fillStyle=col; rrC(oc,x-etw/2-4,y+R+16,etw+8,10,2); oc.fill();
+    oc.fillStyle='#fff'; oc.font='6px Helvetica';
+    oc.fillText(EQUIP_LABELS[n.equip],x,y+R+17.5);
+  });
+  return off;
+}
+
+// ── PDF ───────────────────────────────────────────────────────
+function savePDF() {
+  if(!window.jspdf){alert('PDF library still loading, please try again.');return;}
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF('l','mm','a4');
+  const PW=297,PH=210,M=10,HDR=22,FTR=12;
+  const contentH=PH-HDR-FTR-M*2;
+  const planW=185, summW=PW-planW-M*3;
+
+  // Header
+  doc.setFillColor(13,14,48); doc.rect(0,0,PW,HDR,'F');
+  doc.setFillColor(200,16,46); doc.rect(0,HDR,148,2,'F');
+  doc.setFillColor(232,93,4); doc.rect(148,HDR,149,2,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text('FYRFLY SYSTEMS',M,10);
+  doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(180,180,200);
+  doc.text('Wireless Network Plan \u2014 PTP Link Survey',M,17);
+  doc.text('Generated: '+new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}),PW-M,10,{align:'right'});
+  doc.text('hello@fyrflysystems.com  |  01234 567 890',PW-M,17,{align:'right'});
+
+  // Plan image
+  const off=renderForExport(1600);
+  if(off){
+    const imgData=off.toDataURL('image/jpeg',0.92);
+    const aspect=off.width/off.height;
+    let iW=planW, iH=planW/aspect;
+    if(iH>contentH){iH=contentH;iW=contentH*aspect;}
+    const iX=M+(planW-iW)/2, iY=HDR+M+2+(contentH-iH)/2;
+    doc.setFillColor(248,249,252); doc.rect(M,HDR+M+2,planW,contentH,'F');
+    doc.addImage(imgData,'JPEG',iX,iY,iW,iH);
+  }
+
+  // Summary
+  const sx=M*2+planW;
+  let sy=HDR+M+2;
+  doc.setTextColor(13,14,48); doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('NETWORK SUMMARY',sx,sy+5); sy+=12;
+
+  const bW=summW, bH=14;
+  doc.setFillColor(238,240,255); doc.setDrawColor(197,202,238); doc.rect(sx,sy,bW,bH,'FD');
+  doc.setTextColor(30,33,99); doc.setFont('helvetica','bold'); doc.setFontSize(16);
+  doc.text(String(nodes.length),sx+4,sy+10);
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(100,100,120);
+  doc.text('PTP NODES',sx+4,sy+bH-3); sy+=bH+3;
+
+  doc.setFillColor(255,244,238); doc.setDrawColor(254,203,160); doc.rect(sx,sy,bW,bH,'FD');
+  doc.setTextColor(232,116,12); doc.setFont('helvetica','bold'); doc.setFontSize(16);
+  doc.text(String(links.length),sx+4,sy+10);
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(100,100,120);
+  doc.text('PTP LINKS',sx+4,sy+bH-3); sy+=bH+7;
+
+  doc.setDrawColor(221,226,238); doc.setLineWidth(0.4); doc.line(sx,sy,sx+bW,sy); sy+=5;
+  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(149,149,165);
+  doc.text('LINK TABLE',sx,sy); sy+=5;
+
+  // Equipment legend
+  const equipUsed = [...new Set(nodes.map(n=>n.equip))];
+  const colMap = {ubiquiti:[5,89,201], cambium:[0,166,81], mikrotik:[204,0,0], generic:[124,58,237]};
+
+  const maxRows=Math.floor((PH-FTR-sy-M)/6);
+  links.slice(0,maxRows).forEach(lk=>{
+    const col=colMap[lk.a.equip]||[30,33,99];
+    doc.setFillColor(...col); doc.circle(sx+1.5,sy-1,1.5,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(27,27,36);
+    doc.text(lk.label,sx+5,sy);
+    doc.setFont('helvetica','normal'); doc.setTextColor(100,100,120);
+    doc.text(lk.a.label+' \u2194 '+lk.b.label,sx+16,sy);
+    doc.text(EQUIP_LABELS[lk.a.equip],sx+bW-2,sy,{align:'right'});
+    sy+=6;
+  });
+  if(links.length>maxRows){
+    doc.setFont('helvetica','italic');doc.setFontSize(7);doc.setTextColor(149,149,165);
+    doc.text('+ '+(links.length-maxRows)+' more links not listed',sx,sy);
+  }
+
+  // Footer
+  doc.setFillColor(13,14,48); doc.rect(0,PH-FTR,PW,FTR,'F');
+  doc.setTextColor(180,180,200); doc.setFont('helvetica','normal'); doc.setFontSize(7);
+  doc.text('Fyrfly Systems Ltd  |  NSI NACOSS Gold  |  hello@fyrflysystems.com',M,PH-4);
+  doc.text('This document is a preliminary planning aid only and does not constitute a formal quotation or survey.',PW-M,PH-4,{align:'right'});
+
+  doc.save('Fyrfly-Wireless-Plan-'+new Date().toISOString().slice(0,10)+'.pdf');
+}
+
+// ── SHARE ─────────────────────────────────────────────────────
+function shareWithFyrfly() {
+  savePDF();
+  setTimeout(()=>{
+    const lines=links.map(lk=>'  '+lk.label+' \u2014 '+lk.a.label+' \u2194 '+lk.b.label+' ('+EQUIP_LABELS[lk.a.equip]+')').join('\n');
+    const body=[
+      'Hello Fyrfly Systems team,',
+      '',
+      'I have used the Wireless Network Planner to map my PTP requirements. Please find my site plan PDF attached.',
+      '',
+      'SUMMARY',
+      'PTP Nodes: '+nodes.length,
+      'PTP Links: '+links.length,
+      '',
+      'LINK TABLE',
+      lines||'  (No links placed)',
+      '',
+      'Please contact me to discuss these requirements further.',
+      '',
+      'Kind regards'
+    ].join('\n');
+    const subj=encodeURIComponent('Wireless Network Plan \u2014 Fyrfly Wireless Planner');
+    window.location.href='mailto:hello@fyrflysystems.com?subject='+subj+'&body='+encodeURIComponent(body);
+  },800);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>20));
+
+// ── INIT ──────────────────────────────────────────────────────
+resizeCanvas();
+updateUI();
+</script>
+</body>
+</html>
