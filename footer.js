@@ -108,6 +108,8 @@
 .sft-legal{display:flex;gap:1.5rem;}
 .sft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
 .sft-legal a:hover{color:rgba(255,255,255,0.55);}
+.sft-credit{font-size:0.78rem;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;}
+.sft-credit:hover{color:rgba(255,255,255,0.55);}
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media(max-width:1100px){
@@ -236,6 +238,7 @@
     // ── Bottom bar ────────────────────────────────────────
     + '<div class="sft-bottom">'
     +   '<span class="sft-copy">&copy; ' + year + ' Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</span>'
+    +   '<a href="https://www.marketingformymates.com" class="sft-credit" target="_blank" rel="dofollow noopener">Built by marketingformymates.com</a>'
     +   '<div class="sft-legal">'
     +     '<a href="/legal.html">Privacy Policy</a>'
     +     '<a href="/legal.html#cookies">Cookie Policy</a>'
