@@ -237,7 +237,7 @@
 
     // ── Bottom bar ────────────────────────────────────────
     + '<div class="sft-bottom">'
-    +   '<span class="sft-copy">&copy; ' + year + ' Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales.</span>'
+    +   '<span class="sft-copy">&copy; ' + year + ' Fyrfly Systems Ltd. All rights reserved. Registered in England &amp; Wales. Company Number 17254230.</span>'
     +   '<a href="https://www.marketingformymates.com" class="sft-credit" target="_blank" rel="dofollow noopener">Built by marketingformymates.com</a>'
     +   '<div class="sft-legal">'
     +     '<a href="/legal.html">Privacy Policy</a>'
