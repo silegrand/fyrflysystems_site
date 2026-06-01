@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fyrfly Systems — Strategic Partnership Proposal for Kings Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:    #C8102E;
+      --orange: #E85D04;
+      --amber:  #F5A623;
+      --grad:   linear-gradient(120deg, #C8102E 0%, #E85D04 52%, #F5A623 100%);
+      --dark:   #0B0B10;
+      --char:   #13131A;
+      --panel:  #1A1A24;
+      --rule:   rgba(255,255,255,0.07);
+      --mute:   rgba(255,255,255,0.38);
+      --body:   rgba(255,255,255,0.65);
+      --white:  #FFFFFF;
+      --serif:  'Roboto', sans-serif;
+      --sans:   'DM Sans', sans-serif;
+      --r:      10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ─── GRAIN OVERLAY ────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ─── COVER ────────────────────────────────── */
+    .cover {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 3.5rem 2rem 3rem;
+      overflow: hidden;
+    }
+    .cover-orb-1 {
+      position: absolute; top: -180px; right: -160px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,16,46,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cover-orb-2 {
+      position: absolute; bottom: -220px; left: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,93,4,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cover-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.6) 0%, transparent 75%);
+    }
+
+    .cover-top {
+      position: relative; z-index: 2;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      max-width: 900px; margin: 0 auto; width: 100%;
+    }
+    .cover-from {
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .cover-from-label {
+      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mute);
+    }
+    .cover-from-name {
+      font-size: 0.95rem; font-weight: 600; color: var(--white);
+    }
+    .cover-from-url {
+      font-size: 0.8rem; font-weight: 400; color: var(--mute);
+    }
+    .cover-to {
+      text-align: right;
+    }
+    .cover-to-label {
+      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mute);
+    }
+    .cover-to-name {
+      font-size: 0.95rem; font-weight: 600; color: var(--white);
+    }
+    .cover-to-url {
+      font-size: 0.8rem; font-weight: 400; color: var(--mute);
+    }
+    .cover-divider {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto; width: 100%;
+      height: 1px; background: var(--rule); margin-top: 2rem;
+    }
+
+    .cover-body {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto; width: 100%;
+      padding: 4rem 0 2rem;
+    }
+    .cover-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--mute); margin-bottom: 2rem;
+    }
+    .cover-eyebrow-bar {
+      display: inline-block; width: 32px; height: 1.5px;
+      background: var(--grad);
+    }
+    .cover-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 900; line-height: 1.04; letter-spacing: -0.04em;
+      color: var(--white); margin-bottom: 1.8rem;
+    }
+    .cover-headline .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .cover-sub {
+      font-size: 1.1rem; font-weight: 300; color: var(--body);
+      max-width: 58ch; line-height: 1.75; margin-bottom: 3rem;
+    }
+    .cover-meta {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .meta-label {
+      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--mute);
+    }
+    .meta-value { font-size: 0.9rem; font-weight: 500; color: var(--white); }
+
+    .cover-bottom {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto; width: 100%;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .cover-confidential {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(200,16,46,0.7);
+      border: 1px solid rgba(200,16,46,0.25); border-radius: 4px;
+      padding: 0.35rem 0.75rem;
+    }
+    .cover-pg { font-size: 0.72rem; color: var(--mute); }
+
+    /* ─── SECTION FRAMEWORK ────────────────────── */
+    .section {
+      position: relative; z-index: 1;
+      padding: 5rem 0;
+      border-top: 1px solid var(--rule);
+    }
+    .section-inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .section-num {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--mute); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 1.4rem;
+    }
+    .section-intro {
+      font-size: 1rem; font-weight: 300; color: var(--body);
+      max-width: 66ch; line-height: 1.8; margin-bottom: 3rem;
+    }
+
+    /* ─── STAT ROW ─────────────────────────────── */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--rule); border-radius: var(--r);
+      overflow: hidden; margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--panel); padding: 2rem 1.75rem;
+      transition: background 0.25s;
+    }
+    .stat-cell:hover { background: #202030; }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.6rem; font-weight: 800; line-height: 1;
+      margin-bottom: 0.4rem;
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-desc { font-size: 0.82rem; font-weight: 400; color: var(--mute); line-height: 1.5; }
+
+    /* ─── PILLAR CARDS ─────────────────────────── */
+    .pillars { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border-radius: var(--r); overflow: hidden; }
+    .pillar {
+      background: var(--panel); padding: 2rem 2.25rem;
+      display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem; align-items: start;
+      transition: background 0.25s;
+    }
+    .pillar:hover { background: #202030; }
+    .pillar-icon {
+      width: 3rem; height: 3rem; border-radius: 8px;
+      background: var(--grad);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pillar-icon svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+    .pillar-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+    .pillar-desc { font-size: 0.88rem; font-weight: 300; color: var(--body); line-height: 1.7; }
+
+    /* ─── OPPORTUNITY TABLE ────────────────────── */
+    .opp-table {
+      width: 100%; border-collapse: collapse; margin-bottom: 2rem;
+      font-size: 0.88rem;
+    }
+    .opp-table th {
+      text-align: left; font-size: 0.67rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+      padding: 0 1rem 0.85rem; border-bottom: 1px solid var(--rule);
+    }
+    .opp-table td {
+      padding: 1rem 1rem; border-bottom: 1px solid var(--rule);
+      color: var(--body); font-weight: 300; vertical-align: top;
+      line-height: 1.6;
+    }
+    .opp-table td:first-child { font-weight: 500; color: var(--white); }
+    .opp-table tr:last-child td { border-bottom: none; }
+    .opp-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ─── PROPOSITION BOX ──────────────────────── */
+    .prop-box {
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: var(--r);
+      padding: 2.5rem 2.25rem;
+      margin-bottom: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .prop-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad);
+    }
+    .prop-box-title { font-size: 0.82rem; font-weight: 600; color: var(--mute); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .prop-box-text { font-size: 0.95rem; font-weight: 300; color: var(--body); line-height: 1.8; }
+    .prop-box-text strong { color: var(--white); font-weight: 500; }
+
+    /* ─── FOUNDERS ─────────────────────────────── */
+    .founders { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border-radius: var(--r); overflow: hidden; }
+    .founder { background: var(--panel); padding: 2rem 2.25rem; }
+    .founder-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .founder-role { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 1.1rem; }
+    .founder-bio { font-size: 0.87rem; font-weight: 300; color: var(--body); line-height: 1.75; }
+    .founder-creds {
+      margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.45rem;
+    }
+    .cred {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 4px;
+      padding: 0.25rem 0.6rem; color: var(--mute);
+    }
+
+    /* ─── TWO-COL ───────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border-radius: var(--r); overflow: hidden; margin-bottom: 1.5rem; }
+    .col-cell { background: var(--panel); padding: 2rem 2.25rem; }
+    .col-cell-title { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mute); margin-bottom: 1rem; }
+    .col-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .col-list li {
+      font-size: 0.87rem; font-weight: 300; color: var(--body); line-height: 1.55;
+      padding-left: 1.1rem; position: relative;
+    }
+    .col-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.55em;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--grad);
+    }
+
+    /* ─── STRUCTURED TERMS ─────────────────────── */
+    .terms-row { display: grid; grid-template-columns: 220px 1fr; gap: 0; border-bottom: 1px solid var(--rule); }
+    .terms-row:first-child { border-top: 1px solid var(--rule); }
+    .terms-key {
+      font-size: 0.82rem; font-weight: 500; color: var(--mute);
+      padding: 1.15rem 1.5rem 1.15rem 0; line-height: 1.5;
+    }
+    .terms-val {
+      font-size: 0.87rem; font-weight: 300; color: var(--body);
+      padding: 1.15rem 0; line-height: 1.6; border-left: 1px solid var(--rule);
+      padding-left: 1.5rem;
+    }
+    .terms-val strong { color: var(--white); font-weight: 500; }
+
+    /* ─── ACCENT QUOTE ─────────────────────────── */
+    .pull-quote {
+      position: relative; padding: 2.5rem 2.5rem 2.5rem 3.25rem;
+      margin: 2.5rem 0;
+    }
+    .pull-quote::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--grad); border-radius: 2px;
+    }
+    .pull-quote-text {
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 700;
+      color: var(--white); line-height: 1.5; margin-bottom: 0.85rem; letter-spacing: -0.02em;
+    }
+    .pull-quote-attr { font-size: 0.78rem; font-weight: 500; color: var(--mute); letter-spacing: 0.04em; }
+
+    /* ─── CTA SECTION ──────────────────────────── */
+    .cta-section {
+      position: relative;
+      padding: 5rem 2rem;
+      text-align: center;
+      overflow: hidden;
+      border-top: 1px solid var(--rule);
+    }
+    .cta-orb {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 700px; height: 700px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(232,93,4,0.08) 0%, transparent 65%);
+    }
+    .cta-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
+    .cta-title {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; line-height: 1.12; color: var(--white); margin-bottom: 1.2rem;
+    }
+    .cta-sub { font-size: 0.97rem; font-weight: 300; color: var(--body); line-height: 1.75; margin-bottom: 2.5rem; }
+    .cta-contacts { display: flex; flex-direction: column; gap: 0.65rem; align-items: center; }
+    .cta-contact {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 0.88rem; font-weight: 400; color: var(--body);
+    }
+    .cta-contact-name { font-weight: 600; color: var(--white); }
+    .cta-contact-link {
+      font-size: 0.82rem; color: var(--orange);
+      border-bottom: 1px solid rgba(232,93,4,0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cta-contact-link:hover { color: var(--amber); border-color: var(--amber); }
+    .cta-divider { width: 40px; height: 1px; background: var(--rule); margin: 0.35rem auto; }
+
+    /* ─── FOOTER ───────────────────────────────── */
+    .foot {
+      border-top: 1px solid var(--rule);
+      padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.75rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .foot-brand { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .foot-copy { font-size: 0.75rem; color: var(--mute); }
+    .foot-conf { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,16,46,0.55); }
+
+    /* ─── ANIMATIONS ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cover-body { animation: fadeUp 0.8s ease both 0.15s; }
+    .cover-top  { animation: fadeUp 0.6s ease both; }
+
+    /* ─── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 680px) {
+      .stat-row { grid-template-columns: 1fr; }
+      .founders { grid-template-columns: 1fr; }
+      .two-col  { grid-template-columns: 1fr; }
+      .cover-meta { gap: 1.5rem; }
+      .terms-row { grid-template-columns: 1fr; }
+      .terms-key { padding-bottom: 0; }
+      .terms-val { border-left: none; padding-left: 0; }
+      .cover { padding: 2rem 1.25rem 2rem; }
+      .cover-top { flex-direction: column; gap: 1rem; }
+      .cover-to { text-align: left; }
+    }
+
+    @media print {
+      .cover { min-height: auto; page-break-after: always; }
+      .section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-orb-1"></div>
+  <div class="cover-orb-2"></div>
+  <div class="cover-grid"></div>
+
+  <div class="cover-top">
+    <div class="cover-from">
+      <div class="cover-from-label">Submitted by</div>
+      <div class="cover-from-name">Fyrfly Systems</div>
+      <div class="cover-from-url">fyrflysystems.com</div>
+    </div>
+    <div class="cover-to">
+      <div class="cover-to-label">Submitted to</div>
+      <div class="cover-to-name">Kings Security</div>
+      <div class="cover-to-url">kingsltd.co.uk</div>
+    </div>
+  </div>
+  <div class="cover-divider"></div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">
+      <span class="cover-eyebrow-bar"></span>
+      Strategic Partnership Proposal
+    </div>
+    <h1 class="cover-headline">
+      Building the South East's<br>
+      Leading School &amp; Public<br>
+      Sector Security Business<br>
+      <span class="grad-text">Together.</span>
+    </h1>
+    <p class="cover-sub">
+      Fyrfly Systems is seeking a founding commercial partner with the infrastructure, capital, and market reach to accelerate what the founders of Sunstone Systems have built before — a specialist, technology-led security business with real IP and a clear growth thesis.
+    </p>
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Date</div>
+        <div class="meta-value">June 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Stage</div>
+        <div class="meta-value">Pre-Revenue — Partnership Launch</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Geography</div>
+        <div class="meta-value">South East England, Primary</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Focus Markets</div>
+        <div class="meta-value">Education &amp; Public Sector</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-confidential">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Commercially Confidential
+    </div>
+    <div class="cover-pg">fyrflysystems.com &nbsp;·&nbsp; hello@fyrflysystems.com</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     1. THE OPPORTUNITY
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">01 — Market Opportunity</div>
+    <h2 class="section-title">A Structural Shift<br>in School Security</h2>
+    <p class="section-intro">
+      Three converging legislative drivers are forcing every school, college, and public sector estate in England to upgrade or replace their security infrastructure by 2027. The pipeline is large, the compliance deadlines are fixed, and specialist providers are scarce.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num">24,000+</div>
+        <div class="stat-desc">State and independent schools in England requiring security review under KCSiE 2024 and Martyn's Law</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">April 2027</div>
+        <div class="stat-desc">Terrorism (Protection of Premises) Act 2025 compliance deadline — Standard Tier mandatory for venues over 200 capacity</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">£2.4bn</div>
+        <div class="stat-desc">Estimated UK public sector security systems market, growing at ~8% annually driven by legislative and cyber-physical convergence</div>
+      </div>
+    </div>
+
+    <table class="opp-table">
+      <thead>
+        <tr>
+          <th>Driver</th>
+          <th>Implication</th>
+          <th>Window</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Martyn's Law (2025 Act)</td>
+          <td>All venues &gt;200 capacity must have a documented protective security plan, designated responsible person, and rehearsed lockdown procedures. Schools are in scope from April 2027.</td>
+          <td>Now — April 2027</td>
+        </tr>
+        <tr>
+          <td>Keeping Children Safe in Education (KCSiE 2024)</td>
+          <td>Updated statutory guidance explicitly links safeguarding obligations to physical security technology, visitor management, and perimeter control — creating procurement justification at every governing body.</td>
+          <td>Ongoing, annual cycle</td>
+        </tr>
+        <tr>
+          <td>DfE Condition Improvement Fund</td>
+          <td>Capital grant funding available to maintained schools for site security improvements. Specialist suppliers on CCS frameworks can access this pipeline without open tender.</td>
+          <td>Annual rounds</td>
+        </tr>
+        <tr>
+          <td>UK GDPR / Data (Use and Access) Act 2025</td>
+          <td>Tightened requirements on CCTV data governance, retention, and DPIA documentation — schools without compliant systems face ICO enforcement risk.</td>
+          <td>Now</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pull-quote">
+      <div class="pull-quote-text">"The compliance window is not a soft suggestion. Martyn's Law creates criminal liability for responsible persons at standard-tier venues who fail to implement adequate protective measures by April 2027."</div>
+      <div class="pull-quote-attr">Terrorism (Protection of Premises) Act 2025 — Statutory Guidance Summary</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     2. WHO WE ARE
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">02 — The Founders</div>
+    <h2 class="section-title">Proven Builders.<br>Not First-Timers.</h2>
+    <p class="section-intro">
+      Fyrfly Systems is founded by Simon Legrand and Paul Schelhaas — the same team that built Sunstone Systems from zero to international acquisition. They bring granted IP, public sector relationships, and a track record of delivering bespoke technical systems at scale.
+    </p>
+
+    <div class="founders">
+      <div class="founder">
+        <div class="founder-name">Simon Legrand</div>
+        <div class="founder-role">Commercial Director &amp; Co-Founder</div>
+        <div class="founder-bio">
+          Fifteen years of direct engagement across the UK public sector — Home Office, Department for Education, Department of Health, NHS, and local authorities. MCIM. Previously Commercial Director at Sunstone Systems, where he led the public sector and education pipeline from inception through to WJ Group acquisition. Brings established relationships in Kent, London, and the wider South East public sector.
+        </div>
+        <div class="founder-creds">
+          <span class="cred">MCIM</span>
+          <span class="cred">Ex-Sunstone Systems</span>
+          <span class="cred">DoH / DfE / NHS</span>
+          <span class="cred">KCC / ECC</span>
+          <span class="cred">3× Patents</span>
+        </div>
+      </div>
+      <div class="founder">
+        <div class="founder-name">Paul Schelhaas</div>
+        <div class="founder-role">Technical Director &amp; Co-Founder</div>
+        <div class="founder-bio">
+          Lead architect of the Sunstone Systems technology platform — solar-powered surveillance, mmWave radar, acoustic AI, and IoT architecture — deployed across Chevron, Rivian Automotive, and Network Rail before acquisition by WJ Group. Holds three granted patents and a patent pending in physical security and sensor technology. Brings deep technical credibility in bespoke system design for demanding or infrastructure-poor environments.
+        </div>
+        <div class="founder-creds">
+          <span class="cred">Ex-Sunstone Systems</span>
+          <span class="cred">3× Granted Patents</span>
+          <span class="cred">mmWave / AI</span>
+          <span class="cred">Solar Systems</span>
+          <span class="cred">Chevron · Network Rail</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:2.5rem">
+      <div class="pull-quote-text">"We built Sunstone from a standing start into a business with international contracts and three granted patents, then sold it to a national infrastructure group. We know exactly what it takes to build a specialist security business — and we are doing it again, with the benefit of everything we learned."</div>
+      <div class="pull-quote-attr">Simon Legrand &amp; Paul Schelhaas, Co-Founders, Fyrfly Systems</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     3. THE PRODUCT
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">03 — What We Deliver</div>
+    <h2 class="section-title">Integrated Security,<br>Not Bolted-Together Hardware.</h2>
+    <p class="section-intro">
+      Fyrfly designs and installs unified campus security ecosystems — AI-driven CCTV, intelligent access control, and secure wireless networks operating as a single platform. One management interface, one data governance framework, one accountable contractor. Built for schools and public sector estates where safeguarding, compliance, and operational continuity are non-negotiable.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 10l-6 0M12 7l0 6"/><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21l8 0M12 17l0 4"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">AI-Driven CCTV</div>
+          <div class="pillar-desc">Edge-processed AI analytics — loitering detection, ANPR, thermal perimeter monitoring, crowd density, and behavioural anomaly — operating on 4K infrastructure with sub-500ms alert generation. All footage processing stays on-site: no cloud round-trip, no third-party data exposure. ONVIF-compliant. 31-day retention standard. ICO-ready.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Intelligent Access Control</div>
+          <div class="pillar-desc">Smart credentials (card, mobile, biometric), visitor management with pre-arrival screening, dynamic lockdown capability with single-button activation, and full Active Directory sync for staff onboarding and offboarding. Door-forced alerts auto-direct the nearest PTZ camera — one correlated event, not two separate alarms. OSDP v2. Martyn's Law compliant.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Secure Wireless Network Backbone</div>
+          <div class="pillar-desc">Dedicated security VLAN, logically separated from classroom and administrative traffic, with QoS enforcement ensuring CCTV and access control are never bandwidth-constrained by routine network use. 4G/5G failover keeps systems live during ISP outages. Encrypted mesh architecture. Device health monitoring with automated alerts.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Rapid-Deployment Solar CCTV Tower</div>
+          <div class="pillar-desc">A proprietary bespoke capability — solar-powered, self-contained surveillance towers for sites without mains infrastructure, construction phases, open grounds, or temporary deployments. Developed from the Sunstone Systems platform. No groundworks. No power supply contract. Operational within four hours. Unique in the education and public sector market.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     4. WHY KINGS
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">04 — The Partnership Case</div>
+    <h2 class="section-title">Why Kings.<br>Why Now.</h2>
+    <p class="section-intro">
+      We are not looking for a passive investor. We are looking for a partner with complementary infrastructure — ARC capacity, field engineering, and procurement framework access — who can immediately amplify what Fyrfly brings to market. Kings is the logical partner.
+    </p>
+
+    <div class="two-col">
+      <div class="col-cell">
+        <div class="col-cell-title">What Fyrfly Brings</div>
+        <ul class="col-list">
+          <li>Founders with a proven track record of building and exiting a specialist security technology business</li>
+          <li>Granted IP in mmWave radar, acoustic AI, IoT architecture, and solar-powered surveillance</li>
+          <li>Proprietary solar CCTV tower capability with no direct competitor in the education market</li>
+          <li>Public sector and education sector relationships: Kent, London, South East</li>
+          <li>Deep compliance knowledge: KCSiE, Martyn's Law, UK GDPR, DfE, NHS PLACE, CCS frameworks</li>
+          <li>NSI NACOSS Gold pathway — certification in progress</li>
+          <li>Technical architecture built for unified, integrated delivery — not assembled from separate vendor relationships</li>
+        </ul>
+      </div>
+      <div class="col-cell">
+        <div class="col-cell-title">What Kings Brings</div>
+        <ul class="col-list">
+          <li>Established ARC monitoring infrastructure — the foundation for managed service contracts from day one</li>
+          <li>Field engineering and installation capacity to scale delivery without Fyrfly carrying that overhead at launch</li>
+          <li>Existing procurement framework relationships reducing sales cycle length for public sector clients</li>
+          <li>Capital to bridge the gap between pipeline conversion and first revenue</li>
+          <li>National brand credibility that accelerates trust with risk-averse public sector buyers</li>
+          <li>Supply chain and logistics infrastructure for hardware procurement and project delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prop-box">
+      <div class="prop-box-title">The Core Proposition</div>
+      <div class="prop-box-text">
+        <strong>Fyrfly brings the market positioning, technical IP, compliance expertise, and sector relationships. Kings brings the operational infrastructure, ARC capability, and capital.</strong> Together, the combined offer can compete immediately for school and public sector security contracts that neither party could win as effectively alone — with a differentiated technical platform, a fully credentialled delivery capability, and a genuine compliance narrative at a moment when the market is compelled to buy.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     5. PROPOSED STRUCTURE
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">05 — Proposed Engagement</div>
+    <h2 class="section-title">A Structure Built<br>for Both Parties.</h2>
+    <p class="section-intro">
+      We propose a phased commercial partnership, beginning with a jointly-delivered pilot programme in Kent and the South East, with a clear framework for deepening the relationship as revenue and pipeline validate the model.
+    </p>
+
+    <div class="terms-row">
+      <div class="terms-key">Phase 1 — Pilot</div>
+      <div class="terms-val">Joint delivery of 3–5 school or public sector security projects in Kent and the South East. Fyrfly leads design, specification, and client relationship. Kings provides installation engineering and ARC integration. Revenue split to be agreed; costs shared on a project basis.</div>
+    </div>
+    <div class="terms-row">
+      <div class="terms-key">Phase 2 — Commercial Partnership</div>
+      <div class="terms-val">Formalised partnership agreement covering lead generation, pipeline sharing, and managed service contract structure. Kings ARC as the monitoring backbone for Fyrfly-specified systems. Preferred subcontractor terms for Kings engineering on Fyrfly-led projects.</div>
+    </div>
+    <div class="terms-row">
+      <div class="terms-key">Phase 3 — Equity / Deeper Structure</div>
+      <div class="terms-val">Subject to Phase 1 and 2 performance, both parties to discuss equity participation, joint venture structure, or a structured investment by Kings into Fyrfly Systems. Founders retain majority control and IP ownership throughout.</div>
+    </div>
+    <div class="terms-row">
+      <div class="terms-key">IP Ownership</div>
+      <div class="terms-val"><strong>Fyrfly retains all IP.</strong> Granted patents and proprietary platform remain with Fyrfly Systems throughout any commercial partnership. Kings benefits from exclusive or preferred access to the platform in agreed geographies.</div>
+    </div>
+    <div class="terms-row">
+      <div class="terms-key">Geography</div>
+      <div class="terms-val">Primary focus South East England — Kent, London, Surrey, Essex, Sussex. Expansion to national coverage in Phase 2 subject to capacity and mutual agreement.</div>
+    </div>
+    <div class="terms-row">
+      <div class="terms-key">Next Step</div>
+      <div class="terms-val"><strong>A 60-minute strategic conversation</strong> between the Fyrfly founders and Kings leadership to assess alignment and agree whether to proceed to a formal pilot term sheet.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     6. ACCREDITATIONS & STANDARDS
+═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-num">06 — Credentials &amp; Compliance</div>
+    <h2 class="section-title">Every Standard<br>the Market Demands.</h2>
+    <p class="section-intro">
+      Public sector procurement is won on compliance as much as capability. Fyrfly is structured from day one to achieve and maintain the full accreditation stack required for school and public sector security contracts.
+    </p>
+
+    <div class="two-col">
+      <div class="col-cell">
+        <div class="col-cell-title">Accreditations</div>
+        <ul class="col-list">
+          <li><strong>NSI NACOSS Gold</strong> — CCTV and access control design and installation (pathway in progress)</li>
+          <li><strong>SSAIB Approved</strong> — Intruder and fire systems installation</li>
+          <li><strong>BAFE SP203</strong> — Fire detection design and installation</li>
+          <li><strong>ISO 9001:2015</strong> — Quality management system</li>
+          <li><strong>Constructionline Gold</strong> — Supply chain and financial pre-qualification</li>
+          <li><strong>Crown Commercial Service (CCS)</strong> — Public sector direct award</li>
+          <li><strong>G-Cloud Framework</strong> — Digital marketplace for managed services</li>
+        </ul>
+      </div>
+      <div class="col-cell">
+        <div class="col-cell-title">Standards Compliance</div>
+        <ul class="col-list">
+          <li><strong>Martyn's Law (2025 Act)</strong> — Standard and Enhanced Tier ready</li>
+          <li><strong>KCSiE 2024</strong> — Keeping Children Safe in Education aligned</li>
+          <li><strong>UK GDPR / DPA 2018</strong> — Full compliance; DPIA templates included</li>
+          <li><strong>Data (Use and Access) Act 2025</strong> — Governance obligations aligned</li>
+          <li><strong>BS EN 62676</strong> — CCTV systems for security applications</li>
+          <li><strong>ONVIF Profile S/G/T/A/C</strong> — Open interoperability standard</li>
+          <li><strong>Surveillance Camera Code (PoFA 2012)</strong> — Public space CCTV governance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="cta-orb"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Let's Start the Conversation.</h2>
+    <p class="cta-sub">
+      We are at the beginning of building something significant. If Kings sees the same opportunity we do, we would welcome a strategic conversation at your earliest convenience.
+    </p>
+    <div class="cta-contacts">
+      <div class="cta-contact">
+        <div>
+          <span class="cta-contact-name">Simon Legrand</span> — Commercial Director<br>
+          <a href="mailto:simon@fyrflysystems.com" class="cta-contact-link">simon@fyrflysystems.com</a>
+        </div>
+      </div>
+      <div class="cta-divider"></div>
+      <div class="cta-contact">
+        <div>
+          <span class="cta-contact-name">Paul Schelhaas</span> — Technical Director<br>
+          <a href="mailto:paul@fyrflysystems.com" class="cta-contact-link">paul@fyrflysystems.com</a>
+        </div>
+      </div>
+      <div class="cta-divider"></div>
+      <div class="cta-contact">
+        <a href="https://www.fyrflysystems.com" class="cta-contact-link">www.fyrflysystems.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<div class="foot">
+  <div class="foot-brand">Fyrfly Systems</div>
+  <div class="foot-conf">Commercially Confidential — Not for Distribution</div>
+  <div class="foot-copy">© 2026 Fyrfly Systems. All rights reserved.</div>
+</div>
+
+</body>
+</html>
