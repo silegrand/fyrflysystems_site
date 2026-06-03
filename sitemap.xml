@@ -129,6 +129,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://www.fyrflysystems.com/article-martyns-law-physical-security-checklist.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://www.fyrflysystems.com/article-school-security-specification.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>yearly</changefreq>
@@ -220,6 +226,12 @@
   </url>
 
   <!-- ── ARTICLES: PUBLIC SECTOR ── -->
+  <url>
+    <loc>https://www.fyrflysystems.com/article-complete-guide-public-sector-security-2026.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.85</priority>
+  </url>
   <url>
     <loc>https://www.fyrflysystems.com/article-public-sector-security-framework.html</loc>
     <lastmod>2025-05-01</lastmod>
