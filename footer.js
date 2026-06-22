@@ -216,7 +216,7 @@
     +     '<li><a href="/invisible-shield.html">The Invisible Shield</a></li>'
     +     '<li><a href="/connected-council.html">The Connected Council</a></li>'
     +     '<li><a href="/blog.html">Articles &amp; Guides</a></li>'
-    +     '<li><a href="/index.html#about">About Fyrfly</a></li>'
+    +     '<li><a href="/about.html">About Fyrfly</a></li>'
     +   '</ul>'
     + '</div>'
 
