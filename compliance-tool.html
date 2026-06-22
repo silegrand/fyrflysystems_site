@@ -45,7 +45,7 @@
     .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
     .hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.9rem;}
     .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:50ch;}
+    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.82);line-height:1.72;max-width:50ch;}
     .standards-list{display:flex;flex-direction:column;gap:0.5rem;}
     .std-badge{display:flex;align-items:center;gap:0.65rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.65);}
     .std-badge svg{width:14px;height:14px;stroke:var(--o);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
@@ -95,9 +95,9 @@
     .score-hero{background:var(--char);border-radius:20px;padding:2.5rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden;}
     .score-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(232,93,4,0.12) 0%,transparent 65%);}
     .score-hero-c{position:relative;z-index:2;}
-    .score-label{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;}
+    .score-label{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.5rem;}
     .score-num{font-family:var(--fh);font-size:4rem;font-weight:900;line-height:1;margin-bottom:0.5rem;}
-    .score-desc{font-size:0.9rem;color:rgba(255,255,255,0.55);max-width:38ch;margin:0 auto;}
+    .score-desc{font-size:0.9rem;color:rgba(255,255,255,0.85);max-width:38ch;margin:0 auto;}
     .score-pill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;border-radius:100px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;margin-bottom:1rem;}
 
     /* RAG GRID */
@@ -144,7 +144,7 @@
     .results-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.12) 0%,transparent 65%);}
     .results-cta-c{position:relative;z-index:2;}
     .results-cta h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
-    .results-cta p{font-size:0.87rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:1.5rem;max-width:52ch;}
+    .results-cta p{font-size:0.87rem;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:1.5rem;max-width:52ch;}
     .cta-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
     .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 1.75rem;background:var(--grad);color:#fff;font-size:0.87rem;font-weight:600;border-radius:8px;border:none;transition:opacity 0.2s,transform 0.2s var(--ease);}
     .btn-p:hover{opacity:0.88;transform:translateY(-1px);}
@@ -164,16 +164,16 @@
     /* FOOTER */
     .site-footer{background:var(--dark);padding:3rem 0 1.5rem;}
     .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
-    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
-    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.65);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1rem;}
     .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
-    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.8);transition:color 0.2s;}
     .ft-links a:hover{color:rgba(255,255,255,0.8);}
     .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.5);}
     .ft-legal{display:flex;gap:1.5rem;}
-    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
-    .ft-legal a:hover{color:rgba(255,255,255,0.5);}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.5);transition:color 0.2s;}
+    .ft-legal a:hover{color:rgba(255,255,255,0.82);}
 
     @media(max-width:768px){
       
@@ -414,7 +414,7 @@
       <ul class="ft-links">
         <li><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></li>
         <li><a href="tel:+441234567890">01234 567 890</a></li>
-        <li style="color:rgba(255,255,255,0.22);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
+        <li style="color:rgba(255,255,255,0.52);font-size:0.83rem;margin-top:0.4rem">United Kingdom</li>
       </ul>
     </div>
   </div>
@@ -967,7 +967,7 @@ function downloadReport(pct) {
     '.footer{text-align:center;font-size:11px;color:#aaa;margin-top:24px;padding-top:16px;border-top:1px solid #eee;}' +
     '@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.header,.score-big,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}' +
     '</style></head><body><div class="page">' +
-    '<div class="header"><div><div class="brand">FYRFLY SYSTEMS</div><div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 4px">Security Compliance Report</div><div style="font-size:12px;color:rgba(255,255,255,0.5)">Generated ' + date + ' &bull; ' + sectorLabel + '</div></div><div class="badge">Compliance Tool</div></div>' +
+    '<div class="header"><div><div class="brand">FYRFLY SYSTEMS</div><div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 4px">Security Compliance Report</div><div style="font-size:12px;color:rgba(255,255,255,0.82)">Generated ' + date + ' &bull; ' + sectorLabel + '</div></div><div class="badge">Compliance Tool</div></div>' +
     '<div class="score-box"><div style="font-size:12px;color:#888;margin-bottom:6px">Overall Compliance Score</div><div class="score-big" style="color:' + (pct>=80?'#10B981':pct>=55?'#F59E0B':'#EF4444') + '">' + pct + '%</div><div style="font-size:13px;color:#555;margin-top:6px">' + getScoreDesc(pct, reds.length) + '</div></div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:24px;">' +
     '<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;text-align:center"><div style="font-size:28px;font-weight:900;color:#EF4444">' + reds.length + '</div><div style="font-size:11px;color:#666">Not in place</div></div>' +
