@@ -46,7 +46,7 @@
     .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
     .hero h1{font-family:var(--fh);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:0.9rem;}
     .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.5);line-height:1.72;max-width:52ch;}
+    .hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.82);line-height:1.72;max-width:52ch;}
     .hero-pills{display:flex;flex-direction:column;gap:0.5rem;min-width:220px;}
     .hero-pill{display:flex;align-items:center;gap:0.65rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.65rem 0.9rem;font-size:0.8rem;color:rgba(255,255,255,0.6);}
     .hero-pill svg{width:14px;height:14px;stroke:var(--a);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;}
@@ -102,9 +102,9 @@
     .score-header{background:var(--char);padding:1.5rem;position:relative;overflow:hidden;}
     .score-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(232,93,4,0.15) 0%,transparent 60%);}
     .score-header-c{position:relative;z-index:2;}
-    .score-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.4rem;}
+    .score-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4rem;}
     .score-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.25rem;}
-    .score-meta{font-size:0.75rem;color:rgba(255,255,255,0.4);}
+    .score-meta{font-size:0.75rem;color:rgba(255,255,255,0.75);}
     .risk-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.8rem;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-top:0.75rem;}
 
     /* STATS ROW */
@@ -170,15 +170,15 @@
     /* FOOTER */
     footer{background:var(--dark);padding:3rem 0 1.5rem;}
     .ft-grid{max-width:var(--max);margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;}
-    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
-    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;}
+    .ft-tag{font-size:0.83rem;color:rgba(255,255,255,0.65);line-height:1.65;max-width:26ch;margin-top:0.75rem;}
+    .ft-ct{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1rem;}
     .ft-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
-    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+    .ft-links a{font-size:0.85rem;color:rgba(255,255,255,0.8);transition:color 0.2s;}
     .ft-links a:hover{color:rgba(255,255,255,0.8);}
     .ft-bot{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.5);}
     .ft-legal{display:flex;gap:1.5rem;}
-    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
+    .ft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.5);transition:color 0.2s;}
 
     @media(max-width:1024px){.tool-wrap{grid-template-columns:1fr;}.results-panel{position:static;}}
     @media(max-width:768px){.hero-c{grid-template-columns:1fr;}.hero-pills{display:none;}.tool-wrap{padding:2rem 1.25rem 4rem;}.stats-row{grid-template-columns:repeat(3,1fr);}.ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}.ft-grid>div:first-child{grid-column:span 2;}.ft-grid>div:last-child{grid-column:span 2;}.ft-bot{flex-direction:column;align-items:flex-start;}.wrap{padding:0 1.25rem;}}
@@ -819,7 +819,7 @@ function downloadReport() {
     '</style></head><body><div class="page">' +
     '<div class="header"><div><div class="brand">FYRFLY SYSTEMS</div>' +
     '<div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 4px">Incident Pattern Analysis</div>' +
-    '<div style="font-size:12px;color:rgba(255,255,255,0.5)">Generated ' + date + ' &bull; ' + r.n + ' incidents analysed</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.82)">Generated ' + date + ' &bull; ' + r.n + ' incidents analysed</div>' +
     '<div style="margin-top:8px;display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;background:' + riskBg[r.risk] + ';color:' + riskColors[r.risk] + ';font-size:10px;font-weight:700;letter-spacing:0.06em">' + r.risk.toUpperCase() + ' RISK PROFILE</div>' +
     '</div><div class="badge">Pattern Analyser</div></div>' +
     '<div class="stats">' +
