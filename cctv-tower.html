@@ -1095,7 +1095,7 @@ function buildChart(weeks,towerWeekly,guardWeekly){
   for(var i=0;i<=ySteps;i++){
     var val=(maxY/ySteps)*i;
     var y=yp(val);
-    yLabels+='<line x1="'+PL+'" y1="'+y.toFixed(1)+'" x2="'+(VW-PR)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
+    yLabels+='<line x1="'+PL+'" y1="'+y.toFixed(1)+'" x2="'+(VW-PR)+'" y2="'+y.toFixed(1)+'" stroke="rgba(0,0,0,0.07)" stroke-width="1"/>';
     yLabels+='<text x="'+(PL-5)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="9" fill="rgba(0,0,0,0.4)" font-family="DM Sans,sans-serif">'+fmtK(val)+'</text>';
   }
 
@@ -1232,7 +1232,7 @@ update();
     <div class="section-head">
       <div class="sec-lbl" style="justify-content:center;margin-bottom:0.75rem;">System Configurator</div>
       <h2 style="font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--dark);letter-spacing:-0.025em;margin-bottom:0.75rem;">Build Your Tower Specification</h2>
-      <p style="font-size:0.97rem;color:rgba(255,255,255,0.8);max-width:56ch;margin:0 auto;line-height:1.72;">Select the components and capabilities you need. Your configuration builds in real time on the right. When you're done, save it as a PDF or send it directly to the Fyrfly team.</p>
+      <p style="font-size:0.97rem;color:rgba(0,0,0,0.65);max-width:56ch;margin:0 auto;line-height:1.72;">Select the components and capabilities you need. Your configuration builds in real time on the right. When you're done, save it as a PDF or send it directly to the Fyrfly team.</p>
     </div>
 
     <div class="cfg-layout">
@@ -1840,7 +1840,7 @@ window.cfgSubmitSend=function(){
     <div class="section-head">
       <div class="sec-lbl" style="justify-content:center;margin-bottom:0.75rem;">Solar Viability Tool</div>
       <h2 style="font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--dark);letter-spacing:-0.025em;margin-bottom:0.75rem;">Will It Work at Your Site?</h2>
-      <p style="font-size:0.97rem;color:rgba(255,255,255,0.8);max-width:54ch;margin:0 auto;line-height:1.72;">Enter any location in the UK or Europe. We calculate month-by-month solar production from the 800W array against the tower's actual power draw — and tell you honestly where you'll need the generator input.</p>
+      <p style="font-size:0.97rem;color:rgba(0,0,0,0.65);max-width:54ch;margin:0 auto;line-height:1.72;">Enter any location in the UK or Europe. We calculate month-by-month solar production from the 800W array against the tower's actual power draw — and tell you honestly where you'll need the generator input.</p>
     </div>
 
     <!-- INPUT BAR -->
@@ -1924,7 +1924,7 @@ window.cfgSubmitSend=function(){
 .sol-input-wrap{max-width:680px;margin:3rem auto 0;}
 .sol-input-row{display:flex;align-items:center;background:rgba(255,255,255,0.95);border:1px solid rgba(0,0,0,0.15);border-radius:12px;overflow:hidden;transition:border-color 0.2s;}
 .sol-input-row:focus-within{border-color:rgba(245,166,35,0.5);}
-.sol-input-icon{padding:0 1rem;color:rgba(255,255,255,0.65);}
+.sol-input-icon{padding:0 1rem;color:var(--a);}
 .sol-input-icon svg{width:18px;height:18px;stroke:var(--a);}
 .sol-input{flex:1;background:transparent;border:none;outline:none;color:var(--dark);font-size:0.95rem;font-family:var(--fb);padding:0.95rem 0.5rem;}
 .sol-input::placeholder{color:rgba(0,0,0,0.4);}
@@ -1941,7 +1941,7 @@ window.cfgSubmitSend=function(){
 @keyframes sol-spin{to{transform:rotate(360deg);}}
 
 /* Error */
-.sol-error{display:none;max-width:680px;margin:1.5rem auto 0;padding:1rem 1.25rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:10px;color:rgba(255,255,255,0.6);font-size:0.87rem;text-align:center;}
+.sol-error{display:none;max-width:680px;margin:1.5rem auto 0;padding:1rem 1.25px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:10px;color:rgba(200,0,0,0.8);font-size:0.87rem;text-align:center;}
 .sol-error.show{display:block;}
 
 /* Results */
@@ -1963,7 +1963,7 @@ window.cfgSubmitSend=function(){
 .sol-leg-green::before{background:#10B981;}
 .sol-leg-amber::before{background:#F5A623;}
 .sol-leg-red::before{background:#EF4444;}
-.sol-leg-line::before{background:transparent;border-top:2px dashed rgba(255,255,255,0.4);height:0;border-radius:0;width:16px;}
+.sol-leg-line::before{background:transparent;border-top:2px dashed rgba(0,0,0,0.35);height:0;border-radius:0;width:16px;}
 .sol-chart{width:100%;overflow-x:auto;}
 .sol-chart svg{min-width:480px;}
 
@@ -2016,7 +2016,7 @@ window.cfgSubmitSend=function(){
 
 /* CTA */
 .sol-cta{background:rgba(200,16,46,0.07);border:1px solid rgba(200,16,46,0.15);border-radius:14px;padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
-.sol-cta-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.sol-cta-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem;}
 .sol-cta p{font-size:0.83rem;color:rgba(0,0,0,0.65);line-height:1.6;max-width:50ch;}
 
 /* Responsive */
@@ -2132,12 +2132,12 @@ function buildChart(monthly){
   const gridSteps=[0,1,2,3,4,5,6,7].filter(v=>v<=maxY+0.5);
   gridSteps.forEach(v=>{
     const y=yp(v);
-    s+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${VW-PR}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    s+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${VW-PR}" y2="${y.toFixed(1)}" stroke="rgba(0,0,0,0.07)" stroke-width="1"/>`;
     s+=`<text x="${PL-7}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10" fill="rgba(0,0,0,0.4)" font-family="DM Sans,sans-serif">${v}</text>`;
   });
 
   // Y axis label
-  s+=`<text x="11" y="${(PT+CH/2).toFixed(1)}" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" transform="rotate(-90,11,${(PT+CH/2).toFixed(1)})">kWh / day</text>`;
+  s+=`<text x="11" y="${(PT+CH/2).toFixed(1)}" text-anchor="middle" font-size="9" fill="rgba(0,0,0,0.4)" font-family="DM Sans,sans-serif" transform="rotate(-90,11,${(PT+CH/2).toFixed(1)})">kWh / day</text>`;
 
   // Bars
   monthly.forEach((val,i)=>{
@@ -2167,12 +2167,12 @@ function buildChart(monthly){
 
   // Consumption line
   const cY=yp(DAILY_DRAW);
-  s+=`<line x1="${PL}" y1="${cY.toFixed(1)}" x2="${VW-PR}" y2="${cY.toFixed(1)}" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-dasharray="6,5"/>`;
+  s+=`<line x1="${PL}" y1="${cY.toFixed(1)}" x2="${VW-PR}" y2="${cY.toFixed(1)}" stroke="rgba(0,0,0,0.35)" stroke-width="1.5" stroke-dasharray="6,5"/>`;
   s+=`<text x="${(VW-PR+5).toFixed(1)}" y="${(cY-4).toFixed(1)}" font-size="9" fill="rgba(0,0,0,0.5)" font-family="DM Sans,sans-serif">Draw</text>`;
   s+=`<text x="${(VW-PR+5).toFixed(1)}" y="${(cY+8).toFixed(1)}" font-size="9" fill="rgba(0,0,0,0.5)" font-family="DM Sans,sans-serif">${DAILY_DRAW}kWh</text>`;
 
   // Axes
-  s+=`<line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+CH}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
+  s+=`<line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+CH}" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>`;
 
   s+='</svg>';
   return s;
