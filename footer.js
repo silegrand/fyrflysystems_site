@@ -182,6 +182,7 @@
     +     '<li><a href="/intruder-alarms.html">Intruder Alarms</a></li>'
     +     '<li><a href="/fire-systems.html">Fire Systems</a></li>'
     +     '<li><a href="/monitoring.html">24/7 Monitoring</a></li>'
+    +     '<li><a href="/maintenance.html">Maintenance</a></li>'
     +     '<li><a href="/cctv-tower.html">Solar CCTV Tower<span class="sft-badge">New</span></a></li>'
     +     '<li><a href="/ai-analytics.html">AI Analytics</a></li>'
     +   '</ul>'
