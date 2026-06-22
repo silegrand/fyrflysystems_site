@@ -40,9 +40,9 @@
     .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--a);}
 
     /* ── HERO ── */
-    .hero{min-height:100vh;background:var(--light);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+    .hero{min-height:100vh;background:var(--white);position:relative;overflow:hidden;display:flex;flex-direction:column;}
     .hero-stars{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(200,16,46,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(59,130,246,0.06) 0%,transparent 50%);}
-    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.06) 1px,transparent 1px);background-size:60px 60px;}
+    .hero-grid{display:none;}
     .hero-content{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;max-width:var(--max);margin:0 auto;padding:calc(var(--nh) + 4rem) 2rem 3rem;gap:4rem;align-items:center;width:100%;}
     .hero-text .sec-lbl{margin-bottom:1rem;}
     .hero-text h1{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:900;color:var(--dark);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.25rem;}
@@ -63,7 +63,7 @@
     #sentinel-svg{width:100%;height:100%;}
 
     /* ── CHALLENGE STRIP ── */
-    .challenge{background:#F0F0F5;padding:4rem 0;border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);}
+    .challenge{background:var(--light);padding:4rem 0;}
     .challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
     .challenge-card{background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.75rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
     .challenge-card-icon{width:44px;height:44px;border-radius:10px;background:rgba(232,93,4,0.1);border:1px solid rgba(232,93,4,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
@@ -90,7 +90,7 @@
     .cap-card p{font-size:0.82rem;color:rgba(0,0,0,0.6);line-height:1.65;}
 
     /* ── SPEC TABLE ── */
-    .specs-section{background:#F0F0F5;padding:6rem 0;}
+    .specs-section{background:var(--light);padding:6rem 0;}
     .specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
     .specs-content h2{font-family:var(--fh);font-size:clamp(1.7rem,2.5vw,2.2rem);font-weight:800;color:var(--dark);letter-spacing:-0.025em;margin-bottom:1rem;}
     .specs-content p{font-size:0.95rem;color:rgba(0,0,0,0.65);line-height:1.78;margin-bottom:1.5rem;}
@@ -103,7 +103,7 @@
     .spec-group-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);padding:1.25rem 0 0.5rem;display:block;}
 
     /* ── SECTORS ── */
-    .sectors{padding:6rem 0;background:var(--light);}
+    .sectors{padding:6rem 0;background:var(--white);}
     .sectors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3.5rem;}
     .sector-card{background:var(--white);border:1px solid rgba(0,0,0,0.09);border-radius:12px;padding:1.5rem;text-align:center;transition:all 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
     .sector-card:hover{background:rgba(232,93,4,0.07);border-color:rgba(232,93,4,0.25);transform:translateY(-3px);}
@@ -957,7 +957,7 @@
 
 <style>
 /* ── ROI CALCULATOR ───────────────────────────────────────── */
-.roi-sec{background:#F0F0F5;padding:6rem 0;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,0.08);}
+.roi-sec{background:var(--light);padding:6rem 0;position:relative;overflow:hidden;}
 .roi-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(16,185,129,0.05) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(200,16,46,0.04) 0%,transparent 50%);}
 .roi-sec .wrap{position:relative;z-index:1;}
 .roi-sec .section-head{margin-bottom:3.5rem;}
@@ -1573,7 +1573,7 @@ update();
 
 <style>
 /* ── CONFIGURATOR STYLES ──────────────────────────────────── */
-.cfg-sec{background:var(--light);padding:6rem 0;position:relative;overflow:hidden;}
+.cfg-sec{background:var(--white);padding:6rem 0;position:relative;overflow:hidden;}
 .cfg-sec-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(232,93,4,0.06) 0%,transparent 55%),radial-gradient(ellipse at 10% 80%,rgba(200,16,46,0.04) 0%,transparent 50%);}
 .cfg-sec .wrap{position:relative;z-index:1;}
 .cfg-sec .section-head{margin-bottom:3.5rem;}
@@ -1916,7 +1916,7 @@ window.cfgSubmitSend=function(){
 
 <style>
 /* ── SOLAR CALCULATOR STYLES ──────────────────────────── */
-.sol-sec{background:#F0F0F5;padding:6rem 0;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);}
+.sol-sec{background:var(--light);padding:6rem 0;position:relative;overflow:hidden;}
 .sol-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,166,35,0.05) 0%,transparent 60%),radial-gradient(ellipse at 20% 100%,rgba(200,16,46,0.04) 0%,transparent 50%);}
 .sol-sec .wrap{position:relative;z-index:1;}
 
