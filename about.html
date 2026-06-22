@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Fyrfly Systems</title>
+  <meta name="description" content="Fyrfly Systems is a specialist physical security company for schools and the public sector. Founded by practitioners with backgrounds spanning security technology, health and social care, and public sector operations.">
+  <link rel="canonical" href="https://www.fyrflysystems.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fyrfly Systems">
+  <meta property="og:url" content="https://www.fyrflysystems.com/about.html">
+  <meta property="og:title" content="About Us | Fyrfly Systems">
+  <meta property="og:description" content="Fyrfly Systems is a specialist physical security company for schools and the public sector. Founded by practitioners with backgrounds spanning security technology, health and social care, and public sector operations.">
+  <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --c: #C8102E; --o: #E85D04; --a: #F5A623;
+      --grad: linear-gradient(135deg, #C8102E 0%, #E85D04 52%, #F5A623 100%);
+      --dark: #0E0E14; --char: #1B1B24; --mid: #67677A; --mute: #9595A5;
+      --light: #F5F4F2; --bdr: #E6E5E1; --white: #FFFFFF;
+      --fh: 'Roboto', sans-serif; --fb: 'DM Sans', sans-serif;
+      --max: 1200px; --nh: 70px; --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    body { font-family: var(--fb); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      padding: calc(var(--nh) + 5rem) 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(200,16,46,0.05) 0%, transparent 55%),
+                  radial-gradient(ellipse at 10% 80%, rgba(245,166,35,0.04) 0%, transparent 50%);
+    }
+    .hero-c { position: relative; z-index: 2; max-width: 760px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(200,16,46,0.07); border: 1px solid rgba(200,16,46,0.15);
+      border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase; color: var(--c);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--fh); font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 900; line-height: 1.07; letter-spacing: -0.03em;
+      color: var(--dark); margin-bottom: 1.5rem;
+    }
+    .hero h1 .acc {
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300; color: var(--mid);
+      line-height: 1.75; max-width: 58ch;
+    }
+
+    /* ── STORY ── */
+    .story { padding: 6rem 0; background: var(--light); }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .story-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--c); margin-bottom: 1rem;
+    }
+    .story h2 {
+      font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
+      color: var(--dark); margin-bottom: 1.5rem;
+    }
+    .story p {
+      font-size: 0.97rem; color: var(--mid); line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .story p:last-child { margin-bottom: 0; }
+    .story p strong { color: var(--dark); font-weight: 500; }
+    .story-pillars {
+      display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;
+    }
+    .pillar {
+      background: var(--white); border: 1px solid var(--bdr);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .pillar-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .pillar-icon svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pillar-title { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
+    .pillar-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+
+    /* ── FOUNDER ── */
+    .founder { padding: 6rem 0; background: var(--white); }
+    .founder-grid {
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .founder-card {
+      background: var(--light); border: 1px solid var(--bdr);
+      border-radius: 16px; padding: 2rem; position: sticky; top: calc(var(--nh) + 2rem);
+    }
+    .founder-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1.25rem;
+    }
+    .founder-avatar svg { width: 36px; height: 36px; stroke: #fff; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .founder-name {
+      font-family: var(--fh); font-size: 1.25rem; font-weight: 800;
+      color: var(--dark); letter-spacing: -0.02em; margin-bottom: 0.2rem;
+    }
+    .founder-role {
+      font-size: 0.8rem; font-weight: 500; color: var(--mute);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem;
+    }
+    .founder-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .founder-tag {
+      font-size: 0.72rem; font-weight: 500; color: var(--mid);
+      padding: 0.3rem 0.75rem; border: 1px solid var(--bdr);
+      border-radius: 100px; background: var(--white);
+    }
+    .founder-li {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 500; color: var(--c);
+      padding: 0.5rem 0.9rem; border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 8px; background: rgba(200,16,46,0.04);
+      transition: background 0.2s;
+    }
+    .founder-li:hover { background: rgba(200,16,46,0.08); }
+    .founder-li svg { width: 14px; height: 14px; }
+    .founder-bio h2 {
+      font-family: var(--fh); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
+      color: var(--dark); margin-bottom: 0.5rem;
+    }
+    .founder-bio .sub {
+      font-size: 0.85rem; color: var(--mute); margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .founder-bio p {
+      font-size: 0.97rem; color: var(--mid); line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .founder-bio p strong { color: var(--dark); font-weight: 500; }
+    .founder-bio p:last-child { margin-bottom: 0; }
+    .bio-highlights {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; margin: 2rem 0;
+    }
+    .bio-hl {
+      background: var(--light); border: 1px solid var(--bdr);
+      border-radius: 10px; padding: 1rem 1.25rem;
+    }
+    .bio-hl-num {
+      font-family: var(--fh); font-size: 1.3rem; font-weight: 900;
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; margin-bottom: 0.25rem;
+    }
+    .bio-hl-label { font-size: 0.78rem; color: var(--mid); line-height: 1.4; }
+
+    /* ── TEAM ── */
+    .team { padding: 6rem 0; background: var(--light); }
+    .team-intro { max-width: 640px; margin-bottom: 3.5rem; }
+    .team-intro h2 {
+      font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
+      color: var(--dark); margin-bottom: 0.85rem;
+    }
+    .team-intro p { font-size: 0.97rem; color: var(--mid); line-height: 1.75; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .team-card {
+      background: var(--white); border: 1px solid var(--bdr);
+      border-radius: 14px; padding: 1.75rem; transition: border-color 0.2s, transform 0.2s var(--ease);
+    }
+    .team-card:hover { border-color: rgba(200,16,46,0.2); transform: translateY(-3px); }
+    .team-disc {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1rem;
+    }
+    .team-disc svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .team-name { font-family: var(--fh); font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.75rem; font-weight: 500; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.85rem; }
+    .team-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+
+    /* ── VALUES ── */
+    .values { padding: 6rem 0; background: var(--white); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .value-card {
+      border-top: 3px solid transparent;
+      border-image: var(--grad) 1;
+      padding: 1.75rem 0 0;
+    }
+    .value-n {
+      font-family: var(--fh); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--c);
+      margin-bottom: 0.5rem;
+    }
+    .value-t { font-family: var(--fh); font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.65rem; }
+    .value-d { font-size: 0.87rem; color: var(--mid); line-height: 1.72; }
+
+    /* ── CTA ── */
+    .cta-ban { position: relative; background: var(--char); padding: 6rem 0; text-align: center; overflow: hidden; }
+    .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(232,93,4,0.12) 0%, transparent 65%); }
+    .cta-c { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; padding: 0 2rem; }
+    .sec-lbl { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--a); margin-bottom: 1rem; }
+    .cta-c h2 { font-family: var(--fh); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--white); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.1rem; }
+    .cta-c p { font-size: 0.97rem; color: rgba(255,255,255,0.82); line-height: 1.72; margin-bottom: 2.4rem; font-weight: 300; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+    .btn-p { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--grad); color: #fff; font-size: 0.88rem; font-weight: 600; border-radius: 8px; transition: opacity 0.2s, transform 0.2s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 500; border-radius: 8px; transition: background 0.2s; }
+    .btn-g:hover { background: rgba(255,255,255,0.14); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .founder-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .founder-card { position: static; }
+      .story-grid { gap: 3rem; }
+    }
+    @media (max-width: 820px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .bio-highlights { grid-template-columns: 1fr 1fr; }
+      .wrap { padding: 0 1.5rem; }
+      .hero { padding: calc(var(--nh) + 3.5rem) 0 3.5rem; }
+      .story, .founder, .team, .values { padding: 4rem 0; }
+    }
+    @media (max-width: 500px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .bio-highlights { grid-template-columns: 1fr; }
+      .wrap { padding: 0 1.25rem; }
+      .cta-btns { flex-direction: column; align-items: stretch; }
+      .cta-btns a { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-c">
+      <div class="hero-tag">About Fyrfly Systems</div>
+      <h1>Security expertise built on<br><span class="acc">sector experience</span></h1>
+      <p class="hero-sub">We are a specialist physical security company focused exclusively on schools and the public sector. Not a generalist contractor who occasionally works in education — a team built around it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── STORY ─────────────────────────────────────────────── -->
+<section class="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div>
+        <div class="story-label">Why We Exist</div>
+        <h2>The public sector deserves better than it typically gets</h2>
+        <p>Most security companies treat schools and councils as interchangeable with warehouses and retail parks. The procurement language might change, but the approach doesn't. Systems get installed to a price, not a standard. Documentation gets filed rather than used. And when something goes wrong, the finger-pointing starts.</p>
+        <p>Fyrfly was founded because that is not good enough. Schools have specific obligations under DfE guidance, KCSiE and Martyn's Law. NHS estates carry real safeguarding risk. Councils operate under public accountability in a way that private clients simply don't.</p>
+        <p><strong>Every decision we make is filtered through a single question: would a governor, a head teacher, or a procurement officer be comfortable explaining this choice?</strong> If the answer is no, we don't do it.</p>
+      </div>
+      <div class="story-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="pillar-title">Sector-only focus</div>
+            <div class="pillar-desc">We work exclusively with education and public sector clients. That focus means our design standards, documentation, and compliance knowledge are built for your environment, not adapted from somewhere else.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="pillar-title">Documentation that holds up</div>
+            <div class="pillar-desc">Every installation produces a complete paper trail — design drawings, commissioning records, handover packs, and maintenance logs. Because what you can't evidence didn't happen.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="pillar-title">Honest timelines and pricing</div>
+            <div class="pillar-desc">We don't win work by underquoting and recovering costs through variations. Scope, price, and timeline are fixed at the start, and changes are handled transparently.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="pillar-title">One team, not a sub-contractor chain</div>
+            <div class="pillar-desc">The people who survey your site are the people who design your system and oversee its installation. Accountability stays in one place throughout.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ────────────────────────────────────────────── -->
+<section class="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-card">
+        <div class="founder-avatar">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="founder-name">Simon Legrand</div>
+        <div class="founder-role">Co-Founder &amp; Director</div>
+        <div class="founder-tags">
+          <span class="founder-tag">MCIM Chartered Marketer</span>
+          <span class="founder-tag">Security Technology</span>
+          <span class="founder-tag">Health &amp; Social Care</span>
+          <span class="founder-tag">Patent Inventor</span>
+          <span class="founder-tag">Public Sector</span>
+        </div>
+        <a href="https://www.linkedin.com/in/-simonlegrand-/" target="_blank" rel="noopener" class="founder-li">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn Profile
+        </a>
+      </div>
+
+      <div class="founder-bio">
+        <div class="story-label">Founder</div>
+        <h2>From the field, not the boardroom</h2>
+        <p class="sub">A background built on doing the work, not just commissioning it</p>
+
+        <p>Simon co-founded Fyrfly Systems after more than a decade working at the intersection of technology, security, and public sector operations. His career spans hands-on security system design and installation, senior roles in health and social care, and the founding and development of technology companies — including <strong>Sunstone IP Systems</strong>, a solar-powered surveillance and communications business that deployed systems across demanding international environments including energy infrastructure in Central Asia.</p>
+
+        <div class="bio-highlights">
+          <div class="bio-hl">
+            <div class="bio-hl-num">MCIM</div>
+            <div class="bio-hl-label">Chartered Institute of Marketing — Chartered Marketer status</div>
+          </div>
+          <div class="bio-hl">
+            <div class="bio-hl-num">Patent</div>
+            <div class="bio-hl-label">Named inventor on security technology patent</div>
+          </div>
+          <div class="bio-hl">
+            <div class="bio-hl-num">Multi</div>
+            <div class="bio-hl-label">Sector background spanning security, health, social care and technology</div>
+          </div>
+          <div class="bio-hl">
+            <div class="bio-hl-num">Founder</div>
+            <div class="bio-hl-label">Serial founder with experience scaling specialist technology businesses</div>
+          </div>
+        </div>
+
+        <p>That breadth is deliberate. Security systems in schools and public buildings sit at the meeting point of technical specification, safeguarding obligations, procurement rules, and operational reality. Understanding all of those — not just the technical piece — is what separates a system that works from one that creates problems down the line.</p>
+
+        <p>Simon holds <strong>Chartered Marketer status</strong> with the Chartered Institute of Marketing — an unusual credential for a security founder, but one that reflects a consistent belief that how you communicate risk, compliance, and value to governors, procurement officers, and senior leadership matters as much as the quality of the physical installation itself.</p>
+
+        <p>Fyrfly was built on the principle that the public sector is underserved by the mainstream security industry — and that fixing that requires people who understand the sector from the inside, not companies that have bolted on an education division as a growth strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ───────────────────────────────────────────────── -->
+<section class="team">
+  <div class="wrap">
+    <div class="team-intro">
+      <div class="story-label">The Team</div>
+      <h2>Specialists, not generalists</h2>
+      <p>Behind every Fyrfly project is a team of practitioners with deep experience in their specific discipline. We do not use generalist engineers who rotate across different sectors — each member of the team has built their career in physical security, networking, or public sector operations.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div class="team-name">CCTV &amp; AI Analytics</div>
+        <div class="team-role">Surveillance Design</div>
+        <div class="team-desc">Camera placement, evidential image quality, UK GDPR compliance, and AI-assisted analytics configuration across HD, 4K, and thermal imaging platforms. Experienced with single-site schools through to multi-building MAT estates.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div class="team-name">Access Control</div>
+        <div class="team-role">Door &amp; Entry Systems</div>
+        <div class="team-desc">Role-based access design, DBS-aware visitor management, video door entry, and multi-site estate control. KCSiE-aligned from the ground up, with fire-safe hardware selection and full audit trail configuration.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="team-name">Intruder Alarms</div>
+        <div class="team-role">Detection Systems</div>
+        <div class="team-desc">Grade 2 and Grade 3 intruder alarm design to BS 8243, dual-path signalling, and connection to independently approved Alarm Receiving Centres. Zone design built around the operational reality of part-occupied buildings and out-of-hours lettings.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
+        </div>
+        <div class="team-name">Fire Detection Systems</div>
+        <div class="team-role">Fire Alarm Design</div>
+        <div class="team-desc">Addressable fire alarm design and installation to BS 5839-1, with phased evacuation configuration for complex school buildings, Category L1/L2/M system selection, and fully documented commissioning records for the Responsible Person.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49m-8.48-.01a6 6 0 010-8.49m11.31-2.82a10 10 0 010 14.14m-14.14 0a10 10 0 010-14.14"/></svg>
+        </div>
+        <div class="team-name">Wireless Networks</div>
+        <div class="team-role">Infrastructure &amp; Connectivity</div>
+        <div class="team-desc">Campus-wide Wi-Fi design, fibre and structured cabling, and the network infrastructure that security systems depend on. Experience with challenging school buildings — listed structures, multi-storey blocks, and temporary accommodation.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-disc">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="team-name">24/7 Monitoring</div>
+        <div class="team-role">ARC &amp; Remote Response</div>
+        <div class="team-desc">Intruder, fire, and CCTV monitoring via independently approved Alarm Receiving Centres, with keyholder management, police response coordination, and detailed activation reporting. Lone worker monitoring for estate and facilities staff.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ─────────────────────────────────────────────── -->
+<section class="values">
+  <div class="wrap">
+    <div class="story-label">How We Work</div>
+    <h2 style="font-family:var(--fh);font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800;line-height:1.12;letter-spacing:-0.025em;color:var(--dark);max-width:560px;">Six things that are non-negotiable on every project</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-n">01</div>
+        <div class="value-t">No cold-selling to your staff</div>
+        <div class="value-d">We don't turn maintenance visits into upsell opportunities. If something needs attention, we flag it clearly and in writing. If it doesn't, we say so.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-n">02</div>
+        <div class="value-t">Compliance language that means something</div>
+        <div class="value-d">DfE, KCSiE, Martyn's Law, UK GDPR — we know what these require in practice, not just what they say on paper. Our designs are built to satisfy them, not just reference them.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-n">03</div>
+        <div class="value-t">Procurement transparency</div>
+        <div class="value-d">Specifications, pricing, and variations are documented clearly at every stage. We will never quote one thing and install another, or allow scope creep to appear silently on an invoice.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-n">04</div>
+        <div class="value-t">Handover that actually transfers knowledge</div>
+        <div class="value-d">Staff training is included as standard, not an add-on. When we leave a site, the people responsible for the building understand how to use what we've installed.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-n">05</div>
+        <div class="value-t">Long-term service relationships</div>
+        <div class="value-d">We design systems we're prepared to maintain for a decade. That changes how we specify equipment, how we document our work, and how we approach every installation decision.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-n">06</div>
+        <div class="value-t">Direct access to decision-makers</div>
+        <div class="value-d">Our clients deal directly with the people who hold technical and commercial accountability for their project. Not account managers. Not call centres. The people responsible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-ban" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-c">
+    <div class="sec-lbl" style="justify-content:center;color:rgba(255,255,255,0.7);margin-bottom:0.75rem;">Get in Touch</div>
+    <h2>Talk to us about your site</h2>
+    <p>Whether you're starting from scratch, replacing an existing system, or looking for a maintenance partner you can trust — we're happy to start with a conversation, not a quote.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Email Us →</a>
+      <a href="tel:+441234567890" class="btn-g">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="/nav.js"></script>
+<script src="/footer.js"></script>
+
+</body>
+</html>
