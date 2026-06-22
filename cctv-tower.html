@@ -372,17 +372,17 @@
       <svg id="sentinel-svg" viewBox="0 0 440 520" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0A1628"/>
-            <stop offset="70%" stop-color="#0D1A2E"/>
-            <stop offset="100%" stop-color="#0E2010"/>
+            <stop offset="0%" stop-color="#D6E8F5"/>
+            <stop offset="70%" stop-color="#E8F3F8"/>
+            <stop offset="100%" stop-color="#D4E8D0"/>
           </linearGradient>
           <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1C2A14"/>
-            <stop offset="100%" stop-color="#0A0F08"/>
+            <stop offset="0%" stop-color="#7AAD5A"/>
+            <stop offset="100%" stop-color="#4A7A30"/>
           </linearGradient>
           <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#1A2640"/>
-            <stop offset="100%" stop-color="#0E1825"/>
+            <stop offset="0%" stop-color="#3A5880"/>
+            <stop offset="100%" stop-color="#2A4468"/>
           </linearGradient>
           <linearGradient id="panelShine" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#F5A623" stop-opacity="0.0"/>
@@ -391,13 +391,13 @@
             <stop offset="100%" stop-color="#F5A623" stop-opacity="0.0"/>
           </linearGradient>
           <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#2A3530"/>
-            <stop offset="100%" stop-color="#1A2520"/>
+            <stop offset="0%" stop-color="#7A8E80"/>
+            <stop offset="100%" stop-color="#5A6E60"/>
           </linearGradient>
           <linearGradient id="mastGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#2A3A30"/>
-            <stop offset="50%" stop-color="#3A5040"/>
-            <stop offset="100%" stop-color="#2A3A30"/>
+            <stop offset="0%" stop-color="#8A9E90"/>
+            <stop offset="50%" stop-color="#B0C4B4"/>
+            <stop offset="100%" stop-color="#8A9E90"/>
           </linearGradient>
           <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.9"/>
@@ -405,8 +405,8 @@
             <stop offset="100%" stop-color="#F5A623" stop-opacity="0"/>
           </radialGradient>
           <radialGradient id="domeGlow" cx="30%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#4A6060"/>
-            <stop offset="100%" stop-color="#1A2A2A"/>
+            <stop offset="0%" stop-color="#C8D8DC"/>
+            <stop offset="100%" stop-color="#8AACB4"/>
           </radialGradient>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -419,7 +419,7 @@
           <clipPath id="skyClip"><rect x="0" y="0" width="440" height="420"/></clipPath>
         </defs>
         <rect width="440" height="520" fill="url(#skyGrad)"/>
-        <g opacity="0.7">
+        <g opacity="0">
           <circle cx="35" cy="25" r="1" fill="white" opacity="0.6"/>
           <circle cx="85" cy="55" r="1.2" fill="white" opacity="0.5"/>
           <circle cx="150" cy="18" r="0.8" fill="white" opacity="0.7"/>
@@ -445,9 +445,9 @@
           </g>
         </g>
         <path d="M0 400 Q110 385 220 392 Q330 385 440 395 L440 520 L0 520 Z" fill="url(#groundGrad)"/>
-        <path d="M0 415 Q50 408 100 412 Q160 405 220 410 Q290 403 360 408 Q400 405 440 410" stroke="#1E3018" stroke-width="2" fill="none" opacity="0.6"/>
-        <path d="M0 425 Q60 420 120 422 Q190 418 250 421 Q320 416 390 420 L440 418" stroke="#182810" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <g opacity="0.25" fill="#1A3018">
+        <path d="M0 415 Q50 408 100 412 Q160 405 220 410 Q290 403 360 408 Q400 405 440 410" stroke="#5A8040" stroke-width="2" fill="none" opacity="0.6"/>
+        <path d="M0 425 Q60 420 120 422 Q190 418 250 421 Q320 416 390 420 L440 418" stroke="#4A6830" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <g opacity="0.6" fill="#3A6828">
           <ellipse cx="30" cy="390" rx="22" ry="14"/>
           <ellipse cx="65" cy="386" rx="18" ry="16"/>
           <ellipse cx="95" cy="388" rx="16" ry="12"/>
@@ -456,7 +456,7 @@
           <ellipse cx="400" cy="388" rx="18" ry="13"/>
           <ellipse cx="430" cy="390" rx="15" ry="11"/>
         </g>
-        <ellipse cx="220" cy="415" rx="95" ry="8" fill="black" opacity="0.3"/>
+        <ellipse cx="220" cy="415" rx="95" ry="8" fill="#2A4020" opacity="0.2"/>
         <g fill="#F5A623" stroke="#D4861A" stroke-width="0.8">
           <rect x="115" y="400" width="12" height="14" rx="2"/>
           <rect x="105" y="408" width="32" height="6" rx="2"/>
@@ -465,9 +465,9 @@
           <rect x="118" y="405" width="204" height="5" rx="2"/>
         </g>
         <g>
-          <rect x="128" y="340" width="184" height="68" rx="4" fill="url(#baseGrad)" stroke="#3A5040" stroke-width="1.2"/>
-          <rect x="128" y="340" width="184" height="4" rx="2" fill="#3A5040" opacity="0.8"/>
-          <line x1="220" y1="342" x2="220" y2="406" stroke="#2A3A30" stroke-width="1" opacity="0.6"/>
+          <rect x="128" y="340" width="184" height="68" rx="4" fill="url(#baseGrad)" stroke="#8AAA90" stroke-width="1.2"/>
+          <rect x="128" y="340" width="184" height="4" rx="2" fill="#8AAA90" opacity="0.8"/>
+          <line x1="220" y1="342" x2="220" y2="406" stroke="#8A9E90" stroke-width="1" opacity="0.6"/>
           <g stroke="#2A3A30" stroke-width="0.7" fill="rgba(0,0,0,0.2)">
             <rect x="136" y="352" width="30" height="16" rx="2"/>
             <line x1="140" y1="354" x2="140" y2="366"/><line x1="144" y1="354" x2="144" y2="366"/>
@@ -486,31 +486,31 @@
           <circle cx="183" cy="375" r="3" fill="#F5A623" filter="url(#glow)">
             <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3.1s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="215" cy="375" r="3.5" fill="#2A3A30" stroke="#3A5040" stroke-width="0.8"/>
-          <circle cx="225" cy="375" r="3.5" fill="#2A3A30" stroke="#3A5040" stroke-width="0.8"/>
+          <circle cx="215" cy="375" r="3.5" fill="#7A9080" stroke="#9AB0A0" stroke-width="0.8"/>
+          <circle cx="225" cy="375" r="3.5" fill="#7A9080" stroke="#9AB0A0" stroke-width="0.8"/>
         </g>
-        <rect x="130" y="235" width="180" height="108" rx="3" fill="#1A1A1A" stroke="#333" stroke-width="1.5"/>
+        <rect x="130" y="235" width="180" height="108" rx="3" fill="#4A5A50" stroke="#6A7A70" stroke-width="1.5"/>
         <rect x="133" y="238" width="86" height="50" rx="2" fill="url(#panelGrad)" stroke="#243045" stroke-width="0.8"/>
         <rect x="221" y="238" width="86" height="50" rx="2" fill="url(#panelGrad)" stroke="#243045" stroke-width="0.8"/>
         <rect x="133" y="290" width="86" height="50" rx="2" fill="url(#panelGrad)" stroke="#243045" stroke-width="0.8"/>
         <rect x="221" y="290" width="86" height="50" rx="2" fill="url(#panelGrad)" stroke="#243045" stroke-width="0.8"/>
-        <g stroke="#2A3A55" stroke-width="0.5" opacity="0.8">
+        <g stroke="#7A9AB8" stroke-width="0.5" opacity="0.8">
           <line x1="162" y1="238" x2="162" y2="288"/><line x1="191" y1="238" x2="191" y2="288"/>
           <line x1="133" y1="255" x2="219" y2="255"/><line x1="133" y1="272" x2="219" y2="272"/>
         </g>
-        <g stroke="#2A3A55" stroke-width="0.5" opacity="0.8">
+        <g stroke="#7A9AB8" stroke-width="0.5" opacity="0.8">
           <line x1="250" y1="238" x2="250" y2="288"/><line x1="279" y1="238" x2="279" y2="288"/>
           <line x1="221" y1="255" x2="307" y2="255"/><line x1="221" y1="272" x2="307" y2="272"/>
         </g>
-        <g stroke="#2A3A55" stroke-width="0.5" opacity="0.8">
+        <g stroke="#7A9AB8" stroke-width="0.5" opacity="0.8">
           <line x1="162" y1="290" x2="162" y2="340"/><line x1="191" y1="290" x2="191" y2="340"/>
           <line x1="133" y1="307" x2="219" y2="307"/><line x1="133" y1="324" x2="219" y2="324"/>
         </g>
-        <g stroke="#2A3A55" stroke-width="0.5" opacity="0.8">
+        <g stroke="#7A9AB8" stroke-width="0.5" opacity="0.8">
           <line x1="250" y1="290" x2="250" y2="340"/><line x1="279" y1="290" x2="279" y2="340"/>
           <line x1="221" y1="307" x2="307" y2="307"/><line x1="221" y1="324" x2="307" y2="324"/>
         </g>
-        <g stroke="#3A5080" stroke-width="0.4" opacity="0.5">
+        <g stroke="#8AAECC" stroke-width="0.4" opacity="0.5">
           <line x1="148" y1="238" x2="148" y2="288"/><line x1="177" y1="238" x2="177" y2="288"/><line x1="206" y1="238" x2="206" y2="288"/>
           <line x1="236" y1="238" x2="236" y2="288"/><line x1="265" y1="238" x2="265" y2="288"/><line x1="294" y1="238" x2="294" y2="288"/>
           <line x1="148" y1="290" x2="148" y2="340"/><line x1="177" y1="290" x2="177" y2="340"/><line x1="206" y1="290" x2="206" y2="340"/>
@@ -523,11 +523,11 @@
         <ellipse cx="155" cy="248" rx="12" ry="6" fill="white" opacity="0" transform="rotate(-20,155,248)">
           <animate attributeName="opacity" values="0;0.06;0.1;0.06;0" dur="5s" repeatCount="indefinite"/>
         </ellipse>
-        <rect x="130" y="287" width="180" height="5" rx="1" fill="#1E2820" stroke="#2A3830" stroke-width="0.6"/>
-        <rect x="217" y="235" width="6" height="108" rx="1" fill="#1E2820" stroke="#2A3830" stroke-width="0.6"/>
+        <rect x="130" y="287" width="180" height="5" rx="1" fill="#5A6A60" stroke="#7A8A78" stroke-width="0.6"/>
+        <rect x="217" y="235" width="6" height="108" rx="1" fill="#5A6A60" stroke="#7A8A78" stroke-width="0.6"/>
         <rect x="215" y="80" width="5" height="158" rx="1" fill="url(#mastGrad)" stroke="#3A5040" stroke-width="0.6"/>
         <rect x="220" y="80" width="5" height="158" rx="1" fill="url(#mastGrad)" stroke="#3A5040" stroke-width="0.6"/>
-        <g stroke="#2E4035" stroke-width="1.2" opacity="0.9">
+        <g stroke="#6A8070" stroke-width="1.2" opacity="0.9">
           <line x1="215" y1="90" x2="225" y2="102"/><line x1="225" y1="90" x2="215" y2="102"/>
           <line x1="215" y1="102" x2="225" y2="114"/><line x1="225" y1="102" x2="215" y2="114"/>
           <line x1="215" y1="114" x2="225" y2="126"/><line x1="225" y1="114" x2="215" y2="126"/>
@@ -541,7 +541,7 @@
           <line x1="215" y1="210" x2="225" y2="222"/><line x1="225" y1="210" x2="215" y2="222"/>
           <line x1="215" y1="222" x2="225" y2="234"/><line x1="225" y1="222" x2="215" y2="234"/>
         </g>
-        <g fill="#2A3A30" stroke="#3A5040" stroke-width="0.6">
+        <g fill="#8A9E90" stroke="#AAB8A8" stroke-width="0.6">
           <rect x="212" y="105" width="16" height="3" rx="1"/>
           <rect x="212" y="130" width="16" height="3" rx="1"/>
           <rect x="212" y="155" width="16" height="3" rx="1"/>
@@ -549,17 +549,17 @@
           <rect x="212" y="205" width="16" height="3" rx="1"/>
           <rect x="212" y="230" width="16" height="3" rx="1"/>
         </g>
-        <rect x="208" y="232" width="24" height="8" rx="2" fill="#2A3530" stroke="#3A4540" stroke-width="0.8"/>
-        <rect x="212" y="70" width="16" height="12" rx="3" fill="#2A3530" stroke="#3A4540" stroke-width="0.8"/>
-        <circle cx="220" cy="58" r="18" fill="url(#domeGlow)" stroke="#3A5050" stroke-width="1.2"/>
-        <path d="M202,58 Q202,76 220,76 Q238,76 238,58 Z" fill="#0A1818" opacity="0.7"/>
+        <rect x="208" y="232" width="24" height="8" rx="2" fill="#7A8880" stroke="#9AA8A0" stroke-width="0.8"/>
+        <rect x="212" y="70" width="16" height="12" rx="3" fill="#7A8880" stroke="#9AA8A0" stroke-width="0.8"/>
+        <circle cx="220" cy="58" r="18" fill="url(#domeGlow)" stroke="#9ABAC4" stroke-width="1.2"/>
+        <path d="M202,58 Q202,76 220,76 Q238,76 238,58 Z" fill="#6A9AA8" opacity="0.5"/>
         <ellipse cx="213" cy="50" rx="6" ry="4" fill="white" opacity="0.12" transform="rotate(-20,213,50)"/>
         <circle cx="220" cy="58" r="20" fill="none" stroke="#C8102E" stroke-width="0.8" opacity="0.4">
           <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
         </circle>
         <rect x="218" y="75" width="4" height="7" fill="#2A3530"/>
-        <rect x="227" y="88" width="2.5" height="30" rx="1" fill="#3A4840" stroke="#4A5850" stroke-width="0.4"/>
-        <rect x="224" y="88" width="9" height="3" rx="1" fill="#2A3830"/>
+        <rect x="227" y="88" width="2.5" height="30" rx="1" fill="#8A9890" stroke="#AAACA8" stroke-width="0.4"/>
+        <rect x="224" y="88" width="9" height="3" rx="1" fill="#7A8880"/>
         <g stroke="#3B82F6" fill="none" opacity="0">
           <path d="M232,95 Q245,85 245,72 Q245,59 232,49" stroke-width="1.5">
             <animate attributeName="opacity" values="0;0.6;0" dur="2s" repeatCount="indefinite"/>
@@ -593,8 +593,8 @@
           <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
         </circle>
         <g transform="translate(42,20)">
-          <rect x="-20" y="-12" width="40" height="28" rx="4" fill="#0E1A2E" stroke="#1E3A5E" stroke-width="1"/>
-          <rect x="-16" y="-8" width="32" height="18" rx="2" fill="#080F1A"/>
+          <rect x="-20" y="-12" width="40" height="28" rx="4" fill="#D8E8F5" stroke="#6A9AC8" stroke-width="1"/>
+          <rect x="-16" y="-8" width="32" height="18" rx="2" fill="#B0CCDD"/>
           <line x1="-12" y1="-3" x2="12" y2="-3" stroke="#3B82F6" stroke-width="1.2" opacity="0.7"/>
           <line x1="-12" y1="1" x2="7" y2="1" stroke="#3B82F6" stroke-width="1" opacity="0.5"/>
           <line x1="-12" y1="5" x2="9" y2="5" stroke="#10B981" stroke-width="1" opacity="0.6"/>
@@ -635,8 +635,8 @@
           <rect x="12" y="-2" width="2.5" height="4" rx="0.8" fill="#3A5040"/>
         </g>
         <g transform="translate(90,430)">
-          <rect x="-22" y="-10" width="44" height="20" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <text x="0" y="4" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial" font-weight="bold">IP66</text>
+          <rect x="-22" y="-10" width="44" height="20" rx="4" fill="rgba(100,130,100,0.15)" stroke="rgba(80,110,80,0.5)" stroke-width="0.8"/>
+          <text x="0" y="4" text-anchor="middle" font-size="9" fill="rgba(30,60,30,0.8)" font-family="Arial" font-weight="bold">IP66</text>
         </g>
       </svg>
     </div>
