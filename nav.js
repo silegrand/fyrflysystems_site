@@ -162,7 +162,7 @@
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
     <span class="mob-sub">Company</span>
-    <a href="index.html#about">About Us</a>
+    <a href="about.html">About Us</a>
     <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
   </div>
 </div>`;
@@ -262,7 +262,7 @@
       </li>
 
       <li><a href="blog.html"${isActive('blog.html')}>Insights</a></li>
-      <li><a href="index.html#about">About</a></li>
+      <li><a href="about.html"${isActive('about.html')}>About</a></li>
 
     </ul>
     <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
