@@ -1121,7 +1121,7 @@ function savePDF() {
   doc.rect(0, PH - FTR, PW, FTR, 'F');
   doc.setTextColor(180, 180, 190);
   doc.setFont('helvetica', 'normal'); doc.setFontSize(7);
-  doc.text('Fyrfly Systems Ltd  |  NSI NACOSS Gold  |  SSAIB Approved  |  ISO 9001:2015', MARGIN, PH - 4);
+  doc.text('Fyrfly Systems Ltd  |  Sector Specialists &bull; BS EN Standards &bull; UK GDPR Compliant &bull; DfE Aligned &bull; KCSiE Aligned &bull; Martyn\u2019s Law Ready
   doc.text('This document is produced as a preliminary requirement summary only and does not constitute a formal quotation.', PW - MARGIN, PH - 4, { align: 'right' });
 
   doc.save('Fyrfly-Site-Requirements-' + new Date().toISOString().slice(0, 10) + '.pdf');
