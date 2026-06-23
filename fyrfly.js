@@ -1143,7 +1143,7 @@
 
   // ── CSS ────────────────────────────────────────────────────
   var css = `
-.site-footer{background:#0E0E14;padding:4rem 0 0;font-family:'DM Sans',sans-serif;}
+.site-footer{background:#0E0E14;padding:4rem 0 0;font-family:'DM Sans',sans-serif;color:rgba(255,255,255,0.65);}
 .site-footer *{box-sizing:border-box;margin:0;padding:0;}
 .site-footer a{text-decoration:none;color:inherit;}
 
