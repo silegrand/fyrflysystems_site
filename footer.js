@@ -75,7 +75,7 @@
 
 /* Contact items */
 .sft-contact-item{
-  font-size:0.85rem;color:rgba(255,255,255,0.85);
+  font-size:0.85rem;color:rgba(255,255,255,0.35);
   margin-bottom:0.55rem;display:block;transition:color 0.2s;
 }
 .sft-contact-item:hover{color:#fff;}
