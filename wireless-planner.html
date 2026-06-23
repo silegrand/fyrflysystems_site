@@ -1039,7 +1039,7 @@ function savePDF() {
   // Footer
   doc.setFillColor(13,14,48); doc.rect(0,PH-FTR,PW,FTR,'F');
   doc.setTextColor(180,180,200); doc.setFont('helvetica','normal'); doc.setFontSize(7);
-  doc.text('Fyrfly Systems Ltd  |  NSI NACOSS Gold  |  hello@fyrflysystems.com',M,PH-4);
+  doc.text('Fyrfly Systems Ltd  |  Sector Specialists  |  hello@fyrflysystems.com',M,PH-4);
   doc.text('This document is a preliminary planning aid only and does not constitute a formal quotation or survey.',PW-M,PH-4,{align:'right'});
 
   doc.save('Fyrfly-Wireless-Plan-'+new Date().toISOString().slice(0,10)+'.pdf');
