@@ -225,8 +225,6 @@
     + '<div class="sft-col-contact">'
     +   '<div class="sft-heading">Get in Touch</div>'
     +   '<a class="sft-contact-item" href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>'
-    +   '<a class="sft-contact-item" href="tel:+441234567890">01234 567 890</a>'
-    +   '<span class="sft-location">Faversham, Kent &mdash; United Kingdom</span>'
     +   '<div class="sft-heading-2">Technical Assessment</div>'
     +   '<ul class="sft-links">'
     +     '<li><a href="mailto:hello@fyrflysystems.com?subject=Campus Infrastructure Assessment Request">Book a Free Assessment</a></li>'
