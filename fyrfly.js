@@ -1158,14 +1158,14 @@
 /* Brand column */
 .sft-logo img{height:48px;display:block;}
 .sft-tagline{
-  font-size:0.83rem;color:rgba(255,255,255,0.35);
+  font-size:0.83rem;color:rgba(255,255,255,0.7);
   line-height:1.65;max-width:24ch;margin-top:0.9rem;
 }
 .sft-accreds{
   display:flex;flex-direction:column;gap:0.35rem;margin-top:1.5rem;
 }
 .sft-accred{
-  font-size:0.72rem;font-weight:500;color:rgba(255,255,255,0.28);
+  font-size:0.72rem;font-weight:500;color:rgba(255,255,255,0.55);
   display:flex;align-items:center;gap:0.45rem;line-height:1;
 }
 .sft-accred::before{
@@ -1177,14 +1177,14 @@
 .sft-heading{
   font-family:'Roboto',sans-serif;
   font-size:0.68rem;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  text-transform:uppercase;color:rgba(255,255,255,0.55);
   margin-bottom:1rem;
 }
 
 /* Link lists */
 .sft-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
 .sft-links a{
-  font-size:0.85rem;color:rgba(255,255,255,0.45);
+  font-size:0.85rem;color:rgba(255,255,255,0.8);
   transition:color 0.2s;display:inline-block;
 }
 .sft-links a:hover{color:#fff;}
@@ -1201,18 +1201,18 @@
 .sft-heading-2{
   font-family:'Roboto',sans-serif;
   font-size:0.68rem;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  text-transform:uppercase;color:rgba(255,255,255,0.55);
   margin-top:1.75rem;margin-bottom:0.9rem;
 }
 
 /* Contact items */
 .sft-contact-item{
-  font-size:0.85rem;color:rgba(255,255,255,0.45);
+  font-size:0.85rem;color:rgba(255,255,255,0.8);
   margin-bottom:0.55rem;display:block;transition:color 0.2s;
 }
 .sft-contact-item:hover{color:#fff;}
 .sft-location{
-  font-size:0.78rem;color:rgba(255,255,255,0.22);
+  font-size:0.78rem;color:rgba(255,255,255,0.5);
   margin-top:0.25rem;display:block;
 }
 
