@@ -1236,10 +1236,10 @@
   display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:0.85rem;
 }
-.sft-copy{font-size:0.78rem;color:rgba(255,255,255,0.2);}
+.sft-copy{font-size:0.78rem;color:rgba(255,255,255,0.5);}
 .sft-legal{display:flex;gap:1.5rem;}
-.sft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.2);transition:color 0.2s;}
-.sft-legal a:hover{color:rgba(255,255,255,0.55);}
+.sft-legal a{font-size:0.78rem;color:rgba(255,255,255,0.5);transition:color 0.2s;}
+.sft-legal a:hover{color:rgba(255,255,255,0.85);}
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media(max-width:1100px){
