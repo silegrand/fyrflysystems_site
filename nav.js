@@ -166,6 +166,7 @@
     <a href="faq.html">FAQ</a>
     <span class="mob-sub">Company</span>
     <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
     <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
   </div>
 </div>`;
@@ -275,6 +276,7 @@
       <li><a href="blog.html"${isActive('blog.html')}>Insights</a></li>
       <li><a href="faq.html"${isActive('faq.html')}>FAQ</a></li>
       <li><a href="about.html"${isActive('about.html')}>About</a></li>
+      <li><a href="contact.html"${isActive('contact.html')}>Contact</a></li>
 
     </ul>
     <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
