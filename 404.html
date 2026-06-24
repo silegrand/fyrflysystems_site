@@ -8,208 +8,131 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#1B1B24">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
   <style>
-    :root{
-      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
-      --dark:#0E0E14;--char:#1B1B24;--bdr:#E6E5E1;
-      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
-    }
+    :root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#0E0E14;--char:#1B1B24;--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--ease:cubic-bezier(0.22,1,0.36,1);}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     a{text-decoration:none;color:inherit;}
-
-    body{
-      font-family:var(--fb);
-      -webkit-font-smoothing:antialiased;
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      background:var(--char);
-    }
-
-    /* NAV */
-    nav{
-      background:rgba(255,255,255,0.96);
-      border-bottom:1px solid var(--bdr);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 2rem;
-      height:70px;
-      flex-shrink:0;
-    }
+    body{font-family:var(--fb);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh;background:var(--char);}
+    nav{background:rgba(27,27,36,0.95);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;flex-shrink:0;position:relative;z-index:10;}
     .nav-logo img{height:46px;width:auto;display:block;}
-    .nav-cta{
-      display:inline-flex;align-items:center;
-      padding:0.6rem 1.35rem;
-      background:var(--grad);color:#fff;
-      font-size:0.85rem;font-weight:500;border-radius:6px;
-      font-family:var(--fb);min-height:44px;
-    }
-
-    /* MAIN — grows to fill space, content scrolls naturally */
-    main{
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:4rem 2rem;
-      position:relative;
-    }
-
-    /* Decorative layers clipped inside main */
-    .bg-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-    .bg-grad{
-      position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse at 72% 38%,rgba(232,93,4,0.13) 0%,transparent 55%),
-        radial-gradient(ellipse at 18% 65%,rgba(200,16,46,0.09) 0%,transparent 50%);
-    }
-    .bg-dots{
-      position:absolute;inset:0;
-      background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);
-      background-size:36px 36px;
-    }
-
-    /* CONTENT */
-    .content{
-      position:relative;
-      z-index:1;
-      text-align:center;
-      max-width:560px;
-      width:100%;
-    }
-    .err-code{
-      font-family:var(--fh);
-      font-size:clamp(5rem,15vw,8rem);
-      font-weight:900;
-      letter-spacing:-0.05em;
-      line-height:1;
-      background:var(--grad);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      margin-bottom:0.5rem;
-    }
-    h1{
-      font-family:var(--fh);
-      font-size:clamp(1.3rem,3vw,1.9rem);
-      font-weight:800;
-      color:#fff;
-      letter-spacing:-0.025em;
-      line-height:1.2;
-      margin-bottom:0.9rem;
-    }
-    p{
-      font-size:0.95rem;
-      color:rgba(255,255,255,0.8);
-      line-height:1.75;
-      font-weight:300;
-      margin-bottom:2rem;
-    }
-    .btn-row{
-      display:flex;align-items:center;justify-content:center;
-      gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem;
-    }
-    .btn-p{
-      display:inline-flex;align-items:center;
-      padding:0.8rem 1.75rem;
-      background:var(--grad);color:#fff;
-      font-size:0.88rem;font-weight:600;border-radius:7px;
-      font-family:var(--fb);min-height:44px;
-    }
-    .btn-s{
-      display:inline-flex;align-items:center;
-      padding:0.8rem 1.75rem;
-      background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);
-      font-size:0.88rem;font-weight:500;border-radius:7px;
-      border:1px solid rgba(255,255,255,0.12);
-      font-family:var(--fb);min-height:44px;
-    }
-    .quick-links{padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);}
-    .ql-label{
-      font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
-      color:rgba(255,255,255,0.62);margin-bottom:0.85rem;
-    }
-    .ql-grid{display:flex;align-items:center;justify-content:center;gap:0.55rem;flex-wrap:wrap;}
-    .ql-link{
-      font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.8);
-      padding:0.32rem 0.8rem;border:1px solid rgba(255,255,255,0.1);border-radius:100px;
-      transition:color 0.2s,border-color 0.2s;min-height:32px;display:inline-flex;align-items:center;
-    }
-    .ql-link:hover{color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.25);}
-
-    /* FOOTER */
-    footer{
-      background:var(--dark);
-      padding:1.25rem 2rem;
-      display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:0.75rem;
-      border-top:1px solid rgba(255,255,255,0.06);
-      flex-shrink:0;
-    }
-    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.5);}
-    .ft-contact{font-size:0.78rem;color:rgba(255,255,255,0.7);}
-    .ft-contact a{color:rgba(255,255,255,0.7);transition:color 0.2s;}
-    .ft-contact a:hover{color:rgba(255,255,255,0.65);}
-
-    @media(max-width:480px){
-      nav .nav-cta{display:none;}
-      main{padding:3rem 1.25rem;}
-      .btn-row{flex-direction:column;align-items:stretch;}
-      .btn-p,.btn-s{justify-content:center;}
-      footer{flex-direction:column;}
-    }
+    .nav-links{display:flex;align-items:center;gap:0.25rem;}
+    .nav-links a{font-size:0.83rem;color:rgba(255,255,255,0.65);padding:0.45rem 0.85rem;border-radius:6px;transition:color 0.2s,background 0.2s;}
+    .nav-links a:hover{color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.06);}
+    .nav-cta{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.35rem;background:var(--grad);color:#fff;font-size:0.85rem;font-weight:500;border-radius:6px;font-family:var(--fb);min-height:44px;transition:opacity 0.2s;}
+    .nav-cta:hover{opacity:0.88;}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:5rem 2rem;position:relative;overflow:hidden;}
+    .bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 38%,rgba(232,93,4,0.13) 0%,transparent 55%),radial-gradient(ellipse at 18% 65%,rgba(200,16,46,0.09) 0%,transparent 50%);pointer-events:none;}
+    .bg-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;}
+    .bg-404{position:absolute;font-family:var(--fh);font-size:clamp(18rem,40vw,32rem);font-weight:900;letter-spacing:-0.08em;line-height:1;color:rgba(255,255,255,0.025);pointer-events:none;user-select:none;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;}
+    .content{position:relative;z-index:1;text-align:center;max-width:620px;width:100%;}
+    .err-code{font-family:var(--fh);font-size:clamp(5rem,15vw,9rem);font-weight:900;letter-spacing:-0.05em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;animation:fadeUp 0.5s var(--ease) both;}
+    h1{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.2;margin-bottom:0.85rem;animation:fadeUp 0.5s var(--ease) 0.08s both;}
+    .sub{font-size:0.97rem;color:rgba(255,255,255,0.72);line-height:1.75;font-weight:300;margin-bottom:2.25rem;max-width:46ch;margin-left:auto;margin-right:auto;animation:fadeUp 0.5s var(--ease) 0.16s both;}
+    .btn-row{display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:3rem;animation:fadeUp 0.5s var(--ease) 0.22s both;}
+    .btn-p{display:inline-flex;align-items:center;gap:0.4rem;padding:0.85rem 1.85rem;background:var(--grad);color:#fff;font-size:0.9rem;font-weight:600;border-radius:7px;font-family:var(--fb);min-height:44px;transition:opacity 0.2s,transform 0.2s;}
+    .btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+    .btn-s{display:inline-flex;align-items:center;gap:0.4rem;padding:0.85rem 1.85rem;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.78);font-size:0.9rem;font-weight:500;border-radius:7px;border:1px solid rgba(255,255,255,0.12);font-family:var(--fb);min-height:44px;transition:background 0.2s,color 0.2s,border-color 0.2s;}
+    .btn-s:hover{background:rgba(255,255,255,0.11);color:rgba(255,255,255,0.92);border-color:rgba(255,255,255,0.2);}
+    .sections{animation:fadeUp 0.5s var(--ease) 0.3s both;border-top:1px solid rgba(255,255,255,0.08);padding-top:2.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;text-align:left;}
+    .section-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.1rem 1.2rem;transition:background 0.2s,border-color 0.2s;}
+    .section-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.14);}
+    .section-card-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:0.6rem;}
+    .section-card-links{display:flex;flex-direction:column;gap:0.35rem;}
+    .section-card-links a{font-size:0.8rem;color:rgba(255,255,255,0.72);display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;line-height:1.35;}
+    .section-card-links a:hover{color:rgba(255,255,255,0.95);}
+    .section-card-links a::before{content:'';width:10px;height:1px;background:var(--grad);flex-shrink:0;opacity:0.6;}
+    footer{background:var(--dark);padding:1.35rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+    .ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.45);}
+    .ft-contact a{font-size:0.78rem;color:#fff;transition:opacity 0.2s;}
+    .ft-contact a:hover{opacity:0.75;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    @media(max-width:768px){nav .nav-links{display:none;}main{padding:4rem 1.5rem;}.sections{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){nav .nav-cta{display:none;}main{padding:3rem 1.25rem;}.btn-row{flex-direction:column;align-items:stretch;}.btn-p,.btn-s{justify-content:center;}.sections{grid-template-columns:1fr;}footer{flex-direction:column;text-align:center;}}
   </style>
 </head>
 <body>
 
 <nav>
   <a href="/" class="nav-logo"><img src="/fyrfly-logo.png" alt="Fyrfly Systems"></a>
+  <div class="nav-links">
+    <a href="/cctv.html">CCTV</a>
+    <a href="/education.html">Education</a>
+    <a href="/martyns-law-tool.html">Martyn's Law</a>
+    <a href="/blog.html">Articles</a>
+    <a href="/faq.html">FAQ</a>
+  </div>
   <a href="mailto:hello@fyrflysystems.com" class="nav-cta">Get in Touch &rarr;</a>
 </nav>
 
 <main>
-  <div class="bg-layer">
-    <div class="bg-grad"></div>
-    <div class="bg-dots"></div>
-  </div>
+  <div class="bg-grad"></div>
+  <div class="bg-dots"></div>
+  <div class="bg-404" aria-hidden="true">404</div>
 
   <div class="content">
     <div class="err-code">404</div>
-    <h1>This page doesn't exist</h1>
-    <p>The page you are looking for may have been moved, renamed, or never existed. Head back to the homepage or use one of the links below to find what you need.</p>
+    <h1>Nothing to see here</h1>
+    <p class="sub">The page you are looking for has moved, been renamed, or never existed. Use the links below to find what you need.</p>
+
     <div class="btn-row">
       <a href="/" class="btn-p">Back to Homepage &rarr;</a>
-      <a href="/blog.html" class="btn-s">Browse Articles</a>
+      <a href="/martyns-law-tool.html" class="btn-s">Free Martyn's Law Assessment</a>
     </div>
-    <div class="quick-links">
-      <div class="ql-label">Quick links</div>
-      <div class="ql-grid">
-        <a href="/cctv.html" class="ql-link">CCTV</a>
-        <a href="/access-control.html" class="ql-link">Access Control</a>
-        <a href="/wireless-networks.html" class="ql-link">Wireless Networks</a>
-        <a href="/intruder-alarms.html" class="ql-link">Intruder Alarms</a>
-        <a href="/fire-systems.html" class="ql-link">Fire Systems</a>
-        <a href="/monitoring.html" class="ql-link">24/7 Monitoring</a>
-        <a href="/education.html" class="ql-link">Education</a>
-        <a href="/public-sector.html" class="ql-link">Public Sector</a>
-        <a href="/compliance-tool.html" class="ql-link">Compliance Tool</a>
-        <a href="/your-site-tool.html" class="ql-link">Your Site Tool</a>
+
+    <div class="sections">
+      <div class="section-card">
+        <div class="section-card-label">Services</div>
+        <div class="section-card-links">
+          <a href="/cctv.html">CCTV Systems</a>
+          <a href="/access-control.html">Access Control</a>
+          <a href="/intruder-alarms.html">Intruder Alarms</a>
+          <a href="/fire-systems.html">Fire Systems</a>
+          <a href="/monitoring.html">24/7 Monitoring</a>
+          <a href="/wireless-networks.html">Wireless Networks</a>
+          <a href="/ai-analytics.html">AI Analytics</a>
+          <a href="/subcontracting.html">Subcontracting</a>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-label">Free Tools</div>
+        <div class="section-card-links">
+          <a href="/martyns-law-tool.html">Martyn's Law Assessment</a>
+          <a href="/compliance-tool.html">Compliance Checker</a>
+          <a href="/security-policy-review.html">Policy Health Check</a>
+          <a href="/lockdown-procedure-tool.html">Lockdown Procedure</a>
+          <a href="/school-security-policy-generator.html">CCTV Policy Generator</a>
+          <a href="/cost-estimator.html">Cost Estimator</a>
+          <a href="/zone-planner.html">Zone Planner</a>
+          <a href="/incident-analyser.html">Incident Analyser</a>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-label">Information</div>
+        <div class="section-card-links">
+          <a href="/education.html">Education Sector</a>
+          <a href="/public-sector.html">Public Sector</a>
+          <a href="/about.html">About Fyrfly</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/blog.html">Articles &amp; Guides</a>
+          <a href="/cctv-tower.html">Solar CCTV Tower</a>
+          <a href="/subcontracting.html">Subcontracting</a>
+          <a href="mailto:hello@fyrflysystems.com">Contact Us</a>
+        </div>
       </div>
     </div>
   </div>
 </main>
 
 <footer>
-  <div class="ft-copy">&copy; 2025 Fyrfly Systems Ltd. All rights reserved.</div>
-  <div class="ft-contact">
-    <a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a>
-    &nbsp;&bull;&nbsp;
-    <a href="tel:+441234567890">01234 567 890</a>
-  </div>
+  <div class="ft-copy">&copy; 2026 Fyrfly Systems Ltd. All rights reserved.</div>
+  <div class="ft-contact"><a href="mailto:hello@fyrflysystems.com">hello@fyrflysystems.com</a></div>
 </footer>
 
 <script src="/contact-modal.js"></script>
