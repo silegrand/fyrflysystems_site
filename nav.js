@@ -154,7 +154,8 @@
     <a href="zone-planner.html">Zone Planner</a>
     <a href="compliance-tool.html">Compliance Tool</a>
     <a href="system-integration.html">System Integration</a>
-    <a href="martyns-law-tool.html">Martyn's Law Assessment ⚠</a>
+    <a href="martyns-law.html">Martyn's Law Guide</a>
+    <a href="martyns-law-tool.html">Martyn's Law Assessment</a>
     <a href="school-security-policy-generator.html">CCTV Policy Generator</a>
     <a href="lockdown-procedure-tool.html">Lockdown Procedure Generator</a>
     <a href="security-policy-review.html">Policy Health Check 🤖</a>
@@ -245,8 +246,12 @@
       <li class="nav-dropdown">
         <a href="#">Tools <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="drop-menu">
-          <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')}>
+          <a href="martyns-law.html"${dropActive('martyns-law.html')}>
             <div class="drop-ico" style="background:rgba(200,16,46,0.08);"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="drop-label">Martyn's Law Guide</span>
+          </a>
+          <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')}>
+            <div class="drop-ico" style="background:rgba(200,16,46,0.06);"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
             <span class="drop-label">Martyn's Law Assessment</span>
           </a>
           <a href="compliance-tool.html"${dropActive('compliance-tool.html')}>
