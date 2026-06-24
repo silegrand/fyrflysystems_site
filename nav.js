@@ -164,6 +164,7 @@
     <span class="mob-sub">Resources</span>
     <a href="blog.html">Articles &amp; Guides</a>
     <a href="faq.html">FAQ</a>
+    <a href="how-we-work.html">How We Work</a>
     <a href="about.html">About Fyrfly</a>
     <a href="contact.html">Contact</a>
     <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
@@ -293,6 +294,10 @@
           <a href="faq.html"${dropActive('faq.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             <span class="drop-label">FAQ</span>
+          </a>
+          <a href="how-we-work.html"${dropActive('how-we-work.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <span class="drop-label">How We Work</span>
           </a>
           <a href="about.html"${dropActive('about.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
             <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
