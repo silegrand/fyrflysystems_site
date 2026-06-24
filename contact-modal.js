@@ -14,7 +14,6 @@
   'use strict';
 
   var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-  var PHONE         = '01234 567 890'; // ← replace with real number
   var EMAIL         = 'hello@fyrflysystems.com';
 
   /* ── CSS ──────────────────────────────────────────────────── */
@@ -525,7 +524,7 @@
                   </div>
                   <div class="fm-field">
                     <label class="fm-label" for="fm-phone">Phone<span class="fm-opt">(optional)</span></label>
-                    <input class="fm-input" type="tel" id="fm-phone" name="phone" placeholder="01234 567 890" autocomplete="tel">
+                    <input class="fm-input" type="tel" id="fm-phone" name="phone" placeholder="" autocomplete="tel">
                   </div>
                 </div>
 
