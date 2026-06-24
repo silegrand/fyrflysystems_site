@@ -306,7 +306,7 @@
       </li>
 
     </ul>
-    <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
+    <a href="contact.html" class="nav-cta">Get in Touch &rarr;</a>
     <button class="ham" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
