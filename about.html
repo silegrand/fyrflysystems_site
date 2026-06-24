@@ -1,508 +1,486 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Fyrfly Systems</title>
-  <meta name="description" content="Fyrfly Systems is a specialist physical security company for schools and the public sector. Founded by practitioners with deep backgrounds in security technology and public sector operations.">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Fyrfly Systems | Physical Security for Schools &amp; Public Sector</title>
+  <meta name="description" content="Fyrfly Systems was founded by practitioners with deep roots in security technology and the public sector. Three granted patents, IFSEC Global Top 50 recognition, and systems deployed for Chevron, Rivian and Network Rail.">
   <link rel="canonical" href="https://www.fyrflysystems.com/about.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fyrfly Systems">
   <meta property="og:url" content="https://www.fyrflysystems.com/about.html">
-  <meta property="og:title" content="About Us | Fyrfly Systems">
-  <meta property="og:description" content="Fyrfly Systems is a specialist physical security company for schools and the public sector. Founded by practitioners with deep backgrounds in security technology and public sector operations.">
+  <meta property="og:title" content="About Fyrfly Systems | Physical Security for Schools &amp; Public Sector">
+  <meta property="og:description" content="Founded by practitioners with deep roots in security technology and the public sector. Three granted patents, IFSEC Global Top 50 recognition, and a thirteen-year track record delivering security infrastructure at scale.">
   <meta property="og:image" content="https://www.fyrflysystems.com/fyrfly-logo.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="robots" content="index, follow">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "url": "https://www.fyrflysystems.com/about.html",
+    "name": "About Fyrfly Systems",
+    "description": "Fyrfly Systems is a specialist physical security company for UK schools and the public sector, founded by practitioners with deep backgrounds in security technology, sensor systems and public sector operations.",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.fyrflysystems.com/#organization",
+      "name": "Fyrfly Systems",
+      "url": "https://www.fyrflysystems.com",
+      "foundingDate": "2026",
+      "description": "Specialist physical security for UK education and public sector",
+      "areaServed": {"@type": "Country", "name": "United Kingdom"},
+      "founder": {
+        "@type": "Person",
+        "name": "Simon Legrand",
+        "jobTitle": "Founder and Chief Security Officer",
+        "description": "Co-founder of Sunstone Systems (2011-2024), MCIM Chartered Marketer, IFSEC Global Top 50, three granted patents in mmWave radar, acoustic AI and IoT architecture"
+      }
+    }
+  }</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XLH0L6H2Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4XLH0L6H2Z');</script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --c: #C8102E; --o: #E85D04; --a: #F5A623;
-      --grad: linear-gradient(135deg, #C8102E 0%, #E85D04 52%, #F5A623 100%);
-      --dark: #0E0E14; --char: #1B1B24; --mid: #67677A; --mute: #9595A5;
-      --light: #F5F4F2; --bdr: #E6E5E1; --white: #FFFFFF;
-      --fh: 'Roboto', sans-serif; --fb: 'DM Sans', sans-serif;
-      --max: 1200px; --nh: 70px; --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    :root{
+      --c:#C8102E;--o:#E85D04;--a:#F5A623;
+      --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
+      --dark:#0E0E14;--char:#1B1B24;--mid:#67677A;--mute:#9595A5;
+      --light:#F5F4F2;--bdr:#E6E5E1;--white:#FFFFFF;
+      --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
+      --max:1200px;--nh:70px;--ease:cubic-bezier(0.22,1,0.36,1);
     }
-    body { font-family: var(--fb); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--fb);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+    .sec-lbl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--o);}
+    .sec-lbl::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--o);}
+    .sec-h{font-family:var(--fh);font-size:clamp(1.75rem,2.8vw,2.7rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--dark);}
+    .btn-p{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;background:var(--grad);color:#fff;font-size:0.93rem;font-weight:500;border-radius:6px;transition:opacity 0.2s,transform 0.2s var(--ease);}
+    .btn-p:hover{opacity:0.88;transform:translateY(-2px);}
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb{background:var(--light);border-bottom:1px solid var(--bdr);padding:0.75rem 0;}
+    .breadcrumb-i{max-width:var(--max);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--mute);}
+    .breadcrumb-i a{color:var(--mute);transition:color 0.2s;}
+    .breadcrumb-i a:hover{color:var(--o);}
+    .breadcrumb-i svg{width:12px;height:12px;stroke:var(--mute);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .breadcrumb-i span{color:var(--mid);font-weight:500;}
 
     /* ── HERO ── */
-    .hero {
-      background: var(--white);
-      padding: calc(var(--nh) + 5rem) 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 80% 20%, rgba(200,16,46,0.05) 0%, transparent 55%),
-                  radial-gradient(ellipse at 10% 80%, rgba(245,166,35,0.04) 0%, transparent 50%);
-    }
-    .hero-c { position: relative; z-index: 2; max-width: 760px; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      padding: 0.35rem 0.9rem;
-      background: rgba(200,16,46,0.07); border: 1px solid rgba(200,16,46,0.15);
-      border-radius: 100px; font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.09em; text-transform: uppercase; color: var(--c);
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: var(--fh); font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 900; line-height: 1.07; letter-spacing: -0.03em;
-      color: var(--dark); margin-bottom: 1.5rem;
-    }
-    .hero h1 .acc {
-      background: var(--grad); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .hero-sub {
-      font-size: 1.05rem; font-weight: 300; color: var(--mid);
-      line-height: 1.75; max-width: 58ch;
-    }
+    .hero{position:relative;background:#0E0E1A;min-height:480px;display:flex;align-items:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(200,16,46,0.14) 0%,transparent 55%),radial-gradient(ellipse at 10% 75%,rgba(245,166,35,0.07) 0%,transparent 50%);}
+    .hero-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.3) 15%,rgba(0,0,0,0.3) 85%,transparent 100%);}
+    .hero-c{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:5rem 2rem;max-width:780px;}
+    .hero-tag{display:inline-flex;align-items:center;gap:0.45rem;padding:0.35rem 0.9rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1.35rem;}
+    .hero h1{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:900;line-height:1.07;letter-spacing:-0.03em;color:var(--white);margin-bottom:1.25rem;}
+    .hero h1 .acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.82);line-height:1.75;max-width:54ch;}
 
-    /* ── STORY ── */
-    .story { padding: 6rem 0; background: var(--light); }
-    .story-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: start;
-    }
-    .story-label {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--c); margin-bottom: 1rem;
-    }
-    .story h2 {
-      font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
-      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
-      color: var(--dark); margin-bottom: 1.5rem;
-    }
-    .story p {
-      font-size: 0.97rem; color: var(--mid); line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-    .story p:last-child { margin-bottom: 0; }
-    .story p strong { color: var(--dark); font-weight: 500; }
-    .story-pillars {
-      display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;
-    }
-    .pillar {
-      background: var(--white); border: 1px solid var(--bdr);
-      border-radius: 12px; padding: 1.25rem 1.5rem;
-      display: flex; gap: 1rem; align-items: flex-start;
-    }
-    .pillar-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: var(--grad); display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0;
-    }
-    .pillar-icon svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .pillar-title { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
-    .pillar-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+    /* ── ORIGIN ── */
+    .origin{padding:6rem 0;background:var(--white);}
+    .origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .origin-text p{font-size:1rem;color:var(--mid);line-height:1.82;font-weight:300;margin-bottom:1.25rem;}
+    .origin-text p strong{color:var(--dark);font-weight:500;}
+    .origin-text p:last-child{margin-bottom:0;}
+    .origin-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .ostat{background:var(--light);border:1px solid var(--bdr);border-radius:12px;padding:1.5rem;}
+    .ostat-n{font-family:var(--fh);font-size:1.9rem;font-weight:900;line-height:1;margin-bottom:0.35rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .ostat-l{font-size:0.8rem;color:var(--mid);line-height:1.45;}
 
     /* ── FOUNDER ── */
-    .founder { padding: 6rem 0; background: var(--white); }
-    .founder-grid {
-      display: grid; grid-template-columns: 340px 1fr;
-      gap: 5rem; align-items: start;
-    }
-    .founder-card {
-      background: var(--light); border: 1px solid var(--bdr);
-      border-radius: 16px; padding: 2rem; position: sticky; top: calc(var(--nh) + 2rem);
-    }
-    .founder-avatar {
-      width: 80px; height: 80px; border-radius: 50%;
-      background: var(--grad); display: flex; align-items: center;
-      justify-content: center; margin-bottom: 1.25rem;
-    }
-    .founder-avatar svg { width: 36px; height: 36px; stroke: #fff; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .founder-name {
-      font-family: var(--fh); font-size: 1.25rem; font-weight: 800;
-      color: var(--dark); letter-spacing: -0.02em; margin-bottom: 0.2rem;
-    }
-    .founder-role {
-      font-size: 0.8rem; font-weight: 500; color: var(--mute);
-      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem;
-    }
-    .founder-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .founder-tag {
-      font-size: 0.72rem; font-weight: 500; color: var(--mid);
-      padding: 0.3rem 0.75rem; border: 1px solid var(--bdr);
-      border-radius: 100px; background: var(--white);
-    }
-    .founder-li {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.8rem; font-weight: 500; color: var(--c);
-      padding: 0.5rem 0.9rem; border: 1px solid rgba(200,16,46,0.2);
-      border-radius: 8px; background: rgba(200,16,46,0.04);
-      transition: background 0.2s;
-    }
-    .founder-li:hover { background: rgba(200,16,46,0.08); }
-    .founder-li svg { width: 14px; height: 14px; }
-    .founder-bio h2 {
-      font-family: var(--fh); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
-      color: var(--dark); margin-bottom: 0.5rem;
-    }
-    .founder-bio .sub {
-      font-size: 0.85rem; color: var(--mute); margin-bottom: 2rem;
-      font-style: italic;
-    }
-    .founder-bio p {
-      font-size: 0.97rem; color: var(--mid); line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-    .founder-bio p strong { color: var(--dark); font-weight: 500; }
-    .founder-bio p:last-child { margin-bottom: 0; }
-    .bio-highlights {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0.75rem; margin: 2rem 0;
-    }
-    .bio-hl {
-      background: var(--light); border: 1px solid var(--bdr);
-      border-radius: 10px; padding: 1rem 1.25rem;
-    }
-    .bio-hl-num {
-      font-family: var(--fh); font-size: 1.3rem; font-weight: 900;
-      background: var(--grad); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1; margin-bottom: 0.25rem;
-    }
-    .bio-hl-label { font-size: 0.78rem; color: var(--mid); line-height: 1.4; }
+    .founder{padding:6rem 0;background:var(--light);}
+    .founder-grid{display:grid;grid-template-columns:360px 1fr;gap:5rem;align-items:start;}
+    .founder-card{background:var(--white);border:1px solid var(--bdr);border-radius:16px;padding:2rem;position:sticky;top:calc(var(--nh) + 2rem);}
+    .founder-avatar{width:72px;height:72px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+    .founder-avatar svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+    .founder-name{font-family:var(--fh);font-size:1.2rem;font-weight:800;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.2rem;}
+    .founder-role{font-size:0.78rem;font-weight:500;color:var(--mute);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.25rem;}
+    .founder-creds{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem;}
+    .founder-cred{display:flex;align-items:center;gap:0.6rem;font-size:0.8rem;color:var(--mid);}
+    .founder-cred::before{content:'';width:14px;height:1px;background:var(--grad);flex-shrink:0;}
+    .founder-li{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:500;color:var(--o);padding:0.55rem 0.9rem;border:1px solid rgba(232,93,4,0.25);border-radius:8px;background:rgba(232,93,4,0.04);transition:background 0.2s;}
+    .founder-li:hover{background:rgba(232,93,4,0.09);}
+    .founder-li svg{width:14px;height:14px;fill:currentColor;}
 
-    /* ── TEAM ── */
-    .team { padding: 6rem 0; background: var(--light); }
-    .team-intro { max-width: 640px; margin-bottom: 3.5rem; }
-    .team-intro h2 {
-      font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
-      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
-      color: var(--dark); margin-bottom: 0.85rem;
-    }
-    .team-intro p { font-size: 0.97rem; color: var(--mid); line-height: 1.75; }
-    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .team-card {
-      background: var(--white); border: 1px solid var(--bdr);
-      border-radius: 14px; padding: 1.75rem; transition: border-color 0.2s, transform 0.2s var(--ease);
-    }
-    .team-card:hover { border-color: rgba(200,16,46,0.2); transform: translateY(-3px); }
-    .team-disc {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: var(--grad); display: flex; align-items: center;
-      justify-content: center; margin-bottom: 1rem;
-    }
-    .team-disc svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-    .team-name { font-family: var(--fh); font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
-    .team-role { font-size: 0.75rem; font-weight: 500; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.85rem; }
-    .team-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+    .founder-bio .sec-lbl{margin-bottom:0.6rem;}
+    .founder-bio h2{font-family:var(--fh);font-size:clamp(1.6rem,2.5vw,2.3rem);font-weight:800;line-height:1.1;letter-spacing:-0.025em;color:var(--dark);margin-bottom:1.75rem;}
+    .founder-bio p{font-size:0.97rem;color:var(--mid);line-height:1.82;font-weight:300;margin-bottom:1.25rem;}
+    .founder-bio p strong{color:var(--dark);font-weight:500;}
+    .founder-bio p:last-child{margin-bottom:0;}
 
-    /* ── VALUES ── */
-    .values { padding: 6rem 0; background: var(--white); }
-    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-    .value-card {
-      border-top: 3px solid transparent;
-      border-image: var(--grad) 1;
-      padding: 1.75rem 0 0;
-    }
-    .value-n {
-      font-family: var(--fh); font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--c);
-      margin-bottom: 0.5rem;
-    }
-    .value-t { font-family: var(--fh); font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.65rem; }
-    .value-d { font-size: 0.87rem; color: var(--mid); line-height: 1.72; }
+    /* Timeline */
+    .timeline{display:flex;flex-direction:column;gap:0;margin:2.5rem 0;position:relative;}
+    .timeline::before{content:'';position:absolute;left:11px;top:12px;bottom:12px;width:1px;background:var(--bdr);}
+    .tl-item{display:flex;gap:1.5rem;align-items:flex-start;padding-bottom:1.75rem;position:relative;}
+    .tl-item:last-child{padding-bottom:0;}
+    .tl-dot{width:23px;height:23px;border-radius:50%;background:var(--white);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;z-index:1;}
+    .tl-dot.active{background:var(--grad);border-color:transparent;}
+    .tl-dot.active svg{stroke:#fff;}
+    .tl-dot svg{width:11px;height:11px;stroke:var(--mute);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+    .tl-body{}
+    .tl-date{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--o);margin-bottom:0.2rem;}
+    .tl-title{font-family:var(--fh);font-size:0.92rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem;}
+    .tl-desc{font-size:0.82rem;color:var(--mid);line-height:1.6;}
+
+    /* Credentials strip */
+    .cred-strip{display:flex;flex-wrap:wrap;gap:0.6rem;margin:2rem 0;}
+    .cred-pill{font-size:0.78rem;font-weight:500;color:var(--mid);padding:0.4rem 0.9rem;border:1px solid var(--bdr);border-radius:100px;background:var(--white);}
+
+    /* ── WHAT WE ARE ── */
+    .what{padding:6rem 0;background:var(--white);}
+    .what-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-top:3rem;}
+    .what-card{padding:2rem;border:1px solid var(--bdr);border-radius:14px;transition:transform 0.25s var(--ease),box-shadow 0.25s,border-color 0.25s;position:relative;overflow:hidden;}
+    .what-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease);}
+    .what-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07);border-color:rgba(232,93,4,0.2);}
+    .what-card:hover::before{transform:scaleX(1);}
+    .what-ico{width:44px;height:44px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
+    .what-ico svg{width:22px;height:22px;stroke:var(--o);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .what-t{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);letter-spacing:-0.01em;margin-bottom:0.5rem;}
+    .what-d{font-size:0.85rem;color:var(--mid);line-height:1.7;}
+
+    /* ── HOW WE WORK ── */
+    .how{padding:6rem 0;background:var(--light);}
+    .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .how-text p{font-size:0.97rem;color:var(--mid);line-height:1.82;font-weight:300;margin-bottom:1.25rem;}
+    .how-text p strong{color:var(--dark);font-weight:500;}
+    .commitments{display:flex;flex-direction:column;gap:0.75rem;}
+    .commit{display:flex;align-items:flex-start;gap:0.9rem;padding:1.1rem 1.25rem;background:var(--white);border:1px solid var(--bdr);border-radius:10px;transition:border-color 0.2s;}
+    .commit:hover{border-left:3px solid var(--o);}
+    .commit-num{font-family:var(--fh);font-size:0.75rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;min-width:20px;padding-top:1px;}
+    .commit-text strong{display:block;font-size:0.86rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem;}
+    .commit-text span{font-size:0.8rem;color:var(--mid);line-height:1.55;}
+
+    /* ── COMPLIANCE DARK SECTION ── */
+    .standards{background:var(--char);padding:5.5rem 0;}
+    .standards-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem;}
+    .std-blocks{display:flex;flex-direction:column;gap:0.85rem;}
+    .std-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.25rem 1.4rem;}
+    .std-block-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.45rem;}
+    .std-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+    .std-title{font-family:var(--fh);font-size:0.87rem;font-weight:700;color:rgba(255,255,255,0.85);}
+    .std-desc{font-size:0.79rem;color:rgba(255,255,255,0.72);line-height:1.6;padding-left:1.35rem;}
+    .std-right .sec-lbl{color:rgba(255,255,255,0.7);}
+    .std-right .sec-lbl::before{background:rgba(255,255,255,0.35);}
+    .std-right h2{font-family:var(--fh);font-size:clamp(1.6rem,2.5vw,2.3rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;}
+    .std-right p{font-size:0.95rem;color:rgba(255,255,255,0.8);line-height:1.75;font-weight:300;margin-bottom:2rem;}
 
     /* ── CTA ── */
-    .cta-ban { position: relative; background: var(--char); padding: 6rem 0; text-align: center; overflow: hidden; }
-    .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(232,93,4,0.12) 0%, transparent 65%); }
-    .cta-c { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; padding: 0 2rem; }
-    .sec-lbl { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--a); margin-bottom: 1rem; }
-    .cta-c h2 { font-family: var(--fh); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--white); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.1rem; }
-    .cta-c p { font-size: 0.97rem; color: rgba(255,255,255,0.82); line-height: 1.72; margin-bottom: 2.4rem; font-weight: 300; }
-    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
-    .btn-p { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--grad); color: #fff; font-size: 0.88rem; font-weight: 600; border-radius: 8px; transition: opacity 0.2s, transform 0.2s; }
-    .btn-p:hover { opacity: 0.88; transform: translateY(-2px); }
-    .btn-g { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 500; border-radius: 8px; transition: background 0.2s; }
-    .btn-g:hover { background: rgba(255,255,255,0.14); }
+    .cta-ban{position:relative;background:var(--char);padding:6rem 0;text-align:center;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);}
+    .cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(232,93,4,0.12) 0%,transparent 65%);}
+    .cta-c{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:0 2rem;}
+    .cta-c h2{font-family:var(--fh);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:var(--white);letter-spacing:-0.03em;line-height:1.08;margin-bottom:1.1rem;}
+    .cta-c p{font-size:0.97rem;color:rgba(255,255,255,0.82);line-height:1.72;margin-bottom:2.4rem;font-weight:300;}
+    .cta-btns{display:flex;align-items:center;justify-content:center;gap:0.9rem;flex-wrap:wrap;}
+    .btn-g{display:inline-flex;align-items:center;gap:0.45rem;padding:0.85rem 2rem;color:rgba(255,255,255,0.72);font-size:0.93rem;border:1px solid rgba(255,255,255,0.2);border-radius:6px;transition:color 0.2s,border-color 0.2s,background 0.2s;}
+    .btn-g:hover{color:#fff;border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.05);}
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .founder-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .founder-card { position: static; }
-      .story-grid { gap: 3rem; }
+    @media(max-width:1024px){
+      .origin-grid,.founder-grid,.how-grid{grid-template-columns:1fr;gap:3rem;}
+      .founder-card{position:static;}
+      .standards-grid{gap:3rem;}
+      .what-grid{grid-template-columns:1fr 1fr;}
     }
-    @media (max-width: 820px) {
-      .story-grid { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: 1fr 1fr; }
-      .values-grid { grid-template-columns: 1fr 1fr; }
-      .bio-highlights { grid-template-columns: 1fr 1fr; }
-      .wrap { padding: 0 1.5rem; }
-      .hero { padding: calc(var(--nh) + 3.5rem) 0 3.5rem; }
-      .story, .founder, .team, .values { padding: 4rem 0; }
+    @media(max-width:768px){
+      .hero{min-height:auto;}
+      .hero-c{padding:3.5rem 1.5rem;}
+      .hero h1{font-size:clamp(2rem,5.5vw,2.8rem);}
+      .origin,.founder,.what,.how,.standards{padding:4rem 0;}
+      .what-grid{grid-template-columns:1fr;}
+      .origin-stats{grid-template-columns:1fr 1fr;}
+      .standards-grid{grid-template-columns:1fr;gap:2.5rem;}
+      .wrap{padding:0 1.5rem;}
+      .cta-ban{padding:4.5rem 0;}
     }
-    @media (max-width: 500px) {
-      .team-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .bio-highlights { grid-template-columns: 1fr; }
-      .wrap { padding: 0 1.25rem; }
-      .cta-btns { flex-direction: column; align-items: stretch; }
-      .cta-btns a { text-align: center; justify-content: center; }
+    @media(max-width:480px){
+      .hero-c{padding:3rem 1.25rem;}
+      .origin-stats{grid-template-columns:1fr 1fr;}
+      .cta-btns{flex-direction:column;align-items:stretch;}
+      .cta-btns a{text-align:center;justify-content:center;}
+      .wrap{padding:0 1rem;}
     }
   </style>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
+<script src="nav.js"></script>
 
-<!-- ── HERO ─────────────────────────────────────────────── -->
+<div class="breadcrumb"><div class="breadcrumb-i">
+  <a href="index.html">Home</a>
+  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  <span>About</span>
+</div></div>
+
+<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg"></div><div class="hero-grid"></div>
   <div class="wrap">
     <div class="hero-c">
       <div class="hero-tag">About Fyrfly Systems</div>
-      <h1>Security expertise built on<br><span class="acc">sector experience</span></h1>
-      <p class="hero-sub">We are a specialist physical security company focused exclusively on schools and the public sector. Not a generalist contractor who occasionally works in education — a team built around it.</p>
+      <h1>Not generalists who work in education and the public sector.<br><span class="acc">Specialists built for it.</span></h1>
+      <p class="hero-sub">Fyrfly Systems was founded by practitioners who spent over a decade building security and sensor technology at an international level. We apply that depth exclusively to schools and the public sector, because that is where it is needed most and used least.</p>
     </div>
   </div>
 </section>
 
-<!-- ── STORY ─────────────────────────────────────────────── -->
-<section class="story">
+<!-- ── ORIGIN ── -->
+<section class="origin">
   <div class="wrap">
-    <div class="story-grid">
+    <div class="origin-grid">
       <div>
-        <div class="story-label">Why We Exist</div>
-        <h2>The public sector deserves better than it typically gets</h2>
-        <p>Most security companies treat schools and councils as interchangeable with warehouses and retail parks. The procurement language might change, but the approach doesn't. Systems get installed to a price, not a standard. Documentation gets filed rather than used. And when something goes wrong, the finger-pointing starts.</p>
-        <p>Fyrfly was founded because that is not good enough. Schools have specific obligations under DfE guidance, KCSiE and Martyn's Law. NHS estates carry real safeguarding risk. Councils operate under public accountability in a way that private clients simply don't.</p>
-        <p><strong>Every decision we make is filtered through a single question: would a governor, a head teacher, or a procurement officer be comfortable explaining this choice?</strong> If the answer is no, we don't do it.</p>
+        <div class="sec-lbl">Why Fyrfly Exists</div>
+        <h2 class="sec-h">The security industry has a public sector problem</h2>
+        <div style="margin-top:1.5rem;">
+          <p>Most security installers treat schools and councils as commercial clients with different branding. The same design templates, the same equipment, the same approach. Compliance language gets added to proposals but rarely shapes the actual specification. When something goes wrong post-installation, the paper trail turns out to be thin.</p>
+          <p>Fyrfly was founded on a different premise. Schools carry real safeguarding obligations under KCSiE. Public buildings are subject to Martyn's Law. NHS estates handle data and access with accountability that commercial buildings simply do not face. <strong>These are not edge cases — they are the core design criteria.</strong></p>
+          <p>That means building systems that satisfy the Designated Safeguarding Lead as well as the estates manager. Writing documentation that the Responsible Person can hand to their governors. Designing access control that accounts for fire safety, lone working and visitor management simultaneously, not as separate afterthoughts.</p>
+          <p>We exist because that combination of technical depth and sector knowledge is rare, and the organisations that need it most are the ones with the least resource to go searching for it.</p>
+        </div>
       </div>
-      <div class="story-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div>
+        <div class="origin-stats">
+          <div class="ostat">
+            <div class="ostat-n">13</div>
+            <div class="ostat-l">Years building security and sensor technology platforms before founding Fyrfly</div>
           </div>
-          <div>
-            <div class="pillar-title">Sector-only focus</div>
-            <div class="pillar-desc">We work exclusively with education and public sector clients. That focus means our design standards, documentation, and compliance knowledge are built for your environment, not adapted from somewhere else.</div>
+          <div class="ostat">
+            <div class="ostat-n">3</div>
+            <div class="ostat-l">Granted patents in mmWave radar, acoustic AI and IoT architecture</div>
           </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div class="ostat">
+            <div class="ostat-n">Top 50</div>
+            <div class="ostat-l">IFSEC Global security industry recognition — one of the most watched industry lists</div>
           </div>
-          <div>
-            <div class="pillar-title">Documentation that holds up</div>
-            <div class="pillar-desc">Every installation produces a complete paper trail — design drawings, commissioning records, handover packs, and maintenance logs. Because what you can't evidence didn't happen.</div>
-          </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="pillar-title">Honest timelines and pricing</div>
-            <div class="pillar-desc">We don't win work by underquoting and recovering costs through variations. Scope, price, and timeline are fixed at the start, and changes are handled transparently.</div>
+          <div class="ostat">
+            <div class="ostat-n">2025</div>
+            <div class="ostat-l">Terrorism (Protection of Premises) Act enacted — Fyrfly ready from day one</div>
           </div>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <div>
-            <div class="pillar-title">One team, not a sub-contractor chain</div>
-            <div class="pillar-desc">The people who survey your site are the people who design your system and oversee its installation. Accountability stays in one place throughout.</div>
-          </div>
+        <div style="margin-top:1.25rem;padding:1.5rem;background:var(--light);border:1px solid var(--bdr);border-left:4px solid var(--o);border-radius:10px;">
+          <p style="font-size:0.88rem;color:var(--mid);line-height:1.72;margin:0;"><strong style="color:var(--dark);">Every decision we make is filtered through a single question:</strong> would a governor, a headteacher, or a procurement officer be comfortable explaining this choice? If the answer is no, we do not do it.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOUNDER ────────────────────────────────────────────── -->
+<!-- ── FOUNDER ── -->
 <section class="founder">
   <div class="wrap">
     <div class="founder-grid">
+
       <div class="founder-card">
         <div class="founder-avatar">
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div class="founder-name">Simon Legrand</div>
-        <div class="founder-role">Co-Founder &amp; Director</div>
-        <div class="founder-tags">
-          <span class="founder-tag">MCIM Chartered Marketer</span>
-          <span class="founder-tag">Security Technology</span>
-          <span class="founder-tag">Public Sector</span>
-          <span class="founder-tag">Patent Inventor</span>
-          <span class="founder-tag">Public Sector</span>
+        <div class="founder-role">Founder &amp; Chief Security Officer</div>
+        <div class="founder-creds">
+          <div class="founder-cred">MCIM Chartered Marketer</div>
+          <div class="founder-cred">IFSEC Global Top 50</div>
+          <div class="founder-cred">Three granted patents</div>
+          <div class="founder-cred">Chevron, Rivian, Network Rail</div>
+          <div class="founder-cred">Co-founder, Sunstone Systems (2011)</div>
         </div>
         <a href="https://www.linkedin.com/in/-simonlegrand-/" target="_blank" rel="noopener" class="founder-li">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn Profile
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          View LinkedIn Profile
         </a>
       </div>
 
       <div class="founder-bio">
-        <div class="story-label">Founder</div>
-        <h2>From the field, not the boardroom</h2>
-        <p class="sub">A background built on doing the work, not just commissioning it</p>
+        <div class="sec-lbl">The Founder</div>
+        <h2>Thirteen years building the technology. Now applying it where it matters.</h2>
 
-        <p>Simon co-founded Fyrfly Systems after more than a decade working at the intersection of technology, security, and public sector operations. His career spans hands-on security system design and installation, senior roles across the public sector, and the founding and development of technology companies — including <strong>Sunstone IP Systems</strong>, a solar-powered surveillance and communications business that deployed systems across demanding international environments including energy infrastructure in Central Asia.</p>
+        <p>In 2011, Simon co-founded Sunstone Systems from nothing. No clients, no infrastructure, no template to follow. Over thirteen years, the team built a globally recognised platform for solar-powered surveillance, autonomous power systems and IoT telecommunications, deploying in some of the most demanding environments in the world.</p>
 
-        <div class="bio-highlights">
-          <div class="bio-hl">
-            <div class="bio-hl-num">MCIM</div>
-            <div class="bio-hl-label">Chartered Institute of Marketing — Chartered Marketer status</div>
+        <p>The client list was not domestic. <strong>Chevron, Rivian Automotive, Intel, Network Rail, Tengizchevroil in Kazakhstan.</strong> The technical environments were not forgiving. Extreme temperatures, remote sites, critical infrastructure with zero tolerance for failure. Three patents were granted along the way: mmWave radar, acoustic AI, and IoT architecture. In 2023, Sunstone was named in the <strong>IFSEC Global Top 50</strong> — one of the most-watched annual lists in the international security industry. In 2024, the business was acquired.</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div>
+            <div class="tl-body">
+              <div class="tl-date">2011</div>
+              <div class="tl-title">Co-founded Sunstone Systems</div>
+              <div class="tl-desc">Started from a blank sheet of paper. No revenue, no team, no precedent. Built the initial solar surveillance platform and first commercial deployments.</div>
+            </div>
           </div>
-          <div class="bio-hl">
-            <div class="bio-hl-num">Patent</div>
-            <div class="bio-hl-label">Named inventor on security technology patent</div>
+          <div class="tl-item">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div>
+            <div class="tl-body">
+              <div class="tl-date">2011 to 2024</div>
+              <div class="tl-title">Global deployments and platform development</div>
+              <div class="tl-desc">Systems deployed for Chevron, Rivian, Intel, Telent and Network Rail. Three patents granted. IFSEC Global Top 50 recognised. Platform expanded to autonomous power and IoT telecoms.</div>
+            </div>
           </div>
-          <div class="bio-hl">
-            <div class="bio-hl-num">Multi</div>
-            <div class="bio-hl-label">Sector background spanning security, public sector operations and technology</div>
+          <div class="tl-item">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div>
+            <div class="tl-body">
+              <div class="tl-date">2024</div>
+              <div class="tl-title">Sunstone Systems acquired</div>
+              <div class="tl-desc">After thirteen years, the platform and business were acquired. The technology and methodology built over that period became the foundation for what came next.</div>
+            </div>
           </div>
-          <div class="bio-hl">
-            <div class="bio-hl-num">Founder</div>
-            <div class="bio-hl-label">Serial founder with experience scaling specialist technology businesses</div>
+          <div class="tl-item">
+            <div class="tl-dot active"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tl-body">
+              <div class="tl-date">2026</div>
+              <div class="tl-title">Founded Fyrfly Systems</div>
+              <div class="tl-desc">Applied thirteen years of sensor platform, AI analytics and IoT architecture experience to the UK education and public sector — a market chronically underserved by the mainstream security industry.</div>
+            </div>
           </div>
         </div>
 
-        <p>That breadth is deliberate. Security systems in schools and public buildings sit at the meeting point of technical specification, safeguarding obligations, procurement rules, and operational reality. Understanding all of those — not just the technical piece — is what separates a system that works from one that creates problems down the line.</p>
+        <p>Fyrfly is the application of everything learned building technology at scale, directed at a sector where the stakes are genuinely high and the quality bar has historically been low. Schools that are not physically secure are not safe. Public buildings that cannot demonstrate compliance are exposed. The technical capability to fix both of those things exists. Bringing it to the organisations that need it is the point.</p>
 
-        <p>Simon holds <strong>Chartered Marketer status</strong> with the Chartered Institute of Marketing — an unusual credential for a security founder, but one that reflects a consistent belief that how you communicate risk, compliance, and value to governors, procurement officers, and senior leadership matters as much as the quality of the physical installation itself.</p>
+        <p>Simon also holds <strong>Chartered Marketer status</strong> with the Chartered Institute of Marketing. That is an unusual credential for a security founder, but it reflects something important: the gap between what Fyrfly installs and what a governor or procurement officer understands about it matters. Communication is part of the service.</p>
 
-        <p>Fyrfly was built on the principle that the public sector is underserved by the mainstream security industry — and that fixing that requires people who understand the sector from the inside, not companies that have bolted on an education division as a growth strategy.</p>
+        <div class="cred-strip">
+          <span class="cred-pill">MCIM Chartered Marketer</span>
+          <span class="cred-pill">IFSEC Global Top 50</span>
+          <span class="cred-pill">3 Granted Patents</span>
+          <span class="cred-pill">mmWave Radar</span>
+          <span class="cred-pill">Acoustic AI</span>
+          <span class="cred-pill">IoT Architecture</span>
+          <span class="cred-pill">Chevron</span>
+          <span class="cred-pill">Rivian Automotive</span>
+          <span class="cred-pill">Network Rail</span>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── TEAM ───────────────────────────────────────────────── -->
-<section class="team">
+<!-- ── WHAT WE ARE ── -->
+<section class="what">
   <div class="wrap">
-    <div class="team-intro">
-      <div class="story-label">The Team</div>
-      <h2>Specialists, not generalists</h2>
-      <p>Behind every Fyrfly project is a team of practitioners with deep experience in their specific discipline. We do not use generalist engineers who rotate across different sectors — each member of the team has built their career in physical security, networking, or public sector operations.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        </div>
-        <div class="team-name">CCTV &amp; AI Analytics</div>
-        <div class="team-role">Surveillance Design</div>
-        <div class="team-desc">Camera placement, evidential image quality, UK GDPR compliance, and AI-assisted analytics configuration across HD, 4K, and thermal imaging platforms. Experienced with single-site schools through to multi-building MAT estates.</div>
+    <div class="sec-lbl">What We Are</div>
+    <h2 class="sec-h">Three things that define how we work</h2>
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-ico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="what-t">Sector-only focus</div>
+        <div class="what-d">We work exclusively with education and public sector clients. Not as a ring-fenced division of a generalist company, but as an organisation built entirely around that environment. Our design standards, compliance knowledge and documentation are built for your context, not adapted from a commercial template.</div>
       </div>
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        </div>
-        <div class="team-name">Access Control</div>
-        <div class="team-role">Door &amp; Entry Systems</div>
-        <div class="team-desc">Role-based access design, DBS-aware visitor management, video door entry, and multi-site estate control. KCSiE-aligned from the ground up, with fire-safe hardware selection and full audit trail configuration.</div>
+      <div class="what-card">
+        <div class="what-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="what-t">Technical depth, not just installation</div>
+        <div class="what-d">There is a significant difference between fitting a camera and designing a security system. Our background is in sensor platform development, AI analytics and IoT architecture. That depth changes how we specify equipment, how we design coverage, and how we configure AI-assisted detection. It is the difference between a system that works and one that simply exists.</div>
       </div>
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="team-name">Intruder Alarms</div>
-        <div class="team-role">Detection Systems</div>
-        <div class="team-desc">Grade 2 and Grade 3 intruder alarm design to BS 8243, dual-path signalling, and connection to independently approved Alarm Receiving Centres. Zone design built around the operational reality of part-occupied buildings and out-of-hours lettings.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
-        </div>
-        <div class="team-name">Fire Detection Systems</div>
-        <div class="team-role">Fire Alarm Design</div>
-        <div class="team-desc">Addressable fire alarm design and installation to BS 5839-1, with phased evacuation configuration for complex school buildings, Category L1/L2/M system selection, and fully documented commissioning records for the Responsible Person.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49m-8.48-.01a6 6 0 010-8.49m11.31-2.82a10 10 0 010 14.14m-14.14 0a10 10 0 010-14.14"/></svg>
-        </div>
-        <div class="team-name">Wireless Networks</div>
-        <div class="team-role">Infrastructure &amp; Connectivity</div>
-        <div class="team-desc">Campus-wide Wi-Fi design, fibre and structured cabling, and the network infrastructure that security systems depend on. Experience with challenging school buildings — listed structures, multi-storey blocks, and temporary accommodation.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-disc">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <div class="team-name">24/7 Monitoring</div>
-        <div class="team-role">ARC &amp; Remote Response</div>
-        <div class="team-desc">Intruder, fire, and CCTV monitoring via independently approved Alarm Receiving Centres, with keyholder management, police response coordination, and detailed activation reporting. Lone worker monitoring for estate and facilities staff.</div>
+      <div class="what-card">
+        <div class="what-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="what-t">Documentation that holds up</div>
+        <div class="what-d">Every installation produces a complete paper trail: design drawings, commissioning records, as-built documentation, handover packs, operator training, and maintenance logs. We produce documentation to the standard that governors, procurement officers, and the Security Industry Authority will expect to see. Because what you cannot evidence did not happen.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── VALUES ─────────────────────────────────────────────── -->
-<section class="values">
+<!-- ── HOW WE WORK ── -->
+<section class="how">
   <div class="wrap">
-    <div class="story-label">How We Work</div>
-    <h2 style="font-family:var(--fh);font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800;line-height:1.12;letter-spacing:-0.025em;color:var(--dark);max-width:560px;">Six things that are non-negotiable on every project</h2>
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-n">01</div>
-        <div class="value-t">No cold-selling to your staff</div>
-        <div class="value-d">We don't turn maintenance visits into upsell opportunities. If something needs attention, we flag it clearly and in writing. If it doesn't, we say so.</div>
+    <div class="how-grid">
+      <div class="how-text">
+        <div class="sec-lbl">How We Work</div>
+        <h2 class="sec-h">Straightforward. Documented. No surprises.</h2>
+        <p style="margin-top:1rem;">We have built large-scale technology projects in environments where failure has real consequences. That shapes how we approach every project, regardless of scale. Fixed scope, fixed price, documented changes, honest timelines. The people who survey your site are the people accountable for your installation.</p>
+        <p>We do not use a sub-contractor chain that dilutes accountability at every step. We do not win work by underquoting and recovering costs through variations. We do not cold-sell to your staff during maintenance visits. These are not marketing claims — they are the standard we hold ourselves to because we have seen what happens when security companies do not.</p>
       </div>
-      <div class="value-card">
-        <div class="value-n">02</div>
-        <div class="value-t">Compliance language that means something</div>
-        <div class="value-d">DfE, KCSiE, Martyn's Law, UK GDPR — we know what these require in practice, not just what they say on paper. Our designs are built to satisfy them, not just reference them.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-n">03</div>
-        <div class="value-t">Procurement transparency</div>
-        <div class="value-d">Specifications, pricing, and variations are documented clearly at every stage. We will never quote one thing and install another, or allow scope creep to appear silently on an invoice.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-n">04</div>
-        <div class="value-t">Handover that actually transfers knowledge</div>
-        <div class="value-d">Staff training is included as standard, not an add-on. When we leave a site, the people responsible for the building understand how to use what we've installed.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-n">05</div>
-        <div class="value-t">Long-term service relationships</div>
-        <div class="value-d">We design systems we're prepared to maintain for a decade. That changes how we specify equipment, how we document our work, and how we approach every installation decision.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-n">06</div>
-        <div class="value-t">Direct access to decision-makers</div>
-        <div class="value-d">Our clients deal directly with the people who hold technical and commercial accountability for their project. Not account managers. Not call centres. The people responsible.</div>
+      <div class="commitments">
+        <div class="commit">
+          <div class="commit-num">01</div>
+          <div class="commit-text"><strong>Fixed price, written scope</strong><span>Scope, price and timeline are agreed before any work begins. Variations are documented and approved before they become costs. You will not receive an unexpected invoice.</span></div>
+        </div>
+        <div class="commit">
+          <div class="commit-num">02</div>
+          <div class="commit-text"><strong>One team, clear accountability</strong><span>The engineers who survey your site are the people responsible for your installation. Accountability stays in one place from survey to sign-off.</span></div>
+        </div>
+        <div class="commit">
+          <div class="commit-num">03</div>
+          <div class="commit-text"><strong>Compliance built in, not bolted on</strong><span>DfE, KCSiE, Martyn's Law and UK GDPR requirements are part of the design specification, not a section added to the proposal to help it win.</span></div>
+        </div>
+        <div class="commit">
+          <div class="commit-num">04</div>
+          <div class="commit-text"><strong>Handover that transfers knowledge</strong><span>Staff training is included as standard. When we leave a site, your team understands how to operate what we have installed and what to do when something needs attention.</span></div>
+        </div>
+        <div class="commit">
+          <div class="commit-num">05</div>
+          <div class="commit-text"><strong>Direct access to decision-makers</strong><span>Our clients deal directly with the people who hold technical and commercial accountability for their project. Not account managers, not call centres.</span></div>
+        </div>
+        <div class="commit">
+          <div class="commit-num">06</div>
+          <div class="commit-text"><strong>Systems we are prepared to maintain</strong><span>We design and install systems we will support for ten years. That changes every decision we make about equipment, documentation and configuration.</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ────────────────────────────────────────────────── -->
+<!-- ── STANDARDS ── -->
+<section class="standards">
+  <div class="wrap">
+    <div class="sec-lbl" style="color:rgba(255,255,255,0.7);">Standards and Compliance</div>
+    <div class="standards-grid">
+      <div class="std-blocks">
+        <div class="std-block">
+          <div class="std-block-head"><div class="std-dot"></div><div class="std-title">BS EN Standards</div></div>
+          <div class="std-desc">All installations designed and commissioned to the relevant British and European Standards: BS EN 62676 (CCTV), BS EN 50131 (intruder alarms), BS 5839 (fire detection), BS 8243 (access control). Standards are the floor, not the ceiling.</div>
+        </div>
+        <div class="std-block">
+          <div class="std-block-head"><div class="std-dot"></div><div class="std-title">DfE Protective Security and Preparedness Guidance</div></div>
+          <div class="std-desc">Design methodology follows the Department for Education's guidance on school security. Camera placement, access control zoning, visitor management and lockdown procedures are all specified with DfE guidance as the primary reference.</div>
+        </div>
+        <div class="std-block">
+          <div class="std-block-head"><div class="std-dot"></div><div class="std-title">KCSiE (Keeping Children Safe in Education)</div></div>
+          <div class="std-desc">Security systems in schools must support the DSL's safeguarding obligations. Our designs account for unsupervised areas, visitor identity management, access restriction and the audit trail requirements that KCSiE demands.</div>
+        </div>
+        <div class="std-block">
+          <div class="std-block-head"><div class="std-dot"></div><div class="std-title">Martyn's Law (Terrorism (Protection of Premises) Act 2025)</div></div>
+          <div class="std-desc">We produce a site-specific Martyn's Law compliance document as part of every installation. Enforcement begins April 2027. Every school and public venue with a capacity of 100 or more is in scope. We are ready for this.</div>
+        </div>
+        <div class="std-block">
+          <div class="std-block-head"><div class="std-dot"></div><div class="std-title">UK GDPR and Data Protection Act 2018</div></div>
+          <div class="std-desc">CCTV processing personal data requires a lawful basis, a DPIA, a retention policy, access controls and a Subject Access Request workflow. We provide all of these as standard, not as a consultancy add-on.</div>
+        </div>
+      </div>
+      <div class="std-right">
+        <h2 style="color:#fff;font-family:var(--fh);font-size:clamp(1.6rem,2.5vw,2.3rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;">The standards that govern your building are the standards we design to.</h2>
+        <p>Every organisation we work with operates under a framework of obligations: to their governors, to the DfE, to the ICO, to the Security Industry Authority. Those obligations do not disappear once the installation is signed off.</p>
+        <p>We design systems that satisfy those obligations on day one and continue to do so over the life of the installation. That requires understanding the legislation, not just referencing it in a proposal.</p>
+        <a href="martyns-law-tool.html" class="btn-p" style="margin-top:0.5rem;">Check Your Martyn's Law Readiness &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
 <section class="cta-ban" id="contact">
   <div class="cta-bg"></div>
   <div class="cta-c">
-    <div class="sec-lbl" style="justify-content:center;color:rgba(255,255,255,0.7);margin-bottom:0.75rem;">Get in Touch</div>
+    <div class="sec-lbl" style="justify-content:center;color:rgba(255,255,255,0.7);">Start a Conversation</div>
     <h2>Talk to us about your site</h2>
-    <p>Whether you're starting from scratch, replacing an existing system, or looking for a maintenance partner you can trust — we're happy to start with a conversation, not a quote.</p>
+    <p>Whether you are starting from scratch, replacing an ageing system, or looking for a maintenance partner you can actually trust, we are happy to start with a conversation rather than a quote.</p>
     <div class="cta-btns">
-      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Email Us →</a>
-      <a href="tel:+441234567890" class="btn-g">Call Us</a>
+      <a href="mailto:hello@fyrflysystems.com" class="btn-p">Get in Touch &rarr;</a>
+      <a href="martyns-law-tool.html" class="btn-g">Free Martyn's Law Assessment</a>
     </div>
   </div>
 </section>
 
 <div id="footer-placeholder"></div>
 <script src="/nav.js"></script>
+<script src="/contact-modal.js"></script>
 <script src="/footer.js"></script>
-
 </body>
 </html>
