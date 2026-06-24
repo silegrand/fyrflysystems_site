@@ -163,6 +163,7 @@
     <a href="security-policy-review.html">Policy Health Check 🤖</a>
     <span class="mob-sub">Insights</span>
     <a href="blog.html">All Articles</a>
+    <a href="faq.html">FAQ</a>
     <span class="mob-sub">Company</span>
     <a href="about.html">About Us</a>
     <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
