@@ -273,6 +273,7 @@
       </li>
 
       <li><a href="blog.html"${isActive('blog.html')}>Insights</a></li>
+      <li><a href="faq.html"${isActive('faq.html')}>FAQ</a></li>
       <li><a href="about.html"${isActive('about.html')}>About</a></li>
 
     </ul>
