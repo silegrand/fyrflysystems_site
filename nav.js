@@ -147,6 +147,7 @@
     <a href="monitoring.html">24/7 Monitoring</a>
     <a href="maintenance.html">Maintenance</a>
     <a href="ai-analytics.html">AI Analytics</a>
+    <a href="subcontracting.html">Subcontracting</a>
     <span class="mob-sub">Sectors</span>
     <a href="education.html">Education</a>
     <a href="public-sector.html">Public Sector</a>
