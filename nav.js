@@ -219,6 +219,10 @@
             <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 12l2 2 4-4"/></svg></div>
             <span class="drop-label">AI Analytics</span>
           </a>
+          <a href="subcontracting.html"${dropActive('subcontracting.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <span class="drop-label">Subcontracting</span>
+          </a>
         </div>
       </li>
 
