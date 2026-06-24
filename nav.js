@@ -148,9 +148,6 @@
     <a href="maintenance.html">Maintenance</a>
     <a href="ai-analytics.html">AI Analytics</a>
     <a href="subcontracting.html">Subcontracting</a>
-    <span class="mob-sub">Sectors</span>
-    <a href="education.html">Education</a>
-    <a href="public-sector.html">Public Sector</a>
     <span class="mob-sub">Tools</span>
     <a href="cost-estimator.html">Cost Estimator</a>
     <a href="your-site-tool.html">Your Site Tool</a>
@@ -161,11 +158,13 @@
     <a href="school-security-policy-generator.html">CCTV Policy Generator</a>
     <a href="lockdown-procedure-tool.html">Lockdown Procedure Generator</a>
     <a href="security-policy-review.html">Policy Health Check 🤖</a>
-    <span class="mob-sub">Insights</span>
-    <a href="blog.html">All Articles</a>
+    <span class="mob-sub">Sectors</span>
+    <a href="education.html">Education</a>
+    <a href="public-sector.html">Public Sector</a>
+    <span class="mob-sub">Resources</span>
+    <a href="blog.html">Articles &amp; Guides</a>
     <a href="faq.html">FAQ</a>
-    <span class="mob-sub">Company</span>
-    <a href="about.html">About Us</a>
+    <a href="about.html">About Fyrfly</a>
     <a href="contact.html">Contact</a>
     <a href="mailto:hello@fyrflysystems.com" class="mob-cta">Get in Touch &rarr;</a>
   </div>
@@ -228,55 +227,83 @@
         </div>
       </li>
 
-      <li><a href="education.html"${isActive('education.html')}>Education</a></li>
-      <li><a href="public-sector.html"${isActive('public-sector.html')}>Public Sector</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Sectors <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="education.html"${dropActive('education.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <span class="drop-label">Education</span>
+          </a>
+          <a href="public-sector.html"${dropActive('public-sector.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+            <span class="drop-label">Public Sector</span>
+          </a>
+        </div>
+      </li>
 
       <li class="nav-dropdown">
         <a href="#">Tools <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="drop-menu">
-          <a href="cost-estimator.html"${dropActive('cost-estimator.html')}>
+          <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')}>
+            <div class="drop-ico" style="background:rgba(200,16,46,0.08);"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="drop-label">Martyn's Law Assessment</span>
+          </a>
+          <a href="compliance-tool.html"${dropActive('compliance-tool.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <span class="drop-label">Compliance Checker</span>
+          </a>
+          <a href="security-policy-review.html"${dropActive('security-policy-review.html')}>
+            <div class="drop-ico" style="background:rgba(5,150,105,0.08);"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <span class="drop-label">Policy Health Check <span style="font-size:0.6rem;background:rgba(5,150,105,0.15);color:#059669;padding:0.1rem 0.35rem;border-radius:4px;margin-left:0.25rem;">AI</span></span>
+          </a>
+          <a href="lockdown-procedure-tool.html"${dropActive('lockdown-procedure-tool.html')}>
+            <div class="drop-ico" style="background:rgba(245,166,35,0.08);"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <span class="drop-label">Lockdown Procedure</span>
+          </a>
+          <a href="school-security-policy-generator.html"${dropActive('school-security-policy-generator.html')}>
+            <div class="drop-ico" style="background:rgba(232,93,4,0.08);"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <span class="drop-label">CCTV Policy Generator</span>
+          </a>
+          <a href="cost-estimator.html"${dropActive('cost-estimator.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
             <div class="drop-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
             <span class="drop-label">Cost Estimator</span>
-          </a>
-          <a href="your-site-tool.html"${dropActive('your-site-tool.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <span class="drop-label">Your Site Tool</span>
           </a>
           <a href="zone-planner.html"${dropActive('zone-planner.html')}>
             <div class="drop-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
             <span class="drop-label">Zone Planner</span>
           </a>
-          <a href="compliance-tool.html"${dropActive('compliance-tool.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <span class="drop-label">Compliance Tool</span>
+          <a href="incident-analyser.html"${dropActive('incident-analyser.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <span class="drop-label">Incident Analyser</span>
           </a>
-          <a href="system-integration.html"${dropActive('system-integration.html')}>
-            <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-            <span class="drop-label">System Integration</span>
-          </a>
-          <a href="martyns-law-tool.html"${dropActive('martyns-law-tool.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
-            <div class="drop-ico" style="background:rgba(200,16,46,0.08);"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <span class="drop-label">Martyn's Law Assessment</span>
-          </a>
-          <a href="school-security-policy-generator.html"${dropActive('school-security-policy-generator.html')}>
-            <div class="drop-ico" style="background:rgba(232,93,4,0.08);"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-            <span class="drop-label">CCTV Policy Generator</span>
-          </a>
-          <a href="lockdown-procedure-tool.html"${dropActive('lockdown-procedure-tool.html')}>
-            <div class="drop-ico" style="background:rgba(245,166,35,0.08);"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-            <span class="drop-label">Lockdown Procedure Generator</span>
-          </a>
-          <a href="security-policy-review.html"${dropActive('security-policy-review.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
-            <div class="drop-ico" style="background:rgba(5,150,105,0.08);"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <span class="drop-label">Policy Health Check <span style="font-size:0.6rem;background:rgba(5,150,105,0.15);color:#059669;padding:0.1rem 0.35rem;border-radius:4px;margin-left:0.25rem;">AI</span></span>
+          <a href="your-site-tool.html"${dropActive('your-site-tool.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <span class="drop-label">Your Site Tool</span>
           </a>
         </div>
       </li>
 
-      <li><a href="blog.html"${isActive('blog.html')}>Insights</a></li>
-      <li><a href="faq.html"${isActive('faq.html')}>FAQ</a></li>
-      <li><a href="about.html"${isActive('about.html')}>About</a></li>
-      <li><a href="contact.html"${isActive('contact.html')}>Contact</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Resources <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="drop-menu">
+          <a href="blog.html"${dropActive('blog.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+            <span class="drop-label">Articles &amp; Guides</span>
+          </a>
+          <a href="faq.html"${dropActive('faq.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <span class="drop-label">FAQ</span>
+          </a>
+          <a href="about.html"${dropActive('about.html')} style="border-top:1px solid var(--bdr);margin-top:0.3rem;padding-top:0.65rem;">
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <span class="drop-label">About Fyrfly</span>
+          </a>
+          <a href="contact.html"${dropActive('contact.html')}>
+            <div class="drop-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <span class="drop-label">Contact</span>
+          </a>
+        </div>
+      </li>
 
     </ul>
     <a href="index.html#contact" class="nav-cta">Get in Touch &rarr;</a>
