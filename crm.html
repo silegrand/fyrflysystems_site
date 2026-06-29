@@ -449,6 +449,20 @@ input,select,textarea{font-family:var(--fb);}
       <div class="content"><div class="tw" id="activities-table"></div></div>
     </div>
 
+
+    <!-- MAINTENANCE -->
+    <div id="view-maintenance" class="view">
+      <div class="topbar"><div><div class="pg-ey">Recurring Revenue</div><div class="pg-ti">Maintenance contracts</div></div><div class="tb-right"><button class="btn-p" id="btn-add-maint"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add contract</button></div></div>
+      <div class="content">
+        <div class="mc-grid">
+          <div class="sc"><div class="sc-l">Annual recurring revenue</div><div class="sc-v grad" id="m-arr">£0</div><div class="sc-s">active contracts</div></div>
+          <div class="mc-renewal sc"><div class="sc-l">Renewing within 90 days</div><div class="sc-v" id="m-renewing">0</div><div class="sc-s" id="m-renewing-val">£0 at risk</div></div>
+          <div class="mc-overdue sc"><div class="sc-l">Overdue / lapsed</div><div class="sc-v" id="m-overdue">0</div><div class="sc-s">needs attention</div></div>
+        </div>
+        <div class="tw" id="maintenance-table"></div>
+      </div>
+    </div>
+
   </div><!-- /main -->
 </div><!-- /app -->
 
