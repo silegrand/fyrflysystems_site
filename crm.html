@@ -815,13 +815,13 @@ function renderDashboardAlerts(){
     var b = document.createElement('div'); b.className='alert-banner';
     b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
       +'<span><strong>'+soon.length+' maintenance contract'+(soon.length>1?'s':'')+' renewing in the next 30 days</strong> — '+(val?'£'+Number(val).toLocaleString('en-GB')+' ARR at risk. ':'')
-      +'<a onclick="navigate('maintenance')">View contracts &rarr;</a></span>';
+      +'<a onclick="navigate(&apos;maintenance&apos;)">View contracts &rarr;</a></span>';
     el2.appendChild(b);
   }
   if(overdue.length){
     var b2 = document.createElement('div'); b2.className='alert-banner'; b2.style.background='rgba(239,68,68,0.08)'; b2.style.borderColor='rgba(239,68,68,0.2)';
     b2.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" style="stroke:#FCA5A5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
-      +'<span style="color:rgba(255,255,255,0.8)"><strong style="color:#FCA5A5">'+overdue.length+' overdue contract'+(overdue.length>1?'s':'')+' need attention</strong> — renewal date has passed. <a style="color:#FCA5A5" onclick="navigate('maintenance')">Review now &rarr;</a></span>';
+      +'<span style="color:rgba(255,255,255,0.8)"><strong style="color:#FCA5A5">'+overdue.length+' overdue contract'+(overdue.length>1?'s':'')+' need attention</strong> — renewal date has passed. <a style="color:#FCA5A5" onclick="navigate(&apos;maintenance&apos;)">Review now &rarr;</a></span>';
     el2.appendChild(b2);
   }
   // Monthly forecast dimension
@@ -845,7 +845,7 @@ function renderDashboardAlerts(){
     if(closingThisMonth.length) parts.push('<strong style="color:#93C5FD">'+closingThisMonth.length+' deal'+(closingThisMonth.length>1?'s':'')+' ('+fmtV(tmVal)+') due to close this month</strong>');
     if(closingNextMonth.length) parts.push(closingNextMonth.length+' deal'+(closingNextMonth.length>1?'s':'')+' ('+fmtV(nmVal)+') due next month');
     b3.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" style="stroke:#93C5FD;flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
-      +'<span style="color:rgba(255,255,255,0.8)">'+parts.join(' &middot; ')+'. <a style="color:#93C5FD" onclick="navigate('pipeline')">View pipeline &rarr;</a></span>';
+      +'<span style="color:rgba(255,255,255,0.8)">'+parts.join(' &middot; ')+'. <a style="color:#93C5FD" onclick="navigate(&apos;pipeline&apos;)">View pipeline &rarr;</a></span>';
     el2.appendChild(b3);
   }
 }
