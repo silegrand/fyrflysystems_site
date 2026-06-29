@@ -199,6 +199,34 @@ input,select,textarea{font-family:var(--fb);}
 
 .va{color:var(--a);font-family:var(--fh);font-weight:700;}
 .na-rows{display:flex;flex-direction:column;gap:2px;}
+
+/* FORECAST */
+.fc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;}
+.fc-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;padding:1.25rem 1.5rem;position:relative;overflow:hidden;}
+.fc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.fc-card.worst::before{background:#E85D04;}
+.fc-card.likely::before{background:var(--grad);}
+.fc-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:4px;}
+.fc-val{font-family:var(--fh);font-size:2rem;font-weight:900;letter-spacing:-0.03em;color:#fff;margin-bottom:2px;}
+.fc-val.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.fc-sub{font-size:11px;color:rgba(255,255,255,0.32);line-height:1.5;}
+.fc-bars{margin-top:1.25rem;}
+.fc-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.fc-bar-row:last-child{margin-bottom:0;}
+.fc-bar-label{font-size:11px;color:rgba(255,255,255,0.45);width:90px;flex-shrink:0;}
+.fc-bar-track{flex:1;height:8px;border-radius:100px;background:rgba(255,255,255,0.07);overflow:hidden;position:relative;}
+.fc-bar-fill{height:100%;border-radius:100px;transition:width 0.4s ease;}
+.fc-bar-fill.won{background:#86EFAC;}
+.fc-bar-fill.neg{background:#FBA87A;}
+.fc-bar-fill.prop{background:#D8B4FE;}
+.fc-bar-fill.qual{background:#FCD34D;}
+.fc-bar-fill.lead{background:#93C5FD;}
+.fc-bar-vals{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px;}
+.fc-note{font-size:11px;color:rgba(255,255,255,0.28);margin-top:1rem;line-height:1.6;padding-top:1rem;border-top:1px solid var(--bdr);}
+.fc-note strong{color:rgba(255,255,255,0.5);}
+.fc-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem;}
+.fc-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.4);}
+.fc-leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -304,7 +332,29 @@ input,select,textarea{font-family:var(--fb);}
     <!-- PIPELINE -->
     <div id="view-pipeline" class="view">
       <div class="topbar"><div><div class="pg-ey">Sales</div><div class="pg-ti">Pipeline</div></div><div class="tb-right"><select class="fsel" id="deal-stage-filter"><option value="">All stages</option><option>Lead</option><option>Qualified</option><option>Proposal</option><option>Negotiation</option><option>Won</option><option>Lost</option></select><select class="fsel" id="deal-sector-filter"><option value="">All sectors</option><option>School</option><option>Council</option><option>Commercial</option><option>NHS</option><option>Other</option></select><button class="btn-p" id="btn-add-deal"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add deal</button></div></div>
-      <div class="content"><div class="tw" id="pipeline-table"></div></div>
+      <div class="content">
+    <!-- FORECAST PANEL (injected above pipeline table) -->
+    <div id="forecast-panel" style="display:none;">
+      <div class="fc-wrap">
+        <div class="fc-card worst">
+          <div class="fc-label">Worst case</div>
+          <div class="fc-val" id="fc-worst">£0</div>
+          <div class="fc-sub">Closed &amp; won deals only. Everything else falls through.</div>
+        </div>
+        <div class="fc-card likely">
+          <div class="fc-label">Most likely (weighted)</div>
+          <div class="fc-val grad" id="fc-likely">£0</div>
+          <div class="fc-sub">Stage-weighted forecast using physical security industry win rates.</div>
+        </div>
+      </div>
+      <div class="fc-card" style="margin-bottom:1.25rem;">
+        <div class="fc-label">Pipeline by stage — weighted value</div>
+        <div class="fc-bars" id="fc-bars"></div>
+        <div class="fc-legend" id="fc-legend"></div>
+        <div class="fc-note">Win rate assumptions: <strong>Lead 10%</strong> &middot; <strong>Qualified 25%</strong> &middot; <strong>Proposal 40%</strong> &middot; <strong>Negotiation 70%</strong> &middot; <strong>Won 100%</strong>. Based on a 1-in-5 overall close rate typical for physical security B2B. Override individual deal probabilities to refine the forecast.</div>
+      </div>
+    </div>
+<div class="tw" id="pipeline-table"></div></div>
     </div>
 
     <!-- ACTIVITIES -->
@@ -774,6 +824,82 @@ function loadActivities(){
 
 // ── UTILS ──
 function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+
+// ── STAGE WIN RATES (physical security B2B industry standard) ──
+var WIN_RATES = {Lead:0.10, Qualified:0.25, Proposal:0.40, Negotiation:0.70, Won:1.0, Lost:0.0};
+var STAGE_COLORS = {Won:'won', Negotiation:'neg', Proposal:'prop', Qualified:'qual', Lead:'lead'};
+
+function renderForecast(deals){
+  var panel = $('forecast-panel');
+  if(!deals || deals.length===0){ panel.style.display='none'; return; }
+  panel.style.display='block';
+
+  // Worst case = won only
+  var worst = deals.filter(function(d){return d.stage==='Won';}).reduce(function(s,d){return s+(Number(d.value)||0);},0);
+
+  // Most likely = each deal value * stage win rate (or custom probability if set)
+  var likely = deals.filter(function(d){return d.stage!=='Lost';}).reduce(function(s,d){
+    var rate = d.probability ? d.probability/100 : (WIN_RATES[d.stage]||0);
+    return s + (Number(d.value)||0)*rate;
+  },0);
+
+  $('fc-worst').textContent = fmtV(worst);
+  $('fc-likely').textContent = fmtV(Math.round(likely));
+
+  // Bar chart — weighted value per stage
+  var bars = $('fc-bars'); bars.innerHTML='';
+  var legend = $('fc-legend'); legend.innerHTML='';
+  var activeStages = ['Won','Negotiation','Proposal','Qualified','Lead'];
+  var maxWeighted = 0;
+  var stageTotals = {};
+  activeStages.forEach(function(s){
+    var total = deals.filter(function(d){return d.stage===s;}).reduce(function(sum,d){
+      var rate = d.probability ? d.probability/100 : (WIN_RATES[s]||0);
+      return sum+(Number(d.value)||0)*rate;
+    },0);
+    stageTotals[s] = Math.round(total);
+    if(total>maxWeighted) maxWeighted=total;
+  });
+  if(maxWeighted===0) maxWeighted=1;
+
+  activeStages.forEach(function(s){
+    var total=stageTotals[s];
+    var raw=deals.filter(function(d){return d.stage===s;}).reduce(function(sum,d){return sum+(Number(d.value)||0);},0);
+    var count=deals.filter(function(d){return d.stage===s;}).length;
+    if(count===0) return;
+    var pct=Math.round(total/maxWeighted*100);
+    var row=document.createElement('div'); row.className='fc-bar-row';
+    row.innerHTML='<div class="fc-bar-label">'+s+' ('+count+')</div><div style="flex:1"><div class="fc-bar-track"><div class="fc-bar-fill '+STAGE_COLORS[s]+'" style="width:'+pct+'%"></div></div><div class="fc-bar-vals"><span>'+fmtV(total)+' weighted</span><span>'+fmtV(raw)+' full value</span></div></div>';
+    bars.appendChild(row);
+    // Legend
+    var li=document.createElement('div'); li.className='fc-leg-item';
+    li.innerHTML='<div class="fc-leg-dot" style="background:var(--'+getCSSColor(s)+')"></div>'+s+': '+Math.round((WIN_RATES[s]||0)*100)+'%';
+    legend.appendChild(li);
+  });
+}
+
+function getCSSColor(s){
+  var m={Won:'--b-won-c',Negotiation:'o',Proposal:'a',Qualified:'a',Lead:'c'};
+  return m[s]||'a';
+}
+
+// Patch renderPipeline to also render forecast
+var _origRenderPipeline = renderPipeline;
+renderPipeline = function(){
+  _origRenderPipeline();
+  var stage=$('deal-stage-filter').value, sector=$('deal-sector-filter').value;
+  var fil=DB.deals.filter(function(d){ if(stage&&d.stage!==stage)return false; if(sector&&d.sector!==sector)return false; return true; });
+  renderForecast(fil);
+};
+
+// Also render on dashboard load
+var _origLoadAll = loadAll;
+loadAll = function(){
+  return _origLoadAll().then(function(){
+    renderForecast(DB.deals);
+  });
+};
 
 // ── BOOT ──
 function showApp(){
