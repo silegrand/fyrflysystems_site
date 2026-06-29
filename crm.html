@@ -227,6 +227,73 @@ input,select,textarea{font-family:var(--fb);}
 .fc-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem;}
 .fc-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.4);}
 .fc-leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  /* App layout: stack vertically, sidebar becomes bottom nav */
+  #app-screen{grid-template-columns:1fr;grid-template-rows:1fr auto;}
+  .sb{order:2;flex-direction:row;border-right:none;border-top:1px solid var(--bdr);padding:0;overflow-x:auto;}
+  .sb-top,.sb-sec,.sb-bot{display:none;}
+  .nav-item{flex-direction:column;gap:3px;padding:10px 8px;font-size:9px;letter-spacing:0.03em;min-width:60px;align-items:center;justify-content:center;flex:1;}
+  .nav-item svg{width:18px;height:18px;}
+  .nav-item.active::before{top:0;left:4px;right:4px;bottom:auto;width:auto;height:3px;border-radius:0 0 3px 3px;}
+  .main{order:1;overflow-y:auto;min-height:0;}
+
+  /* Topbar */
+  .topbar{padding:0.85rem 1rem;flex-wrap:wrap;gap:8px;}
+  .pg-ti{font-size:0.95rem;}
+  .tb-right{flex-wrap:wrap;gap:6px;}
+  .btn-p,.btn-g{padding:6px 12px;font-size:12px;}
+  .fsel{font-size:12px;padding:6px 8px;}
+
+  /* Content */
+  .content{padding:1rem;}
+
+  /* Stats row: 2x2 grid */
+  .stats-row{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem;}
+  .sc-v{font-size:1.4rem;}
+
+  /* Dashboard grid: single column */
+  .dg{grid-template-columns:1fr;}
+
+  /* Forecast: single column */
+  .fc-wrap{grid-template-columns:1fr;}
+  .fc-val{font-size:1.5rem;}
+
+  /* Tables: horizontal scroll */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tw table{min-width:500px;}
+
+  /* Filters row: wrap */
+  .frow{flex-wrap:wrap;}
+  .srch{width:100%;min-width:0;}
+
+  /* Detail layout: single column */
+  .dl{grid-template-columns:1fr;}
+
+  /* Two-col form grid: single column on small screens */
+  .fg2{grid-template-columns:1fr;}
+
+  /* Modal: full width with small margin */
+  .modal-bg{padding:0.5rem;}
+  .modal{max-height:95vh;border-radius:12px;}
+  .mb{padding:1rem;}
+  .mh{padding:1rem;}
+  .mf{padding:0.75rem 1rem;}
+
+  /* Seg pickers: wrap tightly */
+  .seg{gap:5px;}
+  .seg button{padding:4px 10px;font-size:11px;}
+
+  /* Login card */
+  .lcard{padding:1.75rem 1.25rem;}
+  .ltitle{font-size:1.25rem;}
+}
+
+@media(max-width:380px){
+  .stats-row{grid-template-columns:1fr;}
+  .nav-item{min-width:50px;font-size:8px;}
+}
 </style>
 </head>
 <body>
