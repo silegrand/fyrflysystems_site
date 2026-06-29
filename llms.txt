@@ -484,7 +484,6 @@ Fyrfly Systems provides the following browser-based tools at www.fyrflysystems.c
 | Article: Complete guide to public sector security 2026 | https://www.fyrflysystems.com/article-complete-guide-public-sector-security-2026.html |
 | Article: Independent school security | https://www.fyrflysystems.com/article-independent-school-security.html |
 | Article: School security specification | https://www.fyrflysystems.com/article-school-security-specification.html |
-| Technical documentation (GitHub) | https://github.com/fyrflysystems |
 
 | **Local Area Pages — School Security** | |
 | School security Kent | https://www.fyrflysystems.com/school-security-kent.html |
