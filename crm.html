@@ -5,229 +5,784 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fyrfly CRM</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#1C1F2E;--char:#252836;--panel:#2A2D3E;--card:#1E2130;--bdr:rgba(255,255,255,0.1);--bdr-s:rgba(255,255,255,0.16);--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--ease:cubic-bezier(0.22,1,0.36,1);}
-*{box-sizing:border-box;margin:0;padding:0;}body{font-family:var(--fb);background:var(--dark);color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;}button{cursor:pointer;font-family:var(--fb);}
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--dark);padding:2rem;position:relative;overflow:hidden;}.login-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(232,93,4,0.12) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(200,16,46,0.08) 0%,transparent 50%);}.login-wrap::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;}
-.login-card{position:relative;z-index:2;background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;padding:2.5rem;width:100%;max-width:380px;}
-.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:2rem;}.login-mark{width:38px;height:38px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;}.login-mark svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.login-name{font-family:var(--fh);font-size:17px;font-weight:700;color:#fff;}.login-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.login-platform{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
-.login-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--o);display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;}.login-eyebrow::before{content:'';display:inline-block;width:14px;height:1.5px;background:var(--o);}
-.login-title{font-family:var(--fh);font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;margin-bottom:0.35rem;color:#fff;}.login-sub{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:1.75rem;line-height:1.6;}
-.field-lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:6px;display:block;}
-.field-in{width:100%;padding:11px 14px;border:1px solid var(--bdr);border-radius:9px;background:rgba(255,255,255,0.07);color:#fff;font-size:14px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}.field-in:focus{border-color:var(--o);background:rgba(232,93,4,0.08);}.field-in::placeholder{color:rgba(255,255,255,0.22);}
-.login-err{font-size:12px;color:#F87171;margin-top:0.5rem;}.btn-grad{width:100%;padding:12px;border:none;border-radius:9px;background:var(--grad);color:#fff;font-family:var(--fh);font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:1rem;transition:opacity 0.2s,transform 0.2s var(--ease);}.btn-grad:hover{opacity:0.88;transform:translateY(-1px);}
-.app{display:grid;grid-template-columns:228px 1fr;min-height:100vh;}.sidebar{background:var(--char);border-right:1px solid var(--bdr);display:flex;flex-direction:column;}
-.sb-top{padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--bdr);}.sb-logo{display:flex;align-items:center;gap:9px;}.sb-mark{width:30px;height:30px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;}.sb-mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.sb-name{font-family:var(--fh);font-size:14px;font-weight:700;color:#fff;}.sb-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.sb-tag{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
-.sb-section{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:1rem 1rem 0.3rem;}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 1rem;font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);cursor:pointer;transition:color 0.15s,background 0.15s;position:relative;}.nav-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}.nav-item:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.06);}.nav-item.active{color:#fff;background:rgba(232,93,4,0.14);}.nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:0 3px 3px 0;background:var(--grad);}.nav-item.active svg{stroke:var(--a);}
-.sb-bottom{margin-top:auto;padding:1rem;border-top:1px solid var(--bdr);}.sb-stats{background:rgba(255,255,255,0.05);border-radius:10px;padding:0.75rem;margin-bottom:0.75rem;border:1px solid var(--bdr);}.sb-stat-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}.sb-stat-row:last-child{margin-bottom:0;}.sb-stat-label{color:rgba(255,255,255,0.38);}.sb-stat-val{color:rgba(255,255,255,0.85);font-weight:600;font-family:var(--fh);}
-.logout-btn{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.32);background:none;border:none;cursor:pointer;padding:4px 0;transition:color 0.15s;}.logout-btn:hover{color:rgba(255,255,255,0.7);}.logout-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.main{background:var(--dark);display:flex;flex-direction:column;min-height:100vh;}.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-bottom:1px solid var(--bdr);background:var(--char);flex-shrink:0;}.page-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:2px;}.page-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;letter-spacing:-0.015em;color:#fff;}.topbar-right{display:flex;align-items:center;gap:8px;}
-.btn-action{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:opacity 0.18s,transform 0.18s var(--ease);}.btn-action svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}.btn-action.primary{background:var(--grad);color:#fff;}.btn-action.primary:hover{opacity:0.88;transform:translateY(-1px);}.btn-action.ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid var(--bdr);}.btn-action.ghost:hover{background:rgba(255,255,255,0.12);color:#fff;}
-.content{padding:1.5rem 1.75rem;flex:1;}.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}.stat-card{background:var(--panel);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;}.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0.7;}.stat-lbl{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}.stat-val{font-family:var(--fh);font-size:1.75rem;font-weight:900;letter-spacing:-0.03em;color:#fff;}.stat-val.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.stat-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:3px;}
-.filters{display:flex;gap:8px;margin-bottom:1.1rem;align-items:center;flex-wrap:wrap;}.filter-in,.search-in{padding:7px 12px;font-size:12px;font-family:var(--fb);border:1px solid var(--bdr);border-radius:7px;background:rgba(255,255,255,0.07);color:#fff;outline:none;transition:border-color 0.2s;}.filter-in:focus,.search-in:focus{border-color:var(--o);}.filter-in option{background:var(--panel);}.search-in{width:220px;}.search-in::placeholder{color:rgba(255,255,255,0.22);}
-.tbl-wrap{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}table{width:100%;border-collapse:collapse;font-size:13px;}th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:1px solid var(--bdr);background:rgba(255,255,255,0.03);}td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:middle;color:rgba(255,255,255,0.82);}tr:last-child td{border-bottom:none;}tbody tr{transition:background 0.12s;}tbody tr:hover td{background:rgba(255,255,255,0.05);cursor:pointer;}
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;white-space:nowrap;}.b-lead{background:rgba(59,130,246,0.18);color:#93C5FD;}.b-qualified{background:rgba(245,158,11,0.18);color:#FCD34D;}.b-proposal{background:rgba(168,85,247,0.18);color:#D8B4FE;}.b-negotiation{background:rgba(232,93,4,0.18);color:#FBA87A;}.b-won{background:rgba(34,197,94,0.18);color:#86EFAC;}.b-lost{background:rgba(239,68,68,0.18);color:#FCA5A5;}.b-school{background:rgba(59,130,246,0.15);color:#93C5FD;}.b-council{background:rgba(34,197,94,0.15);color:#86EFAC;}.b-commercial{background:rgba(168,85,247,0.15);color:#D8B4FE;}.b-nhs{background:rgba(244,63,94,0.15);color:#FDA4AF;}.b-other{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);}
-.av{width:30px;height:30px;border-radius:50%;background:rgba(232,93,4,0.18);border:1px solid rgba(232,93,4,0.3);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--a);font-family:var(--fh);flex-shrink:0;}.av-lg{width:42px;height:42px;font-size:14px;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:200;padding:1rem;backdrop-filter:blur(4px);}.modal{background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);}.modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:3px;}.modal-title{font-family:var(--fh);font-size:15px;font-weight:700;color:#fff;}.modal-close{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;}.modal-close:hover{background:rgba(255,255,255,0.13);color:#fff;}.modal-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}.modal-body{padding:1.25rem 1.5rem;}.modal-foot{padding:1rem 1.5rem;border-top:1px solid var(--bdr);display:flex;justify-content:flex-end;gap:8px;}
-.fr{margin-bottom:1rem;}.fr label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}.fr input,.fr select,.fr textarea{width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--o);background:rgba(232,93,4,0.07);}.fr input::placeholder,.fr textarea::placeholder{color:rgba(255,255,255,0.2);}.fr select option{background:var(--panel);}.fr textarea{resize:vertical;min-height:78px;line-height:1.5;}.fr-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.seg-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}.seg-btn{padding:5px 13px;border-radius:100px;border:1px solid var(--bdr);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s;}.seg-btn:hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);}.seg-btn.active{background:rgba(232,93,4,0.18);border-color:var(--o);color:#fff;}
-.detail-layout{display:grid;grid-template-columns:1fr 330px;gap:1.25rem;align-items:start;}.detail-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}.detail-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}.detail-body{padding:1.25rem 1.5rem;}.detail-sec-title{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.75rem;}.detail-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:9px;font-size:13px;}.detail-row-l{color:rgba(255,255,255,0.38);min-width:88px;flex-shrink:0;font-size:12px;}.detail-row-v{color:rgba(255,255,255,0.82);}
-.note-card{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:9px;padding:0.7rem 0.9rem;margin-bottom:7px;}.note-meta{font-size:10.5px;color:rgba(255,255,255,0.28);margin-bottom:4px;}.note-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;}.note-add-row{display:flex;gap:8px;margin-top:0.75rem;}.note-add-row textarea{flex:1;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:12px;resize:none;height:58px;outline:none;font-family:var(--fb);}.note-add-row textarea:focus{border-color:var(--o);}.note-add-row textarea::placeholder{color:rgba(255,255,255,0.2);}.note-send{align-self:flex-end;width:36px;height:36px;border-radius:8px;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity 0.2s;}.note-send:hover{opacity:0.85;}.note-send svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-.empty{padding:3.5rem 1rem;text-align:center;}.empty-ico{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}.empty-ico svg{width:24px;height:24px;stroke:rgba(255,255,255,0.22);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}.empty p{font-size:13px;color:rgba(255,255,255,0.32);line-height:1.6;}
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}.dash-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}.dash-card-head{padding:1rem 1.25rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}.dash-card-title{font-family:var(--fh);font-size:13px;font-weight:700;color:#fff;}.dash-card-count{font-size:11px;color:rgba(255,255,255,0.28);}.recent-item{display:flex;align-items:center;gap:10px;padding:10px 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);}.recent-item:last-child{border-bottom:none;}.recent-name{font-size:13px;font-weight:500;color:#fff;flex:1;}.recent-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:1px;}
-.pipeline-mini{padding:0.75rem 1.25rem;}.pipe-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.pipe-row:last-child{margin-bottom:0;}.pipe-stage{font-size:12px;color:rgba(255,255,255,0.45);width:88px;flex-shrink:0;}.pipe-bar-wrap{flex:1;height:6px;border-radius:100px;background:rgba(255,255,255,0.07);overflow:hidden;}.pipe-bar{height:100%;border-radius:100px;background:var(--grad);}.pipe-n{font-size:11px;font-family:var(--fh);font-weight:700;color:rgba(255,255,255,0.4);min-width:20px;text-align:right;}
-.val-accent{color:var(--a);font-family:var(--fh);font-weight:700;}.loading{display:flex;align-items:center;justify-content:center;padding:4rem;color:rgba(255,255,255,0.28);font-size:13px;}
-@media(max-width:900px){.app{grid-template-columns:1fr;}.sidebar{display:none;}.stats-row{grid-template-columns:1fr 1fr;}.dash-grid{grid-template-columns:1fr;}.detail-layout{grid-template-columns:1fr;}}
+:root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#1C1F2E;--char:#252836;--panel:#2A2D3E;--bdr:rgba(255,255,255,0.1);--bdr-s:rgba(255,255,255,0.18);--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100vh;}
+body{font-family:var(--fb);background:var(--dark);color:#fff;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:var(--fb);}
+input,select,textarea{font-family:var(--fb);}
+
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--dark);position:relative;overflow:hidden;}
+#login-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(232,93,4,0.12) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(200,16,46,0.08) 0%,transparent 50%);}
+#login-screen::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;}
+.lcard{position:relative;z-index:2;background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;padding:2.5rem;width:100%;max-width:380px;}
+.llogo{display:flex;align-items:center;gap:10px;margin-bottom:2rem;}
+.lmark{width:38px;height:38px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;}
+.lmark svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lname{font-family:var(--fh);font-size:17px;font-weight:700;color:#fff;}
+.lname span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lplat{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
+.ley{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--o);display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;}
+.ley::before{content:'';display:inline-block;width:14px;height:1.5px;background:var(--o);}
+.ltitle{font-family:var(--fh);font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;margin-bottom:0.35rem;color:#fff;}
+.lsub{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:1.75rem;line-height:1.6;}
+.flbl{font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:6px;display:block;}
+.fin{width:100%;padding:11px 14px;border:1px solid var(--bdr);border-radius:9px;background:rgba(255,255,255,0.07);color:#fff;font-size:14px;outline:none;}
+.fin:focus{border-color:var(--o);background:rgba(232,93,4,0.08);}
+.lerr{font-size:12px;color:#F87171;margin-top:0.5rem;min-height:18px;}
+.btngrad{width:100%;padding:12px;border:none;border-radius:9px;background:var(--grad);color:#fff;font-size:0.9rem;font-weight:700;margin-top:1rem;}
+.btngrad:hover{opacity:0.88;}
+
+/* APP */
+#app-screen{display:none;grid-template-columns:228px 1fr;min-height:100vh;}
+#app-screen.visible{display:grid;}
+
+/* SIDEBAR */
+.sb{background:var(--char);border-right:1px solid var(--bdr);display:flex;flex-direction:column;}
+.sb-top{padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--bdr);}
+.sb-logo{display:flex;align-items:center;gap:9px;}
+.sb-mk{width:30px;height:30px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sb-mk svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.sb-nm{font-family:var(--fh);font-size:14px;font-weight:700;color:#fff;}
+.sb-nm span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sb-tg{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
+.sb-sec{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:1rem 1rem 0.3rem;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 1rem;font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);cursor:pointer;position:relative;border:none;background:none;width:100%;text-align:left;}
+.nav-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-item:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.06);}
+.nav-item.active{color:#fff;background:rgba(232,93,4,0.14);}
+.nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:0 3px 3px 0;background:var(--grad);}
+.nav-item.active svg{stroke:var(--a);}
+.sb-bot{margin-top:auto;padding:1rem;border-top:1px solid var(--bdr);}
+.sb-stats{background:rgba(255,255,255,0.05);border-radius:10px;padding:0.75rem;margin-bottom:0.75rem;border:1px solid var(--bdr);}
+.sb-sr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
+.sb-sr:last-child{margin-bottom:0;}
+.sb-sl{color:rgba(255,255,255,0.38);}
+.sb-sv{color:rgba(255,255,255,0.85);font-weight:600;font-family:var(--fh);}
+.btn-lo{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.32);background:none;border:none;cursor:pointer;padding:4px 0;}
+.btn-lo:hover{color:rgba(255,255,255,0.7);}
+.btn-lo svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* MAIN */
+.main{background:var(--dark);display:flex;flex-direction:column;overflow-y:auto;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-bottom:1px solid var(--bdr);background:var(--char);flex-shrink:0;}
+.pg-ey{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:2px;}
+.pg-ti{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:#fff;}
+.tb-right{display:flex;align-items:center;gap:8px;}
+.btn-p{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;background:var(--grad);color:#fff;}
+.btn-p:hover{opacity:0.88;}
+.btn-p svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.btn-g{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid var(--bdr);}
+.btn-g:hover{background:rgba(255,255,255,0.12);color:#fff;}
+.btn-g svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.fsel{padding:7px 10px;font-size:12px;border:1px solid var(--bdr);border-radius:7px;background:rgba(255,255,255,0.07);color:#fff;outline:none;}
+.fsel option{background:var(--panel);}
+
+/* CONTENT */
+.content{padding:1.5rem 1.75rem;flex:1;}
+
+/* VIEWS - hidden by default */
+.view{display:none;}
+.view.active{display:block;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}
+.sc{background:var(--panel);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0.7;}
+.sc-l{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}
+.sc-v{font-family:var(--fh);font-size:1.75rem;font-weight:900;letter-spacing:-0.03em;color:#fff;}
+.sc-v.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sc-s{font-size:11px;color:rgba(255,255,255,0.32);margin-top:3px;}
+
+/* TABLE */
+.tw{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;margin-top:0.75rem;}
+.tw table{width:100%;border-collapse:collapse;font-size:13px;}
+.tw th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:1px solid var(--bdr);background:rgba(255,255,255,0.03);}
+.tw td{padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:middle;color:rgba(255,255,255,0.82);}
+.tw tr:last-child td{border-bottom:none;}
+.tw tbody tr:hover td{background:rgba(255,255,255,0.05);cursor:pointer;}
+
+/* BADGE */
+.badge{display:inline-flex;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;white-space:nowrap;}
+.b-lead{background:rgba(59,130,246,0.18);color:#93C5FD;}
+.b-qualified{background:rgba(245,158,11,0.18);color:#FCD34D;}
+.b-proposal{background:rgba(168,85,247,0.18);color:#D8B4FE;}
+.b-negotiation{background:rgba(232,93,4,0.18);color:#FBA87A;}
+.b-won{background:rgba(34,197,94,0.18);color:#86EFAC;}
+.b-lost{background:rgba(239,68,68,0.18);color:#FCA5A5;}
+.b-school{background:rgba(59,130,246,0.15);color:#93C5FD;}
+.b-council{background:rgba(34,197,94,0.15);color:#86EFAC;}
+.b-commercial{background:rgba(168,85,247,0.15);color:#D8B4FE;}
+.b-nhs{background:rgba(244,63,94,0.15);color:#FDA4AF;}
+.b-other{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);}
+
+/* AVATAR */
+.av{width:30px;height:30px;border-radius:50%;background:rgba(232,93,4,0.18);border:1px solid rgba(232,93,4,0.3);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--a);font-family:var(--fh);flex-shrink:0;vertical-align:middle;}
+
+/* FILTERS ROW */
+.frow{display:flex;gap:8px;margin-bottom:0.75rem;flex-wrap:wrap;align-items:center;}
+.srch{padding:7px 12px;font-size:12px;border:1px solid var(--bdr);border-radius:7px;background:rgba(255,255,255,0.07);color:#fff;outline:none;width:220px;}
+.srch::placeholder{color:rgba(255,255,255,0.25);}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);}
+.mey{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:3px;}
+.mti{font-family:var(--fh);font-size:15px;font-weight:700;color:#fff;}
+.mcl{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.mcl:hover{background:rgba(255,255,255,0.13);color:#fff;}
+.mcl svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.mb{padding:1.25rem 1.5rem;}
+.mf{padding:1rem 1.5rem;border-top:1px solid var(--bdr);display:flex;justify-content:flex-end;gap:8px;}
+
+/* FORM */
+.fr{margin-bottom:1rem;}
+.fr label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}
+.fr input,.fr select,.fr textarea{width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;outline:none;}
+.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--o);background:rgba(232,93,4,0.07);}
+.fr input::placeholder,.fr textarea::placeholder{color:rgba(255,255,255,0.2);}
+.fr select option{background:var(--panel);}
+.fr textarea{resize:vertical;min-height:78px;line-height:1.5;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+.seg button{padding:5px 13px;border-radius:100px;border:1px solid var(--bdr);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:12px;font-weight:500;}
+.seg button:hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);}
+.seg button.on{background:rgba(232,93,4,0.18);border-color:var(--o);color:#fff;}
+
+/* DETAIL PANEL */
+.dl{display:grid;grid-template-columns:1fr 330px;gap:1.25rem;align-items:start;}
+.dp{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
+.dp-h{padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.dp-b{padding:1.25rem 1.5rem;}
+.dp-st{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.75rem;}
+.dp-row{display:flex;gap:8px;margin-bottom:9px;font-size:13px;}
+.dp-rl{color:rgba(255,255,255,0.38);min-width:88px;flex-shrink:0;font-size:12px;}
+.dp-rv{color:rgba(255,255,255,0.82);}
+.nc{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:9px;padding:0.7rem 0.9rem;margin-bottom:7px;}
+.nm{font-size:10.5px;color:rgba(255,255,255,0.28);margin-bottom:4px;}
+.nt{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;}
+.na{display:flex;gap:8px;margin-top:0.75rem;}
+.na textarea{flex:1;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:12px;resize:none;height:58px;outline:none;}
+.na textarea:focus{border-color:var(--o);}
+.na textarea::placeholder{color:rgba(255,255,255,0.2);}
+.na button{align-self:flex-end;width:36px;height:36px;border-radius:8px;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.na button svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+
+/* DASH GRID */
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.25rem;}
+.dc{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
+.dch{padding:1rem 1.25rem;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+.dct{font-family:var(--fh);font-size:13px;font-weight:700;color:#fff;}
+.dcc{font-size:11px;color:rgba(255,255,255,0.28);}
+.ri{display:flex;align-items:center;gap:10px;padding:10px 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);}
+.ri:last-child{border-bottom:none;}
+.rn{font-size:13px;font-weight:500;color:#fff;flex:1;}
+.rs{font-size:11px;color:rgba(255,255,255,0.32);margin-top:1px;}
+.pm{padding:0.75rem 1.25rem;}
+.pr{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.prs{font-size:12px;color:rgba(255,255,255,0.45);width:88px;flex-shrink:0;}
+.prb{flex:1;height:6px;border-radius:100px;background:rgba(255,255,255,0.07);overflow:hidden;}
+.prbi{height:100%;border-radius:100px;background:var(--grad);}
+.prn{font-size:11px;font-family:var(--fh);font-weight:700;color:rgba(255,255,255,0.4);min-width:20px;text-align:right;}
+
+/* EMPTY */
+.empty{padding:3.5rem 1rem;text-align:center;}
+.empty p{font-size:13px;color:rgba(255,255,255,0.32);margin-top:0.75rem;}
+
+.va{color:var(--a);font-family:var(--fh);font-weight:700;}
+.na-rows{display:flex;flex-direction:column;gap:2px;}
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="lcard">
+    <div class="llogo">
+      <div class="lmark">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <div class="lname">Fyrfly<span> Systems</span></div>
+        <div class="lplat">CRM Platform</div>
+      </div>
+    </div>
+    <div class="ley">Secure Access</div>
+    <h1 class="ltitle">Welcome back</h1>
+    <p class="lsub">Enter your team password to access the Fyrfly CRM.</p>
+    <label class="flbl" for="pw-input">Password</label>
+    <input class="fin" type="password" id="pw-input" placeholder="Enter team password" autocomplete="current-password">
+    <p class="lerr" id="pw-err"></p>
+    <button class="btngrad" id="login-btn">Sign in &rarr;</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-screen">
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-top">
+      <div class="sb-logo">
+        <div class="sb-mk"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div><div class="sb-nm">Fyrfly<span> CRM</span></div><div class="sb-tg">Team workspace</div></div>
+      </div>
+    </div>
+    <div class="sb-sec">Navigation</div>
+    <button class="nav-item active" data-view="dashboard">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
+    </button>
+    <button class="nav-item" data-view="contacts">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Contacts
+    </button>
+    <button class="nav-item" data-view="companies">
+      <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>Companies
+    </button>
+    <button class="nav-item" data-view="pipeline">
+      <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Pipeline
+    </button>
+    <button class="nav-item" data-view="activities">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Activity log
+    </button>
+    <div class="sb-bot">
+      <div class="sb-stats">
+        <div class="sb-sr"><span class="sb-sl">Contacts</span><span class="sb-sv" id="sb-contacts">0</span></div>
+        <div class="sb-sr"><span class="sb-sl">Open deals</span><span class="sb-sv" id="sb-deals">0</span></div>
+        <div class="sb-sr"><span class="sb-sl">Pipeline</span><span class="sb-sv" id="sb-pipe">£0k</span></div>
+      </div>
+      <button class="btn-lo" id="logout-btn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign out
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="view-dashboard" class="view active">
+      <div class="topbar"><div><div class="pg-ey">Overview</div><div class="pg-ti">Dashboard</div></div></div>
+      <div class="content">
+        <div class="stats-row">
+          <div class="sc"><div class="sc-l">Contacts</div><div class="sc-v" id="d-contacts">0</div><div class="sc-s">in CRM</div></div>
+          <div class="sc"><div class="sc-l">Companies</div><div class="sc-v" id="d-companies">0</div><div class="sc-s">organisations</div></div>
+          <div class="sc"><div class="sc-l">Open pipeline</div><div class="sc-v grad" id="d-pipe">£0k</div><div class="sc-s" id="d-pipe-s">0 deals</div></div>
+          <div class="sc"><div class="sc-l">Won</div><div class="sc-v" id="d-won">0</div><div class="sc-s">closed deals</div></div>
+        </div>
+        <div class="dg">
+          <div class="dc"><div class="dch"><span class="dct">Recent contacts</span><span class="dcc" id="d-ct-count">0 total</span></div><div id="d-recent-contacts"></div></div>
+          <div class="dc"><div class="dch"><span class="dct">Pipeline by stage</span></div><div class="pm" id="d-pipe-stages"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACTS -->
+    <div id="view-contacts" class="view">
+      <div class="topbar"><div><div class="pg-ey">People</div><div class="pg-ti">Contacts</div></div><div class="tb-right"><button class="btn-p" id="btn-add-contact"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add contact</button></div></div>
+      <div class="content">
+        <div class="frow"><input class="srch" id="contact-search" placeholder="Search contacts&hellip;"><select class="fsel" id="contact-sector-filter"><option value="">All sectors</option><option>School</option><option>Council</option><option>Commercial</option><option>NHS</option><option>Other</option></select></div>
+        <div id="contacts-layout"><div class="tw" id="contacts-table"></div></div>
+      </div>
+    </div>
+
+    <!-- COMPANIES -->
+    <div id="view-companies" class="view">
+      <div class="topbar"><div><div class="pg-ey">Organisations</div><div class="pg-ti">Companies</div></div><div class="tb-right"><button class="btn-p" id="btn-add-company"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add company</button></div></div>
+      <div class="content">
+        <div class="frow"><input class="srch" id="company-search" placeholder="Search companies&hellip;"><select class="fsel" id="company-sector-filter"><option value="">All sectors</option><option>School</option><option>Council</option><option>Commercial</option><option>NHS</option><option>Other</option></select></div>
+        <div class="tw" id="companies-table"></div>
+      </div>
+    </div>
+
+    <!-- PIPELINE -->
+    <div id="view-pipeline" class="view">
+      <div class="topbar"><div><div class="pg-ey">Sales</div><div class="pg-ti">Pipeline</div></div><div class="tb-right"><select class="fsel" id="deal-stage-filter"><option value="">All stages</option><option>Lead</option><option>Qualified</option><option>Proposal</option><option>Negotiation</option><option>Won</option><option>Lost</option></select><select class="fsel" id="deal-sector-filter"><option value="">All sectors</option><option>School</option><option>Council</option><option>Commercial</option><option>NHS</option><option>Other</option></select><button class="btn-p" id="btn-add-deal"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add deal</button></div></div>
+      <div class="content"><div class="tw" id="pipeline-table"></div></div>
+    </div>
+
+    <!-- ACTIVITIES -->
+    <div id="view-activities" class="view">
+      <div class="topbar"><div><div class="pg-ey">Log</div><div class="pg-ti">Activity log</div></div></div>
+      <div class="content"><div class="tw" id="activities-table"></div></div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- CONTACT MODAL -->
+<div class="modal-bg" id="modal-contact">
+  <div class="modal">
+    <div class="mh"><div><div class="mey" id="mc-ey">New contact</div><div class="mti" id="mc-ti">Add a contact</div></div><button class="mcl modal-close" data-modal="modal-contact"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mb">
+      <input type="hidden" id="mc-id">
+      <div class="fg2"><div class="fr"><label>Full name *</label><input id="mc-name" placeholder="Jane Smith"></div><div class="fr"><label>Job title</label><input id="mc-role" placeholder="Head of Security"></div></div>
+      <div class="fr"><label>Organisation</label><input id="mc-org" placeholder="Faversham Academy Trust"></div>
+      <div class="fr"><label>Sector</label><div class="seg" id="mc-sector-seg"></div></div>
+      <div class="fg2"><div class="fr"><label>Email</label><input type="email" id="mc-email" placeholder="jane@school.org"></div><div class="fr"><label>Phone</label><input id="mc-phone" placeholder="07700 000000"></div></div>
+      <div class="fr"><label>Source</label><div class="seg" id="mc-source-seg"></div></div>
+      <div class="fr"><label>Notes</label><textarea id="mc-notes" placeholder="Context, background, key interests&hellip;"></textarea></div>
+    </div>
+    <div class="mf"><button class="btn-g modal-close" data-modal="modal-contact">Cancel</button><button class="btn-p" id="mc-save">Save contact</button></div>
+  </div>
+</div>
+
+<!-- COMPANY MODAL -->
+<div class="modal-bg" id="modal-company">
+  <div class="modal">
+    <div class="mh"><div><div class="mey" id="mco-ey">New company</div><div class="mti" id="mco-ti">Add a company</div></div><button class="mcl modal-close" data-modal="modal-company"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mb">
+      <input type="hidden" id="mco-id">
+      <div class="fr"><label>Company name *</label><input id="mco-name" placeholder="Faversham Academy Trust"></div>
+      <div class="fr"><label>Sector</label><div class="seg" id="mco-sector-seg"></div></div>
+      <div class="fg2"><div class="fr"><label>Address</label><input id="mco-address" placeholder="Faversham, Kent"></div><div class="fr"><label>Website</label><input id="mco-website" placeholder="https://"></div></div>
+      <div class="fr"><label>Notes</label><textarea id="mco-notes"></textarea></div>
+    </div>
+    <div class="mf"><button class="btn-g modal-close" data-modal="modal-company">Cancel</button><button class="btn-p" id="mco-save">Save company</button></div>
+  </div>
+</div>
+
+<!-- DEAL MODAL -->
+<div class="modal-bg" id="modal-deal">
+  <div class="modal">
+    <div class="mh"><div><div class="mey" id="md-ey">New opportunity</div><div class="mti" id="md-ti">Add a deal</div></div><button class="mcl modal-close" data-modal="modal-deal"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mb">
+      <input type="hidden" id="md-id">
+      <div class="fr"><label>Deal name *</label><input id="md-name" placeholder="Faversham Academy — full install"></div>
+      <div class="fr"><label>Stage</label><div class="seg" id="md-stage-seg"></div></div>
+      <div class="fr"><label>Sector</label><div class="seg" id="md-sector-seg"></div></div>
+      <div class="fg2"><div class="fr"><label>Value (£)</label><input type="number" id="md-value" placeholder="25000"></div><div class="fr"><label>Probability (%)</label><input type="number" id="md-prob" placeholder="60" min="0" max="100"></div></div>
+      <div class="fr"><label>Linked contact</label><select id="md-contact"><option value="">— None —</option></select></div>
+      <div class="fr"><label>Next action</label><input id="md-next" placeholder="Send proposal by Friday"></div>
+      <div class="fr"><label>Notes</label><textarea id="md-notes" placeholder="Requirements, constraints, background&hellip;"></textarea></div>
+    </div>
+    <div class="mf"><button class="btn-g modal-close" data-modal="modal-deal">Cancel</button><button class="btn-p" id="md-save">Save deal</button></div>
+  </div>
+</div>
+
 <script>
-var _e=React.createElement,_u=React.useState,_f=React.useEffect;
-var SB='https://fyrrumltohkplldxwxdk.supabase.co';
-var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
-var PW='12Fyrfly34!';
-var STAGES=['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
-var SECTORS=['School','Council','Commercial','NHS','Other'];
-var SOURCES=['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
-function api(table,method,body,query){
-  method=method||'GET';query=query||'';
-  var h={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
-  if(method!=='GET')h['Prefer']='return=representation';
-  return fetch(SB+'/rest/v1/'+table+query,{method:method,headers:h,body:body?JSON.stringify(body):null}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(t);});return r.text().then(function(t){return t?JSON.parse(t):[];});});
+var SB = 'https://fyrrumltohkplldxwxdk.supabase.co';
+var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
+var PW = '12Fyrfly34!';
+var STAGES = ['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
+var SECTORS = ['School','Council','Commercial','NHS','Other'];
+var SOURCES = ['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
+var STAGE_CLS = {Lead:'b-lead',Qualified:'b-qualified',Proposal:'b-proposal',Negotiation:'b-negotiation',Won:'b-won',Lost:'b-lost'};
+var SECTOR_CLS = {School:'b-school',Council:'b-council',Commercial:'b-commercial',NHS:'b-nhs',Other:'b-other'};
+
+var DB = {contacts:[], companies:[], deals:[], activities:[]};
+
+function $(id){ return document.getElementById(id); }
+function el(tag, attrs, children){
+  var e = document.createElement(tag);
+  for(var k in attrs){ if(k === 'class') e.className = attrs[k]; else e.setAttribute(k, attrs[k]); }
+  if(typeof children === 'string') e.textContent = children;
+  else if(Array.isArray(children)) children.forEach(function(c){ if(c) e.appendChild(c); });
+  return e;
 }
-function ini(n){return n?n.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase():'?';}
-function fmtD(d){return d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';}
-function fmtV(v){return v?'£'+Number(v).toLocaleString('en-GB'):'—';}
-var I={logo:['M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'],dash:['M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'],people:['M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2','M9 11a4 4 0 100-8 4 4 0 000 8z','M23 21v-2a4 4 0 00-3-3.87','M16 3.13a4 4 0 010 7.75'],building:['M3 21h18','M5 21V7l8-4v18','M19 21V11l-6-4','M9 9v.01M9 12v.01M9 15v.01M9 18v.01'],chart:['M18 20V10','M12 20V4','M6 20v-6'],clock:['M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z','M12 6v6l4 2'],out:['M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4','M16 17l5-5-5-5','M21 12H9'],plus:['M12 5v14M5 12h14'],x:['M18 6L6 18M6 6l12 12'],edit:['M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7','M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z'],send:['M22 2L11 13','M22 2L15 22 11 13 2 9l20-7z']};
-function Ico(p){return _e('svg',{viewBox:'0 0 24 24',width:p.w||15,height:p.h||15,fill:'none',stroke:'currentColor',strokeWidth:p.sw||1.75,strokeLinecap:'round',strokeLinejoin:'round'},(I[p.k]||[]).map(function(d,i){return _e('path',{key:i,d:d});}));}
-function StageBadge(p){var m={Lead:'b-lead',Qualified:'b-qualified',Proposal:'b-proposal',Negotiation:'b-negotiation',Won:'b-won',Lost:'b-lost'};return _e('span',{className:'badge '+(m[p.s]||'b-lead')},p.s);}
-function SectorBadge(p){var m={School:'b-school',Council:'b-council',Commercial:'b-commercial',NHS:'b-nhs',Other:'b-other'};return _e('span',{className:'badge '+(m[p.s]||'b-other')},p.s);}
-function Seg(p){return _e('div',{className:'seg-row'},p.opts.map(function(o){return _e('button',{key:o,type:'button',className:'seg-btn'+(p.val===o?' active':''),onClick:function(){p.onChange(o);}},o);}));}
-function Topbar(p){return _e('div',{className:'topbar'},_e('div',null,_e('div',{className:'page-eyebrow'},p.ey),_e('div',{className:'page-title'},p.title)),_e('div',{className:'topbar-right'},p.children));}
-function Login(p){
-  var s=_u('');var e=_u('');
-  var go=function(){if(s[0]===PW){p.onLogin();}else{e[1]('Incorrect password.');}};
-  return _e('div',{className:'login-wrap'},_e('div',{className:'login-card'},
-    _e('div',{className:'login-logo'},_e('div',{className:'login-mark'},_e(Ico,{k:'logo',w:18,h:18,sw:2})),_e('div',null,_e('div',{className:'login-name'},'Fyrfly',_e('span',null,' Systems')),_e('div',{className:'login-platform'},'CRM Platform'))),
-    _e('div',{className:'login-eyebrow'},'Secure Access'),
-    _e('h1',{className:'login-title'},'Welcome back'),
-    _e('p',{className:'login-sub'},'Enter your team password to access the Fyrfly CRM.'),
-    _e('label',{className:'field-lbl'},'Password'),
-    _e('input',{type:'password',className:'field-in',value:s[0],onChange:function(ev){s[1](ev.target.value);},onKeyDown:function(ev){if(ev.key==='Enter')go();},placeholder:'Enter team password',autoFocus:true}),
-    e[0]&&_e('p',{className:'login-err'},e[0]),
-    _e('button',{className:'btn-grad',onClick:go},'Sign in \u2192')
-  ));
+function ini(n){ return n ? n.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase() : '?'; }
+function fmtD(d){ return d ? new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—'; }
+function fmtV(v){ return v ? '£'+Number(v).toLocaleString('en-GB') : '—'; }
+function badge(text, cls){ return el('span',{class:'badge '+cls},text); }
+function avatar(name){ return el('div',{class:'av'},ini(name)); }
+
+function api(table, method, body, query){
+  var url = SB + '/rest/v1/' + table + (query||'');
+  var opts = { method: method||'GET', headers: {'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'} };
+  if(method && method !== 'GET') opts.headers['Prefer'] = 'return=representation';
+  if(body) opts.body = JSON.stringify(body);
+  return fetch(url, opts).then(function(r){
+    if(!r.ok) return r.text().then(function(t){ throw new Error(t); });
+    return r.text().then(function(t){ return t ? JSON.parse(t) : []; });
+  });
 }
-function Sidebar(p){
-  var nav=[{id:'dashboard',k:'dash',l:'Dashboard'},{id:'contacts',k:'people',l:'Contacts'},{id:'companies',k:'building',l:'Companies'},{id:'pipeline',k:'chart',l:'Pipeline'},{id:'activities',k:'clock',l:'Activity log'}];
-  var open=p.deals.filter(function(d){return !['Won','Lost'].includes(d.stage);});
-  var pipeVal='£'+Math.round(open.reduce(function(s,d){return s+(d.value||0);},0)/1000)+'k';
-  return _e('div',{className:'sidebar'},
-    _e('div',{className:'sb-top'},_e('div',{className:'sb-logo'},_e('div',{className:'sb-mark'},_e(Ico,{k:'logo',w:15,h:15,sw:2})),_e('div',null,_e('div',{className:'sb-name'},'Fyrfly',_e('span',null,' CRM')),_e('div',{className:'sb-tag'},'Team workspace')))),
-    _e('div',{className:'sb-section'},'Navigation'),
-    nav.map(function(n){return _e('div',{key:n.id,className:'nav-item'+(p.view===n.id?' active':''),onClick:function(){p.setView(n.id);}},_e(Ico,{k:n.k}),n.l);}),
-    _e('div',{className:'sb-bottom'},
-      _e('div',{className:'sb-stats'},[{l:'Contacts',v:p.contacts.length},{l:'Open deals',v:open.length},{l:'Pipeline',v:pipeVal}].map(function(r){return _e('div',{key:r.l,className:'sb-stat-row'},_e('span',{className:'sb-stat-label'},r.l),_e('span',{className:'sb-stat-val'},r.v));})),
-      _e('button',{className:'logout-btn',onClick:p.onLogout},_e(Ico,{k:'out',w:13,h:13,sw:2}),'Sign out')
-    )
-  );
+
+// ── AUTH ──
+function checkAuth(){
+  try { return sessionStorage.getItem('fy_crm') === '1'; } catch(e){ return false; }
 }
-function mkModal(eyebrow,title,fields,onSave,onClose){
-  var saving=_u(false);
-  var go=function(){if(saving[0])return;saving[1](true);onSave().then(function(){onClose();}).catch(function(e){alert(e.message);}).finally(function(){saving[1](false);});};
-  return _e('div',{className:'overlay',onClick:function(e){if(e.target===e.currentTarget)onClose();}},
-    _e('div',{className:'modal'},
-      _e('div',{className:'modal-head'},_e('div',null,_e('div',{className:'modal-eyebrow'},eyebrow),_e('div',{className:'modal-title'},title)),_e('button',{className:'modal-close',onClick:onClose},_e(Ico,{k:'x',w:14,h:14,sw:2.5}))),
-      _e('div',{className:'modal-body'},fields),
-      _e('div',{className:'modal-foot'},_e('button',{className:'btn-action ghost',onClick:onClose},'Cancel'),_e('button',{className:'btn-action primary',onClick:go,disabled:saving[0]},saving[0]?'Saving\u2026':'Save'))
-    )
-  );
+function setAuth(v){
+  try { if(v) sessionStorage.setItem('fy_crm','1'); else sessionStorage.removeItem('fy_crm'); } catch(e){}
 }
-function ContactModal(p){
-  var f=_u(p.contact||{name:'',role:'',organisation:'',sector:'School',email:'',phone:'',source:'',notes:''});
-  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
-  var fields=_e('div',null,
-    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Full name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Jane Smith'})),_e('div',{className:'fr'},_e('label',null,'Job title'),_e('input',{value:f[0].role,onChange:function(e){set('role',e.target.value);},placeholder:'Head of Security'}))),
-    _e('div',{className:'fr'},_e('label',null,'Organisation'),_e('input',{value:f[0].organisation,onChange:function(e){set('organisation',e.target.value);},placeholder:'Faversham Academy Trust'})),
-    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
-    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Email'),_e('input',{type:'email',value:f[0].email,onChange:function(e){set('email',e.target.value);},placeholder:'jane@school.org'})),_e('div',{className:'fr'},_e('label',null,'Phone'),_e('input',{value:f[0].phone,onChange:function(e){set('phone',e.target.value);},placeholder:'07700 000000'}))),
-    _e('div',{className:'fr'},_e('label',null,'Source'),_e(Seg,{opts:SOURCES,val:f[0].source,onChange:function(v){set('source',v);}})),
-    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);},placeholder:'Context, background, key interests\u2026'}))
-  );
-  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('contacts','PATCH',d,'?id=eq.'+f[0].id):api('contacts','POST',d);};
-  return mkModal(p.contact?'Edit record':'New contact',p.contact?p.contact.name:'Add a contact',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
+
+$('login-btn').addEventListener('click', doLogin);
+$('pw-input').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+function doLogin(){
+  if($('pw-input').value === PW){ setAuth(true); showApp(); }
+  else { $('pw-err').textContent = 'Incorrect password.'; }
 }
-function CompanyModal(p){
-  var f=_u(p.company||{name:'',sector:'School',address:'',website:'',notes:''});
-  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
-  var fields=_e('div',null,
-    _e('div',{className:'fr'},_e('label',null,'Company name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Faversham Academy Trust'})),
-    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
-    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Address'),_e('input',{value:f[0].address,onChange:function(e){set('address',e.target.value);},placeholder:'Faversham, Kent'})),_e('div',{className:'fr'},_e('label',null,'Website'),_e('input',{value:f[0].website,onChange:function(e){set('website',e.target.value);},placeholder:'https://'}))),
-    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);}}))
-  );
-  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('companies','PATCH',d,'?id=eq.'+f[0].id):api('companies','POST',d);};
-  return mkModal(p.company?'Edit record':'New company',p.company?p.company.name:'Add a company',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
+$('logout-btn').addEventListener('click', function(){
+  setAuth(false);
+  $('app-screen').classList.remove('visible');
+  $('login-screen').style.display = 'flex';
+  $('pw-input').value = '';
+});
+
+// ── NAV ──
+document.querySelectorAll('.nav-item').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var v = btn.getAttribute('data-view');
+    document.querySelectorAll('.nav-item').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.view').forEach(function(d){ d.classList.remove('active'); });
+    $('view-'+v).classList.add('active');
+    if(v==='contacts') renderContacts();
+    if(v==='companies') renderCompanies();
+    if(v==='pipeline') renderPipeline();
+    if(v==='activities') loadActivities();
+  });
+});
+
+// ── MODALS ──
+document.querySelectorAll('.modal-close').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var id = btn.getAttribute('data-modal');
+    $(id).classList.remove('open');
+  });
+});
+document.querySelectorAll('.modal-bg').forEach(function(bg){
+  bg.addEventListener('click', function(e){ if(e.target===bg) bg.classList.remove('open'); });
+});
+
+// ── SEG PICKERS ──
+function makeSeg(containerId, opts, defaultVal, onChange){
+  var c = $(containerId);
+  c.innerHTML = '';
+  var current = defaultVal || opts[0];
+  opts.forEach(function(o){
+    var b = el('button',{class:'seg'+(o===current?' on':'')},o);
+    b.type = 'button';
+    b.addEventListener('click', function(){
+      current = o;
+      c.querySelectorAll('button').forEach(function(x){ x.className = 'seg'; });
+      b.className = 'seg on';
+      if(onChange) onChange(o);
+    });
+    c.appendChild(b);
+  });
+  c.getValue = function(){ return current; };
+  c.setValue = function(v){
+    current = v;
+    c.querySelectorAll('button').forEach(function(b2){ b2.className = b2.textContent===v?'seg on':'seg'; });
+  };
 }
-function DealModal(p){
-  var f=_u(p.deal||{name:'',contact_id:'',stage:'Lead',sector:'School',value:'',probability:'',next_action:'',notes:''});
-  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
-  var fields=_e('div',null,
-    _e('div',{className:'fr'},_e('label',null,'Deal name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Faversham Academy \u2014 full install'})),
-    _e('div',{className:'fr'},_e('label',null,'Stage'),_e(Seg,{opts:STAGES,val:f[0].stage,onChange:function(v){set('stage',v);}})),
-    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
-    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Value (\u00a3)'),_e('input',{type:'number',value:f[0].value,onChange:function(e){set('value',e.target.value);},placeholder:'25000'})),_e('div',{className:'fr'},_e('label',null,'Probability (%)'),_e('input',{type:'number',min:0,max:100,value:f[0].probability,onChange:function(e){set('probability',e.target.value);},placeholder:'60'}))),
-    _e('div',{className:'fr'},_e('label',null,'Linked contact'),_e('select',{value:f[0].contact_id,onChange:function(e){set('contact_id',e.target.value);}},[_e('option',{key:'',value:''},'\u2014 None \u2014')].concat(p.contacts.map(function(c){return _e('option',{key:c.id,value:c.id},c.name);})))),
-    _e('div',{className:'fr'},_e('label',null,'Next action'),_e('input',{value:f[0].next_action,onChange:function(e){set('next_action',e.target.value);},placeholder:'Send proposal by Friday'})),
-    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);},placeholder:'Requirements, constraints, background\u2026'}))
-  );
-  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('deals','PATCH',d,'?id=eq.'+f[0].id):api('deals','POST',d);};
-  return mkModal(p.deal?'Edit deal':'New opportunity',p.deal?p.deal.name:'Add a deal',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
+
+// ── LOAD ALL ──
+function loadAll(){
+  return Promise.all([
+    api('contacts','GET',null,'?order=created_at.desc'),
+    api('companies','GET',null,'?order=created_at.desc'),
+    api('deals','GET',null,'?order=created_at.desc')
+  ]).then(function(r){
+    DB.contacts = Array.isArray(r[0]) ? r[0] : [];
+    DB.companies = Array.isArray(r[1]) ? r[1] : [];
+    DB.deals = Array.isArray(r[2]) ? r[2] : [];
+    updateSidebar();
+    renderDashboard();
+    renderContacts();
+    renderCompanies();
+    renderPipeline();
+  }).catch(function(e){ console.error('Load error',e); });
 }
-function Dashboard(p){
-  var open=p.deals.filter(function(d){return !['Won','Lost'].includes(d.stage);});
-  var won=p.deals.filter(function(d){return d.stage==='Won';});
-  var pipe=open.reduce(function(s,d){return s+(d.value||0);},0);
-  var stages=STAGES.slice(0,5).map(function(s){return {s:s,n:p.deals.filter(function(d){return d.stage===s;}).length};});
-  var mx=Math.max.apply(null,stages.map(function(s){return s.n;}).concat([1]));
-  var recent=[].concat(p.contacts).sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);}).slice(0,6);
-  return _e('div',null,
-    _e(Topbar,{ey:'Overview',title:'Dashboard'}),
-    _e('div',{className:'content'},
-      _e('div',{className:'stats-row'},[{l:'Contacts',v:p.contacts.length,sub:'in CRM',g:false},{l:'Companies',v:p.companies.length,sub:'organisations',g:false},{l:'Open pipeline',v:'£'+Math.round(pipe/1000)+'k',sub:open.length+' deals',g:true},{l:'Won',v:won.length,sub:'closed deals',g:false}].map(function(c){return _e('div',{key:c.l,className:'stat-card'},_e('div',{className:'stat-lbl'},c.l),_e('div',{className:'stat-val'+(c.g?' grad':'')},c.v),_e('div',{className:'stat-sub'},c.sub));})),
-      _e('div',{className:'dash-grid'},
-        _e('div',{className:'dash-card'},_e('div',{className:'dash-card-head'},_e('span',{className:'dash-card-title'},'Recent contacts'),_e('span',{className:'dash-card-count'},p.contacts.length+' total')),p.contacts.length===0?_e('div',{className:'empty'},_e('p',null,'No contacts yet.')):recent.map(function(c){return _e('div',{key:c.id,className:'recent-item'},_e('div',{className:'av'},ini(c.name)),_e('div',{style:{flex:1}},_e('div',{className:'recent-name'},c.name),_e('div',{className:'recent-sub'},c.organisation||'—')),c.sector&&_e(SectorBadge,{s:c.sector}));})),
-        _e('div',{className:'dash-card'},_e('div',{className:'dash-card-head'},_e('span',{className:'dash-card-title'},'Pipeline by stage')),_e('div',{className:'pipeline-mini'},stages.map(function(x){return _e('div',{key:x.s,className:'pipe-row'},_e('div',{className:'pipe-stage'},x.s),_e('div',{className:'pipe-bar-wrap'},_e('div',{className:'pipe-bar',style:{width:Math.round(x.n/mx*100)+'%'}})),_e('div',{className:'pipe-n'},x.n));})))
-      )
-    )
-  );
+
+function updateSidebar(){
+  var open = DB.deals.filter(function(d){ return ['Won','Lost'].indexOf(d.stage)===-1; });
+  var pipe = open.reduce(function(s,d){ return s+(Number(d.value)||0); },0);
+  $('sb-contacts').textContent = DB.contacts.length;
+  $('sb-deals').textContent = open.length;
+  $('sb-pipe').textContent = '£'+Math.round(pipe/1000)+'k';
 }
-function Contacts(p){
-  var search=_u('');var sector=_u('');var modal=_u(null);var detail=_u(null);var acts=_u([]);var note=_u('');var sn=_u(false);
-  var fil=p.contacts.filter(function(c){if(sector[0]&&c.sector!==sector[0])return false;if(search[0]&&!(c.name+' '+(c.organisation||'')).toLowerCase().includes(search[0].toLowerCase()))return false;return true;});
-  function loadActs(id){return api('activities','GET',null,'?contact_id=eq.'+id+'&order=created_at.desc').then(function(a){acts[1](a);});}
-  function openD(c){detail[1](c);loadActs(c.id);}
-  function addNote(){if(!note[0].trim()||!detail[0])return;sn[1](true);api('activities','POST',{contact_id:detail[0].id,type:'Note',note:note[0].trim(),created_at:new Date().toISOString()}).then(function(){note[1]('');return loadActs(detail[0].id);}).finally(function(){sn[1](false);});}
-  var tbl=fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'people',w:22,h:22,sw:1.5})),_e('p',null,search[0]||sector[0]?'No contacts match filters.':'Add your first contact.')):_e('table',null,_e('thead',null,_e('tr',null,['Name','Organisation','Sector','Email','Phone','Added'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(c){return _e('tr',{key:c.id,onClick:function(){openD(c);}},_e('td',null,_e('div',{style:{display:'flex',alignItems:'center',gap:9}},_e('div',{className:'av'},ini(c.name)),c.name)),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.organisation||'—')),_e('td',null,c.sector?_e(SectorBadge,{s:c.sector}):'—'),_e('td',null,_e('span',{style:{color:'var(--a)',fontSize:12}},c.email||'—')),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.phone||'—')),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at))));})));
-  var det=detail[0]?_e('div',{className:'detail-card'},_e('div',{className:'detail-head'},_e('div',{style:{display:'flex',alignItems:'center',gap:10}},_e('div',{className:'av av-lg'},ini(detail[0].name)),_e('div',null,_e('div',{style:{fontWeight:600,fontSize:15,color:'#fff'}},detail[0].name),_e('div',{style:{fontSize:12,color:'rgba(255,255,255,0.38)',marginTop:2}},detail[0].role||detail[0].organisation||''),detail[0].sector&&_e('div',{style:{marginTop:5}},_e(SectorBadge,{s:detail[0].sector})))),_e('div',{style:{display:'flex',gap:6}},_e('button',{className:'btn-action ghost',onClick:function(){modal[1](detail[0]);},style:{padding:'6px 10px'}},_e(Ico,{k:'edit',w:13,h:13})),_e('button',{className:'btn-action ghost',onClick:function(){detail[1](null);},style:{padding:'6px 10px'}},_e(Ico,{k:'x',w:13,h:13})))),_e('div',{className:'detail-body'},_e('div',{style:{marginBottom:'1.5rem'}},_e('div',{className:'detail-sec-title'},'Contact info'),[['Organisation',detail[0].organisation],['Email',detail[0].email],['Phone',detail[0].phone],['Source',detail[0].source]].map(function(r){return _e('div',{key:r[0],className:'detail-row'},_e('span',{className:'detail-row-l'},r[0]),_e('span',{className:'detail-row-v',style:r[0]==='Email'?{color:'var(--a)'}:{}},r[1]||'—'));}),detail[0].notes&&_e('div',{className:'detail-row'},_e('span',{className:'detail-row-l'},'Notes'),_e('span',{className:'detail-row-v',style:{fontSize:12,lineHeight:1.5}},detail[0].notes))),_e('div',null,_e('div',{className:'detail-sec-title'},'Activity log'),acts[0].length===0&&_e('p',{style:{fontSize:12,color:'rgba(255,255,255,0.28)',marginBottom:'0.5rem'}},'No activity yet.'),acts[0].map(function(a){return _e('div',{key:a.id,className:'note-card'},_e('div',{className:'note-meta'},fmtD(a.created_at)+(a.type?' \u00b7 '+a.type:'')),_e('div',{className:'note-text'},a.note));}),_e('div',{className:'note-add-row'},_e('textarea',{placeholder:'Log a call, email, or note\u2026',value:note[0],onChange:function(e){note[1](e.target.value);}}),_e('button',{className:'note-send',onClick:addNote,disabled:sn[0]},_e(Ico,{k:'send',w:13,h:13})))))):null;
-  return _e('div',null,
-    _e(Topbar,{ey:'People',title:'Contacts'},_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add contact')),
-    _e('div',{className:'content'},_e('div',{className:'filters'},_e('input',{className:'search-in',placeholder:'Search contacts\u2026',value:search[0],onChange:function(e){search[1](e.target.value);}}),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);})))),_e('div',{className:detail[0]?'detail-layout':''},_e('div',{className:'tbl-wrap'},tbl),det)),
-    modal[0]!==null&&_e(ContactModal,{contact:modal[0]&&modal[0].id?modal[0]:null,onRefresh:p.onRefresh,onClose:function(){modal[1](null);}})
-  );
+
+// ── DASHBOARD ──
+function renderDashboard(){
+  var open = DB.deals.filter(function(d){ return ['Won','Lost'].indexOf(d.stage)===-1; });
+  var won = DB.deals.filter(function(d){ return d.stage==='Won'; });
+  var pipe = open.reduce(function(s,d){ return s+(Number(d.value)||0); },0);
+  $('d-contacts').textContent = DB.contacts.length;
+  $('d-companies').textContent = DB.companies.length;
+  $('d-pipe').textContent = '£'+Math.round(pipe/1000)+'k';
+  $('d-pipe-s').textContent = open.length+' deals';
+  $('d-won').textContent = won.length;
+  $('d-ct-count').textContent = DB.contacts.length+' total';
+  // Recent contacts
+  var rc = $('d-recent-contacts');
+  rc.innerHTML = '';
+  if(DB.contacts.length===0){ rc.innerHTML = '<div class="empty"><p>No contacts yet.</p></div>'; }
+  else {
+    var sorted = DB.contacts.slice().sort(function(a,b){ return new Date(b.created_at)-new Date(a.created_at); }).slice(0,6);
+    sorted.forEach(function(c){
+      var row = el('div',{class:'ri'});
+      row.appendChild(avatar(c.name));
+      var info = el('div',{class:'na-rows'}); info.innerHTML = '<div class="rn">'+esc(c.name)+'</div><div class="rs">'+esc(c.organisation||'—')+'</div>';
+      row.appendChild(info);
+      if(c.sector) row.appendChild(badge(c.sector, SECTOR_CLS[c.sector]||'b-other'));
+      rc.appendChild(row);
+    });
+  }
+  // Pipeline bars
+  var ps = $('d-pipe-stages'); ps.innerHTML = '';
+  var mx = 1;
+  var stageCounts = STAGES.slice(0,5).map(function(s){ var n=DB.deals.filter(function(d){return d.stage===s;}).length; if(n>mx)mx=n; return {s:s,n:n}; });
+  stageCounts.forEach(function(x){
+    var row = el('div',{class:'pr'});
+    row.innerHTML = '<div class="prs">'+x.s+'</div><div class="prb"><div class="prbi" style="width:'+Math.round(x.n/mx*100)+'%"></div></div><div class="prn">'+x.n+'</div>';
+    ps.appendChild(row);
+  });
 }
-function Companies(p){
-  var search=_u('');var sector=_u('');var modal=_u(null);
-  var fil=p.companies.filter(function(c){if(sector[0]&&c.sector!==sector[0])return false;if(search[0]&&!c.name.toLowerCase().includes(search[0].toLowerCase()))return false;return true;});
-  return _e('div',null,
-    _e(Topbar,{ey:'Organisations',title:'Companies'},_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add company')),
-    _e('div',{className:'content'},_e('div',{className:'filters'},_e('input',{className:'search-in',placeholder:'Search companies\u2026',value:search[0],onChange:function(e){search[1](e.target.value);}}),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);})))),_e('div',{className:'tbl-wrap'},fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'building',w:22,h:22,sw:1.5})),_e('p',null,'No companies yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Company','Sector','Address','Website','Added'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(c){return _e('tr',{key:c.id,onClick:function(){modal[1](c);}},_e('td',null,_e('div',{style:{display:'flex',alignItems:'center',gap:9}},_e('div',{className:'av',style:{background:'rgba(255,255,255,0.07)',color:'rgba(255,255,255,0.5)',border:'1px solid rgba(255,255,255,0.1)'}},ini(c.name)),c.name)),_e('td',null,c.sector?_e(SectorBadge,{s:c.sector}):'—'),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.address||'—')),_e('td',null,c.website?_e('span',{style:{color:'var(--a)',fontSize:12}},c.website):'—'),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at))));}))))),
-    modal[0]!==null&&_e(CompanyModal,{company:modal[0]&&modal[0].id?modal[0]:null,onRefresh:p.onRefresh,onClose:function(){modal[1](null);}})
-  );
+
+// ── CONTACTS ──
+$('contact-search').addEventListener('input', renderContacts);
+$('contact-sector-filter').addEventListener('change', renderContacts);
+
+var activeContact = null;
+
+function renderContacts(){
+  var search = $('contact-search').value.toLowerCase();
+  var sector = $('contact-sector-filter').value;
+  var fil = DB.contacts.filter(function(c){
+    if(sector && c.sector!==sector) return false;
+    if(search && !(c.name+' '+(c.organisation||'')).toLowerCase().includes(search)) return false;
+    return true;
+  });
+  var wrap = $('contacts-layout');
+  var tbl = $('contacts-table');
+  if(!activeContact) wrap.style.display = 'block';
+  tbl.innerHTML = '';
+  if(fil.length===0){ tbl.innerHTML = '<div class="empty"><p>'+(search||sector?'No contacts match filters.':'Add your first contact.')+'</p></div>'; return; }
+  var table = el('table',{});
+  table.innerHTML = '<thead><tr><th>Name</th><th>Organisation</th><th>Sector</th><th>Email</th><th>Phone</th><th>Added</th></tr></thead>';
+  var tbody = el('tbody',{});
+  fil.forEach(function(c){
+    var tr = el('tr',{});
+    var nameCell = el('td',{}); nameCell.style.display='flex'; nameCell.style.alignItems='center'; nameCell.style.gap='9px';
+    nameCell.appendChild(avatar(c.name));
+    nameCell.appendChild(document.createTextNode(c.name));
+    tr.appendChild(nameCell);
+    var orgTd = el('td',{}); orgTd.innerHTML='<span style="color:rgba(255,255,255,0.45);font-size:12px">'+esc(c.organisation||'—')+'</span>'; tr.appendChild(orgTd);
+    var secTd = el('td',{}); if(c.sector) secTd.appendChild(badge(c.sector,SECTOR_CLS[c.sector]||'b-other')); else secTd.textContent='—'; tr.appendChild(secTd);
+    var emailTd = el('td',{}); emailTd.innerHTML='<span style="color:var(--a);font-size:12px">'+esc(c.email||'—')+'</span>'; tr.appendChild(emailTd);
+    var phoneTd = el('td',{}); phoneTd.innerHTML='<span style="color:rgba(255,255,255,0.45);font-size:12px">'+esc(c.phone||'—')+'</span>'; tr.appendChild(phoneTd);
+    var dateTd = el('td',{}); dateTd.innerHTML='<span style="color:rgba(255,255,255,0.3);font-size:11px">'+fmtD(c.created_at)+'</span>'; tr.appendChild(dateTd);
+    tr.addEventListener('click', function(){ openContactDetail(c); });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  tbl.appendChild(table);
 }
-function Pipeline(p){
-  var sector=_u('');var stage=_u('');var modal=_u(null);var edit=_u(null);
-  var fil=p.deals.filter(function(d){if(sector[0]&&d.sector!==sector[0])return false;if(stage[0]&&d.stage!==stage[0])return false;return true;});
-  var cMap={};p.contacts.forEach(function(c){cMap[c.id]=c.name;});
-  return _e('div',null,
-    _e(Topbar,{ey:'Sales',title:'Pipeline'},_e('select',{className:'filter-in',value:stage[0],onChange:function(e){stage[1](e.target.value);}},[_e('option',{key:'',value:''},'All stages')].concat(STAGES.map(function(s){return _e('option',{key:s},s);}))),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);}))),_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add deal')),
-    _e('div',{className:'content'},_e('div',{className:'tbl-wrap'},fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'chart',w:22,h:22,sw:1.5})),_e('p',null,'No deals yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Deal','Stage','Sector','Value','Prob.','Contact','Next action'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(d){return _e('tr',{key:d.id,onClick:function(){edit[1](d);}},_e('td',null,_e('span',{style:{fontWeight:600,color:'#fff'}},d.name)),_e('td',null,_e(StageBadge,{s:d.stage})),_e('td',null,d.sector?_e(SectorBadge,{s:d.sector}):'—'),_e('td',null,_e('span',{className:'val-accent'},fmtV(d.value))),_e('td',null,d.probability?_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.45)'}},d.probability+'%'):'—'),_e('td',null,d.contact_id?_e('span',{style:{fontSize:12}},cMap[d.contact_id]||'—'):'—'),_e('td',null,_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.38)'}},d.next_action||'—')));}})))),
-    (modal[0]!==null||edit[0])&&_e(DealModal,{deal:edit[0],contacts:p.contacts,onRefresh:p.onRefresh,onClose:function(){modal[1](null);edit[1](null);}})
-  );
+
+function openContactDetail(c){
+  activeContact = c;
+  var wrap = $('contacts-layout');
+  wrap.className = 'dl';
+  // Remove old detail panel if any
+  var old = document.getElementById('contact-detail');
+  if(old) old.parentNode.removeChild(old);
+  var dp = el('div',{class:'dp',id:'contact-detail'});
+  var sector = c.sector ? '<span class="badge '+(SECTOR_CLS[c.sector]||'b-other')+'" style="margin-top:5px;display:inline-flex">'+esc(c.sector)+'</span>' : '';
+  dp.innerHTML = '<div class="dp-h"><div style="display:flex;align-items:center;gap:10px"><div class="av" style="width:42px;height:42px;font-size:14px">'+ini(c.name)+'</div><div><div style="font-weight:600;font-size:15px;color:#fff">'+esc(c.name)+'</div><div style="font-size:12px;color:rgba(255,255,255,0.38);margin-top:2px">'+esc(c.role||c.organisation||'')+'</div>'+sector+'</div></div><div style="display:flex;gap:6px"><button class="btn-g" id="dp-edit" style="padding:6px 10px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="btn-g" id="dp-close" style="padding:6px 10px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><div class="dp-b"><div style="margin-bottom:1.5rem"><div class="dp-st">Contact info</div><div class="dp-row"><span class="dp-rl">Organisation</span><span class="dp-rv">'+esc(c.organisation||'—')+'</span></div><div class="dp-row"><span class="dp-rl">Email</span><span class="dp-rv" style="color:var(--a)">'+esc(c.email||'—')+'</span></div><div class="dp-row"><span class="dp-rl">Phone</span><span class="dp-rv">'+esc(c.phone||'—')+'</span></div><div class="dp-row"><span class="dp-rl">Source</span><span class="dp-rv">'+esc(c.source||'—')+'</span></div>'+(c.notes?'<div class="dp-row"><span class="dp-rl">Notes</span><span class="dp-rv" style="font-size:12px;line-height:1.5">'+esc(c.notes)+'</span></div>':'')+'</div><div><div class="dp-st">Activity log</div><div id="acts-list"><p style="font-size:12px;color:rgba(255,255,255,0.28)">Loading&hellip;</p></div><div class="na"><textarea id="note-input" placeholder="Log a call, email, or note&hellip;"></textarea><button id="note-send"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div></div></div>';
+  wrap.appendChild(dp);
+  document.getElementById('dp-close').addEventListener('click', closeContactDetail);
+  document.getElementById('dp-edit').addEventListener('click', function(){ openContactModal(c); });
+  document.getElementById('note-send').addEventListener('click', sendNote);
+  loadContactActs(c.id);
 }
-function Activities(p){
-  var acts=_u([]);var loading=_u(true);
-  var cMap={};p.contacts.forEach(function(c){cMap[c.id]=c.name;});
-  _f(function(){api('activities','GET',null,'?order=created_at.desc&limit=200').then(function(a){acts[1](Array.isArray(a)?a:[]);loading[1](false);});},[]);
-  return _e('div',null,_e(Topbar,{ey:'Log',title:'Activity log'}),_e('div',{className:'content'},loading[0]?_e('div',{className:'loading'},'Loading\u2026'):_e('div',{className:'tbl-wrap'},acts[0].length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'clock',w:22,h:22,sw:1.5})),_e('p',null,'No activity yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Date','Contact','Type','Note'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,acts[0].map(function(a){return _e('tr',{key:a.id},_e('td',null,_e('span',{style:{fontSize:11,color:'rgba(255,255,255,0.32)'}},fmtD(a.created_at))),_e('td',null,a.contact_id?(cMap[a.contact_id]||'—'):'—'),_e('td',null,_e('span',{className:'badge b-lead'},a.type||'Note')),_e('td',null,_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.6)'}},a.note)));})))));}
-function App(){
-  var authed=_u(function(){try{return sessionStorage.getItem('fy_crm')==='1';}catch(e){return false;}});
-  var view=_u('dashboard');var contacts=_u([]);var companies=_u([]);var deals=_u([]);var loading=_u(true);var dbReady=_u(true);
-  function loadAll(){return Promise.all([api('contacts','GET',null,'?order=created_at.desc'),api('companies','GET',null,'?order=created_at.desc'),api('deals','GET',null,'?order=created_at.desc')]).then(function(r){contacts[1](Array.isArray(r[0])?r[0]:[]);companies[1](Array.isArray(r[1])?r[1]:[]);deals[1](Array.isArray(r[2])?r[2]:[]);dbReady[1](true);}).catch(function(){dbReady[1](false);}).finally(function(){loading[1](false);});}
-  _f(function(){if(authed[0])loadAll();},[authed[0]]);
-  function login(){try{sessionStorage.setItem('fy_crm','1');}catch(e){}authed[1](true);}
-  function logout(){try{sessionStorage.removeItem('fy_crm');}catch(e){}authed[1](false);}
-  if(!authed[0])return _e(Login,{onLogin:login});
-  if(loading[0])return _e('div',{style:{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh',color:'rgba(255,255,255,0.3)',fontSize:13,background:'#1C1F2E'}},'Loading\u2026');
-  var V;
-  if(!dbReady[0]){V=_e('div',{className:'content'},_e('p',{style:{color:'rgba(255,255,255,0.5)',fontSize:13}},'Unable to connect to database. Check your Supabase project is active.'));}
-  else if(view[0]==='dashboard'){V=_e(Dashboard,{contacts:contacts[0],companies:companies[0],deals:deals[0]});}
-  else if(view[0]==='contacts'){V=_e(Contacts,{contacts:contacts[0],onRefresh:loadAll});}
-  else if(view[0]==='companies'){V=_e(Companies,{companies:companies[0],onRefresh:loadAll});}
-  else if(view[0]==='pipeline'){V=_e(Pipeline,{deals:deals[0],contacts:contacts[0],onRefresh:loadAll});}
-  else if(view[0]==='activities'){V=_e(Activities,{contacts:contacts[0]});}
-  return _e('div',{className:'app'},_e(Sidebar,{view:view[0],setView:view[1],onLogout:logout,contacts:contacts[0],companies:companies[0],deals:deals[0]}),_e('div',{className:'main'},V));
+
+function closeContactDetail(){
+  activeContact = null;
+  var wrap = $('contacts-layout');
+  wrap.className = '';
+  wrap.innerHTML = '<div class="tw" id="contacts-table"></div>';
+  $('contact-search').addEventListener('input', renderContacts);
+  $('contact-sector-filter').addEventListener('change', renderContacts);
+  renderContacts();
 }
-ReactDOM.createRoot(document.getElementById('root')).render(_e(App,null));
+
+function loadContactActs(id){
+  api('activities','GET',null,'?contact_id=eq.'+id+'&order=created_at.desc').then(function(acts){
+    var list = document.getElementById('acts-list');
+    if(!list) return;
+    list.innerHTML = '';
+    if(!acts||acts.length===0){ list.innerHTML='<p style="font-size:12px;color:rgba(255,255,255,0.28);margin-bottom:0.5rem">No activity yet.</p>'; return; }
+    acts.forEach(function(a){
+      var d = el('div',{class:'nc'});
+      d.innerHTML = '<div class="nm">'+fmtD(a.created_at)+(a.type?' &middot; '+esc(a.type):'')+'</div><div class="nt">'+esc(a.note||'')+'</div>';
+      list.appendChild(d);
+    });
+  });
+}
+
+function sendNote(){
+  var inp = document.getElementById('note-input');
+  if(!inp||!inp.value.trim()||!activeContact) return;
+  api('activities','POST',{contact_id:activeContact.id,type:'Note',note:inp.value.trim(),created_at:new Date().toISOString()}).then(function(){
+    inp.value='';
+    loadContactActs(activeContact.id);
+  });
+}
+
+// ── CONTACT MODAL ──
+$('btn-add-contact').addEventListener('click', function(){ openContactModal(null); });
+
+function openContactModal(c){
+  makeSeg('mc-sector-seg', SECTORS, c?c.sector:'School', null);
+  makeSeg('mc-source-seg', SOURCES, c?c.source:'', null);
+  $('mc-id').value = c?c.id:'';
+  $('mc-name').value = c?c.name:'';
+  $('mc-role').value = c?c.role:'';
+  $('mc-org').value = c?c.organisation:'';
+  $('mc-email').value = c?c.email:'';
+  $('mc-phone').value = c?c.phone:'';
+  $('mc-notes').value = c?c.notes:'';
+  $('mc-ey').textContent = c?'Edit record':'New contact';
+  $('mc-ti').textContent = c?c.name:'Add a contact';
+  $('mc-save').textContent = 'Save contact';
+  $('modal-contact').classList.add('open');
+}
+
+$('mc-save').addEventListener('click', function(){
+  var name = $('mc-name').value.trim();
+  if(!name){ $('mc-name').focus(); return; }
+  var id = $('mc-id').value;
+  var data = {name:name, role:$('mc-role').value, organisation:$('mc-org').value, sector:$('mc-sector-seg').getValue(), email:$('mc-email').value, phone:$('mc-phone').value, source:$('mc-source-seg').getValue(), notes:$('mc-notes').value};
+  $('mc-save').textContent = 'Saving…';
+  var p = id ? api('contacts','PATCH',data,'?id=eq.'+id) : api('contacts','POST',data);
+  p.then(function(){ $('modal-contact').classList.remove('open'); return loadAll(); }).catch(function(e){ alert(e.message); $('mc-save').textContent='Save contact'; });
+});
+
+// ── COMPANIES ──
+$('company-search').addEventListener('input', renderCompanies);
+$('company-sector-filter').addEventListener('change', renderCompanies);
+
+function renderCompanies(){
+  var search = $('company-search').value.toLowerCase();
+  var sector = $('company-sector-filter').value;
+  var fil = DB.companies.filter(function(c){
+    if(sector && c.sector!==sector) return false;
+    if(search && !c.name.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  var tbl = $('companies-table'); tbl.innerHTML='';
+  if(fil.length===0){ tbl.innerHTML='<div class="empty"><p>No companies yet.</p></div>'; return; }
+  var table = el('table',{});
+  table.innerHTML='<thead><tr><th>Company</th><th>Sector</th><th>Address</th><th>Website</th><th>Added</th></tr></thead>';
+  var tbody=el('tbody',{});
+  fil.forEach(function(c){
+    var tr=el('tr',{});
+    var nc=el('td',{}); nc.style.display='flex'; nc.style.alignItems='center'; nc.style.gap='9px';
+    var av2=el('div',{class:'av'}); av2.style.background='rgba(255,255,255,0.07)'; av2.style.color='rgba(255,255,255,0.5)'; av2.style.border='1px solid rgba(255,255,255,0.1)'; av2.textContent=ini(c.name);
+    nc.appendChild(av2); nc.appendChild(document.createTextNode(c.name)); tr.appendChild(nc);
+    var st=el('td',{}); if(c.sector) st.appendChild(badge(c.sector,SECTOR_CLS[c.sector]||'b-other')); else st.textContent='—'; tr.appendChild(st);
+    var ad=el('td',{}); ad.innerHTML='<span style="color:rgba(255,255,255,0.45);font-size:12px">'+esc(c.address||'—')+'</span>'; tr.appendChild(ad);
+    var wb=el('td',{}); wb.innerHTML=c.website?'<span style="color:var(--a);font-size:12px">'+esc(c.website)+'</span>':'—'; tr.appendChild(wb);
+    var dt=el('td',{}); dt.innerHTML='<span style="color:rgba(255,255,255,0.3);font-size:11px">'+fmtD(c.created_at)+'</span>'; tr.appendChild(dt);
+    tr.addEventListener('click', function(){ openCompanyModal(c); });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody); tbl.appendChild(table);
+}
+
+$('btn-add-company').addEventListener('click', function(){ openCompanyModal(null); });
+function openCompanyModal(c){
+  makeSeg('mco-sector-seg', SECTORS, c?c.sector:'School', null);
+  $('mco-id').value=c?c.id:''; $('mco-name').value=c?c.name:''; $('mco-address').value=c?c.address:''; $('mco-website').value=c?c.website:''; $('mco-notes').value=c?c.notes:'';
+  $('mco-ey').textContent=c?'Edit record':'New company'; $('mco-ti').textContent=c?c.name:'Add a company';
+  $('mco-save').textContent='Save company'; $('modal-company').classList.add('open');
+}
+$('mco-save').addEventListener('click', function(){
+  var name=$('mco-name').value.trim(); if(!name){ $('mco-name').focus(); return; }
+  var id=$('mco-id').value;
+  var data={name:name,sector:$('mco-sector-seg').getValue(),address:$('mco-address').value,website:$('mco-website').value,notes:$('mco-notes').value};
+  $('mco-save').textContent='Saving…';
+  var p=id?api('companies','PATCH',data,'?id=eq.'+id):api('companies','POST',data);
+  p.then(function(){$('modal-company').classList.remove('open');return loadAll();}).catch(function(e){alert(e.message);$('mco-save').textContent='Save company';});
+});
+
+// ── PIPELINE ──
+$('deal-stage-filter').addEventListener('change', renderPipeline);
+$('deal-sector-filter').addEventListener('change', renderPipeline);
+
+function renderPipeline(){
+  var stage=$('deal-stage-filter').value, sector=$('deal-sector-filter').value;
+  var fil=DB.deals.filter(function(d){ if(stage&&d.stage!==stage)return false; if(sector&&d.sector!==sector)return false; return true; });
+  var cMap={}; DB.contacts.forEach(function(c){cMap[c.id]=c.name;});
+  var tbl=$('pipeline-table'); tbl.innerHTML='';
+  if(fil.length===0){tbl.innerHTML='<div class="empty"><p>No deals yet. Add your first opportunity.</p></div>';return;}
+  var table=el('table',{});
+  table.innerHTML='<thead><tr><th>Deal</th><th>Stage</th><th>Sector</th><th>Value</th><th>Prob.</th><th>Contact</th><th>Next action</th></tr></thead>';
+  var tbody=el('tbody',{});
+  fil.forEach(function(d){
+    var tr=el('tr',{});
+    var n=el('td',{}); n.innerHTML='<span style="font-weight:600;color:#fff">'+esc(d.name)+'</span>'; tr.appendChild(n);
+    var s=el('td',{}); s.appendChild(badge(d.stage,STAGE_CLS[d.stage]||'b-lead')); tr.appendChild(s);
+    var sec=el('td',{}); if(d.sector) sec.appendChild(badge(d.sector,SECTOR_CLS[d.sector]||'b-other')); else sec.textContent='—'; tr.appendChild(sec);
+    var v=el('td',{}); v.innerHTML='<span class="va">'+fmtV(d.value)+'</span>'; tr.appendChild(v);
+    var pr=el('td',{}); pr.innerHTML=d.probability?'<span style="font-size:12px;color:rgba(255,255,255,0.45)">'+d.probability+'%</span>':'—'; tr.appendChild(pr);
+    var co=el('td',{}); co.innerHTML=d.contact_id?'<span style="font-size:12px">'+esc(cMap[d.contact_id]||'—')+'</span>':'—'; tr.appendChild(co);
+    var nx=el('td',{}); nx.innerHTML='<span style="font-size:12px;color:rgba(255,255,255,0.38)">'+esc(d.next_action||'—')+'</span>'; tr.appendChild(nx);
+    tr.addEventListener('click',function(){ openDealModal(d); });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody); tbl.appendChild(table);
+}
+
+$('btn-add-deal').addEventListener('click', function(){ openDealModal(null); });
+function openDealModal(d){
+  makeSeg('md-stage-seg',STAGES,d?d.stage:'Lead',null);
+  makeSeg('md-sector-seg',SECTORS,d?d.sector:'School',null);
+  $('md-id').value=d?d.id:''; $('md-name').value=d?d.name:''; $('md-value').value=d?d.value:''; $('md-prob').value=d?d.probability:''; $('md-next').value=d?d.next_action:''; $('md-notes').value=d?d.notes:'';
+  var sel=$('md-contact'); sel.innerHTML='<option value="">— None —</option>';
+  DB.contacts.forEach(function(c){ var o=el('option',{value:c.id},c.name); if(d&&d.contact_id===c.id) o.selected=true; sel.appendChild(o); });
+  $('md-ey').textContent=d?'Edit deal':'New opportunity'; $('md-ti').textContent=d?d.name:'Add a deal';
+  $('md-save').textContent='Save deal'; $('modal-deal').classList.add('open');
+}
+$('md-save').addEventListener('click', function(){
+  var name=$('md-name').value.trim(); if(!name){$('md-name').focus();return;}
+  var id=$('md-id').value;
+  var data={name:name,stage:$('md-stage-seg').getValue(),sector:$('md-sector-seg').getValue(),value:$('md-value').value||null,probability:$('md-prob').value||null,contact_id:$('md-contact').value||null,next_action:$('md-next').value,notes:$('md-notes').value};
+  $('md-save').textContent='Saving…';
+  var p=id?api('deals','PATCH',data,'?id=eq.'+id):api('deals','POST',data);
+  p.then(function(){$('modal-deal').classList.remove('open');return loadAll();}).catch(function(e){alert(e.message);$('md-save').textContent='Save deal';});
+});
+
+// ── ACTIVITIES ──
+function loadActivities(){
+  var tbl=$('activities-table'); tbl.innerHTML='<div class="empty"><p>Loading&hellip;</p></div>';
+  var cMap={}; DB.contacts.forEach(function(c){cMap[c.id]=c.name;});
+  api('activities','GET',null,'?order=created_at.desc&limit=200').then(function(acts){
+    tbl.innerHTML='';
+    if(!acts||acts.length===0){tbl.innerHTML='<div class="empty"><p>No activity logged yet.</p></div>';return;}
+    var table=el('table',{});
+    table.innerHTML='<thead><tr><th>Date</th><th>Contact</th><th>Type</th><th>Note</th></tr></thead>';
+    var tbody=el('tbody',{});
+    acts.forEach(function(a){
+      var tr=el('tr',{});
+      var dt=el('td',{}); dt.innerHTML='<span style="font-size:11px;color:rgba(255,255,255,0.32)">'+fmtD(a.created_at)+'</span>'; tr.appendChild(dt);
+      var co=el('td',{}); co.textContent=a.contact_id?(cMap[a.contact_id]||'—'):'—'; tr.appendChild(co);
+      var ty=el('td',{}); ty.appendChild(badge(a.type||'Note','b-lead')); tr.appendChild(ty);
+      var no=el('td',{}); no.innerHTML='<span style="font-size:12px;color:rgba(255,255,255,0.6)">'+esc(a.note||'')+'</span>'; tr.appendChild(no);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody); tbl.appendChild(table);
+  });
+}
+
+// ── UTILS ──
+function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+// ── BOOT ──
+function showApp(){
+  $('login-screen').style.display='none';
+  $('app-screen').classList.add('visible');
+  loadAll();
+}
+
+if(checkAuth()) showApp();
 </script>
 </body>
 </html>
