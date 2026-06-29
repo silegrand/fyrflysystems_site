@@ -9,321 +9,225 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --c:#C8102E;--o:#E85D04;--a:#F5A623;
-  --grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);
-  --dark:#1C1F2E;--char:#252836;--panel:#2A2D3E;--card:#1E2130;
-  --bdr:rgba(255,255,255,0.1);--bdr-s:rgba(255,255,255,0.16);
-  --fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;
-  --ease:cubic-bezier(0.22,1,0.36,1);
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--fb);background:var(--dark);color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;}
-button{cursor:pointer;font-family:var(--fb);}
-
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--dark);padding:2rem;position:relative;overflow:hidden;}
-.login-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(232,93,4,0.12) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(200,16,46,0.08) 0%,transparent 50%);}
-.login-wrap::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;}
+:root{--c:#C8102E;--o:#E85D04;--a:#F5A623;--grad:linear-gradient(135deg,#C8102E 0%,#E85D04 52%,#F5A623 100%);--dark:#1C1F2E;--char:#252836;--panel:#2A2D3E;--card:#1E2130;--bdr:rgba(255,255,255,0.1);--bdr-s:rgba(255,255,255,0.16);--fh:'Roboto',sans-serif;--fb:'DM Sans',sans-serif;--ease:cubic-bezier(0.22,1,0.36,1);}
+*{box-sizing:border-box;margin:0;padding:0;}body{font-family:var(--fb);background:var(--dark);color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;}button{cursor:pointer;font-family:var(--fb);}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--dark);padding:2rem;position:relative;overflow:hidden;}.login-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(232,93,4,0.12) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(200,16,46,0.08) 0%,transparent 50%);}.login-wrap::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;}
 .login-card{position:relative;z-index:2;background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;padding:2.5rem;width:100%;max-width:380px;}
-.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:2rem;}
-.login-mark{width:38px;height:38px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;}
-.login-mark svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.login-name{font-family:var(--fh);font-size:17px;font-weight:700;color:#fff;}
-.login-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.login-platform{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
-.login-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--o);display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;}
-.login-eyebrow::before{content:'';display:inline-block;width:14px;height:1.5px;background:var(--o);}
-.login-title{font-family:var(--fh);font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;margin-bottom:0.35rem;color:#fff;}
-.login-sub{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:1.75rem;line-height:1.6;}
+.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:2rem;}.login-mark{width:38px;height:38px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;}.login-mark svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.login-name{font-family:var(--fh);font-size:17px;font-weight:700;color:#fff;}.login-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.login-platform{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
+.login-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--o);display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;}.login-eyebrow::before{content:'';display:inline-block;width:14px;height:1.5px;background:var(--o);}
+.login-title{font-family:var(--fh);font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;margin-bottom:0.35rem;color:#fff;}.login-sub{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:1.75rem;line-height:1.6;}
 .field-lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:6px;display:block;}
-.field-in{width:100%;padding:11px 14px;border:1px solid var(--bdr);border-radius:9px;background:rgba(255,255,255,0.07);color:#fff;font-size:14px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}
-.field-in:focus{border-color:var(--o);background:rgba(232,93,4,0.08);}
-.field-in::placeholder{color:rgba(255,255,255,0.22);}
-.login-err{font-size:12px;color:#F87171;margin-top:0.5rem;}
-.btn-grad{width:100%;padding:12px;border:none;border-radius:9px;background:var(--grad);color:#fff;font-family:var(--fh);font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:1rem;transition:opacity 0.2s,transform 0.2s var(--ease);}
-.btn-grad:hover{opacity:0.88;transform:translateY(-1px);}
-
-.app{display:grid;grid-template-columns:228px 1fr;min-height:100vh;}
-.sidebar{background:var(--char);border-right:1px solid var(--bdr);display:flex;flex-direction:column;}
-.sb-top{padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--bdr);}
-.sb-logo{display:flex;align-items:center;gap:9px;}
-.sb-mark{width:30px;height:30px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.sb-mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.sb-name{font-family:var(--fh);font-size:14px;font-weight:700;color:#fff;}
-.sb-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sb-tag{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
+.field-in{width:100%;padding:11px 14px;border:1px solid var(--bdr);border-radius:9px;background:rgba(255,255,255,0.07);color:#fff;font-size:14px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}.field-in:focus{border-color:var(--o);background:rgba(232,93,4,0.08);}.field-in::placeholder{color:rgba(255,255,255,0.22);}
+.login-err{font-size:12px;color:#F87171;margin-top:0.5rem;}.btn-grad{width:100%;padding:12px;border:none;border-radius:9px;background:var(--grad);color:#fff;font-family:var(--fh);font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:1rem;transition:opacity 0.2s,transform 0.2s var(--ease);}.btn-grad:hover{opacity:0.88;transform:translateY(-1px);}
+.app{display:grid;grid-template-columns:228px 1fr;min-height:100vh;}.sidebar{background:var(--char);border-right:1px solid var(--bdr);display:flex;flex-direction:column;}
+.sb-top{padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--bdr);}.sb-logo{display:flex;align-items:center;gap:9px;}.sb-mark{width:30px;height:30px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;}.sb-mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.sb-name{font-family:var(--fh);font-size:14px;font-weight:700;color:#fff;}.sb-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.sb-tag{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
 .sb-section{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:1rem 1rem 0.3rem;}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 1rem;font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);cursor:pointer;transition:color 0.15s,background 0.15s;position:relative;}
-.nav-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.nav-item:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.06);}
-.nav-item.active{color:#fff;background:rgba(232,93,4,0.14);}
-.nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:0 3px 3px 0;background:var(--grad);}
-.nav-item.active svg{stroke:var(--a);}
-.sb-bottom{margin-top:auto;padding:1rem;border-top:1px solid var(--bdr);}
-.sb-stats{background:rgba(255,255,255,0.05);border-radius:10px;padding:0.75rem;margin-bottom:0.75rem;border:1px solid var(--bdr);}
-.sb-stat-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
-.sb-stat-row:last-child{margin-bottom:0;}
-.sb-stat-label{color:rgba(255,255,255,0.38);}
-.sb-stat-val{color:rgba(255,255,255,0.85);font-weight:600;font-family:var(--fh);}
-.logout-btn{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.32);background:none;border:none;cursor:pointer;padding:4px 0;transition:color 0.15s;}
-.logout-btn:hover{color:rgba(255,255,255,0.7);}
-.logout-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.main{background:var(--dark);display:flex;flex-direction:column;min-height:100vh;}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-bottom:1px solid var(--bdr);background:var(--char);flex-shrink:0;}
-.page-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:2px;}
-.page-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;letter-spacing:-0.015em;color:#fff;}
-.topbar-right{display:flex;align-items:center;gap:8px;}
-.btn-action{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:opacity 0.18s,transform 0.18s var(--ease);}
-.btn-action svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-.btn-action.primary{background:var(--grad);color:#fff;}
-.btn-action.primary:hover{opacity:0.88;transform:translateY(-1px);}
-.btn-action.ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid var(--bdr);}
-.btn-action.ghost:hover{background:rgba(255,255,255,0.12);color:#fff;}
-.content{padding:1.5rem 1.75rem;flex:1;}
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}
-.stat-card{background:var(--panel);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0.7;}
-.stat-lbl{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}
-.stat-val{font-family:var(--fh);font-size:1.75rem;font-weight:900;letter-spacing:-0.03em;color:#fff;}
-.stat-val.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.stat-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:3px;}
-.filters{display:flex;gap:8px;margin-bottom:1.1rem;align-items:center;flex-wrap:wrap;}
-.filter-in,.search-in{padding:7px 12px;font-size:12px;font-family:var(--fb);border:1px solid var(--bdr);border-radius:7px;background:rgba(255,255,255,0.07);color:#fff;outline:none;transition:border-color 0.2s;}
-.filter-in:focus,.search-in:focus{border-color:var(--o);}
-.filter-in option{background:var(--panel);}
-.search-in{width:220px;}
-.search-in::placeholder{color:rgba(255,255,255,0.22);}
-.tbl-wrap{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:1px solid var(--bdr);background:rgba(255,255,255,0.03);}
-td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:middle;color:rgba(255,255,255,0.82);}
-tr:last-child td{border-bottom:none;}
-tbody tr{transition:background 0.12s;}
-tbody tr:hover td{background:rgba(255,255,255,0.05);cursor:pointer;}
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;white-space:nowrap;}
-.b-lead{background:rgba(59,130,246,0.18);color:#93C5FD;}
-.b-qualified{background:rgba(245,158,11,0.18);color:#FCD34D;}
-.b-proposal{background:rgba(168,85,247,0.18);color:#D8B4FE;}
-.b-negotiation{background:rgba(232,93,4,0.18);color:#FBA87A;}
-.b-won{background:rgba(34,197,94,0.18);color:#86EFAC;}
-.b-lost{background:rgba(239,68,68,0.18);color:#FCA5A5;}
-.b-school{background:rgba(59,130,246,0.15);color:#93C5FD;}
-.b-council{background:rgba(34,197,94,0.15);color:#86EFAC;}
-.b-commercial{background:rgba(168,85,247,0.15);color:#D8B4FE;}
-.b-nhs{background:rgba(244,63,94,0.15);color:#FDA4AF;}
-.b-other{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);}
-.av{width:30px;height:30px;border-radius:50%;background:rgba(232,93,4,0.18);border:1px solid rgba(232,93,4,0.3);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--a);font-family:var(--fh);flex-shrink:0;}
-.av-lg{width:42px;height:42px;font-size:14px;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:200;padding:1rem;backdrop-filter:blur(4px);}
-.modal{background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;}
-.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);}
-.modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:3px;}
-.modal-title{font-family:var(--fh);font-size:15px;font-weight:700;color:#fff;}
-.modal-close{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;}
-.modal-close:hover{background:rgba(255,255,255,0.13);color:#fff;}
-.modal-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-.modal-body{padding:1.25rem 1.5rem;}
-.modal-foot{padding:1rem 1.5rem;border-top:1px solid var(--bdr);display:flex;justify-content:flex-end;gap:8px;}
-.fr{margin-bottom:1rem;}
-.fr label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}
-.fr input,.fr select,.fr textarea{width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}
-.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--o);background:rgba(232,93,4,0.07);}
-.fr input::placeholder,.fr textarea::placeholder{color:rgba(255,255,255,0.2);}
-.fr select option{background:var(--panel);}
-.fr textarea{resize:vertical;min-height:78px;line-height:1.5;}
-.fr-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.seg-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
-.seg-btn{padding:5px 13px;border-radius:100px;border:1px solid var(--bdr);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s;}
-.seg-btn:hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);}
-.seg-btn.active{background:rgba(232,93,4,0.18);border-color:var(--o);color:#fff;}
-.detail-layout{display:grid;grid-template-columns:1fr 330px;gap:1.25rem;align-items:start;}
-.detail-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
-.detail-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
-.detail-body{padding:1.25rem 1.5rem;}
-.detail-sec-title{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.75rem;}
-.detail-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:9px;font-size:13px;}
-.detail-row-l{color:rgba(255,255,255,0.38);min-width:88px;flex-shrink:0;font-size:12px;}
-.detail-row-v{color:rgba(255,255,255,0.82);}
-.note-card{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:9px;padding:0.7rem 0.9rem;margin-bottom:7px;}
-.note-meta{font-size:10.5px;color:rgba(255,255,255,0.28);margin-bottom:4px;}
-.note-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;}
-.note-add-row{display:flex;gap:8px;margin-top:0.75rem;}
-.note-add-row textarea{flex:1;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:12px;resize:none;height:58px;outline:none;font-family:var(--fb);}
-.note-add-row textarea:focus{border-color:var(--o);}
-.note-add-row textarea::placeholder{color:rgba(255,255,255,0.2);}
-.note-send{align-self:flex-end;width:36px;height:36px;border-radius:8px;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity 0.2s;}
-.note-send:hover{opacity:0.85;}
-.note-send svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-.empty{padding:3.5rem 1rem;text-align:center;}
-.empty-ico{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
-.empty-ico svg{width:24px;height:24px;stroke:rgba(255,255,255,0.22);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-.empty p{font-size:13px;color:rgba(255,255,255,0.32);line-height:1.6;}
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-.dash-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}
-.dash-card-head{padding:1rem 1.25rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
-.dash-card-title{font-family:var(--fh);font-size:13px;font-weight:700;color:#fff;}
-.dash-card-count{font-size:11px;color:rgba(255,255,255,0.28);}
-.recent-item{display:flex;align-items:center;gap:10px;padding:10px 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);}
-.recent-item:last-child{border-bottom:none;}
-.recent-name{font-size:13px;font-weight:500;color:#fff;flex:1;}
-.recent-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:1px;}
-.pipeline-mini{padding:0.75rem 1.25rem;}
-.pipe-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.pipe-row:last-child{margin-bottom:0;}
-.pipe-stage{font-size:12px;color:rgba(255,255,255,0.45);width:88px;flex-shrink:0;}
-.pipe-bar-wrap{flex:1;height:6px;border-radius:100px;background:rgba(255,255,255,0.07);overflow:hidden;}
-.pipe-bar{height:100%;border-radius:100px;background:var(--grad);}
-.pipe-n{font-size:11px;font-family:var(--fh);font-weight:700;color:rgba(255,255,255,0.4);min-width:20px;text-align:right;}
-.val-accent{color:var(--a);font-family:var(--fh);font-weight:700;}
-.loading{display:flex;align-items:center;justify-content:center;padding:4rem;color:rgba(255,255,255,0.28);font-size:13px;}
-.setup-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;padding:2rem;max-width:680px;}
-.setup-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:0.5rem;}
-.setup-title{font-family:var(--fh);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;color:#fff;}
-.setup-sub{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:1.25rem;}
-pre.sql{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:1.25rem;font-size:11px;overflow-x:auto;color:rgba(255,255,255,0.7);line-height:1.65;font-family:monospace;}
-.setup-note{font-size:12px;color:rgba(255,255,255,0.28);margin-top:0.75rem;line-height:1.6;}
-
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 1rem;font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);cursor:pointer;transition:color 0.15s,background 0.15s;position:relative;}.nav-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}.nav-item:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.06);}.nav-item.active{color:#fff;background:rgba(232,93,4,0.14);}.nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:0 3px 3px 0;background:var(--grad);}.nav-item.active svg{stroke:var(--a);}
+.sb-bottom{margin-top:auto;padding:1rem;border-top:1px solid var(--bdr);}.sb-stats{background:rgba(255,255,255,0.05);border-radius:10px;padding:0.75rem;margin-bottom:0.75rem;border:1px solid var(--bdr);}.sb-stat-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}.sb-stat-row:last-child{margin-bottom:0;}.sb-stat-label{color:rgba(255,255,255,0.38);}.sb-stat-val{color:rgba(255,255,255,0.85);font-weight:600;font-family:var(--fh);}
+.logout-btn{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.32);background:none;border:none;cursor:pointer;padding:4px 0;transition:color 0.15s;}.logout-btn:hover{color:rgba(255,255,255,0.7);}.logout-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.main{background:var(--dark);display:flex;flex-direction:column;min-height:100vh;}.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-bottom:1px solid var(--bdr);background:var(--char);flex-shrink:0;}.page-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:2px;}.page-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;letter-spacing:-0.015em;color:#fff;}.topbar-right{display:flex;align-items:center;gap:8px;}
+.btn-action{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:opacity 0.18s,transform 0.18s var(--ease);}.btn-action svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}.btn-action.primary{background:var(--grad);color:#fff;}.btn-action.primary:hover{opacity:0.88;transform:translateY(-1px);}.btn-action.ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid var(--bdr);}.btn-action.ghost:hover{background:rgba(255,255,255,0.12);color:#fff;}
+.content{padding:1.5rem 1.75rem;flex:1;}.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}.stat-card{background:var(--panel);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;}.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0.7;}.stat-lbl{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}.stat-val{font-family:var(--fh);font-size:1.75rem;font-weight:900;letter-spacing:-0.03em;color:#fff;}.stat-val.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.stat-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:3px;}
+.filters{display:flex;gap:8px;margin-bottom:1.1rem;align-items:center;flex-wrap:wrap;}.filter-in,.search-in{padding:7px 12px;font-size:12px;font-family:var(--fb);border:1px solid var(--bdr);border-radius:7px;background:rgba(255,255,255,0.07);color:#fff;outline:none;transition:border-color 0.2s;}.filter-in:focus,.search-in:focus{border-color:var(--o);}.filter-in option{background:var(--panel);}.search-in{width:220px;}.search-in::placeholder{color:rgba(255,255,255,0.22);}
+.tbl-wrap{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}table{width:100%;border-collapse:collapse;font-size:13px;}th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:1px solid var(--bdr);background:rgba(255,255,255,0.03);}td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:middle;color:rgba(255,255,255,0.82);}tr:last-child td{border-bottom:none;}tbody tr{transition:background 0.12s;}tbody tr:hover td{background:rgba(255,255,255,0.05);cursor:pointer;}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;white-space:nowrap;}.b-lead{background:rgba(59,130,246,0.18);color:#93C5FD;}.b-qualified{background:rgba(245,158,11,0.18);color:#FCD34D;}.b-proposal{background:rgba(168,85,247,0.18);color:#D8B4FE;}.b-negotiation{background:rgba(232,93,4,0.18);color:#FBA87A;}.b-won{background:rgba(34,197,94,0.18);color:#86EFAC;}.b-lost{background:rgba(239,68,68,0.18);color:#FCA5A5;}.b-school{background:rgba(59,130,246,0.15);color:#93C5FD;}.b-council{background:rgba(34,197,94,0.15);color:#86EFAC;}.b-commercial{background:rgba(168,85,247,0.15);color:#D8B4FE;}.b-nhs{background:rgba(244,63,94,0.15);color:#FDA4AF;}.b-other{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);}
+.av{width:30px;height:30px;border-radius:50%;background:rgba(232,93,4,0.18);border:1px solid rgba(232,93,4,0.3);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--a);font-family:var(--fh);flex-shrink:0;}.av-lg{width:42px;height:42px;font-size:14px;}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:200;padding:1rem;backdrop-filter:blur(4px);}.modal{background:var(--panel);border:1px solid var(--bdr-s);border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);}.modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);margin-bottom:3px;}.modal-title{font-family:var(--fh);font-size:15px;font-weight:700;color:#fff;}.modal-close{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;}.modal-close:hover{background:rgba(255,255,255,0.13);color:#fff;}.modal-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}.modal-body{padding:1.25rem 1.5rem;}.modal-foot{padding:1rem 1.5rem;border-top:1px solid var(--bdr);display:flex;justify-content:flex-end;gap:8px;}
+.fr{margin-bottom:1rem;}.fr label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:6px;}.fr input,.fr select,.fr textarea{width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;}.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--o);background:rgba(232,93,4,0.07);}.fr input::placeholder,.fr textarea::placeholder{color:rgba(255,255,255,0.2);}.fr select option{background:var(--panel);}.fr textarea{resize:vertical;min-height:78px;line-height:1.5;}.fr-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.seg-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}.seg-btn{padding:5px 13px;border-radius:100px;border:1px solid var(--bdr);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s;}.seg-btn:hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);}.seg-btn.active{background:rgba(232,93,4,0.18);border-color:var(--o);color:#fff;}
+.detail-layout{display:grid;grid-template-columns:1fr 330px;gap:1.25rem;align-items:start;}.detail-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}.detail-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}.detail-body{padding:1.25rem 1.5rem;}.detail-sec-title{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.75rem;}.detail-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:9px;font-size:13px;}.detail-row-l{color:rgba(255,255,255,0.38);min-width:88px;flex-shrink:0;font-size:12px;}.detail-row-v{color:rgba(255,255,255,0.82);}
+.note-card{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:9px;padding:0.7rem 0.9rem;margin-bottom:7px;}.note-meta{font-size:10.5px;color:rgba(255,255,255,0.28);margin-bottom:4px;}.note-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;}.note-add-row{display:flex;gap:8px;margin-top:0.75rem;}.note-add-row textarea{flex:1;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:12px;resize:none;height:58px;outline:none;font-family:var(--fb);}.note-add-row textarea:focus{border-color:var(--o);}.note-add-row textarea::placeholder{color:rgba(255,255,255,0.2);}.note-send{align-self:flex-end;width:36px;height:36px;border-radius:8px;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity 0.2s;}.note-send:hover{opacity:0.85;}.note-send svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.empty{padding:3.5rem 1rem;text-align:center;}.empty-ico{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}.empty-ico svg{width:24px;height:24px;stroke:rgba(255,255,255,0.22);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}.empty p{font-size:13px;color:rgba(255,255,255,0.32);line-height:1.6;}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}.dash-card{background:var(--panel);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;}.dash-card-head{padding:1rem 1.25rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}.dash-card-title{font-family:var(--fh);font-size:13px;font-weight:700;color:#fff;}.dash-card-count{font-size:11px;color:rgba(255,255,255,0.28);}.recent-item{display:flex;align-items:center;gap:10px;padding:10px 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);}.recent-item:last-child{border-bottom:none;}.recent-name{font-size:13px;font-weight:500;color:#fff;flex:1;}.recent-sub{font-size:11px;color:rgba(255,255,255,0.32);margin-top:1px;}
+.pipeline-mini{padding:0.75rem 1.25rem;}.pipe-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.pipe-row:last-child{margin-bottom:0;}.pipe-stage{font-size:12px;color:rgba(255,255,255,0.45);width:88px;flex-shrink:0;}.pipe-bar-wrap{flex:1;height:6px;border-radius:100px;background:rgba(255,255,255,0.07);overflow:hidden;}.pipe-bar{height:100%;border-radius:100px;background:var(--grad);}.pipe-n{font-size:11px;font-family:var(--fh);font-weight:700;color:rgba(255,255,255,0.4);min-width:20px;text-align:right;}
+.val-accent{color:var(--a);font-family:var(--fh);font-weight:700;}.loading{display:flex;align-items:center;justify-content:center;padding:4rem;color:rgba(255,255,255,0.28);font-size:13px;}
 @media(max-width:900px){.app{grid-template-columns:1fr;}.sidebar{display:none;}.stats-row{grid-template-columns:1fr 1fr;}.dash-grid{grid-template-columns:1fr;}.detail-layout{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 <script>
-const {useState,useEffect}=React;
-const SB='https://fyrrumltohkplldxwxdk.supabase.co';
-const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
-const PW='12Fyrfly34!';
-const STAGES=['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
-const SECTORS=['School','Council','Commercial','NHS','Other'];
-const SOURCES=['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
-async function api(table,method='GET',body=null,query=''){
-  const h={'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'application/json'};
+var _e=React.createElement,_u=React.useState,_f=React.useEffect;
+var SB='https://fyrrumltohkplldxwxdk.supabase.co';
+var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
+var PW='12Fyrfly34!';
+var STAGES=['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
+var SECTORS=['School','Council','Commercial','NHS','Other'];
+var SOURCES=['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
+function api(table,method,body,query){
+  method=method||'GET';query=query||'';
+  var h={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
   if(method!=='GET')h['Prefer']='return=representation';
-  const r=await fetch(`${SB}/rest/v1/${table}${query}`,{method,headers:h,body:body?JSON.stringify(body):null});
-  if(!r.ok)throw new Error(await r.text());
-  const t=await r.text();return t?JSON.parse(t):[];
+  return fetch(SB+'/rest/v1/'+table+query,{method:method,headers:h,body:body?JSON.stringify(body):null}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(t);});return r.text().then(function(t){return t?JSON.parse(t):[];});});
 }
-const ini=n=>n?n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase():'?';
-const fmtD=d=>d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
-const fmtV=v=>v?'£'+Number(v).toLocaleString('en-GB'):'—';
-function StageBadge({s}){const m={Lead:'b-lead',Qualified:'b-qualified',Proposal:'b-proposal',Negotiation:'b-negotiation',Won:'b-won',Lost:'b-lost'};return React.createElement('span',{className:`badge ${m[s]||'b-lead'}`},s);}
-function SectorBadge({s}){const m={School:'b-school',Council:'b-council',Commercial:'b-commercial',NHS:'b-nhs',Other:'b-other'};return React.createElement('span',{className:`badge ${m[s]||'b-other'}`},s);}
-const I={
-  logo:[`M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5`],
-  dash:[`M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z`],
-  people:[`M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2`,`M9 11a4 4 0 100-8 4 4 0 000 8z`,`M23 21v-2a4 4 0 00-3-3.87`,`M16 3.13a4 4 0 010 7.75`],
-  building:[`M3 21h18`,`M5 21V7l8-4v18`,`M19 21V11l-6-4`,`M9 9v.01M9 12v.01M9 15v.01M9 18v.01`],
-  chart:[`M18 20V10`,`M12 20V4`,`M6 20v-6`],
-  clock:[`M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z`,`M12 6v6l4 2`],
-  out:[`M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4`,`M16 17l5-5-5-5`,`M21 12H9`],
-  plus:[`M12 5v14M5 12h14`],
-  x:[`M18 6L6 18M6 6l12 12`],
-  edit:[`M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7`,`M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z`],
-  send:[`M22 2L11 13`,`M22 2L15 22 11 13 2 9l20-7z`],
-};
-function Ico({k,w=15,h=15,sw=1.75}){return React.createElement('svg',{viewBox:'0 0 24 24',width:w,height:h,fill:'none',stroke:'currentColor',strokeWidth:sw,strokeLinecap:'round',strokeLinejoin:'round'},(I[k]||[]).map((d,i)=>React.createElement('path',{key:i,d})));}
-function Seg({opts,val,onChange}){return React.createElement('div',{className:'seg-row'},opts.map(o=>React.createElement('button',{key:o,type:'button',className:`seg-btn${val===o?' active':''}`,onClick:()=>onChange(o)},o)));}
-function Topbar({ey,title,children}){return React.createElement('div',{className:'topbar'},React.createElement('div',null,React.createElement('div',{className:'page-eyebrow'},ey),React.createElement('div',{className:'page-title'},title)),React.createElement('div',{className:'topbar-right'},children));}
-function Login({onLogin}){
-  const [pw,setPw]=useState('');const [err,setErr]=useState('');
-  const go=()=>pw===PW?onLogin():setErr('Incorrect password.');
-  return React.createElement('div',{className:'login-wrap'},React.createElement('div',{className:'login-card'},React.createElement('div',{className:'login-logo'},React.createElement('div',{className:'login-mark'},React.createElement(Ico,{k:'logo',w:18,h:18,sw:2})),React.createElement('div',null,React.createElement('div',{className:'login-name'},'Fyrfly',React.createElement('span',null,' Systems')),React.createElement('div',{className:'login-platform'},'CRM Platform'))),React.createElement('div',{className:'login-eyebrow'},'Secure Access'),React.createElement('h1',{className:'login-title'},'Welcome back'),React.createElement('p',{className:'login-sub'},'Enter your team password to access the Fyrfly CRM.'),React.createElement('label',{className:'field-lbl'},'Password'),React.createElement('input',{type:'password',className:'field-in',value:pw,onChange:e=>setPw(e.target.value),onKeyDown:e=>e.key==='Enter'&&go(),placeholder:'Enter team password',autoFocus:true}),err&&React.createElement('p',{className:'login-err'},err),React.createElement('button',{className:'btn-grad',onClick:go},'Sign in \u2192')));
+function ini(n){return n?n.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase():'?';}
+function fmtD(d){return d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';}
+function fmtV(v){return v?'£'+Number(v).toLocaleString('en-GB'):'—';}
+var I={logo:['M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'],dash:['M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'],people:['M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2','M9 11a4 4 0 100-8 4 4 0 000 8z','M23 21v-2a4 4 0 00-3-3.87','M16 3.13a4 4 0 010 7.75'],building:['M3 21h18','M5 21V7l8-4v18','M19 21V11l-6-4','M9 9v.01M9 12v.01M9 15v.01M9 18v.01'],chart:['M18 20V10','M12 20V4','M6 20v-6'],clock:['M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z','M12 6v6l4 2'],out:['M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4','M16 17l5-5-5-5','M21 12H9'],plus:['M12 5v14M5 12h14'],x:['M18 6L6 18M6 6l12 12'],edit:['M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7','M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z'],send:['M22 2L11 13','M22 2L15 22 11 13 2 9l20-7z']};
+function Ico(p){return _e('svg',{viewBox:'0 0 24 24',width:p.w||15,height:p.h||15,fill:'none',stroke:'currentColor',strokeWidth:p.sw||1.75,strokeLinecap:'round',strokeLinejoin:'round'},(I[p.k]||[]).map(function(d,i){return _e('path',{key:i,d:d});}));}
+function StageBadge(p){var m={Lead:'b-lead',Qualified:'b-qualified',Proposal:'b-proposal',Negotiation:'b-negotiation',Won:'b-won',Lost:'b-lost'};return _e('span',{className:'badge '+(m[p.s]||'b-lead')},p.s);}
+function SectorBadge(p){var m={School:'b-school',Council:'b-council',Commercial:'b-commercial',NHS:'b-nhs',Other:'b-other'};return _e('span',{className:'badge '+(m[p.s]||'b-other')},p.s);}
+function Seg(p){return _e('div',{className:'seg-row'},p.opts.map(function(o){return _e('button',{key:o,type:'button',className:'seg-btn'+(p.val===o?' active':''),onClick:function(){p.onChange(o);}},o);}));}
+function Topbar(p){return _e('div',{className:'topbar'},_e('div',null,_e('div',{className:'page-eyebrow'},p.ey),_e('div',{className:'page-title'},p.title)),_e('div',{className:'topbar-right'},p.children));}
+function Login(p){
+  var s=_u('');var e=_u('');
+  var go=function(){if(s[0]===PW){p.onLogin();}else{e[1]('Incorrect password.');}};
+  return _e('div',{className:'login-wrap'},_e('div',{className:'login-card'},
+    _e('div',{className:'login-logo'},_e('div',{className:'login-mark'},_e(Ico,{k:'logo',w:18,h:18,sw:2})),_e('div',null,_e('div',{className:'login-name'},'Fyrfly',_e('span',null,' Systems')),_e('div',{className:'login-platform'},'CRM Platform'))),
+    _e('div',{className:'login-eyebrow'},'Secure Access'),
+    _e('h1',{className:'login-title'},'Welcome back'),
+    _e('p',{className:'login-sub'},'Enter your team password to access the Fyrfly CRM.'),
+    _e('label',{className:'field-lbl'},'Password'),
+    _e('input',{type:'password',className:'field-in',value:s[0],onChange:function(ev){s[1](ev.target.value);},onKeyDown:function(ev){if(ev.key==='Enter')go();},placeholder:'Enter team password',autoFocus:true}),
+    e[0]&&_e('p',{className:'login-err'},e[0]),
+    _e('button',{className:'btn-grad',onClick:go},'Sign in \u2192')
+  ));
 }
-function Sidebar({view,setView,onLogout,contacts,companies,deals}){
-  const nav=[{id:'dashboard',k:'dash',l:'Dashboard'},{id:'contacts',k:'people',l:'Contacts'},{id:'companies',k:'building',l:'Companies'},{id:'pipeline',k:'chart',l:'Pipeline'},{id:'activities',k:'clock',l:'Activity log'}];
-  const open=deals.filter(d=>!['Won','Lost'].includes(d.stage));
-  return React.createElement('div',{className:'sidebar'},React.createElement('div',{className:'sb-top'},React.createElement('div',{className:'sb-logo'},React.createElement('div',{className:'sb-mark'},React.createElement(Ico,{k:'logo',w:15,h:15,sw:2})),React.createElement('div',null,React.createElement('div',{className:'sb-name'},'Fyrfly',React.createElement('span',null,' CRM')),React.createElement('div',{className:'sb-tag'},'Team workspace')))),React.createElement('div',{className:'sb-section'},'Navigation'),nav.map(n=>React.createElement('div',{key:n.id,className:`nav-item${view===n.id?' active':''}`,onClick:()=>setView(n.id)},React.createElement(Ico,{k:n.k}),n.l)),React.createElement('div',{className:'sb-bottom'},React.createElement('div',{className:'sb-stats'},[{l:'Contacts',v:contacts.length},{l:'Open deals',v:open.length},{l:'Pipeline',v:'£'+Math.round(open.reduce((s,d)=>s+(d.value||0),0)/1000)+'k'}].map(r=>React.createElement('div',{key:r.l,className:'sb-stat-row'},React.createElement('span',{className:'sb-stat-label'},r.l),React.createElement('span',{className:'sb-stat-val'},r.v)))),React.createElement('button',{className:'logout-btn',onClick:onLogout},React.createElement(Ico,{k:'out',w:13,h:13,sw:2}),'Sign out')));
+function Sidebar(p){
+  var nav=[{id:'dashboard',k:'dash',l:'Dashboard'},{id:'contacts',k:'people',l:'Contacts'},{id:'companies',k:'building',l:'Companies'},{id:'pipeline',k:'chart',l:'Pipeline'},{id:'activities',k:'clock',l:'Activity log'}];
+  var open=p.deals.filter(function(d){return !['Won','Lost'].includes(d.stage);});
+  var pipeVal='£'+Math.round(open.reduce(function(s,d){return s+(d.value||0);},0)/1000)+'k';
+  return _e('div',{className:'sidebar'},
+    _e('div',{className:'sb-top'},_e('div',{className:'sb-logo'},_e('div',{className:'sb-mark'},_e(Ico,{k:'logo',w:15,h:15,sw:2})),_e('div',null,_e('div',{className:'sb-name'},'Fyrfly',_e('span',null,' CRM')),_e('div',{className:'sb-tag'},'Team workspace')))),
+    _e('div',{className:'sb-section'},'Navigation'),
+    nav.map(function(n){return _e('div',{key:n.id,className:'nav-item'+(p.view===n.id?' active':''),onClick:function(){p.setView(n.id);}},_e(Ico,{k:n.k}),n.l);}),
+    _e('div',{className:'sb-bottom'},
+      _e('div',{className:'sb-stats'},[{l:'Contacts',v:p.contacts.length},{l:'Open deals',v:open.length},{l:'Pipeline',v:pipeVal}].map(function(r){return _e('div',{key:r.l,className:'sb-stat-row'},_e('span',{className:'sb-stat-label'},r.l),_e('span',{className:'sb-stat-val'},r.v));})),
+      _e('button',{className:'logout-btn',onClick:p.onLogout},_e(Ico,{k:'out',w:13,h:13,sw:2}),'Sign out')
+    )
+  );
 }
-function ContactModal({contact,onSave,onClose}){
-  const [f,setF]=useState(contact||{name:'',role:'',organisation:'',sector:'School',email:'',phone:'',source:'',notes:''});
-  const [saving,setSaving]=useState(false);
-  const s=(k,v)=>setF(p=>({...p,[k]:v}));
-  async function save(){if(!f.name)return;setSaving(true);try{await onSave(f);onClose();}catch(e){alert(e.message);}finally{setSaving(false);}}
-  return React.createElement('div',{className:'overlay',onClick:e=>e.target===e.currentTarget&&onClose()},React.createElement('div',{className:'modal'},React.createElement('div',{className:'modal-head'},React.createElement('div',null,React.createElement('div',{className:'modal-eyebrow'},contact?'Edit record':'New contact'),React.createElement('div',{className:'modal-title'},contact?contact.name:'Add a contact')),React.createElement('button',{className:'modal-close',onClick:onClose},React.createElement(Ico,{k:'x',w:14,h:14,sw:2.5}))),React.createElement('div',{className:'modal-body'},React.createElement('div',{className:'fr-grid2'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Full name *'),React.createElement('input',{value:f.name,onChange:e=>s('name',e.target.value),placeholder:'Jane Smith'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Job title'),React.createElement('input',{value:f.role,onChange:e=>s('role',e.target.value),placeholder:'Head of Security'}))),React.createElement('div',{className:'fr'},React.createElement('label',null,'Organisation'),React.createElement('input',{value:f.organisation,onChange:e=>s('organisation',e.target.value),placeholder:'Faversham Academy Trust'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Sector'),React.createElement(Seg,{opts:SECTORS,val:f.sector,onChange:v=>s('sector',v)})),React.createElement('div',{className:'fr-grid2'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Email'),React.createElement('input',{type:'email',value:f.email,onChange:e=>s('email',e.target.value),placeholder:'jane@school.org'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Phone'),React.createElement('input',{value:f.phone,onChange:e=>s('phone',e.target.value),placeholder:'07700 000000'}))),React.createElement('div',{className:'fr'},React.createElement('label',null,'Source'),React.createElement(Seg,{opts:SOURCES,val:f.source,onChange:v=>s('source',v)})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Notes'),React.createElement('textarea',{value:f.notes,onChange:e=>s('notes',e.target.value),placeholder:'Context, background, key interests\u2026'}))),React.createElement('div',{className:'modal-foot'},React.createElement('button',{className:'btn-action ghost',onClick:onClose},'Cancel'),React.createElement('button',{className:'btn-action primary',onClick:save,disabled:saving},saving?'Saving\u2026':'Save contact'))));
+function mkModal(eyebrow,title,fields,onSave,onClose){
+  var saving=_u(false);
+  var go=function(){if(saving[0])return;saving[1](true);onSave().then(function(){onClose();}).catch(function(e){alert(e.message);}).finally(function(){saving[1](false);});};
+  return _e('div',{className:'overlay',onClick:function(e){if(e.target===e.currentTarget)onClose();}},
+    _e('div',{className:'modal'},
+      _e('div',{className:'modal-head'},_e('div',null,_e('div',{className:'modal-eyebrow'},eyebrow),_e('div',{className:'modal-title'},title)),_e('button',{className:'modal-close',onClick:onClose},_e(Ico,{k:'x',w:14,h:14,sw:2.5}))),
+      _e('div',{className:'modal-body'},fields),
+      _e('div',{className:'modal-foot'},_e('button',{className:'btn-action ghost',onClick:onClose},'Cancel'),_e('button',{className:'btn-action primary',onClick:go,disabled:saving[0]},saving[0]?'Saving\u2026':'Save'))
+    )
+  );
 }
-function CompanyModal({company,onSave,onClose}){
-  const [f,setF]=useState(company||{name:'',sector:'School',address:'',website:'',notes:''});
-  const [saving,setSaving]=useState(false);
-  const s=(k,v)=>setF(p=>({...p,[k]:v}));
-  async function save(){if(!f.name)return;setSaving(true);try{await onSave(f);onClose();}catch(e){alert(e.message);}finally{setSaving(false);}}
-  return React.createElement('div',{className:'overlay',onClick:e=>e.target===e.currentTarget&&onClose()},React.createElement('div',{className:'modal'},React.createElement('div',{className:'modal-head'},React.createElement('div',null,React.createElement('div',{className:'modal-eyebrow'},company?'Edit record':'New company'),React.createElement('div',{className:'modal-title'},company?company.name:'Add a company')),React.createElement('button',{className:'modal-close',onClick:onClose},React.createElement(Ico,{k:'x',w:14,h:14,sw:2.5}))),React.createElement('div',{className:'modal-body'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Company name *'),React.createElement('input',{value:f.name,onChange:e=>s('name',e.target.value),placeholder:'Faversham Academy Trust'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Sector'),React.createElement(Seg,{opts:SECTORS,val:f.sector,onChange:v=>s('sector',v)})),React.createElement('div',{className:'fr-grid2'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Address'),React.createElement('input',{value:f.address,onChange:e=>s('address',e.target.value),placeholder:'Faversham, Kent'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Website'),React.createElement('input',{value:f.website,onChange:e=>s('website',e.target.value),placeholder:'https://'}))),React.createElement('div',{className:'fr'},React.createElement('label',null,'Notes'),React.createElement('textarea',{value:f.notes,onChange:e=>s('notes',e.target.value)}))),React.createElement('div',{className:'modal-foot'},React.createElement('button',{className:'btn-action ghost',onClick:onClose},'Cancel'),React.createElement('button',{className:'btn-action primary',onClick:save,disabled:saving},saving?'Saving\u2026':'Save company'))));
+function ContactModal(p){
+  var f=_u(p.contact||{name:'',role:'',organisation:'',sector:'School',email:'',phone:'',source:'',notes:''});
+  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
+  var fields=_e('div',null,
+    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Full name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Jane Smith'})),_e('div',{className:'fr'},_e('label',null,'Job title'),_e('input',{value:f[0].role,onChange:function(e){set('role',e.target.value);},placeholder:'Head of Security'}))),
+    _e('div',{className:'fr'},_e('label',null,'Organisation'),_e('input',{value:f[0].organisation,onChange:function(e){set('organisation',e.target.value);},placeholder:'Faversham Academy Trust'})),
+    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
+    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Email'),_e('input',{type:'email',value:f[0].email,onChange:function(e){set('email',e.target.value);},placeholder:'jane@school.org'})),_e('div',{className:'fr'},_e('label',null,'Phone'),_e('input',{value:f[0].phone,onChange:function(e){set('phone',e.target.value);},placeholder:'07700 000000'}))),
+    _e('div',{className:'fr'},_e('label',null,'Source'),_e(Seg,{opts:SOURCES,val:f[0].source,onChange:function(v){set('source',v);}})),
+    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);},placeholder:'Context, background, key interests\u2026'}))
+  );
+  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('contacts','PATCH',d,'?id=eq.'+f[0].id):api('contacts','POST',d);};
+  return mkModal(p.contact?'Edit record':'New contact',p.contact?p.contact.name:'Add a contact',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
 }
-function DealModal({deal,contacts,onSave,onClose}){
-  const [f,setF]=useState(deal||{name:'',contact_id:'',stage:'Lead',sector:'School',value:'',probability:'',next_action:'',notes:''});
-  const [saving,setSaving]=useState(false);
-  const s=(k,v)=>setF(p=>({...p,[k]:v}));
-  async function save(){if(!f.name)return;setSaving(true);try{await onSave(f);onClose();}catch(e){alert(e.message);}finally{setSaving(false);}}
-  return React.createElement('div',{className:'overlay',onClick:e=>e.target===e.currentTarget&&onClose()},React.createElement('div',{className:'modal'},React.createElement('div',{className:'modal-head'},React.createElement('div',null,React.createElement('div',{className:'modal-eyebrow'},deal?'Edit deal':'New opportunity'),React.createElement('div',{className:'modal-title'},deal?deal.name:'Add a deal')),React.createElement('button',{className:'modal-close',onClick:onClose},React.createElement(Ico,{k:'x',w:14,h:14,sw:2.5}))),React.createElement('div',{className:'modal-body'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Deal name *'),React.createElement('input',{value:f.name,onChange:e=>s('name',e.target.value),placeholder:'Faversham Academy \u2014 full install'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Stage'),React.createElement(Seg,{opts:STAGES,val:f.stage,onChange:v=>s('stage',v)})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Sector'),React.createElement(Seg,{opts:SECTORS,val:f.sector,onChange:v=>s('sector',v)})),React.createElement('div',{className:'fr-grid2'},React.createElement('div',{className:'fr'},React.createElement('label',null,'Value (\u00a3)'),React.createElement('input',{type:'number',value:f.value,onChange:e=>s('value',e.target.value),placeholder:'25000'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Probability (%)'),React.createElement('input',{type:'number',min:0,max:100,value:f.probability,onChange:e=>s('probability',e.target.value),placeholder:'60'}))),React.createElement('div',{className:'fr'},React.createElement('label',null,'Linked contact'),React.createElement('select',{value:f.contact_id,onChange:e=>s('contact_id',e.target.value)},[React.createElement('option',{key:'',value:''},'\u2014 None \u2014'),...contacts.map(c=>React.createElement('option',{key:c.id,value:c.id},c.name))])),React.createElement('div',{className:'fr'},React.createElement('label',null,'Next action'),React.createElement('input',{value:f.next_action,onChange:e=>s('next_action',e.target.value),placeholder:'Send proposal by Friday'})),React.createElement('div',{className:'fr'},React.createElement('label',null,'Notes'),React.createElement('textarea',{value:f.notes,onChange:e=>s('notes',e.target.value),placeholder:'Requirements, constraints, background\u2026'}))),React.createElement('div',{className:'modal-foot'},React.createElement('button',{className:'btn-action ghost',onClick:onClose},'Cancel'),React.createElement('button',{className:'btn-action primary',onClick:save,disabled:saving},saving?'Saving\u2026':'Save deal'))));
+function CompanyModal(p){
+  var f=_u(p.company||{name:'',sector:'School',address:'',website:'',notes:''});
+  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
+  var fields=_e('div',null,
+    _e('div',{className:'fr'},_e('label',null,'Company name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Faversham Academy Trust'})),
+    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
+    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Address'),_e('input',{value:f[0].address,onChange:function(e){set('address',e.target.value);},placeholder:'Faversham, Kent'})),_e('div',{className:'fr'},_e('label',null,'Website'),_e('input',{value:f[0].website,onChange:function(e){set('website',e.target.value);},placeholder:'https://'}))),
+    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);}}))
+  );
+  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('companies','PATCH',d,'?id=eq.'+f[0].id):api('companies','POST',d);};
+  return mkModal(p.company?'Edit record':'New company',p.company?p.company.name:'Add a company',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
 }
-function Dashboard({contacts,companies,deals}){
-  const open=deals.filter(d=>!['Won','Lost'].includes(d.stage));
-  const won=deals.filter(d=>d.stage==='Won');
-  const pipe=open.reduce((s,d)=>s+(d.value||0),0);
-  const stages=STAGES.slice(0,5).map(s=>({s,n:deals.filter(d=>d.stage===s).length}));
-  const mx=Math.max(...stages.map(s=>s.n),1);
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'Overview',title:'Dashboard'}),React.createElement('div',{className:'content'},React.createElement('div',{className:'stats-row'},[{l:'Contacts',v:contacts.length,sub:'in CRM',g:false},{l:'Companies',v:companies.length,sub:'organisations',g:false},{l:'Open pipeline',v:'£'+Math.round(pipe/1000)+'k',sub:open.length+' deals',g:true},{l:'Won',v:won.length,sub:'closed deals',g:false}].map(c=>React.createElement('div',{key:c.l,className:'stat-card'},React.createElement('div',{className:'stat-lbl'},c.l),React.createElement('div',{className:`stat-val${c.g?' grad':''}`},c.v),React.createElement('div',{className:'stat-sub'},c.sub)))),React.createElement('div',{className:'dash-grid'},React.createElement('div',{className:'dash-card'},React.createElement('div',{className:'dash-card-head'},React.createElement('span',{className:'dash-card-title'},'Recent contacts'),React.createElement('span',{className:'dash-card-count'},contacts.length+' total')),contacts.length===0?React.createElement('div',{className:'empty'},React.createElement('p',null,'No contacts yet.')):([...contacts].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,6).map(c=>React.createElement('div',{key:c.id,className:'recent-item'},React.createElement('div',{className:'av'},ini(c.name)),React.createElement('div',{style:{flex:1}},React.createElement('div',{className:'recent-name'},c.name),React.createElement('div',{className:'recent-sub'},c.organisation||'—')),c.sector&&React.createElement(SectorBadge,{s:c.sector}))))),React.createElement('div',{className:'dash-card'},React.createElement('div',{className:'dash-card-head'},React.createElement('span',{className:'dash-card-title'},'Pipeline by stage')),React.createElement('div',{className:'pipeline-mini'},stages.map(({s,n})=>React.createElement('div',{key:s,className:'pipe-row'},React.createElement('div',{className:'pipe-stage'},s),React.createElement('div',{className:'pipe-bar-wrap'},React.createElement('div',{className:'pipe-bar',style:{width:Math.round(n/mx*100)+'%'}})),React.createElement('div',{className:'pipe-n'},n))))))));
+function DealModal(p){
+  var f=_u(p.deal||{name:'',contact_id:'',stage:'Lead',sector:'School',value:'',probability:'',next_action:'',notes:''});
+  var set=function(k,v){f[1](function(prev){var n=Object.assign({},prev);n[k]=v;return n;});};
+  var fields=_e('div',null,
+    _e('div',{className:'fr'},_e('label',null,'Deal name *'),_e('input',{value:f[0].name,onChange:function(e){set('name',e.target.value);},placeholder:'Faversham Academy \u2014 full install'})),
+    _e('div',{className:'fr'},_e('label',null,'Stage'),_e(Seg,{opts:STAGES,val:f[0].stage,onChange:function(v){set('stage',v);}})),
+    _e('div',{className:'fr'},_e('label',null,'Sector'),_e(Seg,{opts:SECTORS,val:f[0].sector,onChange:function(v){set('sector',v);}})),
+    _e('div',{className:'fr-grid2'},_e('div',{className:'fr'},_e('label',null,'Value (\u00a3)'),_e('input',{type:'number',value:f[0].value,onChange:function(e){set('value',e.target.value);},placeholder:'25000'})),_e('div',{className:'fr'},_e('label',null,'Probability (%)'),_e('input',{type:'number',min:0,max:100,value:f[0].probability,onChange:function(e){set('probability',e.target.value);},placeholder:'60'}))),
+    _e('div',{className:'fr'},_e('label',null,'Linked contact'),_e('select',{value:f[0].contact_id,onChange:function(e){set('contact_id',e.target.value);}},[_e('option',{key:'',value:''},'\u2014 None \u2014')].concat(p.contacts.map(function(c){return _e('option',{key:c.id,value:c.id},c.name);})))),
+    _e('div',{className:'fr'},_e('label',null,'Next action'),_e('input',{value:f[0].next_action,onChange:function(e){set('next_action',e.target.value);},placeholder:'Send proposal by Friday'})),
+    _e('div',{className:'fr'},_e('label',null,'Notes'),_e('textarea',{value:f[0].notes,onChange:function(e){set('notes',e.target.value);},placeholder:'Requirements, constraints, background\u2026'}))
+  );
+  var save=function(){if(!f[0].name)return Promise.reject(new Error('Name required'));var d=Object.assign({},f[0]);return f[0].id?api('deals','PATCH',d,'?id=eq.'+f[0].id):api('deals','POST',d);};
+  return mkModal(p.deal?'Edit deal':'New opportunity',p.deal?p.deal.name:'Add a deal',fields,function(){return save().then(function(){p.onRefresh();});},p.onClose);
 }
-function Contacts({contacts,onRefresh}){
-  const [search,setSearch]=useState('');const [sector,setSector]=useState('');
-  const [modal,setModal]=useState(null);const [detail,setDetail]=useState(null);
-  const [acts,setActs]=useState([]);const [note,setNote]=useState('');const [sn,setSn]=useState(false);
-  const fil=contacts.filter(c=>{if(sector&&c.sector!==sector)return false;if(search&&!(c.name+' '+(c.organisation||'')).toLowerCase().includes(search.toLowerCase()))return false;return true;});
-  async function loadActs(id){setActs(await api('activities','GET',null,`?contact_id=eq.${id}&order=created_at.desc`));}
-  async function openD(c){setDetail(c);await loadActs(c.id);}
-  async function save(f){if(f.id){await api('contacts','PATCH',f,`?id=eq.${f.id}`);}else{await api('contacts','POST',f);}onRefresh();}
-  async function addNote(){if(!note.trim()||!detail)return;setSn(true);await api('activities','POST',{contact_id:detail.id,type:'Note',note:note.trim(),created_at:new Date().toISOString()});setNote('');await loadActs(detail.id);setSn(false);}
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'People',title:'Contacts'},React.createElement('button',{className:'btn-action primary',onClick:()=>setModal({})},React.createElement(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add contact')),React.createElement('div',{className:'content'},React.createElement('div',{className:'filters'},React.createElement('input',{className:'search-in',placeholder:'Search contacts\u2026',value:search,onChange:e=>setSearch(e.target.value)}),React.createElement('select',{className:'filter-in',value:sector,onChange:e=>setSector(e.target.value)},[React.createElement('option',{key:'',value:''},'All sectors'),...SECTORS.map(s=>React.createElement('option',{key:s},s))])),React.createElement('div',{className:detail?'detail-layout':''},React.createElement('div',{className:'tbl-wrap'},fil.length===0?React.createElement('div',{className:'empty'},React.createElement('div',{className:'empty-ico'},React.createElement(Ico,{k:'people',w:22,h:22,sw:1.5})),React.createElement('p',null,search||sector?'No contacts match filters.':'Add your first contact.')):React.createElement('table',null,React.createElement('thead',null,React.createElement('tr',null,...['Name','Organisation','Sector','Email','Phone','Added'].map(h=>React.createElement('th',{key:h},h)))),React.createElement('tbody',null,fil.map(c=>React.createElement('tr',{key:c.id,onClick:()=>openD(c)},React.createElement('td',null,React.createElement('div',{style:{display:'flex',alignItems:'center',gap:9}},React.createElement('div',{className:'av'},ini(c.name)),c.name)),React.createElement('td',null,React.createElement('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.organisation||'—')),React.createElement('td',null,c.sector?React.createElement(SectorBadge,{s:c.sector}):'—'),React.createElement('td',null,React.createElement('span',{style:{color:'var(--a)',fontSize:12}},c.email||'—')),React.createElement('td',null,React.createElement('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.phone||'—')),React.createElement('td',null,React.createElement('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at)))))))),detail&&React.createElement('div',{className:'detail-card'},React.createElement('div',{className:'detail-head'},React.createElement('div',{style:{display:'flex',alignItems:'center',gap:10}},React.createElement('div',{className:'av av-lg'},ini(detail.name)),React.createElement('div',null,React.createElement('div',{style:{fontWeight:600,fontSize:15,color:'#fff'}},detail.name),React.createElement('div',{style:{fontSize:12,color:'rgba(255,255,255,0.38)',marginTop:2}},detail.role||detail.organisation||''),detail.sector&&React.createElement('div',{style:{marginTop:5}},React.createElement(SectorBadge,{s:detail.sector})))),React.createElement('div',{style:{display:'flex',gap:6}},React.createElement('button',{className:'btn-action ghost',onClick:()=>setModal(detail),style:{padding:'6px 10px'}},React.createElement(Ico,{k:'edit',w:13,h:13})),React.createElement('button',{className:'btn-action ghost',onClick:()=>setDetail(null),style:{padding:'6px 10px'}},React.createElement(Ico,{k:'x',w:13,h:13})))),React.createElement('div',{className:'detail-body'},React.createElement('div',{style:{marginBottom:'1.5rem'}},React.createElement('div',{className:'detail-sec-title'},'Contact info'),[['Organisation',detail.organisation],['Email',detail.email],['Phone',detail.phone],['Source',detail.source]].map(([l,v])=>React.createElement('div',{key:l,className:'detail-row'},React.createElement('span',{className:'detail-row-l'},l),React.createElement('span',{className:'detail-row-v',style:l==='Email'?{color:'var(--a)'}:{}},v||'—'))),detail.notes&&React.createElement('div',{className:'detail-row'},React.createElement('span',{className:'detail-row-l'},'Notes'),React.createElement('span',{className:'detail-row-v',style:{fontSize:12,lineHeight:1.5}},detail.notes))),React.createElement('div',null,React.createElement('div',{className:'detail-sec-title'},'Activity log'),acts.length===0&&React.createElement('p',{style:{fontSize:12,color:'rgba(255,255,255,0.28)',marginBottom:'0.5rem'}},'No activity yet.'),acts.map(a=>React.createElement('div',{key:a.id,className:'note-card'},React.createElement('div',{className:'note-meta'},fmtD(a.created_at)+(a.type?' · '+a.type:'')),React.createElement('div',{className:'note-text'},a.note))),React.createElement('div',{className:'note-add-row'},React.createElement('textarea',{placeholder:'Log a call, email, or note\u2026',value:note,onChange:e=>setNote(e.target.value)}),React.createElement('button',{className:'note-send',onClick:addNote,disabled:sn},React.createElement(Ico,{k:'send',w:13,h:13}))))))),modal!==null&&React.createElement(ContactModal,{contact:modal.id?modal:null,onSave:save,onClose:()=>setModal(null)}));
+function Dashboard(p){
+  var open=p.deals.filter(function(d){return !['Won','Lost'].includes(d.stage);});
+  var won=p.deals.filter(function(d){return d.stage==='Won';});
+  var pipe=open.reduce(function(s,d){return s+(d.value||0);},0);
+  var stages=STAGES.slice(0,5).map(function(s){return {s:s,n:p.deals.filter(function(d){return d.stage===s;}).length};});
+  var mx=Math.max.apply(null,stages.map(function(s){return s.n;}).concat([1]));
+  var recent=[].concat(p.contacts).sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);}).slice(0,6);
+  return _e('div',null,
+    _e(Topbar,{ey:'Overview',title:'Dashboard'}),
+    _e('div',{className:'content'},
+      _e('div',{className:'stats-row'},[{l:'Contacts',v:p.contacts.length,sub:'in CRM',g:false},{l:'Companies',v:p.companies.length,sub:'organisations',g:false},{l:'Open pipeline',v:'£'+Math.round(pipe/1000)+'k',sub:open.length+' deals',g:true},{l:'Won',v:won.length,sub:'closed deals',g:false}].map(function(c){return _e('div',{key:c.l,className:'stat-card'},_e('div',{className:'stat-lbl'},c.l),_e('div',{className:'stat-val'+(c.g?' grad':'')},c.v),_e('div',{className:'stat-sub'},c.sub));})),
+      _e('div',{className:'dash-grid'},
+        _e('div',{className:'dash-card'},_e('div',{className:'dash-card-head'},_e('span',{className:'dash-card-title'},'Recent contacts'),_e('span',{className:'dash-card-count'},p.contacts.length+' total')),p.contacts.length===0?_e('div',{className:'empty'},_e('p',null,'No contacts yet.')):recent.map(function(c){return _e('div',{key:c.id,className:'recent-item'},_e('div',{className:'av'},ini(c.name)),_e('div',{style:{flex:1}},_e('div',{className:'recent-name'},c.name),_e('div',{className:'recent-sub'},c.organisation||'—')),c.sector&&_e(SectorBadge,{s:c.sector}));})),
+        _e('div',{className:'dash-card'},_e('div',{className:'dash-card-head'},_e('span',{className:'dash-card-title'},'Pipeline by stage')),_e('div',{className:'pipeline-mini'},stages.map(function(x){return _e('div',{key:x.s,className:'pipe-row'},_e('div',{className:'pipe-stage'},x.s),_e('div',{className:'pipe-bar-wrap'},_e('div',{className:'pipe-bar',style:{width:Math.round(x.n/mx*100)+'%'}})),_e('div',{className:'pipe-n'},x.n));})))
+      )
+    )
+  );
 }
-function Companies({companies,onRefresh}){
-  const [search,setSearch]=useState('');const [sector,setSector]=useState('');const [modal,setModal]=useState(null);
-  const fil=companies.filter(c=>{if(sector&&c.sector!==sector)return false;if(search&&!c.name.toLowerCase().includes(search.toLowerCase()))return false;return true;});
-  async function save(f){if(f.id){await api('companies','PATCH',f,`?id=eq.${f.id}`);}else{await api('companies','POST',f);}onRefresh();}
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'Organisations',title:'Companies'},React.createElement('button',{className:'btn-action primary',onClick:()=>setModal({})},React.createElement(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add company')),React.createElement('div',{className:'content'},React.createElement('div',{className:'filters'},React.createElement('input',{className:'search-in',placeholder:'Search companies\u2026',value:search,onChange:e=>setSearch(e.target.value)}),React.createElement('select',{className:'filter-in',value:sector,onChange:e=>setSector(e.target.value)},[React.createElement('option',{key:'',value:''},'All sectors'),...SECTORS.map(s=>React.createElement('option',{key:s},s))])),React.createElement('div',{className:'tbl-wrap'},fil.length===0?React.createElement('div',{className:'empty'},React.createElement('div',{className:'empty-ico'},React.createElement(Ico,{k:'building',w:22,h:22,sw:1.5})),React.createElement('p',null,'No companies yet.')):React.createElement('table',null,React.createElement('thead',null,React.createElement('tr',null,...['Company','Sector','Address','Website','Added'].map(h=>React.createElement('th',{key:h},h)))),React.createElement('tbody',null,fil.map(c=>React.createElement('tr',{key:c.id,onClick:()=>setModal(c)},React.createElement('td',null,React.createElement('div',{style:{display:'flex',alignItems:'center',gap:9}},React.createElement('div',{className:'av',style:{background:'rgba(255,255,255,0.07)',color:'rgba(255,255,255,0.5)',border:'1px solid rgba(255,255,255,0.1)'}},ini(c.name)),c.name)),React.createElement('td',null,c.sector?React.createElement(SectorBadge,{s:c.sector}):'—'),React.createElement('td',null,React.createElement('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.address||'—')),React.createElement('td',null,c.website?React.createElement('span',{style:{color:'var(--a)',fontSize:12}},c.website):'—'),React.createElement('td',null,React.createElement('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at)))))))),modal!==null&&React.createElement(CompanyModal,{company:modal.id?modal:null,onSave:save,onClose:()=>setModal(null)}));
+function Contacts(p){
+  var search=_u('');var sector=_u('');var modal=_u(null);var detail=_u(null);var acts=_u([]);var note=_u('');var sn=_u(false);
+  var fil=p.contacts.filter(function(c){if(sector[0]&&c.sector!==sector[0])return false;if(search[0]&&!(c.name+' '+(c.organisation||'')).toLowerCase().includes(search[0].toLowerCase()))return false;return true;});
+  function loadActs(id){return api('activities','GET',null,'?contact_id=eq.'+id+'&order=created_at.desc').then(function(a){acts[1](a);});}
+  function openD(c){detail[1](c);loadActs(c.id);}
+  function addNote(){if(!note[0].trim()||!detail[0])return;sn[1](true);api('activities','POST',{contact_id:detail[0].id,type:'Note',note:note[0].trim(),created_at:new Date().toISOString()}).then(function(){note[1]('');return loadActs(detail[0].id);}).finally(function(){sn[1](false);});}
+  var tbl=fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'people',w:22,h:22,sw:1.5})),_e('p',null,search[0]||sector[0]?'No contacts match filters.':'Add your first contact.')):_e('table',null,_e('thead',null,_e('tr',null,['Name','Organisation','Sector','Email','Phone','Added'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(c){return _e('tr',{key:c.id,onClick:function(){openD(c);}},_e('td',null,_e('div',{style:{display:'flex',alignItems:'center',gap:9}},_e('div',{className:'av'},ini(c.name)),c.name)),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.organisation||'—')),_e('td',null,c.sector?_e(SectorBadge,{s:c.sector}):'—'),_e('td',null,_e('span',{style:{color:'var(--a)',fontSize:12}},c.email||'—')),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.phone||'—')),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at))));})));
+  var det=detail[0]?_e('div',{className:'detail-card'},_e('div',{className:'detail-head'},_e('div',{style:{display:'flex',alignItems:'center',gap:10}},_e('div',{className:'av av-lg'},ini(detail[0].name)),_e('div',null,_e('div',{style:{fontWeight:600,fontSize:15,color:'#fff'}},detail[0].name),_e('div',{style:{fontSize:12,color:'rgba(255,255,255,0.38)',marginTop:2}},detail[0].role||detail[0].organisation||''),detail[0].sector&&_e('div',{style:{marginTop:5}},_e(SectorBadge,{s:detail[0].sector})))),_e('div',{style:{display:'flex',gap:6}},_e('button',{className:'btn-action ghost',onClick:function(){modal[1](detail[0]);},style:{padding:'6px 10px'}},_e(Ico,{k:'edit',w:13,h:13})),_e('button',{className:'btn-action ghost',onClick:function(){detail[1](null);},style:{padding:'6px 10px'}},_e(Ico,{k:'x',w:13,h:13})))),_e('div',{className:'detail-body'},_e('div',{style:{marginBottom:'1.5rem'}},_e('div',{className:'detail-sec-title'},'Contact info'),[['Organisation',detail[0].organisation],['Email',detail[0].email],['Phone',detail[0].phone],['Source',detail[0].source]].map(function(r){return _e('div',{key:r[0],className:'detail-row'},_e('span',{className:'detail-row-l'},r[0]),_e('span',{className:'detail-row-v',style:r[0]==='Email'?{color:'var(--a)'}:{}},r[1]||'—'));}),detail[0].notes&&_e('div',{className:'detail-row'},_e('span',{className:'detail-row-l'},'Notes'),_e('span',{className:'detail-row-v',style:{fontSize:12,lineHeight:1.5}},detail[0].notes))),_e('div',null,_e('div',{className:'detail-sec-title'},'Activity log'),acts[0].length===0&&_e('p',{style:{fontSize:12,color:'rgba(255,255,255,0.28)',marginBottom:'0.5rem'}},'No activity yet.'),acts[0].map(function(a){return _e('div',{key:a.id,className:'note-card'},_e('div',{className:'note-meta'},fmtD(a.created_at)+(a.type?' \u00b7 '+a.type:'')),_e('div',{className:'note-text'},a.note));}),_e('div',{className:'note-add-row'},_e('textarea',{placeholder:'Log a call, email, or note\u2026',value:note[0],onChange:function(e){note[1](e.target.value);}}),_e('button',{className:'note-send',onClick:addNote,disabled:sn[0]},_e(Ico,{k:'send',w:13,h:13})))))):null;
+  return _e('div',null,
+    _e(Topbar,{ey:'People',title:'Contacts'},_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add contact')),
+    _e('div',{className:'content'},_e('div',{className:'filters'},_e('input',{className:'search-in',placeholder:'Search contacts\u2026',value:search[0],onChange:function(e){search[1](e.target.value);}}),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);})))),_e('div',{className:detail[0]?'detail-layout':''},_e('div',{className:'tbl-wrap'},tbl),det)),
+    modal[0]!==null&&_e(ContactModal,{contact:modal[0]&&modal[0].id?modal[0]:null,onRefresh:p.onRefresh,onClose:function(){modal[1](null);}})
+  );
 }
-function Pipeline({deals,contacts,onRefresh}){
-  const [sector,setSector]=useState('');const [stage,setStage]=useState('');
-  const [modal,setModal]=useState(null);const [edit,setEdit]=useState(null);
-  const fil=deals.filter(d=>{if(sector&&d.sector!==sector)return false;if(stage&&d.stage!==stage)return false;return true;});
-  const cMap={};contacts.forEach(c=>{cMap[c.id]=c.name;});
-  async function save(f){if(f.id){await api('deals','PATCH',f,`?id=eq.${f.id}`);}else{await api('deals','POST',f);}onRefresh();}
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'Sales',title:'Pipeline'},React.createElement('select',{className:'filter-in',value:stage,onChange:e=>setStage(e.target.value)},[React.createElement('option',{key:'',value:''},'All stages'),...STAGES.map(s=>React.createElement('option',{key:s},s))]),React.createElement('select',{className:'filter-in',value:sector,onChange:e=>setSector(e.target.value)},[React.createElement('option',{key:'',value:''},'All sectors'),...SECTORS.map(s=>React.createElement('option',{key:s},s))]),React.createElement('button',{className:'btn-action primary',onClick:()=>setModal({})},React.createElement(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add deal')),React.createElement('div',{className:'content'},React.createElement('div',{className:'tbl-wrap'},fil.length===0?React.createElement('div',{className:'empty'},React.createElement('div',{className:'empty-ico'},React.createElement(Ico,{k:'chart',w:22,h:22,sw:1.5})),React.createElement('p',null,'No deals yet.')):React.createElement('table',null,React.createElement('thead',null,React.createElement('tr',null,...['Deal','Stage','Sector','Value','Prob.','Contact','Next action'].map(h=>React.createElement('th',{key:h},h)))),React.createElement('tbody',null,fil.map(d=>React.createElement('tr',{key:d.id,onClick:()=>setEdit(d)},React.createElement('td',null,React.createElement('span',{style:{fontWeight:600,color:'#fff'}},d.name)),React.createElement('td',null,React.createElement(StageBadge,{s:d.stage})),React.createElement('td',null,d.sector?React.createElement(SectorBadge,{s:d.sector}):'—'),React.createElement('td',null,React.createElement('span',{className:'val-accent'},fmtV(d.value))),React.createElement('td',null,d.probability?React.createElement('span',{style:{fontSize:12,color:'rgba(255,255,255,0.45)'}},d.probability+'%'):'—'),React.createElement('td',null,d.contact_id?React.createElement('span',{style:{fontSize:12}},cMap[d.contact_id]||'—'):'—'),React.createElement('td',null,React.createElement('span',{style:{fontSize:12,color:'rgba(255,255,255,0.38)'}},d.next_action||'—')))))),(modal!==null||edit)&&React.createElement(DealModal,{deal:edit,contacts,onSave:save,onClose:()=>{setModal(null);setEdit(null);}})));
+function Companies(p){
+  var search=_u('');var sector=_u('');var modal=_u(null);
+  var fil=p.companies.filter(function(c){if(sector[0]&&c.sector!==sector[0])return false;if(search[0]&&!c.name.toLowerCase().includes(search[0].toLowerCase()))return false;return true;});
+  return _e('div',null,
+    _e(Topbar,{ey:'Organisations',title:'Companies'},_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add company')),
+    _e('div',{className:'content'},_e('div',{className:'filters'},_e('input',{className:'search-in',placeholder:'Search companies\u2026',value:search[0],onChange:function(e){search[1](e.target.value);}}),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);})))),_e('div',{className:'tbl-wrap'},fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'building',w:22,h:22,sw:1.5})),_e('p',null,'No companies yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Company','Sector','Address','Website','Added'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(c){return _e('tr',{key:c.id,onClick:function(){modal[1](c);}},_e('td',null,_e('div',{style:{display:'flex',alignItems:'center',gap:9}},_e('div',{className:'av',style:{background:'rgba(255,255,255,0.07)',color:'rgba(255,255,255,0.5)',border:'1px solid rgba(255,255,255,0.1)'}},ini(c.name)),c.name)),_e('td',null,c.sector?_e(SectorBadge,{s:c.sector}):'—'),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.45)',fontSize:12}},c.address||'—')),_e('td',null,c.website?_e('span',{style:{color:'var(--a)',fontSize:12}},c.website):'—'),_e('td',null,_e('span',{style:{color:'rgba(255,255,255,0.3)',fontSize:11}},fmtD(c.created_at))));}))))),
+    modal[0]!==null&&_e(CompanyModal,{company:modal[0]&&modal[0].id?modal[0]:null,onRefresh:p.onRefresh,onClose:function(){modal[1](null);}})
+  );
 }
-function Activities({contacts}){
-  const [acts,setActs]=useState([]);const [loading,setLoading]=useState(true);
-  const cMap={};contacts.forEach(c=>{cMap[c.id]=c.name;});
-  useEffect(()=>{api('activities','GET',null,'?order=created_at.desc&limit=200').then(a=>{setActs(Array.isArray(a)?a:[]);setLoading(false);});},[]);
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'Log',title:'Activity log'}),React.createElement('div',{className:'content'},loading?React.createElement('div',{className:'loading'},'Loading\u2026'):React.createElement('div',{className:'tbl-wrap'},acts.length===0?React.createElement('div',{className:'empty'},React.createElement('div',{className:'empty-ico'},React.createElement(Ico,{k:'clock',w:22,h:22,sw:1.5})),React.createElement('p',null,'No activity yet.')):React.createElement('table',null,React.createElement('thead',null,React.createElement('tr',null,...['Date','Contact','Type','Note'].map(h=>React.createElement('th',{key:h},h)))),React.createElement('tbody',null,acts.map(a=>React.createElement('tr',{key:a.id},React.createElement('td',null,React.createElement('span',{style:{fontSize:11,color:'rgba(255,255,255,0.32)'}},fmtD(a.created_at))),React.createElement('td',null,a.contact_id?(cMap[a.contact_id]||'—'):'—'),React.createElement('td',null,React.createElement('span',{className:'badge b-lead'},a.type||'Note')),React.createElement('td',null,React.createElement('span',{style:{fontSize:12,color:'rgba(255,255,255,0.6)'}},a.note))))))));
+function Pipeline(p){
+  var sector=_u('');var stage=_u('');var modal=_u(null);var edit=_u(null);
+  var fil=p.deals.filter(function(d){if(sector[0]&&d.sector!==sector[0])return false;if(stage[0]&&d.stage!==stage[0])return false;return true;});
+  var cMap={};p.contacts.forEach(function(c){cMap[c.id]=c.name;});
+  return _e('div',null,
+    _e(Topbar,{ey:'Sales',title:'Pipeline'},_e('select',{className:'filter-in',value:stage[0],onChange:function(e){stage[1](e.target.value);}},[_e('option',{key:'',value:''},'All stages')].concat(STAGES.map(function(s){return _e('option',{key:s},s);}))),_e('select',{className:'filter-in',value:sector[0],onChange:function(e){sector[1](e.target.value);}},[_e('option',{key:'',value:''},'All sectors')].concat(SECTORS.map(function(s){return _e('option',{key:s},s);}))),_e('button',{className:'btn-action primary',onClick:function(){modal[1]({});}},_e(Ico,{k:'plus',w:13,h:13,sw:2.5}),'Add deal')),
+    _e('div',{className:'content'},_e('div',{className:'tbl-wrap'},fil.length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'chart',w:22,h:22,sw:1.5})),_e('p',null,'No deals yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Deal','Stage','Sector','Value','Prob.','Contact','Next action'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,fil.map(function(d){return _e('tr',{key:d.id,onClick:function(){edit[1](d);}},_e('td',null,_e('span',{style:{fontWeight:600,color:'#fff'}},d.name)),_e('td',null,_e(StageBadge,{s:d.stage})),_e('td',null,d.sector?_e(SectorBadge,{s:d.sector}):'—'),_e('td',null,_e('span',{className:'val-accent'},fmtV(d.value))),_e('td',null,d.probability?_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.45)'}},d.probability+'%'):'—'),_e('td',null,d.contact_id?_e('span',{style:{fontSize:12}},cMap[d.contact_id]||'—'):'—'),_e('td',null,_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.38)'}},d.next_action||'—')));}})))),
+    (modal[0]!==null||edit[0])&&_e(DealModal,{deal:edit[0],contacts:p.contacts,onRefresh:p.onRefresh,onClose:function(){modal[1](null);edit[1](null);}})
+  );
 }
-function Setup(){
-  return React.createElement('div',null,React.createElement(Topbar,{ey:'First-time setup',title:'Database setup needed'}),React.createElement('div',{className:'content'},React.createElement('div',{className:'setup-card'},React.createElement('div',{className:'setup-eyebrow'},'One-time setup'),React.createElement('h2',{className:'setup-title'},'Run this SQL in Supabase'),React.createElement('p',{className:'setup-sub'},'Go to supabase.com \u2192 your Fyrfly project \u2192 SQL editor. Paste and run:'),React.createElement('pre',{className:'sql'},"create table if not exists contacts (\n  id uuid primary key default gen_random_uuid(),\n  name text not null, role text, organisation text,\n  sector text, email text, phone text, source text,\n  notes text, created_at timestamptz default now()\n);\ncreate table if not exists companies (\n  id uuid primary key default gen_random_uuid(),\n  name text not null, sector text, address text,\n  website text, notes text, created_at timestamptz default now()\n);\ncreate table if not exists deals (\n  id uuid primary key default gen_random_uuid(),\n  name text not null, contact_id uuid references contacts(id),\n  stage text default 'Lead', sector text, value numeric,\n  probability integer, next_action text, notes text,\n  created_at timestamptz default now()\n);\ncreate table if not exists activities (\n  id uuid primary key default gen_random_uuid(),\n  contact_id uuid references contacts(id),\n  deal_id uuid references deals(id),\n  type text default 'Note', note text,\n  created_at timestamptz default now()\n);\nalter table contacts enable row level security;\nalter table companies enable row level security;\nalter table deals enable row level security;\nalter table activities enable row level security;\ncreate policy \"open\" on contacts for all using (true) with check (true);\ncreate policy \"open\" on companies for all using (true) with check (true);\ncreate policy \"open\" on deals for all using (true) with check (true);\ncreate policy \"open\" on activities for all using (true) with check (true);"),React.createElement('p',{className:'setup-note'},'Once run, refresh and the CRM will be live.'))));
-}
+function Activities(p){
+  var acts=_u([]);var loading=_u(true);
+  var cMap={};p.contacts.forEach(function(c){cMap[c.id]=c.name;});
+  _f(function(){api('activities','GET',null,'?order=created_at.desc&limit=200').then(function(a){acts[1](Array.isArray(a)?a:[]);loading[1](false);});},[]);
+  return _e('div',null,_e(Topbar,{ey:'Log',title:'Activity log'}),_e('div',{className:'content'},loading[0]?_e('div',{className:'loading'},'Loading\u2026'):_e('div',{className:'tbl-wrap'},acts[0].length===0?_e('div',{className:'empty'},_e('div',{className:'empty-ico'},_e(Ico,{k:'clock',w:22,h:22,sw:1.5})),_e('p',null,'No activity yet.')):_e('table',null,_e('thead',null,_e('tr',null,['Date','Contact','Type','Note'].map(function(h){return _e('th',{key:h},h);}))),_e('tbody',null,acts[0].map(function(a){return _e('tr',{key:a.id},_e('td',null,_e('span',{style:{fontSize:11,color:'rgba(255,255,255,0.32)'}},fmtD(a.created_at))),_e('td',null,a.contact_id?(cMap[a.contact_id]||'—'):'—'),_e('td',null,_e('span',{className:'badge b-lead'},a.type||'Note')),_e('td',null,_e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.6)'}},a.note)));})))));}
 function App(){
-  const [authed,setAuthed]=useState(()=>sessionStorage.getItem('fy_crm')==='1');
-  const [view,setView]=useState('dashboard');
-  const [contacts,setContacts]=useState([]);const [companies,setCompanies]=useState([]);const [deals,setDeals]=useState([]);
-  const [loading,setLoading]=useState(true);const [dbReady,setDbReady]=useState(true);
-  async function loadAll(){
-    try{const [c,co,d]=await Promise.all([api('contacts','GET',null,'?order=created_at.desc'),api('companies','GET',null,'?order=created_at.desc'),api('deals','GET',null,'?order=created_at.desc')]);setContacts(Array.isArray(c)?c:[]);setCompanies(Array.isArray(co)?co:[]);setDeals(Array.isArray(d)?d:[]);setDbReady(true);}catch(e){setDbReady(false);}
-    setLoading(false);
-  }
-  useEffect(()=>{if(authed)loadAll();},[authed]);
-  function login(){sessionStorage.setItem('fy_crm','1');setAuthed(true);}
-  function logout(){sessionStorage.removeItem('fy_crm');setAuthed(false);}
-  if(!authed)return React.createElement(Login,{onLogin:login});
-  if(loading)return React.createElement('div',{style:{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh',color:'rgba(255,255,255,0.3)',fontSize:13,background:'#1C1F2E'}},'Loading\u2026');
-  function V(){
-    if(!dbReady)return React.createElement(Setup,null);
-    if(view==='dashboard')return React.createElement(Dashboard,{contacts,companies,deals});
-    if(view==='contacts')return React.createElement(Contacts,{contacts,onRefresh:loadAll});
-    if(view==='companies')return React.createElement(Companies,{companies,onRefresh:loadAll});
-    if(view==='pipeline')return React.createElement(Pipeline,{deals,contacts,onRefresh:loadAll});
-    if(view==='activities')return React.createElement(Activities,{contacts});
-  }
-  return React.createElement('div',{className:'app'},React.createElement(Sidebar,{view,setView,onLogout:logout,contacts,companies,deals}),React.createElement('div',{className:'main'},React.createElement(V)));
+  var authed=_u(function(){try{return sessionStorage.getItem('fy_crm')==='1';}catch(e){return false;}});
+  var view=_u('dashboard');var contacts=_u([]);var companies=_u([]);var deals=_u([]);var loading=_u(true);var dbReady=_u(true);
+  function loadAll(){return Promise.all([api('contacts','GET',null,'?order=created_at.desc'),api('companies','GET',null,'?order=created_at.desc'),api('deals','GET',null,'?order=created_at.desc')]).then(function(r){contacts[1](Array.isArray(r[0])?r[0]:[]);companies[1](Array.isArray(r[1])?r[1]:[]);deals[1](Array.isArray(r[2])?r[2]:[]);dbReady[1](true);}).catch(function(){dbReady[1](false);}).finally(function(){loading[1](false);});}
+  _f(function(){if(authed[0])loadAll();},[authed[0]]);
+  function login(){try{sessionStorage.setItem('fy_crm','1');}catch(e){}authed[1](true);}
+  function logout(){try{sessionStorage.removeItem('fy_crm');}catch(e){}authed[1](false);}
+  if(!authed[0])return _e(Login,{onLogin:login});
+  if(loading[0])return _e('div',{style:{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh',color:'rgba(255,255,255,0.3)',fontSize:13,background:'#1C1F2E'}},'Loading\u2026');
+  var V;
+  if(!dbReady[0]){V=_e('div',{className:'content'},_e('p',{style:{color:'rgba(255,255,255,0.5)',fontSize:13}},'Unable to connect to database. Check your Supabase project is active.'));}
+  else if(view[0]==='dashboard'){V=_e(Dashboard,{contacts:contacts[0],companies:companies[0],deals:deals[0]});}
+  else if(view[0]==='contacts'){V=_e(Contacts,{contacts:contacts[0],onRefresh:loadAll});}
+  else if(view[0]==='companies'){V=_e(Companies,{companies:companies[0],onRefresh:loadAll});}
+  else if(view[0]==='pipeline'){V=_e(Pipeline,{deals:deals[0],contacts:contacts[0],onRefresh:loadAll});}
+  else if(view[0]==='activities'){V=_e(Activities,{contacts:contacts[0]});}
+  return _e('div',{className:'app'},_e(Sidebar,{view:view[0],setView:view[1],onLogout:logout,contacts:contacts[0],companies:companies[0],deals:deals[0]}),_e('div',{className:'main'},V));
 }
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+ReactDOM.createRoot(document.getElementById('root')).render(_e(App,null));
 </script>
 </body>
 </html>
