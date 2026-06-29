@@ -294,6 +294,21 @@ input,select,textarea{font-family:var(--fb);}
   .stats-row{grid-template-columns:1fr;}
   .nav-item{min-width:50px;font-size:8px;}
 }
+
+/* MAINTENANCE */
+.mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.25rem;}
+.mc-renewal{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:1rem 1.25rem;}
+.mc-renewal .sc-l{color:rgba(134,239,172,0.7);}
+.mc-renewal .sc-v{color:#86EFAC;}
+.mc-overdue{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:1rem 1.25rem;}
+.mc-overdue .sc-l{color:rgba(252,165,165,0.7);}
+.mc-overdue .sc-v{color:#FCA5A5;}
+.status-pill{display:inline-flex;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;white-space:nowrap;}
+.sp-active{background:rgba(34,197,94,0.15);color:#86EFAC;}
+.sp-due{background:rgba(245,158,11,0.15);color:#FCD34D;}
+.sp-overdue{background:rgba(239,68,68,0.15);color:#FCA5A5;}
+.sp-lapsed{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);}
+@media(max-width:768px){.mc-grid{grid-template-columns:1fr 1fr;}.mc-grid .sc:last-child{grid-column:span 2;}}
 </style>
 </head>
 <body>
@@ -346,11 +361,15 @@ input,select,textarea{font-family:var(--fb);}
     <button class="nav-item" data-view="activities">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Activity log
     </button>
+    <button class="nav-item" data-view="maintenance">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Maintenance
+    </button>
     <div class="sb-bot">
       <div class="sb-stats">
         <div class="sb-sr"><span class="sb-sl">Contacts</span><span class="sb-sv" id="sb-contacts">0</span></div>
         <div class="sb-sr"><span class="sb-sl">Open deals</span><span class="sb-sv" id="sb-deals">0</span></div>
         <div class="sb-sr"><span class="sb-sl">Pipeline</span><span class="sb-sv" id="sb-pipe">£0k</span></div>
+        <div class="sb-sr"><span class="sb-sl">Maint. ARR</span><span class="sb-sv" id="sb-arr">£0k</span></div>
       </div>
       <button class="btn-lo" id="logout-btn">
         <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign out
@@ -480,6 +499,32 @@ input,select,textarea{font-family:var(--fb);}
       <div class="fr"><label>Notes</label><textarea id="md-notes" placeholder="Requirements, constraints, background&hellip;"></textarea></div>
     </div>
     <div class="mf"><button class="btn-g modal-close" data-modal="modal-deal">Cancel</button><button class="btn-p" id="md-save">Save deal</button></div>
+  </div>
+</div>
+
+<!-- MAINTENANCE MODAL -->
+<div class="modal-bg" id="modal-maint">
+  <div class="modal">
+    <div class="mh"><div><div class="mey" id="mm-ey">New contract</div><div class="mti" id="mm-ti">Add a maintenance contract</div></div><button class="mcl modal-close" data-modal="modal-maint"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mb">
+      <input type="hidden" id="mm-id">
+      <div class="fg2">
+        <div class="fr"><label>Customer / site name *</label><input id="mm-name" placeholder="Faversham Academy"></div>
+        <div class="fr"><label>Linked contact</label><select id="mm-contact"><option value="">— None —</option></select></div>
+      </div>
+      <div class="fg2">
+        <div class="fr"><label>Annual value (£) *</label><input type="number" id="mm-value" placeholder="2400"></div>
+        <div class="fr"><label>Payment schedule</label><select id="mm-schedule"><option value="Annual">Annual in advance</option><option value="Quarterly">Quarterly</option><option value="Monthly">Monthly</option></select></div>
+      </div>
+      <div class="fg2">
+        <div class="fr"><label>Contract start date</label><input type="date" id="mm-start"></div>
+        <div class="fr"><label>Renewal date</label><input type="date" id="mm-renewal"></div>
+      </div>
+      <div class="fr"><label>Status</label><div class="seg" id="mm-status-seg"></div></div>
+      <div class="fr"><label>Systems covered</label><input id="mm-systems" placeholder="CCTV, access control, intruder alarm"></div>
+      <div class="fr"><label>Notes</label><textarea id="mm-notes" placeholder="SLA terms, callout response times, any exclusions&hellip;"></textarea></div>
+    </div>
+    <div class="mf"><button class="btn-g modal-close" data-modal="modal-maint">Cancel</button><button class="btn-p" id="mm-save">Save contract</button></div>
   </div>
 </div>
 
@@ -967,6 +1012,127 @@ loadAll = function(){
     renderForecast(DB.deals);
   });
 };
+
+
+// ── MAINTENANCE ──
+var MAINT_STATUSES = ['Active','Due for renewal','Overdue','Lapsed'];
+var MAINT_STATUS_CLS = {'Active':'sp-active','Due for renewal':'sp-due','Overdue':'sp-overdue','Lapsed':'sp-lapsed'};
+DB.maintenance = [];
+
+function loadMaintenance(){
+  return api('maintenance','GET',null,'?order=renewal_date.asc').then(function(r){
+    DB.maintenance = Array.isArray(r) ? r : [];
+    renderMaintenance();
+    updateSidebar();
+  }).catch(function(){ DB.maintenance = []; });
+}
+
+function renderMaintenance(){
+  // Auto-update status based on renewal date
+  var today = new Date(); today.setHours(0,0,0,0);
+  var in90 = new Date(today); in90.setDate(in90.getDate()+90);
+
+  var active = DB.maintenance.filter(function(m){ return m.status==='Active'||m.status==='Due for renewal'; });
+  var arr = active.reduce(function(s,m){ return s+(Number(m.annual_value)||0); },0);
+  var renewing = DB.maintenance.filter(function(m){
+    if(!m.renewal_date) return false;
+    var rd = new Date(m.renewal_date);
+    return rd>=today && rd<=in90 && m.status!=='Lapsed';
+  });
+  var renewingVal = renewing.reduce(function(s,m){ return s+(Number(m.annual_value)||0); },0);
+  var overdue = DB.maintenance.filter(function(m){ return m.status==='Overdue'||m.status==='Lapsed'; });
+
+  $('m-arr').textContent = fmtV(arr);
+  $('m-renewing').textContent = renewing.length;
+  $('m-renewing-val').textContent = fmtV(renewingVal)+' at risk';
+  $('m-overdue').textContent = overdue.length;
+
+  var cMap={}; DB.contacts.forEach(function(c){ cMap[c.id]=c.name; });
+  var tbl=$('maintenance-table'); tbl.innerHTML='';
+  if(DB.maintenance.length===0){
+    tbl.innerHTML='<div class="empty"><p>No maintenance contracts yet. Add your first customer contract.</p></div>';
+    return;
+  }
+  var table=document.createElement('table');
+  table.innerHTML='<thead><tr><th>Customer / site</th><th>Contact</th><th>Annual value</th><th>Payment</th><th>Renewal date</th><th>Systems</th><th>Status</th></tr></thead>';
+  var tbody=document.createElement('tbody');
+  DB.maintenance.forEach(function(m){
+    var tr=document.createElement('tr');
+    var rd = m.renewal_date ? new Date(m.renewal_date) : null;
+    var daysToRenewal = rd ? Math.round((rd-today)/(1000*60*60*24)) : null;
+    var renewalStr = rd ? fmtD(m.renewal_date) : '—';
+    if(daysToRenewal!==null && daysToRenewal<=90 && daysToRenewal>=0){
+      renewalStr += '<br><span style="font-size:10px;color:#FCD34D">'+daysToRenewal+'d away</span>';
+    } else if(daysToRenewal!==null && daysToRenewal<0){
+      renewalStr += '<br><span style="font-size:10px;color:#FCA5A5">'+Math.abs(daysToRenewal)+'d overdue</span>';
+    }
+    tr.innerHTML =
+      '<td><strong style="color:#fff">'+esc(m.name||'—')+'</strong></td>'+
+      '<td><span style="font-size:12px;color:rgba(255,255,255,0.5)">'+esc(m.contact_id?cMap[m.contact_id]||'—':'—')+'</span></td>'+
+      '<td><span class="va">'+fmtV(m.annual_value)+'</span></td>'+
+      '<td><span style="font-size:12px;color:rgba(255,255,255,0.5)">'+esc(m.payment_schedule||'Annual')+'</span></td>'+
+      '<td><span style="font-size:12px">'+renewalStr+'</span></td>'+
+      '<td><span style="font-size:12px;color:rgba(255,255,255,0.5)">'+esc(m.systems_covered||'—')+'</span></td>'+
+      '<td><span class="status-pill '+(MAINT_STATUS_CLS[m.status]||'sp-active')+'">'+esc(m.status||'Active')+'</span></td>';
+    tr.style.cursor='pointer';
+    tr.addEventListener('click',function(){ openMaintModal(m); });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody); tbl.appendChild(table);
+}
+
+function openMaintModal(m){
+  makeSeg('mm-status-seg', MAINT_STATUSES, m?m.status:'Active', null);
+  $('mm-id').value=m?m.id:'';
+  $('mm-name').value=m?m.name:'';
+  $('mm-value').value=m?m.annual_value:'';
+  $('mm-schedule').value=m?(m.payment_schedule||'Annual'):'Annual';
+  $('mm-start').value=m?(m.start_date||''):'';
+  $('mm-renewal').value=m?(m.renewal_date||''):'';
+  $('mm-systems').value=m?(m.systems_covered||''):'';
+  $('mm-notes').value=m?(m.notes||''):'';
+  var sel=$('mm-contact'); sel.innerHTML='<option value="">— None —</option>';
+  DB.contacts.forEach(function(c){ var o=document.createElement('option'); o.value=c.id; o.textContent=c.name; if(m&&m.contact_id===c.id) o.selected=true; sel.appendChild(o); });
+  $('mm-ey').textContent=m?'Edit contract':'New contract';
+  $('mm-ti').textContent=m?m.name:'Add a maintenance contract';
+  $('mm-save').textContent='Save contract';
+  $('modal-maint').classList.add('open');
+}
+
+$('btn-add-maint').addEventListener('click',function(){ openMaintModal(null); });
+$('mm-save').addEventListener('click',function(){
+  var name=$('mm-name').value.trim();
+  var val=$('mm-value').value;
+  if(!name||!val){ if(!name)$('mm-name').focus(); else $('mm-value').focus(); return; }
+  var id=$('mm-id').value;
+  var data={name:name,contact_id:$('mm-contact').value||null,annual_value:Number(val),payment_schedule:$('mm-schedule').value,start_date:$('mm-start').value||null,renewal_date:$('mm-renewal').value||null,status:$('mm-status-seg').getValue(),systems_covered:$('mm-systems').value,notes:$('mm-notes').value};
+  $('mm-save').textContent='Saving…';
+  var p=id?api('maintenance','PATCH',data,'?id=eq.'+id):api('maintenance','POST',data);
+  p.then(function(){ $('modal-maint').classList.remove('open'); return loadMaintenance(); }).catch(function(e){ alert(e.message); $('mm-save').textContent='Save contract'; });
+});
+
+// Patch updateSidebar to include ARR
+var _origUpdateSidebar = updateSidebar;
+updateSidebar = function(){
+  _origUpdateSidebar();
+  var active=(DB.maintenance||[]).filter(function(m){return m.status==='Active'||m.status==='Due for renewal';});
+  var arr=active.reduce(function(s,m){return s+(Number(m.annual_value)||0);},0);
+  var el=$('sb-arr'); if(el) el.textContent='£'+Math.round(arr/1000)+'k';
+};
+
+// Patch loadAll to also load maintenance
+var _origLoadAll2 = loadAll;
+loadAll = function(){
+  return _origLoadAll2().then(function(){ return loadMaintenance(); });
+};
+
+// Nav: load maintenance when switching to that view
+var _origNavHandler = null;
+document.querySelectorAll('.nav-item').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    if(btn.getAttribute('data-view')==='maintenance') loadMaintenance();
+  });
+});
 
 // ── BOOT ──
 function showApp(){
