@@ -668,9 +668,8 @@ input,select,textarea{font-family:var(--fb);}
 <script>
 var SB = 'https://fyrrumltohkplldxwxdk.supabase.co';
 var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
-var PW = '12Fyrfly34!';
-var PARISH_WORKER_URL = 'https://parish-councils-proxy.simongeorgelegrand.workers.dev';
-var PARISH_AUTH = ')5oj@HSU3C8Lx=/o2d/KXQk/:&0?k1C`';
+var PARISH_WORKER_URL = 'https://parish-councils-proxy.YOUR-SUBDOMAIN.workers.dev';
+var PARISH_AUTH = 'PASTE_YOUR_CRM_SHARED_SECRET_HERE';
 var PARISH_DB = [];
 var STAGES = ['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
 var SECTORS = ['School','Council','Commercial','NHS','Other'];
@@ -764,8 +763,26 @@ function setAuth(v){
 $('login-btn').addEventListener('click', doLogin);
 $('pw-input').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
 function doLogin(){
-  if($('pw-input').value === PW){ setAuth(true); showApp(); }
-  else { $('pw-err').textContent = 'Incorrect password.'; }
+  var pw = $('pw-input').value;
+  $('login-btn').disabled = true;
+  $('login-btn').textContent = 'Checking…';
+  fetch(PARISH_WORKER_URL.replace(/\/$/, '') + '/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: pw })
+  })
+    .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, body: d }; }); })
+    .then(function(res){
+      $('login-btn').disabled = false;
+      $('login-btn').textContent = 'Sign in →';
+      if(res.ok && res.body && res.body.ok){ setAuth(true); showApp(); }
+      else { $('pw-err').textContent = 'Incorrect password.'; }
+    })
+    .catch(function(){
+      $('login-btn').disabled = false;
+      $('login-btn').textContent = 'Sign in →';
+      $('pw-err').textContent = 'Could not reach login service. Check your connection.';
+    });
 }
 $('logout-btn').addEventListener('click', function(){
   setAuth(false);
