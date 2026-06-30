@@ -68,3 +68,74 @@ function candidateUrls(district) {
     urls.push(`https://${slug}.moderngov.co.uk/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://democracy.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://meetings.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
+    urls.push(`https://services.${slug}.gov.uk/meetings/mgParishCouncilDetailsList.aspx`);
+    urls.push(`https://${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
+    urls.push(`https://committees.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
+  }
+  return urls;
+}
+
+async function probeUrl(url) {
+  try {
+    const res = await fetch(url, {
+      method: "GET",
+      headers: { "User-Agent": "FyrflySystemsResearch/1.0 (+https://www.fyrflysystems.com)" },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) return null;
+    const text = await res.text();
+    // A working parish list page should mention "Parish" and have reasonable length.
+    // Pages that are just a 404/default ModernGov shell tend to be short.
+    if (text.length > 2000 && /parish/i.test(text)) {
+      return { ok: true, length: text.length };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+async function main() {
+  const results = [];
+
+  for (const { county, district } of DISTRICTS) {
+    console.log(`\n--- Probing ${district} (${county}) ---`);
+    const candidates = candidateUrls(district);
+    let found = null;
+
+    for (const url of candidates) {
+      process.stdout.write(`  trying ${url} ... `);
+      const result = await probeUrl(url);
+      if (result) {
+        console.log(`MATCH (${result.length} chars)`);
+        found = url;
+        break;
+      } else {
+        console.log("no");
+      }
+    }
+
+    results.push({
+      county,
+      district,
+      url: found,
+      status: found ? "confirmed" : "not_found",
+    });
+  }
+
+  writeFileSync("discovery-report.json", JSON.stringify(results, null, 2));
+
+  const confirmed = results.filter((r) => r.status === "confirmed");
+  const notFound = results.filter((r) => r.status === "not_found");
+
+  console.log(`\n=== Discovery complete ===`);
+  console.log(`Confirmed: ${confirmed.length}`);
+  confirmed.forEach((r) => console.log(`  ${r.district} (${r.county}): ${r.url}`));
+  console.log(`\nNot found (needs manual check): ${notFound.length}`);
+  notFound.forEach((r) => console.log(`  ${r.district} (${r.county})`));
+}
+
+main().catch((err) => {
+  console.error("Fatal error:", err);
+  process.exit(1);
+});
