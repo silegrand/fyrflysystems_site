@@ -5,77 +5,98 @@
 # ── Standard search engines ──────────────────────────────
 User-agent: *
 Allow: /
+Disallow: /crm.html
 
 # ── Google ───────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
+Disallow: /crm.html
 
 # Google AI / Gemini training and search
 User-agent: Google-Extended
 Allow: /
+Disallow: /crm.html
 
 # ── OpenAI / ChatGPT ─────────────────────────────────────
 User-agent: GPTBot
 Allow: /
+Disallow: /crm.html
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /crm.html
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /crm.html
 
 # ── Anthropic / Claude ───────────────────────────────────
 User-agent: ClaudeBot
 Allow: /
+Disallow: /crm.html
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /crm.html
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /crm.html
 
 # ── Perplexity ───────────────────────────────────────────
 User-agent: PerplexityBot
 Allow: /
+Disallow: /crm.html
 
 # ── Meta / Llama ─────────────────────────────────────────
 User-agent: FacebookBot
 Allow: /
+Disallow: /crm.html
 
 User-agent: meta-externalagent
 Allow: /
+Disallow: /crm.html
 
 # ── xAI / Grok ───────────────────────────────────────────
 User-agent: Grok
 Allow: /
+Disallow: /crm.html
 
 # ── Microsoft / Copilot ──────────────────────────────────
 User-agent: Bingbot
 Allow: /
+Disallow: /crm.html
 
 User-agent: msnbot
 Allow: /
+Disallow: /crm.html
 
 # ── Apple ────────────────────────────────────────────────
 User-agent: Applebot
 Allow: /
+Disallow: /crm.html
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /crm.html
 
 # ── Cohere ───────────────────────────────────────────────
 User-agent: cohere-ai
 Allow: /
+Disallow: /crm.html
 
 # ── Common research crawlers ─────────────────────────────
 User-agent: CCBot
 Allow: /
+Disallow: /crm.html
 
 User-agent: Diffbot
 Allow: /
+Disallow: /crm.html
 
 User-agent: omgili
 Allow: /
+Disallow: /crm.html
 
 # ── Sitemap ──────────────────────────────────────────────
 Sitemap: https://www.fyrflysystems.com/sitemap.xml
