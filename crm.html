@@ -478,6 +478,9 @@ input,select,textarea{font-family:var(--fb);}
     <button class="nav-item" data-view="kentschools">
       <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Kent Schools
     </button>
+    <button class="nav-item" data-view="londonschools">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>London Schools
+    </button>
     <div class="sb-bot">
       <div class="sb-stats">
         <div class="sb-sr"><span class="sb-sl">Contacts</span><span class="sb-sv" id="sb-contacts">0</span></div>
@@ -606,6 +609,15 @@ input,select,textarea{font-family:var(--fb);}
       </div>
     </div>
 
+    <!-- LONDON SCHOOLS -->
+    <div id="view-londonschools" class="view">
+      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">London Schools</div></div><div class="tb-right"><button class="btn-g" id="btn-export-londonschools"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
+      <div class="content">
+        <div class="frow"><input class="srch" id="londonschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="londonschools-borough-filter"><option value="">All boroughs</option></select><select class="fsel" id="londonschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
+        <div class="tw" id="londonschools-table"></div>
+      </div>
+    </div>
+
   </div><!-- /main -->
 </div><!-- /app -->
 
@@ -699,6 +711,8 @@ var SCHOOLS_WORKER_URL = 'https://parish-councils-proxy.simongeorgelegrand.worke
 var SCHOOLS_DB = [];
 var KENTSCHOOLS_WORKER_URL = 'https://parish-councils-proxy.simongeorgelegrand.workers.dev/kent-schools';
 var KENTSCHOOLS_DB = [];
+var LONDONSCHOOLS_WORKER_URL = 'https://parish-councils-proxy.simongeorgelegrand.workers.dev/london-schools';
+var LONDONSCHOOLS_DB = [];
 var STAGES = ['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
 var SECTORS = ['School','Council','Commercial','NHS','Other'];
 var SOURCES = ['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
@@ -783,6 +797,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var ks = $('kentschools-search'); if(ks) ks.addEventListener('input', renderKentSchools);
   var kp = $('kentschools-phase-filter'); if(kp) kp.addEventListener('change', renderKentSchools);
   var km = $('kentschools-manager-filter'); if(km) km.addEventListener('change', renderKentSchools);
+  var ls = $('londonschools-search'); if(ls) ls.addEventListener('input', renderLondonSchools);
+  var lb = $('londonschools-borough-filter'); if(lb) lb.addEventListener('change', renderLondonSchools);
+  var lm = $('londonschools-manager-filter'); if(lm) lm.addEventListener('change', renderLondonSchools);
 });
 (function(){ var ps=$('parish-search'); if(ps) ps.addEventListener('input', renderParishCouncils); var pc=$('parish-county-filter'); if(pc) pc.addEventListener('change', renderParishCouncils); })();
 
@@ -896,6 +913,63 @@ function renderKentSchools(){
   table.appendChild(tbody); tbl.appendChild(table);
 }
 
+function loadLondonSchools(){
+  return fetch(LONDONSCHOOLS_WORKER_URL, { headers: { 'X-Crm-Auth': PARISH_AUTH } })
+    .then(function(r){ if(!r.ok) throw new Error('Failed to load'); return r.json(); })
+    .then(function(rows){
+      LONDONSCHOOLS_DB = Array.isArray(rows) ? rows : [];
+      var sel = $('londonschools-borough-filter');
+      var boroughs = Array.from(new Set(LONDONSCHOOLS_DB.map(function(r){ return r.borough; }))).filter(Boolean).sort();
+      sel.innerHTML = '<option value="">All boroughs</option>' + boroughs.map(function(b){ return '<option>'+esc(b)+'</option>'; }).join('');
+      renderLondonSchools();
+    })
+    .catch(function(e){ console.error('London schools load error', e); $('londonschools-table').innerHTML = '<div class="empty"><p>Failed to load London schools.</p></div>'; });
+}
+
+function londonHeadDisplay(r){
+  var parts = [r.head_title, r.head_first_name, r.head_last_name].filter(Boolean);
+  return parts.length ? parts.join(' ') : '';
+}
+
+function renderLondonSchools(){
+  var search = ($('londonschools-search').value || '').toLowerCase();
+  var borough = $('londonschools-borough-filter').value;
+  var managerFilter = $('londonschools-manager-filter').value;
+  var fil = LONDONSCHOOLS_DB.filter(function(r){
+    if(borough && r.borough !== borough) return false;
+    if(managerFilter === 'has' && !r.business_manager_name) return false;
+    if(managerFilter === 'missing' && r.business_manager_name) return false;
+    if(search){
+      var hay = [r.school_name, londonHeadDisplay(r), r.business_manager_name, r.business_manager_email, r.borough, r.postcode].filter(Boolean).join(' ').toLowerCase();
+      if(hay.indexOf(search) === -1) return false;
+    }
+    return true;
+  });
+  var tbl = $('londonschools-table'); tbl.innerHTML = '';
+  if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No London schools match.</p></div>'; return; }
+  var table = el('table',{});
+  table.innerHTML = '<thead><tr><th>School</th><th>Borough</th><th>Phase</th><th>Pupils</th><th>Head</th><th>Manager</th><th>Manager email</th><th>Phone</th></tr></thead>';
+  var tbody = el('tbody',{});
+  fil.forEach(function(r){
+    var tr = el('tr',{});
+    var nt = el('td',{});
+    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'; }
+    else { nt.textContent = r.school_name || '—'; }
+    tr.appendChild(nt);
+    tr.appendChild(el('td',{}, r.borough || '—'));
+    tr.appendChild(el('td',{}, r.phase || '—'));
+    tr.appendChild(el('td',{}, r.pupil_count ? String(r.pupil_count) : '—'));
+    tr.appendChild(el('td',{}, londonHeadDisplay(r) || '—'));
+    var mt = el('td',{});
+    mt.textContent = r.business_manager_name ? (r.business_manager_name + (r.business_manager_title ? ' ('+r.business_manager_title+')' : '')) : '—';
+    tr.appendChild(mt);
+    var et = el('td',{}); et.innerHTML = r.business_manager_email ? '<span style="color:var(--a);font-size:12px">'+esc(r.business_manager_email)+'</span>' : '—'; tr.appendChild(et);
+    tr.appendChild(el('td',{}, r.phone || '—'));
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody); tbl.appendChild(table);
+}
+
 // ── AUTH ──
 function checkAuth(){
   try { return sessionStorage.getItem('fy_crm') === '1'; } catch(e){ return false; }
@@ -958,6 +1032,7 @@ function navigate(view){
   if(view==='parishcouncils') loadParishCouncils();
   if(view==='independentschools') loadIndependentSchools();
   if(view==='kentschools') loadKentSchools();
+  if(view==='londonschools') loadLondonSchools();
 }
 // ── MODALS ──
 document.querySelectorAll('.modal-close').forEach(function(btn){
@@ -1889,6 +1964,14 @@ $('btn-export-kentschools').addEventListener('click', function(){
     rows.push([r.school_name, r.phase, r.school_type, r.town, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.business_manager_name, r.business_manager_title, r.business_manager_email, r.phone, r.website_url]);
   });
   downloadCSV('fyrfly-kent-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
+});
+
+$('btn-export-londonschools').addEventListener('click', function(){
+  var rows = [['School','Borough','Phase','Type','Postcode','Pupils','Head title','Head first name','Head last name','Head job title','Manager name','Manager title','Manager email','Phone','Website']];
+  LONDONSCHOOLS_DB.forEach(function(r){
+    rows.push([r.school_name, r.borough, r.phase, r.school_type, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.business_manager_name, r.business_manager_title, r.business_manager_email, r.phone, r.website_url]);
+  });
+  downloadCSV('fyrfly-london-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
 });
 
 
