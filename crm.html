@@ -469,6 +469,9 @@ input,select,textarea{font-family:var(--fb);}
     <button class="nav-item" data-view="maintenance">
       <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Maintenance
     </button>
+    <button class="nav-item" data-view="parishcouncils">
+      <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><circle cx="9" cy="11" r="1"/></svg>Parish Councils
+    </button>
     <div class="sb-bot">
       <div class="sb-stats">
         <div class="sb-sr"><span class="sb-sl">Contacts</span><span class="sb-sv" id="sb-contacts">0</span></div>
@@ -570,6 +573,15 @@ input,select,textarea{font-family:var(--fb);}
       </div>
     </div>
 
+    <!-- PARISH COUNCILS -->
+    <div id="view-parishcouncils" class="view">
+      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">Parish Councils</div></div><div class="tb-right"><button class="btn-g" id="btn-export-parish"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
+      <div class="content">
+        <div class="frow"><input class="srch" id="parish-search" placeholder="Search councils, clerks, emails&hellip;"><select class="fsel" id="parish-county-filter"><option value="">All counties</option></select></div>
+        <div class="tw" id="parish-table"></div>
+      </div>
+    </div>
+
   </div><!-- /main -->
 </div><!-- /app -->
 
@@ -657,6 +669,9 @@ input,select,textarea{font-family:var(--fb);}
 var SB = 'https://fyrrumltohkplldxwxdk.supabase.co';
 var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5cnJ1bWx0b2hrcGxsZHh3eGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MjM2MTgsImV4cCI6MjA5ODI5OTYxOH0.8kR3gojoLW8hgPDZD8eIMwEHUFMW52Qwu_90OsAh4KI';
 var PW = '12Fyrfly34!';
+var PARISH_WORKER_URL = 'https://parish-councils-proxy.YOUR-SUBDOMAIN.workers.dev';
+var PARISH_AUTH = 'PASTE_YOUR_CRM_SHARED_SECRET_HERE';
+var PARISH_DB = [];
 var STAGES = ['Lead','Qualified','Proposal','Negotiation','Won','Lost'];
 var SECTORS = ['School','Council','Commercial','NHS','Other'];
 var SOURCES = ['LinkedIn','Referral','Event','Cold outreach','Inbound enquiry',"Martyn's Law",'Other'];
@@ -689,6 +704,54 @@ function api(table, method, body, query){
     return r.text().then(function(t){ return t ? JSON.parse(t) : []; });
   });
 }
+
+function loadParishCouncils(){
+  return fetch(PARISH_WORKER_URL, { headers: { 'X-Crm-Auth': PARISH_AUTH } })
+    .then(function(r){ if(!r.ok) throw new Error('Failed to load'); return r.json(); })
+    .then(function(rows){
+      PARISH_DB = Array.isArray(rows) ? rows : [];
+      var sel = $('parish-county-filter');
+      var counties = Array.from(new Set(PARISH_DB.map(function(r){ return r.county; }))).filter(Boolean).sort();
+      sel.innerHTML = '<option value="">All counties</option>' + counties.map(function(c){ return '<option>'+esc(c)+'</option>'; }).join('');
+      renderParishCouncils();
+    })
+    .catch(function(e){ console.error('Parish load error', e); $('parish-table').innerHTML = '<div class="empty"><p>Failed to load parish councils.</p></div>'; });
+}
+
+function renderParishCouncils(){
+  var search = ($('parish-search').value || '').toLowerCase();
+  var county = $('parish-county-filter').value;
+  var fil = PARISH_DB.filter(function(r){
+    if(county && r.county !== county) return false;
+    if(search){
+      var hay = [r.council_name, r.clerk_name, r.email, r.district].filter(Boolean).join(' ').toLowerCase();
+      if(hay.indexOf(search) === -1) return false;
+    }
+    return true;
+  });
+  var tbl = $('parish-table'); tbl.innerHTML = '';
+  if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No parish councils match.</p></div>'; return; }
+  var table = el('table',{});
+  table.innerHTML = '<thead><tr><th>Council</th><th>District</th><th>County</th><th>Clerk</th><th>Email</th><th>Phone</th></tr></thead>';
+  var tbody = el('tbody',{});
+  fil.forEach(function(r){
+    var tr = el('tr',{});
+    tr.appendChild(el('td',{}, r.council_name || '—'));
+    tr.appendChild(el('td',{}, r.district || '—'));
+    tr.appendChild(el('td',{}, r.county || '—'));
+    tr.appendChild(el('td',{}, r.clerk_name || '—'));
+    var et = el('td',{}); et.innerHTML = r.email ? '<span style="color:var(--a);font-size:12px">'+esc(r.email)+'</span>' : '—'; tr.appendChild(et);
+    tr.appendChild(el('td',{}, r.phone || '—'));
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody); tbl.appendChild(table);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  var ps = $('parish-search'); if(ps) ps.addEventListener('input', renderParishCouncils);
+  var pc = $('parish-county-filter'); if(pc) pc.addEventListener('change', renderParishCouncils);
+});
+(function(){ var ps=$('parish-search'); if(ps) ps.addEventListener('input', renderParishCouncils); var pc=$('parish-county-filter'); if(pc) pc.addEventListener('change', renderParishCouncils); })();
 
 // ── AUTH ──
 function checkAuth(){
@@ -731,6 +794,7 @@ function navigate(view){
   if(view==='pipeline') renderPipeline();
   if(view==='activities') loadActivities();
   if(view==='maintenance') loadMaintenance();
+  if(view==='parishcouncils') loadParishCouncils();
 }
 // ── MODALS ──
 document.querySelectorAll('.modal-close').forEach(function(btn){
@@ -1640,6 +1704,12 @@ $('btn-export-maint').addEventListener('click', function(){
     rows.push([m.name,m.contact_id?(cMap[m.contact_id]||''):'',m.annual_value,m.payment_schedule,m.start_date,m.renewal_date,m.status,m.systems_covered,m.notes]);
   });
   downloadCSV('fyrfly-maintenance-'+new Date().toISOString().slice(0,10)+'.csv', rows);
+});
+
+$('btn-export-parish').addEventListener('click', function(){
+  var rows = [['Council','District','County','Clerk','Email','Phone','Address']];
+  PARISH_DB.forEach(function(r){ rows.push([r.council_name, r.district, r.county, r.clerk_name, r.email, r.phone, r.address]); });
+  downloadCSV('fyrfly-parish-councils-'+new Date().toISOString().slice(0,10)+'.csv', rows);
 });
 
 
