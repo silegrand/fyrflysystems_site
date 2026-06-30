@@ -10,62 +10,46 @@ import { writeFileSync } from "fs";
 // as we expand. Use the council's normal short name — the script will try
 // slugified variants automatically.
 const DISTRICTS = [
-  // East Sussex
-  { county: "East Sussex", district: "Eastbourne" },
-  { county: "East Sussex", district: "Hastings" },
-  { county: "East Sussex", district: "Lewes" },
-  { county: "East Sussex", district: "Rother" },
-  { county: "East Sussex", district: "Wealden" },
-  // West Sussex (remaining — Horsham, Arun, Chichester already confirmed manually)
-  { county: "West Sussex", district: "Adur" },
-  { county: "West Sussex", district: "Worthing" },
-  { county: "West Sussex", district: "Crawley" },
-  { county: "West Sussex", district: "Mid Sussex" },
-  // Surrey (remaining — Guildford, Reigate & Banstead, Sevenoaks-adjacent already confirmed)
-  { county: "Surrey", district: "Elmbridge" },
-  { county: "Surrey", district: "Epsom and Ewell" },
-  { county: "Surrey", district: "Mole Valley" },
-  { county: "Surrey", district: "Runnymede" },
-  { county: "Surrey", district: "Spelthorne" },
-  { county: "Surrey", district: "Surrey Heath" },
-  { county: "Surrey", district: "Tandridge" },
-  { county: "Surrey", district: "Waverley" },
-  { county: "Surrey", district: "Woking" },
-  // Berkshire unitary authorities
-  { county: "Berkshire", district: "West Berkshire" },
-  { county: "Berkshire", district: "Reading" },
-  { county: "Berkshire", district: "Wokingham" },
-  { county: "Berkshire", district: "Bracknell Forest" },
-  { county: "Berkshire", district: "Windsor and Maidenhead" },
-  { county: "Berkshire", district: "Slough" },
-  // Buckinghamshire (unitary since 2020)
-  { county: "Buckinghamshire", district: "Buckinghamshire" },
-  // Hertfordshire
-  { county: "Hertfordshire", district: "Broxbourne" },
+  // Hampshire
+  { county: "Hampshire", district: "Basingstoke and Deane" },
+  { county: "Hampshire", district: "East Hampshire" },
+  { county: "Hampshire", district: "Eastleigh" },
+  { county: "Hampshire", district: "Fareham" },
+  { county: "Hampshire", district: "Gosport" },
+  { county: "Hampshire", district: "Hart" },
+  { county: "Hampshire", district: "Havant" },
+  { county: "Hampshire", district: "New Forest" },
+  { county: "Hampshire", district: "Rushmoor" },
+  { county: "Hampshire", district: "Test Valley" },
+  { county: "Hampshire", district: "Winchester" },
+  { county: "Hampshire", district: "Portsmouth" },
+  { county: "Hampshire", district: "Southampton" },
+  // Oxfordshire
+  { county: "Oxfordshire", district: "Cherwell" },
+  { county: "Oxfordshire", district: "Oxford" },
+  { county: "Oxfordshire", district: "South Oxfordshire" },
+  { county: "Oxfordshire", district: "Vale of White Horse" },
+  { county: "Oxfordshire", district: "West Oxfordshire" },
+  // Norfolk
+  { county: "Norfolk", district: "Breckland" },
+  { county: "Norfolk", district: "Broadland" },
+  { county: "Norfolk", district: "Great Yarmouth" },
+  { county: "Norfolk", district: "Kings Lynn and West Norfolk" },
+  { county: "Norfolk", district: "North Norfolk" },
+  { county: "Norfolk", district: "Norwich" },
+  { county: "Norfolk", district: "South Norfolk" },
+  // Suffolk
+  { county: "Suffolk", district: "Babergh" },
+  { county: "Suffolk", district: "East Suffolk" },
+  { county: "Suffolk", district: "Ipswich" },
+  { county: "Suffolk", district: "Mid Suffolk" },
+  { county: "Suffolk", district: "West Suffolk" },
+  // Hertfordshire — retry of districts that didn't match first time
   { county: "Hertfordshire", district: "Dacorum" },
   { county: "Hertfordshire", district: "East Hertfordshire" },
-  { county: "Hertfordshire", district: "Hertsmere" },
   { county: "Hertfordshire", district: "North Hertfordshire" },
-  { county: "Hertfordshire", district: "St Albans" },
-  { county: "Hertfordshire", district: "Stevenage" },
   { county: "Hertfordshire", district: "Three Rivers" },
-  { county: "Hertfordshire", district: "Watford" },
   { county: "Hertfordshire", district: "Welwyn Hatfield" },
-  // Essex
-  { county: "Essex", district: "Basildon" },
-  { county: "Essex", district: "Braintree" },
-  { county: "Essex", district: "Brentwood" },
-  { county: "Essex", district: "Castle Point" },
-  { county: "Essex", district: "Chelmsford" },
-  { county: "Essex", district: "Colchester" },
-  { county: "Essex", district: "Epping Forest" },
-  { county: "Essex", district: "Harlow" },
-  { county: "Essex", district: "Maldon" },
-  { county: "Essex", district: "Rochford" },
-  { county: "Essex", district: "Tendring" },
-  { county: "Essex", district: "Uttlesford" },
-  { county: "Essex", district: "Southend-on-Sea" },
-  { county: "Essex", district: "Thurrock" },
 ];
 
 // Turn "East Hertfordshire" into "east-hertfordshire" and "easthertfordshire"
@@ -84,72 +68,3 @@ function candidateUrls(district) {
     urls.push(`https://${slug}.moderngov.co.uk/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://democracy.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://meetings.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
-    urls.push(`https://services.${slug}.gov.uk/meetings/mgParishCouncilDetailsList.aspx`);
-  }
-  return urls;
-}
-
-async function probeUrl(url) {
-  try {
-    const res = await fetch(url, {
-      method: "GET",
-      headers: { "User-Agent": "FyrflySystemsResearch/1.0 (+https://www.fyrflysystems.com)" },
-      signal: AbortSignal.timeout(10000),
-    });
-    if (!res.ok) return null;
-    const text = await res.text();
-    // A working parish list page should mention "Parish" and have reasonable length.
-    // Pages that are just a 404/default ModernGov shell tend to be short.
-    if (text.length > 2000 && /parish/i.test(text)) {
-      return { ok: true, length: text.length };
-    }
-    return null;
-  } catch {
-    return null;
-  }
-}
-
-async function main() {
-  const results = [];
-
-  for (const { county, district } of DISTRICTS) {
-    console.log(`\n--- Probing ${district} (${county}) ---`);
-    const candidates = candidateUrls(district);
-    let found = null;
-
-    for (const url of candidates) {
-      process.stdout.write(`  trying ${url} ... `);
-      const result = await probeUrl(url);
-      if (result) {
-        console.log(`MATCH (${result.length} chars)`);
-        found = url;
-        break;
-      } else {
-        console.log("no");
-      }
-    }
-
-    results.push({
-      county,
-      district,
-      url: found,
-      status: found ? "confirmed" : "not_found",
-    });
-  }
-
-  writeFileSync("discovery-report.json", JSON.stringify(results, null, 2));
-
-  const confirmed = results.filter((r) => r.status === "confirmed");
-  const notFound = results.filter((r) => r.status === "not_found");
-
-  console.log(`\n=== Discovery complete ===`);
-  console.log(`Confirmed: ${confirmed.length}`);
-  confirmed.forEach((r) => console.log(`  ${r.district} (${r.county}): ${r.url}`));
-  console.log(`\nNot found (needs manual check): ${notFound.length}`);
-  notFound.forEach((r) => console.log(`  ${r.district} (${r.county})`));
-}
-
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
