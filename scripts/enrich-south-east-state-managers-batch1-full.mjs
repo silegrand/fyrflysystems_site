@@ -240,18 +240,35 @@ async function processSchool(school) {
   return result;
 }
 
-async function main() {
-  const { data: schools, error } = await supabase
-    .from("south_east_state_schools")
-    .select("urn, school_name, website_url")
-    .not("website_url", "is", null)
-    .is("business_manager_name", null)
-    .order("urn", { ascending: true });
+async function fetchAllUnprocessedSchools() {
+  const PAGE_SIZE = 1000;
+  let all = [];
+  let from = 0;
 
-  if (error) {
-    console.error("Error fetching schools:", error);
-    process.exit(1);
+  while (true) {
+    const { data, error } = await supabase
+      .from("south_east_state_schools")
+      .select("urn, school_name, website_url")
+      .not("website_url", "is", null)
+      .is("business_manager_name", null)
+      .order("urn", { ascending: true })
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (error) {
+      console.error("Error fetching schools:", error);
+      process.exit(1);
+    }
+
+    all = all.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
+
+  return all;
+}
+
+async function main() {
+  const schools = await fetchAllUnprocessedSchools();
 
   console.log(`Full batch: ${schools.length} schools to process.\n`);
 
