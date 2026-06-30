@@ -10,19 +10,9 @@ import { writeFileSync } from "fs";
 // as we expand. Use the council's normal short name — the script will try
 // slugified variants automatically.
 const DISTRICTS = [
-  // Hampshire
+  // Hampshire — retry of misses
   { county: "Hampshire", district: "Basingstoke and Deane" },
   { county: "Hampshire", district: "East Hampshire" },
-  { county: "Hampshire", district: "Eastleigh" },
-  { county: "Hampshire", district: "Fareham" },
-  { county: "Hampshire", district: "Gosport" },
-  { county: "Hampshire", district: "Hart" },
-  { county: "Hampshire", district: "Havant" },
-  { county: "Hampshire", district: "New Forest" },
-  { county: "Hampshire", district: "Rushmoor" },
-  { county: "Hampshire", district: "Test Valley" },
-  { county: "Hampshire", district: "Winchester" },
-  { county: "Hampshire", district: "Portsmouth" },
   { county: "Hampshire", district: "Southampton" },
   // Oxfordshire
   { county: "Oxfordshire", district: "Cherwell" },
@@ -44,7 +34,7 @@ const DISTRICTS = [
   { county: "Suffolk", district: "Ipswich" },
   { county: "Suffolk", district: "Mid Suffolk" },
   { county: "Suffolk", district: "West Suffolk" },
-  // Hertfordshire — retry of districts that didn't match first time
+  // Hertfordshire — retry of misses
   { county: "Hertfordshire", district: "Dacorum" },
   { county: "Hertfordshire", district: "East Hertfordshire" },
   { county: "Hertfordshire", district: "North Hertfordshire" },
@@ -71,6 +61,8 @@ function candidateUrls(district) {
     urls.push(`https://services.${slug}.gov.uk/meetings/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
     urls.push(`https://committees.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
+    urls.push(`https://modgov.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
+    urls.push(`https://mgov.${slug}.gov.uk/mgParishCouncilDetailsList.aspx`);
   }
   return urls;
 }
