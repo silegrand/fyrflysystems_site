@@ -20,16 +20,16 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 // with a different source once we expand beyond Kent.
 const SOURCES = [
   {
-    district: "Ashford",
-    url: "https://ashford.moderngov.co.uk/mgParishCouncilDetailsList.aspx",
+    district: "Maidstone",
+    url: "https://meetings.maidstone.gov.uk/mgParishCouncilDetailsList.aspx",
   },
   {
-    district: "Folkestone & Hythe",
-    url: "https://folkestone-hythe.moderngov.co.uk/mgParishCouncilDetailsList.aspx",
+    district: "Sevenoaks",
+    url: "https://sevenoaks.moderngov.co.uk/mgParishCouncilDetailsList.aspx",
   },
   {
-    district: "Dartford",
-    url: "https://dartford.moderngov.co.uk/mgParishCouncilDetailsList.aspx",
+    district: "Swale",
+    url: "https://services.swale.gov.uk/meetings/mgParishCouncilDetailsList.aspx",
   },
 ];
 
