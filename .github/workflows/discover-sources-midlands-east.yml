@@ -1,0 +1,27 @@
+name: Parish Councils - Discover Sources (Midlands + East of England)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run discovery
+        run: node scripts/discover-sources-midlands-east.mjs
+
+      - name: Upload discovery report
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-report-midlands-east
+          path: discovery-report-midlands-east.json
+          retention-days: 30
