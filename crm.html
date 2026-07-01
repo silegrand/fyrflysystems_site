@@ -329,7 +329,17 @@ input,select,textarea{font-family:var(--fb);}
   .nav-item{min-width:50px;font-size:8px;}
 }
 
-/* MAINTENANCE */
+@media(max-width:768px){
+  /* Hide dashboard quick-log on mobile — use FAB instead */
+  #dash-quick-log{ display:none; }
+  /* FAB */
+  #mob-fab{ display:flex; }
+}
+@media(min-width:769px){
+  #mob-fab{ display:none; }
+  #mob-quick-panel{ display:none !important; }
+}
+
 .mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.25rem;}
 .mc-renewal{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:1rem 1.25rem;}
 .mc-renewal .sc-l{color:rgba(134,239,172,0.7);}
@@ -539,7 +549,7 @@ input,select,textarea{font-family:var(--fb);}
           <div class="dc"><div class="dch"><span class="dct">Prospect coverage</span></div><div id="d-prospect-coverage"><p style="font-size:12px;color:rgba(255,255,255,0.28)">Open map to load&hellip;</p></div></div>
         </div>
         <!-- QUICK LOG BAR -->
-        <div style="margin-top:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px">
+        <div id="dash-quick-log" style="margin-top:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px">
           <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Quick log</div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <select id="ql-type" style="font-size:12px;padding:5px 8px;border:1px solid rgba(255,255,255,0.12);border-radius:6px;background:#1a1a1a;color:#ddd;min-width:90px">
@@ -2891,6 +2901,94 @@ function closeMap(){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&$('map-overlay').style.display!=='none') closeMap();
 });
+</script>
+
+<!-- MOBILE FAB + QUICK-LOG PANEL -->
+<button id="mob-fab" onclick="openMobQuickLog()" style="display:none;position:fixed;bottom:80px;right:16px;z-index:8000;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:24px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(232,93,4,0.4)">+</button>
+
+<div id="mob-quick-panel" style="display:none;position:fixed;inset:0;z-index:8500;background:rgba(0,0,0,0.6)" onclick="if(event.target===this)closeMobQuickLog()">
+  <div style="position:absolute;bottom:0;left:0;right:0;background:#1a1a1a;border-radius:16px 16px 0 0;padding:0 0 env(safe-area-inset-bottom,0)">
+    <div style="width:36px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin:10px auto 0"></div>
+    <div style="padding:16px 20px 20px">
+      <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:14px;font-family:var(--fh)">Quick log</div>
+      <!-- Type selector -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px">
+        <button class="mob-type-btn active" data-type="Call" onclick="selectMobType(this)" style="padding:8px 4px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;background:rgba(34,197,94,0.15);color:#86EFAC;font-size:12px;cursor:pointer">Call</button>
+        <button class="mob-type-btn" data-type="Email" onclick="selectMobType(this)" style="padding:8px 4px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);font-size:12px;cursor:pointer">Email</button>
+        <button class="mob-type-btn" data-type="Meeting" onclick="selectMobType(this)" style="padding:8px 4px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);font-size:12px;cursor:pointer">Meeting</button>
+        <button class="mob-type-btn" data-type="Note" onclick="selectMobType(this)" style="padding:8px 4px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);font-size:12px;cursor:pointer">Note</button>
+      </div>
+      <!-- Contact -->
+      <input id="mob-contact" placeholder="Contact name (optional)" style="width:100%;padding:10px 12px;border:1px solid rgba(255,255,255,0.12);border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;font-size:14px;margin-bottom:10px;box-sizing:border-box;outline:none">
+      <!-- Note -->
+      <textarea id="mob-note" placeholder="What happened? Next step?" rows="3" style="width:100%;padding:10px 12px;border:1px solid rgba(255,255,255,0.12);border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;font-size:14px;resize:none;box-sizing:border-box;outline:none;line-height:1.5"></textarea>
+      <div id="mob-feedback" style="font-size:12px;color:#86EFAC;margin-top:6px;min-height:18px"></div>
+      <!-- Actions -->
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button onclick="closeMobQuickLog()" style="flex:1;padding:12px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);font-size:14px;cursor:pointer">Cancel</button>
+        <button onclick="submitMobQuickLog()" style="flex:2;padding:12px;border:none;border-radius:8px;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:14px;font-weight:600;cursor:pointer">Log it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var MOB_SELECTED_TYPE = 'Call';
+
+function openMobQuickLog(){
+  $('mob-quick-panel').style.display = 'block';
+  $('mob-note').value = '';
+  $('mob-contact').value = '';
+  $('mob-feedback').textContent = '';
+  setTimeout(function(){ $('mob-note').focus(); }, 200);
+}
+
+function closeMobQuickLog(){
+  $('mob-quick-panel').style.display = 'none';
+}
+
+function selectMobType(btn){
+  document.querySelectorAll('.mob-type-btn').forEach(function(b){
+    b.style.background = 'transparent';
+    b.style.color = 'rgba(255,255,255,0.5)';
+    b.style.borderColor = 'rgba(255,255,255,0.1)';
+  });
+  var typeColours = {Call:'rgba(34,197,94,0.15)',Email:'rgba(59,130,246,0.15)',Meeting:'rgba(168,85,247,0.15)',Note:'rgba(255,255,255,0.1)'};
+  var textColours = {Call:'#86EFAC',Email:'#93C5FD',Meeting:'#d8b4fe',Note:'rgba(255,255,255,0.8)'};
+  btn.style.background = typeColours[btn.dataset.type]||'rgba(255,255,255,0.1)';
+  btn.style.color = textColours[btn.dataset.type]||'#fff';
+  btn.style.borderColor = 'rgba(255,255,255,0.25)';
+  MOB_SELECTED_TYPE = btn.dataset.type;
+}
+
+function submitMobQuickLog(){
+  var note = ($('mob-note').value||'').trim();
+  var contactRaw = ($('mob-contact').value||'').trim();
+  var fb = $('mob-feedback');
+  if(!note){ fb.style.color='#FCA5A5'; fb.textContent='Add a note first.'; return; }
+  fb.textContent = 'Saving…'; fb.style.color='rgba(255,255,255,0.4)';
+  var contactId = null;
+  if(contactRaw && DB && DB.contacts){
+    var found = DB.contacts.find(function(c){ return c.name.toLowerCase().indexOf(contactRaw.toLowerCase())!==-1; });
+    if(found) contactId = found.id;
+  }
+  api('activities','POST',{
+    contact_id: contactId||null,
+    type: MOB_SELECTED_TYPE,
+    note: (contactRaw&&!contactId?'['+contactRaw+'] ':'')+note,
+    created_at: new Date().toISOString()
+  }).then(function(){
+    fb.style.color='#86EFAC';
+    fb.textContent = MOB_SELECTED_TYPE+' logged'+(contactRaw?' for '+(contactId?contactRaw:'"'+contactRaw+'"'):'')+'!';
+    $('mob-note').value='';
+    $('mob-contact').value='';
+    renderWeekActivity();
+    setTimeout(closeMobQuickLog, 1200);
+  }).catch(function(e){
+    fb.style.color='#FCA5A5';
+    fb.textContent='Failed: '+e.message;
+  });
+}
 </script>
 
 </body>
