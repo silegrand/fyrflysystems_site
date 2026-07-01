@@ -501,30 +501,9 @@ input,select,textarea{font-family:var(--fb);}
     </button>
 
     <!-- PROSPECT LISTS GROUP -->
-    <button class="nav-group-header" id="prospect-group-header">
-      <div style="display:flex;align-items:center;gap:9px;">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        Prospect Lists
-      </div>
-      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    <button class="nav-item" data-view="prospects">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Prospects
     </button>
-    <div class="nav-group-items" id="prospect-group-items">
-      <button class="nav-item" data-view="parishcouncils">
-        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><circle cx="9" cy="11" r="1"/></svg>Parish Councils
-      </button>
-      <button class="nav-item" data-view="independentschools">
-        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>Independent Schools
-      </button>
-      <button class="nav-item" data-view="kentschools">
-        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Kent Schools
-      </button>
-      <button class="nav-item" data-view="londonschools">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>London Schools
-      </button>
-      <button class="nav-item" data-view="southeaststateschools">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>SE State Schools
-      </button>
-    </div>
     <div class="sb-bot">
       <div class="sb-stats">
         <div class="sb-sr"><span class="sb-sl">Contacts</span><span class="sb-sv" id="sb-contacts">0</span></div>
@@ -643,47 +622,45 @@ input,select,textarea{font-family:var(--fb);}
     </div>
 
     <!-- PARISH COUNCILS -->
-    <div id="view-parishcouncils" class="view">
-      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">Parish Councils</div></div><div class="tb-right"><button class="btn-g" id="btn-export-parish"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
-      <div class="content">
-        <div class="frow"><input class="srch" id="parish-search" placeholder="Search councils, clerks, emails&hellip;"><select class="fsel" id="parish-county-filter"><option value="">All counties</option></select><select class="fsel" id="parish-status-filter"><option value="">All statuses</option><option value="not_contacted">Not contacted</option><option value="contacted">Contacted</option><option value="responded">Responded</option><option value="not_interested">Not interested</option></select></div>
-        <div class="tw" id="parish-table"></div>
+    <!-- PROSPECTS (unified) -->
+    <div id="view-prospects" class="view">
+      <div class="topbar">
+        <div><div class="pg-ey">Prospects</div><div class="pg-ti" id="prospects-title">Parish Councils</div></div>
+        <div class="tb-right">
+          <select class="fsel" id="prospects-source" onchange="switchProspectSource()" style="font-weight:500">
+            <option value="parishcouncils">Parish Councils</option>
+            <option value="independentschools">Independent Schools</option>
+            <option value="kentschools">Kent Schools</option>
+            <option value="londonschools">London Schools</option>
+            <option value="southeaststateschools">SE State Schools</option>
+          </select>
+          <span id="prospects-count" style="font-size:12px;color:rgba(255,255,255,0.4);padding:0 4px"></span>
+          <button class="btn-g" id="btn-export-prospects" onclick="exportCurrentProspects()"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button>
+        </div>
       </div>
-    </div>
-
-    <!-- INDEPENDENT SCHOOLS -->
-    <div id="view-independentschools" class="view">
-      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">Independent Schools</div></div><div class="tb-right"><button class="btn-g" id="btn-export-schools"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
       <div class="content">
-        <div class="frow"><input class="srch" id="schools-search" placeholder="Search schools, heads, bursars, emails&hellip;"><select class="fsel" id="schools-county-filter"><option value="">All counties</option></select><select class="fsel" id="schools-bursar-filter"><option value="">All schools</option><option value="has">Has bursar contact</option><option value="missing">Missing bursar contact</option></select></div>
-        <div class="tw" id="schools-table"></div>
-      </div>
-    </div>
-
-    <!-- KENT SCHOOLS -->
-    <div id="view-kentschools" class="view">
-      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">Kent Schools</div></div><div class="tb-right"><button class="btn-g" id="btn-export-kentschools"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
-      <div class="content">
-        <div class="frow"><input class="srch" id="kentschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="kentschools-phase-filter"><option value="">All phases</option></select><select class="fsel" id="kentschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
-        <div class="tw" id="kentschools-table"></div>
-      </div>
-    </div>
-
-    <!-- LONDON SCHOOLS -->
-    <div id="view-londonschools" class="view">
-      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">London Schools</div></div><div class="tb-right"><button class="btn-g" id="btn-export-londonschools"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
-      <div class="content">
-        <div class="frow"><input class="srch" id="londonschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="londonschools-borough-filter"><option value="">All boroughs</option></select><select class="fsel" id="londonschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
-        <div class="tw" id="londonschools-table"></div>
-      </div>
-    </div>
-
-    <!-- SOUTH EAST STATE SCHOOLS -->
-    <div id="view-southeaststateschools" class="view">
-      <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">South East State Schools</div></div><div class="tb-right"><button class="btn-g" id="btn-export-sestateschools"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
-      <div class="content">
-        <div class="frow"><input class="srch" id="sestateschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="sestateschools-county-filter"><option value="">All counties</option></select><select class="fsel" id="sestateschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
-        <div class="tw" id="sestateschools-table"></div>
+        <!-- Parish Councils filters -->
+        <div id="pf-parishcouncils" class="prospect-filters">
+          <div class="frow"><input class="srch" id="parish-search" placeholder="Search councils, clerks, emails&hellip;"><select class="fsel" id="parish-county-filter"><option value="">All counties</option></select><select class="fsel" id="parish-status-filter"><option value="">All statuses</option><option value="not_contacted">Not contacted</option><option value="contacted">Contacted</option><option value="responded">Responded</option><option value="not_interested">Not interested</option></select></div>
+        </div>
+        <!-- Independent Schools filters -->
+        <div id="pf-independentschools" class="prospect-filters" style="display:none">
+          <div class="frow"><input class="srch" id="schools-search" placeholder="Search schools, heads, bursars, emails&hellip;"><select class="fsel" id="schools-county-filter"><option value="">All counties</option></select><select class="fsel" id="schools-bursar-filter"><option value="">All schools</option><option value="has">Has bursar contact</option><option value="missing">Missing bursar contact</option></select></div>
+        </div>
+        <!-- Kent Schools filters -->
+        <div id="pf-kentschools" class="prospect-filters" style="display:none">
+          <div class="frow"><input class="srch" id="kentschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="kentschools-phase-filter"><option value="">All phases</option></select><select class="fsel" id="kentschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
+        </div>
+        <!-- London Schools filters -->
+        <div id="pf-londonschools" class="prospect-filters" style="display:none">
+          <div class="frow"><input class="srch" id="londonschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="londonschools-borough-filter"><option value="">All boroughs</option></select><select class="fsel" id="londonschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
+        </div>
+        <!-- SE State Schools filters -->
+        <div id="pf-southeaststateschools" class="prospect-filters" style="display:none">
+          <div class="frow"><input class="srch" id="sestateschools-search" placeholder="Search schools, heads, managers, emails&hellip;"><select class="fsel" id="sestateschools-county-filter"><option value="">All counties</option></select><select class="fsel" id="sestateschools-manager-filter"><option value="">All schools</option><option value="has">Has manager contact</option><option value="missing">Missing manager contact</option></select></div>
+        </div>
+        <!-- Unified table container -->
+        <div class="tw" id="prospects-table"></div>
       </div>
     </div>
 
@@ -817,6 +794,66 @@ function api(table, method, body, query){
   });
 }
 
+var CURRENT_PROSPECT_SOURCE = 'parishcouncils';
+
+var PROSPECT_TITLES = {
+  parishcouncils: 'Parish Councils',
+  independentschools: 'Independent Schools',
+  kentschools: 'Kent Schools',
+  londonschools: 'London Schools',
+  southeaststateschools: 'SE State Schools'
+};
+
+function switchProspectSource(){
+  var src = $('prospects-source').value;
+  CURRENT_PROSPECT_SOURCE = src;
+  if($('prospects-title')) $('prospects-title').textContent = PROSPECT_TITLES[src]||src;
+  // Show correct filters, hide others
+  document.querySelectorAll('.prospect-filters').forEach(function(el){ el.style.display='none'; });
+  var pf = $('pf-'+src);
+  if(pf) pf.style.display='';
+  loadCurrentProspectSource();
+}
+
+function loadCurrentProspectSource(){
+  var src = CURRENT_PROSPECT_SOURCE;
+  if($('prospects-title')) $('prospects-title').textContent = PROSPECT_TITLES[src]||src;
+  if($('prospects-source')) $('prospects-source').value = src;
+  document.querySelectorAll('.prospect-filters').forEach(function(el){ el.style.display='none'; });
+  var pf = $('pf-'+src);
+  if(pf) pf.style.display='';
+  if(src==='parishcouncils') loadParishCouncils();
+  else if(src==='independentschools') loadIndependentSchools();
+  else if(src==='kentschools') loadKentSchools();
+  else if(src==='londonschools') loadLondonSchools();
+  else if(src==='southeaststateschools') loadSEStateSchools();
+}
+
+function exportCurrentProspects(){
+  var src = CURRENT_PROSPECT_SOURCE;
+  if(src==='parishcouncils'){
+    var rows=[['Council','District','County','Clerk','Email','Phone','Status']];
+    PARISH_DB.forEach(function(r){rows.push([r.council_name,r.district,r.county,r.clerk_name,r.email,r.phone,r.outreach_status||'not_contacted']);});
+    downloadCSV('fyrfly-parish-councils-'+new Date().toISOString().slice(0,10)+'.csv',rows);
+  } else if(src==='independentschools'){
+    var rows=[['School','County','Town','Pupils','Head','Bursar','Bursar email','Phone','Status']];
+    (window.SCHOOLS_DB||[]).forEach(function(r){rows.push([r.school_name,r.county,r.town,r.pupil_count,schoolHeadDisplay(r),r.bursar_name,r.bursar_email,r.phone,r.outreach_status||'not_contacted']);});
+    downloadCSV('fyrfly-independent-schools-'+new Date().toISOString().slice(0,10)+'.csv',rows);
+  } else if(src==='kentschools'){
+    var rows=[['School','Phase','Pupils','Head','Manager','Manager email','Phone','Status']];
+    (window.KENTSCHOOLS_DB||[]).forEach(function(r){rows.push([r.school_name,r.phase,r.pupil_count,kentHeadDisplay(r),r.business_manager_name,r.business_manager_email,r.phone,r.outreach_status||'not_contacted']);});
+    downloadCSV('fyrfly-kent-schools-'+new Date().toISOString().slice(0,10)+'.csv',rows);
+  } else if(src==='londonschools'){
+    var rows=[['School','Borough','Phase','Pupils','Head','Manager','Manager email','Phone','Status']];
+    (window.LONDONSCHOOLS_DB||[]).forEach(function(r){rows.push([r.school_name,r.borough,r.phase,r.pupil_count,londonHeadDisplay(r),r.business_manager_name,r.business_manager_email,r.phone,r.outreach_status||'not_contacted']);});
+    downloadCSV('fyrfly-london-schools-'+new Date().toISOString().slice(0,10)+'.csv',rows);
+  } else if(src==='southeaststateschools'){
+    var rows=[['School','County','Phase','Pupils','Head','Manager','Manager email','Phone','Status']];
+    (window.SESTATESCHOOLS_DB||[]).forEach(function(r){rows.push([r.school_name,r.county,r.phase,r.pupil_count,seStateHeadDisplay(r),r.business_manager_name,r.business_manager_email,r.phone,r.outreach_status||'not_contacted']);});
+    downloadCSV('fyrfly-se-state-schools-'+new Date().toISOString().slice(0,10)+'.csv',rows);
+  }
+}
+
 function loadParishCouncils(){
   return fetch(PARISH_WORKER_URL, { headers: { 'X-Crm-Auth': PARISH_AUTH } })
     .then(function(r){ if(!r.ok) throw new Error('Failed to load'); return r.json(); })
@@ -843,7 +880,8 @@ function renderParishCouncils(){
     }
     return true;
   });
-  var tbl = $('parish-table'); tbl.innerHTML = '';
+  var tbl = $('prospects-table'); tbl.innerHTML = '';
+  if($('prospects-count')) $('prospects-count').textContent = fil.length.toLocaleString('en-GB')+' records';
   if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No parish councils match.</p></div>'; return; }
   var table = el('table',{});
   table.innerHTML = '<thead><tr><th>Status</th><th>Council</th><th>District</th><th>County</th><th>Clerk</th><th>Email</th><th>Phone</th></tr></thead>';
@@ -914,7 +952,7 @@ function renderIndependentSchools(){
     }
     return true;
   });
-  var tbl = $('schools-table'); tbl.innerHTML = '';
+  var tbl = $('prospects-table'); tbl.innerHTML = ''; if($('prospects-count')) $('prospects-count').textContent = fil.length.toLocaleString('en-GB')+' records';
   if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No independent schools match.</p></div>'; return; }
   var table = el('table',{});
   table.innerHTML = '<thead><tr><th>Status</th><th>School</th><th>County</th><th>Pupils</th><th>Head</th><th>Bursar</th><th>Bursar email</th><th>Phone</th></tr></thead>';
@@ -971,7 +1009,7 @@ function renderKentSchools(){
     }
     return true;
   });
-  var tbl = $('kentschools-table'); tbl.innerHTML = '';
+  var tbl = $('prospects-table'); tbl.innerHTML = ''; if($('prospects-count')) $('prospects-count').textContent = fil.length.toLocaleString('en-GB')+' records';
   if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No Kent schools match.</p></div>'; return; }
   var table = el('table',{});
   table.innerHTML = '<thead><tr><th>Status</th><th>School</th><th>Phase</th><th>Pupils</th><th>Head</th><th>Manager</th><th>Manager email</th><th>Phone</th></tr></thead>';
@@ -1030,7 +1068,7 @@ function renderLondonSchools(){
     }
     return true;
   });
-  var tbl = $('londonschools-table'); tbl.innerHTML = '';
+  var tbl = $('prospects-table'); tbl.innerHTML = ''; if($('prospects-count')) $('prospects-count').textContent = fil.length.toLocaleString('en-GB')+' records';
   if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No London schools match.</p></div>'; return; }
   var table = el('table',{});
   table.innerHTML = '<thead><tr><th>Status</th><th>School</th><th>Borough</th><th>Phase</th><th>Pupils</th><th>Head</th><th>Manager</th><th>Manager email</th><th>Phone</th></tr></thead>';
@@ -1090,7 +1128,7 @@ function renderSEStateSchools(){
     }
     return true;
   });
-  var tbl = $('sestateschools-table'); tbl.innerHTML = '';
+  var tbl = $('prospects-table'); tbl.innerHTML = ''; if($('prospects-count')) $('prospects-count').textContent = fil.length.toLocaleString('en-GB')+' records';
   if(fil.length === 0){ tbl.innerHTML = '<div class="empty"><p>No schools match.</p></div>'; return; }
   var table = el('table',{});
   table.innerHTML = '<thead><tr><th>Status</th><th>School</th><th>County</th><th>Phase</th><th>Pupils</th><th>Head</th><th>Manager</th><th>Manager email</th><th>Phone</th></tr></thead>';
@@ -1314,11 +1352,7 @@ document.addEventListener('DOMContentLoaded', function(){
       _moSave.disabled = false;
       $('modal-outreach').classList.remove('open');
       toast('Outreach updated');
-      if(tableName==='parish_councils') loadParishCouncils();
-      else if(tableName==='independent_schools') loadIndependentSchools();
-      else if(tableName==='kent_schools') loadKentSchools();
-      else if(tableName==='london_schools') loadLondonSchools();
-      else if(tableName==='south_east_state_schools') loadSEStateSchools();
+      loadCurrentProspectSource();
     })
     .catch(function(e){
       _moSave.textContent = 'Save';
@@ -1416,11 +1450,7 @@ function navigate(view){
   if(view==='pipeline') renderPipeline();
   if(view==='activities') loadActivities();
   if(view==='maintenance') loadMaintenance();
-  if(view==='parishcouncils') loadParishCouncils();
-  if(view==='independentschools') loadIndependentSchools();
-  if(view==='kentschools') loadKentSchools();
-  if(view==='londonschools') loadLondonSchools();
-  if(view==='southeaststateschools') loadSEStateSchools();
+  if(view==='prospects') loadCurrentProspectSource();
 }
 // ── MODALS ──
 // Delegated on document so this also covers modals defined further down the
