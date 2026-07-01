@@ -646,7 +646,7 @@ input,select,textarea{font-family:var(--fb);}
     <div id="view-parishcouncils" class="view">
       <div class="topbar"><div><div class="pg-ey">Prospects</div><div class="pg-ti">Parish Councils</div></div><div class="tb-right"><button class="btn-g" id="btn-export-parish"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div></div>
       <div class="content">
-        <div class="frow"><input class="srch" id="parish-search" placeholder="Search councils, clerks, emails&hellip;"><select class="fsel" id="parish-county-filter"><option value="">All counties</option></select></div>
+        <div class="frow"><input class="srch" id="parish-search" placeholder="Search councils, clerks, emails&hellip;"><select class="fsel" id="parish-county-filter"><option value="">All counties</option></select><select class="fsel" id="parish-status-filter"><option value="">All statuses</option><option value="not_contacted">Not contacted</option><option value="contacted">Contacted</option><option value="responded">Responded</option><option value="not_interested">Not interested</option></select></div>
         <div class="tw" id="parish-table"></div>
       </div>
     </div>
@@ -833,8 +833,10 @@ function loadParishCouncils(){
 function renderParishCouncils(){
   var search = ($('parish-search').value || '').toLowerCase();
   var county = $('parish-county-filter').value;
+  var status = $('parish-status-filter') ? $('parish-status-filter').value : '';
   var fil = PARISH_DB.filter(function(r){
     if(county && r.county !== county) return false;
+    if(status && (r.outreach_status||'not_contacted') !== status) return false;
     if(search){
       var hay = [r.council_name, r.clerk_name, r.email, r.district].filter(Boolean).join(' ').toLowerCase();
       if(hay.indexOf(search) === -1) return false;
@@ -878,7 +880,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var sec = $('sestateschools-county-filter'); if(sec) sec.addEventListener('change', renderSEStateSchools);
   var sem = $('sestateschools-manager-filter'); if(sem) sem.addEventListener('change', renderSEStateSchools);
 });
-(function(){ var ps=$('parish-search'); if(ps) ps.addEventListener('input', renderParishCouncils); var pc=$('parish-county-filter'); if(pc) pc.addEventListener('change', renderParishCouncils); })();
+(function(){ var ps=$('parish-search'); if(ps) ps.addEventListener('input', renderParishCouncils); var pc=$('parish-county-filter'); if(pc) pc.addEventListener('change', renderParishCouncils); var pst=$('parish-status-filter'); if(pst) pst.addEventListener('change', renderParishCouncils); })();
 
 function loadIndependentSchools(){
   return fetch(SCHOOLS_WORKER_URL, { headers: { 'X-Crm-Auth': PARISH_AUTH } })
