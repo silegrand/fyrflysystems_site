@@ -2646,45 +2646,6 @@ $('btn-export-maint').addEventListener('click', function(){
   downloadCSV('fyrfly-maintenance-'+new Date().toISOString().slice(0,10)+'.csv', rows);
 });
 
-$('btn-export-parish').addEventListener('click', function(){
-  var rows = [['Council','District','County','Clerk','Email','Phone','Address']];
-  PARISH_DB.forEach(function(r){ rows.push([r.council_name, r.district, r.county, r.clerk_name, r.email, r.phone, r.address]); });
-  downloadCSV('fyrfly-parish-councils-'+new Date().toISOString().slice(0,10)+'.csv', rows);
-});
-
-$('btn-export-schools').addEventListener('click', function(){
-  var rows = [['School','County','Town','Postcode','Pupils','Head title','Head first name','Head last name','Head job title','Bursar','Bursar title','Bursar email','Phone','Website']];
-  SCHOOLS_DB.forEach(function(r){
-    rows.push([r.school_name, r.county, r.town, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.bursar_name, r.bursar_title, r.bursar_email, r.phone, r.website_url]);
-  });
-  downloadCSV('fyrfly-independent-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
-});
-
-$('btn-export-kentschools').addEventListener('click', function(){
-  var rows = [['School','Phase','Type','Town','Postcode','Pupils','Head title','Head first name','Head last name','Head job title','Manager name','Manager title','Manager email','Phone','Website']];
-  KENTSCHOOLS_DB.forEach(function(r){
-    rows.push([r.school_name, r.phase, r.school_type, r.town, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.business_manager_name, r.business_manager_title, r.business_manager_email, r.phone, r.website_url]);
-  });
-  downloadCSV('fyrfly-kent-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
-});
-
-$('btn-export-londonschools').addEventListener('click', function(){
-  var rows = [['School','Borough','Phase','Type','Postcode','Pupils','Head title','Head first name','Head last name','Head job title','Manager name','Manager title','Manager email','Phone','Website']];
-  LONDONSCHOOLS_DB.forEach(function(r){
-    rows.push([r.school_name, r.borough, r.phase, r.school_type, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.business_manager_name, r.business_manager_title, r.business_manager_email, r.phone, r.website_url]);
-  });
-  downloadCSV('fyrfly-london-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
-});
-
-$('btn-export-sestateschools').addEventListener('click', function(){
-  var rows = [['School','County','Phase','Type','Postcode','Pupils','Head title','Head first name','Head last name','Head job title','Manager name','Manager title','Manager email','Phone','Website']];
-  SESTATESCHOOLS_DB.forEach(function(r){
-    rows.push([r.school_name, r.county, r.phase, r.school_type, r.postcode, r.pupil_count, r.head_title, r.head_first_name, r.head_last_name, r.head_job_title, r.business_manager_name, r.business_manager_title, r.business_manager_email, r.phone, r.website_url]);
-  });
-  downloadCSV('fyrfly-south-east-state-schools-'+new Date().toISOString().slice(0,10)+'.csv', rows);
-});
-
-
 // ── SCHEMA NOTE ──
 // New columns added by this version (add via Supabase dashboard if not present):
 // contacts: owner (text)
