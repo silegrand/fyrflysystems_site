@@ -1573,7 +1573,10 @@ function renderDueToday(){
   });
 
   if(items.length===0){
-    el2.innerHTML = '';
+    el2.innerHTML = '<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px;margin-bottom:1rem;display:flex;align-items:center;gap:8px">'
+      + '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="rgba(134,239,172,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+      + '<span style="font-size:12px;color:rgba(255,255,255,0.4)">Nothing due today &mdash; you\'re all caught up</span>'
+      + '</div>';
     return;
   }
 
