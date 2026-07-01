@@ -724,6 +724,20 @@ input,select,textarea{font-family:var(--fb);}
       <div class="fr"><label>Sector</label><div class="seg" id="md-sector-seg"></div></div>
       <div class="fg2"><div class="fr"><label>Value (£)</label><input type="number" id="md-value" placeholder="25000"></div><div class="fr"><label>Probability (%)</label><input type="number" id="md-prob" placeholder="60" min="0" max="100"></div></div>
       <div class="fr"><label>Linked contact</label><select id="md-contact"><option value="">— None —</option></select></div>
+      <div class="fr"><label>Linked prospect</label>
+        <div style="display:flex;gap:6px">
+          <select id="md-prospect-source" onchange="updateProspectDropdown()" style="flex:0 0 auto;min-width:130px">
+            <option value="">— No prospect —</option>
+            <option value="parish_councils">Parish Council</option>
+            <option value="independent_schools">Indep. School</option>
+            <option value="kent_schools">Kent School</option>
+            <option value="london_schools">London School</option>
+            <option value="south_east_state_schools">SE State School</option>
+          </select>
+          <input id="md-prospect-search" placeholder="Type to search…" oninput="filterProspectDropdown()" style="flex:1;display:none">
+          <select id="md-prospect-id" style="flex:1;display:none"><option value="">— Select —</option></select>
+        </div>
+      </div>
       <div class="fr"><label>Next action</label><input id="md-next" placeholder="Send proposal by Friday"></div>
       <div class="fg2"><div class="fr"><label>Expected close date</label><input type="date" id="md-close-date"></div><div class="fr"><label>Owner</label><input id="md-owner" placeholder="Simon"></div></div>
       <div class="fr"><label>Linked company</label><select id="md-company"><option value="">— None —</option></select></div>
@@ -902,7 +916,7 @@ function renderParishCouncils(){
   fil.forEach(function(r){
     var tr = el('tr',{});
     var st = el('td',{}); st.innerHTML = outreachLabel(r.outreach_status); tr.appendChild(st);
-    tr.appendChild(el('td',{}, r.council_name || '—'));
+    var nt = el('td',{}); nt.innerHTML = esc(r.council_name||'—') + prospectDealBadge('parish_councils', r); tr.appendChild(nt);
     tr.appendChild(el('td',{}, r.district || '—'));
     tr.appendChild(el('td',{}, r.county || '—'));
     tr.appendChild(el('td',{}, r.clerk_name || '—'));
@@ -974,8 +988,9 @@ function renderIndependentSchools(){
     var tr = el('tr',{});
     var st = el('td',{}); st.innerHTML = outreachLabel(r.outreach_status); tr.appendChild(st);
     var nt = el('td',{});
-    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'; }
-    else { nt.textContent = r.school_name || '—'; }
+    var _tbl_is = 'independent_schools';
+    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'+prospectDealBadge(_tbl_is,r); }
+    else { nt.innerHTML = esc(r.school_name||'—')+prospectDealBadge(_tbl_is,r); }
     tr.appendChild(nt);
     tr.appendChild(el('td',{}, r.county || '—'));
     tr.appendChild(el('td',{}, r.pupil_count ? String(r.pupil_count) : '—'));
@@ -1031,8 +1046,9 @@ function renderKentSchools(){
     var tr = el('tr',{});
     var st = el('td',{}); st.innerHTML = outreachLabel(r.outreach_status); tr.appendChild(st);
     var nt = el('td',{});
-    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'; }
-    else { nt.textContent = r.school_name || '—'; }
+    var _tbl_ks = 'kent_schools';
+    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'+prospectDealBadge(_tbl_ks,r); }
+    else { nt.innerHTML = esc(r.school_name||'—')+prospectDealBadge(_tbl_ks,r); }
     tr.appendChild(nt);
     tr.appendChild(el('td',{}, r.phase || '—'));
     tr.appendChild(el('td',{}, r.pupil_count ? String(r.pupil_count) : '—'));
@@ -1090,8 +1106,9 @@ function renderLondonSchools(){
     var tr = el('tr',{});
     var st = el('td',{}); st.innerHTML = outreachLabel(r.outreach_status); tr.appendChild(st);
     var nt = el('td',{});
-    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'; }
-    else { nt.textContent = r.school_name || '—'; }
+    var _tbl_ls = 'london_schools';
+    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'+prospectDealBadge(_tbl_ls,r); }
+    else { nt.innerHTML = esc(r.school_name||'—')+prospectDealBadge(_tbl_ls,r); }
     tr.appendChild(nt);
     tr.appendChild(el('td',{}, r.borough || '—'));
     tr.appendChild(el('td',{}, r.phase || '—'));
@@ -1150,8 +1167,9 @@ function renderSEStateSchools(){
     var tr = el('tr',{});
     var st = el('td',{}); st.innerHTML = outreachLabel(r.outreach_status); tr.appendChild(st);
     var nt = el('td',{});
-    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'; }
-    else { nt.textContent = r.school_name || '—'; }
+    var _tbl_ss = 'south_east_state_schools';
+    if(r.website_url){ nt.innerHTML = '<a href="'+esc(r.website_url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(r.school_name||'—')+'</a>'+prospectDealBadge(_tbl_ss,r); }
+    else { nt.innerHTML = esc(r.school_name||'—')+prospectDealBadge(_tbl_ss,r); }
     tr.appendChild(nt);
     tr.appendChild(el('td',{}, r.county || '—'));
     tr.appendChild(el('td',{}, r.phase || '—'));
@@ -1719,6 +1737,163 @@ function quickLog(){
   }).catch(function(e){ fb.style.display='block'; fb.style.color='#ef4444'; fb.textContent='Log failed: '+e.message; });
 }
 
+// ── PROSPECT LINKING ──
+
+function prospectTableLabel(table){
+  var labels={parish_councils:'Parish Council',independent_schools:'Indep. School',kent_schools:'Kent School',london_schools:'London School',south_east_state_schools:'SE State School'};
+  return labels[table]||table;
+}
+
+// Map prospect source to in-memory DB
+function getProspectDB(source){
+  if(source==='parish_councils') return PARISH_DB;
+  if(source==='independent_schools') return SCHOOLS_DB;
+  if(source==='kent_schools') return KENTSCHOOLS_DB;
+  if(source==='london_schools') return LONDONSCHOOLS_DB;
+  if(source==='south_east_state_schools') return SESTATESCHOOLS_DB;
+  return [];
+}
+
+function getProspectName(record, source){
+  return record.council_name || record.school_name || record.name || '—';
+}
+
+function getProspectPK(record, source){
+  return source==='parish_councils' ? record.id : record.urn;
+}
+
+var _prospectSearchList = [];
+
+function updateProspectDropdown(selectId){
+  var source = $('md-prospect-source').value;
+  var search = $('md-prospect-search');
+  var idSel = $('md-prospect-id');
+
+  if(!source){
+    search.style.display='none';
+    idSel.style.display='none';
+    idSel.value='';
+    return;
+  }
+
+  var db = getProspectDB(source);
+  if(!db||db.length===0){
+    // Source not loaded yet — load it first
+    search.style.display='none';
+    idSel.style.display='block';
+    idSel.innerHTML='<option value="">Loading…</option>';
+    loadProspectSource(source, function(){
+      updateProspectDropdown(selectId);
+    });
+    return;
+  }
+
+  _prospectSearchList = db.map(function(r){
+    return {id:getProspectPK(r,source), name:getProspectName(r,source), record:r};
+  }).sort(function(a,b){ return a.name.localeCompare(b.name); });
+
+  search.style.display='block';
+  idSel.style.display='block';
+  search.value='';
+  renderProspectOptions('', selectId||null);
+}
+
+function renderProspectOptions(filter, selectId){
+  var idSel = $('md-prospect-id');
+  var filtered = filter
+    ? _prospectSearchList.filter(function(p){ return p.name.toLowerCase().includes(filter.toLowerCase()); })
+    : _prospectSearchList;
+  idSel.innerHTML = '<option value="">— Select prospect —</option>';
+  filtered.slice(0,100).forEach(function(p){
+    var o = el('option',{value:p.id}, p.name);
+    if(selectId && String(p.id)===String(selectId)) o.selected=true;
+    idSel.appendChild(o);
+  });
+  if(filtered.length>100){
+    var o=el('option',{value:'','disabled':'disabled'},'… type to narrow ('+filtered.length+' results)');
+    idSel.appendChild(o);
+  }
+}
+
+function filterProspectDropdown(){
+  var search = $('md-prospect-search').value;
+  renderProspectOptions(search, null);
+}
+
+function loadProspectSource(source, cb){
+  var urls = {
+    parish_councils: PARISH_WORKER_URL,
+    independent_schools: SCHOOLS_WORKER_URL,
+    kent_schools: KENTSCHOOLS_WORKER_URL,
+    london_schools: LONDONSCHOOLS_WORKER_URL,
+    south_east_state_schools: SESTATESCHOOLS_WORKER_URL
+  };
+  var url = urls[source];
+  if(!url){ if(cb) cb(); return; }
+  fetch(url, {headers:{'X-Crm-Auth':PARISH_AUTH}})
+    .then(function(r){ return r.json(); })
+    .then(function(rows){
+      if(source==='parish_councils') PARISH_DB = Array.isArray(rows)?rows:[];
+      else if(source==='independent_schools') SCHOOLS_DB = Array.isArray(rows)?rows:[];
+      else if(source==='kent_schools') KENTSCHOOLS_DB = Array.isArray(rows)?rows:[];
+      else if(source==='london_schools') LONDONSCHOOLS_DB = Array.isArray(rows)?rows:[];
+      else if(source==='south_east_state_schools') SESTATESCHOOLS_DB = Array.isArray(rows)?rows:[];
+      if(cb) cb();
+    })
+    .catch(function(){ if(cb) cb(); });
+}
+
+// Build a map of prospect_id → active deal name for pipeline indicators in prospect lists
+function buildProspectDealMap(){
+  var map = {};
+  DB.deals.forEach(function(d){
+    if(d.prospect_table && d.prospect_id && d.stage!=='Lost'){
+      var key = d.prospect_table+'|'+d.prospect_id;
+      map[key] = {deal:d, stage:d.stage};
+    }
+  });
+  return map;
+}
+window.PROSPECT_DEAL_MAP = {};
+
+// Call this after loadAll so the map is always fresh
+var _origLoadAll3 = loadAll;
+loadAll = function(){
+  return _origLoadAll3().then ? _origLoadAll3().then(function(){
+    window.PROSPECT_DEAL_MAP = buildProspectDealMap();
+  }) : (function(){ window.PROSPECT_DEAL_MAP = buildProspectDealMap(); return _origLoadAll3(); })();
+};
+
+// Show pipeline badge in prospect rows
+function prospectDealBadge(source, record){
+  var key = source+'|'+(source==='parish_councils' ? record.id : record.urn);
+  var entry = window.PROSPECT_DEAL_MAP[key];
+  if(!entry) return '';
+  var stageCol={Lead:'#378ADD',Qualified:'#E85D04',Proposal:'#9333ea',Negotiation:'#f59e0b',Won:'#16a34a'};
+  var col = stageCol[entry.stage]||'#888';
+  return '<span style="display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;border:1px solid '+col+';color:'+col+';margin-left:6px;white-space:nowrap">'+esc(entry.stage)+'</span>';
+}
+
+// "Create deal" shortcut from outreach modal
+function createDealFromProspect(){
+  var title = $('mo-title').textContent;
+  var table = $('mo-table').value;
+  var pkVal = $('mo-pk-value').value;
+  var contactName = $('mo-contact-name').value;
+  $('modal-outreach').classList.remove('open');
+  setTimeout(function(){
+    openDealModal(null);
+    $('md-name').value = title + ' — security system';
+    $('md-prospect-source').value = table;
+    updateProspectDropdown(pkVal);
+    // Try to match contact name to a CRM contact
+    if(contactName){
+      var found = DB.contacts.find(function(c){ return c.name.toLowerCase()===contactName.toLowerCase(); });
+      if(found) $('md-contact').value = found.id;
+    }
+  }, 100);
+}
+
 // ── CONTACTS ──
 $('contact-search').addEventListener('input', renderContacts);
 $('contact-sector-filter').addEventListener('change', renderContacts);
@@ -1932,7 +2107,7 @@ function renderPipeline(){
   var tbody=el('tbody',{});
   fil.forEach(function(d){
     var tr=el('tr',{});
-    var n=el('td',{}); n.innerHTML='<span style="font-weight:600;color:#fff">'+esc(d.name)+'</span>'+(d.sector?'<br><span class="badge '+SECTOR_CLS[d.sector]+'" style="margin-top:3px;font-size:10px">'+esc(d.sector)+'</span>':''); tr.appendChild(n);
+    var n=el('td',{}); n.innerHTML='<span style="font-weight:600;color:#fff">'+esc(d.name)+'</span>'+(d.sector?'<br><span class="badge '+SECTOR_CLS[d.sector]+'" style="margin-top:3px;font-size:10px">'+esc(d.sector)+'</span>':'')+(d.prospect_table?'<br><span style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px">⟶ '+esc(prospectTableLabel(d.prospect_table))+'</span>':''); tr.appendChild(n);
     var s=el('td',{}); s.appendChild(badge(d.stage,STAGE_CLS[d.stage]||'b-lead')); tr.appendChild(s);
     var v=el('td',{}); v.innerHTML='<span class="va">'+fmtV(d.value)+'</span>'; tr.appendChild(v);
     var pr=el('td',{}); pr.innerHTML=d.probability?'<span style="font-size:12px;color:rgba(255,255,255,0.45)">'+d.probability+'%</span>':'—'; tr.appendChild(pr);
@@ -1972,6 +2147,9 @@ function openDealModal(d){
   DB.contacts.forEach(function(c){ var o=el('option',{value:c.id},c.name); if(d&&d.contact_id===c.id) o.selected=true; csel.appendChild(o); });
   var cosel=$('md-company'); cosel.innerHTML='<option value="">— None —</option>';
   DB.companies.forEach(function(c){ var o=el('option',{value:c.id},c.name); if(d&&d.company_id===c.id) o.selected=true; cosel.appendChild(o); });
+  // Prospect link
+  $('md-prospect-source').value = d&&d.prospect_table ? d.prospect_table : '';
+  updateProspectDropdown(d&&d.prospect_id ? d.prospect_id : null);
   $('md-ey').textContent=d?'Edit deal':'New opportunity';
   $('md-ti').textContent=d?d.name:'Add a deal';
   $('md-save').textContent='Save deal';
@@ -1996,7 +2174,7 @@ $('md-save').addEventListener('click', function(){
   var name=$('md-name').value.trim(); if(!name){$('md-name').focus();return;}
   var id=$('md-id').value;
   var newStage=$('md-stage-seg').getValue();
-  var data={name:name,stage:newStage,sector:$('md-sector-seg').getValue(),value:$('md-value').value||null,probability:$('md-prob').value||null,contact_id:$('md-contact').value||null,company_id:$('md-company').value||null,next_action:$('md-next').value,notes:$('md-notes').value,close_date:$('md-close-date').value||null,owner:$('md-owner').value||null};
+  var data={name:name,stage:newStage,sector:$('md-sector-seg').getValue(),value:$('md-value').value||null,probability:$('md-prob').value||null,contact_id:$('md-contact').value||null,company_id:$('md-company').value||null,next_action:$('md-next').value,notes:$('md-notes').value,close_date:$('md-close-date').value||null,owner:$('md-owner').value||null,prospect_table:$('md-prospect-source').value||null,prospect_id:$('md-prospect-id').value||null};
   $('md-save').textContent='Saving…';
   var p=id?api('deals','PATCH',data,'?id=eq.'+id):api('deals','POST',data);
   p.then(function(res){
@@ -2580,6 +2758,9 @@ if(checkAuth()) showApp();
     <div class="mf">
       <button onclick="toggleEmailPanel()" id="mo-email-toggle" style="font-size:12px;padding:6px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.6);cursor:pointer">
         <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-1px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Draft email
+      </button>
+      <button onclick="createDealFromProspect()" style="font-size:12px;padding:6px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.6);cursor:pointer">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-1px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Create deal
       </button>
       <button class="btn-g modal-close" data-modal="modal-outreach">Cancel</button>
       <button class="btn-p" id="mo-save">Save</button>
