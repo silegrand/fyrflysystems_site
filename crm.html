@@ -1140,13 +1140,29 @@ function openOutreachModal(record, tableName, displayName) {
   if(tableName === 'parish_councils') {
     $('mo-pk-field').value = 'id';
     $('mo-pk-value').value = record.id || '';
+    $('mo-contact-name').value = record.clerk_name || '';
+    $('mo-contact-email').value = record.email || '';
+    $('mo-prospect-type').value = 'parish council';
   } else {
     $('mo-pk-field').value = 'urn';
     $('mo-pk-value').value = record.urn || '';
+    var headParts = [record.head_title,record.head_first_name,record.head_last_name].filter(Boolean);
+    $('mo-contact-name').value = headParts.join(' ') || record.bursar_name || record.business_manager_name || '';
+    $('mo-contact-email').value = record.head_email || record.bursar_email || record.business_manager_email || '';
+    $('mo-prospect-type').value = tableName === 'independent_schools' ? 'independent school' : 'state school';
   }
 
   $('mo-notes').value = record.notes || '';
   $('mo-date').value = record.contacted_at ? record.contacted_at.slice(0,10) : new Date().toISOString().slice(0,10);
+
+  // Reset email panel
+  $('mo-email-panel').style.display = 'none';
+  $('mo-email-output').style.display = 'none';
+  $('mo-email-output').value = '';
+  $('mo-email-actions').style.display = 'none';
+  $('mo-email-loading').style.display = 'none';
+  $('mo-email-toggle').textContent = '';
+  $('mo-email-toggle').innerHTML = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-1px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Draft email';
 
   // Status seg
   var seg = $('mo-status-seg');
@@ -1155,7 +1171,6 @@ function openOutreachModal(record, tableName, displayName) {
     b.onclick = function(){
       seg.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
       b.classList.add('on');
-      // Show/hide date row based on status
       var show = b.getAttribute('data-val') !== 'not_contacted';
       $('mo-date-row').style.display = show ? '' : 'none';
     };
@@ -1165,6 +1180,85 @@ function openOutreachModal(record, tableName, displayName) {
   $('mo-date-row').style.display = showDate ? '' : 'none';
 
   $('modal-outreach').classList.add('open');
+}
+
+function toggleEmailPanel(){
+  var panel = $('mo-email-panel');
+  var visible = panel.style.display !== 'none';
+  panel.style.display = visible ? 'none' : 'block';
+  if(!visible && !$('mo-email-output').value) draftOutreachEmail();
+}
+
+async function draftOutreachEmail(){
+  var name = $('mo-title').textContent;
+  var contactName = $('mo-contact-name').value;
+  var contactEmail = $('mo-contact-email').value;
+  var type = $('mo-prospect-type').value;
+  var tone = $('mo-email-tone').value;
+
+  var toneInstructions = {
+    professional: 'formal and professional in tone, structured with a clear purpose statement',
+    warm: 'warm and personal in tone, as if from one professional to another who share a mutual interest in community safety',
+    brief: 'very brief and direct — no more than 4 sentences, get straight to the point'
+  };
+
+  var prompt = 'Draft a cold outreach email from Fyrfly Systems to '+name+' (a '+type+' in the UK).'
+    +(contactName?' The recipient is '+contactName+'.':'')
+    +' Fyrfly Systems installs professional CCTV, access control, intruder alarm, and Martyn\'s Law compliance security systems for schools, councils, and public sector organisations across the South East of England.'
+    +' The email should be '+toneInstructions[tone]+'.'
+    +' Do not mention specific prices. Do not use bullet points. Do not use generic phrases like "I hope this email finds you well".'
+    +' End with a simple, low-pressure call to action — a brief call or site visit.'
+    +' Keep it under 120 words. Write only the email body — no subject line, no "Dear [name]" prefix, just the body text starting directly with the opening sentence.';
+
+  $('mo-email-loading').style.display = 'block';
+  $('mo-email-output').style.display = 'none';
+  $('mo-email-actions').style.display = 'none';
+  $('mo-draft-btn').disabled = true;
+
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 300,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    var data = await res.json();
+    var text = (data.content||[]).find(function(c){ return c.type==='text'; });
+    if(text && text.text){
+      $('mo-email-output').value = text.text.trim();
+      $('mo-email-output').style.display = 'block';
+      $('mo-email-actions').style.display = 'flex';
+    } else {
+      $('mo-email-output').value = 'Could not generate email — try again.';
+      $('mo-email-output').style.display = 'block';
+    }
+  } catch(e) {
+    $('mo-email-output').value = 'Error: '+e.message;
+    $('mo-email-output').style.display = 'block';
+  }
+
+  $('mo-email-loading').style.display = 'none';
+  $('mo-draft-btn').disabled = false;
+}
+
+function copyDraftEmail(){
+  var txt = $('mo-email-output').value;
+  if(!txt) return;
+  navigator.clipboard.writeText(txt).then(function(){ toast('Email copied to clipboard'); }).catch(function(){ $('mo-email-output').select(); document.execCommand('copy'); toast('Email copied'); });
+}
+
+function openDraftInMail(){
+  var txt = $('mo-email-output').value;
+  var name = $('mo-title').textContent;
+  var email = $('mo-contact-email').value;
+  if(!txt) return;
+  var subject = encodeURIComponent('Security systems for '+name);
+  var body = encodeURIComponent(txt);
+  var to = encodeURIComponent(email||'');
+  window.location.href = 'mailto:'+to+'?subject='+subject+'&body='+body;
 }
 
 // ── MODAL BACKDROP CLICK TO CLOSE ──
@@ -2394,7 +2488,7 @@ if(checkAuth()) showApp();
 
 <!-- OUTREACH MODAL -->
 <div class="modal-bg" id="modal-outreach">
-  <div class="modal">
+  <div class="modal" style="max-width:560px">
     <div class="mh">
       <div><div class="mey">Prospect</div><div class="mti" id="mo-title">Log outreach</div></div>
       <button class="mcl modal-close" data-modal="modal-outreach"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -2403,6 +2497,9 @@ if(checkAuth()) showApp();
       <input type="hidden" id="mo-pk-field">
       <input type="hidden" id="mo-pk-value">
       <input type="hidden" id="mo-table">
+      <input type="hidden" id="mo-contact-name">
+      <input type="hidden" id="mo-contact-email">
+      <input type="hidden" id="mo-prospect-type">
       <div class="fr"><label>Status</label>
         <div class="outreach-seg" id="mo-status-seg">
           <button data-val="not_contacted">Not contacted</button>
@@ -2416,10 +2513,34 @@ if(checkAuth()) showApp();
         <input type="date" id="mo-date" style="width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;outline:none;">
       </div>
       <div class="fr"><label>Notes</label>
-        <textarea id="mo-notes" style="width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;resize:vertical;min-height:90px;outline:none;" placeholder="Contact name, conversation summary, next step&hellip;"></textarea>
+        <textarea id="mo-notes" style="width:100%;padding:10px 13px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,0.07);color:#fff;font-size:13px;resize:vertical;min-height:80px;outline:none;" placeholder="Contact name, conversation summary, next step&hellip;"></textarea>
+      </div>
+      <!-- EMAIL DRAFT PANEL -->
+      <div id="mo-email-panel" style="display:none;margin-top:4px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <label style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.6)">Claude-drafted email</label>
+          <div style="display:flex;gap:6px">
+            <select id="mo-email-tone" style="font-size:11px;padding:3px 7px;border:1px solid rgba(255,255,255,0.12);border-radius:5px;background:#1a1a1a;color:#ddd">
+              <option value="professional">Professional</option>
+              <option value="warm">Warm &amp; personal</option>
+              <option value="brief">Brief &amp; direct</option>
+            </select>
+            <button onclick="draftOutreachEmail()" id="mo-draft-btn" style="font-size:11px;padding:3px 12px;border:none;border-radius:5px;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;cursor:pointer">Draft</button>
+          </div>
+        </div>
+        <div id="mo-email-loading" style="display:none;font-size:12px;color:rgba(255,255,255,0.4);padding:8px 0">Claude is drafting&hellip;</div>
+        <textarea id="mo-email-output" style="width:100%;padding:10px 13px;border:1px solid rgba(255,255,255,0.12);border-radius:8px;background:rgba(255,255,255,0.05);color:#e0e0e0;font-size:12px;resize:vertical;min-height:160px;outline:none;line-height:1.6;display:none" placeholder="Email will appear here&hellip;"></textarea>
+        <div id="mo-email-actions" style="display:none;margin-top:6px;display:none;gap:6px;flex-wrap:wrap">
+          <button onclick="copyDraftEmail()" style="font-size:11px;padding:3px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:5px;background:transparent;color:#ddd;cursor:pointer">Copy to clipboard</button>
+          <button onclick="openDraftInMail()" style="font-size:11px;padding:3px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:5px;background:transparent;color:#ddd;cursor:pointer">Open in mail client</button>
+          <button onclick="draftOutreachEmail()" style="font-size:11px;padding:3px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:5px;background:transparent;color:#ddd;cursor:pointer">Redraft</button>
+        </div>
       </div>
     </div>
     <div class="mf">
+      <button onclick="toggleEmailPanel()" id="mo-email-toggle" style="font-size:12px;padding:6px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.6);cursor:pointer">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-1px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Draft email
+      </button>
       <button class="btn-g modal-close" data-modal="modal-outreach">Cancel</button>
       <button class="btn-p" id="mo-save">Save</button>
     </div>
