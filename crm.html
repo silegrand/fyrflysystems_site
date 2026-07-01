@@ -1216,14 +1216,11 @@ async function draftOutreachEmail(){
   $('mo-draft-btn').disabled = true;
 
   try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
+    var workerBase = PARISH_WORKER_URL.replace(/\/$/, '');
+    var res = await fetch(workerBase + '/draft-email', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 300,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      headers: { 'Content-Type': 'application/json', 'X-Crm-Auth': PARISH_AUTH },
+      body: JSON.stringify({ prompt: prompt })
     });
     var data = await res.json();
     var text = (data.content||[]).find(function(c){ return c.type==='text'; });
