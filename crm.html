@@ -1113,8 +1113,17 @@ function outreachLabel(status) {
 
 function openOutreachModal(record, tableName, displayName) {
   $('mo-title').textContent = displayName || record.school_name || record.council_name || 'Log outreach';
-  $('mo-urn').value = record.urn || record.id || '';
   $('mo-table').value = tableName;
+
+  // Parish councils use uuid `id`; schools use integer `urn`
+  if(tableName === 'parish_councils') {
+    $('mo-pk-field').value = 'id';
+    $('mo-pk-value').value = record.id || '';
+  } else {
+    $('mo-pk-field').value = 'urn';
+    $('mo-pk-value').value = record.urn || '';
+  }
+
   $('mo-notes').value = record.notes || '';
   $('mo-date').value = record.contacted_at ? record.contacted_at.slice(0,10) : new Date().toISOString().slice(0,10);
 
@@ -1137,55 +1146,73 @@ function openOutreachModal(record, tableName, displayName) {
   $('modal-outreach').classList.add('open');
 }
 
+// ── MODAL BACKDROP CLICK TO CLOSE ──
+document.querySelectorAll('.modal-bg').forEach(function(bg){
+  bg.addEventListener('click', function(e){
+    if(e.target === bg) bg.classList.remove('open');
+  });
+});
+
 document.addEventListener('DOMContentLoaded', function(){
+  // Wire backdrop close for modals added after initial parse
+  document.querySelectorAll('.modal-bg').forEach(function(bg){
+    bg.addEventListener('click', function(e){
+      if(e.target === bg) bg.classList.remove('open');
+    });
+  });
+
   var _moSave = $('mo-save');
   if(_moSave) _moSave.addEventListener('click', function(){
-  var urn = $('mo-urn').value;
-  var tableName = $('mo-table').value;
-  var status = ($('mo-status-seg').querySelector('button.on') || {}).getAttribute('data-val') || 'not_contacted';
-  var date = $('mo-date').value;
-  var notes = $('mo-notes').value;
+    var tableName = $('mo-table').value;
+    var pkField   = $('mo-pk-field').value;
+    var pkValue   = $('mo-pk-value').value;
+    var status    = ($('mo-status-seg').querySelector('button.on') || {}).getAttribute('data-val') || 'not_contacted';
+    var date      = $('mo-date').value;
+    var notes     = $('mo-notes').value;
 
-  var payload = {
-    outreach_status: status,
-    contacted_at: status !== 'not_contacted' && date ? new Date(date).toISOString() : null,
-    notes: notes || null,
-  };
+    if(!pkValue){ toast('Missing record ID — cannot save', 'err'); return; }
 
-  $('mo-save').textContent = 'Saving…';
+    var payload = {
+      table: tableName,
+      pk_field: pkField,
+      pk_value: pkValue,
+      outreach_status: status,
+      contacted_at: status !== 'not_contacted' && date ? new Date(date).toISOString() : null,
+      notes: notes || null,
+    };
 
-  // Update via Supabase API directly (service role not needed — outreach fields
-  // are not sensitive, and we use the anon key via the existing SB/KEY vars)
-  var url = SB + '/rest/v1/' + tableName + '?urn=eq.' + encodeURIComponent(urn);
-  fetch(url, {
-    method: 'PATCH',
-    headers: {
-      'apikey': KEY,
-      'Authorization': 'Bearer ' + KEY,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation',
-    },
-    body: JSON.stringify(payload),
-  })
-  .then(function(r){
-    if (!r.ok) return r.text().then(function(t){ throw new Error(t); });
-    return r.json();
-  })
-  .then(function(){
-    $('mo-save').textContent = 'Save';
-    $('modal-outreach').classList.remove('open');
-    toast('Outreach updated');
-    // Refresh the relevant list so the dot updates inline
-    if(tableName==='parish_councils') loadParishCouncils();
-    else if(tableName==='independent_schools') loadIndependentSchools();
-    else if(tableName==='kent_schools') loadKentSchools();
-    else if(tableName==='london_schools') loadLondonSchools();
-    else if(tableName==='south_east_state_schools') loadSEStateSchools();
-  })
-  .catch(function(e){
-    $('mo-save').textContent = 'Save';
-    toast('Save failed: '+e.message, 'err');
-  });
+    _moSave.textContent = 'Saving…';
+    _moSave.disabled = true;
+
+    var workerBase = PARISH_WORKER_URL.replace(/\/$/, '').replace(/\/[^/]+$/, '');
+    fetch(workerBase + '/outreach', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Crm-Auth': PARISH_AUTH,
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(function(r){
+      if(!r.ok) return r.text().then(function(t){ throw new Error(t); });
+      return r.json();
+    })
+    .then(function(){
+      _moSave.textContent = 'Save';
+      _moSave.disabled = false;
+      $('modal-outreach').classList.remove('open');
+      toast('Outreach updated');
+      if(tableName==='parish_councils') loadParishCouncils();
+      else if(tableName==='independent_schools') loadIndependentSchools();
+      else if(tableName==='kent_schools') loadKentSchools();
+      else if(tableName==='london_schools') loadLondonSchools();
+      else if(tableName==='south_east_state_schools') loadSEStateSchools();
+    })
+    .catch(function(e){
+      _moSave.textContent = 'Save';
+      _moSave.disabled = false;
+      toast('Save failed: ' + e.message, 'err');
+    });
   }); // end mo-save listener
 
   var _confirmOk = $('confirm-ok');
@@ -2254,7 +2281,8 @@ if(checkAuth()) showApp();
       <button class="mcl modal-close" data-modal="modal-outreach"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="mb">
-      <input type="hidden" id="mo-urn">
+      <input type="hidden" id="mo-pk-field">
+      <input type="hidden" id="mo-pk-value">
       <input type="hidden" id="mo-table">
       <div class="fr"><label>Status</label>
         <div class="outreach-seg" id="mo-status-seg">
