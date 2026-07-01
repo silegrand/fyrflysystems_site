@@ -2358,13 +2358,13 @@ if(checkAuth()) showApp();
   <!-- contact card -->
   <div id="map-card" style="display:none;position:absolute;bottom:24px;right:16px;z-index:9999;background:#1e1e1e;border:1px solid #444;border-radius:10px;padding:14px 16px;min-width:270px;max-width:320px">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-      <div><p id="mc-name" style="font-size:13px;font-weight:600;color:#fff;margin:0 0 2px;font-family:var(--fh)"></p><p id="mc-type" style="font-size:11px;color:#888;margin:0"></p></div>
+      <div><p id="pmap-name" style="font-size:13px;font-weight:600;color:#fff;margin:0 0 2px;font-family:var(--fh)"></p><p id="pmap-type" style="font-size:11px;color:#888;margin:0"></p></div>
       <button onclick="closeMapCard()" style="background:none;border:none;cursor:pointer;color:#888;font-size:18px;line-height:1;padding:0">×</button>
     </div>
-    <div id="mc-details" style="font-size:12px;color:#aaa;line-height:1.7;margin-bottom:10px"></div>
+    <div id="pmap-details" style="font-size:12px;color:#aaa;line-height:1.7;margin-bottom:10px"></div>
     <div style="display:flex;gap:6px;flex-wrap:wrap">
-      <span id="mc-status-badge" style="font-size:11px;padding:2px 8px;border-radius:5px;border:1px solid #444;color:#888"></span>
-      <select id="mc-status-select" onchange="updateProspectStatus()" style="font-size:11px;padding:2px 6px;border:1px solid #555;border-radius:5px;background:#2a2a2a;color:#ddd">
+      <span id="pmap-status-badge" style="font-size:11px;padding:2px 8px;border-radius:5px;border:1px solid #444;color:#888"></span>
+      <select id="pmap-status-select" onchange="updateProspectStatus()" style="font-size:11px;padding:2px 6px;border:1px solid #555;border-radius:5px;background:#2a2a2a;color:#ddd">
         <option value="not_contacted">Not contacted</option>
         <option value="contacted">Contacted</option>
         <option value="responded">Responded</option>
@@ -2568,20 +2568,20 @@ function updateMapCount(){
 
 function showMapCard(d){
   MAP_CARD_DATA = d;
-  $('mc-name').textContent = d.name;
-  $('mc-type').textContent = (MAP_TYPE_LABELS[d.type]||d.type)+(d.county?' · '+d.county:'');
+  $('pmap-name').textContent = d.name;
+  $('pmap-type').textContent = (MAP_TYPE_LABELS[d.type]||d.type)+(d.county?' · '+d.county:'');
   var det='';
   if(d.contact) det+='<div>Contact: <strong style="color:#ddd">'+esc(d.contact)+'</strong></div>';
   if(d.email) det+='<div>Email: <a href="mailto:'+esc(d.email)+'" style="color:#E85D04">'+esc(d.email)+'</a></div>';
   if(d.phone) det+='<div>Phone: '+esc(d.phone)+'</div>';
   if(d.address) det+='<div style="color:#777;font-size:11px;margin-top:4px">'+esc(d.address.slice(0,60))+'</div>';
-  $('mc-details').innerHTML = det;
+  $('pmap-details').innerHTML = det;
   var statusLabels={not_contacted:'Not contacted',contacted:'Contacted',responded:'Responded',qualified:'Qualified',not_interested:'Not interested'};
   var statusCol={not_contacted:'#888',contacted:'#378ADD',responded:'#E85D04',qualified:'#16a34a',not_interested:'#666'};
-  var badge = $('mc-status-badge');
+  var badge = $('pmap-status-badge');
   badge.textContent = statusLabels[d.status]||d.status;
   badge.style.color = statusCol[d.status]||'#888';
-  $('mc-status-select').value = d.status;
+  $('pmap-status-select').value = d.status;
   $('map-card').style.display='block';
 }
 
@@ -2589,10 +2589,10 @@ function closeMapCard(){ $('map-card').style.display='none'; MAP_CARD_DATA=null;
 
 function updateProspectStatus(){
   if(!MAP_CARD_DATA) return;
-  var newStatus = $('mc-status-select').value;
+  var newStatus = $('pmap-status-select').value;
   MAP_CARD_DATA.status = newStatus;
   var statusCol={not_contacted:'#888',contacted:'#378ADD',responded:'#E85D04',qualified:'#16a34a',not_interested:'#666'};
-  var badge=$('mc-status-badge');
+  var badge=$('pmap-status-badge');
   var statusLabels={not_contacted:'Not contacted',contacted:'Contacted',responded:'Responded',qualified:'Qualified',not_interested:'Not interested'};
   badge.textContent=statusLabels[newStatus]||newStatus;
   badge.style.color=statusCol[newStatus]||'#888';
