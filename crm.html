@@ -3093,6 +3093,7 @@ window.addEventListener('appinstalled', function(){
   deferredInstallPrompt = null;
   var btn = $('btn-install-pwa');
   if(btn) btn.style.display='none';
+  localStorage.setItem('fyrfly_installed','1');
   toast('Fyrfly CRM installed as an app');
 });
 function installPWA(){
@@ -3102,6 +3103,36 @@ function installPWA(){
     deferredInstallPrompt=null;
     var btn=$('btn-install-pwa'); if(btn) btn.style.display='none';
   });
+}
+
+// ── MOBILE INSTALL HINT ──
+function showMobileInstallHint(){
+  if(localStorage.getItem('fyrfly_installed')) return;
+  if(localStorage.getItem('fyrfly_install_dismissed')) return;
+  if(window.matchMedia('(display-mode: standalone)').matches) return;
+  if(window.navigator.standalone) return; // iOS already installed
+  var isMobile = window.innerWidth <= 768;
+  if(!isMobile) return;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  var isAndroid = /android/i.test(navigator.userAgent);
+  if(!isIOS && !isAndroid) return;
+  var hint = document.createElement('div');
+  hint.id = 'install-hint';
+  hint.style.cssText = 'position:fixed;bottom:80px;left:12px;right:12px;z-index:8000;background:#1e1e1e;border:1px solid rgba(232,93,4,0.4);border-radius:12px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px';
+  var icon = '<svg viewBox="0 0 24 24" width="20" height="20" flex-shrink="0" fill="none" stroke="#E85D04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+  var msg = isIOS
+    ? 'Install as app: tap <strong style="color:#E85D04">Share</strong> then <strong style="color:#E85D04">Add to Home Screen</strong>'
+    : 'Install as app: tap <strong style="color:#E85D04">⋮ Menu</strong> then <strong style="color:#E85D04">Add to Home Screen</strong>';
+  hint.innerHTML = icon
+    + '<div style="flex:1"><div style="font-size:12px;color:#ddd;line-height:1.5">'+msg+'</div></div>'
+    + '<button onclick="dismissInstallHint()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:18px;cursor:pointer;padding:0;line-height:1;flex-shrink:0">&times;</button>';
+  document.body.appendChild(hint);
+}
+
+function dismissInstallHint(){
+  localStorage.setItem('fyrfly_install_dismissed','1');
+  var hint = document.getElementById('install-hint');
+  if(hint) hint.remove();
 }
 
 // ── INIT ──
@@ -3120,6 +3151,7 @@ window.addEventListener('load', function(){
   updateOfflineBadge();
   if(!navigator.onLine) onOffline();
   else flushOfflineQueue();
+  setTimeout(showMobileInstallHint, 3000);
 });
 </script>
 
