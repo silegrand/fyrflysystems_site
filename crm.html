@@ -1184,7 +1184,7 @@ document.addEventListener('DOMContentLoaded', function(){
     _moSave.textContent = 'Saving…';
     _moSave.disabled = true;
 
-    var workerBase = PARISH_WORKER_URL.replace(/\/$/, '').replace(/\/[^/]+$/, '');
+    var workerBase = PARISH_WORKER_URL.replace(/\/$/, '');
     fetch(workerBase + '/outreach', {
       method: 'PATCH',
       headers: {
@@ -1311,14 +1311,18 @@ function navigate(view){
   if(view==='southeaststateschools') loadSEStateSchools();
 }
 // ── MODALS ──
-document.querySelectorAll('.modal-close').forEach(function(btn){
-  btn.addEventListener('click', function(){
+// Delegated on document so this also covers modals defined further down the
+// page (modal-outreach, modal-confirm) which don't exist yet when this
+// script first runs.
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.modal-close');
+  if(btn){
     var id = btn.getAttribute('data-modal');
-    $(id).classList.remove('open');
-  });
+    if(id) $(id).classList.remove('open');
+  }
 });
-document.querySelectorAll('.modal-bg').forEach(function(bg){
-  bg.addEventListener('click', function(e){ if(e.target===bg) bg.classList.remove('open'); });
+document.addEventListener('click', function(e){
+  if(e.target.classList && e.target.classList.contains('modal-bg')) e.target.classList.remove('open');
 });
 
 // ── SEG PICKERS ──
