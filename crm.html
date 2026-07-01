@@ -6,6 +6,9 @@
 <title>Fyrfly CRM</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -540,7 +543,7 @@ input,select,textarea{font-family:var(--fb);}
 
     <!-- DASHBOARD -->
     <div id="view-dashboard" class="view active">
-      <div class="topbar"><div><div class="pg-ey">Overview</div><div class="pg-ti">Dashboard</div></div></div>
+      <div class="topbar"><div><div class="pg-ey">Overview</div><div class="pg-ti">Dashboard</div></div><div class="tb-right"><button class="btn-p" onclick="openMap()"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>View prospect map</button></div></div>
       <div class="content">
         <div id="dashboard-alerts"></div>
         <div class="stats-row">
@@ -548,6 +551,7 @@ input,select,textarea{font-family:var(--fb);}
           <div class="sc"><div class="sc-l">Companies</div><div class="sc-v" id="d-companies">0</div><div class="sc-s">organisations</div></div>
           <div class="sc"><div class="sc-l">Open pipeline</div><div class="sc-v grad" id="d-pipe">£0k</div><div class="sc-s" id="d-pipe-s">0 deals</div></div>
           <div class="sc"><div class="sc-l">Won</div><div class="sc-v" id="d-won">0</div><div class="sc-s">closed deals</div></div>
+          <div class="sc"><div class="sc-l">Prospects</div><div class="sc-v" id="d-prospects">—</div><div class="sc-s">councils &amp; schools</div></div>
         </div>
         <div class="dg">
           <div class="dc"><div class="dch"><span class="dct">Recent contacts</span><span class="dcc" id="d-ct-count">0 total</span></div><div id="d-recent-contacts"></div></div>
@@ -2325,5 +2329,294 @@ if(checkAuth()) showApp();
     </div>
   </div>
 </div>
+
+<!-- PROSPECT MAP OVERLAY -->
+<div id="map-overlay" style="display:none;position:fixed;inset:0;z-index:9000;background:#1a1a1a;flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#111;border-bottom:1px solid #333;flex-wrap:wrap;gap:8px;flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:600;color:#fff;font-family:var(--fh)">Prospect map</span>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#aaa;cursor:pointer"><input type="checkbox" id="tog-parish" checked onchange="toggleMapLayer('parish')"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#378ADD"></span>Parish councils</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#aaa;cursor:pointer"><input type="checkbox" id="tog-indep" checked onchange="toggleMapLayer('indep')"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#E85D04"></span>Independent schools</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#aaa;cursor:pointer"><input type="checkbox" id="tog-state" checked onchange="toggleMapLayer('state')"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#16a34a"></span>State schools</label>
+      </div>
+      <select id="map-status-filter" onchange="applyMapFilter()" style="font-size:12px;padding:4px 8px;border:1px solid #444;border-radius:6px;background:#222;color:#ddd">
+        <option value="">All statuses</option>
+        <option value="not_contacted">Not contacted</option>
+        <option value="contacted">Contacted</option>
+        <option value="responded">Responded</option>
+        <option value="qualified">Qualified</option>
+      </select>
+      <select id="map-county-filter" onchange="applyMapFilter()" style="font-size:12px;padding:4px 8px;border:1px solid #444;border-radius:6px;background:#222;color:#ddd">
+        <option value="">All counties</option>
+      </select>
+      <span id="map-count" style="font-size:11px;padding:2px 8px;background:#222;border:1px solid #444;border-radius:6px;color:#aaa">Loading...</span>
+    </div>
+    <button onclick="closeMap()" style="background:#333;border:1px solid #555;color:#fff;padding:5px 14px;border-radius:6px;font-size:12px;cursor:pointer">✕ Close</button>
+  </div>
+  <div id="prospect-map" style="flex:1;width:100%"></div>
+  <!-- contact card -->
+  <div id="map-card" style="display:none;position:absolute;bottom:24px;right:16px;z-index:9999;background:#1e1e1e;border:1px solid #444;border-radius:10px;padding:14px 16px;min-width:270px;max-width:320px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+      <div><p id="mc-name" style="font-size:13px;font-weight:600;color:#fff;margin:0 0 2px;font-family:var(--fh)"></p><p id="mc-type" style="font-size:11px;color:#888;margin:0"></p></div>
+      <button onclick="closeMapCard()" style="background:none;border:none;cursor:pointer;color:#888;font-size:18px;line-height:1;padding:0">×</button>
+    </div>
+    <div id="mc-details" style="font-size:12px;color:#aaa;line-height:1.7;margin-bottom:10px"></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span id="mc-status-badge" style="font-size:11px;padding:2px 8px;border-radius:5px;border:1px solid #444;color:#888"></span>
+      <select id="mc-status-select" onchange="updateProspectStatus()" style="font-size:11px;padding:2px 6px;border:1px solid #555;border-radius:5px;background:#2a2a2a;color:#ddd">
+        <option value="not_contacted">Not contacted</option>
+        <option value="contacted">Contacted</option>
+        <option value="responded">Responded</option>
+        <option value="qualified">Qualified</option>
+        <option value="not_interested">Not interested</option>
+      </select>
+      <button onclick="draftProspectEmail()" style="font-size:11px;padding:3px 10px;border:1px solid #E85D04;border-radius:5px;background:rgba(232,93,4,0.1);color:#E85D04;cursor:pointer">Draft email</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+var MAP_INSTANCE = null;
+var MAP_DATA = [];
+var MAP_MARKERS = {};
+var MAP_GROUPS = {};
+var MAP_CARD_DATA = null;
+
+var MAP_COLOURS = { parish:'#378ADD', indep:'#E85D04', state:'#16a34a' };
+var MAP_TYPE_LABELS = { parish:'Parish Council', indep:'Independent School', state:'State School' };
+
+function makeMapIcon(type){
+  var col = MAP_COLOURS[type]||'#888';
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="28" viewBox="0 0 22 28">'
+    +'<path d="M11 0C4.9 0 0 4.9 0 11c0 7.7 11 17 11 17S22 18.7 22 11C22 4.9 17.1 0 11 0z" fill="'+col+'"/>'
+    +'<circle cx="11" cy="11" r="4.5" fill="rgba(255,255,255,0.85)"/>'
+    +'</svg>';
+  return L.divIcon({html:svg,className:'',iconSize:[22,28],iconAnchor:[11,28],popupAnchor:[0,-30]});
+}
+
+function extractPostcode(address){
+  if(!address) return null;
+  var m = address.match(/([A-Z]{1,2}[0-9][0-9A-Z]?\s*[0-9][A-Z]{2})/i);
+  return m ? m[1].trim().toUpperCase() : null;
+}
+
+async function geocodePostcodes(postcodes){
+  var results = {};
+  var chunks = [];
+  for(var i=0;i<postcodes.length;i+=100) chunks.push(postcodes.slice(i,i+100));
+  for(var c=0;c<chunks.length;c++){
+    try{
+      var r = await fetch('https://api.postcodes.io/postcodes',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({postcodes:chunks[c]})
+      });
+      var d = await r.json();
+      if(d.result) d.result.forEach(function(item){
+        if(item.result) results[item.query]={lat:item.result.latitude,lng:item.result.longitude};
+      });
+    }catch(e){ console.error('Geocode error',e); }
+    await new Promise(function(r){setTimeout(r,300);});
+  }
+  return results;
+}
+
+async function loadMapData(){
+  $('map-count').textContent = 'Loading prospects...';
+  var all = [];
+  try{
+    var p = await fetch(PARISH_WORKER_URL,{headers:{'X-Crm-Auth':PARISH_AUTH}});
+    if(p.ok){
+      var parishes = await p.json();
+      if(Array.isArray(parishes)) parishes.forEach(function(r){
+        all.push({id:'pc-'+r.id,name:r.council_name,type:'parish',county:r.county,district:r.district,
+          contact:r.clerk_name,email:r.email,phone:r.phone,address:r.address,
+          status:r.outreach_status||'not_contacted',lat:null,lng:null,postcode:extractPostcode(r.address)});
+      });
+    }
+  }catch(e){ console.error('Parish load error',e); }
+
+  var schoolEndpoints = [
+    {url:SCHOOLS_WORKER_URL,type:'indep'},
+    {url:KENTSCHOOLS_WORKER_URL,type:'state'},
+    {url:LONDONSCHOOLS_WORKER_URL,type:'state'},
+    {url:SESTATESCHOOLS_WORKER_URL,type:'state'},
+  ];
+  for(var i=0;i<schoolEndpoints.length;i++){
+    try{
+      var sr = await fetch(schoolEndpoints[i].url,{headers:{'X-Crm-Auth':PARISH_AUTH}});
+      if(sr.ok){
+        var schools = await sr.json();
+        if(Array.isArray(schools)) schools.forEach(function(r){
+          var isIndep = schoolEndpoints[i].type==='indep';
+          all.push({id:'sc-'+i+'-'+r.id,name:r.school_name||r.name,type:schoolEndpoints[i].type,
+            county:r.county||r.region,contact:r.head_name||r.head,email:r.head_email||r.email,
+            phone:r.phone,address:r.address,status:r.outreach_status||'not_contacted',
+            lat:r.lat||null,lng:r.lng||null,postcode:r.postcode||extractPostcode(r.address)});
+        });
+      }
+    }catch(e){ console.error('School load error',e); }
+  }
+
+  $('map-count').textContent = 'Geocoding '+all.length+' prospects...';
+
+  // Split into already-geocoded and needing geocoding
+  var needGeo = all.filter(function(r){return (!r.lat||!r.lng)&&r.postcode;});
+  var postcodes = needGeo.map(function(r){return r.postcode;}).filter(function(v,i,a){return a.indexOf(v)===i;});
+
+  var geoResults = {};
+  if(postcodes.length>0) geoResults = await geocodePostcodes(postcodes);
+
+  all.forEach(function(r){
+    if((!r.lat||!r.lng)&&r.postcode&&geoResults[r.postcode]){
+      r.lat = geoResults[r.postcode].lat;
+      r.lng = geoResults[r.postcode].lng;
+    }
+  });
+
+  MAP_DATA = all.filter(function(r){return r.lat&&r.lng;});
+
+  // Populate county filter
+  var counties = Array.from(new Set(MAP_DATA.map(function(r){return r.county;}).filter(Boolean))).sort();
+  var cf = $('map-county-filter');
+  cf.innerHTML = '<option value="">All counties</option>';
+  counties.forEach(function(c){cf.innerHTML+='<option>'+esc(c)+'</option>';});
+
+  // Update prospect count on dashboard
+  if($('d-prospects')) $('d-prospects').textContent = all.length.toLocaleString('en-GB');
+
+  plotMapMarkers();
+}
+
+function plotMapMarkers(){
+  if(!MAP_INSTANCE) return;
+  Object.values(MAP_GROUPS).forEach(function(g){MAP_INSTANCE.removeLayer(g);});
+  MAP_GROUPS = {};MAP_MARKERS = {};
+
+  ['parish','indep','state'].forEach(function(type){
+    MAP_GROUPS[type] = L.markerClusterGroup({maxClusterRadius:50,
+      iconCreateFunction:function(cluster){
+        var col = MAP_COLOURS[type]||'#888';
+        var n = cluster.getChildCount();
+        var size = n>100?44:n>50?38:32;
+        return L.divIcon({html:'<div style="background:'+col+';width:'+size+'px;height:'+size+'px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:'+(size>38?13:11)+'px;font-weight:600;border:2px solid rgba(255,255,255,0.4)">'+n+'</div>',className:'',iconSize:[size,size]});
+      }
+    });
+  });
+
+  var statusFilter = ($('map-status-filter')||{}).value||'';
+  var countyFilter = ($('map-county-filter')||{}).value||'';
+  var visible = 0;
+
+  MAP_DATA.forEach(function(d){
+    if(statusFilter&&d.status!==statusFilter) return;
+    if(countyFilter&&d.county!==countyFilter) return;
+    var type = (d.type==='parish')?'parish':(d.type==='indep')?'indep':'state';
+    var m = L.marker([d.lat,d.lng],{icon:makeMapIcon(type)});
+    m.on('click',function(){showMapCard(d);});
+    MAP_GROUPS[type].addLayer(m);
+    MAP_MARKERS[d.id]={marker:m,data:d};
+    visible++;
+  });
+
+  ['parish','indep','state'].forEach(function(type){
+    var tog = document.getElementById('tog-'+type);
+    if(!tog||tog.checked) MAP_INSTANCE.addLayer(MAP_GROUPS[type]);
+  });
+
+  $('map-count').textContent = visible.toLocaleString('en-GB')+' prospects';
+}
+
+function toggleMapLayer(type){
+  if(!MAP_GROUPS[type]) return;
+  var tog = document.getElementById('tog-'+type);
+  if(tog.checked){MAP_INSTANCE.addLayer(MAP_GROUPS[type]);}
+  else{MAP_INSTANCE.removeLayer(MAP_GROUPS[type]);}
+  updateMapCount();
+}
+
+function applyMapFilter(){ plotMapMarkers(); }
+
+function updateMapCount(){
+  var statusFilter = ($('map-status-filter')||{}).value||'';
+  var countyFilter = ($('map-county-filter')||{}).value||'';
+  var vis = MAP_DATA.filter(function(d){
+    if(!document.getElementById('tog-'+d.type)||!document.getElementById('tog-'+d.type).checked) return false;
+    if(statusFilter&&d.status!==statusFilter) return false;
+    if(countyFilter&&d.county!==countyFilter) return false;
+    return true;
+  }).length;
+  $('map-count').textContent = vis.toLocaleString('en-GB')+' prospects';
+}
+
+function showMapCard(d){
+  MAP_CARD_DATA = d;
+  $('mc-name').textContent = d.name;
+  $('mc-type').textContent = (MAP_TYPE_LABELS[d.type]||d.type)+(d.county?' · '+d.county:'');
+  var det='';
+  if(d.contact) det+='<div>Contact: <strong style="color:#ddd">'+esc(d.contact)+'</strong></div>';
+  if(d.email) det+='<div>Email: <a href="mailto:'+esc(d.email)+'" style="color:#E85D04">'+esc(d.email)+'</a></div>';
+  if(d.phone) det+='<div>Phone: '+esc(d.phone)+'</div>';
+  if(d.address) det+='<div style="color:#777;font-size:11px;margin-top:4px">'+esc(d.address.slice(0,60))+'</div>';
+  $('mc-details').innerHTML = det;
+  var statusLabels={not_contacted:'Not contacted',contacted:'Contacted',responded:'Responded',qualified:'Qualified',not_interested:'Not interested'};
+  var statusCol={not_contacted:'#888',contacted:'#378ADD',responded:'#E85D04',qualified:'#16a34a',not_interested:'#666'};
+  var badge = $('mc-status-badge');
+  badge.textContent = statusLabels[d.status]||d.status;
+  badge.style.color = statusCol[d.status]||'#888';
+  $('mc-status-select').value = d.status;
+  $('map-card').style.display='block';
+}
+
+function closeMapCard(){ $('map-card').style.display='none'; MAP_CARD_DATA=null; }
+
+function updateProspectStatus(){
+  if(!MAP_CARD_DATA) return;
+  var newStatus = $('mc-status-select').value;
+  MAP_CARD_DATA.status = newStatus;
+  var statusCol={not_contacted:'#888',contacted:'#378ADD',responded:'#E85D04',qualified:'#16a34a',not_interested:'#666'};
+  var badge=$('mc-status-badge');
+  var statusLabels={not_contacted:'Not contacted',contacted:'Contacted',responded:'Responded',qualified:'Qualified',not_interested:'Not interested'};
+  badge.textContent=statusLabels[newStatus]||newStatus;
+  badge.style.color=statusCol[newStatus]||'#888';
+  toast('Status updated to: '+statusLabels[newStatus]);
+}
+
+function draftProspectEmail(){
+  if(!MAP_CARD_DATA) return;
+  var d = MAP_CARD_DATA;
+  var contact = d.contact||'the relevant contact';
+  var typeLabel = MAP_TYPE_LABELS[d.type]||'organisation';
+  alert('To use the email drafting feature, copy this prompt into Claude:\n\n"Draft a short, professional cold outreach email for Fyrfly Systems to '+d.name+'. Contact: '+contact+'. Email: '+(d.email||'unknown')+'. Fyrfly provides CCTV, access control, and intruder alarm systems for public sector clients. Under 150 words, no hard sell."');
+}
+
+function openMap(){
+  var overlay = $('map-overlay');
+  overlay.style.display='flex';
+  if(!MAP_INSTANCE){
+    setTimeout(function(){
+      MAP_INSTANCE = L.map('prospect-map',{zoomControl:true}).setView([51.5,0.5],8);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution:'© OpenStreetMap contributors',maxZoom:18
+      }).addTo(MAP_INSTANCE);
+      loadMapData();
+    },100);
+  } else {
+    setTimeout(function(){MAP_INSTANCE.invalidateSize();},100);
+  }
+}
+
+function closeMap(){
+  $('map-overlay').style.display='none';
+  closeMapCard();
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&$('map-overlay').style.display!=='none') closeMap();
+});
+</script>
+
 </body>
 </html>
