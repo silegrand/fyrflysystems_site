@@ -1449,23 +1449,7 @@ document.querySelectorAll('.nav-item').forEach(function(btn){
   });
 });
 
-// Prospect group toggle
-var prospectHeader = document.getElementById('prospect-group-header');
-var prospectItems  = document.getElementById('prospect-group-items');
-prospectHeader.addEventListener('click', function(){
-  var open = prospectItems.classList.toggle('open');
-  prospectHeader.classList.toggle('open', open);
-});
-
-function updateProspectGroup(view) {
-  var isProspect = PROSPECT_VIEWS.indexOf(view) !== -1;
-  if (isProspect) {
-    prospectItems.classList.add('open');
-    prospectHeader.classList.add('open', 'has-active');
-  } else {
-    prospectHeader.classList.remove('has-active');
-  }
-}
+// (Prospect group toggle removed — consolidated into single Prospects nav item)
 
 
 function navigate(view){
@@ -1475,7 +1459,6 @@ function navigate(view){
   document.querySelectorAll('.view').forEach(function(d){ d.classList.remove('active'); });
   var v = $('view-'+view);
   if(v) v.classList.add('active');
-  updateProspectGroup(view);
   if(view==='contacts') renderContacts();
   if(view==='companies') renderCompanies();
   if(view==='pipeline') renderPipeline();
@@ -1866,6 +1849,7 @@ loadAll = function(){
 
 // Show pipeline badge in prospect rows
 function prospectDealBadge(source, record){
+  if(!window.PROSPECT_DEAL_MAP) return '';
   var key = source+'|'+(source==='parish_councils' ? record.id : record.urn);
   var entry = window.PROSPECT_DEAL_MAP[key];
   if(!entry) return '';
