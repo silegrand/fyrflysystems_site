@@ -1137,7 +1137,9 @@ function openOutreachModal(record, tableName, displayName) {
   $('modal-outreach').classList.add('open');
 }
 
-$('mo-save').addEventListener('click', function(){
+document.addEventListener('DOMContentLoaded', function(){
+  var _moSave = $('mo-save');
+  if(_moSave) _moSave.addEventListener('click', function(){
   var urn = $('mo-urn').value;
   var tableName = $('mo-table').value;
   var status = ($('mo-status-seg').querySelector('button.on') || {}).getAttribute('data-val') || 'not_contacted';
@@ -1184,7 +1186,16 @@ $('mo-save').addEventListener('click', function(){
     $('mo-save').textContent = 'Save';
     toast('Save failed: '+e.message, 'err');
   });
-});
+  }); // end mo-save listener
+
+  var _confirmOk = $('confirm-ok');
+  if(_confirmOk) _confirmOk.addEventListener('click', function(){
+    $('modal-confirm').classList.remove('open');
+    if(_confirmCb) _confirmCb();
+    _confirmCb = null;
+  });
+
+}); // end DOMContentLoaded
 
 // ── AUTH ──
 function checkAuth(){
@@ -1784,11 +1795,6 @@ function confirm2(title, body, cb){
   _confirmCb = cb;
   $('modal-confirm').classList.add('open');
 }
-$('confirm-ok').addEventListener('click', function(){
-  $('modal-confirm').classList.remove('open');
-  if(_confirmCb) _confirmCb();
-  _confirmCb = null;
-});
 
 
 
