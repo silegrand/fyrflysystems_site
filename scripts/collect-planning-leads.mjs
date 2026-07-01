@@ -81,11 +81,9 @@ function getStartDate() {
 }
 
 async function fetchApplications(areaId, startDate) {
-  // Use the correct PlanIt API parameters based on documented spec
   const url =
     `https://www.planit.org.uk/api/applics/json?` +
-    `auth=anonymous` +
-    `&area_id=${areaId}` +
+    `area_id=${areaId}` +
     `&start_date=${startDate}` +
     `&app_size=Large` +
     `&limit=50` +
@@ -259,8 +257,8 @@ async function main() {
       await new Promise((r) => setTimeout(r, 300));
     }
 
-    // Polite delay between authorities
-    await new Promise((r) => setTimeout(r, 1000));
+    // Polite delay between authorities — 5 seconds to stay within rate limits
+    await new Promise((r) => setTimeout(r, 5000));
   }
 
   console.log(`\n=== Done ===`);
