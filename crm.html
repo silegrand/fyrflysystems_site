@@ -2454,6 +2454,8 @@ async function loadMapData(){
           var headName = headParts.length ? headParts.join(' ') : (r.head_name||null);
           var contactName = headName || r.business_manager_name || r.bursar_name || null;
           var contactEmail = r.head_email || r.business_manager_email || r.bursar_email || r.email || null;
+          if(i===0) console.log('[Map] School sample fields:', Object.keys(r).join(', '));
+          if(i===0&&schools.indexOf(r)<3) console.log('[Map] School record:', r.school_name, r.postcode, contactName);
           all.push({
             id:'sc-'+i+'-'+r.id,
             name:r.school_name||r.name||'Unknown school',
