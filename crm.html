@@ -537,6 +537,7 @@ input,select,textarea{font-family:var(--fb);}
     <div id="view-dashboard" class="view active">
       <div class="topbar"><div><div class="pg-ey">Overview</div><div class="pg-ti">Dashboard</div></div><div class="tb-right"><button class="btn-p" onclick="openMap()"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>View prospect map</button></div></div>
       <div class="content">
+        <div id="due-today-widget"></div>
         <div id="dashboard-alerts"></div>
         <div class="stats-row">
           <div class="sc"><div class="sc-l">Contacts</div><div class="sc-v" id="d-contacts">0</div><div class="sc-s">in CRM</div></div>
@@ -738,7 +739,7 @@ input,select,textarea{font-family:var(--fb);}
           <select id="md-prospect-id" style="flex:1;display:none"><option value="">— Select —</option></select>
         </div>
       </div>
-      <div class="fr"><label>Next action</label><input id="md-next" placeholder="Send proposal by Friday"></div>
+      <div class="fg2"><div class="fr"><label>Next action</label><input id="md-next" placeholder="Send proposal by Friday"></div><div class="fr"><label>Due date</label><input type="date" id="md-next-date"></div></div>
       <div class="fg2"><div class="fr"><label>Expected close date</label><input type="date" id="md-close-date"></div><div class="fr"><label>Owner</label><input id="md-owner" placeholder="Simon"></div></div>
       <div class="fr"><label>Linked company</label><select id="md-company"><option value="">— None —</option></select></div>
       <div class="fr"><label>Notes</label><textarea id="md-notes" placeholder="Requirements, constraints, background&hellip;"></textarea></div>
@@ -1532,6 +1533,92 @@ function updateSidebar(){
 
 
 // ── DASHBOARD ALERTS ──
+function renderDueToday(){
+  var el2 = $('due-today-widget');
+  if(!el2) return;
+
+  var today = new Date(); today.setHours(0,0,0,0);
+  var todayStr = today.toISOString().slice(0,10);
+
+  // Deals with a next_action_date today or overdue
+  var dealItems = (DB.deals||[]).filter(function(d){
+    if(!d.next_action_date) return false;
+    if(['Won','Lost'].indexOf(d.stage)!==-1) return false;
+    return d.next_action_date <= todayStr;
+  }).map(function(d){
+    var isOverdue = d.next_action_date < todayStr;
+    return {
+      type:'deal', overdue:isOverdue, date:d.next_action_date,
+      title:d.next_action || 'Follow up', subtitle:d.name, record:d
+    };
+  });
+
+  // Maintenance contracts renewing today or overdue (not already shown as a banner, but useful here too if due very soon)
+  var maintItems = (DB.maintenance||[]).filter(function(m){
+    if(!m.renewal_date || m.status==='Lapsed') return false;
+    var in7 = new Date(today); in7.setDate(in7.getDate()+7);
+    var rd = new Date(m.renewal_date);
+    return rd <= in7;
+  }).map(function(m){
+    var isOverdue = new Date(m.renewal_date) < today;
+    return {
+      type:'maintenance', overdue:isOverdue, date:m.renewal_date,
+      title:(isOverdue?'Renewal overdue':'Renewal due soon'), subtitle:m.name, record:m
+    };
+  });
+
+  var items = dealItems.concat(maintItems).sort(function(a,b){
+    if(a.overdue !== b.overdue) return a.overdue ? -1 : 1;
+    return a.date.localeCompare(b.date);
+  });
+
+  if(items.length===0){
+    el2.innerHTML = '';
+    return;
+  }
+
+  var overdueCount = items.filter(function(i){ return i.overdue; }).length;
+  var dueCount = items.length - overdueCount;
+
+  var html = '<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;margin-bottom:1rem">';
+  html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">';
+  html += '<div style="font-size:13px;font-weight:600;color:#fff;font-family:var(--fh)">Due today'+(overdueCount?' &middot; <span style="color:#FCA5A5">'+overdueCount+' overdue</span>':'')+'</div>';
+  html += '<span style="font-size:11px;color:rgba(255,255,255,0.3)">'+items.length+' item'+(items.length===1?'':'s')+'</span>';
+  html += '</div>';
+  html += '<div style="display:flex;flex-direction:column;gap:6px">';
+
+  items.slice(0,8).forEach(function(item){
+    var col = item.overdue ? '#FCA5A5' : '#93C5FD';
+    var dateLabel = item.date===todayStr ? 'Today' : (item.overdue ? fmtD(item.date) : fmtD(item.date));
+    var icon = item.type==='maintenance'
+      ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>'
+      : '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>';
+    html += '<div class="due-today-row" data-type="'+item.type+'" data-id="'+(item.record.id||'')+'" style="display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:6px;cursor:pointer" onmouseover="this.style.background=\'rgba(255,255,255,0.04)\'" onmouseout="this.style.background=\'transparent\'">';
+    html += '<div style="flex-shrink:0">'+icon+'</div>';
+    html += '<div style="flex:1;min-width:0">';
+    html += '<div style="font-size:12px;color:#eee;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(item.title)+'</div>';
+    html += '<div style="font-size:11px;color:rgba(255,255,255,0.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(item.subtitle)+'</div>';
+    html += '</div>';
+    html += '<span style="font-size:10px;color:'+col+';flex-shrink:0;white-space:nowrap">'+dateLabel+'</span>';
+    html += '</div>';
+  });
+
+  html += '</div>';
+  if(items.length>8) html += '<div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:6px">+'+(items.length-8)+' more</div>';
+  html += '</div>';
+
+  el2.innerHTML = html;
+
+  // Wire click-through to open the relevant deal or maintenance record
+  el2.querySelectorAll('.due-today-row').forEach(function(row, idx){
+    row.addEventListener('click', function(){
+      var item = items[idx];
+      if(item.type==='deal'){ navigate('pipeline'); setTimeout(function(){ openDealModal(item.record); },100); }
+      else { navigate('maintenance'); setTimeout(function(){ if(typeof openMaintModal==='function') openMaintModal(item.record); },100); }
+    });
+  });
+}
+
 function renderDashboardAlerts(){
   var el2 = $('dashboard-alerts');
   if(!el2) return;
@@ -1590,6 +1677,7 @@ function renderDashboardAlerts(){
 
 // ── DASHBOARD ──
 function renderDashboard(){
+  renderDueToday();
   var open = DB.deals.filter(function(d){ return ['Won','Lost'].indexOf(d.stage)===-1; });
   var won = DB.deals.filter(function(d){ return d.stage==='Won'; });
   var pipe = open.reduce(function(s,d){ return s+(Number(d.value)||0); },0);
@@ -2102,7 +2190,11 @@ function renderPipeline(){
     co.innerHTML=coLines.length?coLines.join('<br>'):'—'; tr.appendChild(co);
     var cd=el('td',{}); cd.innerHTML=d.close_date?'<span style="font-size:12px">'+fmtD(d.close_date)+'</span>':'—'; tr.appendChild(cd);
     var ow=el('td',{}); ow.innerHTML=d.owner?'<span style="font-size:12px;color:rgba(255,255,255,0.45)">'+esc(d.owner)+'</span>':'—'; tr.appendChild(ow);
-    var nx=el('td',{}); nx.innerHTML='<span style="font-size:12px;color:rgba(255,255,255,0.38)">'+esc(d.next_action||'—')+'</span>'; tr.appendChild(nx);
+    var nx=el('td',{});
+    var nxDate = d.next_action_date ? fmtD(d.next_action_date) : '';
+    var isOverdue = d.next_action_date && new Date(d.next_action_date) < new Date(new Date().toDateString());
+    nx.innerHTML='<span style="font-size:12px;color:rgba(255,255,255,0.38)">'+esc(d.next_action||'—')+'</span>'+(nxDate?'<br><span style="font-size:10px;color:'+(isOverdue?'#FCA5A5':'rgba(255,255,255,0.3)')+'">'+(isOverdue?'Overdue: ':'Due ')+nxDate+'</span>':'');
+    tr.appendChild(nx);
     tr.addEventListener('click',function(){ openDealModal(d); });
     tbody.appendChild(tr);
   });
@@ -2124,6 +2216,7 @@ function openDealModal(d){
   $('md-value').value=d?d.value:'';
   $('md-prob').value=d?d.probability:'';
   $('md-next').value=d?d.next_action:'';
+  $('md-next-date').value=d?(d.next_action_date||''):'';
   $('md-notes').value=d?d.notes:'';
   $('md-close-date').value=d?(d.close_date||''):'';
   $('md-owner').value=d?(d.owner||''):'';
@@ -2158,7 +2251,7 @@ $('md-save').addEventListener('click', function(){
   var name=$('md-name').value.trim(); if(!name){$('md-name').focus();return;}
   var id=$('md-id').value;
   var newStage=$('md-stage-seg').getValue();
-  var data={name:name,stage:newStage,sector:$('md-sector-seg').getValue(),value:$('md-value').value||null,probability:$('md-prob').value||null,contact_id:$('md-contact').value||null,company_id:$('md-company').value||null,next_action:$('md-next').value,notes:$('md-notes').value,close_date:$('md-close-date').value||null,owner:$('md-owner').value||null,prospect_table:$('md-prospect-source').value||null,prospect_id:$('md-prospect-id').value||null};
+  var data={name:name,stage:newStage,sector:$('md-sector-seg').getValue(),value:$('md-value').value||null,probability:$('md-prob').value||null,contact_id:$('md-contact').value||null,company_id:$('md-company').value||null,next_action:$('md-next').value,next_action_date:$('md-next-date').value||null,notes:$('md-notes').value,close_date:$('md-close-date').value||null,owner:$('md-owner').value||null,prospect_table:$('md-prospect-source').value||null,prospect_id:$('md-prospect-id').value||null};
   $('md-save').textContent='Saving…';
   var p=id?api('deals','PATCH',data,'?id=eq.'+id):api('deals','POST',data);
   p.then(function(res){
