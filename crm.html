@@ -249,14 +249,10 @@ input,select,textarea{font-family:var(--fb);}
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-  /* App layout: stack vertically, sidebar becomes bottom nav */
-  #app-screen{grid-template-columns:1fr;grid-template-rows:1fr auto;}
-  .sb{order:2;flex-direction:row;border-right:none;border-top:1px solid var(--bdr);padding:0;overflow-x:auto;}
-  .sb-top,.sb-sec,.sb-bot{display:none;}
-  .nav-item{flex-direction:column;gap:3px;padding:10px 8px;font-size:9px;letter-spacing:0.03em;min-width:60px;align-items:center;justify-content:center;flex:1;}
-  .nav-item svg{width:18px;height:18px;}
-  .nav-item.active::before{top:0;left:4px;right:4px;bottom:auto;width:auto;height:3px;border-radius:0 0 3px 3px;}
-  .main{order:1;overflow-y:auto;min-height:0;}
+  /* Hide sidebar entirely — replaced by burger bottom bar */
+  .sb{display:none;}
+  #app-screen{grid-template-columns:1fr;grid-template-rows:1fr;}
+  .main{overflow-y:auto;min-height:0;padding-bottom:64px;}
 
   /* Topbar */
   .topbar{padding:0.85rem 1rem;flex-wrap:wrap;gap:8px;}
@@ -279,67 +275,59 @@ input,select,textarea{font-family:var(--fb);}
   .fc-wrap{grid-template-columns:1fr;}
   .fc-val{font-size:1.5rem;}
 
-  /* Pipeline topbar: filters wrap below title on small screens */
+  /* Pipeline topbar */
   #view-pipeline .topbar{flex-direction:column;align-items:flex-start;gap:10px;}
   #view-pipeline .tb-right{width:100%;display:flex;flex-wrap:wrap;gap:6px;}
   #view-pipeline .tb-right .fsel{flex:1;min-width:110px;}
   #view-pipeline .tb-right .btn-g,#view-pipeline .tb-right .btn-p{flex-shrink:0;}
 
-  /* Forecast bar rows: stack label above bar on mobile */
+  /* Forecast bars */
   .fc-bar-row{flex-direction:column;align-items:stretch;gap:5px;margin-bottom:14px;}
   .fc-bar-label{width:auto;font-size:10px;color:rgba(255,255,255,0.55);}
   .fc-bar-track{height:10px;}
-  /* Hide dual values, show only weighted on mobile */
   .fc-bar-vals span:last-child{display:none;}
   .fc-bar-vals{margin-top:3px;}
-
-  /* Forecast note: smaller on mobile */
   .fc-note{font-size:10px;}
-
-  /* Legend: tighter */
   .fc-legend{gap:6px;}
   .fc-leg-item{font-size:10px;}
 
-  /* Tables: horizontal scroll */
+  /* Tables */
   .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .tw table{min-width:500px;}
 
-  /* Filters row: wrap */
+  /* Filters */
   .frow{flex-wrap:wrap;}
   .srch{width:100%;min-width:0;}
 
-  /* Detail layout: single column */
+  /* Detail layout */
   .dl{grid-template-columns:1fr;}
-
-  /* Two-col form grid: single column on small screens */
   .fg2{grid-template-columns:1fr;}
 
-  /* Modal: full width with small margin */
+  /* Modals */
   .modal-bg{padding:0.5rem;}
   .modal{max-height:95vh;border-radius:12px;}
   .mb{padding:1rem;}
   .mh{padding:1rem;}
   .mf{padding:0.75rem 1rem;}
 
-  /* Seg pickers: wrap tightly */
   .seg{gap:5px;}
   .seg button{padding:4px 10px;font-size:11px;}
 
-  /* Login card */
   .lcard{padding:1.75rem 1.25rem;}
   .ltitle{font-size:1.25rem;}
+
+  /* Show mobile bottom bar and burger panel */
+  #mob-bottom-bar{display:flex !important;}
+  #mob-fab{bottom:72px;}
 }
 
 @media(max-width:380px){
   .stats-row{grid-template-columns:1fr;}
-  .nav-item{min-width:50px;font-size:8px;}
 }
 
 @media(max-width:768px){
   /* Hide dashboard quick-log on mobile — use FAB instead */
   #dash-quick-log{ display:none; }
-  /* FAB */
-  #mob-fab{ display:flex; }
 }
 @media(min-width:769px){
   #mob-fab{ display:none; }
@@ -2918,7 +2906,141 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 
-<!-- MOBILE FAB + QUICK-LOG PANEL -->
+<!-- MOBILE BOTTOM BAR + BURGER MENU -->
+<div id="mob-bottom-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:7000;background:#111;border-top:1px solid rgba(255,255,255,0.08);padding:0 16px env(safe-area-inset-bottom,0);height:56px;align-items:center;justify-content:space-between">
+  <div style="display:flex;align-items:center;gap:8px">
+    <div style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#E85D04)"></div>
+    <span id="mob-current-view" style="font-size:13px;font-weight:600;color:#fff;font-family:var(--fh)">Dashboard</span>
+  </div>
+  <button onclick="openBurgerMenu()" style="background:none;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+    <span style="display:block;width:22px;height:2px;background:#fff;border-radius:1px"></span>
+    <span style="display:block;width:16px;height:2px;background:rgba(255,255,255,0.5);border-radius:1px"></span>
+    <span style="display:block;width:19px;height:2px;background:rgba(255,255,255,0.7);border-radius:1px"></span>
+  </button>
+</div>
+
+<!-- BURGER NAV PANEL -->
+<div id="mob-burger-overlay" style="display:none;position:fixed;inset:0;z-index:8800;background:rgba(0,0,0,0.55)" onclick="closeBurgerMenu()"></div>
+<div id="mob-burger-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8900;background:#161616;border-radius:20px 20px 0 0;padding:0 0 env(safe-area-inset-bottom,0);transform:translateY(100%);transition:transform 0.3s ease">
+  <div style="width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:12px auto 4px"></div>
+  <div style="padding:8px 0 16px">
+    <div style="padding:4px 20px 10px;font-size:10px;font-weight:700;letter-spacing:0.08em;color:rgba(255,255,255,0.3);text-transform:uppercase">Navigation</div>
+    <button onclick="mobNavigate('dashboard')" class="mob-nav-btn" data-view="dashboard">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+      Dashboard
+    </button>
+    <button onclick="mobNavigate('contacts')" class="mob-nav-btn" data-view="contacts">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Contacts
+    </button>
+    <button onclick="mobNavigate('companies')" class="mob-nav-btn" data-view="companies">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Companies
+    </button>
+    <button onclick="mobNavigate('pipeline')" class="mob-nav-btn" data-view="pipeline">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Pipeline
+    </button>
+    <button onclick="mobNavigate('activities')" class="mob-nav-btn" data-view="activities">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Activity log
+    </button>
+    <button onclick="mobNavigate('maintenance')" class="mob-nav-btn" data-view="maintenance">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      Maintenance
+    </button>
+    <button onclick="mobNavigate('prospects')" class="mob-nav-btn" data-view="prospects">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      Prospects
+    </button>
+    <div style="margin:8px 16px 4px;border-top:1px solid rgba(255,255,255,0.06)"></div>
+    <button onclick="openMap();closeBurgerMenu();" class="mob-nav-btn" style="color:rgba(232,93,4,0.8)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Prospect map
+    </button>
+    <button onclick="doLogout();closeBurgerMenu();" class="mob-nav-btn" style="color:rgba(255,255,255,0.3)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sign out
+    </button>
+  </div>
+</div>
+
+<style>
+.mob-nav-btn{
+  display:flex;align-items:center;gap:14px;width:100%;padding:13px 20px;
+  background:none;border:none;color:#fff;font-size:15px;cursor:pointer;text-align:left;
+  font-family:var(--ff);transition:background 0.15s;
+}
+.mob-nav-btn:active{background:rgba(255,255,255,0.06);}
+.mob-nav-btn.active{color:#E85D04;}
+.mob-nav-btn svg{flex-shrink:0;stroke:currentColor;}
+</style>
+
+<script>
+var MOB_BURGER_OPEN = false;
+
+function openBurgerMenu(){
+  MOB_BURGER_OPEN = true;
+  var overlay = document.getElementById('mob-burger-overlay');
+  var panel = document.getElementById('mob-burger-panel');
+  overlay.style.display = 'block';
+  panel.style.display = 'block';
+  setTimeout(function(){ panel.style.transform = 'translateY(0)'; }, 10);
+  // Highlight active nav button
+  var current = document.querySelector('.mob-nav-btn.active');
+  if(current) current.classList.remove('active');
+  var activeView = document.querySelector('#app-screen .view.active');
+  if(activeView){
+    var viewId = activeView.id.replace('view-','');
+    var btn = document.querySelector('.mob-nav-btn[data-view="'+viewId+'"]');
+    if(btn) btn.classList.add('active');
+  }
+}
+
+function closeBurgerMenu(){
+  MOB_BURGER_OPEN = false;
+  var panel = document.getElementById('mob-burger-panel');
+  panel.style.transform = 'translateY(100%)';
+  setTimeout(function(){
+    document.getElementById('mob-burger-overlay').style.display = 'none';
+    panel.style.display = 'none';
+  }, 300);
+}
+
+function mobNavigate(view){
+  closeBurgerMenu();
+  setTimeout(function(){
+    navigate(view);
+    // Update bottom bar label
+    var labels = {
+      dashboard:'Dashboard',contacts:'Contacts',companies:'Companies',
+      pipeline:'Pipeline',activities:'Activity log',maintenance:'Maintenance',
+      prospects:'Prospects'
+    };
+    var label = document.getElementById('mob-current-view');
+    if(label) label.textContent = labels[view]||view;
+  }, 50);
+}
+
+function doLogout(){
+  // Use existing logout logic
+  var btn = document.getElementById('logout-btn');
+  if(btn) btn.click();
+}
+
+// Update bottom bar label when navigate() is called
+var _origNavigate = navigate;
+navigate = function(view){
+  _origNavigate(view);
+  var labels = {
+    dashboard:'Dashboard',contacts:'Contacts',companies:'Companies',
+    pipeline:'Pipeline',activities:'Activity log',maintenance:'Maintenance',
+    prospects:'Prospects'
+  };
+  var label = document.getElementById('mob-current-view');
+  if(label && labels[view]) label.textContent = labels[view];
+};
+</script>
 <button id="mob-fab" onclick="openMobQuickLog()" style="display:none;position:fixed;bottom:80px;right:16px;z-index:8000;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;font-size:24px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(232,93,4,0.4)">+</button>
 
 <div id="mob-quick-panel" style="display:none;position:fixed;inset:0;z-index:8500;background:rgba(0,0,0,0.6)" onclick="if(event.target===this)closeMobQuickLog()">
