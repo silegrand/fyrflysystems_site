@@ -3012,25 +3012,15 @@ function submitMobQuickLog(){
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('/sw.js').then(function(reg){
-      console.log('[PWA] Service worker registered, scope:', reg.scope);
+      console.log('[PWA] Service worker registered');
     }).catch(function(err){
-      console.warn('[PWA] Service worker registration failed:', err);
+      console.warn('[PWA] SW registration failed:', err);
     });
-  });
-
-  // Listen for messages from service worker
-  navigator.serviceWorker.addEventListener('message', function(event){
-    if(event.data && event.data.type === 'QUEUE_ACTIVITY'){
-      queueOfflineActivity(event.data.payload);
-    }
-    if(event.data && event.data.type === 'FLUSH_QUEUE'){
-      flushOfflineQueue();
-    }
   });
 }
 
 // ── OFFLINE QUEUE ──
-// Activities logged when offline are stored here and synced on reconnect
+// Activities logged when offline are stored in localStorage and synced on reconnect
 var OFFLINE_QUEUE_KEY = 'fyrfly_offline_queue';
 
 function queueOfflineActivity(payload){
@@ -3039,7 +3029,7 @@ function queueOfflineActivity(payload){
     q.push({payload:payload, queued_at:new Date().toISOString()});
     localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(q));
     updateOfflineBadge();
-    toast('Saved offline — will sync when connected', 'ok');
+    toast('Saved offline — will sync when reconnected');
   }catch(e){ console.warn('[PWA] Could not queue activity:', e); }
 }
 
@@ -3047,13 +3037,11 @@ function flushOfflineQueue(){
   try{
     var q = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY)||'[]');
     if(q.length===0) return;
-    console.log('[PWA] Flushing', q.length, 'queued activities');
     var remaining = [];
     var promises = q.map(function(item){
       return api('activities','POST',item.payload).then(function(){
         console.log('[PWA] Synced offline activity');
       }).catch(function(e){
-        console.warn('[PWA] Failed to sync activity:', e);
         remaining.push(item);
       });
     });
@@ -3062,7 +3050,7 @@ function flushOfflineQueue(){
       updateOfflineBadge();
       if(remaining.length===0 && q.length>0){
         toast(q.length+' offline activit'+(q.length===1?'y':'ies')+' synced');
-        renderWeekActivity();
+        if(typeof renderWeekActivity==='function') renderWeekActivity();
       }
     });
   }catch(e){ console.warn('[PWA] Could not flush queue:', e); }
@@ -3072,29 +3060,24 @@ function updateOfflineBadge(){
   try{
     var q = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY)||'[]');
     var fab = $('mob-fab');
-    if(fab){
-      fab.innerHTML = q.length>0
-        ? '+<span style="position:absolute;top:-2px;right:-2px;background:#FCA5A5;color:#111;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700">'+q.length+'</span>'
-        : '+';
+    if(!fab) return;
+    if(q.length>0){
+      fab.innerHTML = '+<span style="position:absolute;top:-2px;right:-2px;background:#FCA5A5;color:#111;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1">'+q.length+'</span>';
       fab.style.position='fixed';
+    } else {
+      fab.textContent='+';
     }
   }catch(e){}
 }
 
-// ── CONNECTIVITY DETECTION ──
+// ── CONNECTIVITY ──
 function onOnline(){
-  $('offline-banner') && ($('offline-banner').style.display='none');
+  var b=$('offline-banner'); if(b) b.style.display='none';
   flushOfflineQueue();
-  if(navigator.serviceWorker && navigator.serviceWorker.controller){
-    navigator.serviceWorker.controller.postMessage({type:'SYNC_QUEUE'});
-  }
 }
-
 function onOffline(){
-  var banner = $('offline-banner');
-  if(banner) banner.style.display='flex';
+  var b=$('offline-banner'); if(b) b.style.display='flex';
 }
-
 window.addEventListener('online', onOnline);
 window.addEventListener('offline', onOffline);
 
@@ -3106,29 +3089,37 @@ window.addEventListener('beforeinstallprompt', function(e){
   var btn = $('btn-install-pwa');
   if(btn) btn.style.display='inline-flex';
 });
-
 window.addEventListener('appinstalled', function(){
+  deferredInstallPrompt = null;
   var btn = $('btn-install-pwa');
   if(btn) btn.style.display='none';
-  deferredInstallPrompt = null;
   toast('Fyrfly CRM installed as an app');
 });
-
 function installPWA(){
   if(!deferredInstallPrompt) return;
   deferredInstallPrompt.prompt();
-  deferredInstallPrompt.userChoice.then(function(result){
-    deferredInstallPrompt = null;
-    var btn = $('btn-install-pwa');
-    if(btn) btn.style.display='none';
+  deferredInstallPrompt.userChoice.then(function(){
+    deferredInstallPrompt=null;
+    var btn=$('btn-install-pwa'); if(btn) btn.style.display='none';
   });
 }
 
-// Check and flush any queued items on load
+// ── INIT ──
+// Patch quickLog and submitMobQuickLog to queue offline
+var _origApi = api;
+function apiWithOfflineQueue(table, method, body, query){
+  if(method==='POST' && table==='activities' && !navigator.onLine){
+    queueOfflineActivity(body);
+    return Promise.resolve([{id:'offline-'+Date.now()}]);
+  }
+  return _origApi(table, method, body, query);
+}
+api = apiWithOfflineQueue;
+
 window.addEventListener('load', function(){
   updateOfflineBadge();
-  if(navigator.onLine) flushOfflineQueue();
   if(!navigator.onLine) onOffline();
+  else flushOfflineQueue();
 });
 </script>
 
