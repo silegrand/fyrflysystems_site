@@ -2450,11 +2450,24 @@ async function loadMapData(){
       if(sr.ok){
         var schools = await sr.json();
         if(Array.isArray(schools)) schools.forEach(function(r){
-          var isIndep = schoolEndpoints[i].type==='indep';
-          all.push({id:'sc-'+i+'-'+r.id,name:r.school_name||r.name,type:schoolEndpoints[i].type,
-            county:r.county||r.region,contact:r.head_name||r.head,email:r.head_email||r.email,
-            phone:r.phone,address:r.address,status:r.outreach_status||'not_contacted',
-            lat:r.lat||null,lng:r.lng||null,postcode:r.postcode||extractPostcode(r.address)});
+          var headParts = [r.head_title,r.head_first_name,r.head_last_name].filter(Boolean);
+          var headName = headParts.length ? headParts.join(' ') : (r.head_name||null);
+          var contactName = headName || r.business_manager_name || r.bursar_name || null;
+          var contactEmail = r.head_email || r.business_manager_email || r.bursar_email || r.email || null;
+          all.push({
+            id:'sc-'+i+'-'+r.id,
+            name:r.school_name||r.name||'Unknown school',
+            type:schoolEndpoints[i].type,
+            county:r.county||r.region||null,
+            contact:contactName,
+            email:contactEmail,
+            phone:r.phone||null,
+            address:r.address||null,
+            status:r.outreach_status||'not_contacted',
+            lat:r.lat||null,
+            lng:r.lng||null,
+            postcode:r.postcode||extractPostcode(r.address)
+          });
         });
       }
     }catch(e){ console.error('School load error',e); }
