@@ -556,6 +556,21 @@ input,select,textarea{font-family:var(--fb);}
         <div class="dg">
           <div class="dc"><div class="dch"><span class="dct">Recent contacts</span><span class="dcc" id="d-ct-count">0 total</span></div><div id="d-recent-contacts"></div></div>
           <div class="dc"><div class="dch"><span class="dct">Pipeline by stage</span></div><div class="pm" id="d-pipe-stages"></div></div>
+          <div class="dc"><div class="dch"><span class="dct">This week's activity</span></div><div id="d-week-activity"><p style="font-size:12px;color:rgba(255,255,255,0.28)">Loading&hellip;</p></div></div>
+          <div class="dc"><div class="dch"><span class="dct">Prospect coverage</span></div><div id="d-prospect-coverage"><p style="font-size:12px;color:rgba(255,255,255,0.28)">Open map to load&hellip;</p></div></div>
+        </div>
+        <!-- QUICK LOG BAR -->
+        <div style="margin-top:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px">
+          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Quick log</div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <select id="ql-type" style="font-size:12px;padding:5px 8px;border:1px solid rgba(255,255,255,0.12);border-radius:6px;background:#1a1a1a;color:#ddd;min-width:90px">
+              <option>Call</option><option>Email</option><option>Meeting</option><option>Note</option>
+            </select>
+            <input id="ql-contact" placeholder="Contact name&hellip;" style="font-size:12px;padding:5px 10px;border:1px solid rgba(255,255,255,0.12);border-radius:6px;background:#1a1a1a;color:#ddd;flex:1;min-width:140px">
+            <input id="ql-note" placeholder="What happened&hellip;" style="font-size:12px;padding:5px 10px;border:1px solid rgba(255,255,255,0.12);border-radius:6px;background:#1a1a1a;color:#ddd;flex:2;min-width:180px">
+            <button onclick="quickLog()" style="font-size:12px;padding:5px 14px;border:none;border-radius:6px;background:linear-gradient(135deg,#C8102E,#E85D04);color:#fff;cursor:pointer;white-space:nowrap">Log it</button>
+          </div>
+          <div id="ql-feedback" style="font-size:11px;color:#16a34a;margin-top:6px;display:none"></div>
         </div>
       </div>
     </div>
@@ -1472,6 +1487,100 @@ function renderDashboard(){
     row.innerHTML = '<div class="prs">'+x.s+'</div><div class="prb"><div class="prbi" style="width:'+Math.round(x.n/mx*100)+'%"></div></div><div class="prn">'+x.n+'</div>';
     ps.appendChild(row);
   });
+
+  // Weekly activity summary
+  renderWeekActivity();
+}
+
+function renderWeekActivity(){
+  var el2 = $('d-week-activity');
+  if(!el2) return;
+  var weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate()-7);
+  api('activities','GET',null,'?order=created_at.desc&limit=200').then(function(acts){
+    if(!Array.isArray(acts)||acts.length===0){
+      el2.innerHTML='<p style="font-size:12px;color:rgba(255,255,255,0.28)">No activity this week yet.</p>';
+      return;
+    }
+    var recent = acts.filter(function(a){ return new Date(a.created_at)>=weekAgo; });
+    var counts = {};
+    recent.forEach(function(a){ var t=a.type||'Note'; counts[t]=(counts[t]||0)+1; });
+    var types = ['Call','Email','Meeting','Note','Proposal'];
+    var html = '<div style="display:flex;flex-direction:column;gap:6px">';
+    types.forEach(function(t){
+      var n = counts[t]||0;
+      var pct = recent.length>0 ? Math.round(n/recent.length*100) : 0;
+      var cols={Call:'#378ADD',Email:'#E85D04',Meeting:'#16a34a',Note:'rgba(255,255,255,0.3)',Proposal:'#9333ea'};
+      html+='<div style="display:flex;align-items:center;gap:8px">'
+        +'<span style="font-size:11px;color:rgba(255,255,255,0.5);width:52px">'+t+'</span>'
+        +'<div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px">'
+        +'<div style="width:'+pct+'%;height:6px;background:'+cols[t]+';border-radius:3px;transition:width 0.4s"></div></div>'
+        +'<span style="font-size:11px;color:rgba(255,255,255,0.5);width:16px;text-align:right">'+n+'</span>'
+        +'</div>';
+    });
+    html+='<div style="margin-top:4px;font-size:11px;color:rgba(255,255,255,0.3)">'+recent.length+' activities in the last 7 days</div>';
+    html+='</div>';
+    el2.innerHTML=html;
+  }).catch(function(){ el2.innerHTML='<p style="font-size:12px;color:rgba(255,255,255,0.28)">Could not load activity.</p>'; });
+}
+
+function updateProspectCoverage(){
+  var el2 = $('d-prospect-coverage');
+  if(!el2||MAP_DATA.length===0) return;
+  var counties = {};
+  MAP_DATA.forEach(function(d){
+    if(!d.county) return;
+    if(!counties[d.county]) counties[d.county]={total:0,contacted:0};
+    counties[d.county].total++;
+    if(d.status&&d.status!=='not_contacted') counties[d.county].contacted++;
+  });
+  var sorted = Object.keys(counties).sort(function(a,b){return counties[b].total-counties[a].total;}).slice(0,8);
+  var max = sorted.reduce(function(m,c){return Math.max(m,counties[c].total);},1);
+  var html='<div style="display:flex;flex-direction:column;gap:5px">';
+  sorted.forEach(function(county){
+    var d=counties[county];
+    var pct=Math.round(d.total/max*100);
+    var cpct=d.total>0?Math.round(d.contacted/d.total*100):0;
+    html+='<div style="display:flex;align-items:center;gap:8px">'
+      +'<span style="font-size:11px;color:rgba(255,255,255,0.5);width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(county)+'</span>'
+      +'<div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;position:relative">'
+      +'<div style="width:'+pct+'%;height:6px;background:rgba(255,255,255,0.12);border-radius:3px"></div>'
+      +'<div style="position:absolute;top:0;left:0;width:'+Math.round(cpct*pct/100)+'%;height:6px;background:#E85D04;border-radius:3px"></div>'
+      +'</div>'
+      +'<span style="font-size:11px;color:rgba(255,255,255,0.4);width:28px;text-align:right">'+d.total+'</span>'
+      +'</div>';
+  });
+  html+='<div style="margin-top:4px;display:flex;gap:12px">'
+    +'<span style="font-size:10px;color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:rgba(255,255,255,0.12)"></span>Total</span>'
+    +'<span style="font-size:10px;color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#E85D04"></span>Contacted</span>'
+    +'</div></div>';
+  el2.innerHTML=html;
+}
+
+function quickLog(){
+  var type = $('ql-type').value;
+  var contactRaw = ($('ql-contact').value||'').trim();
+  var note = ($('ql-note').value||'').trim();
+  var fb = $('ql-feedback');
+  if(!note){ fb.style.display='block'; fb.style.color='#ef4444'; fb.textContent='Add a note before logging.'; return; }
+  fb.style.display='none';
+  // Find contact by name if entered
+  var contactId = null;
+  if(contactRaw){
+    var found = DB.contacts.find(function(c){ return c.name.toLowerCase().indexOf(contactRaw.toLowerCase())!==-1; });
+    if(found) contactId = found.id;
+  }
+  api('activities','POST',{
+    contact_id: contactId||null,
+    type: type,
+    note: (contactRaw&&!contactId?'['+contactRaw+'] ':'')+note,
+    created_at: new Date().toISOString()
+  }).then(function(){
+    fb.style.display='block'; fb.style.color='#16a34a';
+    fb.textContent = type+' logged'+(contactRaw?' for '+(contactId?contactRaw:'unmatched contact "'+contactRaw+'"'):'')+'.'+(contactId?'':' (Contact not found in CRM — note saved with name.)');
+    $('ql-contact').value=''; $('ql-note').value='';
+    setTimeout(function(){ fb.style.display='none'; },4000);
+    renderWeekActivity();
+  }).catch(function(e){ fb.style.display='block'; fb.style.color='#ef4444'; fb.textContent='Log failed: '+e.message; });
 }
 
 // ── CONTACTS ──
@@ -2503,6 +2612,7 @@ async function loadMapData(){
   if($('d-prospects')) $('d-prospects').textContent = all.length.toLocaleString('en-GB');
 
   plotMapMarkers();
+  updateProspectCoverage();
 }
 
 function plotMapMarkers(){
