@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Fyrfly CRM</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#E85D04">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fyrfly CRM">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.svg">
+<link rel="icon" href="/icon-192.svg">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
@@ -474,6 +480,12 @@ input,select,textarea{font-family:var(--fb);}
 </div>
 
 <!-- APP -->
+<!-- OFFLINE BANNER -->
+<div id="offline-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9500;background:#92400e;color:#FEF3C7;padding:8px 16px;font-size:12px;align-items:center;gap:8px;justify-content:center">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.56 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+  Offline — activity logs will sync when reconnected
+</div>
+
 <div id="app-screen">
   <!-- SIDEBAR -->
   <div class="sb">
@@ -523,6 +535,9 @@ input,select,textarea{font-family:var(--fb);}
       </div>
       <button class="btn-lo" id="logout-btn">
         <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign out
+      </button>
+      <button class="btn-lo" id="btn-install-pwa" onclick="installPWA()" style="display:none;color:rgba(232,93,4,0.7)">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Install as app
       </button>
     </div>
   </div>
@@ -2989,6 +3004,132 @@ function submitMobQuickLog(){
     fb.textContent='Failed: '+e.message;
   });
 }
+</script>
+
+<!-- PWA: SERVICE WORKER + OFFLINE QUEUE -->
+<script>
+// ── SERVICE WORKER REGISTRATION ──
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').then(function(reg){
+      console.log('[PWA] Service worker registered, scope:', reg.scope);
+    }).catch(function(err){
+      console.warn('[PWA] Service worker registration failed:', err);
+    });
+  });
+
+  // Listen for messages from service worker
+  navigator.serviceWorker.addEventListener('message', function(event){
+    if(event.data && event.data.type === 'QUEUE_ACTIVITY'){
+      queueOfflineActivity(event.data.payload);
+    }
+    if(event.data && event.data.type === 'FLUSH_QUEUE'){
+      flushOfflineQueue();
+    }
+  });
+}
+
+// ── OFFLINE QUEUE ──
+// Activities logged when offline are stored here and synced on reconnect
+var OFFLINE_QUEUE_KEY = 'fyrfly_offline_queue';
+
+function queueOfflineActivity(payload){
+  try{
+    var q = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY)||'[]');
+    q.push({payload:payload, queued_at:new Date().toISOString()});
+    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(q));
+    updateOfflineBadge();
+    toast('Saved offline — will sync when connected', 'ok');
+  }catch(e){ console.warn('[PWA] Could not queue activity:', e); }
+}
+
+function flushOfflineQueue(){
+  try{
+    var q = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY)||'[]');
+    if(q.length===0) return;
+    console.log('[PWA] Flushing', q.length, 'queued activities');
+    var remaining = [];
+    var promises = q.map(function(item){
+      return api('activities','POST',item.payload).then(function(){
+        console.log('[PWA] Synced offline activity');
+      }).catch(function(e){
+        console.warn('[PWA] Failed to sync activity:', e);
+        remaining.push(item);
+      });
+    });
+    Promise.all(promises).then(function(){
+      localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(remaining));
+      updateOfflineBadge();
+      if(remaining.length===0 && q.length>0){
+        toast(q.length+' offline activit'+(q.length===1?'y':'ies')+' synced');
+        renderWeekActivity();
+      }
+    });
+  }catch(e){ console.warn('[PWA] Could not flush queue:', e); }
+}
+
+function updateOfflineBadge(){
+  try{
+    var q = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY)||'[]');
+    var fab = $('mob-fab');
+    if(fab){
+      fab.innerHTML = q.length>0
+        ? '+<span style="position:absolute;top:-2px;right:-2px;background:#FCA5A5;color:#111;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700">'+q.length+'</span>'
+        : '+';
+      fab.style.position='fixed';
+    }
+  }catch(e){}
+}
+
+// ── CONNECTIVITY DETECTION ──
+function onOnline(){
+  $('offline-banner') && ($('offline-banner').style.display='none');
+  flushOfflineQueue();
+  if(navigator.serviceWorker && navigator.serviceWorker.controller){
+    navigator.serviceWorker.controller.postMessage({type:'SYNC_QUEUE'});
+  }
+}
+
+function onOffline(){
+  var banner = $('offline-banner');
+  if(banner) banner.style.display='flex';
+}
+
+window.addEventListener('online', onOnline);
+window.addEventListener('offline', onOffline);
+
+// ── INSTALL PROMPT ──
+var deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  var btn = $('btn-install-pwa');
+  if(btn) btn.style.display='inline-flex';
+});
+
+window.addEventListener('appinstalled', function(){
+  var btn = $('btn-install-pwa');
+  if(btn) btn.style.display='none';
+  deferredInstallPrompt = null;
+  toast('Fyrfly CRM installed as an app');
+});
+
+function installPWA(){
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.then(function(result){
+    deferredInstallPrompt = null;
+    var btn = $('btn-install-pwa');
+    if(btn) btn.style.display='none';
+  });
+}
+
+// Check and flush any queued items on load
+window.addEventListener('load', function(){
+  updateOfflineBadge();
+  if(navigator.onLine) flushOfflineQueue();
+  if(!navigator.onLine) onOffline();
+});
 </script>
 
 </body>
