@@ -197,15 +197,27 @@ async function processSource(source) {
   let allText = "";
 
   if (councilLinks.length === 0) {
-    // No individual links — try extracting from the listing page itself
+    // No individual links (likely JS-rendered menu) — extract from the listing
+    // page itself plus try common sub-pages that list clerk details
     allText = stripHtml(listingHtml);
+    // Also try the flat list view some ModernGov sites expose
+    const listUrl = url.replace("mgParishCouncilDetails.aspx", "mgParishCouncilDetails.aspx?bcr=1");
+    const listHtml = await fetchText(listUrl);
+    if (listHtml) allText += "\n\n" + stripHtml(listHtml);
   } else {
-    // Fetch each individual council page (cap at 150 to avoid very large districts)
-    const toFetch = councilLinks.slice(0, 150);
+    // Fetch each individual council page, with a hard cap and per-fetch timeout
+    const toFetch = councilLinks.slice(0, 100);
+    let fetched = 0;
     for (const link of toFetch) {
-      const html = await fetchText(link);
-      if (html) allText += "\n\n--- Council Page ---\n" + stripHtml(html);
+      const html = await fetchText(link, 8000);
+      if (html) {
+        allText += "\n\n--- Council Page ---\n" + stripHtml(html);
+        fetched++;
+      }
+      // Brief pause every 10 fetches to avoid hammering the server
+      if (fetched % 10 === 0) await new Promise((r) => setTimeout(r, 500));
     }
+    console.log(`   Fetched ${fetched}/${toFetch.length} council pages`);
   }
 
   if (!allText.trim()) {
@@ -213,12 +225,29 @@ async function processSource(source) {
     return 0;
   }
 
-  let councils;
-  try {
-    councils = await askClaudeForCouncils(county, district, allText);
-  } catch (err) {
-    console.log(`   ✗ Claude error: ${err.message}`);
-    return 0;
+  // If the combined text is very large, send in two Claude calls and merge
+  let councils = [];
+  const CHUNK_SIZE = 20000;
+  if (allText.length > CHUNK_SIZE) {
+    const chunks = [];
+    for (let i = 0; i < allText.length; i += CHUNK_SIZE) {
+      chunks.push(allText.slice(i, i + CHUNK_SIZE));
+    }
+    for (const chunk of chunks.slice(0, 4)) { // max 4 Claude calls per district
+      try {
+        const result = await askClaudeForCouncils(county, district, chunk);
+        councils = councils.concat(result);
+      } catch (err) {
+        console.log(`   ✗ Claude error on chunk: ${err.message}`);
+      }
+    }
+  } else {
+    try {
+      councils = await askClaudeForCouncils(county, district, allText);
+    } catch (err) {
+      console.log(`   ✗ Claude error: ${err.message}`);
+      return 0;
+    }
   }
 
   if (!councils.length) {
@@ -226,33 +255,49 @@ async function processSource(source) {
     return 0;
   }
 
-  console.log(`   Claude extracted ${councils.length} councils`);
+  // Deduplicate by council_name
+  const seen = new Set();
+  const unique = councils.filter((c) => {
+    if (!c.council_name || !c.council_name.trim()) return false;
+    const key = c.council_name.trim().toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  console.log(`   Claude extracted ${unique.length} councils (deduplicated from ${councils.length})`);
 
   // Upsert in chunks
-  const rows = councils
-    .filter((c) => c.council_name && c.council_name.trim())
-    .map((c) => ({
-      council_name: c.council_name.trim(),
-      district,
-      county,
-      clerk_name: c.clerk_name || null,
-      email: c.email || null,
-      phone: c.phone || null,
-      address: c.address || null,
-      source: url,
-      enriched_at: new Date().toISOString(),
-      outreach_status: "not_contacted",
-    }));
+  const rows = unique.map((c) => ({
+    council_name: c.council_name.trim(),
+    district,
+    county,
+    clerk_name: c.clerk_name || null,
+    email: c.email || null,
+    phone: c.phone || null,
+    address: c.address || null,
+    source: url,
+    enriched_at: new Date().toISOString(),
+    outreach_status: "not_contacted",
+  }));
 
-  const CHUNK = 50;
+  const DB_CHUNK = 50;
   let inserted = 0;
-  for (let i = 0; i < rows.length; i += CHUNK) {
-    const chunk = rows.slice(i, i + CHUNK);
+  for (let i = 0; i < rows.length; i += DB_CHUNK) {
+    const chunk = rows.slice(i, i + DB_CHUNK);
     const { error } = await supabase
       .from("parish_councils")
       .upsert(chunk, { onConflict: "council_name,district", ignoreDuplicates: false });
     if (error) {
       console.log(`   ✗ Supabase error on chunk ${i}: ${error.message}`);
+      // Fall back to individual inserts if upsert fails
+      for (const row of chunk) {
+        const { error: e2 } = await supabase
+          .from("parish_councils")
+          .insert(row)
+          .select();
+        if (!e2) inserted++;
+      }
     } else {
       inserted += chunk.length;
     }
