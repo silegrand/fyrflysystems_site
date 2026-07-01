@@ -891,7 +891,7 @@ function loadParishCouncils(){
       sel.innerHTML = '<option value="">All counties</option>' + counties.map(function(c){ return '<option>'+esc(c)+'</option>'; }).join('');
       renderParishCouncils();
     })
-    .catch(function(e){ console.error('Parish load error', e); $('parish-table').innerHTML = '<div class="empty"><p>Failed to load parish councils.</p></div>'; });
+    .catch(function(e){ console.error('Parish load error', e); var t=$('prospects-table'); if(t) t.innerHTML = '<div class="empty"><p>Failed to load parish councils: '+e.message+'</p></div>'; });
 }
 
 function renderParishCouncils(){
@@ -957,7 +957,7 @@ function loadIndependentSchools(){
       sel.innerHTML = '<option value="">All counties</option>' + counties.map(function(c){ return '<option>'+esc(c)+'</option>'; }).join('');
       renderIndependentSchools();
     })
-    .catch(function(e){ console.error('Independent schools load error', e); $('schools-table').innerHTML = '<div class="empty"><p>Failed to load independent schools.</p></div>'; });
+    .catch(function(e){ console.error('Independent schools load error', e); var t=$('prospects-table'); if(t) t.innerHTML = '<div class="empty"><p>Failed to load independent schools: '+e.message+'</p></div>'; });
 }
 
 function schoolHeadDisplay(r){
@@ -1015,7 +1015,7 @@ function loadKentSchools(){
       sel.innerHTML = '<option value="">All phases</option>' + phases.map(function(p){ return '<option>'+esc(p)+'</option>'; }).join('');
       renderKentSchools();
     })
-    .catch(function(e){ console.error('Kent schools load error', e); $('kentschools-table').innerHTML = '<div class="empty"><p>Failed to load Kent schools.</p></div>'; });
+    .catch(function(e){ console.error('Kent schools load error', e); var t=$('prospects-table'); if(t) t.innerHTML = '<div class="empty"><p>Failed to load Kent schools: '+e.message+'</p></div>'; });
 }
 
 function kentHeadDisplay(r){
@@ -1075,7 +1075,7 @@ function loadLondonSchools(){
       sel.innerHTML = '<option value="">All boroughs</option>' + boroughs.map(function(b){ return '<option>'+esc(b)+'</option>'; }).join('');
       renderLondonSchools();
     })
-    .catch(function(e){ console.error('London schools load error', e); $('londonschools-table').innerHTML = '<div class="empty"><p>Failed to load London schools.</p></div>'; });
+    .catch(function(e){ console.error('London schools load error', e); var t=$('prospects-table'); if(t) t.innerHTML = '<div class="empty"><p>Failed to load London schools: '+e.message+'</p></div>'; });
 }
 
 function londonHeadDisplay(r){
@@ -1136,7 +1136,7 @@ function loadSEStateSchools(){
       sel.innerHTML = '<option value="">All counties</option>' + counties.map(function(c){ return '<option>'+esc(c)+'</option>'; }).join('');
       renderSEStateSchools();
     })
-    .catch(function(e){ console.error('South East state schools load error', e); $('sestateschools-table').innerHTML = '<div class="empty"><p>Failed to load South East state schools.</p></div>'; });
+    .catch(function(e){ console.error('South East state schools load error', e); var t=$('prospects-table'); if(t) t.innerHTML = '<div class="empty"><p>Failed to load South East state schools: '+e.message+'</p></div>'; });
 }
 
 function seStateHeadDisplay(r){
@@ -1859,9 +1859,9 @@ window.PROSPECT_DEAL_MAP = {};
 // Call this after loadAll so the map is always fresh
 var _origLoadAll3 = loadAll;
 loadAll = function(){
-  return _origLoadAll3().then ? _origLoadAll3().then(function(){
+  return _origLoadAll3().then(function(){
     window.PROSPECT_DEAL_MAP = buildProspectDealMap();
-  }) : (function(){ window.PROSPECT_DEAL_MAP = buildProspectDealMap(); return _origLoadAll3(); })();
+  });
 };
 
 // Show pipeline badge in prospect rows
